@@ -56,26 +56,6 @@ lint-mypy-report: ## run mypy & create report
 
 lint: lint-black lint-isort lint-flake8 lint-mypy ## run all linters
 
-##@ Running & Debugging
-
-.PHONY: run
-run: ## run the main script
-	@poetry run lecture
-
-##@ Testing
-
-.PHONY: tests
-tests: scm-version ## run tests with pytest
-	@poetry run pytest --doctest-modules
-
-.PHONY: tests-cov
-tests-cov: scm-version ## run tests with pytest and show coverage (terminal + html)
-	@poetry run pytest --doctest-modules --cov=src --cov-report term-missing --cov-report=html
-
-.PHONY: scm-version tests-cov-fail
-tests-cov-fail: ## run unit tests with pytest and show coverage (terminal + html) & fail if coverage too low & create files for CI
-	@poetry run pytest --doctest-modules --cov=src --cov-report term-missing --cov-report=html --cov-fail-under=80 --junitxml=pytest.xml | tee pytest-coverage.txt
-
 ##@ Jupyter-Book
 
 book-build: ## build documentation locally
