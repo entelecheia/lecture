@@ -1,9 +1,4 @@
-# Artificial Intelligence Courses Lecture Notes
-
-[![license-image]][license-url]
-[![version-image]][release-url]
-[![release-date-image]][release-url]
-[![jupyter-book-image]][jupyter book]
+# Artificial Intelligence Course Lecture Notes
 
 <!-- Links: -->
 [license-image]: https://img.shields.io/github/license/entelecheia/.lecture

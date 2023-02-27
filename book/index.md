@@ -1,8 +1,5 @@
 # Lecture Notes
 
-[![license-image]][license-url]
-[![version-image]][release-url]
-[![release-date-image]][release-url]
 [![jupyter-book-image]][jupyter book]
 
 <!-- Links: -->
