@@ -1,9 +1,8 @@
-# Artificial Intelligence Courses Lecture Notes
+# Lecture Notes
 
 [![license-image]][license-url]
 [![version-image]][release-url]
 [![release-date-image]][release-url]
-[![conventional-commits-image]][conventional commits]
 [![jupyter-book-image]][jupyter book]
 
 <!-- Links: -->
@@ -24,27 +23,6 @@
 [contributing guidelines]: https://github.com/entelecheia/.lecture/blob/main/CONTRIBUTING.md
 <!-- Links: -->
 
-Lecture notes for artifical intelligence courses taught at Cheju Halla University
-
-- Documentation: [https://lecture.entelecheia.ai][docs-url]
-- GitHub: [https://github.com/entelecheia/.lecture][repo-url]
-- PyPI: [https://pypi.org/project/lecture][pypi-url]
-
-None
-
-
-
-## Changelog
-
-See the [CHANGELOG] for more information.
-
-## Contributing
-
-Contributions are welcome! Please see the [contributing guidelines] for more information.
-
-## License
-
-This project is released under the [CC-BY-4.0 License][license-url].
 
 
 ## Table of Contents
