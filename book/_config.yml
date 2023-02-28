@@ -6,19 +6,22 @@
 #######################################################################################
 # Book settings
 title: "Artificial Intelligence | Lecture Notes" # The title of the book. Will be placed in the left navbar.
-author: "Young Joon Lee" # The author of the book
-copyright: "2023" # Copyright year to be placed in the footer
+author: <a href="https://entelecheia.me">Young Joon Lee</a>
+copyright: "2023"
 # logo: logo.png # A path to the book logo
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
-  execute_notebooks: force
+  execute_notebooks: cache
+  exclude_patterns:
+    - '*.ipynb'
+  allow_errors: true
 
 # Define the name of the latex output file for PDF builds
 latex:
   latex_documents:
-    targetname: book.tex
+    targetname: lecture.tex
 
 # Add a bibtex file so that we can create citations
 bibtex_bibfiles:
@@ -33,11 +36,14 @@ repository:
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 html:
-  use_issues_button: true
+  use_issues_button: false
   use_repository_button: true
 
 sphinx:
   config:
+    bibtex_reference_style: author_year
+    html_extra_path: ['assets']
+    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
     intersphinx_mapping:
       ebp:
         - "https://executablebooks.org/en/latest/"
