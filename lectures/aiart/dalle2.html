@@ -1,0 +1,1268 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>DALL·E 2 &#8212; Artificial Intelligence | Lecture Notes</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/tabs.js"></script>
+    <script src="../../_static/js/hoverxref.js"></script>
+    <script src="../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Imagen" href="imagen.html" />
+    <link rel="prev" title="DALL·E 1" href="dalle1.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Artificial Intelligence | Lecture Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Lecture Notes
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../nlp_intro/index.html">
+   Introduction to NLP
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nlp_intro/intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nlp_intro/ekorpkit.html">
+     Getting started with ekorpkit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nlp_intro/research.html">
+     Research Applications
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nlp_intro/language_models.html">
+     Language Models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nlp_intro/topic.html">
+     Topic Modeling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nlp_intro/topic_models.html">
+     Topic Models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nlp_intro/topic_coherence.html">
+     Topic Coherence Measures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nlp_intro/sentiments.html">
+     Sentiment Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nlp_intro/tokenization.html">
+     Tokenization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nlp_intro/word_segmentation.html">
+     Word Segmentation and Association
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nlp_intro/vectorization.html">
+     Vector Semantics and Representation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nlp_intro/word_embeddings.html">
+     Word Embeddings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nlp_intro/lab1-corpus.html">
+     Lab 1: Preparing Wikipedia Corpora
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nlp_intro/lab2-corpus-eda.html">
+     Lab 2: EDA on Corpora
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../nlp_deep/index.html">
+   Deep Learning for NLP
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nlp_deep/intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nlp_deep/ekorpkit.html">
+     Getting started with ekorpkit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nlp_deep/zeroshot.html">
+     Zero Shot, Prompt, and Search Strategies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nlp_deep/transformers.html">
+     Transformers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nlp_deep/t5.html">
+     T5: Text-To-Text Transfer Transformer
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nlp_deep/tokenization.html">
+     Tokenization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nlp_deep/sentencepiece.html">
+     SentencePiece Tokenizer
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nlp_deep/byt5.html">
+     ByT5: Towards a token-free future with pre-trained byte-to-byte models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nlp_deep/plms.html">
+     Pretrained Language Models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nlp_deep/lab1-corpus.html">
+     Lab 1: Preparing Wikipedia Corpora
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nlp_deep/lab3-train-tokenizers.html">
+     Lab 3: Training Tokenizers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nlp_deep/lab4-pretraining-lms.html">
+     Lab 4: Pretraining Language Models
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nlp_apps/index.html">
+   NLP Applications
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   AI Art (Text-to-Image)
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="project-themes.html">
+     Project Themes - A Brave New World
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dalle1.html">
+     DALL·E 1
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     DALL·E 2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="imagen.html">
+     Imagen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="textual-inversion.html">
+     Textual Inversion (Dreambooth)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="whisper.html">
+     Automatic Speech Recognition (Whisper)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="text2music.html">
+     Text to Music
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="image2music.html">
+     Image to Music
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../mlops/index.html">
+   Machine Learning Systems Design
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../mlops/dev-env.html">
+     Development Environment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../mlops/dotfiles.html">
+     Dotfiles
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ds/index.html">
+   Data Science for Economics and Finance
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  About
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://entelecheia.me">
+   entelecheia.me
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../about/index.html">
+   Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../about/cite.html">
+   Citation
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/entelecheia/lecture/main?urlpath=tree/book/lectures/aiart/dalle2.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/entelecheia/lecture"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/lectures/aiart/dalle2.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#clip">
+   CLIP
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#clip-technical-details">
+     CLIP: technical details
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#contrastive-pre-training">
+     Contrastive pre-training
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#clip-image-encoders">
+     CLIP image encoders
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#clip-text-encoders">
+     CLIP text encoders
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#clip-applications">
+     CLIP applications
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#zero-shot-classification-with-clip">
+     Zero-shot classification with CLIP
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#clip-prompt-engineering-clipdraw">
+     CLIP prompt engineering: CLIPDraw
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#clip-prompt-engineering-vqgan-clip">
+     CLIP prompt engineering: VQGAN-CLIP
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#glide">
+   GLIDE
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#glide-examples">
+     GLIDE Examples
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#text-conditional-image-inpainting">
+     Text-conditional image inpainting
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#diffusion-model">
+     Diffusion model
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#glide-technical-details">
+       GLIDE technical details
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#glide-finetuning">
+       GLIDE finetuning
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dalle-2-unclip">
+   DALL·E 2/unCLIP
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dalle-2-technical-details">
+     DALL·E 2 technical details
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dalle-2-technical-details-encoders">
+     DALL·E 2 technical details: encoders
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dalle-2-technical-details-decoders">
+     DALL·E 2 technical details: decoders
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dalle-2-technical-details-the-prior">
+     DALL·E 2 technical details: the prior
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dalle-2-technical-details-training">
+     DALL·E 2 technical details: training
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-struggles-of-unclip">
+     The struggles of unCLIP
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>DALL·E 2</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#clip">
+   CLIP
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#clip-technical-details">
+     CLIP: technical details
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#contrastive-pre-training">
+     Contrastive pre-training
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#clip-image-encoders">
+     CLIP image encoders
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#clip-text-encoders">
+     CLIP text encoders
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#clip-applications">
+     CLIP applications
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#zero-shot-classification-with-clip">
+     Zero-shot classification with CLIP
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#clip-prompt-engineering-clipdraw">
+     CLIP prompt engineering: CLIPDraw
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#clip-prompt-engineering-vqgan-clip">
+     CLIP prompt engineering: VQGAN-CLIP
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#glide">
+   GLIDE
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#glide-examples">
+     GLIDE Examples
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#text-conditional-image-inpainting">
+     Text-conditional image inpainting
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#diffusion-model">
+     Diffusion model
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#glide-technical-details">
+       GLIDE technical details
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#glide-finetuning">
+       GLIDE finetuning
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dalle-2-unclip">
+   DALL·E 2/unCLIP
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dalle-2-technical-details">
+     DALL·E 2 technical details
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dalle-2-technical-details-encoders">
+     DALL·E 2 technical details: encoders
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dalle-2-technical-details-decoders">
+     DALL·E 2 technical details: decoders
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dalle-2-technical-details-the-prior">
+     DALL·E 2 technical details: the prior
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dalle-2-technical-details-training">
+     DALL·E 2 technical details: training
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-struggles-of-unclip">
+     The struggles of unCLIP
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="dalle-2">
+<h1>DALL·E 2<a class="headerlink" href="#dalle-2" title="Permalink to this headline">#</a></h1>
+<p><img alt="" src="../../_images/dalle2.png" /></p>
+<section id="clip">
+<h2>CLIP<a class="headerlink" href="#clip" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Paper: <a class="reference external" href="https://arxiv.org/abs/2103.00020">https://arxiv.org/abs/2103.00020</a></p></li>
+<li><p>Blog post: <a class="reference external" href="https://openai.com/blog/clip/">https://openai.com/blog/clip/</a></p></li>
+<li><p>Code: <a class="reference external" href="https://github.com/openai/CLIP">https://github.com/openai/CLIP</a> (does not cover the training part)</p></li>
+<li><p>Models: Available (on Apr 22, 2022, the last and the best ViT-L/14&#64;336px model was published)</p></li>
+<li><p>Alternative code: <a class="reference external" href="https://github.com/mlfoundations/open_clip">https://github.com/mlfoundations/open_clip</a> (with training)</p></li>
+<li><p>Alternative models (Multilingual): <a class="reference external" href="https://github.com/FreddeFrallan/Multilingual-CLIP">https://github.com/FreddeFrallan/Multilingual-CLIP</a></p></li>
+</ul>
+<ul class="simple">
+<li><p>CLIP was originally a separate auxiliary model to rank the results from DALL·E.</p></li>
+<li><p>An abbreviation for Contrastive Language-Image Pre-Training.</p></li>
+<li><p>Take a large dataset of image-text pairs scraped from the Internet (400M such pairs).</p></li>
+<li><p>Then train a contrastive model on such a dataset.</p></li>
+<li><p>Contrastive models produce high scores (similarity) for an image and a text from the same pair (so they are similar) and a low score for mismatched texts and images.</p></li>
+</ul>
+<section id="clip-technical-details">
+<h3>CLIP: technical details<a class="headerlink" href="#clip-technical-details" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>The model consists of two encoders: one for a text and another one for an image.</p></li>
+<li><p>Encoders produce embeddings (a multidimensional vector representation of an object, say 512 bytes for each).</p></li>
+<li><p>Then a dot product is calculated with two embeddings, and it results in a similarity score.</p></li>
+<li><p>Embeddings are normalized, so this procedure outputs cosine similarity.</p></li>
+<li><p>It is close to 1 for vectors pointing in the same direction (and consequently a small angle between them), 0 for orthogonal vectors, and -1 for opposite ones.</p></li>
+<li><p>The model is trained to maximize the similarity score for the image-text pairs from the same dataset and minimize it for mismatched pairs.</p></li>
+</ul>
+</section>
+<section id="contrastive-pre-training">
+<h3>Contrastive pre-training<a class="headerlink" href="#contrastive-pre-training" title="Permalink to this headline">#</a></h3>
+<p><img alt="objects" src="../../_images/contrastive.png" /></p>
+</section>
+<section id="clip-image-encoders">
+<h3>CLIP image encoders<a class="headerlink" href="#clip-image-encoders" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>There are nine image encoders, five convolutional, and four transformer ones.</p></li>
+<li><p>Convolutional encoders are ResNet-50, ResNet-101 and EfficientNet-like models called RN50x4, RN50x16, RN50x64 (the higher numbers, the better the model).</p></li>
+<li><p>Transformer encoders are Vision Transformers (or ViT): ViT-B/32, ViT-B/16, ViT-L/14, and ViT-L/14&#64;336.</p></li>
+<li><p>The last one was fine-tuned on images with a resolution of 336×336 pixels, and others were trained on 224×224 pixels.</p></li>
+</ul>
+</section>
+<section id="clip-text-encoders">
+<h3>CLIP text encoders<a class="headerlink" href="#clip-text-encoders" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>The text encoder is an ordinary transformer encoder but with masked attention.</p></li>
+<li><p>It consists of 12 layers with 8 attention heads each, with 63M parameters in total.</p></li>
+<li><p>The attention span is only 76 tokens (compared to the GPT-3 with 2048 tokens and a standard BERT with 512 tokens).</p></li>
+<li><p>The text part of the model is suitable for pretty short texts only, and you can’t put a large paragraph into the model.</p></li>
+<li><p>As DALL·E 2 uses mostly the same CLIP, it should have the same limitation.</p></li>
+</ul>
+</section>
+<section id="clip-applications">
+<h3>CLIP applications<a class="headerlink" href="#clip-applications" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>You can use such a model for ranking text-image pairs as was done in DALL·E to score multiple results and choose the best one.</p></li>
+<li><p>You can use the CLIP features to train your custom classifiers on top of it.</p></li>
+<li><p>You can use CLIP for zero-shot classification (when you didn’t specifically train the model to work with these classes) with any number of classes. The classes can be adjustable without retraining a model.</p></li>
+</ul>
+</section>
+<section id="zero-shot-classification-with-clip">
+<h3>Zero-shot classification with CLIP<a class="headerlink" href="#zero-shot-classification-with-clip" title="Permalink to this headline">#</a></h3>
+<p><img alt="" src="../../_images/clip-zeroshot.png" /></p>
+</section>
+<section id="clip-prompt-engineering-clipdraw">
+<h3>CLIP prompt engineering: CLIPDraw<a class="headerlink" href="#clip-prompt-engineering-clipdraw" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://colab.research.google.com/github/kvfrans/clipdraw/blob/main/clipdraw.ipynb">https://colab.research.google.com/github/kvfrans/clipdraw/blob/main/clipdraw.ipynb</a></p></li>
+<li><p><a class="reference external" href="https://colab.research.google.com/github/pschaldenbrand/StyleCLIPDraw/blob/master/Style_ClipDraw.ipynb">https://colab.research.google.com/github/pschaldenbrand/StyleCLIPDraw/blob/master/Style_ClipDraw.ipynb</a></p></li>
+</ul>
+<p><img alt="" src="../../_images/clipdraw.png" /></p>
+<p><strong>CLIPDraw generation procedure</strong></p>
+<p><img alt="" src="../../_images/clipdraw-procedure.png" /></p>
+</section>
+<section id="clip-prompt-engineering-vqgan-clip">
+<h3>CLIP prompt engineering: VQGAN-CLIP<a class="headerlink" href="#clip-prompt-engineering-vqgan-clip" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/nerdyrodent/VQGAN-CLIP">https://github.com/nerdyrodent/VQGAN-CLIP</a></p></li>
+<li><p><a class="reference external" href="https://colab.research.google.com/github/justinjohn0306/VQGAN-CLIP/blob/main/VQGAN%2BCLIP(Updated).ipynb">https://colab.research.google.com/github/justinjohn0306/VQGAN-CLIP/blob/main/VQGAN+CLIP(Updated).ipynb</a></p></li>
+</ul>
+<p><img alt="" src="../../_images/vqgan-clip.png" /></p>
+<p><strong>VQGAN-CLIP generation procedure</strong></p>
+<p><img alt="" src="../../_images/vqgan-clip-procedure.png" /></p>
+</section>
+</section>
+<section id="glide">
+<h2>GLIDE<a class="headerlink" href="#glide" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Paper: <a class="reference external" href="https://arxiv.org/abs/2112.10741">https://arxiv.org/abs/2112.10741</a></p></li>
+<li><p>Blog post: Strangely enough, OpenAI didn’t make a post on it</p></li>
+<li><p>Code: <a class="reference external" href="https://github.com/openai/glide-text2im">https://github.com/openai/glide-text2im</a></p></li>
+<li><p>Models: Available, but only a small model (300M instead of 3.5B parameters) trained on a filtered dataset</p></li>
+</ul>
+<ul class="simple">
+<li><p>GLIDE, which stands for <code class="docutils literal notranslate"><span class="pre">G</span></code>uided <code class="docutils literal notranslate"><span class="pre">L</span></code>anguage to <code class="docutils literal notranslate"><span class="pre">I</span></code>mage <code class="docutils literal notranslate"><span class="pre">D</span></code>iffusion for Generation and <code class="docutils literal notranslate"><span class="pre">E</span></code>diting, is a text-guided image generation model by OpenAI.</p></li>
+<li><p>GLIDE generates images with a 256×256 pixel resolution.</p></li>
+<li><p>GLIDE model with 3.5B parameters (but it seems the correct number is 5B parameters as there is a separate upsampling model with 1.5B parameters) is favored over 12B parameters DALL·E by human evaluators and also has beaten DALL·E by FID score.</p></li>
+<li><p>GLIDE models can also be fine-tuned to perform image inpainting, enabling powerful text-driven image editing.</p></li>
+</ul>
+<section id="glide-examples">
+<h3>GLIDE Examples<a class="headerlink" href="#glide-examples" title="Permalink to this headline">#</a></h3>
+<p><img alt="" src="../../_images/glide-examples.png" /></p>
+</section>
+<section id="text-conditional-image-inpainting">
+<h3>Text-conditional image inpainting<a class="headerlink" href="#text-conditional-image-inpainting" title="Permalink to this headline">#</a></h3>
+<p><img alt="" src="../../_images/glide-inpainting.png" /></p>
+</section>
+<section id="diffusion-model">
+<h3>Diffusion model<a class="headerlink" href="#diffusion-model" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>GLIDE resembles another kind of model called the diffusion model.</p></li>
+<li><p>Diffusion models add random noise to input data through the chain of diffusion steps, and then they learn to reverse the diffusion process to construct images from the noise.</p></li>
+</ul>
+<p><img alt="" src="../../_images/diffusion-model.png" /></p>
+<p><strong>Illustration of the process used to generate a new image with the diffusion model</strong></p>
+<p><img alt="" src="lectures/figs/aiart/dalle2/diffusion.gif" /></p>
+<p><strong>Diffusion models compared to the other classes of generative models</strong></p>
+<p><img alt="" src="../../_images/diffusion-compare.png" /></p>
+<section id="glide-technical-details">
+<h4>GLIDE technical details<a class="headerlink" href="#glide-technical-details" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>First, the authors trained a 3.5B parameter diffusion model that uses a text encoder to condition on natural language descriptions.</p></li>
+<li><p>Next, they compared two techniques for guiding diffusion models toward text prompts: CLIP guidance and classifier-free guidance.</p></li>
+<li><p>Classifier guidance allows diffusion models to condition on a classifier’s labels, and gradients from the classifier are used to guide the sample towards the label.</p></li>
+<li><p>The classifier-free guidance does not require a separate classifier model to be trained. is a form of guidance that interpolates between predictions from a diffusion model with and without labels.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Classifier-free guidance has two appealing properties</p></li>
+<li><p>First, it allows a single model to leverage its own knowledge during guidance, rather than relying on the knowledge of a separate (and sometimes smaller) classification model.</p></li>
+<li><p>Second, it simplifies guidance when conditioning on information that is difficult to predict with a classifier (such as text).</p></li>
+<li><p>With CLIP guidance the classifier is replaced with a CLIP model. It uses the gradient of the dot product of the image and caption encodings with respect to the image.</p></li>
+<li><p>The text-conditioned diffusion model is an augmented ADM model architecture that predicts an image for the next diffusion step based on a noised image xₜ and corresponding text caption c.</p></li>
+</ul>
+<p><strong>GLIDE technical details: visual part</strong></p>
+<ul class="simple">
+<li><p>The visual part is a modified U-Net architecture.</p></li>
+<li><p>The U-Net model uses a stack of residual layers and down-sampling convolutions, followed by a stack of residual layers with up-sampling convolutions, with skip connections connecting the layers with the same spatial size.</p></li>
+<li><p>There are different modifications to the original U-Net architecture regarding width, depth, and so on.</p></li>
+<li><p>Global attention layers with several attention heads are added at the 8×8, 16×16, and 32×32 resolutions.</p></li>
+<li><p>Also, a projection of the timestep embedding was added to each residual block..</p></li>
+<li><p>For the classifier guidance, a classifier architecture is the down-sampling trunk of the U-Net model with an attention pool at the 8×8 layer to produce the final output.</p></li>
+</ul>
+<p><strong>The original U-Net architecture</strong></p>
+<p><img alt="" src="../../_images/u-net.png" /></p>
+<p><strong>GLIDE technical details: text part</strong></p>
+<ul class="simple">
+<li><p>The text is encoded into a sequence of K (the maximum attention span is unclear) tokens that passed through a transformer model.</p></li>
+<li><p>The output of this transformer is used in two ways:</p>
+<ul>
+<li><p>first, the final token embedding is used in place of a class embedding in the ADM model;</p></li>
+<li><p>second,the last layer of token embeddings (a sequence of K feature vectors) is separately projected to the dimensionality of each attention layer throughout the ADM model and then concatenated to the attention context at each layer.</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>The text transformer has 24 residual blocks of width 2048, resulting in roughly 1.2B parameters.</p></li>
+<li><p>The visual part of the model trained for 64×64 resolution consists of 2.3B parameters.</p></li>
+<li><p>In addition to the 3.5B parameters text-conditional diffusion model, the authors trained another 1.5B parameters text-conditional upsampling diffusion model to increase the resolution to 256×256 (this idea will be used in DALL·E as well).</p></li>
+<li><p>The upsampling model is conditioned on text in the same way as the base model but uses a smaller text encoder with a width of 1024 instead of 2048.</p></li>
+<li><p>For CLIP guidance, they also trained a noised 64×64 ViT-L CLIP model.</p></li>
+<li><p>GLIDE was trained on the same dataset as DALL·E and the total training compute is roughly equal to that used to train DALL·E.</p></li>
+</ul>
+<p><strong>GLIDE is preferred by the human evaluators</strong></p>
+<p><img alt="" src="../../_images/glide-eval.png" /></p>
+</section>
+<section id="glide-finetuning">
+<h4>GLIDE finetuning<a class="headerlink" href="#glide-finetuning" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>The model was fine-tuned to support unconditional image generation.</p></li>
+<li><p>This training procedure is exactly like pre-training, except 20% of text token sequences are replaced with the empty sequence.</p></li>
+<li><p>This way, the model retained its ability to generate text-conditional outputs, but can also generate images unconditionally.</p></li>
+<li><p>The model was also explicitly fine-tuned to perform inpainting. During fine-tuning, random regions of training examples are erased, and the remaining portions are fed into the model along with a mask channel as additional conditioning information.</p></li>
+<li><p>GLIDE can be used iteratively to produce a complex scene using a zero-shot generation followed by a series of inpainting edits.</p></li>
+</ul>
+<p>First, an image for the prompt “a cozy living room” is generated, then the shown inpainting masks are used and follow-up text prompts added a painting to the wall, a coffee table, and a vase of flowers on the coffee table, and finally to move the wall up to the couch.</p>
+<p><img alt="" src="../../_images/glide-inpainting2.png" /></p>
+</section>
+</section>
+</section>
+<section id="dalle-2-unclip">
+<h2>DALL·E 2/unCLIP<a class="headerlink" href="#dalle-2-unclip" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Paper: <a class="reference external" href="https://cdn.openai.com/papers/dall-e-2.pdf">https://cdn.openai.com/papers/dall-e-2.pdf</a></p></li>
+<li><p>Blog post: <a class="reference external" href="https://openai.com/dall-e-2/">https://openai.com/dall-e-2/</a></p></li>
+<li><p>Code: Not available</p></li>
+<li><p>Models: Not available</p></li>
+<li><p>Code (unofficial): <a class="reference external" href="https://github.com/lucidrains/DALLE2-pytorch">https://github.com/lucidrains/DALLE2-pytorch</a></p></li>
+</ul>
+<p>DALL·E 1 vs. DALL·E 2</p>
+<p><img alt="" src="../../_images/dalle1-vs-dalle2.png" /></p>
+<ul class="simple">
+<li><p>OpenAI announced its DALL·E 2 system on April 6th, 2022.</p></li>
+<li><p>The DALL·E 2 system significantly improves results over the original DALL·E.</p></li>
+<li><p>It generates images with 4x greater resolution (compared to original DALL·E and GLIDE), now up to 1024×1024 pixels.</p></li>
+<li><p>The model behind the DALL·E 2 system is called unCLIP.</p></li>
+<li><p>The authors found that humans still slightly prefer GLIDE to unCLIP in terms of photorealism, but the gap is very small.</p></li>
+<li><p>Even with similar photorealism, unCLIP is strongly preferred over GLIDE in terms of diversity, highlighting one of its benefits.</p></li>
+</ul>
+<p>DALL·E 2 can combine concepts, attributes, and styles:</p>
+<p><img alt="" src="../../_images/dalle2-combine.png" /></p>
+<p>Image editing based on text guidance</p>
+<p><img alt="Image editing based on text guidance" src="../../_images/dalle2-editing.png" /></p>
+<p>Generating variations of an image</p>
+<p><img alt="" src="../../_images/dalle2-variations.png" /></p>
+<p>Some problems with DALL·E 2</p>
+<p><img alt="" src="../../_images/dalle2-problems.png" /></p>
+<p>unCLIP also struggles at producing coherent text</p>
+<p><img alt="" src="../../_images/dalle2-text.png" /></p>
+<p>Producing details in complex scenes:</p>
+<p><img alt="" src="../../_images/dalle2-details.png" /></p>
+<section id="dalle-2-technical-details">
+<h3>DALL·E 2 technical details<a class="headerlink" href="#dalle-2-technical-details" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>It is a clever combination of CLIP and GLIDE, and the model itself (the full text-conditional image generation stack) is called unCLIP internally in the paper since it generates images by inverting the CLIP image encoder.</p></li>
+<li><p>The CLIP model is trained separately.</p></li>
+<li><p>Then the CLIP text encoder generates an embedding for the input text (caption).</p></li>
+<li><p>Then a special prior model generates an image embedding based on the text embedding.</p></li>
+<li><p>Then a diffusion decoder generates an image based on the image embedding.</p></li>
+<li><p>The decoder essentially inverts image embeddings back into images.</p></li>
+</ul>
+<p>A high-level overview of DALL·E 2</p>
+<p><img alt="" src="../../_images/dalle2-overview.png" /></p>
+</section>
+<section id="dalle-2-technical-details-encoders">
+<h3>DALL·E 2 technical details: encoders<a class="headerlink" href="#dalle-2-technical-details-encoders" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>The CLIP model uses a ViT-H/16 image encoder that consumes 256×256 resolution images and has a width of 1280 with 32 Transformer blocks (it’s deeper than the largest ViT-L from the original CLIP work).</p></li>
+<li><p>The text encoder is a Transformer with a causal attention mask, with a width of 1024 and 24 Transformer blocks (the original CLIP model had 12 transformer blocks).</p></li>
+</ul>
+</section>
+<section id="dalle-2-technical-details-decoders">
+<h3>DALL·E 2 technical details: decoders<a class="headerlink" href="#dalle-2-technical-details-decoders" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>The diffusion decoder is a modified GLIDE with 3.5B parameters.</p></li>
+<li><p>CLIP image embeddings are projected and added to the existing timestep embedding.</p></li>
+<li><p>CLIP embeddings are also projected into four extra tokens of context that are concatenated to the sequence of outputs from the GLIDE text encoder.</p></li>
+<li><p>The original GLIDE’s text conditioning pathway is retained because it could allow the diffusion model to learn aspects of natural language that CLIP fails to capture (yet, it helped little).</p></li>
+<li><p>During training, the CLIP embeddings are randomly set to zero 10% of the time, and the text caption was randomly dropped 50% of the time.</p></li>
+</ul>
+<ul class="simple">
+<li><p>The decoder generates a 64×64 pixel image, and then two upsampling diffusion models subsequently generate 256×256 and 1024×1024 images, the former with 700M parameters, and the latter with 300M parameters.</p></li>
+<li><p>To improve upsampling robustness, the conditioning images are slightly corrupted during training.</p></li>
+<li><p>For the first upsampling stage, gaussian blur was used, and for the second, a more diverse BSR degradation is used, which includes JPEG compression artifacts, camera sensor noise, bilinear and bicubic interpolations, Gaussian noise.</p></li>
+<li><p>The models are trained on random crops of images that are one-fourth the target size. Text conditioning is not used for the upsampling models.</p></li>
+</ul>
+</section>
+<section id="dalle-2-technical-details-the-prior">
+<h3>DALL·E 2 technical details: the prior<a class="headerlink" href="#dalle-2-technical-details-the-prior" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>The prior produces image embeddings from text descriptions. (Autoregressive (AR) prior and Diffusion prior with 1B parameters)</p></li>
+<li><p>In the AR prior, the CLIP image embedding is converted into a sequence of discrete codes and predicted autoregressively conditioned on the caption.</p></li>
+<li><p>In the diffusion prior the continuous embedding vector is directly modeled using a Gaussian diffusion model conditioned on the caption.</p></li>
+<li><p>In addition to the caption, the prior model can be conditioned on the CLIP text embedding since it is a deterministic function of the caption.</p></li>
+<li><p>To improve sample quality, the authors also enabled sampling using classifier-free guidance for both the AR and diffusion prior by randomly dropping this text conditioning information 10% of the time during training.</p></li>
+</ul>
+<p>AR prior</p>
+<ul class="simple">
+<li><p>For the AR prior, the dimensionality of the CLIP image embeddings was reduced by Principal Component Analysis (PCA).</p></li>
+<li><p>319 principal components out of 1024 keep more than 99% information.</p></li>
+<li><p>Each dimension is quantized into 1024 buckets.</p></li>
+<li><p>Authors condition the AR prior on the text caption and the CLIP text embedding by encoding them as a prefix to the sequence.</p></li>
+<li><p>Additionally, they prepend a token indicating the (quantized) dot product between the text embedding and image embedding.</p></li>
+<li><p>This allowed conditioning of the model on a higher dot product since higher text-image dot products correspond to captions that better describe the image.</p></li>
+<li><p>The dot product was sampled from the top half of the distribution.</p></li>
+<li><p>The resulting sequence is predicted using a Transformer model with a causal attention mask.</p></li>
+</ul>
+<p>Diffusion prior</p>
+<ul class="simple">
+<li><p>For the diffusion prior, a decoder-only Transformer with a causal attention mask is trained on a sequence consisting of:</p>
+<ul>
+<li><p>the encoded text</p></li>
+<li><p>the CLIP text embedding</p></li>
+<li><p>an embedding for the diffusion timestep</p></li>
+<li><p>the noised CLIP image embedding</p></li>
+<li><p>a final embedding whose output from the Transformer is used to predict the unnoised CLIP image embedding.</p></li>
+</ul>
+</li>
+<li><p>A dot product was not used to condition the diffusion prior.</p></li>
+<li><p>Instead, to improve quality during sampling time, two samples of an image embedding were generated, and the one with a higher dot product with a text embedding was selected.</p></li>
+<li><p>Diffusion prior outperforms the AR prior for comparable model size and reduced training compute. The diffusion prior also performs better than the AR prior in pairwise comparisons against GLIDE.</p></li>
+</ul>
+<p>AR vs Diffusion prior</p>
+<p><img alt="" src="../../_images/dalle2-ar-diffusion.png" /></p>
+<p>Using different conditioning signals</p>
+<p><img alt="" src="../../_images/dalle2-conditioning.png" /></p>
+</section>
+<section id="dalle-2-technical-details-training">
+<h3>DALL·E 2 technical details: training<a class="headerlink" href="#dalle-2-technical-details-training" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>When training the encoder, authors sampled from the CLIP and DALL-E datasets (approximately 650M images in total) with equal probability.</p></li>
+<li><p>When training the decoder, upsamplers, and prior, they used only the DALL-E dataset (approximately 250M images), as incorporating the noisier CLIP dataset while training the generative stack negatively impacted sample quality in their initial evaluations.</p></li>
+<li><p>The total model size seems to be: 632M? parameters (CLIP ViT-H/16 image encoder) + 340M? (CLIP text encoder) + 1B (Diffusion prior) + 3.5B (diffusion decoder) + 1B (two diffusion upsamplers) =~ 6.5B parameters.</p></li>
+</ul>
+<p>unCLIP applications</p>
+<p><img alt="" src="../../_images/dalle2-applications.png" /></p>
+<ul class="simple">
+<li><p>Each image x can be encoded into a bipartite latent representation (zi, xT) that is sufficient for the decoder to produce an accurate reconstruction.</p></li>
+<li><p>The latent zi is a CLIP image embedding, and it describes the aspects of the image that are recognized by CLIP.</p></li>
+<li><p>The latent xT is obtained by applying DDIM (denoising diffusion implicit model) inversion to x using the decoder while conditioning on zi.</p></li>
+<li><p>In other words, it is a starting noise for the diffusion process when it generates the image x (or equivalently x0).</p></li>
+</ul>
+<p>Three interesting kinds of manipulations</p>
+<ul class="simple">
+<li><p>First, you can create image variations for the given bipartite latent representation (zi, xT) by sampling in the decoder using DDIM with η &gt; 0.</p></li>
+<li><p>With η = 0, the decoder becomes deterministic and will reconstruct the given image x.</p></li>
+<li><p>The larger the η parameter, the larger variations, and we can see what information was captured in the CLIP image embedding and present in all samples.</p></li>
+</ul>
+<p>Creating image variations</p>
+<p><img alt="" src="../../_images/dalle2-variation.png" /></p>
+<ul class="simple">
+<li><p>Second, you can make interpolations between images x1 and x2.</p></li>
+<li><p>In order to do it, you have to take CLIP image embeddings zi1 and zi2, then apply slerp (Spherical Linear Interpolation) to obtain intermediate CLIP image representations.</p></li>
+<li><p>There are two options for the corresponding intermediate DDIM latent xTi:</p>
+<ol class="simple">
+<li><p>interpolate between xT1 and xT2 with slerp,</p></li>
+<li><p>fix the DDIM latent to a randomly-sampled value for all interpolates in thetrajectory (and you can generate an infinite number of trajectories this way). The following images were generated with the second option.</p></li>
+</ol>
+</li>
+</ul>
+<p>Images were generated with the second option</p>
+<p><img alt="" src="../../_images/dalle2-interpolation.png" /></p>
+<ul class="simple">
+<li><p>Finally, the third thing is language-guided image manipulations or text diffs.</p></li>
+<li><p>In order to modify the image to reflect a new text description y, you first obtain its CLIP text embedding zt, as well as the CLIP text embedding zt0 of a caption describing the current image (which might be a dummy caption like “a photo” or an empty caption at all).</p></li>
+<li><p>Then you compute a text diff vector zd = norm(zt − zt0).</p></li>
+<li><p>Then you rotate between the image CLIP embedding zi and the text diff vector zd with slerp and generate images with the fixed base DDIM noise xT throughout the entire trajectory.</p></li>
+</ul>
+<ul class="simple">
+<li><p>“concept space” for text</p></li>
+</ul>
+<blockquote>
+<div><p>“woman”+“king”−“man”,</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>perform arithmetic using both text and images</p></li>
+</ul>
+<blockquote>
+<div><p>(image of victorian house)+“a modern house”−“a victorian house”</p>
+</div></blockquote>
+<p>Exploring text diffs</p>
+<p><img alt="" src="../../_images/dalle2-text-diffs.png" /></p>
+<p>The case with typographic attacks</p>
+<p><img alt="" src="../../_images/dalle2-typographic-attacks.png" /></p>
+</section>
+<section id="the-struggles-of-unclip">
+<h3>The struggles of unCLIP<a class="headerlink" href="#the-struggles-of-unclip" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>The struggles of unCLIP: attribute binding, text generation, and details in complex scenes.</p></li>
+<li><p>The first two problems are probably due to CLIP embeddings properties.</p></li>
+<li><p>The attribute binding problem might happen because the CLIP embedding itself does not explicitly bind attributes to objects, so the decoder mix up attributes and objects when generating an image.</p></li>
+<li><p>The text generation problem is probably because the CLIP embedding doesnot precisely encode the spelling information of a rendered text.</p></li>
+<li><p>The low details problem might emerge due to the decoder hierarchy producing an image at a base resolution of 64×64 and then upsampling it.</p></li>
+<li><p>So, with a higher base resolution, the problem might disappear (at the cost of additional training and inference compute).</p></li>
+</ul>
+<p>Another set of reconstructions for difficult binding problems</p>
+<p><img alt="" src="../../_images/dalle2-difficult-binding.png" /></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lectures/aiart"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="dalle1.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">DALL·E 1</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="imagen.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Imagen</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By <a href="https://entelecheia.me">Young Joon Lee</a><br/>
+  
+      &copy; Copyright 2023.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
