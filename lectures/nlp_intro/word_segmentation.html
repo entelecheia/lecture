@@ -1,30 +1,36 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Word Segmentation and Association &#8212; Artificial Intelligence | Lecture Notes</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
@@ -37,18 +43,20 @@
     <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-light.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-borderless.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/micromodal.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
     <script src="../../_static/tabs.js"></script>
     <script src="../../_static/js/hoverxref.js"></script>
     <script src="../../_static/js/tooltipster.bundle.min.js"></script>
@@ -57,7 +65,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -65,60 +73,361 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_intro/word_segmentation';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Vector Semantics and Representation" href="vectorization.html" />
     <link rel="prev" title="Tokenization" href="tokenization.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
 
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
     
-    <div class="container-fluid" id="banner"></div>
-
     
+  
 
-    <div class="container-xl">
-      <div class="row">
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+    <p class="title logo__title">Artificial Intelligence | Lecture Notes</p>
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Introduction to NLP
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../nlp_deep/index.html">
+                        Deep Learning for NLP
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../nlp_apps/index.html">
+                        NLP Applications
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../aiart/index.html">
+                        AI Art (Text-to-Image)
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mlops/index.html">
+                        Machine Learning Systems Design
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../ds/index.html">
+                        Data Science for Economics and Finance
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://entelecheia.me">
+                        entelecheia.me
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../about/index.html">
+                        Bibliography
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../about/cite.html">
+                        Citation
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
       
       
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
       
-      <h1 class="site-logo" id="site-title">Artificial Intelligence | Lecture Notes</h1>
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
       
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Introduction to NLP
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../nlp_deep/index.html">
+                        Deep Learning for NLP
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../nlp_apps/index.html">
+                        NLP Applications
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../aiart/index.html">
+                        AI Art (Text-to-Image)
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mlops/index.html">
+                        Machine Learning Systems Design
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../ds/index.html">
+                        Data Science for Economics and Finance
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://entelecheia.me">
+                        entelecheia.me
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../about/index.html">
+                        Bibliography
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../about/cite.html">
+                        Citation
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+    <p class="title logo__title">Artificial Intelligence | Lecture Notes</p>
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -127,675 +436,317 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Course
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="index.html">
-   Introduction to NLP
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="intro.html">
-     Introduction
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="ekorpkit.html">
-     Getting started with ekorpkit
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="research.html">
-     Research Applications
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="language_models.html">
-     Language Models
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="topic.html">
-     Topic Modeling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="topic_models.html">
-     Topic Models
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="topic_coherence.html">
-     Topic Coherence Measures
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="sentiments.html">
-     Sentiment Analysis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="tokenization.html">
-     Tokenization
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Word Segmentation and Association
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="vectorization.html">
-     Vector Semantics and Representation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="word_embeddings.html">
-     Word Embeddings
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="lab1-corpus.html">
-     Lab 1: Preparing Wikipedia Corpora
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="lab2-corpus-eda.html">
-     Lab 2: EDA on Corpora
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../nlp_deep/index.html">
-   Deep Learning for NLP
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/intro.html">
-     Introduction
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/ekorpkit.html">
-     Getting started with ekorpkit
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/zeroshot.html">
-     Zero Shot, Prompt, and Search Strategies
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/transformers.html">
-     Transformers
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/t5.html">
-     T5: Text-To-Text Transfer Transformer
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/tokenization.html">
-     Tokenization
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/sentencepiece.html">
-     SentencePiece Tokenizer
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/byt5.html">
-     ByT5: Towards a token-free future with pre-trained byte-to-byte models
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/plms.html">
-     Pretrained Language Models
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/lab1-corpus.html">
-     Lab 1: Preparing Wikipedia Corpora
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/lab3-train-tokenizers.html">
-     Lab 3: Training Tokenizers
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/lab4-pretraining-lms.html">
-     Lab 4: Pretraining Language Models
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../nlp_apps/index.html">
-   NLP Applications
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../aiart/index.html">
-   AI Art (Text-to-Image)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/intro.html">
-     Introduction
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/project-themes.html">
-     Project Themes - A Brave New World
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/dalle1.html">
-     DALL·E 1
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/dalle2.html">
-     DALL·E 2
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/imagen.html">
-     Imagen
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/textual-inversion.html">
-     Textual Inversion (Dreambooth)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/whisper.html">
-     Automatic Speech Recognition (Whisper)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/text2music.html">
-     Text to Music
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/image2music.html">
-     Image to Music
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../mlops/index.html">
-   Machine Learning Systems Design
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../mlops/dev-env.html">
-     Development Environment
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../mlops/dotfiles.html">
-     Dotfiles
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../ds/index.html">
-   Data Science for Economics and Finance
-  </a>
- </li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Introduction to NLP</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ekorpkit.html">Getting started with ekorpkit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="research.html">Research Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language_models.html">Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topic.html">Topic Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topic_models.html">Topic Models </a></li>
+<li class="toctree-l2"><a class="reference internal" href="topic_coherence.html">Topic Coherence Measures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sentiments.html">Sentiment Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tokenization.html">Tokenization</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Word Segmentation and Association</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vectorization.html">Vector Semantics and Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="word_embeddings.html">Word Embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab1-corpus.html">Lab 1: Preparing Wikipedia Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab2-corpus-eda.html">Lab 2: EDA on Corpora</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  About
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nlp_deep/index.html">Deep Learning for NLP</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/ekorpkit.html">Getting started with ekorpkit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/zeroshot.html">Zero Shot, Prompt, and Search Strategies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/transformers.html">Transformers </a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/t5.html">T5: Text-To-Text Transfer Transformer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/tokenization.html">Tokenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/sentencepiece.html">SentencePiece Tokenizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/plms.html">Pretrained Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/lab1-corpus.html">Lab 1: Preparing Wikipedia Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/lab3-train-tokenizers.html">Lab 3: Training Tokenizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/lab4-pretraining-lms.html">Lab 4: Pretraining Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp_apps/index.html">NLP Applications</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../aiart/index.html">AI Art (Text-to-Image)</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/project-themes.html">Project Themes - A Brave New World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/dalle1.html">DALL·E 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/dalle2.html">DALL·E 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/imagen.html">Imagen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/textual-inversion.html">Textual Inversion (Dreambooth)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/whisper.html">Automatic Speech Recognition (Whisper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/text2music.html">Text to Music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/image2music.html">Image to Music</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../mlops/index.html">Machine Learning Systems Design</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../mlops/dev-env.html">Development Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mlops/dotfiles.html">Dotfiles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ds/index.html">Data Science for Economics and Finance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference external" href="https://entelecheia.me">
-   entelecheia.me
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../about/index.html">
-   Bibliography
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../about/cite.html">
-   Citation
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/cite.html">Citation</a></li>
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
+</nav>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  </div>
+  
 
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
 
-          
+  
+  <div id="rtd-footer-container"></div>
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
+      </div>
+      <main id="main-content" class="bd-main">
         
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
 
 
 
 <div class="col py-1 d-flex header-article-main">
     <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
     </div>
     <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/entelecheia/lecture/main?urlpath=tree/book/lectures/nlp_intro/word_segmentation.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/nlp_intro/word_segmentation.ipynb"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/nlp_intro/word_segmentation.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Launch on Colab"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../../_static/images/logo_colab.png">
   </span>
-<span class="headerbtn__text-container">Colab</span>
+<span class="btn__text-container">Colab</span>
 </a>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
+  class="btn btn-sm"
   data-toggle="tooltip"
 data-placement="bottom"
 title="Fullscreen mode"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
-<a href="https://github.com/entelecheia/lecture"
-   class="headerbtn"
+<a href="https://github.com/entelecheia/lecture" target="_blank"
+   class="btn btn-sm"
    data-toggle="tooltip"
 data-placement="bottom"
 title="Source repository"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fab fa-github"></i>
   </span>
 
 </a>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../_sources/lectures/nlp_intro/word_segmentation.ipynb"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="../../_sources/lectures/nlp_intro/word_segmentation.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Download source file"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.ipynb</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
-
-      </li>
+</a>
       
       <li>
-        
 <button onclick="printPdf(this)"
-  class="headerbtn"
+  class="btn btn-sm dropdown-item"
   data-toggle="tooltip"
 data-placement="left"
 title="Print to PDF"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file-pdf"></i>
   </span>
-<span class="headerbtn__text-container">.pdf</span>
+<span class="btn__text-container">.pdf</span>
 </button>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
+  </ul>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
     </div>
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#word-segmentation">
-   Word Segmentation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#why-should-we-segment-words">
-   Why should we segment words?
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#generating-segment-variants">
-   Generating segment variants
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#naive-recursive-algorithm">
-     Naive Recursive Algorithm
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dynamic-programming">
-     Dynamic Programming
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#triangular-matrix">
-     Triangular Matrix
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#maximum-matching-algorithm">
-     Maximum Matching Algorithm
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#unknown-words">
-     Unknown Words
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#evaluation-of-compositions">
-   Evaluation of Compositions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#uncertainty-of-word-boundaries">
-   Uncertainty of word boundaries
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#accessor-variety">
-     Accessor Variety
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#branching-entropy">
-     Branching Entropy
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#word-segmentation-in-practice">
-   Word Segmentation in Practice
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#word-segmentation-for-korean">
-     Word Segmentation for Korean
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#working-with-news-article-samples">
-     Working with news article samples
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
-  </a>
- </li>
-</ul>
-
-    </nav>
-</div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Word Segmentation and Association</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#word-segmentation">
-   Word Segmentation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#why-should-we-segment-words">
-   Why should we segment words?
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#generating-segment-variants">
-   Generating segment variants
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#naive-recursive-algorithm">
-     Naive Recursive Algorithm
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dynamic-programming">
-     Dynamic Programming
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#triangular-matrix">
-     Triangular Matrix
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#maximum-matching-algorithm">
-     Maximum Matching Algorithm
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#unknown-words">
-     Unknown Words
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#evaluation-of-compositions">
-   Evaluation of Compositions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#uncertainty-of-word-boundaries">
-   Uncertainty of word boundaries
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#accessor-variety">
-     Accessor Variety
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#branching-entropy">
-     Branching Entropy
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#word-segmentation-in-practice">
-   Word Segmentation in Practice
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#word-segmentation-for-korean">
-     Word Segmentation for Korean
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#working-with-news-article-samples">
-     Working with news article samples
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
-  </a>
- </li>
-</ul>
-
-                        </nav>
-                    </div>
-                </div>
             </div>
-            <main id="main-content" role="main">
-                
-              <div>
-                
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Word Segmentation and Association</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#word-segmentation">
+   Word Segmentation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-should-we-segment-words">
+   Why should we segment words?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generating-segment-variants">
+   Generating segment variants
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#naive-recursive-algorithm">
+     Naive Recursive Algorithm
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dynamic-programming">
+     Dynamic Programming
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#triangular-matrix">
+     Triangular Matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#maximum-matching-algorithm">
+     Maximum Matching Algorithm
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unknown-words">
+     Unknown Words
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evaluation-of-compositions">
+   Evaluation of Compositions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#uncertainty-of-word-boundaries">
+   Uncertainty of word boundaries
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#accessor-variety">
+     Accessor Variety
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#branching-entropy">
+     Branching Entropy
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#word-segmentation-in-practice">
+   Word Segmentation in Practice
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#word-segmentation-for-korean">
+     Word Segmentation for Korean
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#working-with-news-article-samples">
+     Working with news article samples
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
   <section class="tex2jax_ignore mathjax_ignore" id="word-segmentation-and-association">
-<h1>Word Segmentation and Association<a class="headerlink" href="#word-segmentation-and-association" title="Permalink to this headline">#</a></h1>
+<h1>Word Segmentation and Association<a class="headerlink" href="#word-segmentation-and-association" title="Permalink to this heading">#</a></h1>
 <p><img alt="" src="../../_images/entelecheia_associaltion_vs_segmentation.png" /></p>
 <section id="word-segmentation">
-<h2>Word Segmentation<a class="headerlink" href="#word-segmentation" title="Permalink to this headline">#</a></h2>
+<h2>Word Segmentation<a class="headerlink" href="#word-segmentation" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Word segmentation</strong> is the task of splitting a string of characters into words.</p></li>
 <li><p>Word segmentation is important for a machine to understand the meaning of a sentence.</p></li>
@@ -807,7 +758,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="why-should-we-segment-words">
-<h2>Why should we segment words?<a class="headerlink" href="#why-should-we-segment-words" title="Permalink to this headline">#</a></h2>
+<h2>Why should we segment words?<a class="headerlink" href="#why-should-we-segment-words" title="Permalink to this heading">#</a></h2>
 <p>There are many applications that require word segmentation, even in English.</p>
 <ul class="simple">
 <li><p>Normalizing English compound nouns that are variably written for search engines.</p>
@@ -826,7 +777,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="generating-segment-variants">
-<h2>Generating segment variants<a class="headerlink" href="#generating-segment-variants" title="Permalink to this headline">#</a></h2>
+<h2>Generating segment variants<a class="headerlink" href="#generating-segment-variants" title="Permalink to this heading">#</a></h2>
 <p>We can generate all possible segment variants of a string of characters. Each distinct segment variant is called a <strong>composition</strong>.</p>
 <ul class="simple">
 <li><p>En a string of length <span class="math notranslate nohighlight">\(n\)</span>, there are <span class="math notranslate nohighlight">\(n-1\)</span> possible positions to split the string.</p></li>
@@ -838,7 +789,7 @@ title="Print to PDF"
 <li><p>The best segmentation is the one that has the highest probability.</p></li>
 </ul>
 <section id="naive-recursive-algorithm">
-<h3>Naive Recursive Algorithm<a class="headerlink" href="#naive-recursive-algorithm" title="Permalink to this headline">#</a></h3>
+<h3>Naive Recursive Algorithm<a class="headerlink" href="#naive-recursive-algorithm" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>The naive recursive algorithm is to generate all possible compositions and evaluate them.</p></li>
 <li><p>The time complexity of the naive recursive algorithm is <span class="math notranslate nohighlight">\(O(2^n)\)</span>.</p></li>
@@ -920,7 +871,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="dynamic-programming">
-<h3>Dynamic Programming<a class="headerlink" href="#dynamic-programming" title="Permalink to this headline">#</a></h3>
+<h3>Dynamic Programming<a class="headerlink" href="#dynamic-programming" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Dynamic programming is a technique to solve a problem by breaking it into subproblems and storing the results of subproblems to avoid computing the same results again.</p></li>
 <li><p>The time complexity of dynamic programming is <span class="math notranslate nohighlight">\(O(n)\)</span>.</p></li>
@@ -938,7 +889,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="triangular-matrix">
-<h3>Triangular Matrix<a class="headerlink" href="#triangular-matrix" title="Permalink to this headline">#</a></h3>
+<h3>Triangular Matrix<a class="headerlink" href="#triangular-matrix" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>The dynamic programming algorithm can be implemented using a triangular matrix.</p></li>
 <li><p>The tryangular matrix algorithm uses nested loops and a circular buffer to store the results of subproblems.</p></li>
@@ -947,12 +898,12 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="maximum-matching-algorithm">
-<h3>Maximum Matching Algorithm<a class="headerlink" href="#maximum-matching-algorithm" title="Permalink to this headline">#</a></h3>
+<h3>Maximum Matching Algorithm<a class="headerlink" href="#maximum-matching-algorithm" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>If we have all known words in a dictionary, we can use the maximum matching algorithm to segment a sentence.</p></li>
 <li><p>The maximum matching algorithm is a greedy algorithm that finds the longest matching word from the dictionary.</p></li>
 <li><p>The algorithm is as follows:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Find the longest matching word from the dictionary.</p></li>
 <li><p>If the word is found, add the word to the result and remove the word from the input.</p></li>
 <li><p>If the word is not found, add the first character to the result and remove the first character from the input.</p></li>
@@ -962,7 +913,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="unknown-words">
-<h3>Unknown Words<a class="headerlink" href="#unknown-words" title="Permalink to this headline">#</a></h3>
+<h3>Unknown Words<a class="headerlink" href="#unknown-words" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>We can not rely on the dictionary to segment all words.</p></li>
 <li><p>There are uncommon words, new words, misspelled words, foreign words, proper nouns, slang words, etc.</p></li>
@@ -972,7 +923,7 @@ title="Print to PDF"
 </section>
 </section>
 <section id="evaluation-of-compositions">
-<h2>Evaluation of Compositions<a class="headerlink" href="#evaluation-of-compositions" title="Permalink to this headline">#</a></h2>
+<h2>Evaluation of Compositions<a class="headerlink" href="#evaluation-of-compositions" title="Permalink to this heading">#</a></h2>
 <ul>
 <li><p>Generally, we can evaluate a composition by calculating the probability of the composition.</p></li>
 <li><p>Word probabilities can be estimated from a corpus:</p>
@@ -988,7 +939,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="uncertainty-of-word-boundaries">
-<h2>Uncertainty of word boundaries<a class="headerlink" href="#uncertainty-of-word-boundaries" title="Permalink to this headline">#</a></h2>
+<h2>Uncertainty of word boundaries<a class="headerlink" href="#uncertainty-of-word-boundaries" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>The uncertainty of word boundaries can be measured by the entropy of the word boundary.</p></li>
 <li><p><span id="id1">[<a class="reference internal" href="../../about/index.html#id20" title="Zellig S Harris. From phoneme to morpheme. In Papers in structural and transformational linguistics, pages 32–67. Springer, 1970. URL: http://www.eecs.qmul.ac.uk/~mpurver/papers/griffiths-et-al15qitl.pdf.">Harris, 1970</a>]</span> said that if the uncertainty of successive tokens increases, the location is a word boundary.</p></li>
@@ -999,7 +950,7 @@ title="Print to PDF"
 </ul>
 <p><img alt="" src="../../_images/branching_entropy_uncertainty.png" /></p>
 <section id="accessor-variety">
-<h3>Accessor Variety<a class="headerlink" href="#accessor-variety" title="Permalink to this headline">#</a></h3>
+<h3>Accessor Variety<a class="headerlink" href="#accessor-variety" title="Permalink to this heading">#</a></h3>
 <ul>
 <li><p>The accessor variety (AV) defines that the uncertainty of a sub-sequence is the number of different words that can be formed by adding a sub-sequence to the sub-sequence.</p></li>
 <li><p>For the forward accessor variety, it is the number of different words that can be formed by adding a sub-sequence to the right side of the sub-sequence.</p></li>
@@ -1025,7 +976,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="branching-entropy">
-<h3>Branching Entropy<a class="headerlink" href="#branching-entropy" title="Permalink to this headline">#</a></h3>
+<h3>Branching Entropy<a class="headerlink" href="#branching-entropy" title="Permalink to this heading">#</a></h3>
 <p><strong>Assumption 1</strong>: The uncertainty of successive tokens increases at word boundaries.</p>
 <ul>
 <li><p>Given a set of elements <span class="math notranslate nohighlight">\(X\)</span> and a set of n-gram sequences <span class="math notranslate nohighlight">\(X_n\)</span>, the conditional entropy of an element occuring after an n-gram sequence <span class="math notranslate nohighlight">\(X_n\)</span> is defined as:</p>
@@ -1064,7 +1015,7 @@ title="Print to PDF"
     \]</div>
 </li>
 <li><p>There are three boundary conditions to decide whether <span class="math notranslate nohighlight">\(x_n\)</span> is a word boundary:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p><span class="math notranslate nohighlight">\(B_{max}\)</span>: If <span class="math notranslate nohighlight">\(h(x_n) &gt; \text{val}_{max}\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(B_{increase}\)</span>: <span class="math notranslate nohighlight">\(h(x_n) &gt; h(x_{n-1})\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(B_{ordinary}\)</span>: <span class="math notranslate nohighlight">\(h(x_n) &gt; \text{val}_{ordinary}\)</span></p></li>
@@ -1075,7 +1026,7 @@ title="Print to PDF"
 </section>
 </section>
 <section id="word-segmentation-in-practice">
-<h2>Word Segmentation in Practice<a class="headerlink" href="#word-segmentation-in-practice" title="Permalink to this headline">#</a></h2>
+<h2>Word Segmentation in Practice<a class="headerlink" href="#word-segmentation-in-practice" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">texts</span> <span class="o">=</span> <span class="p">[</span>
@@ -1114,24 +1065,16 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "0c7806920cc34df28f2e0ca9d107a75f", "version_major": 2, "version_minor": 0}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total words: 29
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "0c7806920cc34df28f2e0ca9d107a75f", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total words: 29
 Top 10 words: [(&#39;▁of&#39;, 9), (&#39;▁apples&#39;, 6), (&#39;▁pineapples&#39;, 5), (&#39;▁pineapple&#39;, 5), (&#39;▁apple&#39;, 4), (&#39;▁and&#39;, 2), (&#39;▁people&#39;, 2), (&#39;▁unhealthy&#39;, 2), (&#39;▁tree&#39;, 2), (&#39;▁like&#39;, 1)]
 Total words after filtering: 29
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "7d975cb362a24fa1bc2442a308c63237", "version_major": 2, "version_minor": 0}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total subwords: 543
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "7d975cb362a24fa1bc2442a308c63237", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total subwords: 543
 Top 10 subwords: [(&#39;▁&#39;, 114), (&#39;e&#39;, 63), (&#39;p&#39;, 59), (&#39;l&#39;, 37), (&#39;a&#39;, 33), (&#39;s&#39;, 30), (&#39;i&#39;, 27), (&#39;n&#39;, 26), (&#39;pl&#39;, 24), (&#39;ple&#39;, 23)]
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "f7930052bc1c4886987b98c336523cbe", "version_major": 2, "version_minor": 0}
-</script><script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "bee21fc74ed4416a9634182314f06a41", "version_major": 2, "version_minor": 0}
-</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "f7930052bc1c4886987b98c336523cbe", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "bee21fc74ed4416a9634182314f06a41", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1178,7 +1121,7 @@ Top 10 subwords: [(&#39;▁&#39;, 114), (&#39;e&#39;, 63), (&#39;p&#39;, 59), (&
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/word_segmentation_28_0.png" src="../../_images/word_segmentation_28_0.png" />
+<img alt="../../_images/af09e769dea1f8fa572155f4b84df116656b0cb0182458dec6aa1a94d69646f2.png" src="../../_images/af09e769dea1f8fa572155f4b84df116656b0cb0182458dec6aa1a94d69646f2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1188,7 +1131,7 @@ Top 10 subwords: [(&#39;▁&#39;, 114), (&#39;e&#39;, 63), (&#39;p&#39;, 59), (&
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/word_segmentation_29_0.png" src="../../_images/word_segmentation_29_0.png" />
+<img alt="../../_images/4b36486a717ab2df2f960832828af14cc1fd1b371fd786ec73d41cf8c1884922.png" src="../../_images/4b36486a717ab2df2f960832828af14cc1fd1b371fd786ec73d41cf8c1884922.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1266,7 +1209,7 @@ Top 10 subwords: [(&#39;▁&#39;, 114), (&#39;e&#39;, 63), (&#39;p&#39;, 59), (&
 </div>
 </div>
 <section id="word-segmentation-for-korean">
-<h3>Word Segmentation for Korean<a class="headerlink" href="#word-segmentation-for-korean" title="Permalink to this headline">#</a></h3>
+<h3>Word Segmentation for Korean<a class="headerlink" href="#word-segmentation-for-korean" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">texts</span> <span class="o">=</span> <span class="p">[</span>
@@ -1297,24 +1240,16 @@ Top 10 subwords: [(&#39;▁&#39;, 114), (&#39;e&#39;, 63), (&#39;p&#39;, 59), (&
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "0eb989311e5b4d91845965a7fa54958f", "version_major": 2, "version_minor": 0}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total words: 23
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "0eb989311e5b4d91845965a7fa54958f", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total words: 23
 Top 10 words: [(&#39;▁방에&#39;, 4), (&#39;▁가방을&#39;, 4), (&#39;▁들고&#39;, 3), (&#39;▁있었다&#39;, 2), (&#39;▁가방은&#39;, 2), (&#39;▁있다&#39;, 2), (&#39;▁집으로&#39;, 2), (&#39;▁아버지가&#39;, 1), (&#39;▁들어가신다&#39;, 1), (&#39;▁아버지는&#39;, 1)]
 Total words after filtering: 23
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "88dc71606a93432ca700953159b2d6b2", "version_major": 2, "version_minor": 0}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total subwords: 201
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "88dc71606a93432ca700953159b2d6b2", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total subwords: 201
 Top 10 subwords: [(&#39;▁&#39;, 70), (&#39;방&#39;, 15), (&#39;가&#39;, 12), (&#39;다&#39;, 12), (&#39;다▁&#39;, 12), (&#39;▁방&#39;, 8), (&#39;▁가&#39;, 8), (&#39;▁들&#39;, 7), (&#39;들&#39;, 7), (&#39;▁가방&#39;, 7)]
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "19acad82ffb942108d1f592a667d18af", "version_major": 2, "version_minor": 0}
-</script><script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "f8c24622ac594b8395e64128f7cb4791", "version_major": 2, "version_minor": 0}
-</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "19acad82ffb942108d1f592a667d18af", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "f8c24622ac594b8395e64128f7cb4791", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1397,7 +1332,7 @@ Top 10 subwords: [(&#39;▁&#39;, 70), (&#39;방&#39;, 15), (&#39;가&#39;, 12),
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/word_segmentation_40_0.png" src="../../_images/word_segmentation_40_0.png" />
+<img alt="../../_images/ee41d1db4177ac43e03fe1101a782139db9aebd43b3df8d89c9a7eb53e39ea4a.png" src="../../_images/ee41d1db4177ac43e03fe1101a782139db9aebd43b3df8d89c9a7eb53e39ea4a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1407,7 +1342,7 @@ Top 10 subwords: [(&#39;▁&#39;, 70), (&#39;방&#39;, 15), (&#39;가&#39;, 12),
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/word_segmentation_41_0.png" src="../../_images/word_segmentation_41_0.png" />
+<img alt="../../_images/f434f6725e667e93910c4d7da9270a018daea035d9542926bb3f23ab27a3e0fd.png" src="../../_images/f434f6725e667e93910c4d7da9270a018daea035d9542926bb3f23ab27a3e0fd.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1417,12 +1352,12 @@ Top 10 subwords: [(&#39;▁&#39;, 70), (&#39;방&#39;, 15), (&#39;가&#39;, 12),
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/word_segmentation_42_0.png" src="../../_images/word_segmentation_42_0.png" />
+<img alt="../../_images/7e63acf5a1b356141e942b5220df6cf852ba47ac4633039fd46282bce1ceee98.png" src="../../_images/7e63acf5a1b356141e942b5220df6cf852ba47ac4633039fd46282bce1ceee98.png" />
 </div>
 </div>
 </section>
 <section id="working-with-news-article-samples">
-<h3>Working with news article samples<a class="headerlink" href="#working-with-news-article-samples" title="Permalink to this headline">#</a></h3>
+<h3>Working with news article samples<a class="headerlink" href="#working-with-news-article-samples" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ekorpkit</span> <span class="kn">import</span> <span class="n">eKonf</span>
@@ -1445,24 +1380,16 @@ Top 10 subwords: [(&#39;▁&#39;, 70), (&#39;방&#39;, 15), (&#39;가&#39;, 12),
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "b0ee5772dfa64b41b178329f96d6f421", "version_major": 2, "version_minor": 0}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total words: 107685
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "b0ee5772dfa64b41b178329f96d6f421", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total words: 107685
 Top 10 words: [(&#39;▁the&#39;, 715895), (&#39;▁to&#39;, 334075), (&#39;▁of&#39;, 314837), (&#39;▁in&#39;, 278030), (&#39;▁and&#39;, 274910), (&#39;▁a&#39;, 259527), (&#39;▁s&#39;, 169595), (&#39;▁for&#39;, 133255), (&#39;▁is&#39;, 130552), (&#39;▁on&#39;, 113286)]
 Total words after filtering: 107685
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "5238024027d04a5d9c653bf44b5a3387", "version_major": 2, "version_minor": 0}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total subwords: 3019773
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "5238024027d04a5d9c653bf44b5a3387", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total subwords: 3019773
 Top 10 subwords: [(&#39;▁&#39;, 26177132), (&#39;e&#39;, 7246161), (&#39;t&#39;, 5334633), (&#39;a&#39;, 4971213), (&#39;o&#39;, 4428694), (&#39;n&#39;, 4415394), (&#39;i&#39;, 4397713), (&#39;s&#39;, 4366700), (&#39;r&#39;, 4125315), (&#39;l&#39;, 2404918)]
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "5a38b3b7e51444a69b5bb5d97713a8d2", "version_major": 2, "version_minor": 0}
-</script><script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "8a96d7f8e1fc4e61ae1e51ff40f257de", "version_major": 2, "version_minor": 0}
-</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "5a38b3b7e51444a69b5bb5d97713a8d2", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "8a96d7f8e1fc4e61ae1e51ff40f257de", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1486,11 +1413,7 @@ Top 10 subwords: [(&#39;▁&#39;, 26177132), (&#39;e&#39;, 7246161), (&#39;t&#39
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "735b57d1fe0e4ed7a79c95105a932e7a", "version_major": 2, "version_minor": 0}
-</script><script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "03c0262d4c8e40878c3549dc4f264f6e", "version_major": 2, "version_minor": 0}
-</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "735b57d1fe0e4ed7a79c95105a932e7a", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "03c0262d4c8e40878c3549dc4f264f6e", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1549,7 +1472,7 @@ Top 10 subwords: [(&#39;▁&#39;, 26177132), (&#39;e&#39;, 7246161), (&#39;t&#39
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/word_segmentation_51_0.png" src="../../_images/word_segmentation_51_0.png" />
+<img alt="../../_images/b698e9dc5831e95a10892c40f241352b46996a27955cb0eea1bc9ca4383b25f2.png" src="../../_images/b698e9dc5831e95a10892c40f241352b46996a27955cb0eea1bc9ca4383b25f2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1587,13 +1510,13 @@ Top 10 subwords: [(&#39;▁&#39;, 26177132), (&#39;e&#39;, 7246161), (&#39;t&#39
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/word_segmentation_53_0.png" src="../../_images/word_segmentation_53_0.png" />
+<img alt="../../_images/6c9bef3bc133a8b342ee8f2c8a130c7e37c4cec2b80e4c8396adac7989ebbde8.png" src="../../_images/6c9bef3bc133a8b342ee8f2c8a130c7e37c4cec2b80e4c8396adac7989ebbde8.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://lovit.github.io/nlp/2018/04/09/branching_entropy_accessor_variety/">Uncertanty to word boundary; Accessor Variety &amp; Branching Entropy</a></p></li>
 <li><p><a class="reference external" href="https://medium.com/towards-data-science/fast-word-segmentation-for-noisy-text-2c2c41f9e8da">Fast Word Segmentation of Noisy Text</a></p></li>
@@ -1621,50 +1544,186 @@ Top 10 subwords: [(&#39;▁&#39;, 26177132), (&#39;e&#39;, 7246161), (&#39;t&#39
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
-              
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="tokenization.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Tokenization</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="vectorization.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Vector Semantics and Representation</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+  <a class='left-prev' id="prev-link" href="tokenization.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Tokenization</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="vectorization.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Vector Semantics and Representation</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
 </div>
             </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
   
-    By <a href="https://entelecheia.me">Young Joon Lee</a><br/>
-  
-      &copy; Copyright 2023.<br/>
-</p>
-        </footer>
-    </div>
-    
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#word-segmentation">
+   Word Segmentation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-should-we-segment-words">
+   Why should we segment words?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generating-segment-variants">
+   Generating segment variants
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#naive-recursive-algorithm">
+     Naive Recursive Algorithm
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dynamic-programming">
+     Dynamic Programming
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#triangular-matrix">
+     Triangular Matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#maximum-matching-algorithm">
+     Maximum Matching Algorithm
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unknown-words">
+     Unknown Words
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evaluation-of-compositions">
+   Evaluation of Compositions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#uncertainty-of-word-boundaries">
+   Uncertainty of word boundaries
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#accessor-variety">
+     Accessor Variety
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#branching-entropy">
+     Branching Entropy
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#word-segmentation-in-practice">
+   Word Segmentation in Practice
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#word-segmentation-for-korean">
+     Word Segmentation for Korean
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#working-with-news-article-samples">
+     Working with news article samples
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav>
 </div>
 
-
-      </div>
-    </div>
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://entelecheia.me">Young Joon Lee</a>
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2023.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on None.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
 
   </body>
 </html>

@@ -1,30 +1,36 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Lab 1: Preparing Wikipedia Corpora &#8212; Artificial Intelligence | Lecture Notes</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
@@ -37,18 +43,20 @@
     <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-light.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-borderless.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/micromodal.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
     <script src="../../_static/tabs.js"></script>
     <script src="../../_static/js/hoverxref.js"></script>
     <script src="../../_static/js/tooltipster.bundle.min.js"></script>
@@ -57,7 +65,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -65,60 +73,361 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_intro/lab1-corpus';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Lab 2: EDA on Corpora" href="lab2-corpus-eda.html" />
     <link rel="prev" title="Word Embeddings" href="word_embeddings.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
 
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
     
-    <div class="container-fluid" id="banner"></div>
-
     
+  
 
-    <div class="container-xl">
-      <div class="row">
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+    <p class="title logo__title">Artificial Intelligence | Lecture Notes</p>
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Introduction to NLP
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../nlp_deep/index.html">
+                        Deep Learning for NLP
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../nlp_apps/index.html">
+                        NLP Applications
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../aiart/index.html">
+                        AI Art (Text-to-Image)
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mlops/index.html">
+                        Machine Learning Systems Design
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../ds/index.html">
+                        Data Science for Economics and Finance
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://entelecheia.me">
+                        entelecheia.me
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../about/index.html">
+                        Bibliography
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../about/cite.html">
+                        Citation
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
       
       
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
       
-      <h1 class="site-logo" id="site-title">Artificial Intelligence | Lecture Notes</h1>
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
       
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Introduction to NLP
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../nlp_deep/index.html">
+                        Deep Learning for NLP
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../nlp_apps/index.html">
+                        NLP Applications
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../aiart/index.html">
+                        AI Art (Text-to-Image)
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mlops/index.html">
+                        Machine Learning Systems Design
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../ds/index.html">
+                        Data Science for Economics and Finance
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://entelecheia.me">
+                        entelecheia.me
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../about/index.html">
+                        Bibliography
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../about/cite.html">
+                        Citation
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+    <p class="title logo__title">Artificial Intelligence | Lecture Notes</p>
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -127,695 +436,327 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Course
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="index.html">
-   Introduction to NLP
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="intro.html">
-     Introduction
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="ekorpkit.html">
-     Getting started with ekorpkit
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="research.html">
-     Research Applications
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="language_models.html">
-     Language Models
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="topic.html">
-     Topic Modeling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="topic_models.html">
-     Topic Models
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="topic_coherence.html">
-     Topic Coherence Measures
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="sentiments.html">
-     Sentiment Analysis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="tokenization.html">
-     Tokenization
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="word_segmentation.html">
-     Word Segmentation and Association
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="vectorization.html">
-     Vector Semantics and Representation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="word_embeddings.html">
-     Word Embeddings
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Lab 1: Preparing Wikipedia Corpora
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="lab2-corpus-eda.html">
-     Lab 2: EDA on Corpora
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../nlp_deep/index.html">
-   Deep Learning for NLP
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/intro.html">
-     Introduction
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/ekorpkit.html">
-     Getting started with ekorpkit
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/zeroshot.html">
-     Zero Shot, Prompt, and Search Strategies
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/transformers.html">
-     Transformers
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/t5.html">
-     T5: Text-To-Text Transfer Transformer
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/tokenization.html">
-     Tokenization
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/sentencepiece.html">
-     SentencePiece Tokenizer
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/byt5.html">
-     ByT5: Towards a token-free future with pre-trained byte-to-byte models
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/plms.html">
-     Pretrained Language Models
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/lab1-corpus.html">
-     Lab 1: Preparing Wikipedia Corpora
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/lab3-train-tokenizers.html">
-     Lab 3: Training Tokenizers
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/lab4-pretraining-lms.html">
-     Lab 4: Pretraining Language Models
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../nlp_apps/index.html">
-   NLP Applications
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../aiart/index.html">
-   AI Art (Text-to-Image)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/intro.html">
-     Introduction
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/project-themes.html">
-     Project Themes - A Brave New World
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/dalle1.html">
-     DALL·E 1
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/dalle2.html">
-     DALL·E 2
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/imagen.html">
-     Imagen
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/textual-inversion.html">
-     Textual Inversion (Dreambooth)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/whisper.html">
-     Automatic Speech Recognition (Whisper)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/text2music.html">
-     Text to Music
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/image2music.html">
-     Image to Music
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../mlops/index.html">
-   Machine Learning Systems Design
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../mlops/dev-env.html">
-     Development Environment
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../mlops/dotfiles.html">
-     Dotfiles
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../ds/index.html">
-   Data Science for Economics and Finance
-  </a>
- </li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Introduction to NLP</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ekorpkit.html">Getting started with ekorpkit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="research.html">Research Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language_models.html">Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topic.html">Topic Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topic_models.html">Topic Models </a></li>
+<li class="toctree-l2"><a class="reference internal" href="topic_coherence.html">Topic Coherence Measures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sentiments.html">Sentiment Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tokenization.html">Tokenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="word_segmentation.html">Word Segmentation and Association</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vectorization.html">Vector Semantics and Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="word_embeddings.html">Word Embeddings</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Lab 1: Preparing Wikipedia Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab2-corpus-eda.html">Lab 2: EDA on Corpora</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  About
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nlp_deep/index.html">Deep Learning for NLP</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/ekorpkit.html">Getting started with ekorpkit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/zeroshot.html">Zero Shot, Prompt, and Search Strategies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/transformers.html">Transformers </a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/t5.html">T5: Text-To-Text Transfer Transformer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/tokenization.html">Tokenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/sentencepiece.html">SentencePiece Tokenizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/plms.html">Pretrained Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/lab1-corpus.html">Lab 1: Preparing Wikipedia Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/lab3-train-tokenizers.html">Lab 3: Training Tokenizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/lab4-pretraining-lms.html">Lab 4: Pretraining Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp_apps/index.html">NLP Applications</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../aiart/index.html">AI Art (Text-to-Image)</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/project-themes.html">Project Themes - A Brave New World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/dalle1.html">DALL·E 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/dalle2.html">DALL·E 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/imagen.html">Imagen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/textual-inversion.html">Textual Inversion (Dreambooth)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/whisper.html">Automatic Speech Recognition (Whisper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/text2music.html">Text to Music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/image2music.html">Image to Music</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../mlops/index.html">Machine Learning Systems Design</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../mlops/dev-env.html">Development Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mlops/dotfiles.html">Dotfiles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ds/index.html">Data Science for Economics and Finance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference external" href="https://entelecheia.me">
-   entelecheia.me
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../about/index.html">
-   Bibliography
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../about/cite.html">
-   Citation
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/cite.html">Citation</a></li>
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
+</nav>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  </div>
+  
 
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
 
-          
+  
+  <div id="rtd-footer-container"></div>
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
+      </div>
+      <main id="main-content" class="bd-main">
         
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
 
 
 
 <div class="col py-1 d-flex header-article-main">
     <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
     </div>
     <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/entelecheia/lecture/main?urlpath=tree/book/lectures/nlp_intro/lab1-corpus.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/nlp_intro/lab1-corpus.ipynb"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/nlp_intro/lab1-corpus.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Launch on Colab"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../../_static/images/logo_colab.png">
   </span>
-<span class="headerbtn__text-container">Colab</span>
+<span class="btn__text-container">Colab</span>
 </a>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
+  class="btn btn-sm"
   data-toggle="tooltip"
 data-placement="bottom"
 title="Fullscreen mode"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
-<a href="https://github.com/entelecheia/lecture"
-   class="headerbtn"
+<a href="https://github.com/entelecheia/lecture" target="_blank"
+   class="btn btn-sm"
    data-toggle="tooltip"
 data-placement="bottom"
 title="Source repository"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fab fa-github"></i>
   </span>
 
 </a>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../_sources/lectures/nlp_intro/lab1-corpus.ipynb"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="../../_sources/lectures/nlp_intro/lab1-corpus.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Download source file"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.ipynb</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
-
-      </li>
+</a>
       
       <li>
-        
 <button onclick="printPdf(this)"
-  class="headerbtn"
+  class="btn btn-sm dropdown-item"
   data-toggle="tooltip"
 data-placement="left"
 title="Print to PDF"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file-pdf"></i>
   </span>
-<span class="headerbtn__text-container">.pdf</span>
+<span class="btn__text-container">.pdf</span>
 </button>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
+  </ul>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
     </div>
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#prepare-the-environment">
-   Prepare the Environment
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#build-corpora-with-the-ekorpkit-configs">
-   Build corpora with the ekorpkit configs
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#wikipedia-dump">
-     Wikipedia Dump
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#fetch-the-dump-and-extract-it-to-the-data-directory">
-       Fetch the dump and extract it to the
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         data
-        </span>
-       </code>
-       directory
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#build-the-korean-wikipedia-corpus">
-     Build the Korean Wikipedia Corpus
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#build-the-corpus-by-parsing-the-wikipedia-dump">
-       Build the corpus by Parsing the Wikipedia Dump
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#build-the-english-wikipedia-corpus">
-     Build the English Wikipedia Corpus
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#build-a-wikipedia-corpus-for-other-languages">
-     Build a Wikipedia Corpus for Other Languages
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#build-a-corpus-using-cli">
-     Build a Corpus using CLI
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#load-the-corpus">
-   Load the Corpus
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sample-and-save-the-corpus">
-     Sample and Save the Corpus
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#load-corpora">
-   Load Corpora
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#checking-the-corpus-information">
-     Checking the Corpus Information
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#checking-the-corpus-data">
-     Checking the Corpus Data
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#concatenating-corpora">
-     Concatenating Corpora
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#save-the-concatenated-corpus">
-     Save the concatenated corpus
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
-</div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Lab 1: Preparing Wikipedia Corpora</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#prepare-the-environment">
-   Prepare the Environment
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#build-corpora-with-the-ekorpkit-configs">
-   Build corpora with the ekorpkit configs
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#wikipedia-dump">
-     Wikipedia Dump
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#fetch-the-dump-and-extract-it-to-the-data-directory">
-       Fetch the dump and extract it to the
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         data
-        </span>
-       </code>
-       directory
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#build-the-korean-wikipedia-corpus">
-     Build the Korean Wikipedia Corpus
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#build-the-corpus-by-parsing-the-wikipedia-dump">
-       Build the corpus by Parsing the Wikipedia Dump
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#build-the-english-wikipedia-corpus">
-     Build the English Wikipedia Corpus
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#build-a-wikipedia-corpus-for-other-languages">
-     Build a Wikipedia Corpus for Other Languages
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#build-a-corpus-using-cli">
-     Build a Corpus using CLI
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#load-the-corpus">
-   Load the Corpus
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sample-and-save-the-corpus">
-     Sample and Save the Corpus
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#load-corpora">
-   Load Corpora
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#checking-the-corpus-information">
-     Checking the Corpus Information
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#checking-the-corpus-data">
-     Checking the Corpus Data
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#concatenating-corpora">
-     Concatenating Corpora
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#save-the-concatenated-corpus">
-     Save the concatenated corpus
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-                        </nav>
-                    </div>
-                </div>
             </div>
-            <main id="main-content" role="main">
-                
-              <div>
-                
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lab 1: Preparing Wikipedia Corpora</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prepare-the-environment">
+   Prepare the Environment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#build-corpora-with-the-ekorpkit-configs">
+   Build corpora with the ekorpkit configs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#wikipedia-dump">
+     Wikipedia Dump
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fetch-the-dump-and-extract-it-to-the-data-directory">
+       Fetch the dump and extract it to the
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         data
+        </span>
+       </code>
+       directory
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-the-korean-wikipedia-corpus">
+     Build the Korean Wikipedia Corpus
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#build-the-corpus-by-parsing-the-wikipedia-dump">
+       Build the corpus by Parsing the Wikipedia Dump
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-the-english-wikipedia-corpus">
+     Build the English Wikipedia Corpus
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-a-wikipedia-corpus-for-other-languages">
+     Build a Wikipedia Corpus for Other Languages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-a-corpus-using-cli">
+     Build a Corpus using CLI
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-the-corpus">
+   Load the Corpus
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sample-and-save-the-corpus">
+     Sample and Save the Corpus
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-corpora">
+   Load Corpora
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#checking-the-corpus-information">
+     Checking the Corpus Information
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#checking-the-corpus-data">
+     Checking the Corpus Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#concatenating-corpora">
+     Concatenating Corpora
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#save-the-concatenated-corpus">
+     Save the concatenated corpus
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
   <section class="tex2jax_ignore mathjax_ignore" id="lab-1-preparing-wikipedia-corpora">
-<h1>Lab 1: Preparing Wikipedia Corpora<a class="headerlink" href="#lab-1-preparing-wikipedia-corpora" title="Permalink to this headline">#</a></h1>
+<h1>Lab 1: Preparing Wikipedia Corpora<a class="headerlink" href="#lab-1-preparing-wikipedia-corpora" title="Permalink to this heading">#</a></h1>
 <p><img alt="" src="../../_images/corpus.png" /></p>
 <section id="prepare-the-environment">
-<h2>Prepare the Environment<a class="headerlink" href="#prepare-the-environment" title="Permalink to this headline">#</a></h2>
+<h2>Prepare the Environment<a class="headerlink" href="#prepare-the-environment" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="o">--</span><span class="n">pre</span> <span class="n">ekorpkit</span><span class="p">[</span><span class="n">dataset</span><span class="p">,</span><span class="n">wiki</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -859,9 +800,9 @@ time: 1.36 s (started: 2022-11-14 01:22:37 +00:00)
 </div>
 </section>
 <section id="build-corpora-with-the-ekorpkit-configs">
-<h2>Build corpora with the ekorpkit configs<a class="headerlink" href="#build-corpora-with-the-ekorpkit-configs" title="Permalink to this headline">#</a></h2>
+<h2>Build corpora with the ekorpkit configs<a class="headerlink" href="#build-corpora-with-the-ekorpkit-configs" title="Permalink to this heading">#</a></h2>
 <section id="wikipedia-dump">
-<h3>Wikipedia Dump<a class="headerlink" href="#wikipedia-dump" title="Permalink to this headline">#</a></h3>
+<h3>Wikipedia Dump<a class="headerlink" href="#wikipedia-dump" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>The first step is to download the Wikipedia dump.</p></li>
 <li><p>The dump is a collection of all Wikipedia articles in XML format.</p></li>
@@ -871,7 +812,7 @@ time: 1.36 s (started: 2022-11-14 01:22:37 +00:00)
 <li><p>For the detailed list of language codes, see <a class="reference external" href="https://meta.wikimedia.org/wiki/List_of_Wikipedias">https://meta.wikimedia.org/wiki/List_of_Wikipedias</a>.</p></li>
 </ul>
 <section id="fetch-the-dump-and-extract-it-to-the-data-directory">
-<h4>Fetch the dump and extract it to the <code class="docutils literal notranslate"><span class="pre">data</span></code> directory<a class="headerlink" href="#fetch-the-dump-and-extract-it-to-the-data-directory" title="Permalink to this headline">#</a></h4>
+<h4>Fetch the dump and extract it to the <code class="docutils literal notranslate"><span class="pre">data</span></code> directory<a class="headerlink" href="#fetch-the-dump-and-extract-it-to-the-data-directory" title="Permalink to this heading">#</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ekorpkit.io.fetch.loader.wiki</span> <span class="kn">import</span> <span class="n">Wiki</span>
 
 <span class="n">wiki</span> <span class="o">=</span> <span class="n">Wiki</span><span class="p">(</span><span class="n">lang</span><span class="o">=</span><span class="s2">&quot;ko&quot;</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
@@ -883,7 +824,7 @@ time: 1.36 s (started: 2022-11-14 01:22:37 +00:00)
 </section>
 </section>
 <section id="build-the-korean-wikipedia-corpus">
-<h3>Build the Korean Wikipedia Corpus<a class="headerlink" href="#build-the-korean-wikipedia-corpus" title="Permalink to this headline">#</a></h3>
+<h3>Build the Korean Wikipedia Corpus<a class="headerlink" href="#build-the-korean-wikipedia-corpus" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wiki_cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;io/fetcher=wiki&quot;</span><span class="p">)</span>
@@ -955,9 +896,7 @@ time: 1.36 s (started: 2022-11-14 01:22:37 +00:00)
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "7f57cd7e390042ad85a99efd0b1fbafa", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: Preprocessing &#39;/content/drive/MyDrive/workspace/.cache/corpus/kowiki/kowiki.xml.bz2&#39; to collect template definitions: this may take some time.
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "7f57cd7e390042ad85a99efd0b1fbafa", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: Preprocessing &#39;/content/drive/MyDrive/workspace/.cache/corpus/kowiki/kowiki.xml.bz2&#39; to collect template definitions: this may take some time.
 INFO: Preprocessed 100000 pages
 INFO: Preprocessed 200000 pages
 INFO: Preprocessed 300000 pages
@@ -1002,7 +941,7 @@ INFO: Extracted 1300000 articles (5678.9 art/s)
 </div>
 </div>
 <section id="build-the-corpus-by-parsing-the-wikipedia-dump">
-<h4>Build the corpus by Parsing the Wikipedia Dump<a class="headerlink" href="#build-the-corpus-by-parsing-the-wikipedia-dump" title="Permalink to this headline">#</a></h4>
+<h4>Build the corpus by Parsing the Wikipedia Dump<a class="headerlink" href="#build-the-corpus-by-parsing-the-wikipedia-dump" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p>The next step is to parse the Wikipedia dump and build the corpus.</p></li>
 <li><p>Extracted Wikipedia dump is in JSON Lines format, which is a line-delimited JSON format.</p></li>
@@ -1102,9 +1041,7 @@ INFO:ekorpkit.io.load.data:Starting multiprocessing with 50 processes at load_da
  &#39;version&#39;: &#39;1.0.0&#39;}
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "7f5ed8c4255f4d20b380c9d714938162", "version_major": 2, "version_minor": 0}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;curid&#39;: &#39;634327&#39;, &#39;url&#39;: &#39;https://ko.wikipedia.org/wiki?curid=634327&#39;, &#39;title&#39;: &#39;성이성&#39;, &#39;text&#39;: &quot;성이성(成以性, 1595년(선조 28년) ∼ 1664년(현종 5년))은 조선 후기의 문신이자 유학자, 청백리이다. 자(字)는 여습(汝習)이고 호는 계서(溪西)이다. 본관은 창녕(昌寧). 춘향전의 실제 주인공으로 춘향전의 주인공인 몽룡은 원래 성몽룡이었다. 남원부사와 승정원승지를 지낸 성안의의 아들이다.\n강직한 간관이자 청백리이다. 그의 직계 후손들은 춘향전에 나온 &#39;금준미주 천인혈&#39;이 그가 실제로 지은 한시라고 주장한다. 호서 암행어사와 호남 암행어사로 활동, 감찰하며 부패 수령들을 봉고파직시켰다. 이것 역시 춘향전의 소재가 된다. 학맥으로는 김굉필의 손제자이자 그의 학맥을 계승한 강복성(康復誠)의 문인이다. 경상북도 출신.\n생애.\n생애 초반.\n출생과 가계.\n성이성은 경상북도 봉화군 물야면 가평리 태생으로 아버지는 창녕 성씨로 승정원승지와 군수를 지낸 성안의(成安義)이고, 어머니는 예안 김씨로 증(贈) 호조 참판에 추증(追贈)된 김계선의 딸이다.\n그는 어려서부터 그는 학업에 열중하여 13세때 그가 쓴 글을 우연히 정경세(鄭經世)가 보게 되었다. 정경세는 그의 글을 읽고 장차 크게 될 인물이라 하였다.\n수학과 남원 생활.\n어려서부터 공부를 게을리하지 않고 학문에 더욱 증진하여 조경남의 문하에서 수학하다가 뒤에 강복성(康復誠)의 문인이 되었다. 강복성은 사림의 학통인 길재-김숙자-김종직-김굉필(金宏弼)-조광조-이연경(李延慶)의 학통을 계승한 학자였다.\n1607년(선조 40) 남원부사로 부임한 아버지 성안의를 따라 갔다가 그곳에서 만난 기생과의 일화가 후일 춘향전의 주 뼈대가 되었다. 그러나 아버지 성안의가 참의로 발령되면서 기생 춘향과는 이별하게 된다. 이때 시중에는 성이성과 춘향을 소재로 한 춘향전이 희극과 인형극, 만담 등으로 확산되었는데, 양반가의 자제의 스캔들이라 하여 조선조정에서 관을 시켜서 금지하게 되자 성몽룡을 이몽룡으로 바꾸고, 성씨(姓氏)가 없던 기생인 춘향에게 성씨 성을 붙여서 시연하게 된다.\n1616년(광해군 8년) 그는 사마시 양시에 합격했는데 생원시에 합격하여 생원(生員)이 되고, 그 해에 다시 진사시에 합격하여 진사(進士)가 되었다. 그러나 광해군 때의 난세에는 벼슬길에 나아가지 않았다.\n관료 생활.\n과거 급제와 관료생활.\n1627년 (인조5년)에 식년 문과에 병과로 급제하였다.\n1635년(인조 13) 성이성은 사간원 정언이 되고 홍문관 부수찬·부교리를 거쳐 1636년 사헌부지평이 되었다. 1637년(인조 15) 호서(湖西) 지방의 암행어사로 파견되었다가 돌아왔다. 그해 성이성은 사간원 헌납이 되어 공신이며 서인당의 고관인 윤방(尹昉)·김류(金류)·심기원(沈器遠)·김자점(金自點) 등을 탄핵하여 왕을 잘못된 길로 인도했다며 오국불충(誤國不忠)의 죄를 논하기도 했다.\n암행어사 활동.\n1639년(인조 17) 호남(湖南) 지방 암행어사에 임명되어 5년간 호남 지역을 순찰하고 1644년(인조 22) 되돌아왔가. 그 뒤 1647년(인조 25) 다시 호남 암행어사 로 파견되었다.\n그러나 호남 암행어사로 부임했을 때 신분을 노출시키고 마는데 성이성은 암행을 하고 다니다가 1647년 11월 25일 순천에서 실수로 부득이 자신의 신분을 드러내고 이후에는 한양으로 돌아오게 되는데, 그는 일기에 돌아오는 길이던 12월 1일 남원에 들렀다고 적고 있다.\n생애 후반.\n1648년 여름 성이성은 전라도 담양군수로 부임해 장마철 강둑이 범람해 피해가 큰 것을 보고 2년에 걸쳐 제방을 쌓고 그 위에 나무를 심었다. 현재 관방제림으로 불리는 숲이 그가 남긴 치세의 흔적이다. 푸조나무 느티나무 팽나무 등 184그루가 전한다. 본디 제방에 나무를 심으면 나무가 바람에 흔들릴 때 제방에 해롭다 하여 심지 않았는데 성이성은 비바람에 강한 토종나무를 골라 심음으로써 이같은 상식을 엎었다. 담양군은 현재 관방제림에 산책로를 조성하여 관광객들의 발길을 모으고 있다.\n외직으로는 진주부사 · 강계부사 등 네 고을을 다스렸는데, 진주부사로 재직할 때는 서인 출신으로 경상도 암행어사로 파견된 민정중(閔鼎重)이 조사하여 그의 선치(善治)를 보고하여 특별히 왕으로부터 표리(表裏, 옷감)를 받았고, 강계부사 때에는 여진족 등의 약탈과 흉년 등으로 어려움에 처한 부민들에게 삼세(蔘稅)를 모두 면제해주어 백성들이 기뻐하였으며 부처가 환생하여 돌아왔다며 &#39;생불&#39; 또는 &#39;관서활불&#39;(關西活佛)이라며 칭송하였다. 1664년(현종 15)에 향년 70세를 일기로 사망했다.\n사후.\n고향인 봉화군 물야면 가평 1리에는 성이성을 추모하는 사당인 계서당이 건립되었다. 사후인 1695년(숙종 21) 청렴함을 인정받아 조정으로부터 청백리로 선출되었다. 증 통정대부 부제학에 추증되었다. 저서로는 &amp;lt;계서유고&amp;gt;가 있다.\n귀신 문제 해결.\n전라도 지역에 귀신이 자주 출몰한다는 곳이 있었다. 그 곳은 상인이나 과거 시험을 보러 가던 선비들이 여러 번 변을 당했는데, 성이성이 이 문제를 해결하였다 한다. 호남 암행어사가 돼서 호남 지역의 귀신이 많이 나오는 곳을 찾아가 억울함을 달래주고 문제를 해결하였고 이것 역시 입에서 입으로 전해져 설화가 되었다.\n부패 관리 파직.\n충청도 암행어사 시절 지방관리의 잘못을 발견하고 어떻게 처리했는가를 인조에게 보고한 &#39;서계&#39;가 남아있었는데 KBS 방송국이 이를 취재하였다.를 보면 세금을 과다징수한 진천현감과 생일날 과다한 잔치를 벌이고 국법을 어긴 석성현감을 적발하여 파직시켰다는 기록이 있다.\n춘향전.\n춘향전.\n그는 아버지인 남원부사 성안의가 부임할 때, 아버지의 임지를 따라 남원에서 생활하다 우연히 남원 기생 춘향을 만나게 되었다. 그러나 춘향과는 이루어지지 못했고, 이는 바로 춘향전의 모티브가 되었다. 뒤에 호남 암행어사로 부임했다가 신분을 노출하고 되돌아갈 때 남원에 들렀다. 늙은기생 여진이 찾아와 만났는데, 그는 춘향을 찾았다 한다. 그러나 그는 춘향을 만날 수 없었다.\n‘서리와 함께 난간에 앉으니 눈빛이 뜰에 하얗게 깔려있고 대나무숲이 희었다. 나는 소년시절의 일을 생각하여 밤늦도록 잠들지 못했다.’\n춘향전은 판소리, 연극, 소설의 소재가 되었으나 양반가 자제의 스캔들이라 하여, 조정에서는 양반가의 위신을 떨어뜨린다며 춘향전의 상영을 금지하였다. 할 수 없이 민중들은 성몽룡 대신 이몽룡으로 성을 바꾸어서 연극과 판소리, 소설, 구전 등으로 전하였다.\n금준미주 천인혈.\n춘향전에 나오는 금준미주 천인혈은 성이성이 지은 시 중의 하나였다. 성이성이 춘향전에 나오는 성몽룡처럼 변사또를 응징한 남원 출두 기록은 실록이나 문집에는 없다. 그러나 춘향전에 나오는 잔치연에서 이몽룡이 변학도를 질타하면서 읊은 금준미주 천인혈 로 시작되는 시조는 성이성이 짓고, 읊었다. 이는 성이성의 4대손 성섭의 저서 &amp;lt;교와문고&amp;gt;와 그의 스승 조경남이 쓴 &amp;lt;난중잡록&amp;gt;에 그의 작품으로 기록되어 있다.\n호남 암행어사가 되었을때에 호남 12고을 군수, 현감들이 잔치를 베풀었다. 이때 성이성은 암행어사가 걸인의 행색을 하고서 연회장에 나타났다. 호남의 12고을의 군수, 현감들은 그를 조롱하며 &#39;그대가 시를 지으면 종일토록 놀고 짓지 못하면 가라.&#39;고 했고, 그는 즉석에서 금준미주 천인혈 을 짓는다. 이어 전라도내 6명의 부패한 수령들을 봉고파직시킨다. 석성현감이 생일날 과다한 잔치를 벌인 것은 춘향전에 등장하는 변사또의 모티브가 되었다.&quot;, &#39;split&#39;: &#39;train&#39;, &#39;filename&#39;: &#39;wiki_23&#39;}
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "7f5ed8c4255f4d20b380c9d714938162", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;curid&#39;: &#39;634327&#39;, &#39;url&#39;: &#39;https://ko.wikipedia.org/wiki?curid=634327&#39;, &#39;title&#39;: &#39;성이성&#39;, &#39;text&#39;: &quot;성이성(成以性, 1595년(선조 28년) ∼ 1664년(현종 5년))은 조선 후기의 문신이자 유학자, 청백리이다. 자(字)는 여습(汝習)이고 호는 계서(溪西)이다. 본관은 창녕(昌寧). 춘향전의 실제 주인공으로 춘향전의 주인공인 몽룡은 원래 성몽룡이었다. 남원부사와 승정원승지를 지낸 성안의의 아들이다.\n강직한 간관이자 청백리이다. 그의 직계 후손들은 춘향전에 나온 &#39;금준미주 천인혈&#39;이 그가 실제로 지은 한시라고 주장한다. 호서 암행어사와 호남 암행어사로 활동, 감찰하며 부패 수령들을 봉고파직시켰다. 이것 역시 춘향전의 소재가 된다. 학맥으로는 김굉필의 손제자이자 그의 학맥을 계승한 강복성(康復誠)의 문인이다. 경상북도 출신.\n생애.\n생애 초반.\n출생과 가계.\n성이성은 경상북도 봉화군 물야면 가평리 태생으로 아버지는 창녕 성씨로 승정원승지와 군수를 지낸 성안의(成安義)이고, 어머니는 예안 김씨로 증(贈) 호조 참판에 추증(追贈)된 김계선의 딸이다.\n그는 어려서부터 그는 학업에 열중하여 13세때 그가 쓴 글을 우연히 정경세(鄭經世)가 보게 되었다. 정경세는 그의 글을 읽고 장차 크게 될 인물이라 하였다.\n수학과 남원 생활.\n어려서부터 공부를 게을리하지 않고 학문에 더욱 증진하여 조경남의 문하에서 수학하다가 뒤에 강복성(康復誠)의 문인이 되었다. 강복성은 사림의 학통인 길재-김숙자-김종직-김굉필(金宏弼)-조광조-이연경(李延慶)의 학통을 계승한 학자였다.\n1607년(선조 40) 남원부사로 부임한 아버지 성안의를 따라 갔다가 그곳에서 만난 기생과의 일화가 후일 춘향전의 주 뼈대가 되었다. 그러나 아버지 성안의가 참의로 발령되면서 기생 춘향과는 이별하게 된다. 이때 시중에는 성이성과 춘향을 소재로 한 춘향전이 희극과 인형극, 만담 등으로 확산되었는데, 양반가의 자제의 스캔들이라 하여 조선조정에서 관을 시켜서 금지하게 되자 성몽룡을 이몽룡으로 바꾸고, 성씨(姓氏)가 없던 기생인 춘향에게 성씨 성을 붙여서 시연하게 된다.\n1616년(광해군 8년) 그는 사마시 양시에 합격했는데 생원시에 합격하여 생원(生員)이 되고, 그 해에 다시 진사시에 합격하여 진사(進士)가 되었다. 그러나 광해군 때의 난세에는 벼슬길에 나아가지 않았다.\n관료 생활.\n과거 급제와 관료생활.\n1627년 (인조5년)에 식년 문과에 병과로 급제하였다.\n1635년(인조 13) 성이성은 사간원 정언이 되고 홍문관 부수찬·부교리를 거쳐 1636년 사헌부지평이 되었다. 1637년(인조 15) 호서(湖西) 지방의 암행어사로 파견되었다가 돌아왔다. 그해 성이성은 사간원 헌납이 되어 공신이며 서인당의 고관인 윤방(尹昉)·김류(金류)·심기원(沈器遠)·김자점(金自點) 등을 탄핵하여 왕을 잘못된 길로 인도했다며 오국불충(誤國不忠)의 죄를 논하기도 했다.\n암행어사 활동.\n1639년(인조 17) 호남(湖南) 지방 암행어사에 임명되어 5년간 호남 지역을 순찰하고 1644년(인조 22) 되돌아왔가. 그 뒤 1647년(인조 25) 다시 호남 암행어사 로 파견되었다.\n그러나 호남 암행어사로 부임했을 때 신분을 노출시키고 마는데 성이성은 암행을 하고 다니다가 1647년 11월 25일 순천에서 실수로 부득이 자신의 신분을 드러내고 이후에는 한양으로 돌아오게 되는데, 그는 일기에 돌아오는 길이던 12월 1일 남원에 들렀다고 적고 있다.\n생애 후반.\n1648년 여름 성이성은 전라도 담양군수로 부임해 장마철 강둑이 범람해 피해가 큰 것을 보고 2년에 걸쳐 제방을 쌓고 그 위에 나무를 심었다. 현재 관방제림으로 불리는 숲이 그가 남긴 치세의 흔적이다. 푸조나무 느티나무 팽나무 등 184그루가 전한다. 본디 제방에 나무를 심으면 나무가 바람에 흔들릴 때 제방에 해롭다 하여 심지 않았는데 성이성은 비바람에 강한 토종나무를 골라 심음으로써 이같은 상식을 엎었다. 담양군은 현재 관방제림에 산책로를 조성하여 관광객들의 발길을 모으고 있다.\n외직으로는 진주부사 · 강계부사 등 네 고을을 다스렸는데, 진주부사로 재직할 때는 서인 출신으로 경상도 암행어사로 파견된 민정중(閔鼎重)이 조사하여 그의 선치(善治)를 보고하여 특별히 왕으로부터 표리(表裏, 옷감)를 받았고, 강계부사 때에는 여진족 등의 약탈과 흉년 등으로 어려움에 처한 부민들에게 삼세(蔘稅)를 모두 면제해주어 백성들이 기뻐하였으며 부처가 환생하여 돌아왔다며 &#39;생불&#39; 또는 &#39;관서활불&#39;(關西活佛)이라며 칭송하였다. 1664년(현종 15)에 향년 70세를 일기로 사망했다.\n사후.\n고향인 봉화군 물야면 가평 1리에는 성이성을 추모하는 사당인 계서당이 건립되었다. 사후인 1695년(숙종 21) 청렴함을 인정받아 조정으로부터 청백리로 선출되었다. 증 통정대부 부제학에 추증되었다. 저서로는 &amp;lt;계서유고&amp;gt;가 있다.\n귀신 문제 해결.\n전라도 지역에 귀신이 자주 출몰한다는 곳이 있었다. 그 곳은 상인이나 과거 시험을 보러 가던 선비들이 여러 번 변을 당했는데, 성이성이 이 문제를 해결하였다 한다. 호남 암행어사가 돼서 호남 지역의 귀신이 많이 나오는 곳을 찾아가 억울함을 달래주고 문제를 해결하였고 이것 역시 입에서 입으로 전해져 설화가 되었다.\n부패 관리 파직.\n충청도 암행어사 시절 지방관리의 잘못을 발견하고 어떻게 처리했는가를 인조에게 보고한 &#39;서계&#39;가 남아있었는데 KBS 방송국이 이를 취재하였다.를 보면 세금을 과다징수한 진천현감과 생일날 과다한 잔치를 벌이고 국법을 어긴 석성현감을 적발하여 파직시켰다는 기록이 있다.\n춘향전.\n춘향전.\n그는 아버지인 남원부사 성안의가 부임할 때, 아버지의 임지를 따라 남원에서 생활하다 우연히 남원 기생 춘향을 만나게 되었다. 그러나 춘향과는 이루어지지 못했고, 이는 바로 춘향전의 모티브가 되었다. 뒤에 호남 암행어사로 부임했다가 신분을 노출하고 되돌아갈 때 남원에 들렀다. 늙은기생 여진이 찾아와 만났는데, 그는 춘향을 찾았다 한다. 그러나 그는 춘향을 만날 수 없었다.\n‘서리와 함께 난간에 앉으니 눈빛이 뜰에 하얗게 깔려있고 대나무숲이 희었다. 나는 소년시절의 일을 생각하여 밤늦도록 잠들지 못했다.’\n춘향전은 판소리, 연극, 소설의 소재가 되었으나 양반가 자제의 스캔들이라 하여, 조정에서는 양반가의 위신을 떨어뜨린다며 춘향전의 상영을 금지하였다. 할 수 없이 민중들은 성몽룡 대신 이몽룡으로 성을 바꾸어서 연극과 판소리, 소설, 구전 등으로 전하였다.\n금준미주 천인혈.\n춘향전에 나오는 금준미주 천인혈은 성이성이 지은 시 중의 하나였다. 성이성이 춘향전에 나오는 성몽룡처럼 변사또를 응징한 남원 출두 기록은 실록이나 문집에는 없다. 그러나 춘향전에 나오는 잔치연에서 이몽룡이 변학도를 질타하면서 읊은 금준미주 천인혈 로 시작되는 시조는 성이성이 짓고, 읊었다. 이는 성이성의 4대손 성섭의 저서 &amp;lt;교와문고&amp;gt;와 그의 스승 조경남이 쓴 &amp;lt;난중잡록&amp;gt;에 그의 작품으로 기록되어 있다.\n호남 암행어사가 되었을때에 호남 12고을 군수, 현감들이 잔치를 베풀었다. 이때 성이성은 암행어사가 걸인의 행색을 하고서 연회장에 나타났다. 호남의 12고을의 군수, 현감들은 그를 조롱하며 &#39;그대가 시를 지으면 종일토록 놀고 짓지 못하면 가라.&#39;고 했고, 그는 즉석에서 금준미주 천인혈 을 짓는다. 이어 전라도내 6명의 부패한 수령들을 봉고파직시킨다. 석성현감이 생일날 과다한 잔치를 벌인 것은 춘향전에 등장하는 변사또의 모티브가 되었다.&quot;, &#39;split&#39;: &#39;train&#39;, &#39;filename&#39;: &#39;wiki_23&#39;}
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.datasets.build: &gt;&gt; elapsed time to load and parse data: 0:00:10.173167
@@ -1155,15 +1092,11 @@ INFO:ekorpkit.base:Using batcher with minibatch size: 1000
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 230  input_split: False  merge_output: True  len(data): 1339048 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "0107206b43a242e0860b269af3744db2", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 1000
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "0107206b43a242e0860b269af3744db2", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 1000
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 230  input_split: False  merge_output: True  len(data): 1339048 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "e2329cb71fac4097977c1d069d21d2df", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.info.stat: &gt;&gt; elapsed time to calculate statistics before processing: 0:00:32.387224
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "e2329cb71fac4097977c1d069d21d2df", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.info.stat: &gt;&gt; elapsed time to calculate statistics before processing: 0:00:32.387224
 INFO:ekorpkit.info.stat: &gt;&gt; updated splits: {&#39;train&#39;: {&#39;name&#39;: &#39;train&#39;, &#39;dataset_name&#39;: &#39;kowiki&#39;, &#39;data_file&#39;: &#39;kowiki-train.parquet&#39;, &#39;meta_file&#39;: &#39;meta-kowiki-train.parquet&#39;, &#39;num_docs_before_processing&#39;: 1339048, &#39;num_bytes_before_processing&#39;: 801994255, &#39;num_sents&#39;: 3829874}}
 INFO:ekorpkit.datasets.build:
 Processing dataframe with pipeline: [&#39;normalize&#39;, &#39;segment&#39;, &#39;filter_length&#39;, &#39;drop_duplicates&#39;, &#39;save_samples&#39;]
@@ -1174,9 +1107,7 @@ INFO:ekorpkit.base:Using batcher with minibatch size: 1000
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 230  input_split: False  merge_output: True  len(data): 1339048 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "fc296ed35a05411187778930cd58d827", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.pipelines.pipe: &gt;&gt; elapsed time to normalize: 0:00:18.489442
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "fc296ed35a05411187778930cd58d827", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.pipelines.pipe: &gt;&gt; elapsed time to normalize: 0:00:18.489442
 INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function segment at 0x7fce771d30d0&gt;)
 INFO:ekorpkit.pipelines.pipe:instantiating segmenter
 INFO:ekorpkit.base:instantiating ekorpkit.preprocessors.segmenter.KSSSegmenter...
@@ -1184,18 +1115,14 @@ INFO:ekorpkit.base:Using batcher with minibatch size: 1000
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 50  input_split: False  merge_output: True  len(data): 1339048 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "47e837cae0e84fd3afbde18d29b8d325", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.pipelines.pipe: &gt;&gt; elapsed time to segment: 0:26:43.238374
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "47e837cae0e84fd3afbde18d29b8d325", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.pipelines.pipe: &gt;&gt; elapsed time to segment: 0:26:43.238374
 INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function filter_length at 0x7fce771d3280&gt;, len_bytes={&#39;_partial_&#39;: True, &#39;_target_&#39;: &#39;ekorpkit.utils.func.len_bytes&#39;}, len_words={&#39;_partial_&#39;: True, &#39;_target_&#39;: &#39;ekorpkit.utils.func.len_words&#39;})
 INFO:ekorpkit.pipelines.pipe:Filtering by length: {&#39;_func_&#39;: {&#39;_partial_&#39;: True, &#39;_target_&#39;: &#39;ekorpkit.pipelines.pipe.filter_length&#39;, &#39;len_bytes&#39;: {&#39;_partial_&#39;: True, &#39;_target_&#39;: &#39;ekorpkit.utils.func.len_bytes&#39;}, &#39;len_words&#39;: {&#39;_partial_&#39;: True, &#39;_target_&#39;: &#39;ekorpkit.utils.func.len_words&#39;}}, &#39;apply_to&#39;: &#39;text&#39;, &#39;min_length&#39;: 30, &#39;max_length&#39;: None, &#39;len_func&#39;: &#39;len_bytes&#39;, &#39;len_column&#39;: &#39;num_bytes&#39;, &#39;add_len_column&#39;: True, &#39;verbose&#39;: True, &#39;use_batcher&#39;: True}
 INFO:ekorpkit.base:Using batcher with minibatch size: 1000
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 50  input_split: False  merge_output: True  len(data): 1339048 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "8224db593bbd4df298f7e3b21aabe851", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.pipelines.pipe:removed 736936 of 1339048 documents with length &lt; 30
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "8224db593bbd4df298f7e3b21aabe851", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.pipelines.pipe:removed 736936 of 1339048 documents with length &lt; 30
 INFO:ekorpkit.pipelines.pipe: &gt;&gt; elapsed time to filter length: 0:00:03.079006
 INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function drop_duplicates at 0x7fce771d34c0&gt;)
 INFO:ekorpkit.pipelines.pipe:Dropping duplicates: {&#39;_func_&#39;: {&#39;_partial_&#39;: True, &#39;_target_&#39;: &#39;ekorpkit.pipelines.pipe.drop_duplicates&#39;}, &#39;apply_to&#39;: &#39;text&#39;, &#39;verbose&#39;: True}
@@ -1221,33 +1148,23 @@ text:
 ----------------------------------------------------------------------------------------------------
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "9ad1bd2f771c422593c6806a64b1e700", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 1000
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "9ad1bd2f771c422593c6806a64b1e700", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 1000
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 50  input_split: False  merge_output: True  len(data): 601641 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "5c7df22e54b747f2a5b30a34ac406a40", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 1000
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "5c7df22e54b747f2a5b30a34ac406a40", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 1000
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 50  input_split: False  merge_output: True  len(data): 601641 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "680500c65fed4751afcc3b87c322d043", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 1000
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "680500c65fed4751afcc3b87c322d043", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 1000
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 50  input_split: False  merge_output: True  len(data): 601641 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "f7f4538e02534ec199de2601c80d8905", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 1000
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "f7f4538e02534ec199de2601c80d8905", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 1000
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 50  input_split: False  merge_output: True  len(data): 601641 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "fe77ec00d0ec483ebc484896f7f5f9b5", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.info.stat: &gt;&gt; elapsed time to calculate statistics: 0:00:07.233255
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "fe77ec00d0ec483ebc484896f7f5f9b5", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.info.stat: &gt;&gt; elapsed time to calculate statistics: 0:00:07.233255
 INFO:ekorpkit.info.stat:Saving updated info file: /content/drive/MyDrive/workspace/data/datasets/corpus/kowiki/info-kowiki.yaml
 INFO:ekorpkit.datasets.build:
 Corpus [kowiki] is built to [/content/drive/MyDrive/workspace/data/datasets/corpus/kowiki] from [/content/drive/MyDrive/workspace/data/archive/datasets/source/kowiki]
@@ -1318,7 +1235,7 @@ Corpus [kowiki] is built to [/content/drive/MyDrive/workspace/data/datasets/corp
 </section>
 </section>
 <section id="build-the-english-wikipedia-corpus">
-<h3>Build the English Wikipedia Corpus<a class="headerlink" href="#build-the-english-wikipedia-corpus" title="Permalink to this headline">#</a></h3>
+<h3>Build the English Wikipedia Corpus<a class="headerlink" href="#build-the-english-wikipedia-corpus" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;corpus/builtin=enwiki&quot;</span><span class="p">)</span>
@@ -1333,9 +1250,7 @@ Corpus [kowiki] is built to [/content/drive/MyDrive/workspace/data/datasets/corp
 INFO:ekorpkit.base:instantiating ekorpkit.io.fetch.loader.wiki.Wiki...
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "c277d7ad202e4f30ae37542969cc47b4", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: Preprocessing &#39;/content/drive/MyDrive/workspace/.cache/corpus/enwiki/enwiki.xml.bz2&#39; to collect template definitions: this may take some time.
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "c277d7ad202e4f30ae37542969cc47b4", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: Preprocessing &#39;/content/drive/MyDrive/workspace/.cache/corpus/enwiki/enwiki.xml.bz2&#39; to collect template definitions: this may take some time.
 INFO: Preprocessed 100000 pages
 INFO: Preprocessed 200000 pages
 INFO: Preprocessed 300000 pages
@@ -1765,9 +1680,7 @@ INFO:ekorpkit.base:instantiating ekorpkit.io.load.data.load_data...
 INFO:ekorpkit.io.load.data:Starting multiprocessing with 50 processes at load_data
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "cf7b95245a3f475e8765db440f21e0f9", "version_major": 2, "version_minor": 0}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;curid&#39;: &#39;40754509&#39;, &#39;url&#39;: &#39;https://en.wikipedia.org/wiki?curid=40754509&#39;, &#39;title&#39;: &#39;Endocannabinoid transporter&#39;, &#39;text&#39;: &#39;The endocannabinoid transporters (eCBTs) are transport proteins for the endocannabinoids. Most neurotransmitters are water-soluble and require transmembrane proteins to transport them across the cell membrane. The endocannabinoids (anandamide, AEA, and 2-arachidonoylglycerol, 2-AG) on the other hand, are non-charged lipids that readily cross lipid membranes. However, since the endocannabinoids are water immiscible, protein transporters have been described that act as carriers to solubilize and transport the endocannabinoids through the aqueous cytoplasm. These include the heat shock proteins (Hsp70s) and fatty acid-binding proteins for anandamide (FABPs). FABPs such as FABP1, FABP3, FABP5, and FABP7 have been shown to bind endocannabinoids. FABP inhibitors attenuate the breakdown of anandamide by the enzyme fatty acid amide hydrolase (FAAH) in cell culture. One of these inhibitors (SB-FI-26), isolated from a virtual library of a million compounds, belongs to a class of compounds (named the &quot;truxilloids\&#39;) that act as an anti-nociceptive agent with mild anti-inflammatory activity in mice. These truxillic acids and their derivatives have been known to have anti-inflammatory and anti-nociceptive effects in mice and are active components of a Chinese herbal medicine ((−)-Incarvillateine Incarvillea sinensis) used to treat rheumatism and pain in human. The blockade of anandamide transport may, at least in part, be the mechanism through which these compounds exert their anti-nociceptive effects.\nStudies have found the involvement of cholesterol in membrane uptake and transport of anandamide. Cholesterol stimulates both the insertion of anandamide into synthetic lipid monolayers and bilayers, and its transport across bilayer membranes, suggest that besides putative anandamide protein-transporters, cholesterol could be an important component of the anandamide transport machinery, and as cholesterol-dependent modulation of CB1 cannabinoid receptors in nerve cells. The catalytic efficiency (i.e., the ratio between maximal velocity and Michaelis–Menten constant) of the AEA membrane transporter (AMT) is almost doubled compared with control cells, demonstrate that, among the proteins of the “endocannabinoid system,” only CB1 and AMT critically depend on membrane cholesterol content, an observation that may have important implications for the role of CB1 in protecting nerve cells against (endo)cannabinoid-induced apoptosis. This can be a reason, why the use of drugs to lower cholesterol is tied to a higher depression risk, and the correlation between levels and increased death rates from suicide and other violent causes.\nActivation of CB1 enhances AMT activity through increased nitric oxide synthase (NOS) activity and subsequent increase of NO production, whereas AMT activity instead is reduced by activation of the CB2 cannabinoid receptor, which inhibits NOS and NO release, also suggesting the distribution of these receptors may drive AEA directional transport through the blood-brain barrier and other endothelial cells.\nAs reviewed in 2016; &quot;Many of the AMT (EMT) proposals have fallen by the wayside.&quot; To date a transmembrane protein transporter has not been identified. &#39;, &#39;split&#39;: &#39;train&#39;, &#39;filename&#39;: &#39;wiki_23&#39;}
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "cf7b95245a3f475e8765db440f21e0f9", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;curid&#39;: &#39;40754509&#39;, &#39;url&#39;: &#39;https://en.wikipedia.org/wiki?curid=40754509&#39;, &#39;title&#39;: &#39;Endocannabinoid transporter&#39;, &#39;text&#39;: &#39;The endocannabinoid transporters (eCBTs) are transport proteins for the endocannabinoids. Most neurotransmitters are water-soluble and require transmembrane proteins to transport them across the cell membrane. The endocannabinoids (anandamide, AEA, and 2-arachidonoylglycerol, 2-AG) on the other hand, are non-charged lipids that readily cross lipid membranes. However, since the endocannabinoids are water immiscible, protein transporters have been described that act as carriers to solubilize and transport the endocannabinoids through the aqueous cytoplasm. These include the heat shock proteins (Hsp70s) and fatty acid-binding proteins for anandamide (FABPs). FABPs such as FABP1, FABP3, FABP5, and FABP7 have been shown to bind endocannabinoids. FABP inhibitors attenuate the breakdown of anandamide by the enzyme fatty acid amide hydrolase (FAAH) in cell culture. One of these inhibitors (SB-FI-26), isolated from a virtual library of a million compounds, belongs to a class of compounds (named the &quot;truxilloids\&#39;) that act as an anti-nociceptive agent with mild anti-inflammatory activity in mice. These truxillic acids and their derivatives have been known to have anti-inflammatory and anti-nociceptive effects in mice and are active components of a Chinese herbal medicine ((−)-Incarvillateine Incarvillea sinensis) used to treat rheumatism and pain in human. The blockade of anandamide transport may, at least in part, be the mechanism through which these compounds exert their anti-nociceptive effects.\nStudies have found the involvement of cholesterol in membrane uptake and transport of anandamide. Cholesterol stimulates both the insertion of anandamide into synthetic lipid monolayers and bilayers, and its transport across bilayer membranes, suggest that besides putative anandamide protein-transporters, cholesterol could be an important component of the anandamide transport machinery, and as cholesterol-dependent modulation of CB1 cannabinoid receptors in nerve cells. The catalytic efficiency (i.e., the ratio between maximal velocity and Michaelis–Menten constant) of the AEA membrane transporter (AMT) is almost doubled compared with control cells, demonstrate that, among the proteins of the “endocannabinoid system,” only CB1 and AMT critically depend on membrane cholesterol content, an observation that may have important implications for the role of CB1 in protecting nerve cells against (endo)cannabinoid-induced apoptosis. This can be a reason, why the use of drugs to lower cholesterol is tied to a higher depression risk, and the correlation between levels and increased death rates from suicide and other violent causes.\nActivation of CB1 enhances AMT activity through increased nitric oxide synthase (NOS) activity and subsequent increase of NO production, whereas AMT activity instead is reduced by activation of the CB2 cannabinoid receptor, which inhibits NOS and NO release, also suggesting the distribution of these receptors may drive AEA directional transport through the blood-brain barrier and other endothelial cells.\nAs reviewed in 2016; &quot;Many of the AMT (EMT) proposals have fallen by the wayside.&quot; To date a transmembrane protein transporter has not been identified. &#39;, &#39;split&#39;: &#39;train&#39;, &#39;filename&#39;: &#39;wiki_23&#39;}
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.datasets.build: &gt;&gt; elapsed time to load and parse data: 0:01:36.349757
@@ -1836,15 +1749,11 @@ INFO:ekorpkit.base:Using batcher with minibatch size: 1000
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 50  input_split: False  merge_output: True  len(data): 16699988 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "6fb24efedcf9441ba1082fe3a0bc78a4", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 1000
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "6fb24efedcf9441ba1082fe3a0bc78a4", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 1000
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 50  input_split: False  merge_output: True  len(data): 16699988 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "86d4bd97a8044331a9c6b3d4269fa413", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.info.stat: &gt;&gt; elapsed time to calculate statistics before processing: 0:01:52.110589
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "86d4bd97a8044331a9c6b3d4269fa413", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.info.stat: &gt;&gt; elapsed time to calculate statistics before processing: 0:01:52.110589
 INFO:ekorpkit.info.stat: &gt;&gt; updated splits: {&#39;train&#39;: {&#39;name&#39;: &#39;train&#39;, &#39;dataset_name&#39;: &#39;enwiki&#39;, &#39;data_file&#39;: &#39;enwiki-train.parquet&#39;, &#39;meta_file&#39;: &#39;meta-enwiki-train.parquet&#39;, &#39;num_docs_before_processing&#39;: 16699988, &#39;num_bytes_before_processing&#39;: 15342187701, &#39;num_sents&#39;: 68973662}}
 INFO:ekorpkit.datasets.build:
 Processing dataframe with pipeline: [&#39;normalize&#39;, &#39;segment&#39;, &#39;filter_length&#39;, &#39;drop_duplicates&#39;, &#39;save_samples&#39;]
@@ -1855,9 +1764,7 @@ INFO:ekorpkit.base:Using batcher with minibatch size: 1000
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 50  input_split: False  merge_output: True  len(data): 16699988 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "f2f2473c1d3a46379a36bdcaf96e9645", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.pipelines.pipe: &gt;&gt; elapsed time to normalize: 0:02:10.739667
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "f2f2473c1d3a46379a36bdcaf96e9645", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.pipelines.pipe: &gt;&gt; elapsed time to normalize: 0:02:10.739667
 INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function segment at 0x7fce771d30d0&gt;)
 INFO:ekorpkit.pipelines.pipe:instantiating segmenter
 INFO:ekorpkit.base:instantiating ekorpkit.preprocessors.segmenter.PySBDSegmenter...
@@ -1865,18 +1772,14 @@ INFO:ekorpkit.base:Using batcher with minibatch size: 1000
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 50  input_split: False  merge_output: True  len(data): 16699988 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "5463a1d8a37a4b2db98361d1b10041fe", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.pipelines.pipe: &gt;&gt; elapsed time to segment: 0:41:02.925846
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "5463a1d8a37a4b2db98361d1b10041fe", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.pipelines.pipe: &gt;&gt; elapsed time to segment: 0:41:02.925846
 INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function filter_length at 0x7fce771d3280&gt;, len_bytes={&#39;_partial_&#39;: True, &#39;_target_&#39;: &#39;ekorpkit.utils.func.len_bytes&#39;}, len_words={&#39;_partial_&#39;: True, &#39;_target_&#39;: &#39;ekorpkit.utils.func.len_words&#39;})
 INFO:ekorpkit.pipelines.pipe:Filtering by length: {&#39;_func_&#39;: {&#39;_partial_&#39;: True, &#39;_target_&#39;: &#39;ekorpkit.pipelines.pipe.filter_length&#39;, &#39;len_bytes&#39;: {&#39;_partial_&#39;: True, &#39;_target_&#39;: &#39;ekorpkit.utils.func.len_bytes&#39;}, &#39;len_words&#39;: {&#39;_partial_&#39;: True, &#39;_target_&#39;: &#39;ekorpkit.utils.func.len_words&#39;}}, &#39;apply_to&#39;: &#39;text&#39;, &#39;min_length&#39;: 30, &#39;max_length&#39;: None, &#39;len_func&#39;: &#39;len_bytes&#39;, &#39;len_column&#39;: &#39;num_bytes&#39;, &#39;add_len_column&#39;: True, &#39;verbose&#39;: True, &#39;use_batcher&#39;: True}
 INFO:ekorpkit.base:Using batcher with minibatch size: 1000
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 50  input_split: False  merge_output: True  len(data): 16699988 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "f0290d5e27a1421a998ee7e30d5c824a", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.pipelines.pipe:removed 10366199 of 16699988 documents with length &lt; 30
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "f0290d5e27a1421a998ee7e30d5c824a", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.pipelines.pipe:removed 10366199 of 16699988 documents with length &lt; 30
 INFO:ekorpkit.pipelines.pipe: &gt;&gt; elapsed time to filter length: 0:00:31.301093
 INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function drop_duplicates at 0x7fce771d34c0&gt;)
 INFO:ekorpkit.pipelines.pipe:Dropping duplicates: {&#39;_func_&#39;: {&#39;_partial_&#39;: True, &#39;_target_&#39;: &#39;ekorpkit.pipelines.pipe.drop_duplicates&#39;}, &#39;apply_to&#39;: &#39;text&#39;, &#39;verbose&#39;: True}
@@ -1909,33 +1812,23 @@ INFO:ekorpkit.base:Using batcher with minibatch size: 1000
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 50  input_split: False  merge_output: True  len(data): 6327718 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "58c691b306684e90b52bb56b2daae536", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 1000
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "58c691b306684e90b52bb56b2daae536", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 1000
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 50  input_split: False  merge_output: True  len(data): 6327718 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "28f26f879f57410eb478788fabae0fdd", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 1000
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "28f26f879f57410eb478788fabae0fdd", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 1000
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 50  input_split: False  merge_output: True  len(data): 6327718 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "9f6cab13c9eb4e6f874e273c7144780d", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 1000
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "9f6cab13c9eb4e6f874e273c7144780d", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 1000
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 50  input_split: False  merge_output: True  len(data): 6327718 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "f23d1db9cd504d67b84f0882831a52dc", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 1000
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "f23d1db9cd504d67b84f0882831a52dc", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 1000
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 50  input_split: False  merge_output: True  len(data): 6327718 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "ae733d81c6e44f4c8a23b3965f9200d3", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.info.stat: &gt;&gt; elapsed time to calculate statistics: 0:01:53.710827
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "ae733d81c6e44f4c8a23b3965f9200d3", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.info.stat: &gt;&gt; elapsed time to calculate statistics: 0:01:53.710827
 INFO:ekorpkit.info.stat:Saving updated info file: /content/drive/MyDrive/workspace/data/datasets/corpus/enwiki/info-enwiki.yaml
 INFO:ekorpkit.datasets.build:
 Corpus [enwiki] is built to [/content/drive/MyDrive/workspace/data/datasets/corpus/enwiki] from [/content/drive/MyDrive/workspace/data/archive/datasets/source/enwiki]
@@ -2005,7 +1898,7 @@ Corpus [enwiki] is built to [/content/drive/MyDrive/workspace/data/datasets/corp
 </div>
 </section>
 <section id="build-a-wikipedia-corpus-for-other-languages">
-<h3>Build a Wikipedia Corpus for Other Languages<a class="headerlink" href="#build-a-wikipedia-corpus-for-other-languages" title="Permalink to this headline">#</a></h3>
+<h3>Build a Wikipedia Corpus for Other Languages<a class="headerlink" href="#build-a-wikipedia-corpus-for-other-languages" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;corpus/builtin=wiki&quot;</span><span class="p">)</span>
@@ -2098,18 +1991,14 @@ INFO:ekorpkit.base:Using batcher with minibatch size: 1000
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 230  input_split: False  merge_output: True  len(data): 348546 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "8645040a03674eef9bb6b4e6207a28ff", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.pipelines.pipe: &gt;&gt; elapsed time to normalize: 0:00:20.737039
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "8645040a03674eef9bb6b4e6207a28ff", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.pipelines.pipe: &gt;&gt; elapsed time to normalize: 0:00:20.737039
 INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function filter_length at 0x7fc655201f70&gt;, len_bytes={&#39;_partial_&#39;: True, &#39;_target_&#39;: &#39;ekorpkit.utils.func.len_bytes&#39;}, len_words={&#39;_partial_&#39;: True, &#39;_target_&#39;: &#39;ekorpkit.utils.func.len_words&#39;})
 INFO:ekorpkit.pipelines.pipe:Filtering by length: {&#39;_func_&#39;: {&#39;_partial_&#39;: True, &#39;_target_&#39;: &#39;ekorpkit.pipelines.pipe.filter_length&#39;, &#39;len_bytes&#39;: {&#39;_partial_&#39;: True, &#39;_target_&#39;: &#39;ekorpkit.utils.func.len_bytes&#39;}, &#39;len_words&#39;: {&#39;_partial_&#39;: True, &#39;_target_&#39;: &#39;ekorpkit.utils.func.len_words&#39;}}, &#39;apply_to&#39;: &#39;text&#39;, &#39;min_length&#39;: 30, &#39;max_length&#39;: None, &#39;len_func&#39;: &#39;len_bytes&#39;, &#39;len_column&#39;: &#39;num_bytes&#39;, &#39;add_len_column&#39;: True, &#39;verbose&#39;: True, &#39;use_batcher&#39;: True}
 INFO:ekorpkit.base:Using batcher with minibatch size: 1000
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 230  input_split: False  merge_output: True  len(data): 348546 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "61b44a0945e8481380e63a3d4ce24f49", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.pipelines.pipe:removed 220674 of 348546 documents with length &lt; 30
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "61b44a0945e8481380e63a3d4ce24f49", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.pipelines.pipe:removed 220674 of 348546 documents with length &lt; 30
 INFO:ekorpkit.pipelines.pipe: &gt;&gt; elapsed time to filter length: 0:00:01.750412
 INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function drop_duplicates at 0x7fc655201dc0&gt;)
 INFO:ekorpkit.pipelines.pipe:Dropping duplicates: {&#39;_func_&#39;: {&#39;_partial_&#39;: True, &#39;_target_&#39;: &#39;ekorpkit.pipelines.pipe.drop_duplicates&#39;}, &#39;apply_to&#39;: &#39;text&#39;, &#39;verbose&#39;: True}
@@ -2144,33 +2033,23 @@ text:
 ----------------------------------------------------------------------------------------------------
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "790dedb723304e06a12899280bf91825", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 556
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "790dedb723304e06a12899280bf91825", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 556
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 556  procs: 230  input_split: False  merge_output: True  len(data): 127833 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "72f3b7067c554f29a0659d9c3568f031", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 556
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "72f3b7067c554f29a0659d9c3568f031", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 556
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 556  procs: 230  input_split: False  merge_output: True  len(data): 127833 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "ccea34933fba4c18b38f5995fb9e0283", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 556
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "ccea34933fba4c18b38f5995fb9e0283", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 556
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 556  procs: 230  input_split: False  merge_output: True  len(data): 127833 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "8e0db64274ad4e4fb5898011aad1d032", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 556
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "8e0db64274ad4e4fb5898011aad1d032", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 556
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 556  procs: 230  input_split: False  merge_output: True  len(data): 127833 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "25704de20b7a40e2a940cf9a4f1714ed", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.info.stat: &gt;&gt; elapsed time to calculate statistics: 0:00:05.268952
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "25704de20b7a40e2a940cf9a4f1714ed", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.info.stat: &gt;&gt; elapsed time to calculate statistics: 0:00:05.268952
 INFO:ekorpkit.info.stat:Saving updated info file: /content/drive/MyDrive/workspace/data/datasets/corpus/bnwiki/info-bnwiki.yaml
 INFO:ekorpkit.datasets.build:
 Corpus [bnwiki] is built to [/content/drive/MyDrive/workspace/data/datasets/corpus/bnwiki] from [/content/drive/MyDrive/workspace/data/archive/datasets/source/bnwiki]
@@ -2241,7 +2120,7 @@ time: 41.5 s (started: 2022-11-04 08:16:28 +00:00)
 </div>
 </section>
 <section id="build-a-corpus-using-cli">
-<h3>Build a Corpus using CLI<a class="headerlink" href="#build-a-corpus-using-cli" title="Permalink to this headline">#</a></h3>
+<h3>Build a Corpus using CLI<a class="headerlink" href="#build-a-corpus-using-cli" title="Permalink to this heading">#</a></h3>
 <p>To build more efficiently with multiple processors, it is preferable to use CLI (command line interface) tools.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ekorpkit<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>project.name<span class="o">=</span>ekorpkit-book<span class="w"> </span><span class="se">\</span>
@@ -2260,7 +2139,7 @@ time: 41.5 s (started: 2022-11-04 08:16:28 +00:00)
 </section>
 </section>
 <section id="load-the-corpus">
-<h2>Load the Corpus<a class="headerlink" href="#load-the-corpus" title="Permalink to this headline">#</a></h2>
+<h2>Load the Corpus<a class="headerlink" href="#load-the-corpus" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;corpus&quot;</span><span class="p">)</span>
@@ -2363,7 +2242,7 @@ time: 9.73 ms (started: 2022-11-04 02:26:02 +00:00)
 </div>
 </div>
 <section id="sample-and-save-the-corpus">
-<h3>Sample and Save the Corpus<a class="headerlink" href="#sample-and-save-the-corpus" title="Permalink to this headline">#</a></h3>
+<h3>Sample and Save the Corpus<a class="headerlink" href="#sample-and-save-the-corpus" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">enwiki</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
@@ -2403,33 +2282,23 @@ time: 674 ms (started: 2022-11-04 02:26:53 +00:00)
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 230  input_split: False  merge_output: True  len(data): 834999 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "0e3ea29e7b364842a4b184e1308d1e46", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 1000
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "0e3ea29e7b364842a4b184e1308d1e46", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 1000
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 230  input_split: False  merge_output: True  len(data): 834999 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "51014da3b50e4e08a2b1462c5eada79e", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 1000
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "51014da3b50e4e08a2b1462c5eada79e", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 1000
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 230  input_split: False  merge_output: True  len(data): 834999 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "5d998f89b6a447818bcca0baf2fe9648", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 1000
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "5d998f89b6a447818bcca0baf2fe9648", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 1000
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 230  input_split: False  merge_output: True  len(data): 834999 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "4d36de70b54643a3a9a945186bb1ce80", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 1000
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "4d36de70b54643a3a9a945186bb1ce80", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Using batcher with minibatch size: 1000
 INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 230  input_split: False  merge_output: True  len(data): 834999 len(args): 5
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "f1abcd90a3774627bd1635f40ab89c81", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.info.stat: &gt;&gt; elapsed time to calculate statistics: 0:04:32.445424
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "f1abcd90a3774627bd1635f40ab89c81", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.info.stat: &gt;&gt; elapsed time to calculate statistics: 0:04:32.445424
 INFO:ekorpkit.io.file:Saving dataframe to /content/drive/MyDrive/workspace/data/datasets/corpus/enwiki_sampled/enwiki_sampled-train.parquet
 INFO:ekorpkit.io.file:Concatenating 1 dataframes
 </pre></div>
@@ -2454,7 +2323,7 @@ time: 5min 34s (started: 2022-11-04 02:27:31 +00:00)
 </section>
 </section>
 <section id="load-corpora">
-<h2>Load Corpora<a class="headerlink" href="#load-corpora" title="Permalink to this headline">#</a></h2>
+<h2>Load Corpora<a class="headerlink" href="#load-corpora" title="Permalink to this heading">#</a></h2>
 <p>You can load several corpora at once and merge them into a single corpus.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2527,7 +2396,7 @@ time: 18.8 s (started: 2022-11-04 03:20:27 +00:00)
 </div>
 </div>
 <section id="checking-the-corpus-information">
-<h3>Checking the Corpus Information<a class="headerlink" href="#checking-the-corpus-information" title="Permalink to this headline">#</a></h3>
+<h3>Checking the Corpus Information<a class="headerlink" href="#checking-the-corpus-information" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eKonf</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">crps</span><span class="p">[</span><span class="s2">&quot;kowiki&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
@@ -2600,7 +2469,7 @@ time: 8.71 ms (started: 2022-11-04 03:20:46 +00:00)
 </div>
 </section>
 <section id="checking-the-corpus-data">
-<h3>Checking the Corpus Data<a class="headerlink" href="#checking-the-corpus-data" title="Permalink to this headline">#</a></h3>
+<h3>Checking the Corpus Data<a class="headerlink" href="#checking-the-corpus-data" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">crps</span><span class="p">[</span><span class="s2">&quot;kowiki&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">text</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -2677,7 +2546,7 @@ time: 10.3 ms (started: 2022-11-04 03:20:46 +00:00)
 </div>
 </section>
 <section id="concatenating-corpora">
-<h3>Concatenating Corpora<a class="headerlink" href="#concatenating-corpora" title="Permalink to this headline">#</a></h3>
+<h3>Concatenating Corpora<a class="headerlink" href="#concatenating-corpora" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">crps</span><span class="o">.</span><span class="n">concat_corpora</span><span class="p">()</span>
@@ -2974,7 +2843,7 @@ INFO:ekorpkit.info.column:Added a column [corpus] with value [bnwiki]
 </div>
 </section>
 <section id="save-the-concatenated-corpus">
-<h3>Save the concatenated corpus<a class="headerlink" href="#save-the-concatenated-corpus" title="Permalink to this headline">#</a></h3>
+<h3>Save the concatenated corpus<a class="headerlink" href="#save-the-concatenated-corpus" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eKonf</span><span class="o">.</span><span class="n">save_data</span><span class="p">(</span><span class="n">crps</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="s2">&quot;wiki_corpus.parquet&quot;</span><span class="p">,</span> <span class="n">project_dir</span> <span class="o">+</span> <span class="s2">&quot;/data&quot;</span><span class="p">)</span>
@@ -3014,50 +2883,196 @@ INFO:ekorpkit.info.column:Added a column [corpus] with value [bnwiki]
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
-              
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="word_embeddings.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Word Embeddings</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="lab2-corpus-eda.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lab 2: EDA on Corpora</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+  <a class='left-prev' id="prev-link" href="word_embeddings.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Word Embeddings</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="lab2-corpus-eda.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Lab 2: EDA on Corpora</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
 </div>
             </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
   
-    By <a href="https://entelecheia.me">Young Joon Lee</a><br/>
-  
-      &copy; Copyright 2023.<br/>
-</p>
-        </footer>
-    </div>
-    
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prepare-the-environment">
+   Prepare the Environment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#build-corpora-with-the-ekorpkit-configs">
+   Build corpora with the ekorpkit configs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#wikipedia-dump">
+     Wikipedia Dump
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fetch-the-dump-and-extract-it-to-the-data-directory">
+       Fetch the dump and extract it to the
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         data
+        </span>
+       </code>
+       directory
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-the-korean-wikipedia-corpus">
+     Build the Korean Wikipedia Corpus
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#build-the-corpus-by-parsing-the-wikipedia-dump">
+       Build the corpus by Parsing the Wikipedia Dump
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-the-english-wikipedia-corpus">
+     Build the English Wikipedia Corpus
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-a-wikipedia-corpus-for-other-languages">
+     Build a Wikipedia Corpus for Other Languages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-a-corpus-using-cli">
+     Build a Corpus using CLI
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-the-corpus">
+   Load the Corpus
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sample-and-save-the-corpus">
+     Sample and Save the Corpus
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-corpora">
+   Load Corpora
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#checking-the-corpus-information">
+     Checking the Corpus Information
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#checking-the-corpus-data">
+     Checking the Corpus Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#concatenating-corpora">
+     Concatenating Corpora
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#save-the-concatenated-corpus">
+     Save the concatenated corpus
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
 </div>
 
-
-      </div>
-    </div>
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://entelecheia.me">Young Joon Lee</a>
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2023.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on None.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
 
   </body>
 </html>

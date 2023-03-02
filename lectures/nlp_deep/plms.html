@@ -1,30 +1,36 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Pretrained Language Models &#8212; Artificial Intelligence | Lecture Notes</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
@@ -37,18 +43,20 @@
     <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-light.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-borderless.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/micromodal.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
     <script src="../../_static/tabs.js"></script>
     <script src="../../_static/js/hoverxref.js"></script>
     <script src="../../_static/js/tooltipster.bundle.min.js"></script>
@@ -57,7 +65,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -65,60 +73,361 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_deep/plms';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Lab 1: Preparing Wikipedia Corpora" href="lab1-corpus.html" />
     <link rel="prev" title="ByT5: Towards a token-free future with pre-trained byte-to-byte models" href="byt5.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
 
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
     
-    <div class="container-fluid" id="banner"></div>
-
     
+  
 
-    <div class="container-xl">
-      <div class="row">
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+    <p class="title logo__title">Artificial Intelligence | Lecture Notes</p>
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../nlp_intro/index.html">
+                        Introduction to NLP
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Deep Learning for NLP
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../nlp_apps/index.html">
+                        NLP Applications
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../aiart/index.html">
+                        AI Art (Text-to-Image)
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mlops/index.html">
+                        Machine Learning Systems Design
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../ds/index.html">
+                        Data Science for Economics and Finance
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://entelecheia.me">
+                        entelecheia.me
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../about/index.html">
+                        Bibliography
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../about/cite.html">
+                        Citation
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
       
       
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
       
-      <h1 class="site-logo" id="site-title">Artificial Intelligence | Lecture Notes</h1>
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
       
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../nlp_intro/index.html">
+                        Introduction to NLP
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Deep Learning for NLP
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../nlp_apps/index.html">
+                        NLP Applications
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../aiart/index.html">
+                        AI Art (Text-to-Image)
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mlops/index.html">
+                        Machine Learning Systems Design
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../ds/index.html">
+                        Data Science for Economics and Finance
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://entelecheia.me">
+                        entelecheia.me
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../about/index.html">
+                        Bibliography
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../about/cite.html">
+                        Citation
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+    <p class="title logo__title">Artificial Intelligence | Lecture Notes</p>
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -127,707 +436,333 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Course
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../nlp_intro/index.html">
-   Introduction to NLP
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_intro/intro.html">
-     Introduction
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_intro/ekorpkit.html">
-     Getting started with ekorpkit
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_intro/research.html">
-     Research Applications
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_intro/language_models.html">
-     Language Models
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_intro/topic.html">
-     Topic Modeling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_intro/topic_models.html">
-     Topic Models
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_intro/topic_coherence.html">
-     Topic Coherence Measures
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_intro/sentiments.html">
-     Sentiment Analysis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_intro/tokenization.html">
-     Tokenization
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_intro/word_segmentation.html">
-     Word Segmentation and Association
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_intro/vectorization.html">
-     Vector Semantics and Representation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_intro/word_embeddings.html">
-     Word Embeddings
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_intro/lab1-corpus.html">
-     Lab 1: Preparing Wikipedia Corpora
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_intro/lab2-corpus-eda.html">
-     Lab 2: EDA on Corpora
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="index.html">
-   Deep Learning for NLP
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="intro.html">
-     Introduction
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="ekorpkit.html">
-     Getting started with ekorpkit
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="zeroshot.html">
-     Zero Shot, Prompt, and Search Strategies
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="transformers.html">
-     Transformers
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="t5.html">
-     T5: Text-To-Text Transfer Transformer
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="tokenization.html">
-     Tokenization
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="sentencepiece.html">
-     SentencePiece Tokenizer
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="byt5.html">
-     ByT5: Towards a token-free future with pre-trained byte-to-byte models
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Pretrained Language Models
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="lab1-corpus.html">
-     Lab 1: Preparing Wikipedia Corpora
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="lab3-train-tokenizers.html">
-     Lab 3: Training Tokenizers
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="lab4-pretraining-lms.html">
-     Lab 4: Pretraining Language Models
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../nlp_apps/index.html">
-   NLP Applications
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../aiart/index.html">
-   AI Art (Text-to-Image)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/intro.html">
-     Introduction
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/project-themes.html">
-     Project Themes - A Brave New World
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/dalle1.html">
-     DALL·E 1
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/dalle2.html">
-     DALL·E 2
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/imagen.html">
-     Imagen
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/textual-inversion.html">
-     Textual Inversion (Dreambooth)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/whisper.html">
-     Automatic Speech Recognition (Whisper)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/text2music.html">
-     Text to Music
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/image2music.html">
-     Image to Music
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../mlops/index.html">
-   Machine Learning Systems Design
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../mlops/dev-env.html">
-     Development Environment
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../mlops/dotfiles.html">
-     Dotfiles
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../ds/index.html">
-   Data Science for Economics and Finance
-  </a>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nlp_intro/index.html">Introduction to NLP</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/ekorpkit.html">Getting started with ekorpkit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/research.html">Research Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/language_models.html">Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/topic.html">Topic Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/topic_models.html">Topic Models </a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/topic_coherence.html">Topic Coherence Measures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/sentiments.html">Sentiment Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/tokenization.html">Tokenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/word_segmentation.html">Word Segmentation and Association</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/vectorization.html">Vector Semantics and Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/word_embeddings.html">Word Embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/lab1-corpus.html">Lab 1: Preparing Wikipedia Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/lab2-corpus-eda.html">Lab 2: EDA on Corpora</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  About
- </span>
-</p>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Deep Learning for NLP</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ekorpkit.html">Getting started with ekorpkit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zeroshot.html">Zero Shot, Prompt, and Search Strategies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transformers.html">Transformers </a></li>
+<li class="toctree-l2"><a class="reference internal" href="t5.html">T5: Text-To-Text Transfer Transformer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tokenization.html">Tokenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sentencepiece.html">SentencePiece Tokenizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Pretrained Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab1-corpus.html">Lab 1: Preparing Wikipedia Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab3-train-tokenizers.html">Lab 3: Training Tokenizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab4-pretraining-lms.html">Lab 4: Pretraining Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp_apps/index.html">NLP Applications</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../aiart/index.html">AI Art (Text-to-Image)</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/project-themes.html">Project Themes - A Brave New World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/dalle1.html">DALL·E 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/dalle2.html">DALL·E 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/imagen.html">Imagen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/textual-inversion.html">Textual Inversion (Dreambooth)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/whisper.html">Automatic Speech Recognition (Whisper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/text2music.html">Text to Music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/image2music.html">Image to Music</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../mlops/index.html">Machine Learning Systems Design</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../mlops/dev-env.html">Development Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mlops/dotfiles.html">Dotfiles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ds/index.html">Data Science for Economics and Finance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference external" href="https://entelecheia.me">
-   entelecheia.me
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../about/index.html">
-   Bibliography
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../about/cite.html">
-   Citation
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/cite.html">Citation</a></li>
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
+</nav>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  </div>
+  
 
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
 
-          
+  
+  <div id="rtd-footer-container"></div>
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
+      </div>
+      <main id="main-content" class="bd-main">
         
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
 
 
 
 <div class="col py-1 d-flex header-article-main">
     <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
     </div>
     <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/entelecheia/lecture/main?urlpath=tree/book/lectures/nlp_deep/plms.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/nlp_deep/plms.ipynb"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/nlp_deep/plms.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Launch on Colab"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../../_static/images/logo_colab.png">
   </span>
-<span class="headerbtn__text-container">Colab</span>
+<span class="btn__text-container">Colab</span>
 </a>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
+  class="btn btn-sm"
   data-toggle="tooltip"
 data-placement="bottom"
 title="Fullscreen mode"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
-<a href="https://github.com/entelecheia/lecture"
-   class="headerbtn"
+<a href="https://github.com/entelecheia/lecture" target="_blank"
+   class="btn btn-sm"
    data-toggle="tooltip"
 data-placement="bottom"
 title="Source repository"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fab fa-github"></i>
   </span>
 
 </a>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../_sources/lectures/nlp_deep/plms.ipynb"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="../../_sources/lectures/nlp_deep/plms.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Download source file"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.ipynb</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
-
-      </li>
+</a>
       
       <li>
-        
 <button onclick="printPdf(this)"
-  class="headerbtn"
+  class="btn btn-sm dropdown-item"
   data-toggle="tooltip"
 data-placement="left"
 title="Print to PDF"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file-pdf"></i>
   </span>
-<span class="headerbtn__text-container">.pdf</span>
+<span class="btn__text-container">.pdf</span>
 </button>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
-    </div>
-</div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#language-models">
-   Language Models
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#contextualized-word-embeddings">
-   Contextualized Word Embeddings
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   Pretrained Language Models
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#categories-of-pretrained-language-models">
-   Categories of Pretrained Language Models
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#training-objectives">
-   Training Objectives
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#standard-autoregressive-language-modeling">
-     Standard Autoregressive Language Modeling
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#masked-language-modeling">
-     Masked Language Modeling
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#causal-masked-language-modeling">
-     Causal Masked Language Modeling
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#permutation-language-modeling">
-     Permutation Language Modeling
-    </a>
-   </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#transformer-architecture-and-plms">
-   Transformer Architecture and PLMs
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gpt-family">
-   GPT Family
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#bert">
-   BERT
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#roberta">
-   RoBERTa
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#albert">
-   ALBERT
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#electra">
-   ELECTRA
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#xlnet">
-   XLNet
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#t5">
-   T5
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#bart">
-   BART
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#finetuning-of-plms">
-   Finetuning of PLMs
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
     </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Pretrained Language Models</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#language-models">
-   Language Models
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#contextualized-word-embeddings">
-   Contextualized Word Embeddings
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   Pretrained Language Models
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#categories-of-pretrained-language-models">
-   Categories of Pretrained Language Models
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#training-objectives">
-   Training Objectives
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#standard-autoregressive-language-modeling">
-     Standard Autoregressive Language Modeling
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#masked-language-modeling">
-     Masked Language Modeling
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#causal-masked-language-modeling">
-     Causal Masked Language Modeling
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#permutation-language-modeling">
-     Permutation Language Modeling
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#transformer-architecture-and-plms">
-   Transformer Architecture and PLMs
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gpt-family">
-   GPT Family
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#bert">
-   BERT
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#roberta">
-   RoBERTa
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#albert">
-   ALBERT
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#electra">
-   ELECTRA
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#xlnet">
-   XLNet
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#t5">
-   T5
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#bart">
-   BART
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#finetuning-of-plms">
-   Finetuning of PLMs
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
-  </a>
- </li>
-</ul>
-
-                        </nav>
-                    </div>
-                </div>
+</div>
             </div>
-            <main id="main-content" role="main">
-                
-              <div>
-                
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Pretrained Language Models</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#language-models">
+   Language Models
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contextualized-word-embeddings">
+   Contextualized Word Embeddings
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Pretrained Language Models
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#categories-of-pretrained-language-models">
+   Categories of Pretrained Language Models
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-objectives">
+   Training Objectives
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#standard-autoregressive-language-modeling">
+     Standard Autoregressive Language Modeling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#masked-language-modeling">
+     Masked Language Modeling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#causal-masked-language-modeling">
+     Causal Masked Language Modeling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#permutation-language-modeling">
+     Permutation Language Modeling
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transformer-architecture-and-plms">
+   Transformer Architecture and PLMs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gpt-family">
+   GPT Family
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bert">
+   BERT
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#roberta">
+   RoBERTa
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#albert">
+   ALBERT
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#electra">
+   ELECTRA
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#xlnet">
+   XLNet
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#t5">
+   T5
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bart">
+   BART
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#finetuning-of-plms">
+   Finetuning of PLMs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
   <section class="tex2jax_ignore mathjax_ignore" id="pretrained-language-models">
-<h1>Pretrained Language Models<a class="headerlink" href="#pretrained-language-models" title="Permalink to this headline">#</a></h1>
+<h1>Pretrained Language Models<a class="headerlink" href="#pretrained-language-models" title="Permalink to this heading">#</a></h1>
 <p><img alt="" src="../../_images/plm.png" /></p>
 <section id="language-models">
-<h2>Language Models<a class="headerlink" href="#language-models" title="Permalink to this headline">#</a></h2>
+<h2>Language Models<a class="headerlink" href="#language-models" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Language models are models that can predict the next word in a sequence of words.</p></li>
 <li><p>They are trained on large corpora of text.</p></li>
@@ -836,7 +771,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="contextualized-word-embeddings">
-<h2>Contextualized Word Embeddings<a class="headerlink" href="#contextualized-word-embeddings" title="Permalink to this headline">#</a></h2>
+<h2>Contextualized Word Embeddings<a class="headerlink" href="#contextualized-word-embeddings" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Contextualized word embeddings are word embeddings that are computed in the context of a sentence.</p></li>
 <li><p>Word embeddings like Word2Vec and GloVe are static, meaning that they are computed without any context.</p>
@@ -848,7 +783,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="id1">
-<h2>Pretrained Language Models<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<h2>Pretrained Language Models<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Pretrained language models are language models that have been trained on large corpora of text in a self-supervised manner.</p></li>
 <li><p>Then, the weights of the model are saved and can be used to fine-tune other models for specific tasks. It is called transfer learning.</p></li>
@@ -856,7 +791,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="categories-of-pretrained-language-models">
-<h2>Categories of Pretrained Language Models<a class="headerlink" href="#categories-of-pretrained-language-models" title="Permalink to this headline">#</a></h2>
+<h2>Categories of Pretrained Language Models<a class="headerlink" href="#categories-of-pretrained-language-models" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Pretrained language models can be categorized by their training objectives.</p>
 <ul>
@@ -875,9 +810,9 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="training-objectives">
-<h2>Training Objectives<a class="headerlink" href="#training-objectives" title="Permalink to this headline">#</a></h2>
+<h2>Training Objectives<a class="headerlink" href="#training-objectives" title="Permalink to this heading">#</a></h2>
 <section id="standard-autoregressive-language-modeling">
-<h3>Standard Autoregressive Language Modeling<a class="headerlink" href="#standard-autoregressive-language-modeling" title="Permalink to this headline">#</a></h3>
+<h3>Standard Autoregressive Language Modeling<a class="headerlink" href="#standard-autoregressive-language-modeling" title="Permalink to this heading">#</a></h3>
 <p>In autoregressive language modeling, the ideal language model <span class="math notranslate nohighlight">\(p^*(w)\)</span> is a probability distribution over all possible sequences of words <span class="math notranslate nohighlight">\(w\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -894,7 +829,7 @@ p^*(w) \approx \prod_{i=1}^n \hat{p}_{\theta}(w_i \mid w_1, \ldots, w_{i-1})
 </ul>
 </section>
 <section id="masked-language-modeling">
-<h3>Masked Language Modeling<a class="headerlink" href="#masked-language-modeling" title="Permalink to this headline">#</a></h3>
+<h3>Masked Language Modeling<a class="headerlink" href="#masked-language-modeling" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>The main objective of the model is to predict the masked words, which are randomly masked in the input sequence.</p></li>
 <li><p>This approach makes the model bidirectional in nature because the masked words are predicted based on the words before and after the masked words.</p></li>
@@ -907,7 +842,7 @@ p^*(w) \approx \prod_{i=1}^n \hat{p}_{\theta}(w_i \mid w_1, \ldots, w_{i-1})
 <a class="reference internal image-reference" href="../../_images/t5-mask-patterns.png"><img alt="t5-mask-patterns" class="align-center" src="../../_images/t5-mask-patterns.png" style="width: 500px;" /></a>
 </section>
 <section id="causal-masked-language-modeling">
-<h3>Causal Masked Language Modeling<a class="headerlink" href="#causal-masked-language-modeling" title="Permalink to this headline">#</a></h3>
+<h3>Causal Masked Language Modeling<a class="headerlink" href="#causal-masked-language-modeling" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Causal masked language modeling is also to predict the masked words in the input sequence.</p></li>
 <li><p>However, unlike the masked language modeling, the model can only see the words before the masked word by the causal masking scheme.</p></li>
@@ -918,7 +853,7 @@ p^*(w) \approx \prod_{i=1}^n \hat{p}_{\theta}(w_i \mid w_1, \ldots, w_{i-1})
 </ul>
 </section>
 <section id="permutation-language-modeling">
-<h3>Permutation Language Modeling<a class="headerlink" href="#permutation-language-modeling" title="Permalink to this headline">#</a></h3>
+<h3>Permutation Language Modeling<a class="headerlink" href="#permutation-language-modeling" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>The major flaw of the masked language modeling approach is that it does not take into account the dependency between the masked words.</p></li>
 <li><p>Permutation language modeling is to predict the tokens in a random order.</p></li>
@@ -928,7 +863,7 @@ p^*(w) \approx \prod_{i=1}^n \hat{p}_{\theta}(w_i \mid w_1, \ldots, w_{i-1})
 </section>
 </section>
 <section id="transformer-architecture-and-plms">
-<h2>Transformer Architecture and PLMs<a class="headerlink" href="#transformer-architecture-and-plms" title="Permalink to this headline">#</a></h2>
+<h2>Transformer Architecture and PLMs<a class="headerlink" href="#transformer-architecture-and-plms" title="Permalink to this heading">#</a></h2>
 <p>The transformer architecture consists of two parts: the encoder and the decoder. The encoder is used to encode the input sequence into a vector representation. The decoder is used to decode the vector representation into the output sequence.</p>
 <p>We can classify PLMs into three categories based on the usage of the encoder and the decoder:</p>
 <ul class="simple">
@@ -939,7 +874,7 @@ p^*(w) \approx \prod_{i=1}^n \hat{p}_{\theta}(w_i \mid w_1, \ldots, w_{i-1})
 <p><img alt="" src="../../_images/t5-structure.png" /></p>
 </section>
 <section id="gpt-family">
-<h2>GPT Family<a class="headerlink" href="#gpt-family" title="Permalink to this headline">#</a></h2>
+<h2>GPT Family<a class="headerlink" href="#gpt-family" title="Permalink to this heading">#</a></h2>
 <ul>
 <li><p>GPT (Generative Pre-Training) is the first decoder-only PLM.</p></li>
 <li><p>GPT uses the uni-directional context to predict the next word.</p>
@@ -953,7 +888,7 @@ p^*(w) \approx \prod_{i=1}^n \hat{p}_{\theta}(w_i \mid w_1, \ldots, w_{i-1})
 </ul>
 </section>
 <section id="bert">
-<h2>BERT<a class="headerlink" href="#bert" title="Permalink to this headline">#</a></h2>
+<h2>BERT<a class="headerlink" href="#bert" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>BERT (Bidirectional Encoder Representations from Transformers) is the first encoder-only PLM.</p></li>
 <li><p>BERT uses two objectives to train the model: masked language modeling and next sentence prediction.</p></li>
@@ -966,7 +901,7 @@ p^*(w) \approx \prod_{i=1}^n \hat{p}_{\theta}(w_i \mid w_1, \ldots, w_{i-1})
 <a class="bg-primary mb-1 reference internal image-reference" href="../../_images/bert_nsp.jpg"><img alt="bert_nsp" class="bg-primary mb-1 align-center" src="../../_images/bert_nsp.jpg" style="width: 400px;" /></a>
 </section>
 <section id="roberta">
-<h2>RoBERTa<a class="headerlink" href="#roberta" title="Permalink to this headline">#</a></h2>
+<h2>RoBERTa<a class="headerlink" href="#roberta" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>RoBERTa (Robustly Optimized BERT Pretraining Approach) is a variant of BERT.</p></li>
 <li><p>Modifications to BERT:</p>
@@ -983,7 +918,7 @@ p^*(w) \approx \prod_{i=1}^n \hat{p}_{\theta}(w_i \mid w_1, \ldots, w_{i-1})
 <a class="bg-primary mb-1 reference internal image-reference" href="../../_images/roberta.png"><img alt="rberta" class="bg-primary mb-1 align-center" src="../../_images/roberta.png" style="width: 500px;" /></a>
 </section>
 <section id="albert">
-<h2>ALBERT<a class="headerlink" href="#albert" title="Permalink to this headline">#</a></h2>
+<h2>ALBERT<a class="headerlink" href="#albert" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>ALBERT (A Lite BERT) is a variant of BERT.</p></li>
 <li><p>Modifications to BERT:</p>
@@ -997,7 +932,7 @@ p^*(w) \approx \prod_{i=1}^n \hat{p}_{\theta}(w_i \mid w_1, \ldots, w_{i-1})
 <a class="bg-primary mb-1 reference internal image-reference" href="../../_images/albert.png"><img alt="albert" class="bg-primary mb-1 align-center" src="../../_images/albert.png" style="width: 700px;" /></a>
 </section>
 <section id="electra">
-<h2>ELECTRA<a class="headerlink" href="#electra" title="Permalink to this headline">#</a></h2>
+<h2>ELECTRA<a class="headerlink" href="#electra" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>ELECTRA (ELECtric pre-training of Language Representations) is a variant of BERT.</p></li>
 <li><p>ELECTRA uses the replaced token detection task to train the model.</p></li>
@@ -1010,7 +945,7 @@ p^*(w) \approx \prod_{i=1}^n \hat{p}_{\theta}(w_i \mid w_1, \ldots, w_{i-1})
 <a class="bg-primary mb-1 reference internal image-reference" href="../../_images/electra_result.png"><img alt="electra_result" class="bg-primary mb-1 align-center" src="../../_images/electra_result.png" style="width: 700px;" /></a>
 </section>
 <section id="xlnet">
-<h2>XLNet<a class="headerlink" href="#xlnet" title="Permalink to this headline">#</a></h2>
+<h2>XLNet<a class="headerlink" href="#xlnet" title="Permalink to this heading">#</a></h2>
 <ul>
 <li><p>XLNet (Generalized Autoregressive Pretraining for Language Understanding) is the first permutation language model.</p></li>
 <li><p>XLNet uses the permutation language modeling to train the model.</p>
@@ -1029,7 +964,7 @@ p^*(w) \approx \prod_{i=1}^n \hat{p}_{\theta}(w_i \mid w_1, \ldots, w_{i-1})
 </ul>
 </section>
 <section id="t5">
-<h2>T5<a class="headerlink" href="#t5" title="Permalink to this headline">#</a></h2>
+<h2>T5<a class="headerlink" href="#t5" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>T5: Text-to-Text Transfer Transformer</p></li>
 <li><p>We have the separate lecture on T5. Please refer to the lecture on T5 for more details.</p></li>
@@ -1037,7 +972,7 @@ p^*(w) \approx \prod_{i=1}^n \hat{p}_{\theta}(w_i \mid w_1, \ldots, w_{i-1})
 <a class="bg-primary mb-1 reference internal image-reference" href="../../_images/t5-training.png"><img alt="t5-training" class="bg-primary mb-1 align-center" src="../../_images/t5-training.png" style="width: 400px;" /></a>
 </section>
 <section id="bart">
-<h2>BART<a class="headerlink" href="#bart" title="Permalink to this headline">#</a></h2>
+<h2>BART<a class="headerlink" href="#bart" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension</p></li>
 <li><p>Pre-training objective: apply the denoising objective to the input sequence to generate the output sequence (i.e. masks, deletions, permutations, and insertions).</p></li>
@@ -1051,7 +986,7 @@ p^*(w) \approx \prod_{i=1}^n \hat{p}_{\theta}(w_i \mid w_1, \ldots, w_{i-1})
 <p><img alt="" src="../../_images/bart.png" /></p>
 </section>
 <section id="finetuning-of-plms">
-<h2>Finetuning of PLMs<a class="headerlink" href="#finetuning-of-plms" title="Permalink to this headline">#</a></h2>
+<h2>Finetuning of PLMs<a class="headerlink" href="#finetuning-of-plms" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Finetuning of PLMs is to fine-tune the pre-trained PLMs on the downstream tasks.</p></li>
 <li><p>We add task-specific layers (e.g. classification layer) on top of the pre-trained PLMs to perform the downstream tasks.</p></li>
@@ -1060,7 +995,7 @@ p^*(w) \approx \prod_{i=1}^n \hat{p}_{\theta}(w_i \mid w_1, \ldots, w_{i-1})
 <p><img alt="" src="../../_images/finetuning.png" /></p>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Radford, A., Narasimhan, K., Salimans, T., &amp; Sutskever, I. (2018). Improving language understanding by generative pre-training. OpenAI blog</p></li>
 <li><p>Radford, A., Wu, J., Child, R., Luan, D., Amodei, D., &amp; Sutskever, I. (2019). Language models are unsupervised multitask learners. OpenAI blog, 1(8), 9.</p></li>
@@ -1095,50 +1030,202 @@ p^*(w) \approx \prod_{i=1}^n \hat{p}_{\theta}(w_i \mid w_1, \ldots, w_{i-1})
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
-              
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="byt5.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">ByT5: Towards a token-free future with pre-trained byte-to-byte models</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="lab1-corpus.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lab 1: Preparing Wikipedia Corpora</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+  <a class='left-prev' id="prev-link" href="byt5.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">ByT5: Towards a token-free future with pre-trained byte-to-byte models</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="lab1-corpus.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Lab 1: Preparing Wikipedia Corpora</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
 </div>
             </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
   
-    By <a href="https://entelecheia.me">Young Joon Lee</a><br/>
-  
-      &copy; Copyright 2023.<br/>
-</p>
-        </footer>
-    </div>
-    
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#language-models">
+   Language Models
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contextualized-word-embeddings">
+   Contextualized Word Embeddings
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Pretrained Language Models
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#categories-of-pretrained-language-models">
+   Categories of Pretrained Language Models
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-objectives">
+   Training Objectives
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#standard-autoregressive-language-modeling">
+     Standard Autoregressive Language Modeling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#masked-language-modeling">
+     Masked Language Modeling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#causal-masked-language-modeling">
+     Causal Masked Language Modeling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#permutation-language-modeling">
+     Permutation Language Modeling
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transformer-architecture-and-plms">
+   Transformer Architecture and PLMs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gpt-family">
+   GPT Family
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bert">
+   BERT
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#roberta">
+   RoBERTa
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#albert">
+   ALBERT
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#electra">
+   ELECTRA
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#xlnet">
+   XLNet
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#t5">
+   T5
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bart">
+   BART
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#finetuning-of-plms">
+   Finetuning of PLMs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav>
 </div>
 
-
-      </div>
-    </div>
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://entelecheia.me">Young Joon Lee</a>
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2023.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on None.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
 
   </body>
 </html>

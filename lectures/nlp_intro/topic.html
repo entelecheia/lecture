@@ -1,30 +1,36 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Topic Modeling &#8212; Artificial Intelligence | Lecture Notes</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
@@ -37,18 +43,20 @@
     <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-light.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-borderless.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/micromodal.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
     <script src="../../_static/tabs.js"></script>
     <script src="../../_static/js/hoverxref.js"></script>
     <script src="../../_static/js/tooltipster.bundle.min.js"></script>
@@ -57,7 +65,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -65,60 +73,361 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_intro/topic';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Topic Models" href="topic_models.html" />
     <link rel="prev" title="Language Models" href="language_models.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
 
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
     
-    <div class="container-fluid" id="banner"></div>
-
     
+  
 
-    <div class="container-xl">
-      <div class="row">
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+    <p class="title logo__title">Artificial Intelligence | Lecture Notes</p>
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Introduction to NLP
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../nlp_deep/index.html">
+                        Deep Learning for NLP
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../nlp_apps/index.html">
+                        NLP Applications
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../aiart/index.html">
+                        AI Art (Text-to-Image)
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mlops/index.html">
+                        Machine Learning Systems Design
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../ds/index.html">
+                        Data Science for Economics and Finance
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://entelecheia.me">
+                        entelecheia.me
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../about/index.html">
+                        Bibliography
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../about/cite.html">
+                        Citation
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
       
       
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
       
-      <h1 class="site-logo" id="site-title">Artificial Intelligence | Lecture Notes</h1>
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
       
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Introduction to NLP
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../nlp_deep/index.html">
+                        Deep Learning for NLP
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../nlp_apps/index.html">
+                        NLP Applications
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../aiart/index.html">
+                        AI Art (Text-to-Image)
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mlops/index.html">
+                        Machine Learning Systems Design
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../ds/index.html">
+                        Data Science for Economics and Finance
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://entelecheia.me">
+                        entelecheia.me
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../about/index.html">
+                        Bibliography
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../about/cite.html">
+                        Citation
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+    <p class="title logo__title">Artificial Intelligence | Lecture Notes</p>
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -127,803 +436,381 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Course
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="index.html">
-   Introduction to NLP
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="intro.html">
-     Introduction
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="ekorpkit.html">
-     Getting started with ekorpkit
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="research.html">
-     Research Applications
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="language_models.html">
-     Language Models
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Topic Modeling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="topic_models.html">
-     Topic Models
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="topic_coherence.html">
-     Topic Coherence Measures
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="sentiments.html">
-     Sentiment Analysis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="tokenization.html">
-     Tokenization
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="word_segmentation.html">
-     Word Segmentation and Association
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="vectorization.html">
-     Vector Semantics and Representation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="word_embeddings.html">
-     Word Embeddings
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="lab1-corpus.html">
-     Lab 1: Preparing Wikipedia Corpora
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="lab2-corpus-eda.html">
-     Lab 2: EDA on Corpora
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../nlp_deep/index.html">
-   Deep Learning for NLP
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/intro.html">
-     Introduction
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/ekorpkit.html">
-     Getting started with ekorpkit
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/zeroshot.html">
-     Zero Shot, Prompt, and Search Strategies
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/transformers.html">
-     Transformers
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/t5.html">
-     T5: Text-To-Text Transfer Transformer
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/tokenization.html">
-     Tokenization
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/sentencepiece.html">
-     SentencePiece Tokenizer
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/byt5.html">
-     ByT5: Towards a token-free future with pre-trained byte-to-byte models
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/plms.html">
-     Pretrained Language Models
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/lab1-corpus.html">
-     Lab 1: Preparing Wikipedia Corpora
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/lab3-train-tokenizers.html">
-     Lab 3: Training Tokenizers
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/lab4-pretraining-lms.html">
-     Lab 4: Pretraining Language Models
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../nlp_apps/index.html">
-   NLP Applications
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../aiart/index.html">
-   AI Art (Text-to-Image)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/intro.html">
-     Introduction
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/project-themes.html">
-     Project Themes - A Brave New World
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/dalle1.html">
-     DALL·E 1
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/dalle2.html">
-     DALL·E 2
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/imagen.html">
-     Imagen
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/textual-inversion.html">
-     Textual Inversion (Dreambooth)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/whisper.html">
-     Automatic Speech Recognition (Whisper)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/text2music.html">
-     Text to Music
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/image2music.html">
-     Image to Music
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../mlops/index.html">
-   Machine Learning Systems Design
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../mlops/dev-env.html">
-     Development Environment
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../mlops/dotfiles.html">
-     Dotfiles
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../ds/index.html">
-   Data Science for Economics and Finance
-  </a>
- </li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Introduction to NLP</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ekorpkit.html">Getting started with ekorpkit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="research.html">Research Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language_models.html">Language Models</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Topic Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topic_models.html">Topic Models </a></li>
+<li class="toctree-l2"><a class="reference internal" href="topic_coherence.html">Topic Coherence Measures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sentiments.html">Sentiment Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tokenization.html">Tokenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="word_segmentation.html">Word Segmentation and Association</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vectorization.html">Vector Semantics and Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="word_embeddings.html">Word Embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab1-corpus.html">Lab 1: Preparing Wikipedia Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab2-corpus-eda.html">Lab 2: EDA on Corpora</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  About
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nlp_deep/index.html">Deep Learning for NLP</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/ekorpkit.html">Getting started with ekorpkit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/zeroshot.html">Zero Shot, Prompt, and Search Strategies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/transformers.html">Transformers </a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/t5.html">T5: Text-To-Text Transfer Transformer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/tokenization.html">Tokenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/sentencepiece.html">SentencePiece Tokenizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/plms.html">Pretrained Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/lab1-corpus.html">Lab 1: Preparing Wikipedia Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/lab3-train-tokenizers.html">Lab 3: Training Tokenizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/lab4-pretraining-lms.html">Lab 4: Pretraining Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp_apps/index.html">NLP Applications</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../aiart/index.html">AI Art (Text-to-Image)</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/project-themes.html">Project Themes - A Brave New World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/dalle1.html">DALL·E 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/dalle2.html">DALL·E 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/imagen.html">Imagen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/textual-inversion.html">Textual Inversion (Dreambooth)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/whisper.html">Automatic Speech Recognition (Whisper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/text2music.html">Text to Music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/image2music.html">Image to Music</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../mlops/index.html">Machine Learning Systems Design</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../mlops/dev-env.html">Development Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mlops/dotfiles.html">Dotfiles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ds/index.html">Data Science for Economics and Finance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference external" href="https://entelecheia.me">
-   entelecheia.me
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../about/index.html">
-   Bibliography
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../about/cite.html">
-   Citation
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/cite.html">Citation</a></li>
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
+</nav>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  </div>
+  
 
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
 
-          
+  
+  <div id="rtd-footer-container"></div>
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
+      </div>
+      <main id="main-content" class="bd-main">
         
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
 
 
 
 <div class="col py-1 d-flex header-article-main">
     <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
     </div>
     <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/entelecheia/lecture/main?urlpath=tree/book/lectures/nlp_intro/topic.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/nlp_intro/topic.ipynb"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/nlp_intro/topic.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Launch on Colab"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../../_static/images/logo_colab.png">
   </span>
-<span class="headerbtn__text-container">Colab</span>
+<span class="btn__text-container">Colab</span>
 </a>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
+  class="btn btn-sm"
   data-toggle="tooltip"
 data-placement="bottom"
 title="Fullscreen mode"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
-<a href="https://github.com/entelecheia/lecture"
-   class="headerbtn"
+<a href="https://github.com/entelecheia/lecture" target="_blank"
+   class="btn btn-sm"
    data-toggle="tooltip"
 data-placement="bottom"
 title="Source repository"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fab fa-github"></i>
   </span>
 
 </a>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../_sources/lectures/nlp_intro/topic.ipynb"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="../../_sources/lectures/nlp_intro/topic.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Download source file"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.ipynb</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
-
-      </li>
+</a>
       
       <li>
-        
 <button onclick="printPdf(this)"
-  class="headerbtn"
+  class="btn btn-sm dropdown-item"
   data-toggle="tooltip"
 data-placement="left"
 title="Print to PDF"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file-pdf"></i>
   </span>
-<span class="headerbtn__text-container">.pdf</span>
+<span class="btn__text-container">.pdf</span>
 </button>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
+  </ul>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
     </div>
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#topic-models">
-   Topic Models
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#latent-dirichlet-allocation-lda">
-   Latent Dirichlet Allocation (LDA)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#non-negative-matrix-factorization-nmf">
-   Non-negative Matrix Factorization (NMF)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#topic-modeling-example-using-nmf-and-svd">
-   Topic Modeling Example using NMF and SVD
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-problem">
-     The problem
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#motivation">
-     Motivation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#stopwords-stemming-lemmatization">
-     Stopwords, stemming, lemmatization
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#stopwords">
-       Stopwords
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#stemming-and-lemmatization">
-       Stemming and Lemmatization
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#data-processing">
-     Data Processing
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#singular-value-decomposition-svd">
-     Singular Value Decomposition (SVD)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Non-negative Matrix Factorization (NMF)
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#nmf-applications">
-       NMF Applications
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#nmf-from-sklearn">
-       NMF from sklearn
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#nmf-in-summary">
-       NMF in summary
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#truncated-svd">
-     Truncated SVD
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#shortcomings-of-classical-algorithms-for-decomposition">
-       Shortcomings of classical algorithms for decomposition:
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#advantages-of-randomized-algorithms">
-       Advantages of randomized algorithms:
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#timing-comparison">
-       Timing comparison
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#document-clustering">
-   Document Clustering
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#cosine-similarity">
-     Cosine Similarity
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#cosine-similarity-example">
-     Cosine Similarity Example
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dimensionality-reduction">
-     Dimensionality Reduction
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#swiss-roll-reduction-with-lle">
-     Swiss Roll reduction with LLE
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pca-principal-component-analysis-svd-singular-value-decompositio">
-     PCA (principal component analysis) / SVD (singular value decompositio)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pca-nmf-for-dimension-reduction">
-     PCA/NMF for Dimension Reduction
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#k-means-clustering">
-     k-means clustering
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#other-clustering-algorithms">
-     Other clustering algorithms
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
-</div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Topic Modeling</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#topic-models">
-   Topic Models
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#latent-dirichlet-allocation-lda">
-   Latent Dirichlet Allocation (LDA)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#non-negative-matrix-factorization-nmf">
-   Non-negative Matrix Factorization (NMF)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#topic-modeling-example-using-nmf-and-svd">
-   Topic Modeling Example using NMF and SVD
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-problem">
-     The problem
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#motivation">
-     Motivation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#stopwords-stemming-lemmatization">
-     Stopwords, stemming, lemmatization
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#stopwords">
-       Stopwords
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#stemming-and-lemmatization">
-       Stemming and Lemmatization
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#data-processing">
-     Data Processing
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#singular-value-decomposition-svd">
-     Singular Value Decomposition (SVD)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Non-negative Matrix Factorization (NMF)
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#nmf-applications">
-       NMF Applications
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#nmf-from-sklearn">
-       NMF from sklearn
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#nmf-in-summary">
-       NMF in summary
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#truncated-svd">
-     Truncated SVD
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#shortcomings-of-classical-algorithms-for-decomposition">
-       Shortcomings of classical algorithms for decomposition:
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#advantages-of-randomized-algorithms">
-       Advantages of randomized algorithms:
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#timing-comparison">
-       Timing comparison
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#document-clustering">
-   Document Clustering
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#cosine-similarity">
-     Cosine Similarity
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#cosine-similarity-example">
-     Cosine Similarity Example
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dimensionality-reduction">
-     Dimensionality Reduction
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#swiss-roll-reduction-with-lle">
-     Swiss Roll reduction with LLE
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pca-principal-component-analysis-svd-singular-value-decompositio">
-     PCA (principal component analysis) / SVD (singular value decompositio)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pca-nmf-for-dimension-reduction">
-     PCA/NMF for Dimension Reduction
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#k-means-clustering">
-     k-means clustering
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#other-clustering-algorithms">
-     Other clustering algorithms
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-                        </nav>
-                    </div>
-                </div>
             </div>
-            <main id="main-content" role="main">
-                
-              <div>
-                
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Topic Modeling</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#topic-models">
+   Topic Models
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#latent-dirichlet-allocation-lda">
+   Latent Dirichlet Allocation (LDA)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#non-negative-matrix-factorization-nmf">
+   Non-negative Matrix Factorization (NMF)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#topic-modeling-example-using-nmf-and-svd">
+   Topic Modeling Example using NMF and SVD
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-problem">
+     The problem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#motivation">
+     Motivation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stopwords-stemming-lemmatization">
+     Stopwords, stemming, lemmatization
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#stopwords">
+       Stopwords
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#stemming-and-lemmatization">
+       Stemming and Lemmatization
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-processing">
+     Data Processing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#singular-value-decomposition-svd">
+     Singular Value Decomposition (SVD)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Non-negative Matrix Factorization (NMF)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#nmf-applications">
+       NMF Applications
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#nmf-from-sklearn">
+       NMF from sklearn
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#nmf-in-summary">
+       NMF in summary
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#truncated-svd">
+     Truncated SVD
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#shortcomings-of-classical-algorithms-for-decomposition">
+       Shortcomings of classical algorithms for decomposition:
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#advantages-of-randomized-algorithms">
+       Advantages of randomized algorithms:
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#timing-comparison">
+       Timing comparison
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#document-clustering">
+   Document Clustering
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cosine-similarity">
+     Cosine Similarity
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cosine-similarity-example">
+     Cosine Similarity Example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dimensionality-reduction">
+     Dimensionality Reduction
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#swiss-roll-reduction-with-lle">
+     Swiss Roll reduction with LLE
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pca-principal-component-analysis-svd-singular-value-decompositio">
+     PCA (principal component analysis) / SVD (singular value decompositio)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pca-nmf-for-dimension-reduction">
+     PCA/NMF for Dimension Reduction
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#k-means-clustering">
+     k-means clustering
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-clustering-algorithms">
+     Other clustering algorithms
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
   <section class="tex2jax_ignore mathjax_ignore" id="topic-modeling">
-<h1>Topic Modeling<a class="headerlink" href="#topic-modeling" title="Permalink to this headline">#</a></h1>
+<h1>Topic Modeling<a class="headerlink" href="#topic-modeling" title="Permalink to this heading">#</a></h1>
 <p><img alt="" src="../../_images/entelecheia_grouping.png" /></p>
 <section id="topic-models">
-<h2>Topic Models<a class="headerlink" href="#topic-models" title="Permalink to this headline">#</a></h2>
+<h2>Topic Models<a class="headerlink" href="#topic-models" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>summarize unstructured text</p></li>
 <li><p>use words within document to infer subject</p></li>
@@ -932,7 +819,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="latent-dirichlet-allocation-lda">
-<h2>Latent Dirichlet Allocation (LDA)<a class="headerlink" href="#latent-dirichlet-allocation-lda" title="Permalink to this headline">#</a></h2>
+<h2>Latent Dirichlet Allocation (LDA)<a class="headerlink" href="#latent-dirichlet-allocation-lda" title="Permalink to this heading">#</a></h2>
 <p><img alt="" src="../../_images/141.png" /></p>
 <p><code class="docutils literal notranslate"><span class="pre">Latent</span></code> means hidden, <code class="docutils literal notranslate"><span class="pre">Dirichlet</span></code> is a type of probability distribution. Latent Dirichlet Allocation means that we are trying to find all the probability distributions and they are hidden.</p>
 <p>Latent Dirichlet Allocation (LDA):</p>
@@ -964,7 +851,7 @@ title="Print to PDF"
 <p>What LDA does is that when you fit it with all those questions, it is trying its best to find the best topic mix and the best word mix.</p>
 </section>
 <section id="non-negative-matrix-factorization-nmf">
-<h2>Non-negative Matrix Factorization (NMF)<a class="headerlink" href="#non-negative-matrix-factorization-nmf" title="Permalink to this headline">#</a></h2>
+<h2>Non-negative Matrix Factorization (NMF)<a class="headerlink" href="#non-negative-matrix-factorization-nmf" title="Permalink to this heading">#</a></h2>
 <p>We take the term-document matrix, decompose to two matrices, first one has every topic and what terms in it, and 2nd one has every document and what topics in it.</p>
 <p><img alt="" src="../../_images/191.png" /></p>
 <p>On the left we have 3 questions, on the right we have term-document matrix for these 3 questions. We choose k=2 topics.</p>
@@ -973,17 +860,17 @@ title="Print to PDF"
 <p><img alt="" src="../../_images/212.png" /></p>
 </section>
 <section id="topic-modeling-example-using-nmf-and-svd">
-<h2>Topic Modeling Example using NMF and SVD<a class="headerlink" href="#topic-modeling-example-using-nmf-and-svd" title="Permalink to this headline">#</a></h2>
+<h2>Topic Modeling Example using NMF and SVD<a class="headerlink" href="#topic-modeling-example-using-nmf-and-svd" title="Permalink to this heading">#</a></h2>
 <section id="the-problem">
-<h3>The problem<a class="headerlink" href="#the-problem" title="Permalink to this headline">#</a></h3>
+<h3>The problem<a class="headerlink" href="#the-problem" title="Permalink to this heading">#</a></h3>
 <p><strong>term-document matrix</strong>:</p>
 <p>We can decompose this into one tall thin matrix times one wide short matrix (possibly with a diagonal matrix in between).</p>
 <p>Notice that this representation does not take into account word order or sentence structure.  It’s an example of a <strong>bag of words</strong> approach.</p>
 <p><img alt="" src="../../_images/document_term.png" /></p>
-<p>source: <a class="reference external" href="http://player.slideplayer.com/15/4528582/">Introduction to Information Retrieval</a></p>
+<p>source: <a class="reference external" href="http://player.slideplayer.com/15/4528582/#">Introduction to Information Retrieval</a></p>
 </section>
 <section id="motivation">
-<h3>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">#</a></h3>
+<h3>Motivation<a class="headerlink" href="#motivation" title="Permalink to this heading">#</a></h3>
 <p>Consider the most extreme case - reconstructing the matrix using an outer product of two vectors. Clearly, in most cases we won’t be able to reconstruct the matrix exactly. But if we had one vector with the relative frequency of each vocabulary word out of the total word count, and one with the average number of words per document, then that outer product would be as close as we can get.</p>
 <p>Now consider increasing that matrices to two columns and two rows. The optimal decomposition would now be to cluster the documents into two groups, each of which has as different a distribution of words as possible to each other, but as similar as possible amongst the documents in the cluster. We will call those two groups “topics”. And we would cluster the words into two groups, based on those which most frequently appear in each of the topics.</p>
 <p>We’ll take a dataset of documents in several different categories, and find topics (consisting of groups of words) for them.  Knowing the actual categories helps us evaluate if the topics we find make sense.</p>
@@ -1113,9 +1000,9 @@ for centuries.
 </div>
 </section>
 <section id="stopwords-stemming-lemmatization">
-<h3>Stopwords, stemming, lemmatization<a class="headerlink" href="#stopwords-stemming-lemmatization" title="Permalink to this headline">#</a></h3>
+<h3>Stopwords, stemming, lemmatization<a class="headerlink" href="#stopwords-stemming-lemmatization" title="Permalink to this heading">#</a></h3>
 <section id="stopwords">
-<h4>Stopwords<a class="headerlink" href="#stopwords" title="Permalink to this headline">#</a></h4>
+<h4>Stopwords<a class="headerlink" href="#stopwords" title="Permalink to this heading">#</a></h4>
 <p>From <a class="reference external" href="https://nlp.stanford.edu/IR-book/html/htmledition/dropping-common-terms-stop-words-1.html">Intro to Information Retrieval</a>:</p>
 <p><em>Some extremely common words which would appear to be of little value in helping select documents matching a user need are excluded from the vocabulary entirely. These words are called stop words.</em></p>
 <p><em>The general trend in IR systems over time has been from standard use of quite large stop lists (200-300 terms) to very small stop lists (7-12 terms) to no stop list whatsoever. Web search engines generally do not use stop lists.</em></p>
@@ -1138,7 +1025,7 @@ for centuries.
 </div>
 </section>
 <section id="stemming-and-lemmatization">
-<h4>Stemming and Lemmatization<a class="headerlink" href="#stemming-and-lemmatization" title="Permalink to this headline">#</a></h4>
+<h4>Stemming and Lemmatization<a class="headerlink" href="#stemming-and-lemmatization" title="Permalink to this heading">#</a></h4>
 <p>from <a class="reference external" href="https://nlp.stanford.edu/IR-book/html/htmledition/stemming-and-lemmatization-1.html">Information Retrieval</a> textbook:</p>
 <p>Are the below words the same?</p>
 <p><em>organize, organizes, and organizing</em></p>
@@ -1185,7 +1072,7 @@ for centuries.
 </section>
 </section>
 <section id="data-processing">
-<h3>Data Processing<a class="headerlink" href="#data-processing" title="Permalink to this headline">#</a></h3>
+<h3>Data Processing<a class="headerlink" href="#data-processing" title="Permalink to this heading">#</a></h3>
 <p>Next, scikit learn has a method that will extract all the word counts for us.  In the next lesson, we’ll learn how to write our own version of CountVectorizer, to see what’s happening underneath the hood.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1233,7 +1120,7 @@ for centuries.
 </div>
 </section>
 <section id="singular-value-decomposition-svd">
-<h3>Singular Value Decomposition (SVD)<a class="headerlink" href="#singular-value-decomposition-svd" title="Permalink to this headline">#</a></h3>
+<h3>Singular Value Decomposition (SVD)<a class="headerlink" href="#singular-value-decomposition-svd" title="Permalink to this heading">#</a></h3>
 <p>We would clearly expect that the words that appear most frequently in one topic would appear less frequently in the other - otherwise that word wouldn’t make a good choice to separate out the two topics. Therefore, we expect the topics to be <strong>orthogonal</strong>.</p>
 <p>The SVD algorithm factorizes a matrix into one matrix with <strong>orthogonal columns</strong> and one with <strong>orthogonal rows</strong> (along with a diagonal matrix, which contains the <strong>relative importance</strong> of each factor).</p>
 <p>SVD is an <strong>exact decomposition</strong>, since the matrices it creates are big enough to fully cover the original matrix. SVD is extremely widely used in linear algebra, and specifically in data science, including:</p>
@@ -1281,7 +1168,7 @@ Wall time: 25.7 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/topic_42_0.png" src="../../_images/topic_42_0.png" />
+<img alt="../../_images/aa13b6eb27c025892ddf9684a9b84ee7f82487c3133a09f0813789528f4fb267.png" src="../../_images/aa13b6eb27c025892ddf9684a9b84ee7f82487c3133a09f0813789528f4fb267.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1291,7 +1178,7 @@ Wall time: 25.7 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/topic_43_0.png" src="../../_images/topic_43_0.png" />
+<img alt="../../_images/1291447fe68c45d29399ade25857b45213dace57c847004a658c7c9119c93608.png" src="../../_images/1291447fe68c45d29399ade25857b45213dace57c847004a658c7c9119c93608.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1330,13 +1217,13 @@ Wall time: 25.7 s
 <p>We get topics that match the kinds of clusters we would expect! This is despite the fact that this is an <strong>unsupervised algorithm</strong> - which is to say, we never actually told the algorithm how our documents are grouped.</p>
 </section>
 <section id="id1">
-<h3>Non-negative Matrix Factorization (NMF)<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<h3>Non-negative Matrix Factorization (NMF)<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>Rather than constraining our factors to be <em>orthogonal</em>, another idea would to constrain them to be <em>non-negative</em>. NMF is a factorization of a non-negative data set <span class="math notranslate nohighlight">\(V\)</span>: $<span class="math notranslate nohighlight">\( V = W H\)</span><span class="math notranslate nohighlight">\( into non-negative matrices \)</span>W,; H$. Often positive factors will be <strong>more easily interpretable</strong> (and this is the reason behind NMF’s popularity).</p>
 <p>Nonnegative matrix factorization (NMF) is a non-exact factorization that factors into one skinny positive matrix and one short positive matrix.  NMF is NP-hard and non-unique.  There are a number of variations on it, created by adding different constraints.</p>
 <p><img alt="" src="../../_images/nmf_doc.png" /></p>
 <p>(source: <a class="reference external" href="http://perso.telecom-paristech.fr/~essid/teach/NMF_tutorial_ICME-2014.pdf">NMF Tutorial</a>)</p>
 <section id="nmf-applications">
-<h4>NMF Applications<a class="headerlink" href="#nmf-applications" title="Permalink to this headline">#</a></h4>
+<h4>NMF Applications<a class="headerlink" href="#nmf-applications" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p><a class="reference external" href="http://scikit-learn.org/stable/auto_examples/decomposition/plot_faces_decomposition.html#sphx-glr-auto-examples-decomposition-plot-faces-decomposition-py">Face Decompositions</a></p></li>
 <li><p><a class="reference external" href="http://www.quuxlabs.com/blog/2010/09/matrix-factorization-a-simple-tutorial-and-implementation-in-python/">Collaborative Filtering, eg movie recommendations</a></p></li>
@@ -1347,7 +1234,7 @@ Wall time: 25.7 s
 </ul>
 </section>
 <section id="nmf-from-sklearn">
-<h4>NMF from sklearn<a class="headerlink" href="#nmf-from-sklearn" title="Permalink to this headline">#</a></h4>
+<h4>NMF from sklearn<a class="headerlink" href="#nmf-from-sklearn" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
@@ -1386,7 +1273,7 @@ Wall time: 3.96 s
 </div>
 </section>
 <section id="nmf-in-summary">
-<h4>NMF in summary<a class="headerlink" href="#nmf-in-summary" title="Permalink to this headline">#</a></h4>
+<h4>NMF in summary<a class="headerlink" href="#nmf-in-summary" title="Permalink to this heading">#</a></h4>
 <p>Benefits: Fast and easy to use!</p>
 <p>Downsides: took years of research and expertise to create</p>
 <p>Notes:</p>
@@ -1397,10 +1284,10 @@ Wall time: 3.96 s
 </section>
 </section>
 <section id="truncated-svd">
-<h3>Truncated SVD<a class="headerlink" href="#truncated-svd" title="Permalink to this headline">#</a></h3>
+<h3>Truncated SVD<a class="headerlink" href="#truncated-svd" title="Permalink to this heading">#</a></h3>
 <p>We saved a lot of time when we calculated NMF by only calculating the subset of columns we were interested in. Is there a way to get this benefit with SVD? Yes there is! It’s called truncated SVD.  We are just interested in the vectors corresponding to the <strong>largest</strong> singular values.</p>
 <section id="shortcomings-of-classical-algorithms-for-decomposition">
-<h4>Shortcomings of classical algorithms for decomposition:<a class="headerlink" href="#shortcomings-of-classical-algorithms-for-decomposition" title="Permalink to this headline">#</a></h4>
+<h4>Shortcomings of classical algorithms for decomposition:<a class="headerlink" href="#shortcomings-of-classical-algorithms-for-decomposition" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Matrices are “stupendously big”</p></li>
 <li><p>Data are often <strong>missing or inaccurate</strong>.  Why spend extra computational resources when imprecision of input limits precision of the output?</p></li>
@@ -1409,7 +1296,7 @@ Wall time: 3.96 s
 </ul>
 </section>
 <section id="advantages-of-randomized-algorithms">
-<h4>Advantages of randomized algorithms:<a class="headerlink" href="#advantages-of-randomized-algorithms" title="Permalink to this headline">#</a></h4>
+<h4>Advantages of randomized algorithms:<a class="headerlink" href="#advantages-of-randomized-algorithms" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p>inherently stable</p></li>
 <li><p>performance guarantees do not depend on subtle spectral properties</p></li>
@@ -1418,7 +1305,7 @@ Wall time: 3.96 s
 <p>(source: <a class="reference external" href="https://arxiv.org/abs/0909.4061">Halko</a>)</p>
 </section>
 <section id="timing-comparison">
-<h4>Timing comparison<a class="headerlink" href="#timing-comparison" title="Permalink to this headline">#</a></h4>
+<h4>Timing comparison<a class="headerlink" href="#timing-comparison" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span> 
@@ -1451,9 +1338,9 @@ Wall time: 4.16 s
 </section>
 </section>
 <section id="document-clustering">
-<h2>Document Clustering<a class="headerlink" href="#document-clustering" title="Permalink to this headline">#</a></h2>
+<h2>Document Clustering<a class="headerlink" href="#document-clustering" title="Permalink to this heading">#</a></h2>
 <section id="cosine-similarity">
-<h3>Cosine Similarity<a class="headerlink" href="#cosine-similarity" title="Permalink to this headline">#</a></h3>
+<h3>Cosine Similarity<a class="headerlink" href="#cosine-similarity" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Representatio nof document <span class="math notranslate nohighlight">\(i\)</span> as a vector <span class="math notranslate nohighlight">\(x_i\)</span></p>
 <ul>
@@ -1486,12 +1373,12 @@ Wall time: 4.16 s
 </div>
 </section>
 <section id="cosine-similarity-example">
-<h3>Cosine Similarity Example<a class="headerlink" href="#cosine-similarity-example" title="Permalink to this headline">#</a></h3>
+<h3>Cosine Similarity Example<a class="headerlink" href="#cosine-similarity-example" title="Permalink to this heading">#</a></h3>
 <p><img alt="" src="../../_images/213.png" /></p>
 <p><img alt="" src="../../_images/3-800x852.png" /></p>
 </section>
 <section id="dimensionality-reduction">
-<h3>Dimensionality Reduction<a class="headerlink" href="#dimensionality-reduction" title="Permalink to this headline">#</a></h3>
+<h3>Dimensionality Reduction<a class="headerlink" href="#dimensionality-reduction" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Datasets are not distributed uniformly across the feature space.</p></li>
 <li><p>They have a lower-dimensional latent structure – a manifold – that can be learned.</p></li>
@@ -1501,7 +1388,7 @@ Wall time: 4.16 s
 </ul>
 </section>
 <section id="swiss-roll-reduction-with-lle">
-<h3>Swiss Roll reduction with LLE<a class="headerlink" href="#swiss-roll-reduction-with-lle" title="Permalink to this headline">#</a></h3>
+<h3>Swiss Roll reduction with LLE<a class="headerlink" href="#swiss-roll-reduction-with-lle" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;retina&#39;
@@ -1542,12 +1429,12 @@ Done. Reconstruction error: 1.23163e-07
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/topic_65_0.png" src="../../_images/topic_65_0.png" />
+<img alt="../../_images/03c778b90b5030599c4b1b80e55651d5f3e4a194c947ea4e472ca32f0a23500a.png" src="../../_images/03c778b90b5030599c4b1b80e55651d5f3e4a194c947ea4e472ca32f0a23500a.png" />
 </div>
 </div>
 </section>
 <section id="pca-principal-component-analysis-svd-singular-value-decompositio">
-<h3>PCA (principal component analysis) / SVD (singular value decompositio)<a class="headerlink" href="#pca-principal-component-analysis-svd-singular-value-decompositio" title="Permalink to this headline">#</a></h3>
+<h3>PCA (principal component analysis) / SVD (singular value decompositio)<a class="headerlink" href="#pca-principal-component-analysis-svd-singular-value-decompositio" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>PCA computes the dimension in data explaining most variance.</p></li>
 <li><p>after the first component, subsequent components learn the (orthogonal) dimensions explaining most variance in dataset after projecting out first component.</p></li>
@@ -1561,7 +1448,7 @@ Done. Reconstruction error: 1.23163e-07
 <p><img alt="" src="../../_images/91.png" /></p>
 </section>
 <section id="pca-nmf-for-dimension-reduction">
-<h3>PCA/NMF for Dimension Reduction<a class="headerlink" href="#pca-nmf-for-dimension-reduction" title="Permalink to this headline">#</a></h3>
+<h3>PCA/NMF for Dimension Reduction<a class="headerlink" href="#pca-nmf-for-dimension-reduction" title="Permalink to this heading">#</a></h3>
 <p>Data can be reduced by projecting down to first principal component dimensions.</p>
 <ul class="simple">
 <li><p>Distance metrics between observations (e.g. cosine similarity) are approximately preserved.</p></li>
@@ -1576,7 +1463,7 @@ Done. Reconstruction error: 1.23163e-07
 </ul>
 </section>
 <section id="k-means-clustering">
-<h3>k-means clustering<a class="headerlink" href="#k-means-clustering" title="Permalink to this headline">#</a></h3>
+<h3>k-means clustering<a class="headerlink" href="#k-means-clustering" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Matrix of predictors treated as a Euclidean space (should standardize all columns)</p></li>
 <li><p>algorithm: initialize cluster centroids randomly, then shift around to minimize sum of within-cluster squared distance</p></li>
@@ -1591,7 +1478,7 @@ Done. Reconstruction error: 1.23163e-07
 <p><img alt="" src="../../_images/113.png" /></p>
 </section>
 <section id="other-clustering-algorithms">
-<h3>Other clustering algorithms<a class="headerlink" href="#other-clustering-algorithms" title="Permalink to this headline">#</a></h3>
+<h3>Other clustering algorithms<a class="headerlink" href="#other-clustering-algorithms" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>“k-medoid” clustering use L1 distance rather than Euclidean distance; produces the “medoid” (median vector) for each cluster rather than “centroid” (mean vector).</p>
 <ul>
@@ -1629,50 +1516,250 @@ Done. Reconstruction error: 1.23163e-07
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
-              
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="language_models.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Language Models</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="topic_models.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Topic Models </p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+  <a class='left-prev' id="prev-link" href="language_models.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Language Models</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="topic_models.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Topic Models </p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
 </div>
             </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
   
-    By <a href="https://entelecheia.me">Young Joon Lee</a><br/>
-  
-      &copy; Copyright 2023.<br/>
-</p>
-        </footer>
-    </div>
-    
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#topic-models">
+   Topic Models
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#latent-dirichlet-allocation-lda">
+   Latent Dirichlet Allocation (LDA)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#non-negative-matrix-factorization-nmf">
+   Non-negative Matrix Factorization (NMF)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#topic-modeling-example-using-nmf-and-svd">
+   Topic Modeling Example using NMF and SVD
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-problem">
+     The problem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#motivation">
+     Motivation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stopwords-stemming-lemmatization">
+     Stopwords, stemming, lemmatization
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#stopwords">
+       Stopwords
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#stemming-and-lemmatization">
+       Stemming and Lemmatization
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-processing">
+     Data Processing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#singular-value-decomposition-svd">
+     Singular Value Decomposition (SVD)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Non-negative Matrix Factorization (NMF)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#nmf-applications">
+       NMF Applications
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#nmf-from-sklearn">
+       NMF from sklearn
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#nmf-in-summary">
+       NMF in summary
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#truncated-svd">
+     Truncated SVD
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#shortcomings-of-classical-algorithms-for-decomposition">
+       Shortcomings of classical algorithms for decomposition:
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#advantages-of-randomized-algorithms">
+       Advantages of randomized algorithms:
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#timing-comparison">
+       Timing comparison
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#document-clustering">
+   Document Clustering
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cosine-similarity">
+     Cosine Similarity
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cosine-similarity-example">
+     Cosine Similarity Example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dimensionality-reduction">
+     Dimensionality Reduction
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#swiss-roll-reduction-with-lle">
+     Swiss Roll reduction with LLE
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pca-principal-component-analysis-svd-singular-value-decompositio">
+     PCA (principal component analysis) / SVD (singular value decompositio)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pca-nmf-for-dimension-reduction">
+     PCA/NMF for Dimension Reduction
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#k-means-clustering">
+     k-means clustering
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-clustering-algorithms">
+     Other clustering algorithms
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
 </div>
 
-
-      </div>
-    </div>
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://entelecheia.me">Young Joon Lee</a>
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2023.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on None.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
 
   </body>
 </html>

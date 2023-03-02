@@ -1,30 +1,36 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Word Embeddings &#8212; Artificial Intelligence | Lecture Notes</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
@@ -37,18 +43,20 @@
     <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-light.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-borderless.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/micromodal.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
     <script src="../../_static/tabs.js"></script>
     <script src="../../_static/js/hoverxref.js"></script>
     <script src="../../_static/js/tooltipster.bundle.min.js"></script>
@@ -57,7 +65,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -65,60 +73,361 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_intro/word_embeddings';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Lab 1: Preparing Wikipedia Corpora" href="lab1-corpus.html" />
     <link rel="prev" title="Vector Semantics and Representation" href="vectorization.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
 
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
     
-    <div class="container-fluid" id="banner"></div>
-
     
+  
 
-    <div class="container-xl">
-      <div class="row">
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+    <p class="title logo__title">Artificial Intelligence | Lecture Notes</p>
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Introduction to NLP
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../nlp_deep/index.html">
+                        Deep Learning for NLP
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../nlp_apps/index.html">
+                        NLP Applications
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../aiart/index.html">
+                        AI Art (Text-to-Image)
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mlops/index.html">
+                        Machine Learning Systems Design
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../ds/index.html">
+                        Data Science for Economics and Finance
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://entelecheia.me">
+                        entelecheia.me
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../about/index.html">
+                        Bibliography
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../about/cite.html">
+                        Citation
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
       
       
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
       
-      <h1 class="site-logo" id="site-title">Artificial Intelligence | Lecture Notes</h1>
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
       
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Introduction to NLP
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../nlp_deep/index.html">
+                        Deep Learning for NLP
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../nlp_apps/index.html">
+                        NLP Applications
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../aiart/index.html">
+                        AI Art (Text-to-Image)
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mlops/index.html">
+                        Machine Learning Systems Design
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../ds/index.html">
+                        Data Science for Economics and Finance
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://entelecheia.me">
+                        entelecheia.me
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../about/index.html">
+                        Bibliography
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../about/cite.html">
+                        Citation
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+    <p class="title logo__title">Artificial Intelligence | Lecture Notes</p>
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -127,1077 +436,518 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Course
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="index.html">
-   Introduction to NLP
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="intro.html">
-     Introduction
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="ekorpkit.html">
-     Getting started with ekorpkit
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="research.html">
-     Research Applications
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="language_models.html">
-     Language Models
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="topic.html">
-     Topic Modeling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="topic_models.html">
-     Topic Models
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="topic_coherence.html">
-     Topic Coherence Measures
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="sentiments.html">
-     Sentiment Analysis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="tokenization.html">
-     Tokenization
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="word_segmentation.html">
-     Word Segmentation and Association
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="vectorization.html">
-     Vector Semantics and Representation
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Word Embeddings
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="lab1-corpus.html">
-     Lab 1: Preparing Wikipedia Corpora
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="lab2-corpus-eda.html">
-     Lab 2: EDA on Corpora
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../nlp_deep/index.html">
-   Deep Learning for NLP
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/intro.html">
-     Introduction
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/ekorpkit.html">
-     Getting started with ekorpkit
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/zeroshot.html">
-     Zero Shot, Prompt, and Search Strategies
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/transformers.html">
-     Transformers
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/t5.html">
-     T5: Text-To-Text Transfer Transformer
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/tokenization.html">
-     Tokenization
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/sentencepiece.html">
-     SentencePiece Tokenizer
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/byt5.html">
-     ByT5: Towards a token-free future with pre-trained byte-to-byte models
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/plms.html">
-     Pretrained Language Models
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/lab1-corpus.html">
-     Lab 1: Preparing Wikipedia Corpora
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/lab3-train-tokenizers.html">
-     Lab 3: Training Tokenizers
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/lab4-pretraining-lms.html">
-     Lab 4: Pretraining Language Models
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../nlp_apps/index.html">
-   NLP Applications
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../aiart/index.html">
-   AI Art (Text-to-Image)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/intro.html">
-     Introduction
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/project-themes.html">
-     Project Themes - A Brave New World
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/dalle1.html">
-     DALL·E 1
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/dalle2.html">
-     DALL·E 2
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/imagen.html">
-     Imagen
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/textual-inversion.html">
-     Textual Inversion (Dreambooth)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/whisper.html">
-     Automatic Speech Recognition (Whisper)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/text2music.html">
-     Text to Music
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/image2music.html">
-     Image to Music
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../mlops/index.html">
-   Machine Learning Systems Design
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../mlops/dev-env.html">
-     Development Environment
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../mlops/dotfiles.html">
-     Dotfiles
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../ds/index.html">
-   Data Science for Economics and Finance
-  </a>
- </li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Introduction to NLP</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ekorpkit.html">Getting started with ekorpkit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="research.html">Research Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language_models.html">Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topic.html">Topic Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topic_models.html">Topic Models </a></li>
+<li class="toctree-l2"><a class="reference internal" href="topic_coherence.html">Topic Coherence Measures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sentiments.html">Sentiment Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tokenization.html">Tokenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="word_segmentation.html">Word Segmentation and Association</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vectorization.html">Vector Semantics and Representation</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Word Embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab1-corpus.html">Lab 1: Preparing Wikipedia Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab2-corpus-eda.html">Lab 2: EDA on Corpora</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  About
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nlp_deep/index.html">Deep Learning for NLP</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/ekorpkit.html">Getting started with ekorpkit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/zeroshot.html">Zero Shot, Prompt, and Search Strategies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/transformers.html">Transformers </a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/t5.html">T5: Text-To-Text Transfer Transformer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/tokenization.html">Tokenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/sentencepiece.html">SentencePiece Tokenizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/plms.html">Pretrained Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/lab1-corpus.html">Lab 1: Preparing Wikipedia Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/lab3-train-tokenizers.html">Lab 3: Training Tokenizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/lab4-pretraining-lms.html">Lab 4: Pretraining Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp_apps/index.html">NLP Applications</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../aiart/index.html">AI Art (Text-to-Image)</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/project-themes.html">Project Themes - A Brave New World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/dalle1.html">DALL·E 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/dalle2.html">DALL·E 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/imagen.html">Imagen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/textual-inversion.html">Textual Inversion (Dreambooth)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/whisper.html">Automatic Speech Recognition (Whisper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/text2music.html">Text to Music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/image2music.html">Image to Music</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../mlops/index.html">Machine Learning Systems Design</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../mlops/dev-env.html">Development Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mlops/dotfiles.html">Dotfiles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ds/index.html">Data Science for Economics and Finance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference external" href="https://entelecheia.me">
-   entelecheia.me
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../about/index.html">
-   Bibliography
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../about/cite.html">
-   Citation
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/cite.html">Citation</a></li>
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
+</nav>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  </div>
+  
 
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
 
-          
+  
+  <div id="rtd-footer-container"></div>
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
+      </div>
+      <main id="main-content" class="bd-main">
         
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
 
 
 
 <div class="col py-1 d-flex header-article-main">
     <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
     </div>
     <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/entelecheia/lecture/main?urlpath=tree/book/lectures/nlp_intro/word_embeddings.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/nlp_intro/word_embeddings.ipynb"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/nlp_intro/word_embeddings.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Launch on Colab"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../../_static/images/logo_colab.png">
   </span>
-<span class="headerbtn__text-container">Colab</span>
+<span class="btn__text-container">Colab</span>
 </a>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
+  class="btn btn-sm"
   data-toggle="tooltip"
 data-placement="bottom"
 title="Fullscreen mode"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
-<a href="https://github.com/entelecheia/lecture"
-   class="headerbtn"
+<a href="https://github.com/entelecheia/lecture" target="_blank"
+   class="btn btn-sm"
    data-toggle="tooltip"
 data-placement="bottom"
 title="Source repository"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fab fa-github"></i>
   </span>
 
 </a>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../_sources/lectures/nlp_intro/word_embeddings.ipynb"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="../../_sources/lectures/nlp_intro/word_embeddings.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Download source file"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.ipynb</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
-
-      </li>
+</a>
       
       <li>
-        
 <button onclick="printPdf(this)"
-  class="headerbtn"
+  class="btn btn-sm dropdown-item"
   data-toggle="tooltip"
 data-placement="left"
 title="Print to PDF"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file-pdf"></i>
   </span>
-<span class="headerbtn__text-container">.pdf</span>
+<span class="btn__text-container">.pdf</span>
 </button>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
+  </ul>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
     </div>
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-are-word-embeddings">
-   What are word embeddings?
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#categorical-embeddings">
-   Categorical Embeddings
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#an-embedding-layer-is-matrix-multiplication">
-     An embedding layer is matrix multiplication:
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#embedding-layers-versus-dense-layers">
-     Embedding Layers versus Dense Layers
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   Word Embeddings
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#why-do-we-need-neural-networks-for-word-embeddings">
-     Why do we need neural networks for word embeddings?
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#neural-language-models">
-   Neural Language Models
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-1-indexing-the-words">
-     Step 1: Indexing the words.
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-2-building-the-model">
-     Step 2: Building the model.
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-3-loss-and-optimization-function">
-     Step 3: Loss and optimization function.
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-4-training-the-model">
-     Step 4: Training the model.
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#summary">
-     Summary
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#word2vec">
-   Word2Vec
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#main-idea">
-     Main idea
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#negative-sampling">
-     Negative sampling
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#two-models">
-     Two models
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#when-to-use-the-skip-gram-model-and-when-to-use-cbow">
-     When to use the skip-gram model and when to use CBOW?
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#skip-gram-model">
-   Skip-gram model
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#input-output-hidden-layer">
-     Input/output/hidden layer
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-0-prepare-the-data">
-     Step 0: Prepare the data
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-1-setting-target-and-context-variable">
-     Step 1: Setting target and context variable
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
-     Step 2: Building the model
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id5">
-     Step 3: Loss and optimization function
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
-     Step 4: Training the model
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#visualizing-the-embeddings">
-     Visualizing the embeddings
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#evaluation">
-     Evaluation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#continuous-bag-of-words-cbow">
-   Continuous Bag of Words (CBOW)
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#architecture">
-     Architecture
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-1-define-a-function-to-create-a-context-and-a-target-word">
-     Step 1: Define a function to create a context and a target word
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-2-build-the-model">
-     Step 2: Build the model
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
-     Step 3: Loss and optimization function.
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id8">
-     Step 4: Training the model.
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id9">
-     Visualizing the embeddings
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id10">
-     Evaluation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#improving-predictive-functions">
-   Improving predictive functions
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#softmax">
-     Softmax
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hierarchical-softmax">
-     Hierarchical softmax
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#noise-contrastive-estimation">
-     Noise-contrastive estimation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id11">
-     Negative sampling
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#glove">
-   GloVe
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#improvement-over-word2vec">
-     Improvement over word2vec
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#co-occurrence-matrix">
-     Co-occurrence matrix
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#training-glove">
-     Training GloVe
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#glove-vs-word2vec">
-     GloVe vs word2vec
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#using-glove">
-     Using GloVe
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#fasttext">
-   FastText
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#character-n-grams">
-     Character n-grams
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#using-fasttext">
-     Using FastText
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#format">
-       Format
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#training-fasttext">
-     Training FastText
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#saving-and-loading-a-model-object">
-       Saving and loading a model object
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#wrapping-up">
-   Wrapping up
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
-  </a>
- </li>
-</ul>
-
-    </nav>
-</div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Word Embeddings</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-are-word-embeddings">
-   What are word embeddings?
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#categorical-embeddings">
-   Categorical Embeddings
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#an-embedding-layer-is-matrix-multiplication">
-     An embedding layer is matrix multiplication:
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#embedding-layers-versus-dense-layers">
-     Embedding Layers versus Dense Layers
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   Word Embeddings
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#why-do-we-need-neural-networks-for-word-embeddings">
-     Why do we need neural networks for word embeddings?
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#neural-language-models">
-   Neural Language Models
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-1-indexing-the-words">
-     Step 1: Indexing the words.
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-2-building-the-model">
-     Step 2: Building the model.
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-3-loss-and-optimization-function">
-     Step 3: Loss and optimization function.
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-4-training-the-model">
-     Step 4: Training the model.
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#summary">
-     Summary
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#word2vec">
-   Word2Vec
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#main-idea">
-     Main idea
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#negative-sampling">
-     Negative sampling
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#two-models">
-     Two models
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#when-to-use-the-skip-gram-model-and-when-to-use-cbow">
-     When to use the skip-gram model and when to use CBOW?
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#skip-gram-model">
-   Skip-gram model
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#input-output-hidden-layer">
-     Input/output/hidden layer
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-0-prepare-the-data">
-     Step 0: Prepare the data
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-1-setting-target-and-context-variable">
-     Step 1: Setting target and context variable
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
-     Step 2: Building the model
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id5">
-     Step 3: Loss and optimization function
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
-     Step 4: Training the model
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#visualizing-the-embeddings">
-     Visualizing the embeddings
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#evaluation">
-     Evaluation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#continuous-bag-of-words-cbow">
-   Continuous Bag of Words (CBOW)
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#architecture">
-     Architecture
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-1-define-a-function-to-create-a-context-and-a-target-word">
-     Step 1: Define a function to create a context and a target word
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-2-build-the-model">
-     Step 2: Build the model
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
-     Step 3: Loss and optimization function.
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id8">
-     Step 4: Training the model.
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id9">
-     Visualizing the embeddings
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id10">
-     Evaluation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#improving-predictive-functions">
-   Improving predictive functions
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#softmax">
-     Softmax
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hierarchical-softmax">
-     Hierarchical softmax
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#noise-contrastive-estimation">
-     Noise-contrastive estimation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id11">
-     Negative sampling
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#glove">
-   GloVe
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#improvement-over-word2vec">
-     Improvement over word2vec
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#co-occurrence-matrix">
-     Co-occurrence matrix
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#training-glove">
-     Training GloVe
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#glove-vs-word2vec">
-     GloVe vs word2vec
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#using-glove">
-     Using GloVe
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#fasttext">
-   FastText
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#character-n-grams">
-     Character n-grams
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#using-fasttext">
-     Using FastText
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#format">
-       Format
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#training-fasttext">
-     Training FastText
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#saving-and-loading-a-model-object">
-       Saving and loading a model object
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#wrapping-up">
-   Wrapping up
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
-  </a>
- </li>
-</ul>
-
-                        </nav>
-                    </div>
-                </div>
             </div>
-            <main id="main-content" role="main">
-                
-              <div>
-                
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Word Embeddings</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-are-word-embeddings">
+   What are word embeddings?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#categorical-embeddings">
+   Categorical Embeddings
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#an-embedding-layer-is-matrix-multiplication">
+     An embedding layer is matrix multiplication:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#embedding-layers-versus-dense-layers">
+     Embedding Layers versus Dense Layers
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Word Embeddings
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-do-we-need-neural-networks-for-word-embeddings">
+     Why do we need neural networks for word embeddings?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#neural-language-models">
+   Neural Language Models
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-1-indexing-the-words">
+     Step 1: Indexing the words.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-2-building-the-model">
+     Step 2: Building the model.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-3-loss-and-optimization-function">
+     Step 3: Loss and optimization function.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-4-training-the-model">
+     Step 4: Training the model.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#summary">
+     Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#word2vec">
+   Word2Vec
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#main-idea">
+     Main idea
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#negative-sampling">
+     Negative sampling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#two-models">
+     Two models
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#when-to-use-the-skip-gram-model-and-when-to-use-cbow">
+     When to use the skip-gram model and when to use CBOW?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#skip-gram-model">
+   Skip-gram model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#input-output-hidden-layer">
+     Input/output/hidden layer
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-0-prepare-the-data">
+     Step 0: Prepare the data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-1-setting-target-and-context-variable">
+     Step 1: Setting target and context variable
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Step 2: Building the model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Step 3: Loss and optimization function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     Step 4: Training the model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualizing-the-embeddings">
+     Visualizing the embeddings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#evaluation">
+     Evaluation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#continuous-bag-of-words-cbow">
+   Continuous Bag of Words (CBOW)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#architecture">
+     Architecture
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-1-define-a-function-to-create-a-context-and-a-target-word">
+     Step 1: Define a function to create a context and a target word
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-2-build-the-model">
+     Step 2: Build the model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     Step 3: Loss and optimization function.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     Step 4: Training the model.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     Visualizing the embeddings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     Evaluation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#improving-predictive-functions">
+   Improving predictive functions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#softmax">
+     Softmax
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hierarchical-softmax">
+     Hierarchical softmax
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#noise-contrastive-estimation">
+     Noise-contrastive estimation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     Negative sampling
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#glove">
+   GloVe
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#improvement-over-word2vec">
+     Improvement over word2vec
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#co-occurrence-matrix">
+     Co-occurrence matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#training-glove">
+     Training GloVe
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#glove-vs-word2vec">
+     GloVe vs word2vec
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-glove">
+     Using GloVe
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fasttext">
+   FastText
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#character-n-grams">
+     Character n-grams
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-fasttext">
+     Using FastText
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#format">
+       Format
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#training-fasttext">
+     Training FastText
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#saving-and-loading-a-model-object">
+       Saving and loading a model object
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wrapping-up">
+   Wrapping up
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
   <section class="tex2jax_ignore mathjax_ignore" id="word-embeddings">
-<h1>Word Embeddings<a class="headerlink" href="#word-embeddings" title="Permalink to this headline">#</a></h1>
+<h1>Word Embeddings<a class="headerlink" href="#word-embeddings" title="Permalink to this heading">#</a></h1>
 <p><img alt="" src="../../_images/embeddings.png" /></p>
 <section id="what-are-word-embeddings">
-<h2>What are word embeddings?<a class="headerlink" href="#what-are-word-embeddings" title="Permalink to this headline">#</a></h2>
+<h2>What are word embeddings?<a class="headerlink" href="#what-are-word-embeddings" title="Permalink to this heading">#</a></h2>
 <p>Word embeddings are a way of representing words as vectors. The vectors are learned from text data and are able to capture some of the semantic and systactic information of the words.</p>
 <p>For example, the word <code class="docutils literal notranslate"><span class="pre">cat</span></code> is similar to <code class="docutils literal notranslate"><span class="pre">dog</span></code> from the following sentences:</p>
 <p>“The cat is lying on the floor and the dog was eating”,</p>
@@ -1231,7 +981,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="categorical-embeddings">
-<h2>Categorical Embeddings<a class="headerlink" href="#categorical-embeddings" title="Permalink to this headline">#</a></h2>
+<h2>Categorical Embeddings<a class="headerlink" href="#categorical-embeddings" title="Permalink to this heading">#</a></h2>
 <p><img alt="" src="../../_images/110.png" /></p>
 <p>Categorical embeddings are a way of representing categorical variables as vectors.</p>
 <p>For a binary classification problem with outcome <span class="math notranslate nohighlight">\(Y\)</span>:</p>
@@ -1241,12 +991,12 @@ title="Print to PDF"
 </ul>
 <p>Instead, you can represent <span class="math notranslate nohighlight">\(X\)</span> as a lower-dimensional vector of length <span class="math notranslate nohighlight">\(k\)</span> (e.g. 10). This is called a categorical embedding.</p>
 <p>Embedding approaches:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>PCA applied to the dummy variables <span class="math notranslate nohighlight">\(X\)</span> to get a lower-dimensional vector representation of <span class="math notranslate nohighlight">\(\tilde{X}\)</span>.</p></li>
 <li><p>Regress <span class="math notranslate nohighlight">\(Y\)</span> on <span class="math notranslate nohighlight">\(X\)</span>, predict <span class="math notranslate nohighlight">\(\hat{Y}(X_i)\)</span>, use that as a feature in a new model.</p></li>
 </ol>
 <section id="an-embedding-layer-is-matrix-multiplication">
-<h3>An embedding layer is matrix multiplication:<a class="headerlink" href="#an-embedding-layer-is-matrix-multiplication" title="Permalink to this headline">#</a></h3>
+<h3>An embedding layer is matrix multiplication:<a class="headerlink" href="#an-embedding-layer-is-matrix-multiplication" title="Permalink to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 \underbrace{h_1}_{n_E \times 1} = \underbrace{\omega_E}_{n_E \times n_W} \cdot \underbrace{x}_{n_x \times 1} 
@@ -1276,7 +1026,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="embedding-layers-versus-dense-layers">
-<h3>Embedding Layers versus Dense Layers<a class="headerlink" href="#embedding-layers-versus-dense-layers" title="Permalink to this headline">#</a></h3>
+<h3>Embedding Layers versus Dense Layers<a class="headerlink" href="#embedding-layers-versus-dense-layers" title="Permalink to this heading">#</a></h3>
 <p>An embedding layer is statistically equivalent to a fully-connected dense layer with one-hot vectors as input and linear activation.</p>
 <ul class="simple">
 <li><p>Embedding layers are much faster for many categories (&gt;~50)</p></li>
@@ -1284,7 +1034,7 @@ title="Print to PDF"
 </section>
 </section>
 <section id="id1">
-<h2>Word Embeddings<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<h2>Word Embeddings<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <blockquote>
 <div><p>Word embeddings are neural network layers that map words to dense vectors.</p>
 </div></blockquote>
@@ -1306,7 +1056,7 @@ title="Print to PDF"
 <p><span class="math notranslate nohighlight">\(\mathbf{X}\)</span> is flattened into an <span class="math notranslate nohighlight">\(L * n_E\)</span> vector for input to the next layer.</p>
 <p><img alt="" src="../../_images/44.png" /></p>
 <section id="why-do-we-need-neural-networks-for-word-embeddings">
-<h3>Why do we need neural networks for word embeddings?<a class="headerlink" href="#why-do-we-need-neural-networks-for-word-embeddings" title="Permalink to this headline">#</a></h3>
+<h3>Why do we need neural networks for word embeddings?<a class="headerlink" href="#why-do-we-need-neural-networks-for-word-embeddings" title="Permalink to this heading">#</a></h3>
 <p>There are a lot of shallow algorithms that work well for clustering.</p>
 <ul class="simple">
 <li><p>k-means</p></li>
@@ -1324,7 +1074,7 @@ title="Print to PDF"
 </section>
 </section>
 <section id="neural-language-models">
-<h2>Neural Language Models<a class="headerlink" href="#neural-language-models" title="Permalink to this headline">#</a></h2>
+<h2>Neural Language Models<a class="headerlink" href="#neural-language-models" title="Permalink to this heading">#</a></h2>
 <p>Word embeddings were proposed by <span id="id2">[<a class="reference internal" href="../../about/index.html#id23" title="Yoshua Bengio, Réjean Ducharme, Pascal Vincent, and Christian Jauvin. A neural probabilistic language model. Journal of Machine Learning Research, 3:1137–1155, 2003. URL: https://jmlr.org/papers/volume3/bengio03a/bengio03a.pdf.">Bengio <em>et al.</em>, 2003</a>]</span> as a way to represent words as vectors.</p>
 <p>Bengio’s method could train a neural network such that each training sentence could inform the model about a number of semantically available neighboring words, which was known as <code class="docutils literal notranslate"><span class="pre">distributed</span> <span class="pre">representation</span> <span class="pre">of</span> <span class="pre">words</span></code>. The nueural network preserved relationships between words in terms of their contexts (semantic and syntactic).</p>
 <p><img alt="" src="../../_images/bengio.png" /></p>
@@ -1343,7 +1093,7 @@ title="Print to PDF"
 </div>
 </div>
 <section id="step-1-indexing-the-words">
-<h3>Step 1: Indexing the words.<a class="headerlink" href="#step-1-indexing-the-words" title="Permalink to this headline">#</a></h3>
+<h3>Step 1: Indexing the words.<a class="headerlink" href="#step-1-indexing-the-words" title="Permalink to this heading">#</a></h3>
 <p>For each word in the sentence, we assign an index.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1364,7 +1114,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="step-2-building-the-model">
-<h3>Step 2: Building the model.<a class="headerlink" href="#step-2-building-the-model" title="Permalink to this headline">#</a></h3>
+<h3>Step 2: Building the model.<a class="headerlink" href="#step-2-building-the-model" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>An embedding layer is a lookup table that maps each word to a vector.</p></li>
 <li><p>Once the input index of the word is embedded, it is passed through the first hidden layer with bias added to it.</p></li>
@@ -1412,7 +1162,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="step-3-loss-and-optimization-function">
-<h3>Step 3: Loss and optimization function.<a class="headerlink" href="#step-3-loss-and-optimization-function" title="Permalink to this headline">#</a></h3>
+<h3>Step 3: Loss and optimization function.<a class="headerlink" href="#step-3-loss-and-optimization-function" title="Permalink to this heading">#</a></h3>
 <p>Now that we have the model, we need to define the loss function and the optimization function.</p>
 <p>We are using the cross-entropy loss function and the Adam optimizer.</p>
 <p>The cross-entropy loss function is made up of two parts:</p>
@@ -1436,7 +1186,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="step-4-training-the-model">
-<h3>Step 4: Training the model.<a class="headerlink" href="#step-4-training-the-model" title="Permalink to this headline">#</a></h3>
+<h3>Step 4: Training the model.<a class="headerlink" href="#step-4-training-the-model" title="Permalink to this heading">#</a></h3>
 <p>Finally, we train the model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1510,7 +1260,7 @@ Epoch: 5000 cost = 0.462459
 </div>
 </section>
 <section id="summary">
-<h3>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h3>
+<h3>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Word embeddings are a way to represent words as low-dimensional dense vectors.</p></li>
 <li><p>These embeddings have associated learnable vectors, which optimize themselves through back propagation.</p></li>
@@ -1521,12 +1271,12 @@ Epoch: 5000 cost = 0.462459
 </section>
 </section>
 <section id="word2vec">
-<h2>Word2Vec<a class="headerlink" href="#word2vec" title="Permalink to this headline">#</a></h2>
+<h2>Word2Vec<a class="headerlink" href="#word2vec" title="Permalink to this heading">#</a></h2>
 <p>Word2Vec is a neural network architecture that was proposed by <span id="id3">[<a class="reference internal" href="../../about/index.html#id24" title="Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg S Corrado, and Jeff Dean. Distributed representations of words and phrases and their compositionality. Advances in neural information processing systems, 2013.">Mikolov <em>et al.</em>, 2013</a>]</span> in 2013. It is a shallow, two-layer neural network that is trained to reconstruct linguistic contexts of words.</p>
 <p>The problem of the previous neural network is that it is computationally expensive to train. The hidden layer computes probability distribution for all the words in the vocabulary. This is because the output layer is a fully connected layer.</p>
 <p>Word2Vec solves this problem by using a single output neuron. This is achieved by using a <code class="docutils literal notranslate"><span class="pre">hierarchical</span> <span class="pre">softmax</span></code> or <code class="docutils literal notranslate"><span class="pre">negative</span> <span class="pre">sampling</span></code> method.</p>
 <section id="main-idea">
-<h3>Main idea<a class="headerlink" href="#main-idea" title="Permalink to this headline">#</a></h3>
+<h3>Main idea<a class="headerlink" href="#main-idea" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Use a <code class="docutils literal notranslate"><span class="pre">binary</span> <span class="pre">classifier</span></code> to predict which words appear in the context of (i.e. near) a target word.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">parameters</span> <span class="pre">of</span> <span class="pre">that</span> <span class="pre">classifier</span></code> provide a dense vector representation of the target word (embedding).</p></li>
@@ -1535,7 +1285,7 @@ Epoch: 5000 cost = 0.462459
 </ul>
 </section>
 <section id="negative-sampling">
-<h3>Negative sampling<a class="headerlink" href="#negative-sampling" title="Permalink to this headline">#</a></h3>
+<h3>Negative sampling<a class="headerlink" href="#negative-sampling" title="Permalink to this heading">#</a></h3>
 <p>Train a binary classifier that decides whether a target word t appears in the context of other words <span class="math notranslate nohighlight">\(c_{1..k}\)</span></p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Context</span></code>: the set of k words near (surrounding) t</p></li>
@@ -1546,7 +1296,7 @@ Epoch: 5000 cost = 0.462459
 </ul>
 </section>
 <section id="two-models">
-<h3>Two models<a class="headerlink" href="#two-models" title="Permalink to this headline">#</a></h3>
+<h3>Two models<a class="headerlink" href="#two-models" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Continuous Bag of Words (CBOW)</strong>: predicts the target word from the context words.</p></li>
 <li><p><strong>Skip-gram</strong>: predicts the context words from the target word.</p></li>
@@ -1554,7 +1304,7 @@ Epoch: 5000 cost = 0.462459
 <p><img alt="" src="../../_images/cbow_skip-gram.png" /></p>
 </section>
 <section id="when-to-use-the-skip-gram-model-and-when-to-use-cbow">
-<h3>When to use the skip-gram model and when to use CBOW?<a class="headerlink" href="#when-to-use-the-skip-gram-model-and-when-to-use-cbow" title="Permalink to this headline">#</a></h3>
+<h3>When to use the skip-gram model and when to use CBOW?<a class="headerlink" href="#when-to-use-the-skip-gram-model-and-when-to-use-cbow" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>CBOW is faster to train than skip-gram.</p></li>
 <li><p>Skip-gram is better at capturing rare words and their contexts.</p></li>
@@ -1565,14 +1315,14 @@ Epoch: 5000 cost = 0.462459
 </section>
 </section>
 <section id="skip-gram-model">
-<h2>Skip-gram model<a class="headerlink" href="#skip-gram-model" title="Permalink to this headline">#</a></h2>
+<h2>Skip-gram model<a class="headerlink" href="#skip-gram-model" title="Permalink to this heading">#</a></h2>
 <p>The skip-gram model is the same as the CBOW model with one difference: it predicts the context words from the target word.</p>
 <p>In the above figure, <span class="math notranslate nohighlight">\(w[t]\)</span> is the target word, and <span class="math notranslate nohighlight">\(w[t-2], w[t-1], w[t+1], w[t+2]\)</span> are the context words, where <span class="math notranslate nohighlight">\(t\)</span> is the location of the target word in the sentence.</p>
 <p>The model predicts the probability of a word being a context word given the target word. The output probabilities explain how likely a word is to be close to the target word.</p>
 <p>This shallow neural network architecture is called a <code class="docutils literal notranslate"><span class="pre">skip-gram</span></code> model because it predicts the context words from the target word.</p>
 <p>We don’t use this trained network for prediction. Instead, we use the weights of the embedding layer as the word embeddings.</p>
 <section id="input-output-hidden-layer">
-<h3>Input/output/hidden layer<a class="headerlink" href="#input-output-hidden-layer" title="Permalink to this headline">#</a></h3>
+<h3>Input/output/hidden layer<a class="headerlink" href="#input-output-hidden-layer" title="Permalink to this heading">#</a></h3>
 <p>How do we represent a single target word as a large vector?</p>
 <ul class="simple">
 <li><p>We can use a one-hot vector to represent the target word.</p></li>
@@ -1585,7 +1335,7 @@ Epoch: 5000 cost = 0.462459
 <p><img alt="" src="../../_images/skip-gram.png" /></p>
 </section>
 <section id="step-0-prepare-the-data">
-<h3>Step 0: Prepare the data<a class="headerlink" href="#step-0-prepare-the-data" title="Permalink to this headline">#</a></h3>
+<h3>Step 0: Prepare the data<a class="headerlink" href="#step-0-prepare-the-data" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;retina&#39;
@@ -1613,7 +1363,7 @@ Epoch: 5000 cost = 0.462459
 </div>
 </section>
 <section id="step-1-setting-target-and-context-variable">
-<h3>Step 1: Setting target and context variable<a class="headerlink" href="#step-1-setting-target-and-context-variable" title="Permalink to this headline">#</a></h3>
+<h3>Step 1: Setting target and context variable<a class="headerlink" href="#step-1-setting-target-and-context-variable" title="Permalink to this heading">#</a></h3>
 <p>Since skipgram takes a single context word and n number of target variables, we just need to flip the CBOW from the previous model.</p>
 <p>when the window size is 1, we take one word before and after the target word.</p>
 <p>For example, if we have the sentence “I like deep learning because it is fun”, and the window size is 1, the function will return the following list:</p>
@@ -1667,7 +1417,7 @@ Epoch: 5000 cost = 0.462459
 </div>
 </section>
 <section id="id4">
-<h3>Step 2: Building the model<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<h3>Step 2: Building the model<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
@@ -1697,7 +1447,7 @@ Epoch: 5000 cost = 0.462459
 </div>
 </section>
 <section id="id5">
-<h3>Step 3: Loss and optimization function<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<h3>Step 3: Loss and optimization function<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
@@ -1726,7 +1476,7 @@ Epoch: 5000 cost = 0.462459
 </div>
 </section>
 <section id="id6">
-<h3>Step 4: Training the model<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<h3>Step 4: Training the model<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -1769,9 +1519,7 @@ Epoch: 5000 cost = 0.462459
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "f921115bdbc147129044193c73849852", "version_major": 2, "version_minor": 0}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 10000 cost = 3.896727
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "f921115bdbc147129044193c73849852", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 10000 cost = 3.896727
 Epoch: 20000 cost = 2.242064
 Epoch: 30000 cost = 3.617461
 Epoch: 40000 cost = 4.317378
@@ -1792,7 +1540,7 @@ Epoch: 150000 cost = 2.791655
 </div>
 </section>
 <section id="visualizing-the-embeddings">
-<h3>Visualizing the embeddings<a class="headerlink" href="#visualizing-the-embeddings" title="Permalink to this headline">#</a></h3>
+<h3>Visualizing the embeddings<a class="headerlink" href="#visualizing-the-embeddings" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -1812,12 +1560,12 @@ Epoch: 150000 cost = 2.791655
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/word_embeddings_37_0.png" src="../../_images/word_embeddings_37_0.png" />
+<img alt="../../_images/bef414ff101355f897c52a7589565c9f7f524bcb6f7ba3f169ef39bbe6fb1a4c.png" src="../../_images/bef414ff101355f897c52a7589565c9f7f524bcb6f7ba3f169ef39bbe6fb1a4c.png" />
 </div>
 </div>
 </section>
 <section id="evaluation">
-<h3>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">#</a></h3>
+<h3>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">skipgram_test</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
@@ -1884,12 +1632,12 @@ Epoch: 150000 cost = 2.791655
 </section>
 </section>
 <section id="continuous-bag-of-words-cbow">
-<h2>Continuous Bag of Words (CBOW)<a class="headerlink" href="#continuous-bag-of-words-cbow" title="Permalink to this headline">#</a></h2>
+<h2>Continuous Bag of Words (CBOW)<a class="headerlink" href="#continuous-bag-of-words-cbow" title="Permalink to this heading">#</a></h2>
 <p>The CBOW model predicts the target word from the context words.</p>
 <p>This model reduces the complexity of calculating the probability distribution for all the words in the vocabulary to the <span class="math notranslate nohighlight">\(\log_2(V)\)</span> complexity of calculating the probability distribution for the target word.</p>
 <p><img alt="" src="../../_images/cbow_skip-gram.png" /></p>
 <section id="architecture">
-<h3>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">#</a></h3>
+<h3>Architecture<a class="headerlink" href="#architecture" title="Permalink to this heading">#</a></h3>
 <a class="bg-primary mb-1 reference internal image-reference" href="../../_images/cbow.png"><img alt="cbow" class="bg-primary mb-1 align-center" src="../../_images/cbow.png" style="width: 350px;" /></a>
 <ul class="simple">
 <li><p>The input layer is the context words.</p></li>
@@ -1901,7 +1649,7 @@ Epoch: 150000 cost = 2.791655
 </ul>
 </section>
 <section id="step-1-define-a-function-to-create-a-context-and-a-target-word">
-<h3>Step 1: Define a function to create a context and a target word<a class="headerlink" href="#step-1-define-a-function-to-create-a-context-and-a-target-word" title="Permalink to this headline">#</a></h3>
+<h3>Step 1: Define a function to create a context and a target word<a class="headerlink" href="#step-1-define-a-function-to-create-a-context-and-a-target-word" title="Permalink to this heading">#</a></h3>
 <p>Define a function to create a context window with n words from the right and left of the target word.</p>
 <p>The function should take two arguments: data and window size. The window size will define how many words we are supposed to take from the right and from the left.</p>
 <p>The for loop: <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">range(window_size,</span> <span class="pre">len(words)</span> <span class="pre">–</span> <span class="pre">window_size)</span></code>: iterates through a range starting from the window size, i.e. 2 means it will ignore words in index 0 and 1 from the sentence, and end 2 words before the sentence ends.</p>
@@ -1950,7 +1698,7 @@ Epoch: 150000 cost = 2.791655
 </div>
 </section>
 <section id="step-2-build-the-model">
-<h3>Step 2: Build the model<a class="headerlink" href="#step-2-build-the-model" title="Permalink to this headline">#</a></h3>
+<h3>Step 2: Build the model<a class="headerlink" href="#step-2-build-the-model" title="Permalink to this heading">#</a></h3>
 <p>In the CBOW model, we reduce the hidden layer to only one. So all together we have: an embedding layer, a hidden layer which passes through the ReLU layer, and an output layer.</p>
 <p>The context words index is fed into the embedding layers, which is then passed through the hidden layer followed by the nonlinear activation layer, i.e. ReLU, and finally we get the output.</p>
 <div class="cell docutils container">
@@ -1988,7 +1736,7 @@ Epoch: 150000 cost = 2.791655
 </div>
 </section>
 <section id="id7">
-<h3>Step 3: Loss and optimization function.<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<h3>Step 3: Loss and optimization function.<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
 <p>We are using the cross-entropy loss function and the SGD optimizer. You can also use the Adam optimizer.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2021,7 +1769,7 @@ Epoch: 150000 cost = 2.791655
 </div>
 </section>
 <section id="id8">
-<h3>Step 4: Training the model.<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
+<h3>Step 4: Training the model.<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
 <p>Finally, we train the model.</p>
 <p><code class="docutils literal notranslate"><span class="pre">words_to_vector</span></code> turns words into numbers.</p>
 <div class="cell docutils container">
@@ -2057,7 +1805,7 @@ Epoch: 49, Loss: 4.151697635650635
 </div>
 </section>
 <section id="id9">
-<h3>Visualizing the embeddings<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
+<h3>Visualizing the embeddings<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -2076,12 +1824,12 @@ Epoch: 49, Loss: 4.151697635650635
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/word_embeddings_56_0.png" src="../../_images/word_embeddings_56_0.png" />
+<img alt="../../_images/2accffbb868fd77c684f771c28a62aa2d473915bbeed73484346ed9a306e5370.png" src="../../_images/2accffbb868fd77c684f771c28a62aa2d473915bbeed73484346ed9a306e5370.png" />
 </div>
 </div>
 </section>
 <section id="id10">
-<h3>Evaluation<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h3>
+<h3>Evaluation<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">CBOW_test</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
@@ -2143,9 +1891,9 @@ Prediction: micron
 </section>
 </section>
 <section id="improving-predictive-functions">
-<h2>Improving predictive functions<a class="headerlink" href="#improving-predictive-functions" title="Permalink to this headline">#</a></h2>
+<h2>Improving predictive functions<a class="headerlink" href="#improving-predictive-functions" title="Permalink to this heading">#</a></h2>
 <section id="softmax">
-<h3>Softmax<a class="headerlink" href="#softmax" title="Permalink to this headline">#</a></h3>
+<h3>Softmax<a class="headerlink" href="#softmax" title="Permalink to this heading">#</a></h3>
 <p>The equation for the softmax function is:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -2158,7 +1906,7 @@ Prediction: micron
 <p>With a large vocabulary, say 100,000 words, the softmax function becomes very expensive to compute. For each word (<span class="math notranslate nohighlight">\(w_i\)</span>), we have to compute the exponential of the score of each word in the vocabulary (<span class="math notranslate nohighlight">\(x_j\)</span>) and then sum them up. This is <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span>.</p>
 </section>
 <section id="hierarchical-softmax">
-<h3>Hierarchical softmax<a class="headerlink" href="#hierarchical-softmax" title="Permalink to this headline">#</a></h3>
+<h3>Hierarchical softmax<a class="headerlink" href="#hierarchical-softmax" title="Permalink to this heading">#</a></h3>
 <p>Hierarchical softmax is a method to reduce the complexity of the softmax function. It is a tree-based data structure that is used to represent the vocabulary.</p>
 <p>Hierarchical softmax was introduced by Morin and Bengio in 2005, as an alternative to the full softmax function, where it replaces it with a hierarchical layer. It borrows the technique from the binary huffman tree, which reduces the complexity of calculating the probability from <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span> to <span class="math notranslate nohighlight">\(\mathcal{O}(\log_2(n))\)</span>.</p>
 <p>The hierarchical softmax is a binary tree, where each node represents a word in the vocabulary. The root node represents the entire vocabulary. The left child represents the words that are less frequent than the parent node, and the right child represents the words that are more frequent than the parent node.</p>
@@ -2166,7 +1914,7 @@ Prediction: micron
 <p>In the huffman tree, we no longer calculate the output embeddings <span class="math notranslate nohighlight">\(w^\prime\)</span>. Instead, we calculate the probability of turning right or left at each node.</p>
 </section>
 <section id="noise-contrastive-estimation">
-<h3>Noise-contrastive estimation<a class="headerlink" href="#noise-contrastive-estimation" title="Permalink to this headline">#</a></h3>
+<h3>Noise-contrastive estimation<a class="headerlink" href="#noise-contrastive-estimation" title="Permalink to this heading">#</a></h3>
 <p>Noise-contrastive estimation (NCE) is an approximation method to reduce the complexity of the softmax function. It is a sampling-based method that is used to approximate the softmax function.</p>
 <p>NCE takes an unnormalised multinomial function (i.e. the function that has multiple labels and its output has not been passed through a softmax layer), and converts it to a binary logistic regression.</p>
 <p>In order to learn the distribution to predict the target word (<span class="math notranslate nohighlight">\(w_t\)</span>) from some specific context (<span class="math notranslate nohighlight">\(c\)</span>), we need to create two classes: <strong>positive samples</strong> and <strong>negative samples</strong>.</p>
@@ -2184,7 +1932,7 @@ Prediction: micron
 <p>In conclusion, NCE is a way of learning a data distribution by comparing it against a noise distribution, and modifying the learning parameters such that the model <span class="math notranslate nohighlight">\(P_{\theta}\)</span> is closer to the noise <span class="math notranslate nohighlight">\(P_{\text{data}}\)</span>.</p>
 </section>
 <section id="id11">
-<h3>Negative sampling<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h3>
+<h3>Negative sampling<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h3>
 <p>Negative sampling is a sampling-based method that is used to approximate the softmax function. It simplifies the NCE method by removing the need to calculate the noise distribution <span class="math notranslate nohighlight">\(Q\)</span>.</p>
 <p>Negative sampling gets rid of the noise distribution <span class="math notranslate nohighlight">\(Q\)</span> and uses a single noise sample <span class="math notranslate nohighlight">\(w_j\)</span> for each target word <span class="math notranslate nohighlight">\(w_t\)</span>.</p>
 <p>The loss function is the sum of the log probabilities of the positive samples and the negative samples, and is given by:</p>
@@ -2198,18 +1946,18 @@ Prediction: micron
 </section>
 </section>
 <section id="glove">
-<h2>GloVe<a class="headerlink" href="#glove" title="Permalink to this headline">#</a></h2>
+<h2>GloVe<a class="headerlink" href="#glove" title="Permalink to this heading">#</a></h2>
 <p>GloVe is an unsupervised learning algorithm for obtaining vector representations for words. It is based on the co-occurrence matrix of words from a corpus.</p>
 <p>GloVe stands for Global Vectors for Word Representation. It was introduced by <span id="id12">[<a class="reference internal" href="../../about/index.html#id25" title="Jeffrey Pennington, Richard Socher, and Christopher Manning. GloVe: global vectors for word representation. In Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing (EMNLP), 1532–1543. Doha, Qatar, October 2014. Association for Computational Linguistics. URL: https://aclanthology.org/D14-1162, doi:10.3115/v1/D14-1162.">Pennington <em>et al.</em>, 2014</a>]</span> in 2014.</p>
 <section id="improvement-over-word2vec">
-<h3>Improvement over word2vec<a class="headerlink" href="#improvement-over-word2vec" title="Permalink to this headline">#</a></h3>
+<h3>Improvement over word2vec<a class="headerlink" href="#improvement-over-word2vec" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Word2vec uses a window-based approach, in which it only considers the local context of a word. This means that it does not consider the global context of a word.</p></li>
 <li><p>GloVe uses a global context of a word in addition to the local context. This means that it can capture the meaning of a word better than word2vec.</p></li>
 </ul>
 </section>
 <section id="co-occurrence-matrix">
-<h3>Co-occurrence matrix<a class="headerlink" href="#co-occurrence-matrix" title="Permalink to this headline">#</a></h3>
+<h3>Co-occurrence matrix<a class="headerlink" href="#co-occurrence-matrix" title="Permalink to this heading">#</a></h3>
 <p>What are the global contexts of a word? The global contexts of a word are the words that co-occur with it in a corpus.</p>
 <p>For example, we have the following sentences:</p>
 <p><strong>Document 1:</strong> “All that glitters is not gold.”</p>
@@ -2223,7 +1971,7 @@ Prediction: micron
 </ul>
 </section>
 <section id="training-glove">
-<h3>Training GloVe<a class="headerlink" href="#training-glove" title="Permalink to this headline">#</a></h3>
+<h3>Training GloVe<a class="headerlink" href="#training-glove" title="Permalink to this heading">#</a></h3>
 <p>Glove model is a weighted least squares regression model, where the weights are the word vectors. The objective function is the sum of squared errors between the co-occurrence matrix and the dot product of the word vectors.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -2234,7 +1982,7 @@ Prediction: micron
 <p>where <span class="math notranslate nohighlight">\(X_{ij}\)</span> is the co-occurrence matrix, <span class="math notranslate nohighlight">\(\mathbf{u}_i\)</span> is the word vector of the <span class="math notranslate nohighlight">\(i\)</span> th word, and <span class="math notranslate nohighlight">\(\mathbf{v}_j\)</span> is the word vector of the <span class="math notranslate nohighlight">\(j\)</span> th word. The function <span class="math notranslate nohighlight">\(f\)</span> is a weighting function that is used to downweight the common words.</p>
 </section>
 <section id="glove-vs-word2vec">
-<h3>GloVe vs word2vec<a class="headerlink" href="#glove-vs-word2vec" title="Permalink to this headline">#</a></h3>
+<h3>GloVe vs word2vec<a class="headerlink" href="#glove-vs-word2vec" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>GloVe is a global model, while word2vec is a local model.</p></li>
 <li><p>GloVe ouputperforms word2vec on word analogy, word similarity, and Named Entity Recognition (NER) tasks.</p></li>
@@ -2244,17 +1992,17 @@ Prediction: micron
 </ul>
 </section>
 <section id="using-glove">
-<h3>Using GloVe<a class="headerlink" href="#using-glove" title="Permalink to this headline">#</a></h3>
+<h3>Using GloVe<a class="headerlink" href="#using-glove" title="Permalink to this heading">#</a></h3>
 <p>GloVe is available to download from the <a class="reference external" href="https://nlp.stanford.edu/projects/glove/">Stanford NLP website</a>.</p>
 </section>
 </section>
 <section id="fasttext">
-<h2>FastText<a class="headerlink" href="#fasttext" title="Permalink to this headline">#</a></h2>
+<h2>FastText<a class="headerlink" href="#fasttext" title="Permalink to this heading">#</a></h2>
 <p>FastText is an open-source library for learning of word representations and sentence classification. It was introduced by <span id="id13">[<a class="reference internal" href="../../about/index.html#id26" title="Piotr Bojanowski, Edouard Grave, Armand Joulin, and Tomas Mikolov. Enriching word vectors with subword information. arXiv preprint arXiv:1607.04606, 2016. URL: https://arxiv.org/pdf/1607.04606.pdf.">Bojanowski <em>et al.</em>, 2016</a>]</span> in 2016.</p>
 <p>FastText is an extension of word2vec that allows us to learn word representations for out-of-vocabulary words. It is based on the skip-gram model, but it uses character n-grams as its input and output instead of words.</p>
 <p>Word2vec and GloVe are based on the words in the corpus. Even with a very large corpus, there are still words that are not present in the corpus.</p>
 <section id="character-n-grams">
-<h3>Character n-grams<a class="headerlink" href="#character-n-grams" title="Permalink to this headline">#</a></h3>
+<h3>Character n-grams<a class="headerlink" href="#character-n-grams" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Instead of using words to train the model, FastText uses character n-grams as its input and output.</p></li>
 <li><p>Word embeddings are the average of the character n-grams that make up the word.</p></li>
@@ -2273,14 +2021,14 @@ Prediction: micron
 </ul>
 </section>
 <section id="using-fasttext">
-<h3>Using FastText<a class="headerlink" href="#using-fasttext" title="Permalink to this headline">#</a></h3>
+<h3>Using FastText<a class="headerlink" href="#using-fasttext" title="Permalink to this heading">#</a></h3>
 <p>You can install FastText using the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>fasttext
 </pre></div>
 </div>
 <p>You can download the pre-trained FastText word vectors from the <a class="reference external" href="https://fasttext.cc/docs/en/english-vectors.html">FastText website</a>.</p>
 <section id="format">
-<h4>Format<a class="headerlink" href="#format" title="Permalink to this headline">#</a></h4>
+<h4>Format<a class="headerlink" href="#format" title="Permalink to this heading">#</a></h4>
 <p>The first line of the file contains the number of words in the vocabulary and the size of the vectors. Each line contains a word followed by its vectors, like in the default fastText text format. Each value is space separated. Words are ordered by descending frequency. These text models can easily be loaded in Python using the following code:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">io</span>
 
@@ -2297,7 +2045,7 @@ Prediction: micron
 </section>
 </section>
 <section id="training-fasttext">
-<h3>Training FastText<a class="headerlink" href="#training-fasttext" title="Permalink to this headline">#</a></h3>
+<h3>Training FastText<a class="headerlink" href="#training-fasttext" title="Permalink to this heading">#</a></h3>
 <p>FastText can be trained using the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fasttext<span class="w"> </span>skipgram<span class="w"> </span>-input<span class="w"> </span>&lt;input_file&gt;<span class="w"> </span>-output<span class="w"> </span>&lt;output_file&gt;
 </pre></div>
@@ -2318,7 +2066,7 @@ Prediction: micron
 </pre></div>
 </div>
 <section id="saving-and-loading-a-model-object">
-<h4>Saving and loading a model object<a class="headerlink" href="#saving-and-loading-a-model-object" title="Permalink to this headline">#</a></h4>
+<h4>Saving and loading a model object<a class="headerlink" href="#saving-and-loading-a-model-object" title="Permalink to this heading">#</a></h4>
 <p>You can save your trained model object by calling the function <code class="docutils literal notranslate"><span class="pre">save_model</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">save_model</span><span class="p">(</span><span class="s2">&quot;model_filename.bin&quot;</span><span class="p">)</span>
 </pre></div>
@@ -2331,11 +2079,11 @@ Prediction: micron
 </section>
 </section>
 <section id="wrapping-up">
-<h2>Wrapping up<a class="headerlink" href="#wrapping-up" title="Permalink to this headline">#</a></h2>
+<h2>Wrapping up<a class="headerlink" href="#wrapping-up" title="Permalink to this heading">#</a></h2>
 <p>In this lecture, we learned about word embeddings and how they are used to represent words as vectors. We also learned about the two most popular word embedding models, word2vec and GloVe. We also learned about FastText, which is an extension of word2vec that allows us to learn word representations for out-of-vocabulary words.</p>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://arxiv.org/abs/1301.3781">Word2Vec</a></p></li>
 <li><p><a class="reference external" href="https://fasttext.cc/">FastText</a></p></li>
@@ -2366,50 +2114,387 @@ Prediction: micron
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
-              
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="vectorization.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Vector Semantics and Representation</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="lab1-corpus.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lab 1: Preparing Wikipedia Corpora</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+  <a class='left-prev' id="prev-link" href="vectorization.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Vector Semantics and Representation</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="lab1-corpus.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Lab 1: Preparing Wikipedia Corpora</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
 </div>
             </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
   
-    By <a href="https://entelecheia.me">Young Joon Lee</a><br/>
-  
-      &copy; Copyright 2023.<br/>
-</p>
-        </footer>
-    </div>
-    
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-are-word-embeddings">
+   What are word embeddings?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#categorical-embeddings">
+   Categorical Embeddings
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#an-embedding-layer-is-matrix-multiplication">
+     An embedding layer is matrix multiplication:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#embedding-layers-versus-dense-layers">
+     Embedding Layers versus Dense Layers
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Word Embeddings
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-do-we-need-neural-networks-for-word-embeddings">
+     Why do we need neural networks for word embeddings?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#neural-language-models">
+   Neural Language Models
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-1-indexing-the-words">
+     Step 1: Indexing the words.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-2-building-the-model">
+     Step 2: Building the model.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-3-loss-and-optimization-function">
+     Step 3: Loss and optimization function.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-4-training-the-model">
+     Step 4: Training the model.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#summary">
+     Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#word2vec">
+   Word2Vec
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#main-idea">
+     Main idea
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#negative-sampling">
+     Negative sampling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#two-models">
+     Two models
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#when-to-use-the-skip-gram-model-and-when-to-use-cbow">
+     When to use the skip-gram model and when to use CBOW?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#skip-gram-model">
+   Skip-gram model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#input-output-hidden-layer">
+     Input/output/hidden layer
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-0-prepare-the-data">
+     Step 0: Prepare the data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-1-setting-target-and-context-variable">
+     Step 1: Setting target and context variable
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Step 2: Building the model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Step 3: Loss and optimization function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     Step 4: Training the model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualizing-the-embeddings">
+     Visualizing the embeddings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#evaluation">
+     Evaluation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#continuous-bag-of-words-cbow">
+   Continuous Bag of Words (CBOW)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#architecture">
+     Architecture
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-1-define-a-function-to-create-a-context-and-a-target-word">
+     Step 1: Define a function to create a context and a target word
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-2-build-the-model">
+     Step 2: Build the model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     Step 3: Loss and optimization function.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     Step 4: Training the model.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     Visualizing the embeddings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     Evaluation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#improving-predictive-functions">
+   Improving predictive functions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#softmax">
+     Softmax
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hierarchical-softmax">
+     Hierarchical softmax
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#noise-contrastive-estimation">
+     Noise-contrastive estimation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     Negative sampling
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#glove">
+   GloVe
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#improvement-over-word2vec">
+     Improvement over word2vec
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#co-occurrence-matrix">
+     Co-occurrence matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#training-glove">
+     Training GloVe
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#glove-vs-word2vec">
+     GloVe vs word2vec
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-glove">
+     Using GloVe
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fasttext">
+   FastText
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#character-n-grams">
+     Character n-grams
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-fasttext">
+     Using FastText
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#format">
+       Format
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#training-fasttext">
+     Training FastText
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#saving-and-loading-a-model-object">
+       Saving and loading a model object
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wrapping-up">
+   Wrapping up
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav>
 </div>
 
-
-      </div>
-    </div>
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://entelecheia.me">Young Joon Lee</a>
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2023.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on None.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
 
   </body>
 </html>

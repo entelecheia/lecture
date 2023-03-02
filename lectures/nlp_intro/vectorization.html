@@ -1,30 +1,36 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Vector Semantics and Representation &#8212; Artificial Intelligence | Lecture Notes</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
@@ -37,18 +43,20 @@
     <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-light.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-borderless.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/micromodal.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
     <script src="../../_static/tabs.js"></script>
     <script src="../../_static/js/hoverxref.js"></script>
     <script src="../../_static/js/tooltipster.bundle.min.js"></script>
@@ -57,7 +65,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -65,60 +73,361 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_intro/vectorization';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Word Embeddings" href="word_embeddings.html" />
     <link rel="prev" title="Word Segmentation and Association" href="word_segmentation.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
 
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
     
-    <div class="container-fluid" id="banner"></div>
-
     
+  
 
-    <div class="container-xl">
-      <div class="row">
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+    <p class="title logo__title">Artificial Intelligence | Lecture Notes</p>
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Introduction to NLP
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../nlp_deep/index.html">
+                        Deep Learning for NLP
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../nlp_apps/index.html">
+                        NLP Applications
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../aiart/index.html">
+                        AI Art (Text-to-Image)
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mlops/index.html">
+                        Machine Learning Systems Design
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../ds/index.html">
+                        Data Science for Economics and Finance
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://entelecheia.me">
+                        entelecheia.me
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../about/index.html">
+                        Bibliography
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../about/cite.html">
+                        Citation
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
       
       
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
       
-      <h1 class="site-logo" id="site-title">Artificial Intelligence | Lecture Notes</h1>
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
       
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Introduction to NLP
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../nlp_deep/index.html">
+                        Deep Learning for NLP
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../nlp_apps/index.html">
+                        NLP Applications
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../aiart/index.html">
+                        AI Art (Text-to-Image)
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mlops/index.html">
+                        Machine Learning Systems Design
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../ds/index.html">
+                        Data Science for Economics and Finance
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://entelecheia.me">
+                        entelecheia.me
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../about/index.html">
+                        Bibliography
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../about/cite.html">
+                        Citation
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+    <p class="title logo__title">Artificial Intelligence | Lecture Notes</p>
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -127,837 +436,398 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Course
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="index.html">
-   Introduction to NLP
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="intro.html">
-     Introduction
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="ekorpkit.html">
-     Getting started with ekorpkit
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="research.html">
-     Research Applications
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="language_models.html">
-     Language Models
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="topic.html">
-     Topic Modeling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="topic_models.html">
-     Topic Models
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="topic_coherence.html">
-     Topic Coherence Measures
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="sentiments.html">
-     Sentiment Analysis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="tokenization.html">
-     Tokenization
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="word_segmentation.html">
-     Word Segmentation and Association
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Vector Semantics and Representation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="word_embeddings.html">
-     Word Embeddings
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="lab1-corpus.html">
-     Lab 1: Preparing Wikipedia Corpora
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="lab2-corpus-eda.html">
-     Lab 2: EDA on Corpora
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../nlp_deep/index.html">
-   Deep Learning for NLP
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/intro.html">
-     Introduction
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/ekorpkit.html">
-     Getting started with ekorpkit
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/zeroshot.html">
-     Zero Shot, Prompt, and Search Strategies
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/transformers.html">
-     Transformers
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/t5.html">
-     T5: Text-To-Text Transfer Transformer
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/tokenization.html">
-     Tokenization
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/sentencepiece.html">
-     SentencePiece Tokenizer
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/byt5.html">
-     ByT5: Towards a token-free future with pre-trained byte-to-byte models
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/plms.html">
-     Pretrained Language Models
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/lab1-corpus.html">
-     Lab 1: Preparing Wikipedia Corpora
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/lab3-train-tokenizers.html">
-     Lab 3: Training Tokenizers
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../nlp_deep/lab4-pretraining-lms.html">
-     Lab 4: Pretraining Language Models
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../nlp_apps/index.html">
-   NLP Applications
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../aiart/index.html">
-   AI Art (Text-to-Image)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/intro.html">
-     Introduction
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/project-themes.html">
-     Project Themes - A Brave New World
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/dalle1.html">
-     DALL·E 1
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/dalle2.html">
-     DALL·E 2
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/imagen.html">
-     Imagen
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/textual-inversion.html">
-     Textual Inversion (Dreambooth)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/whisper.html">
-     Automatic Speech Recognition (Whisper)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/text2music.html">
-     Text to Music
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../aiart/image2music.html">
-     Image to Music
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../mlops/index.html">
-   Machine Learning Systems Design
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../mlops/dev-env.html">
-     Development Environment
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../mlops/dotfiles.html">
-     Dotfiles
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../ds/index.html">
-   Data Science for Economics and Finance
-  </a>
- </li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Introduction to NLP</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ekorpkit.html">Getting started with ekorpkit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="research.html">Research Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language_models.html">Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topic.html">Topic Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topic_models.html">Topic Models </a></li>
+<li class="toctree-l2"><a class="reference internal" href="topic_coherence.html">Topic Coherence Measures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sentiments.html">Sentiment Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tokenization.html">Tokenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="word_segmentation.html">Word Segmentation and Association</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Vector Semantics and Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="word_embeddings.html">Word Embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab1-corpus.html">Lab 1: Preparing Wikipedia Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab2-corpus-eda.html">Lab 2: EDA on Corpora</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  About
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nlp_deep/index.html">Deep Learning for NLP</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/ekorpkit.html">Getting started with ekorpkit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/zeroshot.html">Zero Shot, Prompt, and Search Strategies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/transformers.html">Transformers </a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/t5.html">T5: Text-To-Text Transfer Transformer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/tokenization.html">Tokenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/sentencepiece.html">SentencePiece Tokenizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/plms.html">Pretrained Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/lab1-corpus.html">Lab 1: Preparing Wikipedia Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/lab3-train-tokenizers.html">Lab 3: Training Tokenizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/lab4-pretraining-lms.html">Lab 4: Pretraining Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp_apps/index.html">NLP Applications</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../aiart/index.html">AI Art (Text-to-Image)</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/project-themes.html">Project Themes - A Brave New World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/dalle1.html">DALL·E 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/dalle2.html">DALL·E 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/imagen.html">Imagen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/textual-inversion.html">Textual Inversion (Dreambooth)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/whisper.html">Automatic Speech Recognition (Whisper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/text2music.html">Text to Music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/image2music.html">Image to Music</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../mlops/index.html">Machine Learning Systems Design</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../mlops/dev-env.html">Development Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mlops/dotfiles.html">Dotfiles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ds/index.html">Data Science for Economics and Finance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference external" href="https://entelecheia.me">
-   entelecheia.me
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../about/index.html">
-   Bibliography
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../about/cite.html">
-   Citation
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/cite.html">Citation</a></li>
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
+</nav>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  </div>
+  
 
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
 
-          
+  
+  <div id="rtd-footer-container"></div>
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
+      </div>
+      <main id="main-content" class="bd-main">
         
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
 
 
 
 <div class="col py-1 d-flex header-article-main">
     <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
     </div>
     <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/entelecheia/lecture/main?urlpath=tree/book/lectures/nlp_intro/vectorization.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/nlp_intro/vectorization.ipynb"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/nlp_intro/vectorization.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Launch on Colab"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../../_static/images/logo_colab.png">
   </span>
-<span class="headerbtn__text-container">Colab</span>
+<span class="btn__text-container">Colab</span>
 </a>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
+  class="btn btn-sm"
   data-toggle="tooltip"
 data-placement="bottom"
 title="Fullscreen mode"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
-<a href="https://github.com/entelecheia/lecture"
-   class="headerbtn"
+<a href="https://github.com/entelecheia/lecture" target="_blank"
+   class="btn btn-sm"
    data-toggle="tooltip"
 data-placement="bottom"
 title="Source repository"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fab fa-github"></i>
   </span>
 
 </a>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../_sources/lectures/nlp_intro/vectorization.ipynb"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="../../_sources/lectures/nlp_intro/vectorization.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Download source file"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.ipynb</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
-
-      </li>
+</a>
       
       <li>
-        
 <button onclick="printPdf(this)"
-  class="headerbtn"
+  class="btn btn-sm dropdown-item"
   data-toggle="tooltip"
 data-placement="left"
 title="Print to PDF"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file-pdf"></i>
   </span>
-<span class="headerbtn__text-container">.pdf</span>
+<span class="btn__text-container">.pdf</span>
 </button>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
+  </ul>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
     </div>
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#vector-semantics-and-word-embeddings">
-   Vector Semantics and Word Embeddings
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-do-words-mean-and-how-do-we-represent-that">
-     What do words mean, and how do we represent that?
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#different-approaches-to-lexical-semantics">
-     Different approaches to lexical semantics
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#lexical-semantics">
-       Lexical semantics
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#distributional-semantics">
-       Distributional semantics
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#how-do-we-represent-words-to-capture-word-similarities">
-     How do we represent words to capture word similarities?
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-should-word-representations-capture">
-     What should word representations capture?
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#the-distributional-hypothesis">
-       The Distributional Hypothesis
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#why-do-we-care-about-word-contexts">
-       Why do we care about word contexts?
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#two-ways-nlp-uses-context-for-semantics">
-     Two ways NLP uses context for semantics
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#distributional-similarity">
-   Distributional Similarity
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#basic-idea">
-     Basic idea
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#how">
-     How?
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-information-retrieval-perspective-the-term-document-matrix">
-     The Information Retrieval perspective: The Term-Document Matrix
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#term-document-matrix">
-   Term-Document Matrix
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-is-a-context">
-     What is a
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       context
-      </span>
-     </code>
-     ?
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#using-nearby-words-as-contexts">
-     Using nearby words as contexts
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#word-word-matrix">
-     Word-Word Matrix
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#defining-co-occurrences">
-     Defining co-occurrences:
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#representing-co-occurrences">
-     Representing co-occurrences:
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#getting-co-occurrence-counts">
-     Getting co-occurrence counts
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#counts-vs-pmi">
-     Counts vs PMI
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#computing-pmi-of-w-and-c">
-     Computing PMI of
-     <span class="math notranslate nohighlight">
-      \(w\)
-     </span>
-     and
-     <span class="math notranslate nohighlight">
-      \(c\)
-     </span>
-     :
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#using-a-fixed-window-of-pm-k-words">
-       Using a fixed window of
-       <span class="math notranslate nohighlight">
-        \(\pm k\)
-       </span>
-       words
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dot-product-as-similarity">
-   Dot product as similarity
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#vector-similarity-cosine">
-   Vector similarity: Cosine
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#visualizing-cosines">
-     Visualizing cosines
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
-</div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Vector Semantics and Representation</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#vector-semantics-and-word-embeddings">
-   Vector Semantics and Word Embeddings
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-do-words-mean-and-how-do-we-represent-that">
-     What do words mean, and how do we represent that?
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#different-approaches-to-lexical-semantics">
-     Different approaches to lexical semantics
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#lexical-semantics">
-       Lexical semantics
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#distributional-semantics">
-       Distributional semantics
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#how-do-we-represent-words-to-capture-word-similarities">
-     How do we represent words to capture word similarities?
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-should-word-representations-capture">
-     What should word representations capture?
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#the-distributional-hypothesis">
-       The Distributional Hypothesis
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#why-do-we-care-about-word-contexts">
-       Why do we care about word contexts?
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#two-ways-nlp-uses-context-for-semantics">
-     Two ways NLP uses context for semantics
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#distributional-similarity">
-   Distributional Similarity
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#basic-idea">
-     Basic idea
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#how">
-     How?
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-information-retrieval-perspective-the-term-document-matrix">
-     The Information Retrieval perspective: The Term-Document Matrix
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#term-document-matrix">
-   Term-Document Matrix
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-is-a-context">
-     What is a
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       context
-      </span>
-     </code>
-     ?
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#using-nearby-words-as-contexts">
-     Using nearby words as contexts
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#word-word-matrix">
-     Word-Word Matrix
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#defining-co-occurrences">
-     Defining co-occurrences:
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#representing-co-occurrences">
-     Representing co-occurrences:
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#getting-co-occurrence-counts">
-     Getting co-occurrence counts
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#counts-vs-pmi">
-     Counts vs PMI
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#computing-pmi-of-w-and-c">
-     Computing PMI of
-     <span class="math notranslate nohighlight">
-      \(w\)
-     </span>
-     and
-     <span class="math notranslate nohighlight">
-      \(c\)
-     </span>
-     :
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#using-a-fixed-window-of-pm-k-words">
-       Using a fixed window of
-       <span class="math notranslate nohighlight">
-        \(\pm k\)
-       </span>
-       words
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dot-product-as-similarity">
-   Dot product as similarity
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#vector-similarity-cosine">
-   Vector similarity: Cosine
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#visualizing-cosines">
-     Visualizing cosines
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-                        </nav>
-                    </div>
-                </div>
             </div>
-            <main id="main-content" role="main">
-                
-              <div>
-                
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Vector Semantics and Representation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vector-semantics-and-word-embeddings">
+   Vector Semantics and Word Embeddings
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-do-words-mean-and-how-do-we-represent-that">
+     What do words mean, and how do we represent that?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#different-approaches-to-lexical-semantics">
+     Different approaches to lexical semantics
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#lexical-semantics">
+       Lexical semantics
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#distributional-semantics">
+       Distributional semantics
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-do-we-represent-words-to-capture-word-similarities">
+     How do we represent words to capture word similarities?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-should-word-representations-capture">
+     What should word representations capture?
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-distributional-hypothesis">
+       The Distributional Hypothesis
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#why-do-we-care-about-word-contexts">
+       Why do we care about word contexts?
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#two-ways-nlp-uses-context-for-semantics">
+     Two ways NLP uses context for semantics
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distributional-similarity">
+   Distributional Similarity
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basic-idea">
+     Basic idea
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how">
+     How?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-information-retrieval-perspective-the-term-document-matrix">
+     The Information Retrieval perspective: The Term-Document Matrix
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#term-document-matrix">
+   Term-Document Matrix
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-a-context">
+     What is a
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       context
+      </span>
+     </code>
+     ?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-nearby-words-as-contexts">
+     Using nearby words as contexts
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#word-word-matrix">
+     Word-Word Matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#defining-co-occurrences">
+     Defining co-occurrences:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#representing-co-occurrences">
+     Representing co-occurrences:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#getting-co-occurrence-counts">
+     Getting co-occurrence counts
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#counts-vs-pmi">
+     Counts vs PMI
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#computing-pmi-of-w-and-c">
+     Computing PMI of
+     <span class="math notranslate nohighlight">
+      \(w\)
+     </span>
+     and
+     <span class="math notranslate nohighlight">
+      \(c\)
+     </span>
+     :
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#using-a-fixed-window-of-pm-k-words">
+       Using a fixed window of
+       <span class="math notranslate nohighlight">
+        \(\pm k\)
+       </span>
+       words
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dot-product-as-similarity">
+   Dot product as similarity
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vector-similarity-cosine">
+   Vector similarity: Cosine
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualizing-cosines">
+     Visualizing cosines
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
   <section class="tex2jax_ignore mathjax_ignore" id="vector-semantics-and-representation">
-<h1>Vector Semantics and Representation<a class="headerlink" href="#vector-semantics-and-representation" title="Permalink to this headline">#</a></h1>
+<h1>Vector Semantics and Representation<a class="headerlink" href="#vector-semantics-and-representation" title="Permalink to this heading">#</a></h1>
 <p><img alt="" src="../../_images/entelecheia_alphabet_letters.png" /></p>
 <section id="vector-semantics-and-word-embeddings">
-<h2>Vector Semantics and Word Embeddings<a class="headerlink" href="#vector-semantics-and-word-embeddings" title="Permalink to this headline">#</a></h2>
+<h2>Vector Semantics and Word Embeddings<a class="headerlink" href="#vector-semantics-and-word-embeddings" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Lexical semantics is the study of the meaning of words</p></li>
 <li><p>Distributional hypothesis: words that occur in similar contexts have similar meanings</p></li>
@@ -965,7 +835,7 @@ title="Print to PDF"
 <li><p>Dense vectors: word embeddings</p></li>
 </ul>
 <section id="what-do-words-mean-and-how-do-we-represent-that">
-<h3>What do words mean, and how do we represent that?<a class="headerlink" href="#what-do-words-mean-and-how-do-we-represent-that" title="Permalink to this headline">#</a></h3>
+<h3>What do words mean, and how do we represent that?<a class="headerlink" href="#what-do-words-mean-and-how-do-we-represent-that" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p><code class="docutils literal notranslate"><span class="pre">cassoulet</span></code></p>
 </div></blockquote>
@@ -1001,7 +871,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="different-approaches-to-lexical-semantics">
-<h3>Different approaches to lexical semantics<a class="headerlink" href="#different-approaches-to-lexical-semantics" title="Permalink to this headline">#</a></h3>
+<h3>Different approaches to lexical semantics<a class="headerlink" href="#different-approaches-to-lexical-semantics" title="Permalink to this heading">#</a></h3>
 <p>NLP draws on two different approaches to lexical semantics:</p>
 <ul class="simple">
 <li><p><strong>Lexical semantics</strong>:</p>
@@ -1018,7 +888,7 @@ title="Print to PDF"
 </li>
 </ul>
 <section id="lexical-semantics">
-<h4>Lexical semantics<a class="headerlink" href="#lexical-semantics" title="Permalink to this headline">#</a></h4>
+<h4>Lexical semantics<a class="headerlink" href="#lexical-semantics" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Uses resources such as <code class="docutils literal notranslate"><span class="pre">lexicons</span></code>, <code class="docutils literal notranslate"><span class="pre">thesauri</span></code>, <code class="docutils literal notranslate"><span class="pre">ontologies</span></code> etc. that capture explicit knowledge about word meanings.</p></li>
 <li><p>Assumes that words have <code class="docutils literal notranslate"><span class="pre">discrete</span> <span class="pre">word</span> <span class="pre">senses</span></code> that can be represented in a <code class="docutils literal notranslate"><span class="pre">lexicon</span></code>.</p>
@@ -1036,7 +906,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="distributional-semantics">
-<h4>Distributional semantics<a class="headerlink" href="#distributional-semantics" title="Permalink to this headline">#</a></h4>
+<h4>Distributional semantics<a class="headerlink" href="#distributional-semantics" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Uses <code class="docutils literal notranslate"><span class="pre">large</span> <span class="pre">corpora</span> <span class="pre">of</span> <span class="pre">raw</span> <span class="pre">text</span></code> to learn the meaning of words from the contexts in which they occur.</p></li>
 <li><p>Maps words to <code class="docutils literal notranslate"><span class="pre">vector</span> <span class="pre">representations</span></code> that capture the <code class="docutils literal notranslate"><span class="pre">distributional</span> <span class="pre">properties</span></code> of the words in the corpus.</p></li>
@@ -1046,7 +916,7 @@ title="Print to PDF"
 </section>
 </section>
 <section id="how-do-we-represent-words-to-capture-word-similarities">
-<h3>How do we represent words to capture word similarities?<a class="headerlink" href="#how-do-we-represent-words-to-capture-word-similarities" title="Permalink to this headline">#</a></h3>
+<h3>How do we represent words to capture word similarities?<a class="headerlink" href="#how-do-we-represent-words-to-capture-word-similarities" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>As <code class="docutils literal notranslate"><span class="pre">atomic</span> <span class="pre">symbols</span></code></p>
 <ul>
@@ -1073,13 +943,13 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="what-should-word-representations-capture">
-<h3>What should word representations capture?<a class="headerlink" href="#what-should-word-representations-capture" title="Permalink to this headline">#</a></h3>
+<h3>What should word representations capture?<a class="headerlink" href="#what-should-word-representations-capture" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Vector representations of words were originally used to capture <code class="docutils literal notranslate"><span class="pre">lexical</span> <span class="pre">semantics</span></code> so that words with similar meanings would be represented by vectors that are close together in vector space.</p></li>
 <li><p>These representations may also capture some <code class="docutils literal notranslate"><span class="pre">morphological</span></code> and <code class="docutils literal notranslate"><span class="pre">syntactic</span></code> information about words. (part of speech, inflections, stems, etc.)</p></li>
 </ul>
 <section id="the-distributional-hypothesis">
-<h4>The Distributional Hypothesis<a class="headerlink" href="#the-distributional-hypothesis" title="Permalink to this headline">#</a></h4>
+<h4>The Distributional Hypothesis<a class="headerlink" href="#the-distributional-hypothesis" title="Permalink to this heading">#</a></h4>
 <p>Zellig Harris (1954):</p>
 <ul class="simple">
 <li><p>Words that occur in similar contexts have similar meanings.</p></li>
@@ -1096,7 +966,7 @@ title="Print to PDF"
 </div></blockquote>
 </section>
 <section id="why-do-we-care-about-word-contexts">
-<h4>Why do we care about word contexts?<a class="headerlink" href="#why-do-we-care-about-word-contexts" title="Permalink to this headline">#</a></h4>
+<h4>Why do we care about word contexts?<a class="headerlink" href="#why-do-we-care-about-word-contexts" title="Permalink to this heading">#</a></h4>
 <p>What is <code class="docutils literal notranslate"><span class="pre">tezgüino</span></code>?</p>
 <ul class="simple">
 <li><p>A bottle of <code class="docutils literal notranslate"><span class="pre">tezgüino</span></code> is on the table.</p></li>
@@ -1123,7 +993,7 @@ title="Print to PDF"
 </section>
 </section>
 <section id="two-ways-nlp-uses-context-for-semantics">
-<h3>Two ways NLP uses context for semantics<a class="headerlink" href="#two-ways-nlp-uses-context-for-semantics" title="Permalink to this headline">#</a></h3>
+<h3>Two ways NLP uses context for semantics<a class="headerlink" href="#two-ways-nlp-uses-context-for-semantics" title="Permalink to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">Distributional</span> <span class="pre">similarity</span></code>: (vector-space semantics)</p>
 <ul class="simple">
 <li><p>Assume that words that occur in similar contexts have similar meanings.</p></li>
@@ -1137,15 +1007,15 @@ title="Print to PDF"
 </section>
 </section>
 <section id="distributional-similarity">
-<h2>Distributional Similarity<a class="headerlink" href="#distributional-similarity" title="Permalink to this headline">#</a></h2>
+<h2>Distributional Similarity<a class="headerlink" href="#distributional-similarity" title="Permalink to this heading">#</a></h2>
 <section id="basic-idea">
-<h3>Basic idea<a class="headerlink" href="#basic-idea" title="Permalink to this headline">#</a></h3>
+<h3>Basic idea<a class="headerlink" href="#basic-idea" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Measure the semantic <code class="docutils literal notranslate"><span class="pre">similarities</span> <span class="pre">of</span> <span class="pre">words</span></code> by measuring the <code class="docutils literal notranslate"><span class="pre">similarity</span> <span class="pre">of</span> <span class="pre">their</span> <span class="pre">contexts</span></code> in which they occur</p></li>
 </ul>
 </section>
 <section id="how">
-<h3>How?<a class="headerlink" href="#how" title="Permalink to this headline">#</a></h3>
+<h3>How?<a class="headerlink" href="#how" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Represent words as <code class="docutils literal notranslate"><span class="pre">sparse</span> <span class="pre">vectors</span></code> such that:</p>
 <ul>
@@ -1166,7 +1036,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="the-information-retrieval-perspective-the-term-document-matrix">
-<h3>The Information Retrieval perspective: The Term-Document Matrix<a class="headerlink" href="#the-information-retrieval-perspective-the-term-document-matrix" title="Permalink to this headline">#</a></h3>
+<h3>The Information Retrieval perspective: The Term-Document Matrix<a class="headerlink" href="#the-information-retrieval-perspective-the-term-document-matrix" title="Permalink to this heading">#</a></h3>
 <p>In information retrieval, we search a collection of <span class="math notranslate nohighlight">\(N\)</span> documents for <span class="math notranslate nohighlight">\(M\)</span> terms:</p>
 <ul class="simple">
 <li><p>We can represent each <code class="docutils literal notranslate"><span class="pre">word</span></code> in the vocabulary <span class="math notranslate nohighlight">\(V\)</span> as an <span class="math notranslate nohighlight">\(N\)</span>-dimensional vector <span class="math notranslate nohighlight">\(v_w\)</span> where <span class="math notranslate nohighlight">\(v_{w,i}\)</span> is the <code class="docutils literal notranslate"><span class="pre">frequency</span></code> of the word <span class="math notranslate nohighlight">\(w\)</span> in document <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
@@ -1181,7 +1051,7 @@ title="Print to PDF"
 </section>
 </section>
 <section id="term-document-matrix">
-<h2>Term-Document Matrix<a class="headerlink" href="#term-document-matrix" title="Permalink to this headline">#</a></h2>
+<h2>Term-Document Matrix<a class="headerlink" href="#term-document-matrix" title="Permalink to this heading">#</a></h2>
 <p><img alt="" src="../../_images/214.png" /></p>
 <p>A term-document matrix is a 2D matrix:</p>
 <ul class="simple">
@@ -1211,7 +1081,7 @@ title="Print to PDF"
 <p>For information retrieval, the term-document matrix is useful because it allows us to represent documents as vectors and compute the similarity between documents in terms of the words they contain, or of terms in terms of the documents they occur in.</p>
 <p>We can adapt this idea to implement <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">model</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">distributional</span> <span class="pre">hypothesis</span></code> if we treat each context as a column in the matrix and each word as a row.</p>
 <section id="what-is-a-context">
-<h3>What is a <code class="docutils literal notranslate"><span class="pre">context</span></code>?<a class="headerlink" href="#what-is-a-context" title="Permalink to this headline">#</a></h3>
+<h3>What is a <code class="docutils literal notranslate"><span class="pre">context</span></code>?<a class="headerlink" href="#what-is-a-context" title="Permalink to this heading">#</a></h3>
 <p>There are many ways to define a context:</p>
 <p><strong>Contexts defined by nearby words:</strong></p>
 <ul class="simple">
@@ -1227,28 +1097,28 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="using-nearby-words-as-contexts">
-<h3>Using nearby words as contexts<a class="headerlink" href="#using-nearby-words-as-contexts" title="Permalink to this headline">#</a></h3>
-<ol class="simple">
+<h3>Using nearby words as contexts<a class="headerlink" href="#using-nearby-words-as-contexts" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
 <li><p>Define a fixed vocabulary of <span class="math notranslate nohighlight">\(N\)</span> context words <span class="math notranslate nohighlight">\(c_1 , \ldots , c_N\)</span></p></li>
 </ol>
 <ul class="simple">
 <li><p>Contexts words should occur frequently enough in the corpus that you can get reliable counts.</p></li>
 <li><p>However, you should ignore very frequent words (stopwords) like <code class="docutils literal notranslate"><span class="pre">the</span></code> and <code class="docutils literal notranslate"><span class="pre">a</span></code> because they are not very informative.</p></li>
 </ul>
-<ol class="simple">
+<ol class="arabic simple" start="2">
 <li><p>Define what <code class="docutils literal notranslate"><span class="pre">nearby</span></code> means:</p></li>
 </ol>
 <ul class="simple">
 <li><p>For example, we can define a <code class="docutils literal notranslate"><span class="pre">window</span></code> of <span class="math notranslate nohighlight">\(k\)</span> words on either side of the word <span class="math notranslate nohighlight">\(w_j\)</span>.</p></li>
 </ul>
-<ol class="simple">
+<ol class="arabic simple" start="2">
 <li><p>Count the number of times each context word <span class="math notranslate nohighlight">\(c_i\)</span> occurs within a window of <span class="math notranslate nohighlight">\(k\)</span> words of the word <span class="math notranslate nohighlight">\(w_j\)</span>.</p></li>
 <li><p>Define how to transform the co-occurrence counts into a vector representation of the word <span class="math notranslate nohighlight">\(w_j\)</span>.</p></li>
 </ol>
 <ul class="simple">
 <li><p>For example, we can use the (positive) <code class="docutils literal notranslate"><span class="pre">PMI</span></code> of the word <span class="math notranslate nohighlight">\(w_j\)</span> and the context word <span class="math notranslate nohighlight">\(c_i\)</span>.</p></li>
 </ul>
-<ol class="simple">
+<ol class="arabic simple" start="4">
 <li><p>Compute the similarity between words by measuring the similarity of their context vectors.</p></li>
 </ol>
 <ul class="simple">
@@ -1256,7 +1126,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="word-word-matrix">
-<h3>Word-Word Matrix<a class="headerlink" href="#word-word-matrix" title="Permalink to this headline">#</a></h3>
+<h3>Word-Word Matrix<a class="headerlink" href="#word-word-matrix" title="Permalink to this heading">#</a></h3>
 <p><img alt="" src="../../_images/43.png" /></p>
 <p>Resulting word-word matrix:</p>
 <ul class="simple">
@@ -1266,7 +1136,7 @@ title="Print to PDF"
 <p><img alt="" src="../../_images/53.png" /></p>
 </section>
 <section id="defining-co-occurrences">
-<h3>Defining co-occurrences:<a class="headerlink" href="#defining-co-occurrences" title="Permalink to this headline">#</a></h3>
+<h3>Defining co-occurrences:<a class="headerlink" href="#defining-co-occurrences" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Within</span> <span class="pre">a</span> <span class="pre">fixed</span> <span class="pre">window</span></code>: <span class="math notranslate nohighlight">\(c_i\)</span> occurs within <span class="math notranslate nohighlight">\(\pm n\)</span> words of <span class="math notranslate nohighlight">\(w\)</span></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Within</span> <span class="pre">the</span> <span class="pre">same</span> <span class="pre">sentence</span></code>: requires sentence boundaries</p></li>
@@ -1274,7 +1144,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="representing-co-occurrences">
-<h3>Representing co-occurrences:<a class="headerlink" href="#representing-co-occurrences" title="Permalink to this headline">#</a></h3>
+<h3>Representing co-occurrences:<a class="headerlink" href="#representing-co-occurrences" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(f_i\)</span> as<code class="docutils literal notranslate"> <span class="pre">binary</span> <span class="pre">features</span></code> (1,0): <span class="math notranslate nohighlight">\(w\)</span> does/does not occur with <span class="math notranslate nohighlight">\(c_i\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(f_i\)</span> as frequencies: <span class="math notranslate nohighlight">\(w\)</span> occurs <span class="math notranslate nohighlight">\(n\)</span> times with <span class="math notranslate nohighlight">\(c_i\)</span></p></li>
@@ -1282,7 +1152,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="getting-co-occurrence-counts">
-<h3>Getting co-occurrence counts<a class="headerlink" href="#getting-co-occurrence-counts" title="Permalink to this headline">#</a></h3>
+<h3>Getting co-occurrence counts<a class="headerlink" href="#getting-co-occurrence-counts" title="Permalink to this heading">#</a></h3>
 <p>Co-occurrence as a <code class="docutils literal notranslate"><span class="pre">binary</span></code> feature:</p>
 <ul class="simple">
 <li><p>Does word <span class="math notranslate nohighlight">\(w\)</span> ever appear in the context <span class="math notranslate nohighlight">\(c\)</span>? (1 = yes/0 = no)</p></li>
@@ -1295,7 +1165,7 @@ title="Print to PDF"
 <p><img alt="" src="../../_images/72.png" /></p>
 </section>
 <section id="counts-vs-pmi">
-<h3>Counts vs PMI<a class="headerlink" href="#counts-vs-pmi" title="Permalink to this headline">#</a></h3>
+<h3>Counts vs PMI<a class="headerlink" href="#counts-vs-pmi" title="Permalink to this heading">#</a></h3>
 <p>Sometimes, low co-occurrences counts are very informative, and high co-occurrence counts are not:</p>
 <ul class="simple">
 <li><p>Any word is going to have relatively high co-occurrence counts with very common contexts (e.g. <code class="docutils literal notranslate"><span class="pre">the</span></code> with <code class="docutils literal notranslate"><span class="pre">a</span></code>), but this won’t tell us much about what that word means.</p></li>
@@ -1307,9 +1177,9 @@ title="Print to PDF"
 <p><img alt="" src="../../_images/83.png" /></p>
 </section>
 <section id="computing-pmi-of-w-and-c">
-<h3>Computing PMI of <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(c\)</span>:<a class="headerlink" href="#computing-pmi-of-w-and-c" title="Permalink to this headline">#</a></h3>
+<h3>Computing PMI of <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(c\)</span>:<a class="headerlink" href="#computing-pmi-of-w-and-c" title="Permalink to this heading">#</a></h3>
 <section id="using-a-fixed-window-of-pm-k-words">
-<h4>Using a fixed window of <span class="math notranslate nohighlight">\(\pm k\)</span> words<a class="headerlink" href="#using-a-fixed-window-of-pm-k-words" title="Permalink to this headline">#</a></h4>
+<h4>Using a fixed window of <span class="math notranslate nohighlight">\(\pm k\)</span> words<a class="headerlink" href="#using-a-fixed-window-of-pm-k-words" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(N\)</span>: How many tokens does the corpus contain?</p></li>
 <li><p><span class="math notranslate nohighlight">\(f(w) \le N\)</span>: How often does <span class="math notranslate nohighlight">\(w\)</span> occur?</p></li>
@@ -1350,7 +1220,7 @@ title="Print to PDF"
 </section>
 </section>
 <section id="dot-product-as-similarity">
-<h2>Dot product as similarity<a class="headerlink" href="#dot-product-as-similarity" title="Permalink to this headline">#</a></h2>
+<h2>Dot product as similarity<a class="headerlink" href="#dot-product-as-similarity" title="Permalink to this heading">#</a></h2>
 <p>If the vectors consist of simple binary features (0,1), we can use the <code class="docutils literal notranslate"><span class="pre">dot</span> <span class="pre">product</span></code> as <code class="docutils literal notranslate"><span class="pre">similarity</span> <span class="pre">metric</span></code>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1368,7 +1238,7 @@ sim_{dot-prod}(\vec{x}\cdot\vec{y}) = \sum_{i=1}^{N} x_i \times y_i
 \]</div>
 </section>
 <section id="vector-similarity-cosine">
-<h2>Vector similarity: Cosine<a class="headerlink" href="#vector-similarity-cosine" title="Permalink to this headline">#</a></h2>
+<h2>Vector similarity: Cosine<a class="headerlink" href="#vector-similarity-cosine" title="Permalink to this heading">#</a></h2>
 <p>One way to define the similarity of two vectors is to use the cosine of their angle.</p>
 <p>The cosine of two vectors is their dot product, divided by the product of their lengths:</p>
 <div class="math notranslate nohighlight">
@@ -1385,7 +1255,7 @@ sim_{cos}(\vec{x},\vec{y})=\frac{\sum_{i=1}^{N} x_i \times y_i}{\sqrt{\sum_{i=1}
 <div><p><span class="math notranslate nohighlight">\(sim(\mathbf{w}, \mathbf{u}) = -1\)</span>: <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> point in the opposite direction</p>
 </div></blockquote>
 <section id="visualizing-cosines">
-<h3>Visualizing cosines<a class="headerlink" href="#visualizing-cosines" title="Permalink to this headline">#</a></h3>
+<h3>Visualizing cosines<a class="headerlink" href="#visualizing-cosines" title="Permalink to this heading">#</a></h3>
 <p><img alt="" src="../../_images/cosine-viz.png" /></p>
 </section>
 </section>
@@ -1411,50 +1281,267 @@ sim_{cos}(\vec{x},\vec{y})=\frac{\sum_{i=1}^{N} x_i \times y_i}{\sqrt{\sum_{i=1}
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
-              
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="word_segmentation.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Word Segmentation and Association</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="word_embeddings.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Word Embeddings</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+  <a class='left-prev' id="prev-link" href="word_segmentation.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Word Segmentation and Association</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="word_embeddings.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Word Embeddings</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
 </div>
             </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
   
-    By <a href="https://entelecheia.me">Young Joon Lee</a><br/>
-  
-      &copy; Copyright 2023.<br/>
-</p>
-        </footer>
-    </div>
-    
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vector-semantics-and-word-embeddings">
+   Vector Semantics and Word Embeddings
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-do-words-mean-and-how-do-we-represent-that">
+     What do words mean, and how do we represent that?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#different-approaches-to-lexical-semantics">
+     Different approaches to lexical semantics
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#lexical-semantics">
+       Lexical semantics
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#distributional-semantics">
+       Distributional semantics
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-do-we-represent-words-to-capture-word-similarities">
+     How do we represent words to capture word similarities?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-should-word-representations-capture">
+     What should word representations capture?
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-distributional-hypothesis">
+       The Distributional Hypothesis
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#why-do-we-care-about-word-contexts">
+       Why do we care about word contexts?
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#two-ways-nlp-uses-context-for-semantics">
+     Two ways NLP uses context for semantics
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distributional-similarity">
+   Distributional Similarity
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basic-idea">
+     Basic idea
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how">
+     How?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-information-retrieval-perspective-the-term-document-matrix">
+     The Information Retrieval perspective: The Term-Document Matrix
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#term-document-matrix">
+   Term-Document Matrix
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-a-context">
+     What is a
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       context
+      </span>
+     </code>
+     ?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-nearby-words-as-contexts">
+     Using nearby words as contexts
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#word-word-matrix">
+     Word-Word Matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#defining-co-occurrences">
+     Defining co-occurrences:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#representing-co-occurrences">
+     Representing co-occurrences:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#getting-co-occurrence-counts">
+     Getting co-occurrence counts
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#counts-vs-pmi">
+     Counts vs PMI
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#computing-pmi-of-w-and-c">
+     Computing PMI of
+     <span class="math notranslate nohighlight">
+      \(w\)
+     </span>
+     and
+     <span class="math notranslate nohighlight">
+      \(c\)
+     </span>
+     :
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#using-a-fixed-window-of-pm-k-words">
+       Using a fixed window of
+       <span class="math notranslate nohighlight">
+        \(\pm k\)
+       </span>
+       words
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dot-product-as-similarity">
+   Dot product as similarity
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vector-similarity-cosine">
+   Vector similarity: Cosine
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualizing-cosines">
+     Visualizing cosines
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
 </div>
 
-
-      </div>
-    </div>
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://entelecheia.me">Young Joon Lee</a>
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2023.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on None.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
 
   </body>
 </html>
