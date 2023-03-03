@@ -1,8 +1,14 @@
-# Lecture Notes
+# Introduction
 
-## Enteleheia in Artificial Intelligence
+## Table of Contents
 
-[![library](https://github.com/entelecheia/ekorpkit-book/raw/main/ekorpkit-book/library.png)](https://entelecheia.github.io/ekorpkit-book)
+```{tableofcontents}
+
+```
+
+## ἐντελέχεια 【en.te.lé.kʰeː.a】 in Artificial Intelligence
+
+![library](https://github.com/entelecheia/ekorpkit-book/raw/main/ekorpkit-book/library.png)
 
 Artificial Intelligence (AI) is a rapidly evolving field that has the potential to revolutionize many aspects of our lives. However, as AI becomes more advanced, it is important to consider not just its technical capabilities, but also its ethical and societal implications. One way to approach this is by considering the ancient Greek concept of entelecheia, coined by Aristotle, which refers to the state of having achieved one's full potential or the realization of one's purpose.
 
@@ -33,9 +39,3 @@ Aristotle's concept of entelecheia can provide valuable insights into the field 
 [contributing guidelines]: https://github.com/entelecheia/lecture/blob/main/CONTRIBUTING.md
 
 <!-- Links: -->
-
-## Table of Contents
-
-```{tableofcontents}
-
-```
