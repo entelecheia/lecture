@@ -1,6 +1,6 @@
 # Introduction
 
-## ἐντελέχεια 【en.te.lé.kʰeː.a】 in Artificial Intelligence
+## ἐντελέχεια in Artificial Intelligence
 
 ![library](https://github.com/entelecheia/ekorpkit-book/raw/main/ekorpkit-book/library.png)
 
