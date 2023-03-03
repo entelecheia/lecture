@@ -1,11 +1,5 @@
 # Introduction
 
-## Table of Contents
-
-```{tableofcontents}
-
-```
-
 ## ἐντελέχεια 【en.te.lé.kʰeː.a】 in Artificial Intelligence
 
 ![library](https://github.com/entelecheia/ekorpkit-book/raw/main/ekorpkit-book/library.png)
@@ -21,6 +15,12 @@ Another area where AI can have a major impact is in the field of finance and eco
 In addition, there is growing concern about AI systems that can reproduce or even surpass human-level intelligence, known as AGI or Strong AI. It is important that the development and use of such technologies are guided by a clear set of ethical principles that prioritize the safety and well-being of humanity.
 
 Aristotle's concept of entelecheia can provide valuable insights into the field of AI by highlighting the importance of achieving full potential and realizing intended purpose. It's important to recognize that as AI technologies become more advanced, it's essential to consider the ethical and societal implications of these technologies and strive for entelecheia, in order to make sure that AI is used in a way that benefits everyone.
+
+## Table of Contents
+
+```{tableofcontents}
+
+```
 
 <!-- Links: -->
 
