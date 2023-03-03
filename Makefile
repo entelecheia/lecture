@@ -127,6 +127,9 @@ dev-checkout-upstream: ## create and checkout the dev branch, and set the upstre
 main-checkout: ## checkout the main branch
 	@git checkout main
 
+gc-prune: ## garbage collect and prune
+	@git gc --prune=now
+	
 ##@ Setup
 
 install-pipx: ## install pipx (pre-requisite for external tools)
@@ -170,3 +173,10 @@ init-project: install-copier install-precommit-hooks ## initialize the project (
 init-git: ## initialize git
 	@git init
 
+##@ Misc
+
+large-files: ## show the 20 largest files in the repo
+	@find . -printf '%s %p\n'| sort -nr | head -20
+
+disk-usage: ## show the disk usage of the repo
+	@du -h -d 2 .
