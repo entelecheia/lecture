@@ -10,7 +10,7 @@ Overall, machine learning systems design and MLOps are critical to ensuring the 
 
 ```{figure} ../figs/mlops/intro/mlops-cycle.png
 ---
-height: 400px
+width: 400px
 name: fig-mlops-cycle
 ---
 The MLOps cycle.
@@ -30,9 +30,14 @@ By using continuous delivery and automation pipelines in machine learning, teams
 
 ```{figure} ../figs/mlops/intro/mlcode.png
 ---
-height: 400px
+width: 700px
 name: fig-mlops-cycle
 ---
 Only a small fraction of real-world ML systems is composed of the ML code {cite:p}`sculley2015hidden`
 ```
 
+Building a real-world machine learning system involves much more than just writing the machine learning code. In fact, only a small fraction of the overall system is typically composed of the machine learning code. Building a successful machine learning system requires expertise in various areas, including machine learning algorithms and models, data engineering, software engineering, DevOps, and more. It is a complex and challenging task that requires careful planning, design, and execution.
+
+## DevOps versus MLOps
+
+## Machine Learning Layered on DevOps
