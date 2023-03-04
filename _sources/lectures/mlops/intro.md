@@ -10,7 +10,7 @@ Machine learning systems design and MLOps are critical to ensuring the success o
 
 ```{figure} ../../tex/mlops/intro/mlops-cycle.png
 ---
-width: 400px
+width: 500px
 name: fig-mlops-cycle
 ---
 The MLOps cycle.
@@ -72,7 +72,7 @@ Another key difference between DevOps and MLOps is the nature of the models bein
 
 ```{figure} ../figs/mlops/intro/mlops-cycle.jpg
 ---
-width: 400px
+width: 500px
 name: fig-mlops-cycle
 ---
 The MLOps cycle. Source: [NealAnalytics](https://nealanalytics.com/expertise/mlops/)
