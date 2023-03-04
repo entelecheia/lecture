@@ -124,7 +124,7 @@ MLOps is essential because machine learning projects can be challenging to imple
 
 - **Compliance and governance**: MLOps provides a framework for managing data privacy and security, ensuring compliance with regulatory requirements and governance policies.
 
-## MLOps best practices
+## How to implement MLOps
 
 Implementing MLOps requires assessing the current state, defining requirements, selecting the right tools, automating the process, monitoring and maintaining, and performing continuous training and testing of the machine learning models.
 
@@ -170,6 +170,18 @@ MLOps level 2 involves a robust automated CI/CD system and fits tech-driven comp
 - ML metadata store
 - ML pipeline orchestrator
 
-## How to implement MLOps
-
 ## End-to-end MLOps solutions
+
+- Dataiku: A collaborative data science platform that enables organizations to design, prototype, deploy, and manage their machine learning models in production.
+
+- H2O.ai: An open-source platform for building and deploying machine learning models. It includes automated machine learning capabilities and an enterprise-grade MLOps solution.
+
+- MLflow: An open-source platform for managing the machine learning lifecycle. It includes tools for tracking experiments, packaging code into reproducible runs, and deploying models.
+
+- Domino Data Lab: A platform for developing and deploying machine learning models. It includes features for version control, reproducibility, and collaboration.
+
+- AWS SageMaker: A cloud-based platform for building, training, and deploying machine learning models. It includes features for data preparation, algorithm selection, and model deployment.
+
+- Azure Machine Learning: A cloud-based platform for building, training, and deploying machine learning models. It includes features for automated machine learning, model selection, and deployment.
+
+- Google Cloud AI Platform: A cloud-based platform for building, training, and deploying machine learning models. It includes features for data preparation, model training, and deployment.
