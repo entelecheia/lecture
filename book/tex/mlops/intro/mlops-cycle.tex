@@ -1,9 +1,14 @@
 \documentclass[tikz, border=1cm, convert={density=300,outext=.png}]{standalone}
+\usetikzlibrary{backgrounds}
 
 \begin{document}
 
 \begin{tikzpicture}[node distance=1cm, every node/.style={font=\small}]
-    % nodes
+    % white background
+    \begin{scope}[on background layer]
+        \fill [white] (-4,-8) rectangle (5,1);
+    \end{scope}
+    % nodes and paths
     \node (problem) [rectangle, draw] {Problem};
     \node (data) [rectangle, draw, below of=problem, align=center] {Data collection and preparation};
     \node (features) [rectangle, draw, below of=data, align=center] {Feature engineering and selection};
