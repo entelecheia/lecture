@@ -8,7 +8,7 @@ MLOps, or Machine Learning Operations, is a related field that applies DevOps pr
 
 Machine learning systems design and MLOps are critical to ensuring the success of machine learning projects, improving the accuracy and efficiency of models, and delivering value to users and customers.
 
-```{figure} ../figs/mlops/intro/mlops-cycle.png
+```{figure} ../../tex/mlops/intro/mlops-cycle.png
 ---
 width: 400px
 name: fig-mlops-cycle
