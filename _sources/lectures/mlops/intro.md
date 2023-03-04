@@ -70,6 +70,14 @@ MLOps requires a broader set of skills and expertise than DevOps, including mach
 
 Another key difference between DevOps and MLOps is the nature of the models being developed. In traditional software development, the code can be version-controlled and tested easily, while in machine learning, the models are more complex, and it's not always easy to understand how the model arrived at its output.
 
+```{figure} ../figs/mlops/intro/mlops-cycle.jpg
+---
+width: 400px
+name: fig-mlops-cycle
+---
+The MLOps cycle. Source: [NealAnalytics](https://nealanalytics.com/expertise/mlops/)
+```
+
 - DevOps focuses on software development and IT operations, while MLOps applies the same principles to machine learning.
 - MLOps focuses on the end-to-end lifecycle of machine learning models, while DevOps focuses on the software development lifecycle.
 - MLOps involves building and deploying dynamic and adaptive machine learning models, while DevOps involves building and deploying fixed-input, fixed-output software applications.
@@ -93,3 +101,75 @@ By using continuous delivery and automation pipelines in machine learning, teams
 - MLOps uses continuous delivery and automation pipelines to streamline the building and deploying of machine learning models.
 - Automation tools like Apache Airflow, TensorFlow, Kubernetes, and Prometheus can automate data collection, preparation, feature engineering, model training and validation, deployment, monitoring, and maintenance.
 - By using continuous delivery and automation pipelines, teams can reduce time and resources required to deploy and maintain models, improve accuracy and reliability, and deliver more value to users and customers.
+
+MLOps and DevOps share similarities in continuous integration, unit testing, integration testing, and continuous delivery of software modules or packages. However, there are notable differences in ML:
+
+- Continuous Integration (CI) now includes testing and validating data, data schemas, and models, not just code and components.
+- Continuous Deployment (CD) involves a system (an ML training pipeline) that deploys another service (model prediction service) or rolls back changes from a model, rather than a single software package or service.
+- Continuous Testing (CT) is a unique property of ML systems, concerned with automatically retraining and serving the models.
+
+## Why does MLOps matter?
+
+MLOps is essential because machine learning projects can be challenging to implement and maintain. MLOps helps to overcome these challenges by providing a framework for managing the entire lifecycle of machine learning models, from data collection and preprocessing to model deployment and maintenance. Here are some reasons why MLOps matters:
+
+- **Better collaboration**: MLOps fosters collaboration between data scientists, developers, and operations teams, enabling them to work together to build and deploy machine learning models quickly and efficiently.
+
+- **Faster time-to-market**: MLOps enables organizations to deploy machine learning models faster and with more reliability, reducing time-to-market for new products or services.
+
+- **Improved scalability**: MLOps provides a scalable architecture for machine learning systems, allowing organizations to process large amounts of data and deploy models across multiple platforms and environments.
+
+- **Increased accuracy and efficiency**: MLOps enables organizations to monitor and fine-tune machine learning models continuously, ensuring they are accurate and efficient over time.
+
+- **Reduced costs**: MLOps automates many of the processes involved in developing and deploying machine learning models, reducing costs associated with manual processes and human error.
+
+- **Compliance and governance**: MLOps provides a framework for managing data privacy and security, ensuring compliance with regulatory requirements and governance policies.
+
+## MLOps best practices
+
+Implementing MLOps requires assessing the current state, defining requirements, selecting the right tools, automating the process, monitoring and maintaining, and performing continuous training and testing of the machine learning models.
+
+The level of automation of these steps defines the maturity of the MLOps process. The following are some best practices for implementing MLOps:
+
+### MLOps Level 0
+
+MLOps level 0 is for companies starting with ML and involves a manual, script-driven, and interactive process. It separates data scientists and engineers, has infrequent release iterations, and no CI/CD. The challenges include models breaking in the real world.
+
+- Manual, script-driven, and interactive process
+- Disconnect between data scientists and engineers
+- Infrequent release iterations
+- No Continuous Integration (CI) or Continuous Deployment (CD)
+- Deployment of a trained model as a prediction service
+- Lack of active performance monitoring
+
+### MLOps Level 1
+
+MLOps level 1 involves automating the ML pipeline to achieve continuous training of the model in production. It requires rapid experiments, CT of the model, experimental-operational symmetry, and modularized code for components and pipelines. The additional components include data and model validation, a feature store, metadata management, and ML pipeline triggers. The challenges include deploying new models based on new data instead of new ML ideas.
+
+- Rapid experiment
+- Continuous Training (CT) of the model in production
+- Experimental-operational symmetry
+- Modularized code for components and pipelines
+- Continuous delivery of models
+- Deployment of a whole training pipeline to serve the trained model as the prediction service
+- Data and model validation
+- Feature store
+- Metadata management
+- ML pipeline triggers
+
+### MLOps Level 2
+
+MLOps level 2 involves a robust automated CI/CD system and fits tech-driven companies. It includes source control, test and build services, deployment services, model registry, feature store, ML metadata store, and ML pipeline orchestrator. The characteristics include iterative ML algorithm testing and automated triggering. The challenges include manual data and model analysis steps.
+
+- Iterative testing of new ML algorithms and modeling
+- Automated CI/CD system
+- Source control
+- Test and build services
+- Deployment services
+- Model registry
+- Feature store
+- ML metadata store
+- ML pipeline orchestrator
+
+## How to implement MLOps
+
+## End-to-end MLOps solutions

@@ -323,6 +323,12 @@
 <p>One key difference between DevOps and MLOps is the complexity of the systems involved. Traditional software development involves building applications that run on fixed inputs and provide fixed outputs. In contrast, machine learning models are highly dynamic and adaptive, making them more challenging to deploy and maintain.</p>
 <p>MLOps requires a broader set of skills and expertise than DevOps, including machine learning algorithms and models, data engineering, statistical analysis, and more. Additionally, MLOps tools and platforms are specific to machine learning, such as TensorFlow, PyTorch, and Kubeflow.</p>
 <p>Another key difference between DevOps and MLOps is the nature of the models being developed. In traditional software development, the code can be version-controlled and tested easily, while in machine learning, the models are more complex, and it’s not always easy to understand how the model arrived at its output.</p>
+<figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../../_images/mlops-cycle.jpg"><img alt="../../_images/mlops-cycle.jpg" src="../../_images/mlops-cycle.jpg" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">The MLOps cycle. Source: <a class="reference external" href="https://nealanalytics.com/expertise/mlops/">NealAnalytics</a></span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <ul class="simple">
 <li><p>DevOps focuses on software development and IT operations, while MLOps applies the same principles to machine learning.</p></li>
 <li><p>MLOps focuses on the end-to-end lifecycle of machine learning models, while DevOps focuses on the software development lifecycle.</p></li>
@@ -345,6 +351,78 @@
 <li><p>Automation tools like Apache Airflow, TensorFlow, Kubernetes, and Prometheus can automate data collection, preparation, feature engineering, model training and validation, deployment, monitoring, and maintenance.</p></li>
 <li><p>By using continuous delivery and automation pipelines, teams can reduce time and resources required to deploy and maintain models, improve accuracy and reliability, and deliver more value to users and customers.</p></li>
 </ul>
+<p>MLOps and DevOps share similarities in continuous integration, unit testing, integration testing, and continuous delivery of software modules or packages. However, there are notable differences in ML:</p>
+<ul class="simple">
+<li><p>Continuous Integration (CI) now includes testing and validating data, data schemas, and models, not just code and components.</p></li>
+<li><p>Continuous Deployment (CD) involves a system (an ML training pipeline) that deploys another service (model prediction service) or rolls back changes from a model, rather than a single software package or service.</p></li>
+<li><p>Continuous Testing (CT) is a unique property of ML systems, concerned with automatically retraining and serving the models.</p></li>
+</ul>
+</section>
+<section id="why-does-mlops-matter">
+<h2>Why does MLOps matter?<a class="headerlink" href="#why-does-mlops-matter" title="Permalink to this heading">#</a></h2>
+<p>MLOps is essential because machine learning projects can be challenging to implement and maintain. MLOps helps to overcome these challenges by providing a framework for managing the entire lifecycle of machine learning models, from data collection and preprocessing to model deployment and maintenance. Here are some reasons why MLOps matters:</p>
+<ul class="simple">
+<li><p><strong>Better collaboration</strong>: MLOps fosters collaboration between data scientists, developers, and operations teams, enabling them to work together to build and deploy machine learning models quickly and efficiently.</p></li>
+<li><p><strong>Faster time-to-market</strong>: MLOps enables organizations to deploy machine learning models faster and with more reliability, reducing time-to-market for new products or services.</p></li>
+<li><p><strong>Improved scalability</strong>: MLOps provides a scalable architecture for machine learning systems, allowing organizations to process large amounts of data and deploy models across multiple platforms and environments.</p></li>
+<li><p><strong>Increased accuracy and efficiency</strong>: MLOps enables organizations to monitor and fine-tune machine learning models continuously, ensuring they are accurate and efficient over time.</p></li>
+<li><p><strong>Reduced costs</strong>: MLOps automates many of the processes involved in developing and deploying machine learning models, reducing costs associated with manual processes and human error.</p></li>
+<li><p><strong>Compliance and governance</strong>: MLOps provides a framework for managing data privacy and security, ensuring compliance with regulatory requirements and governance policies.</p></li>
+</ul>
+</section>
+<section id="mlops-best-practices">
+<h2>MLOps best practices<a class="headerlink" href="#mlops-best-practices" title="Permalink to this heading">#</a></h2>
+<p>Implementing MLOps requires assessing the current state, defining requirements, selecting the right tools, automating the process, monitoring and maintaining, and performing continuous training and testing of the machine learning models.</p>
+<p>The level of automation of these steps defines the maturity of the MLOps process. The following are some best practices for implementing MLOps:</p>
+<section id="mlops-level-0">
+<h3>MLOps Level 0<a class="headerlink" href="#mlops-level-0" title="Permalink to this heading">#</a></h3>
+<p>MLOps level 0 is for companies starting with ML and involves a manual, script-driven, and interactive process. It separates data scientists and engineers, has infrequent release iterations, and no CI/CD. The challenges include models breaking in the real world.</p>
+<ul class="simple">
+<li><p>Manual, script-driven, and interactive process</p></li>
+<li><p>Disconnect between data scientists and engineers</p></li>
+<li><p>Infrequent release iterations</p></li>
+<li><p>No Continuous Integration (CI) or Continuous Deployment (CD)</p></li>
+<li><p>Deployment of a trained model as a prediction service</p></li>
+<li><p>Lack of active performance monitoring</p></li>
+</ul>
+</section>
+<section id="mlops-level-1">
+<h3>MLOps Level 1<a class="headerlink" href="#mlops-level-1" title="Permalink to this heading">#</a></h3>
+<p>MLOps level 1 involves automating the ML pipeline to achieve continuous training of the model in production. It requires rapid experiments, CT of the model, experimental-operational symmetry, and modularized code for components and pipelines. The additional components include data and model validation, a feature store, metadata management, and ML pipeline triggers. The challenges include deploying new models based on new data instead of new ML ideas.</p>
+<ul class="simple">
+<li><p>Rapid experiment</p></li>
+<li><p>Continuous Training (CT) of the model in production</p></li>
+<li><p>Experimental-operational symmetry</p></li>
+<li><p>Modularized code for components and pipelines</p></li>
+<li><p>Continuous delivery of models</p></li>
+<li><p>Deployment of a whole training pipeline to serve the trained model as the prediction service</p></li>
+<li><p>Data and model validation</p></li>
+<li><p>Feature store</p></li>
+<li><p>Metadata management</p></li>
+<li><p>ML pipeline triggers</p></li>
+</ul>
+</section>
+<section id="mlops-level-2">
+<h3>MLOps Level 2<a class="headerlink" href="#mlops-level-2" title="Permalink to this heading">#</a></h3>
+<p>MLOps level 2 involves a robust automated CI/CD system and fits tech-driven companies. It includes source control, test and build services, deployment services, model registry, feature store, ML metadata store, and ML pipeline orchestrator. The characteristics include iterative ML algorithm testing and automated triggering. The challenges include manual data and model analysis steps.</p>
+<ul class="simple">
+<li><p>Iterative testing of new ML algorithms and modeling</p></li>
+<li><p>Automated CI/CD system</p></li>
+<li><p>Source control</p></li>
+<li><p>Test and build services</p></li>
+<li><p>Deployment services</p></li>
+<li><p>Model registry</p></li>
+<li><p>Feature store</p></li>
+<li><p>ML metadata store</p></li>
+<li><p>ML pipeline orchestrator</p></li>
+</ul>
+</section>
+</section>
+<section id="how-to-implement-mlops">
+<h2>How to implement MLOps<a class="headerlink" href="#how-to-implement-mlops" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="end-to-end-mlops-solutions">
+<h2>End-to-end MLOps solutions<a class="headerlink" href="#end-to-end-mlops-solutions" title="Permalink to this heading">#</a></h2>
 </section>
 </section>
 
@@ -427,6 +505,15 @@
 <li><a class="reference internal" href="#challenges-in-machine-learning-systems">Challenges in Machine Learning Systems</a></li>
 <li><a class="reference internal" href="#devops-versus-mlops">DevOps versus MLOps</a></li>
 <li><a class="reference internal" href="#mlops-continuous-delivery-and-automation-pipelines-in-machine-learning">MLOps: Continuous delivery and automation pipelines in machine learning</a></li>
+<li><a class="reference internal" href="#why-does-mlops-matter">Why does MLOps matter?</a></li>
+<li><a class="reference internal" href="#mlops-best-practices">MLOps best practices</a><ul>
+<li><a class="reference internal" href="#mlops-level-0">MLOps Level 0</a></li>
+<li><a class="reference internal" href="#mlops-level-1">MLOps Level 1</a></li>
+<li><a class="reference internal" href="#mlops-level-2">MLOps Level 2</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#how-to-implement-mlops">How to implement MLOps</a></li>
+<li><a class="reference internal" href="#end-to-end-mlops-solutions">End-to-end MLOps solutions</a></li>
 </ul>
 </li>
 </ul>
