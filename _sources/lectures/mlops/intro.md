@@ -86,7 +86,7 @@ The MLOps cycle. Source: [NealAnalytics](https://nealanalytics.com/expertise/mlo
 - Machine learning models are more complex and require different testing and maintenance strategies than traditional software applications.
 - MLOps involves working with more complex models that are not always easy to understand, while DevOps involves working with more straightforward applications that can be easily version-controlled and tested.
 
-## MLOps: Continuous delivery and automation pipelines in machine learning
+## Continuous Delivery and Automation Pipelines
 
 One of the key components of MLOps is the use of continuous delivery and automation pipelines to streamline the process of building and deploying machine learning models.
 
@@ -126,9 +126,27 @@ MLOps is essential because machine learning projects can be challenging to imple
 
 ## How to implement MLOps
 
-Implementing MLOps requires assessing the current state, defining requirements, selecting the right tools, automating the process, monitoring and maintaining, and performing continuous training and testing of the machine learning models.
+There are various ways to implement MLOps, depending on the needs of the organization and the maturity of the machine learning process. This section provides an overview of the steps involved in implementing MLOps, as well as some best practices for each step suggested by [Google](https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning).
 
-The level of automation of these steps defines the maturity of the MLOps process. The following are some best practices for implementing MLOps:
+### Data science steps for ML
+
+The following steps can be completed manually or can be completed by an automatic pipeline.
+
+1. Data extraction: You select and integrate the relevant data from various data sources for the ML task.
+2. Data analysis: You perform exploratory data analysis (EDA) to understand the available data for building the ML model. This process leads to the following:
+3. Understanding the data schema and characteristics that are expected by the model.
+4. Identifying the data preparation and feature engineering that are needed for the model.
+5. Data preparation: The data is prepared for the ML task. This preparation involves data cleaning, where you split the data into training, validation, and test sets. You also apply data transformations and feature engineering to the model that solves the target task. The output of this step are the data splits in the prepared format.
+6. Model training: The data scientist implements different algorithms with the prepared data to train various ML models. In addition, you subject the implemented algorithms to hyperparameter tuning to get the best performing ML model. The output of this step is a trained model.
+7. Model evaluation: The model is evaluated on a holdout test set to evaluate the model quality. The output of this step is a set of metrics to assess the quality of the model.
+8. Model validation: The model is confirmed to be adequate for deployment—that its predictive performance is better than a certain baseline.
+9. Model serving: The validated model is deployed to a target environment to serve predictions. This deployment can be one of the following:
+10. Microservices with a REST API to serve online predictions.
+11. An embedded model to an edge or mobile device.
+12. Part of a batch prediction system.
+13. Model monitoring: The model predictive performance is monitored to potentially invoke a new iteration in the ML process.
+
+Implementing MLOps requires assessing the current state, defining requirements, selecting the right tools, automating the process, monitoring and maintaining, and performing continuous training and testing of the machine learning models. The level of automation of these steps defines the maturity of the MLOps process. The following are some best practices for implementing MLOps:
 
 ### MLOps Level 0
 
@@ -170,7 +188,7 @@ MLOps level 2 involves a robust automated CI/CD system and fits tech-driven comp
 - ML metadata store
 - ML pipeline orchestrator
 
-## End-to-end MLOps solutions
+## End-to-end MLOps Solutions
 
 - Dataiku: A collaborative data science platform that enables organizations to design, prototype, deploy, and manage their machine learning models in production.
 

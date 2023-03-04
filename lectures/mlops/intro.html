@@ -339,8 +339,8 @@
 <li><p>MLOps involves working with more complex models that are not always easy to understand, while DevOps involves working with more straightforward applications that can be easily version-controlled and tested.</p></li>
 </ul>
 </section>
-<section id="mlops-continuous-delivery-and-automation-pipelines-in-machine-learning">
-<h2>MLOps: Continuous delivery and automation pipelines in machine learning<a class="headerlink" href="#mlops-continuous-delivery-and-automation-pipelines-in-machine-learning" title="Permalink to this heading">#</a></h2>
+<section id="continuous-delivery-and-automation-pipelines">
+<h2>Continuous Delivery and Automation Pipelines<a class="headerlink" href="#continuous-delivery-and-automation-pipelines" title="Permalink to this heading">#</a></h2>
 <p>One of the key components of MLOps is the use of continuous delivery and automation pipelines to streamline the process of building and deploying machine learning models.</p>
 <p>Continuous delivery involves automating the process of building, testing, and deploying machine learning models, allowing teams to quickly and reliably release new versions of their models into production. Automation pipelines are designed to perform a series of tasks automatically, reducing the risk of human error and improving the speed and efficiency of the process.</p>
 <p>For example, data collection and preparation can be automated using tools like Apache Airflow or Kubeflow, which can handle tasks like data cleaning, transformation, and feature engineering. Model training and evaluation can be automated using tools like TensorFlow or PyTorch, which can perform tasks like hyperparameter tuning and model validation.</p>
@@ -372,8 +372,27 @@
 </section>
 <section id="how-to-implement-mlops">
 <h2>How to implement MLOps<a class="headerlink" href="#how-to-implement-mlops" title="Permalink to this heading">#</a></h2>
-<p>Implementing MLOps requires assessing the current state, defining requirements, selecting the right tools, automating the process, monitoring and maintaining, and performing continuous training and testing of the machine learning models.</p>
-<p>The level of automation of these steps defines the maturity of the MLOps process. The following are some best practices for implementing MLOps:</p>
+<p>There are various ways to implement MLOps, depending on the needs of the organization and the maturity of the machine learning process. This section provides an overview of the steps involved in implementing MLOps, as well as some best practices for each step suggested by <a class="reference external" href="https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning">Google</a>.</p>
+<section id="data-science-steps-for-ml">
+<h3>Data science steps for ML<a class="headerlink" href="#data-science-steps-for-ml" title="Permalink to this heading">#</a></h3>
+<p>The following steps can be completed manually or can be completed by an automatic pipeline.</p>
+<ol class="arabic simple">
+<li><p>Data extraction: You select and integrate the relevant data from various data sources for the ML task.</p></li>
+<li><p>Data analysis: You perform exploratory data analysis (EDA) to understand the available data for building the ML model. This process leads to the following:</p></li>
+<li><p>Understanding the data schema and characteristics that are expected by the model.</p></li>
+<li><p>Identifying the data preparation and feature engineering that are needed for the model.</p></li>
+<li><p>Data preparation: The data is prepared for the ML task. This preparation involves data cleaning, where you split the data into training, validation, and test sets. You also apply data transformations and feature engineering to the model that solves the target task. The output of this step are the data splits in the prepared format.</p></li>
+<li><p>Model training: The data scientist implements different algorithms with the prepared data to train various ML models. In addition, you subject the implemented algorithms to hyperparameter tuning to get the best performing ML model. The output of this step is a trained model.</p></li>
+<li><p>Model evaluation: The model is evaluated on a holdout test set to evaluate the model quality. The output of this step is a set of metrics to assess the quality of the model.</p></li>
+<li><p>Model validation: The model is confirmed to be adequate for deployment—that its predictive performance is better than a certain baseline.</p></li>
+<li><p>Model serving: The validated model is deployed to a target environment to serve predictions. This deployment can be one of the following:</p></li>
+<li><p>Microservices with a REST API to serve online predictions.</p></li>
+<li><p>An embedded model to an edge or mobile device.</p></li>
+<li><p>Part of a batch prediction system.</p></li>
+<li><p>Model monitoring: The model predictive performance is monitored to potentially invoke a new iteration in the ML process.</p></li>
+</ol>
+<p>Implementing MLOps requires assessing the current state, defining requirements, selecting the right tools, automating the process, monitoring and maintaining, and performing continuous training and testing of the machine learning models. The level of automation of these steps defines the maturity of the MLOps process. The following are some best practices for implementing MLOps:</p>
+</section>
 <section id="mlops-level-0">
 <h3>MLOps Level 0<a class="headerlink" href="#mlops-level-0" title="Permalink to this heading">#</a></h3>
 <p>MLOps level 0 is for companies starting with ML and involves a manual, script-driven, and interactive process. It separates data scientists and engineers, has infrequent release iterations, and no CI/CD. The challenges include models breaking in the real world.</p>
@@ -419,7 +438,7 @@
 </section>
 </section>
 <section id="end-to-end-mlops-solutions">
-<h2>End-to-end MLOps solutions<a class="headerlink" href="#end-to-end-mlops-solutions" title="Permalink to this heading">#</a></h2>
+<h2>End-to-end MLOps Solutions<a class="headerlink" href="#end-to-end-mlops-solutions" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Dataiku: A collaborative data science platform that enables organizations to design, prototype, deploy, and manage their machine learning models in production.</p></li>
 <li><p><a class="reference external" href="http://H2O.ai">H2O.ai</a>: An open-source platform for building and deploying machine learning models. It includes automated machine learning capabilities and an enterprise-grade MLOps solution.</p></li>
@@ -510,15 +529,16 @@
 <li><a class="reference internal" href="#hidden-technical-debt-in-machine-learning-systems">Hidden Technical Debt in Machine Learning Systems</a></li>
 <li><a class="reference internal" href="#challenges-in-machine-learning-systems">Challenges in Machine Learning Systems</a></li>
 <li><a class="reference internal" href="#devops-versus-mlops">DevOps versus MLOps</a></li>
-<li><a class="reference internal" href="#mlops-continuous-delivery-and-automation-pipelines-in-machine-learning">MLOps: Continuous delivery and automation pipelines in machine learning</a></li>
+<li><a class="reference internal" href="#continuous-delivery-and-automation-pipelines">Continuous Delivery and Automation Pipelines</a></li>
 <li><a class="reference internal" href="#why-does-mlops-matter">Why does MLOps matter?</a></li>
 <li><a class="reference internal" href="#how-to-implement-mlops">How to implement MLOps</a><ul>
+<li><a class="reference internal" href="#data-science-steps-for-ml">Data science steps for ML</a></li>
 <li><a class="reference internal" href="#mlops-level-0">MLOps Level 0</a></li>
 <li><a class="reference internal" href="#mlops-level-1">MLOps Level 1</a></li>
 <li><a class="reference internal" href="#mlops-level-2">MLOps Level 2</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#end-to-end-mlops-solutions">End-to-end MLOps solutions</a></li>
+<li><a class="reference internal" href="#end-to-end-mlops-solutions">End-to-end MLOps Solutions</a></li>
 </ul>
 </li>
 </ul>
