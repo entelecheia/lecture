@@ -28,7 +28,7 @@ The MLOps cycle.
 ```{figure} ../figs/mlops/intro/mlcode.png
 ---
 width: 700px
-name: fig-mlops-cycle
+name: fig-mlcode
 ---
 Only a small fraction of real-world ML systems is composed of the ML code {cite:p}`sculley2015hidden`
 ```
@@ -73,7 +73,7 @@ Another key difference between DevOps and MLOps is the nature of the models bein
 ```{figure} ../figs/mlops/intro/mlops-cycle.jpg
 ---
 width: 500px
-name: fig-mlops-cycle
+name: fig-mlops-cycle2
 ---
 The MLOps cycle. Source: [NealAnalytics](https://nealanalytics.com/expertise/mlops/)
 ```
