@@ -8,16 +8,6 @@ Generative AI refers to the use of machine learning algorithms to generate new a
 
 AI art has been gaining popularity in recent years, with many artists exploring the possibilities of AI-generated art. Some artists use AI as a tool to enhance their creative process, while others use it as a medium to create entirely new types of art. Despite the controversy surrounding the use of AI in art, it is clear that this technology has the potential to revolutionize the art world by expanding the boundaries of what is possible and pushing the limits of human creativity.
 
-## Image GPT
-
-mage GPT, or iGPT for short, is a generative model developed by OpenAI that is capable of generating realistic images from textual descriptions. It is an extension of GPT (Generative Pre-trained Transformer), which is a popular language model used for a variety of natural language processing tasks.
-
-iGPT uses a transformer architecture, similar to GPT, which is trained on a large dataset of images and their corresponding textual descriptions. During training, the model learns to generate images that correspond to the given textual description by predicting the pixel values of the image.
-
-One of the key advantages of iGPT is its ability to generate high-quality images without the need for additional supervision or training data. This makes it an attractive option for a range of applications, from generating realistic images for video games to assisting with medical imaging.
-
-![imagegpt](../figs/aiart/intro/ImageGPT.png)
-
 ## Timeline of ML Art
 
 ![timeline](../figs/aiart/intro/aiart_1_timeline.jpg)
@@ -44,6 +34,16 @@ Today, ML art is becoming increasingly popular, with many artists and designers 
 - 040502 is a 2004 painting of pigment on paper by the robotic, artificially intelligent painter AARON
 
 ![araron](../figs/aiart/intro/aiart_1_040502.jpg)
+
+## Image GPT
+
+mage GPT, or iGPT for short, is a generative model developed by OpenAI that is capable of generating realistic images from textual descriptions. It is an extension of GPT (Generative Pre-trained Transformer), which is a popular language model used for a variety of natural language processing tasks.
+
+iGPT uses a transformer architecture, similar to GPT, which is trained on a large dataset of images and their corresponding textual descriptions. During training, the model learns to generate images that correspond to the given textual description by predicting the pixel values of the image.
+
+One of the key advantages of iGPT is its ability to generate high-quality images without the need for additional supervision or training data. This makes it an attractive option for a range of applications, from generating realistic images for video games to assisting with medical imaging.
+
+![imagegpt](../figs/aiart/intro/ImageGPT.png)
 
 ## DALL·E 2
 
