@@ -86,6 +86,14 @@ The MLOps cycle. Source: [NealAnalytics](https://nealanalytics.com/expertise/mlo
 - Machine learning models are more complex and require different testing and maintenance strategies than traditional software applications.
 - MLOps involves working with more complex models that are not always easy to understand, while DevOps involves working with more straightforward applications that can be easily version-controlled and tested.
 
+| Feature               | MLOps                                                                                  | DevOps                                                              |
+| --------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| Code                  | A more comprehensive range of libraries is used as the model built to feed inferences. | Standard libraries are used as a generic application is being made. |
+| Validation            | Model performance helps in the validation of the model.                                | Unit, and integration testing is done.                              |
+| Roles/people involved | 1. Data scientists; <br> 2. Machine learning engineers;                                | 1. Software engineers; <br> 2. DevOps engineers;                    |
+| Tracking/control      | Tracks hyperparameters and model performance.                                          | Tracks software artifacts.                                          |
+| Function/development  | Delivers a machine learning model.                                                     | A new version of the software product.                              |
+
 ## Continuous Delivery and Automation Pipelines
 
 One of the key components of MLOps is the use of continuous delivery and automation pipelines to streamline the process of building and deploying machine learning models.
@@ -190,16 +198,175 @@ MLOps level 2 involves a robust automated CI/CD system and fits tech-driven comp
 
 ## End-to-end MLOps Solutions
 
-- Dataiku: A collaborative data science platform that enables organizations to design, prototype, deploy, and manage their machine learning models in production.
+| Name                                                                          | Short Description                                                                                                                                                           |
+| ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Algorithmia](https://neptune.ai/blog/end-to-end-mlops-platforms#algorithmia) | Securely govern your machine learning operations with a healthy ML lifecycle.                                                                                               |
+| [Allegro.io](https://neptune.ai/blog/end-to-end-mlops-platforms#allegroio)    | An end-to-end enterprise-grade platform for data scientists, data engineers, DevOps, and managers to manage the entire machine learning & deep learning product life-cycle. |
+| [Cnvrg.io](https://neptune.ai/blog/end-to-end-mlops-platforms#cnvrgio)        | An end-to-end machine learning platform to build and deploy AI models at scale.                                                                                             |
+| [Dataiku](https://neptune.ai/blog/end-to-end-mlops-platforms#dataiku)         | Platform democratizing access to data and enabling enterprises to build their own path to AI.                                                                               |
+| [Datarobot](https://neptune.ai/blog/end-to-end-mlops-platforms#datarobot)     | AI platform that democratizes data science and automates the end-to-end ML at scale.                                                                                        |
+| [H2O](https://neptune.ai/blog/end-to-end-mlops-platforms#h2o)                 | An open source leader in AI with a mission to democratize AI for everyone.                                                                                                  |
+| [Iguazio](https://neptune.ai/blog/end-to-end-mlops-platforms#iguazio)         | Automates MLOps with end-to-end machine learning pipelines, transforming AI projects into real-world business outcomes.                                                     |
+| [Kubeflow](https://neptune.ai/blog/end-to-end-mlops-platforms#kubeflow)       | Dedicated to making deployments of machine learning (ML) workflows on Kubernetes simple, portable, and scalable.                                                            |
+| [Pachyderm](https://neptune.ai/blog/end-to-end-mlops-platforms#pachyderm)     | Combines data lineage with end-to-end pipelines on Kubernetes, engineered for the enterprise.                                                                               |
+| [Polyaxon](https://neptune.ai/blog/end-to-end-mlops-platforms#polyaxon)       | A platform for reproducible and scalable machine learning and deep learning on Kubernetes.                                                                                  |
+| [Valohai](https://neptune.ai/blog/end-to-end-mlops-platforms#valohai)         | Takes you from POC to production while managing the whole model lifecycle.                                                                                                  |
 
-- H2O.ai: An open-source platform for building and deploying machine learning models. It includes automated machine learning capabilities and an enterprise-grade MLOps solution.
+### **[Algorithmia](https://algorithmia.com/)**
 
-- MLflow: An open-source platform for managing the machine learning lifecycle. It includes tools for tracking experiments, packaging code into reproducible runs, and deploying models.
+Algorithmia manages all stages of the ML lifecycle within existing operational processes. It puts models into production quickly, securely, and cost-effectively. The platform automates ML deployment, provides maximum tooling flexibility, optimizes collaboration between operations and development, leverages existing SDLC and CI/CD practices, and includes advanced security and governance features.
 
-- Domino Data Lab: A platform for developing and deploying machine learning models. It includes features for version control, reproducibility, and collaboration.
+Pros
 
-- AWS SageMaker: A cloud-based platform for building, training, and deploying machine learning models. It includes features for data preparation, algorithm selection, and model deployment.
+- Easy deployment and hassle-free
+- Version management: useful for testing any version.
+- GPU support
 
-- Azure Machine Learning: A cloud-based platform for building, training, and deploying machine learning models. It includes features for automated machine learning, model selection, and deployment.
+Cons
 
-- Google Cloud AI Platform: A cloud-based platform for building, training, and deploying machine learning models. It includes features for data preparation, model training, and deployment.
+- Currently, Algorithmia does not support SAS.
+- High cost for startups
+
+### **[Allegro.io](http://allegro.ai/)**
+
+Allegro is a pioneering end-to-end enterprise-grade platform for data scientists, data engineers, DevOps, and managers to manage experiments, orchestrate workloads, and manage data, all in a simple tool that integrates with whatever toolchain a team is using already. The company’s platform supports on-prem, private cloud, multi-cloud tenants, and custom configurations. Continuous learning and model personalization for an indefinite number of devices.
+
+Pros:
+
+- Fully differentiable data management & version control solution on top of object-storage (S3/GS/Azure/NAS)
+- Automagical experiment tracking, environments and results
+- Automation, Pipelines & Orchestration solution for ML/DL jobs
+
+Cons:
+
+- Lacking a bit in term of customizability
+- Does not support R language
+
+### **[Cnvrg.io](https://cnvrg.io/)**
+
+Cnrvg.io is an end-to-end platform that manages, builds, and automates the entire ML life cycle from research to production. Actually, it’s designed by data scientists and built to organize every stage of a data science project, including research, information collection, code writing, and model optimization.
+
+Pros:
+
+- Platform that allows users to build compact AI models in just a few clicks
+- Adaptable to most libraries, and frameworks
+
+Cons:
+
+- There are some missing features like customizable templates, predictive analytics and problem management, etc.
+
+### **[Dataiku](https://www.dataiku.com/)**
+
+Dataiku democratizes access to data and enables enterprises to build their own path to AI in a human-centric way. It lets you create, share, and reuse applications that leverage data and machine learning to extend and automate decision-making. The platform provides a common ground for data experts and explorers, a repository of best practices, shortcuts to machine learning and AI deployment/management, and a centralized, controlled environment.
+
+Pros:
+
+- The best tool for data cleaning and transformation according to different business requirements.
+- The user interface is intuitive and allows you to upload data into a project with a few clicks.
+
+Cons:
+
+- Does not scale well for more number of users
+- Could have better support on platform installation and maintenance
+
+### **[DataRobot](https://www.datarobot.com/)**
+
+DataRobot is the leading end-to-end enterprise AI platform that automates and accelerates every step of your path from data to value. It’s a central hub to deploy, monitor, manage, and govern machine learning models in production to maximize the investments in data science teams and to manage risk and regulatory compliance.
+
+Pros:
+
+– Ease of use for IT organizations with a good company support
+
+– The Ability to easily build machine learning models algorithms ranging from simplistic regressions to complex gradient boosted trees
+
+Cons:
+
+– Inputting a big data may takes a lot of time
+
+– Lack connectors to RDBMS type databases like mysql or postgres  for data sources
+
+### **[H2O](http://h2o.ai/)**
+
+H2O.ai is the open source leader in AI and automatic machine learning with a mission to democratize AI for everyone. It offers a platform with data manipulation, various algorithms, cross-validation, grid search for hyperparameter tuning, feature ranking, and model serialization. Furthermore, it helps data scientists across the world in every industry to be more productive and to deploy models in a quicker, simpler, and cheaper way.
+
+Pros:
+
+- Top-quality open source tool, including the H2O-3 and AutoML families.
+- The interfaces with R and Python enable a smooth transition of pre-existing workflows into the H2O framework.
+- The combination of proprietary and open-source tools, Driverless AI and H2O, provide tools across a full range of use cases.
+
+Cons:
+
+- H2O Frames have very limited data processing options compared to python pandas or pyspark dataframes.
+- H20 bugs do not return human-readable debugging statements.
+
+### **[Iguazio](https://www.iguazio.com/)**
+
+Iguazio is a Data Science Platform to automate machine learning pipelines. It accelerates the development, deployment, and management of AI applications at scale with MLOps and end-to-end automation of machine learning pipelines. Which enables data scientists to focus on delivering better, and more powerful solutions instead of spending their time on infrastructure. We should mention that it uses Kubeflow for workflow orchestration.
+
+Pros:
+
+- The capability to deploy in seconds from a notebook or IDE
+- Integrated with most popular frameworks and ML libraries
+
+Cons:
+
+- Miss the scenario of a CI/CD pipeline
+
+### **[Kubeflow](https://www.kubeflow.org/)**
+
+Kubeflow is a platform for data scientists who want to build and experiment with ML pipelines. It is also for ML engineers and operational teams who want to deploy ML systems to various environments for development, testing, and production-level serving. Kubeflow is an open-source Kubernetes-native platform to facilitate the scaling of ML models. Plus, it’s a cloud-native platform based on Google’s internal ML pipelines. The project is dedicated to making deployments of ML workflows on Kubernetes simple, portable, and scalable. It can be used with other MLOps platforms as a complementary tool.
+
+Pros:
+
+- Multi-framework integration
+- Perfect for Kubernetes users
+
+Cons:
+
+- Hard to set up and configure manually.
+- High availability is not automatic and needs to be manually configured.
+
+### **[Pachyderm](https://www.pachyderm.com/)**
+
+Pachyderm is a robust MLOps tool that lets users control an end-to-end machine learning cycle. From data lineage, through building and tracking experiments, to scalability options. In fact, it’s a simple choice for data scientists and teams because of its prompt and accurate tracking knowledge and reproducibility skills. It helps develop scalable ML/AI pipelines and, as we saw in our comparison based on supported libraries, it’s highly flexible with the most languages, frameworks, and libraries.
+
+Pro
+
+- Integrated with most popular frameworks and ML libraries
+- It can keep branches of your data sets when you are testing new transformation pipelines
+- Based on containers, which makes your data environments portable and easy to migrate to different cloud providers.
+
+Cons:
+
+- More of a learning curve due to so many moving parts, such as the Kubernetes server required to manage Pachyderm’s free version.
+
+### **[Polyaxon](https://polyaxon.com/)**
+
+Polyaxon is a platform for automating and reproducing deep learning and machine learning applications on Kubernetes. It lets users iterate faster on their research and model creation. The platform includes a wide range of features, from tracking and optimization of experiments to model management and regulatory compliance. It allows workload scheduling with smart container and node management, and turns GPU servers into shared, self-service resources for your team or organization.
+
+Pros:
+
+- Possibility to adapt the software version to your own needs
+- End-to-end process support
+- Makes it easy to schedule training on a Kubernetes cluster
+
+Cons:
+
+- Missing some features
+
+### **[Valohai](https://valohai.com/)**
+
+Valohai is a deep learning management platform that helps enterprises automate deep learning infrastructure. The platform enables data scientists to manage machine orchestration, version control, and data pipelines. It makes DL development auditable, reducing compliance risk and cutting labor & infrastructure costs.
+
+Valohai offers a host of features including parallel hypermeter sweeps, custom scripts, training sessions visualization, data exploration, Jupyter Notebook extension, deployment, and production monitoring. The platform allows users to build models with multiple central processing units (CPUs) or graphics processing units (GPUs) on cloud or on-premise environments. Plus, it’s compatible with any language or framework, along with many different tools and apps. Valohai is also teamwork-oriented software, which helps team leaders manage collaboration, share projects, assign members, track experiment progress, and view real-time data models.
+
+Pros:
+
+- Allows easy management for deep learning
+- Full and automatic version control for the models
+- Helpful customer service and monthly checkup
+
+Cons:
+
+- High cost for startups
