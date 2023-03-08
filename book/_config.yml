@@ -15,7 +15,7 @@ copyright: "2023"
 execute:
   execute_notebooks: cache
   exclude_patterns:
-    - '*.ipynb'
+    - "*.ipynb"
   allow_errors: true
 
 # Define the name of the latex output file for PDF builds
@@ -44,7 +44,11 @@ sphinx:
   config:
     # html_theme: furo
     html_theme: sphinx_book_theme
-    html_extra_path: ['assets']
+    html_theme_options:
+      repository_url: https://github.com/entelecheia/lecture
+      launch_buttons:
+        colab_url: "https://colab.research.google.com"
+    html_extra_path: ["assets"]
     bibtex_reference_style: author_year
     mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
     intersphinx_mapping:
@@ -70,7 +74,7 @@ sphinx:
         - "https://sphinx-proof.readthedocs.io/en/latest/"
         - null
     hoverxref_intersphinx:
-     - "sphinxproof"
+      - "sphinxproof"
     mathjax3_config:
       tex:
         macros:
