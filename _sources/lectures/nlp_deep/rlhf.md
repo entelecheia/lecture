@@ -54,6 +54,12 @@ Capability refers to the raw power and complexity of LLMs. LLMs can generate hig
 
 Alignment, on the other hand, refers to the extent to which the goals and values of LLMs align with those of their human users. If an LLM is not aligned with human values and preferences, it may generate responses that are harmful or malicious, even if they are highly realistic and coherent. Alignment is crucial to ensure that LLMs behave in a way that is safe, ethical, and beneficial to society.
 
+The alignment problem in Large Language Models typically could cause the following problems:
+
+- LLMs may not follow the instructions given by the user.
+- LLMs may generate responses that are harmful or malicious, even if they are highly realistic and coherent.
+- It might be difficult for users to understand the reasoning behind the LLM's responses.
+
 The "Capability vs. Alignment" framework suggests that there is a trade-off between these two dimensions of risk. Increasing the capability of LLMs may come at the expense of alignment, and vice versa. For example, if an LLM is trained on large amounts of biased data, it may generate responses that perpetuate or amplify that bias, even if it is highly capable in other respects. Conversely, if an LLM is heavily constrained to ensure alignment, it may not be able to generate high-quality responses or perform certain tasks effectively.
 
 The "Capability vs. Alignment" framework highlights the importance of balancing these two dimensions of risk when developing and deploying LLMs. It suggests that researchers and developers should pay close attention to the alignment of LLMs with human values and preferences, and should take steps to mitigate the potential risks associated with their capabilities. This includes developing robust mechanisms for ensuring safety, transparency, and accountability, and engaging with a broad range of stakeholders to ensure that LLMs are aligned with the needs and concerns of society as a whole.
