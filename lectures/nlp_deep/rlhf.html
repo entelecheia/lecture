@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Zero-shot Learning II - Sequence Tagging &#8212; Lecture Notes</title>
+    <title>Reinforcement Learning with Human Feedback (RLHF) &#8212; Lecture Notes</title>
   
   
   
@@ -78,9 +78,11 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_deep/doc_embeddings';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_deep/rlhf';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Transformers" href="transformers.html" />
+    <link rel="prev" title="Zero Shot, Prompt, and Search Strategies" href="zeroshot.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -158,7 +160,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../nlp_intro/index.html">Introduction to NLP</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../nlp_intro/intro.html">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nlp_intro/ekorpkit.html">Getting started with ekorpkit</a></li>
@@ -176,11 +178,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../nlp_intro/lab2-corpus-eda.html">Lab 2: EDA on Corpora</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="index.html">Deep Learning for NLP</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Deep Learning for NLP</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ekorpkit.html">Getting started with ekorpkit</a></li>
 <li class="toctree-l2"><a class="reference internal" href="zeroshot.html">Zero Shot, Prompt, and Search Strategies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rlhf.html">Reinforcement Learning with Human Feedback (RLHF)</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Reinforcement Learning with Human Feedback (RLHF)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="transformers.html">Transformers </a></li>
 <li class="toctree-l2"><a class="reference internal" href="t5.html">T5: Text-To-Text Transfer Transformer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tokenization.html">Tokenization</a></li>
@@ -265,55 +267,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/master/book/lectures/nlp_deep/doc_embeddings.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch onColab"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img src="../../_static/images/logo_colab.png">
-  </span>
-<span class="btn__text-container">Colab</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="initThebeSBT()"
-  class="btn btn-sm btn-launch-thebe dropdown-item"
-  title="Launch Thebe"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="btn__text-container">Live Code</span>
-</button>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -322,7 +275,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/lectures/nlp_deep/doc_embeddings.ipynb" target="_blank"
+      <li><a href="../../_sources/lectures/nlp_deep/rlhf.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -332,7 +285,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -404,7 +357,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Zero-shot Learning II - Sequence Tagging</h1>
+    <h1>Reinforcement Learning with Human Feedback (RLHF)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -414,7 +367,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-large-language-models-llms-use-reinforcement-learning">Why Large Language Models (LLMs) use Reinforcement Learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#capability-vs-alignment">Capability vs. Alignment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-reinforcement-learning">What is Reinforcement Learning?</a></li>
 </ul>
             </nav>
         </div>
@@ -426,13 +382,56 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="zero-shot-learning-ii-sequence-tagging">
-<h1>Zero-shot Learning II - Sequence Tagging<a class="headerlink" href="#zero-shot-learning-ii-sequence-tagging" title="Permalink to this heading">#</a></h1>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="reinforcement-learning-with-human-feedback-rlhf">
+<h1>Reinforcement Learning with Human Feedback (RLHF)<a class="headerlink" href="#reinforcement-learning-with-human-feedback-rlhf" title="Permalink to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://www.analyticsvidhya.com/blog/2021/05/measuring-text-similarity-using-bert/">Measuring Text Similarity Using BERT</a></p></li>
+<li><p>Large Language Models (LLMs) have made significant progress in recent years.</p></li>
+<li><p>LLMs can perform a wide range of natural language tasks such as translation, summarization, and question answering.</p></li>
+<li><p>Prompt engineering is a process that enables LLMs to follow human instructions and provide useful responses.</p></li>
+<li><p>Prompt engineering involves crafting a natural language prompt that guides the LLM to generate the desired response.</p></li>
+<li><p>LLMs can provide useful responses to natural language queries in fields such as medicine, education, customer service, and more.</p></li>
 </ul>
+<p>Large Language Models (LLMs) have made significant progress in recent years and are now capable of performing a wide range of natural language tasks, including following human instructions and providing useful responses.</p>
+<p>Traditionally, LLMs were trained using language modeling, which involves predicting the next word(s) in a sentence given the previous context. However, recent advances in LLMs, such as GPT-3, have enabled them to perform more complex tasks, such as translation, summarization, and question answering.</p>
+<p>Moreover, LLMs can now follow human instructions and provide useful responses through a process known as prompt engineering. Prompt engineering involves crafting a natural language prompt that guides the LLM to generate the desired response. This can be done by providing specific keywords, phrases, or examples in the prompt that the LLM can use to generate the response.</p>
+<p>For example, an LLM trained on a large corpus of medical data can be prompted to generate a diagnosis for a patient based on their symptoms and medical history. The prompt could include key phrases such as “patient presents with fever and cough” or “patient has a history of heart disease.” The LLM can then generate a diagnosis based on its understanding of medical terminology and best practices.</p>
+<p>LLMs can also provide useful responses to natural language queries. For example, an LLM trained on a large corpus of news articles can be prompted to provide a summary of a particular article or answer a specific question related to the article. The LLM can then generate a summary or answer based on its understanding of the content and context of the article.</p>
+</section>
+<section id="why-large-language-models-llms-use-reinforcement-learning">
+<h2>Why Large Language Models (LLMs) use Reinforcement Learning<a class="headerlink" href="#why-large-language-models-llms-use-reinforcement-learning" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Supervised learning only predicts ranks and doesn’t produce coherent responses.</p></li>
+<li><p>Reinforcement Learning with Human Feedback (RLHF) is trained to estimate the quality of the produced response, rather than just the ranking score.</p></li>
+<li><p>Cumulative rewards are necessary to enable coherent conversations, which Supervised Learning (SL) can’t provide.</p></li>
+<li><p>SL only optimizes the token-level loss, which may not capture the coherence of the entire conversation.</p></li>
+<li><p>Empirically, RLHF tends to perform better than SL.</p></li>
+<li><p>LLMs like InstructGPT and ChatGPT use both Supervised Learning and Reinforcement Learning to attain optimal performance.</p></li>
+<li><p>SL is used to learn the basic structure and content of the task, while RLHF is used to refine the model’s responses to improve accuracy.</p></li>
+</ul>
+<p>Large Language Models (LLMs) use Reinforcement Learning (RL) in addition to Supervised Learning (SL) because RL enables the LLMs to learn from their own experience and optimize for a wide range of objectives. SL, on the other hand, requires large amounts of labeled data and can result in incoherent responses. RLHF is a particularly promising approach because it combines RL with human feedback to ensure that LLMs are aligned with human values and preferences. The combination of SL and RLHF is crucial for attaining optimal performance in LLMs, with SL used to learn the basic structure and content of the task, while RLHF is used to refine the model’s responses to improve accuracy. The “Capability vs. Alignment” framework highlights the importance of balancing the capabilities of LLMs with their alignment with human values and preferences, and RLHF can play a crucial role in achieving this balance.</p>
+</section>
+<section id="capability-vs-alignment">
+<h2>Capability vs. Alignment<a class="headerlink" href="#capability-vs-alignment" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>“Capability vs. Alignment” is a framework for understanding risks associated with LLM development and deployment.</p></li>
+<li><p>It emphasizes two dimensions of risk: capability and alignment.</p></li>
+<li><p>Capability refers to the power and complexity of LLMs, which can generate realistic and coherent text, but may also pose risks such as generating misinformation.</p></li>
+<li><p>Alignment refers to the extent to which LLM goals and values align with those of their human users.</p></li>
+<li><p>There is a trade-off between capability and alignment, and balancing these two dimensions is crucial in LLM development and deployment.</p></li>
+<li><p>Developers must pay attention to LLM alignment with human values, and take steps to mitigate potential risks associated with their capabilities.</p></li>
+<li><p>This includes developing mechanisms for safety, transparency, and accountability, and engaging with stakeholders to ensure LLMs align with societal needs and concerns.</p></li>
+</ul>
+<p>&lt;– TODO: Add image –&gt;</p>
+<p>“Capability vs. Alignment” is a framework for understanding the potential risks associated with the development and deployment of Large Language Models (LLMs), such as GPT-3.</p>
+<p>Capability refers to the raw power and complexity of LLMs. LLMs can generate highly realistic and coherent text, and they can perform a wide range of natural language tasks, including translation, summarization, and question answering. However, this capability also comes with potential risks, such as the ability to generate misinformation or manipulate public opinion.</p>
+<p>Alignment, on the other hand, refers to the extent to which the goals and values of LLMs align with those of their human users. If an LLM is not aligned with human values and preferences, it may generate responses that are harmful or malicious, even if they are highly realistic and coherent. Alignment is crucial to ensure that LLMs behave in a way that is safe, ethical, and beneficial to society.</p>
+<p>The “Capability vs. Alignment” framework suggests that there is a trade-off between these two dimensions of risk. Increasing the capability of LLMs may come at the expense of alignment, and vice versa. For example, if an LLM is trained on large amounts of biased data, it may generate responses that perpetuate or amplify that bias, even if it is highly capable in other respects. Conversely, if an LLM is heavily constrained to ensure alignment, it may not be able to generate high-quality responses or perform certain tasks effectively.</p>
+<p>The “Capability vs. Alignment” framework highlights the importance of balancing these two dimensions of risk when developing and deploying LLMs. It suggests that researchers and developers should pay close attention to the alignment of LLMs with human values and preferences, and should take steps to mitigate the potential risks associated with their capabilities. This includes developing robust mechanisms for ensuring safety, transparency, and accountability, and engaging with a broad range of stakeholders to ensure that LLMs are aligned with the needs and concerns of society as a whole.</p>
+</section>
+<section id="what-is-reinforcement-learning">
+<h2>What is Reinforcement Learning?<a class="headerlink" href="#what-is-reinforcement-learning" title="Permalink to this heading">#</a></h2>
 </section>
 </section>
 
@@ -464,6 +463,24 @@ document.write(`
                 <footer class="bd-footer-article">
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="zeroshot.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Zero Shot, Prompt, and Search Strategies</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="transformers.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Transformers </p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -479,7 +496,10 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-large-language-models-llms-use-reinforcement-learning">Why Large Language Models (LLMs) use Reinforcement Learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#capability-vs-alignment">Capability vs. Alignment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-reinforcement-learning">What is Reinforcement Learning?</a></li>
 </ul>
   </nav></div>
 
