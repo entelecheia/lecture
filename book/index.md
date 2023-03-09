@@ -2,7 +2,7 @@
 
 ## ἐντελέχεια in Artificial Intelligence
 
-```{youtube} p0ZGCfjusIA
+```{video} intro.mp4
 :width: 800
 ``` 
 
