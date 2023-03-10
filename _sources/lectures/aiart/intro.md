@@ -25,8 +25,7 @@ Today, ML art is becoming increasingly popular, with many artists and designers 
 ### Jean Tinguely’s drawing machine
 
 ```{youtube} Noe5-awlbfw
-:width: 720
-:height: 405
+:width: 100%
 ```
 
 ### AARON
@@ -50,8 +49,7 @@ One of the key advantages of iGPT is its ability to generate high-quality images
 ![dalle2](../figs/aiart/intro/aiart_1_dalle2.png)
 
 ```{youtube} qTgPSKKjfVg
-:width: 720
-:height: 405
+:width: 100%
 ```
 
 DALL-E2 (short for "Dali + WALL-E 2") is a generative model developed by OpenAI, which is capable of generating high-quality images from textual descriptions. It is an extension of GPT (Generative Pre-trained Transformer) and uses a transformer architecture to predict the pixel values of the images based on the input text.
