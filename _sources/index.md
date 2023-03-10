@@ -1,8 +1,21 @@
 # Introduction
+[![home-img]][home-url]
+[![course-img]][course-url]
+[![lecture-img]][lecture-url]
+[![linkedin-img]][linkedin-url]
+
+[home-img]: https://img.shields.io/badge/www-entelecheia.me-blue
+[home-url]: https://entelecheia.me
+[course-img]: https://img.shields.io/badge/course-entelecheia.ai-blue
+[course-url]: https://course.entelecheia.ai
+[lecture-img]: https://img.shields.io/badge/lecture-entelecheia.ai-blue
+[lecture-url]: https://lecture.entelecheia.ai
+[linkedin-img]: https://img.shields.io/badge/LinkedIn-blue?logo=linkedin
+[linkedin-url]: https://www.linkedin.com/in/entelecheia/
 
 ## ἐντελέχεια in Artificial Intelligence
 
-```{video} intro.mp4
+```{video} https://assets.entelecheia.cc/video/intro.mp4
 :width: 100%
 ``` 
 
