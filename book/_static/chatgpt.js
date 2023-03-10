@@ -1,8 +1,7 @@
 const { Configuration, OpenAIApi } = require("openai");
 
 const configuration = new Configuration({
-//   apiKey: process.env.OPENAI_API_KEY,
-    apiKey: "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",
+  apiKey: process.env.OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
 
@@ -12,7 +11,7 @@ askButton.addEventListener("click", async () => {
   const model = "gpt-3.5-turbo";
   const chatParams = {
     model: model,
-    messages: [{role: "user", content: question}],
+    messages: [{ role: "user", content: question }],
   };
   try {
     const completion = await openai.createChatCompletion(chatParams);
