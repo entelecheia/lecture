@@ -455,7 +455,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-and-methodology">Data and Methodology</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hoberg-and-philips-2016">Hoberg and Philips (2016)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-based-network-industries-and-endogenous-product-differentiation-hoberg2016text">Text-Based Network Industries and Endogenous Product Differentiation <span class="xref cite cite-p">hoberg2016text</span></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measuring-economic-policy-uncertainty-epu">Measuring Economic Policy Uncertainty (EPU)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-diffusion-of-disruptive-technologies">The Diffusion of Disruptive Technologies</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parts-of-speech-predict-loan-repayment">Parts of Speech Predict Loan Repayment</a></li>
@@ -517,10 +517,12 @@ document.write(`
 <li><p>where <span class="math notranslate nohighlight">\(r\)</span> is the position of the nearest synonym of risk or uncertainty, <span class="math notranslate nohighlight">\(b = 0,1,\ldots B_{it}\)</span> are the bigrams contained in the call of firm <span class="math notranslate nohighlight">\(i\)</span> at time <span class="math notranslate nohighlight">\(t\)</span>, and <span class="math notranslate nohighlight">\(\mathbb{P}\)</span> denotes the set of political bigrams.</p></li>
 <li><p>The formula applies the “<span class="math notranslate nohighlight">\(tf \times idf\)</span>” method to calculate the weight of the bigrams in measuring political risk.</p></li>
 </ul>
-<ul class="simple">
-<li><p>Synonyms for “risk” or “uncertainty”</p></li>
-</ul>
-<p><img alt="h:500px" src="../../_images/2.png" /></p>
+<figure class="align-default" id="fig-synonyms">
+<a class="reference internal image-reference" href="../../_images/2.png"><img alt="../../_images/2.png" src="../../_images/2.png" style="height: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Synonyms for “risk” or “uncertainty”</span><a class="headerlink" href="#fig-synonyms" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Measuring news about the mean: <span class="math notranslate nohighlight">\(PSentiment_{it}\)</span></strong></p>
 <ul class="simple">
 <li><p>The measure of news about the mean is calculated using the same approach to measure the mean of political news.</p></li>
@@ -536,11 +538,19 @@ document.write(`
 <li><p>The bigrams with the highest scores are intuitively linked to politics, such as “the constitution,” “public opinion,” “interest groups,” and “the FAA.”</p></li>
 <li><p>The transcripts with the highest <span class="math notranslate nohighlight">\(PRisk_{it}\)</span> values are typically centered around discussions about ballot initiatives, legislation, regulation, government expenditure, and other politically relevant topics.</p></li>
 </ul>
-<p><strong>Transcripts with the highest <span class="math notranslate nohighlight">\(PRisk_{it}\)</span></strong></p>
-<p><img alt="h:500px" src="../../_images/4.png" /></p>
+<figure class="align-default" id="fig-highest-prisk">
+<a class="reference internal image-reference" href="../../_images/4.png"><img alt="../../_images/4.png" src="../../_images/4.png" style="height: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Transcripts with the highest <span class="math notranslate nohighlight">\(PRisk_{it}\)</span></span><a class="headerlink" href="#fig-highest-prisk" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Example: Duke Energy Corporation</strong></p>
-<p>A coal company’s <span class="math notranslate nohighlight">\(PRisk_{it}\)</span></p>
-<p><img alt="h:500px" src="../../_images/5.png" /></p>
+<figure class="align-default" id="fig-duke-energy">
+<a class="reference internal image-reference" href="../../_images/5.png"><img alt="../../_images/5.png" src="../../_images/5.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">A coal company’s <span class="math notranslate nohighlight">\(PRisk_{it}\)</span></span><a class="headerlink" href="#fig-duke-energy" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="sources-and-transmission-of-country-risk-hassan2021sources">
 <h2>Sources and Transmission of Country Risk <span id="id2">[<a class="reference internal" href="../../about/index.html#id45" title="Tarek Alexander Hassan, Jesse Schreger, Markus Schwedeler, and Ahmed Tahoun. Sources and transmission of country risk. Technical Report, National Bureau of Economic Research, 2021.">Hassan <em>et al.</em>, 2021</a>]</span><a class="headerlink" href="#sources-and-transmission-of-country-risk-hassan2021sources" title="Permalink to this heading">#</a></h2>
@@ -581,39 +591,56 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(CountrySentiment_{i,c,t}\)</span> : tf × idf weighted sum of tone words toward country c (Loughran &amp; McDonald 2011) (Proxy for positive/negative news about country c)</p></li>
 <li><p><span class="math notranslate nohighlight">\(FirmRisk_{i,t}\)</span> : Unweighted count of risk words. (Proxy for overall risk faced by the firm)</p></li>
 </ul>
-<p><strong>Financial and Non-Financial Risk: Greece</strong></p>
-<p><img alt="h:500px" src="../../_images/7.png" /></p>
-<p><strong>Financial and Non-Financial Risk: Thailand</strong></p>
-<p><img alt="h:500px" src="../../_images/8.png" /></p>
-<p><strong>Financial and Non-Financial Risk: Global</strong></p>
-<p><img alt="h:500px" src="../../_images/9.png" /></p>
+<figure class="align-default" id="fig-country-risk-greece">
+<a class="reference internal image-reference" href="../../_images/7.png"><img alt="../../_images/7.png" src="../../_images/7.png" style="height: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Financial and non-financial risk: Greece</span><a class="headerlink" href="#fig-country-risk-greece" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="fig-country-risk-thailand">
+<a class="reference internal image-reference" href="../../_images/8.png"><img alt="../../_images/8.png" src="../../_images/8.png" style="height: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Financial and non-financial risk: Thailand</span><a class="headerlink" href="#fig-country-risk-thailand" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="fig-country-risk-global">
+<a class="reference internal image-reference" href="../../_images/9.png"><img alt="../../_images/9.png" src="../../_images/9.png" style="height: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Financial and non-financial risk: Global</span><a class="headerlink" href="#fig-country-risk-global" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 </section>
-<section id="hoberg-and-philips-2016">
-<h2>Hoberg and Philips (2016)<a class="headerlink" href="#hoberg-and-philips-2016" title="Permalink to this heading">#</a></h2>
-<ul>
-<li><p>Use similarity between product descriptions in 10Ks to identify industry clusters.</p></li>
-<li><p>How similar are two firms’ products?</p></li>
-<li><p>The most popular way of calculating similarity is cosine similarity.</p>
-<p><span class="math notranslate nohighlight">\( S_{i,j} = c_i \cdot c_j \)</span></p>
-<p>where <span class="math notranslate nohighlight">\(c_i\)</span> is the normalized representative vector of words for document <span class="math notranslate nohighlight">\(i\)</span>.</p>
-</li>
-<li><p>A creative way of figuring out who is competing with whom!</p></li>
+<section id="text-based-network-industries-and-endogenous-product-differentiation-hoberg2016text">
+<h2>Text-Based Network Industries and Endogenous Product Differentiation <span id="id3">[<a class="reference internal" href="../../about/index.html#id46" title="Gerard Hoberg and Gordon Phillips. Text-based network industries and endogenous product differentiation. Journal of Political Economy, 124(5):1423–1465, 2016.">Hoberg and Phillips, 2016</a>]</span><a class="headerlink" href="#text-based-network-industries-and-endogenous-product-differentiation-hoberg2016text" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The paper studies how firms differ from their competitors using time-varying measures of product similarity based on text-based analysis of firm 10-K product descriptions.</p></li>
+<li><p>The time-varying set of product similarity measures enables the generation of new industries in which firms can have their own distinct set of competitors.</p></li>
+<li><p>The new sets of competitors explain specific discussion of high competition, rivals identified by managers as peer firms, and changes to industry competitors following exogenous industry shocks.</p></li>
+<li><p>The study finds evidence that firm R&amp;D and advertising are associated with subsequent differentiation from competitors, consistent with theories of endogenous product differentiation.</p></li>
+<li><p>Cosine similarity is the most popular way of calculating similarity.</p></li>
+<li><p>The formula for cosine similarity is <span class="math notranslate nohighlight">\( S_{i,j} = c_i \cdot c_j \)</span>, where <span class="math notranslate nohighlight">\(c_i\)</span> is the normalized representative vector of words for document <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
+<li><p>This approach provides a creative way of figuring out who is competing with whom, using text-based analysis of firm 10-K product descriptions to measure product similarity and identify distinct sets of competitors.</p></li>
 </ul>
 <p><strong>Product Descriptions to Vector</strong></p>
 <ul class="simple">
-<li><p>Only keep nouns (<a class="reference external" href="http://webster.com">webster.com</a>) and proper nouns. Drop most commonly used nouns.</p></li>
-<li><p>Vector (<span class="math notranslate nohighlight">\(c_i\)</span>) is binary values for included words.</p></li>
-<li><p>Cosine similarity between all firm-year pairs results in a huge matrix with firm-year as rows and columns.</p></li>
-<li><p>Cluster firm-pairs year by year to form yearly industry clusters.</p></li>
+<li><p>Product descriptions are converted to vectors by only keeping nouns (according to <a class="reference external" href="http://webster.com">webster.com</a>) and proper nouns, while dropping the most commonly used nouns.</p></li>
+<li><p>The resulting vector (<span class="math notranslate nohighlight">\(c_i\)</span>) consists of binary values for included words.</p></li>
+<li><p>The cosine similarity between all firm-year pairs results in a large matrix with firm-year as rows and columns.</p></li>
+<li><p>The firm-year pairs are clustered year by year to form yearly industry clusters.</p></li>
 </ul>
-<p><strong>Result</strong></p>
-<p>Sample industry that changed a lot</p>
+<p><strong>Results</strong></p>
 <ul class="simple">
-<li><p>Use this to track who is competing with whom, form industry definitions.</p></li>
-<li><p>One drawback of 10K’s: only available for US firms.</p></li>
+<li><p>The study uses text-based analysis of firm 10-K product descriptions to track changes in industries and identify competitors.</p></li>
+<li><p>This approach can be used to form industry definitions and track who is competing with whom.</p></li>
+<li><p>One drawback of using 10-K’s is that they are only available for US firms, limiting the generalizability of the findings.</p></li>
 </ul>
-<p><img alt="h:500px" src="../../_images/10.png" /></p>
+<figure class="align-default" id="fig-product-similarity">
+<a class="reference internal image-reference" href="../../_images/10.png"><img alt="../../_images/10.png" src="../../_images/10.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Industry clusters based on product similarity</span><a class="headerlink" href="#fig-product-similarity" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="measuring-economic-policy-uncertainty-epu">
 <h2>Measuring Economic Policy Uncertainty (EPU)<a class="headerlink" href="#measuring-economic-policy-uncertainty-epu" title="Permalink to this heading">#</a></h2>
@@ -914,7 +941,7 @@ I pay all bills (e.g., car loans, cable, utilities) on time.”
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-and-methodology">Data and Methodology</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hoberg-and-philips-2016">Hoberg and Philips (2016)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-based-network-industries-and-endogenous-product-differentiation-hoberg2016text">Text-Based Network Industries and Endogenous Product Differentiation <span class="xref cite cite-p">hoberg2016text</span></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measuring-economic-policy-uncertainty-epu">Measuring Economic Policy Uncertainty (EPU)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-diffusion-of-disruptive-technologies">The Diffusion of Disruptive Technologies</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parts-of-speech-predict-loan-repayment">Parts of Speech Predict Loan Repayment</a></li>
