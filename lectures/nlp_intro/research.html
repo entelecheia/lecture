@@ -567,7 +567,7 @@ document.write(`
 <li><p>The new sets of competitors explain specific discussion of high competition, rivals identified by managers as peer firms, and changes to industry competitors following exogenous industry shocks.</p></li>
 <li><p>The study finds evidence that firm R&amp;D and advertising are associated with subsequent differentiation from competitors, consistent with theories of endogenous product differentiation.</p></li>
 <li><p>Cosine similarity is the most popular way of calculating similarity.</p></li>
-<li><p>The formula for cosine similarity is <span class="math notranslate nohighlight">\( S\_{i,j} = c_i \cdot c_j \)</span>, where <span class="math notranslate nohighlight">\(c_i\)</span> is the normalized representative vector of words for document <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
+<li><p>The formula for cosine similarity is <span class="math notranslate nohighlight">\(S\_{i,j} = c_i \cdot c_j\)</span>, where <span class="math notranslate nohighlight">\(c_i\)</span> is the normalized representative vector of words for document <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
 <li><p>This approach provides a creative way of figuring out who is competing with whom, using text-based analysis of firm 10-K product descriptions to measure product similarity and identify distinct sets of competitors.</p></li>
 </ul>
 <p><strong>Product Descriptions to Vector</strong></p>
@@ -672,19 +672,22 @@ document.write(`
 </section>
 <section id="the-diffusion-of-disruptive-technologies">
 <h2>The Diffusion of Disruptive Technologies<a class="headerlink" href="#the-diffusion-of-disruptive-technologies" title="Permalink to this heading">#</a></h2>
-<p>Bloom, Kalyani, Lerner, and Tahoun (2021), The Diffusion of Disruptive Technologies</p>
+<p><span id="id5">Bloom <em>et al.</em> [<a class="reference internal" href="../../about/index.html#id48" title="Nicholas Bloom, Tarek Alexander Hassan, Aakash Kalyani, Josh Lerner, and Ahmed Tahoun. The diffusion of disruptive technologies. Technical Report, National Bureau of Economic Research, 2021.">2021</a>]</span></p>
 <ul class="simple">
-<li><p>Construct text-based measures of exposure to 20 different technologies at the firm, patent, and job-level, 2002-19.</p></li>
-<li><p>Use these novel data to study the spread of new technologies across firms, regions, occupations, and skill-levels.</p></li>
+<li><p>The paper identifies 29 disruptive technologies and documents their diffusion across firms and labor markets in the U.S. using textual analysis of patents, job postings, and earnings calls.</p></li>
+<li><p>The locations where disruptive technologies are developed are geographically highly concentrated, even more so than overall patenting.</p></li>
+<li><p>As the technologies mature and the number of new jobs related to them grows, they gradually spread geographically. While initial hiring is concentrated in high-skilled jobs, over time the mean skill level in new positions associated with the technologies declines, broadening the types of jobs that adopt a given technology.</p></li>
+<li><p>The geographic diffusion of low-skilled positions is significantly faster than higher-skilled ones, so that the locations where initial discoveries were made retain their leading positions among high-paying positions for decades.</p></li>
+<li><p>Pioneer locations are more likely to arise in areas with universities and high skilled labor pools.</p></li>
 </ul>
 <p><strong>Five Stylized Facts on Disruptive Technologies</strong></p>
-<ol class="arabic simple">
-<li><p>Development &amp; initial employment in disruptive technologies is geographically highly concentrated.</p></li>
-<li><p>Over time, hiring associated with new technologies gradually spreads: “region broadening.”</p></li>
-<li><p>Over time, skill level in tech jobs declines sharply: “skill broadening.”</p></li>
+<ul class="simple">
+<li><p>The development and initial employment of disruptive technologies are highly concentrated geographically.</p></li>
+<li><p>The hiring associated with new technologies gradually spreads over time, leading to region broadening.</p></li>
+<li><p>The skill level required for tech jobs declines sharply over time, leading to skill broadening.</p></li>
 <li><p>Low-skill jobs associated with a given technology spread out significantly faster than high-skill jobs.</p></li>
-<li><p>Pioneer locations retain long-lasting advantage in high-skilled jobs.</p></li>
-</ol>
+<li><p>Pioneer locations retain a long-lasting advantage in high-skilled jobs.</p></li>
+</ul>
 <p><strong>Data Sources</strong></p>
 <ol class="arabic simple">
 <li><p>Full text of USPTO patents (1976-2016)</p>
@@ -698,7 +701,7 @@ document.write(`
 <li><p>Typically contains management presentation followed by analyst Q &amp; A.</p></li>
 </ul>
 </li>
-<li><p>Full text of 200 M+ online job postings from BG (2007, 2010-19).</p>
+<li><p>Full text of 200M+ online job postings from BG (2007, 2010-19).</p>
 <ul class="simple">
 <li><p>Scraped from job forums (e.g., <a class="reference external" href="http://Glassdoor.com">Glassdoor.com</a>) and employer websites.</p></li>
 <li><p>Geo-coded and assigned to SOC Codes</p></li>
@@ -706,56 +709,89 @@ document.write(`
 </li>
 </ol>
 <p><strong>Step 1: Identify Technical Bigrams from Patents</strong></p>
-<p>Identify two-word combinations (bigrams) that are indicative of discussion of novel technologies.</p>
+<p>Use the list of 35,063 technical bigrams associated with influential inventions to identify and document the diffusion of 29 disruptive technologies across firms and labor markets in the U.S.</p>
 <ol class="arabic simple">
-<li><p>Extract all (17 mil+) bigrams US patents (1976-2016)</p></li>
-<li><p>Remove any bigrams that were commonly in use prior to 1970 (Corpus of Historical American English)</p></li>
-<li><p>Keep bigrams which account for at least 1000 citations.</p></li>
+<li><p>Extract all (17M+) bigrams US patents (1976-2016)</p></li>
+<li><p>Remove common bigrams used before 1970 (Corpus of Historical American English)</p></li>
+<li><p>Keep bigrams that account for at least 1000 citations.</p></li>
 </ol>
-<blockquote>
-<div><p>List of 35,063 ‘technical bigrams’ associated with influential inventions.</p>
-</div></blockquote>
 <p><strong>Top Bigrams in Patents</strong></p>
-<p><img alt="h:500px" src="../../_images/17.png" /></p>
+<figure class="align-default" id="fig-patents-top-bigrams">
+<a class="reference internal image-reference" href="../../_images/17.png"><img alt="../../_images/17.png" src="../../_images/17.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 14 </span><span class="caption-text">Top Bigrams in Patents</span><a class="headerlink" href="#fig-patents-top-bigrams" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Step 2: Identify Disruptive Technologies from Earnings Calls</strong></p>
-<p>Identify technical bigrams that are discussed in EC with increasing frequency (keep those at &lt;10% of max in first year) – Total 305.</p>
-<p><img alt="h:500px" src="../../_images/18.png" /></p>
+<p>Identify technical bigrams that are discussed in earnings calls with increasing frequency, while keeping those that are below 10% of the maximum frequency in the first year. This results in a total of 305 technical bigrams.</p>
+<figure class="align-default" id="fig-ec-top-bigrams">
+<a class="reference internal image-reference" href="../../_images/18.png"><img alt="../../_images/18.png" src="../../_images/18.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 15 </span><span class="caption-text">Technical bigrams in earnings calls</span><a class="headerlink" href="#fig-ec-top-bigrams" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Technical vs non-technical bigrams</strong></p>
-<p>Non technical bigrams = bigrams in earnings calls and NOT in patents</p>
-<p><img alt="h:500px" src="../../_images/19.png" /></p>
+<p>Non-technical bigrams refer to bigrams that appear in earnings calls but not in patents.</p>
+<figure class="align-default" id="fig-technical-non-technical">
+<a class="reference internal image-reference" href="../../_images/19.png"><img alt="../../_images/19.png" src="../../_images/19.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text">Technical vs non-technical bigrams</span><a class="headerlink" href="#fig-technical-non-technical" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Step 3: Bigrams to Technologies</strong></p>
-<p>Two alternative approaches</p>
+<p>There are two alternative approaches:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">“Supervised”</span></code>: Group bigrams with similar meaning to measure the spread of 29 specific technologies, add `synonyms’ and manually audit each bigram. (Main specification)</p>
-<ul>
-<li><p>Smart Devices - mobile devices; smartphone tablet; android phones; smart phones …</p></li>
-<li><p>3d printing - 3d printer; 3d printing; additive manufacturing; d printed</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">“Unsupervised”</span></code>: Treat each tech bigram as a separate technology without any further intervention. (Robustness check)</p></li>
+<li><p>The “Supervised” approach groups bigrams with similar meaning to measure the spread of 29 specific technologies. This approach involves adding synonyms and manually auditing each bigram. Examples include grouping “smartphone tablet” and “android phones” under “Smart Devices” and grouping “3d printer” and “additive manufacturing” under “3D printing.”</p></li>
+<li><p>The “Unsupervised” approach treats each technical bigram as a separate technology without any further intervention. This approach is used as a robustness check.</p></li>
 </ul>
 <p><strong>Technology Exposure</strong></p>
-<p>Measure technology exposure at the patent, earnings call, and job level as</p>
-<p><span class="math notranslate nohighlight">\( \text{exposure}_{i,\tau,t} = 1\{b_{t} \in D\_{i,t}\} \)</span></p>
-<p>where <span class="math notranslate nohighlight">\(D_{i,t}\)</span> is the set of bigrams contained in a job posting/earnings call posted at time <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(b_{\tau}\)</span> is a bigram associated with technology <span class="math notranslate nohighlight">\(\tau\)</span>.</p>
+<p>The technology exposure is measured at the patent, earnings call, and job level using the following formula:</p>
+<p><span class="math notranslate nohighlight">\(\text{exposure}{i,\tau,t} = 1{b{t} \in D_{i,t}}\)</span></p>
+<p>Here, <span class="math notranslate nohighlight">\(D_{i,t}\)</span> refers to the set of bigrams present in a job posting or earnings call made at time <span class="math notranslate nohighlight">\(t\)</span>, and <span class="math notranslate nohighlight">\(b_{\tau}\)</span> is a bigram linked to technology <span class="math notranslate nohighlight">\(\tau\)</span>.</p>
 <p><strong>Example Jobs Exposed to Smart Devices</strong></p>
-<p><img alt="h:500px" src="../../_images/21.png" /></p>
+<figure class="align-default" id="fig-example-jobs">
+<a class="reference internal image-reference" href="../../_images/21.png"><img alt="../../_images/21.png" src="../../_images/21.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 17 </span><span class="caption-text">Example Jobs Exposed to Smart Devices</span><a class="headerlink" href="#fig-example-jobs" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <ul class="simple">
-<li><p>On average, each technical bigram appears in 59,013 job postings. Compare to 157 average mentions of top non-technical bigrams from earnings calls.</p></li>
+<li><p>The average number of job postings containing a technical bigram is 59,013, while the average number of mentions of top non-technical bigrams in earnings calls is 157.</p></li>
 </ul>
 <p><strong>Define an Emergence Year for each Technology</strong></p>
+<p>To define an emergence year for each technology, the following steps are taken:</p>
 <ol class="arabic simple">
-<li><p>Measure the share of earnings calls mentioning a technology</p></li>
-<li><p>Define a “technology year of emergence” as year in earnings calls when <code class="docutils literal notranslate"><span class="pre">the</span> <span class="pre">time</span> <span class="pre">series</span> <span class="pre">first</span> <span class="pre">attains</span> <span class="pre">at</span> <span class="pre">least</span> <span class="pre">10%</span> <span class="pre">of</span> <span class="pre">its</span> <span class="pre">maximum</span></code>.</p></li>
+<li><p>The share of earnings calls mentioning a technology is measured.</p></li>
+<li><p>The year when the time series first reaches at least 10% of its maximum is defined as the “technology year of emergence”.</p></li>
 </ol>
-<p><img alt="h:500px" src="../../_images/22.png" /></p>
+<figure class="align-default" id="fig-emergence-year">
+<a class="reference internal image-reference" href="../../_images/22.png"><img alt="../../_images/22.png" src="../../_images/22.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 18 </span><span class="caption-text">Technology Emergence Years</span><a class="headerlink" href="#fig-emergence-year" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Share Exposed Firms and Job Postings – Corr. 80%</strong></p>
-<p><img alt="h:500px" src="../../_images/23.png" /></p>
+<figure class="align-default" id="fig-share-exposed-firms">
+<a class="reference internal image-reference" href="../../_images/23.png"><img alt="../../_images/23.png" src="../../_images/23.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 19 </span><span class="caption-text">Share Exposed Firms and Job Postings – Corr. 80%</span><a class="headerlink" href="#fig-share-exposed-firms" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Pioneer Locations</strong></p>
-<p>Define pioneer locations as ones which account for 50% of technology patents 10 years before emergence year.</p>
-<p><img alt="h:500px" src="../../_images/24.png" /></p>
+<p>The pioneer locations are identified as the geographical locations that account for 50% of the technology patents 10 years prior to the year of emergence.</p>
+<figure class="align-default" id="fig-pioneer-locations">
+<a class="reference internal image-reference" href="../../_images/24.png"><img alt="../../_images/24.png" src="../../_images/24.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 20 </span><span class="caption-text">Pioneer Locations</span><a class="headerlink" href="#fig-pioneer-locations" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Broadening over Time and Pioneer Locations</strong></p>
-<p><img alt="h:500px" src="../../_images/25.png" /></p>
+<figure class="align-default" id="fig-broadening-over-time">
+<a class="reference internal image-reference" href="../../_images/25.png"><img alt="../../_images/25.png" src="../../_images/25.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 21 </span><span class="caption-text">Broadening over Time and Pioneer Locations</span><a class="headerlink" href="#fig-broadening-over-time" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="parts-of-speech-predict-loan-repayment">
 <h2>Parts of Speech Predict Loan Repayment<a class="headerlink" href="#parts-of-speech-predict-loan-repayment" title="Permalink to this heading">#</a></h2>

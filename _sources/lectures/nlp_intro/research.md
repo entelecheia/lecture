@@ -170,7 +170,7 @@ Financial and non-financial risk: Global
 - The new sets of competitors explain specific discussion of high competition, rivals identified by managers as peer firms, and changes to industry competitors following exogenous industry shocks.
 - The study finds evidence that firm R&D and advertising are associated with subsequent differentiation from competitors, consistent with theories of endogenous product differentiation.
 - Cosine similarity is the most popular way of calculating similarity.
-- The formula for cosine similarity is $ S\_{i,j} = c_i \cdot c_j $, where $c_i$ is the normalized representative vector of words for document $i$.
+- The formula for cosine similarity is $S\_{i,j} = c_i \cdot c_j$, where $c_i$ is the normalized representative vector of words for document $i$.
 - This approach provides a creative way of figuring out who is competing with whom, using text-based analysis of firm 10-K product descriptions to measure product similarity and identify distinct sets of competitors.
 
 **Product Descriptions to Vector**
@@ -294,23 +294,21 @@ Global average of all 143 countries
 
 ## The Diffusion of Disruptive Technologies
 
-Bloom, Kalyani, Lerner, and Tahoun (2021), The Diffusion of Disruptive Technologies
+{cite:t}`bloom2021diffusion`
 
-- Construct text-based measures of exposure to 20 different technologies at the firm, patent, and job-level, 2002-19.
-
-- Use these novel data to study the spread of new technologies across firms, regions, occupations, and skill-levels.
+- The paper identifies 29 disruptive technologies and documents their diffusion across firms and labor markets in the U.S. using textual analysis of patents, job postings, and earnings calls.
+- The locations where disruptive technologies are developed are geographically highly concentrated, even more so than overall patenting.
+- As the technologies mature and the number of new jobs related to them grows, they gradually spread geographically. While initial hiring is concentrated in high-skilled jobs, over time the mean skill level in new positions associated with the technologies declines, broadening the types of jobs that adopt a given technology.
+- The geographic diffusion of low-skilled positions is significantly faster than higher-skilled ones, so that the locations where initial discoveries were made retain their leading positions among high-paying positions for decades.
+- Pioneer locations are more likely to arise in areas with universities and high skilled labor pools.
 
 **Five Stylized Facts on Disruptive Technologies**
 
-1. Development & initial employment in disruptive technologies is geographically highly concentrated.
-
-2. Over time, hiring associated with new technologies gradually spreads: “region broadening.”
-
-3. Over time, skill level in tech jobs declines sharply: “skill broadening.”
-
-4. Low-skill jobs associated with a given technology spread out significantly faster than high-skill jobs.
-
-5. Pioneer locations retain long-lasting advantage in high-skilled jobs.
+- The development and initial employment of disruptive technologies are highly concentrated geographically.
+- The hiring associated with new technologies gradually spreads over time, leading to region broadening.
+- The skill level required for tech jobs declines sharply over time, leading to skill broadening.
+- Low-skill jobs associated with a given technology spread out significantly faster than high-skill jobs.
+- Pioneer locations retain a long-lasting advantage in high-skilled jobs.
 
 **Data Sources**
 
@@ -323,85 +321,127 @@ Bloom, Kalyani, Lerner, and Tahoun (2021), The Diffusion of Disruptive Technolog
    - Discussions of 300k+ quarterly earnings by 12k publicly listed firms.
    - Typically contains management presentation followed by analyst Q & A.
 
-3. Full text of 200 M+ online job postings from BG (2007, 2010-19).
+3. Full text of 200M+ online job postings from BG (2007, 2010-19).
 
    - Scraped from job forums (e.g., Glassdoor.com) and employer websites.
    - Geo-coded and assigned to SOC Codes
 
 **Step 1: Identify Technical Bigrams from Patents**
 
-Identify two-word combinations (bigrams) that are indicative of discussion of novel technologies.
+Use the list of 35,063 technical bigrams associated with influential inventions to identify and document the diffusion of 29 disruptive technologies across firms and labor markets in the U.S.
 
-1. Extract all (17 mil+) bigrams US patents (1976-2016)
-
-2. Remove any bigrams that were commonly in use prior to 1970 (Corpus of Historical American English)
-
-3. Keep bigrams which account for at least 1000 citations.
-
-> List of 35,063 ‘technical bigrams’ associated with influential inventions.
+1. Extract all (17M+) bigrams US patents (1976-2016)
+2. Remove common bigrams used before 1970 (Corpus of Historical American English)
+3. Keep bigrams that account for at least 1000 citations.
 
 **Top Bigrams in Patents**
 
-![h:500px](../figs/intro_nlp/research/17.png)
+```{figure} ../figs/intro_nlp/research/17.png
+---
+width: 80%
+name: fig-patents-top-bigrams
+---
+Top Bigrams in Patents
+```
 
 **Step 2: Identify Disruptive Technologies from Earnings Calls**
 
-Identify technical bigrams that are discussed in EC with increasing frequency (keep those at <10% of max in first year) – Total 305.
+Identify technical bigrams that are discussed in earnings calls with increasing frequency, while keeping those that are below 10% of the maximum frequency in the first year. This results in a total of 305 technical bigrams.
 
-![h:500px](../figs/intro_nlp/research/18.png)
+```{figure} ../figs/intro_nlp/research/18.png
+---
+width: 80%
+name: fig-ec-top-bigrams
+---
+Technical bigrams in earnings calls
+```
 
 **Technical vs non-technical bigrams**
 
-Non technical bigrams = bigrams in earnings calls and NOT in patents
+Non-technical bigrams refer to bigrams that appear in earnings calls but not in patents.
 
-![h:500px](../figs/intro_nlp/research/19.png)
+```{figure} ../figs/intro_nlp/research/19.png
+---
+width: 80%
+name: fig-technical-non-technical
+---
+Technical vs non-technical bigrams
+```
 
 **Step 3: Bigrams to Technologies**
 
-Two alternative approaches
+There are two alternative approaches:
 
-- `“Supervised”`: Group bigrams with similar meaning to measure the spread of 29 specific technologies, add `synonyms’ and manually audit each bigram. (Main specification)
+- The "Supervised" approach groups bigrams with similar meaning to measure the spread of 29 specific technologies. This approach involves adding synonyms and manually auditing each bigram. Examples include grouping "smartphone tablet" and "android phones" under "Smart Devices" and grouping "3d printer" and "additive manufacturing" under "3D printing."
 
-  - Smart Devices - mobile devices; smartphone tablet; android phones; smart phones …
-  - 3d printing - 3d printer; 3d printing; additive manufacturing; d printed
-
-- `“Unsupervised”`: Treat each tech bigram as a separate technology without any further intervention. (Robustness check)
+- The "Unsupervised" approach treats each technical bigram as a separate technology without any further intervention. This approach is used as a robustness check.
 
 **Technology Exposure**
 
-Measure technology exposure at the patent, earnings call, and job level as
+The technology exposure is measured at the patent, earnings call, and job level using the following formula:
 
-$ \text{exposure}_{i,\tau,t} = 1\{b_{t} \in D\_{i,t}\} $
+$\text{exposure}{i,\tau,t} = 1{b{t} \in D_{i,t}}$
 
-where $D_{i,t}$ is the set of bigrams contained in a job posting/earnings call posted at time $t$ and $b_{\tau}$ is a bigram associated with technology $\tau$.
+Here, $D_{i,t}$ refers to the set of bigrams present in a job posting or earnings call made at time $t$, and $b_{\tau}$ is a bigram linked to technology $\tau$.
 
 **Example Jobs Exposed to Smart Devices**
 
-![h:500px](../figs/intro_nlp/research/21.png)
+```{figure} ../figs/intro_nlp/research/21.png
+---
+width: 80%
+name: fig-example-jobs
+---
+Example Jobs Exposed to Smart Devices
+```
 
-- On average, each technical bigram appears in 59,013 job postings. Compare to 157 average mentions of top non-technical bigrams from earnings calls.
+- The average number of job postings containing a technical bigram is 59,013, while the average number of mentions of top non-technical bigrams in earnings calls is 157.
 
 **Define an Emergence Year for each Technology**
 
-1. Measure the share of earnings calls mentioning a technology
+To define an emergence year for each technology, the following steps are taken:
 
-2. Define a “technology year of emergence” as year in earnings calls when `the time series first attains at least 10% of its maximum`.
+1. The share of earnings calls mentioning a technology is measured.
+2. The year when the time series first reaches at least 10% of its maximum is defined as the "technology year of emergence".
 
-![h:500px](../figs/intro_nlp/research/22.png)
+```{figure} ../figs/intro_nlp/research/22.png
+---
+width: 80%
+name: fig-emergence-year
+---
+Technology Emergence Years
+```
 
 **Share Exposed Firms and Job Postings – Corr. 80%**
 
-![h:500px](../figs/intro_nlp/research/23.png)
+```{figure} ../figs/intro_nlp/research/23.png
+---
+width: 80%
+name: fig-share-exposed-firms
+---
+Share Exposed Firms and Job Postings – Corr. 80%
+```
 
 **Pioneer Locations**
 
-Define pioneer locations as ones which account for 50% of technology patents 10 years before emergence year.
+The pioneer locations are identified as the geographical locations that account for 50% of the technology patents 10 years prior to the year of emergence.
 
-![h:500px](../figs/intro_nlp/research/24.png)
+```{figure} ../figs/intro_nlp/research/24.png
+---
+width: 80%
+name: fig-pioneer-locations
+---
+Pioneer Locations
+```
 
 **Broadening over Time and Pioneer Locations**
 
-![h:500px](../figs/intro_nlp/research/25.png)
+```{figure} ../figs/intro_nlp/research/25.png
+---
+width: 80%
+name: fig-broadening-over-time
+---
+Broadening over Time and Pioneer Locations
+```
 
 ## Parts of Speech Predict Loan Repayment
 
