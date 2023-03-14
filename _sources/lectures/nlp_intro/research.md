@@ -443,36 +443,46 @@ name: fig-broadening-over-time
 Broadening over Time and Pioneer Locations
 ```
 
-## Parts of Speech Predict Loan Repayment
+## When Words Sweat
 
-_Netzer, Lemaire, and Herzenstein (2019), “When Words Sweat”_
+{cite:t}`netzer2019words`
 
-Imagine you consider lending $2,000 to one of two borrowers on a crowdfunding website. The borrowers are identical in terms of demographic and financial characteristics. However, the text they provided when applying for a loan differs:
+- esearchers analyzed text from thousands of loan requests from an online crowdfunding platform.
+- Borrowers' intentions, circumstances, and personality traits were detected in the text and were found to be predictive of default up to three years later.
+- The text analysis was able to detect signals that the borrowers may not have been aware of or intentionally conveyed.
+- The study shows the potential of using natural language processing techniques to improve credit risk assessments.
 
-```
+Suppose you are considering lending $2,000 to one of two borrowers on a crowdfunding website, both with similar financial and demographic characteristics. However, their loan applications differ in their text:
+
 Borrower #1:
 
-“I am a hard working person, married for 25 years, and have two wonderful boys.
-Please let me explain why I need help.
-I would use the $2,000 loan to fix our roof.
-Thank you, god bless you, and I promise to pay you back.”
+"I am hardworking, married for 25 years, and have two wonderful boys. I need a $2,000 loan to fix our roof. Thank you, God bless you, and I promise to pay you back."
 
 Borrower #2:
 
-“While the past year in our new place has been more than great,
-the roof is now leaking and I need to borrow $2,000 to cover the cost of the repair.
-I pay all bills (e.g., car loans, cable, utilities) on time.”
-```
+"I need a $2,000 loan to cover the cost of repairing my roof. I pay all bills on time."
 
 Which borrower is more likely to default?
 
-“Loan requests written by defaulting borrowers are more likely to include words (or themes) related to the borrower’s family, financial and general hardship, mentions of god, and the near future, as well as pleading lenders for help, and using verbs in present and future tenses.”
+Loan requests written by defaulting borrowers tend to include words related to family, financial and general hardship, mentions of God, and the near future. They may also plead for help and use present or future tense verbs. This suggests that borrower #1 may be more likely to default.
 
 **Loan Application Words Predicting Repayment**
 
-![h:500px](../figs/intro_nlp/research/26.png)
+```{figure} ../figs/intro_nlp/research/26.png
+---
+width: 80%
+name: fig-predicting-repayment
+---
+Words Predicting Repayment
+```
 
-![h:500px](../figs/intro_nlp/research/27.png)
+```{figure} ../figs/intro_nlp/research/27.png
+---
+width: 80%
+name: fig-predicting-default
+---
+Words Predicting Default
+```
 
 ## “Legislative Influence Detectors”
 
