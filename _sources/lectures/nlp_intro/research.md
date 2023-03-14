@@ -484,7 +484,7 @@ name: fig-predicting-default
 Words Predicting Default
 ```
 
-## “The Legislative Influence Detector”
+## The Legislative Influence Detector
 
 {cite:t}`burgess2016legislative`
 
