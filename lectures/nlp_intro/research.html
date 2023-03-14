@@ -407,10 +407,11 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measuring-economic-policy-uncertainty">Measuring Economic Policy Uncertainty</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-diffusion-of-disruptive-technologies">The Diffusion of Disruptive Technologies</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-words-sweat">When Words Sweat</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#legislative-influence-detectors">“Legislative Influence Detectors”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-legislative-influence-detector">“The Legislative Influence Detector”</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-pork-to-policy">From Pork to Policy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topic-modeling-federal-reserve-bank-transcripts">Topic modeling Federal Reserve Bank transcripts</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-matching-for-causal-inference">Text matching for causal inference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transparency-and-deliberation-within-the-fomcf">Transparency and Deliberation Within the FOMCF</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adjusting-for-confounding-with-text-matching">Adjusting for Confounding with Text Matching</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deciphering-monetary-policy-board-minutes-with-text-mining">Deciphering Monetary Policy Board Minutes with Text Mining</a></li>
 </ul>
             </nav>
         </div>
@@ -823,83 +824,151 @@ document.write(`
 </figcaption>
 </figure>
 </section>
-<section id="legislative-influence-detectors">
-<h2>“Legislative Influence Detectors”<a class="headerlink" href="#legislative-influence-detectors" title="Permalink to this heading">#</a></h2>
-<p>by Burgess et al</p>
-<p>The two largest interest group associations: ALEC (on the conservative side) and ALICE (on the liberal side)</p>
-<p><img alt="h:500px" src="../../_images/28.png" /></p>
-<p><img alt="h:500px" src="../../_images/29.png" /></p>
-<p><strong>Compare bill texts across states in two-step process:</strong></p>
+<section id="the-legislative-influence-detector">
+<h2>“The Legislative Influence Detector”<a class="headerlink" href="#the-legislative-influence-detector" title="Permalink to this heading">#</a></h2>
+<p><span id="id7">Burgess <em>et al.</em> [<a class="reference internal" href="../../about/index.html#id50" title="Matthew Burgess, Eugenia Giraudy, Julian Katz-Samuels, Joe Walsh, Derek Willis, Lauren Haynes, and Rayid Ghani. The legislative influence detector: finding text reuse in state legislation. In Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 57–66. 2016.">2016</a>]</span></p>
 <ul class="simple">
-<li><p>find candidates using elasticsearch (tf-idf similarlity);</p></li>
-<li><p>compare candidates using text reuse score.</p></li>
+<li><p>State legislatures introduce over 45,000 bills each year.</p></li>
+<li><p>Legislators frequently copy text from other states or interest groups when drafting bills.</p></li>
+<li><p>Existing approaches to detecting text reuse are slow, biased, and incomplete.</p></li>
+<li><p>The Legislative Influence Detector (LID) uses the Smith-Waterman local alignment algorithm to detect sequences of text that occur in model legislation and state bills.</p></li>
+<li><p>LID has found over 45,000 instances of bill-to-bill text reuse and over 14,000 instances of model-legislation-to-bill text reuse.</p></li>
+<li><p>LID reduces the time it takes to manually find text reuse from days to seconds.</p></li>
 </ul>
+<p><strong>Interest Group Influence</strong></p>
+<ul class="simple">
+<li><p>The study focuses on two major interest group associations: ALEC (conservative) and ALICE (liberal).</p></li>
+<li><p>These associations represent a large number of interest groups, with ALEC representing the National Rifle Association (NRA) and ALICE representing major labor associations.</p></li>
+<li><p>Both ALEC and ALICE have thousands of model bills covering various topics such as labor rights, voting regulations, environmental issues, and economic issues.</p></li>
+<li><p>The main goal of these associations is to provide a database of model legislation for politicians and activists to implement in state legislatures.</p></li>
+</ul>
+<figure class="align-default" id="fig-alec-alice">
+<a class="reference internal image-reference" href="../../_images/28.png"><img alt="../../_images/28.png" src="../../_images/28.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 24 </span><span class="caption-text">ALEC and ALICE</span><a class="headerlink" href="#fig-alec-alice" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id8">
+<a class="reference internal image-reference" href="../../_images/29.png"><img alt="../../_images/29.png" src="../../_images/29.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 25 </span><span class="caption-text">Match between Scott Walker’s bill and a bill from Louisiana</span><a class="headerlink" href="#id8" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="from-pork-to-policy">
 <h2>From Pork to Policy<a class="headerlink" href="#from-pork-to-policy" title="Permalink to this heading">#</a></h2>
-<p><img alt="h:500px" src="../../_images/30.jpeg" /></p>
-<p><img alt="h:500px" src="../../_images/31.png" /></p>
-</section>
-<section id="topic-modeling-federal-reserve-bank-transcripts">
-<h2>Topic modeling Federal Reserve Bank transcripts<a class="headerlink" href="#topic-modeling-federal-reserve-bank-transcripts" title="Permalink to this heading">#</a></h2>
+<p><span id="id9">Catalinac [<a class="reference internal" href="../../about/index.html#id51" title="Amy Catalinac. From pork to policy: the rise of programmatic campaigning in japanese elections. In Critical Readings on the Liberal Democratic Party in Japan, pages 882–917. Brill, 2018.">2018</a>]</span></p>
 <ul class="simple">
-<li><p>Analyze speech transcripts from FOMC (Federal Open Market Committee).</p>
-<ul>
-<li><p>private discussions among committee members at Federal Reserve (U.S. Central Bank)</p></li>
-<li><p>150 meetings, 20 years, 26,000 speeches, 24,000 unique words.</p></li>
+<li><p>The study examines how candidates adopt different electoral strategies under different electoral systems and intraparty competition.</p></li>
+<li><p>The researchers analyzed 7,497 Japanese-language candidate election manifestos from before and after Japan’s 1994 electoral reform using probabilistic topic modeling and qualitative interpretations.</p></li>
+<li><p>The findings suggest that the reform, which eliminated intraparty competition, led to a decline in particularism and an increase in promises of programmatic goods such as national security among candidates affiliated with Japan’s Liberal Democratic Party.</p></li>
+<li><p>This change is not explained by the entry of new candidates or other variables that could increase discussion of national security.</p></li>
+<li><p>Opposition candidates relied on programmatic goods under both electoral systems, consistent with the theory.</p></li>
 </ul>
-</li>
-<li><p>Pre-processing:</p>
-<ul>
-<li><p>drop stopwords, stems; vocab = 10,000 words</p></li>
+<figure class="align-default" id="fig-pork-to-policy">
+<a class="reference internal image-reference" href="../../_images/31.png"><img alt="../../_images/31.png" src="../../_images/31.png" style="width: 50%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 26 </span><span class="caption-text">From Pork to Policy</span><a class="headerlink" href="#fig-pork-to-policy" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="transparency-and-deliberation-within-the-fomcf">
+<h2>Transparency and Deliberation Within the FOMCF<a class="headerlink" href="#transparency-and-deliberation-within-the-fomcf" title="Permalink to this heading">#</a></h2>
+<p><span id="id10">Hansen <em>et al.</em> [<a class="reference internal" href="../../about/index.html#id53" title="Stephen Hansen, Michael McMahon, and Andrea Prat. Transparency and deliberation within the fomc: a computational linguistics approach. The Quarterly Journal of Economics, 133(2):801–870, 2018.">2018</a>]</span></p>
+<ul class="simple">
+<li><p>The study examines how transparency affects monetary policymakers’ deliberations in the Federal Open Market Committee (FOMC).</p></li>
+<li><p>Computational linguistics algorithms are used to analyze communication patterns.</p></li>
+<li><p>A natural experiment in the FOMC in 1993 is used to explore the positive discipline effect and negative conformity effect.</p></li>
+<li><p>Large changes in communication patterns are found after transparency.</p></li>
+<li><p>A difference-in-differences approach is used to identify evidence for both effects.</p></li>
+<li><p>An influence measure is constructed, suggesting that the discipline effect dominates.</p></li>
 </ul>
-</li>
-<li><p>LDA:</p>
-<ul>
-<li><p>K = 40 topics selected for interpretability / topic coherence.</p></li>
-</ul>
-</li>
-</ul>
-<p><img alt="h:500px" src="../../_images/32.png" /></p>
+<figure class="align-default" id="fig-topic-distributions">
+<a class="reference internal image-reference" href="../../_images/32.png"><img alt="../../_images/32.png" src="../../_images/32.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 27 </span><span class="caption-text">Topic distributions</span><a class="headerlink" href="#fig-topic-distributions" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Pro-Cyclical Topics</strong></p>
-<p><img alt="h:500px" src="../../_images/33.png" /></p>
+<figure class="align-default" id="fig-pro-cyclical-topics">
+<a class="reference internal image-reference" href="../../_images/33.png"><img alt="../../_images/33.png" src="../../_images/33.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 28 </span><span class="caption-text">Pro-Cyclical Topics</span><a class="headerlink" href="#fig-pro-cyclical-topics" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Counter-Cyclical Topics</strong></p>
-<p><img alt="h:500px" src="../../_images/34.png" /></p>
+<figure class="align-default" id="fig-counter-cyclical-topics">
+<a class="reference internal image-reference" href="../../_images/34.png"><img alt="../../_images/34.png" src="../../_images/34.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 29 </span><span class="caption-text">Counter-Cyclical Topics</span><a class="headerlink" href="#fig-counter-cyclical-topics" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Effect of Transparency</strong></p>
-<p><img alt="h:500px" src="../../_images/35.png" /></p>
 <ul class="simple">
-<li><p>In 1993, there was an unexpected transparency shock where transcripts became public.</p></li>
-<li><p>Increasing transparency results in:</p>
+<li><p>In 1993, the public availability of transcripts caused an unexpected transparency shock.</p></li>
+<li><p>The impact of increasing transparency includes:</p>
 <ul>
-<li><p>higher discipline / technocratic language (probably beneﬁcial)</p></li>
-<li><p>higher conformity (probably costly)</p></li>
+<li><p>Higher use of discipline and technocratic language, which is likely beneficial.</p></li>
+<li><p>Higher conformity, which is likely costly.</p></li>
 </ul>
 </li>
-<li><p>Highlights tradeoffs from transparency in bureaucratic organizations.</p></li>
+<li><p>These findings highlight the tradeoffs that come with transparency in bureaucratic organizations.</p></li>
 </ul>
+<figure class="align-default" id="fig-transparency">
+<a class="reference internal image-reference" href="../../_images/35.png"><img alt="../../_images/35.png" src="../../_images/35.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 30 </span><span class="caption-text">Effect of Transparency</span><a class="headerlink" href="#fig-transparency" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
-<section id="text-matching-for-causal-inference">
-<h2>Text matching for causal inference<a class="headerlink" href="#text-matching-for-causal-inference" title="Permalink to this heading">#</a></h2>
-<p>Application to online censorship in China by Roberts, Stewart, and Nielsen (2018)</p>
+<section id="adjusting-for-confounding-with-text-matching">
+<h2>Adjusting for Confounding with Text Matching<a class="headerlink" href="#adjusting-for-confounding-with-text-matching" title="Permalink to this heading">#</a></h2>
+<p><span id="id11">Roberts <em>et al.</em> [<a class="reference internal" href="../../about/index.html#id52" title="Margaret E Roberts, Brandon M Stewart, and Richard A Nielsen. Adjusting for confounding with text matching. American Journal of Political Science, 64(4):887–903, 2020.">2020</a>]</span></p>
 <ul class="simple">
-<li><p>Construct a corpus of chinese social media posts, some of which are censored.</p>
-<ul>
-<li><p>593 bloggers, 150,000 posts, 6 months</p></li>
+<li><p>This paper proposes a method to adjust for confounding in observational studies using text matching.</p></li>
+<li><p>Matching on text is particularly useful in situations where confounding factors cannot be observed or measured directly.</p></li>
+<li><p>The proposed method involves estimating a low-dimensional summary of the text and using it to match treated and control units.</p></li>
+<li><p>The method, called topical inverse regression matching, matches on both the topical content of confounding documents and the probability that each document is treated.</p></li>
+<li><p>The effectiveness of the method is demonstrated through two applications: the effect of author gender on citation counts in international relations literature and the effects of censorship on Chinese social media users.</p></li>
 </ul>
-</li>
-<li><p>They use a variation of propensity score matching to identify almost identical posts, some of which were censored, and some of which were not.</p></li>
-<li><p>Outcome:</p>
-<ul>
-<li><p>Using text of subsequent posts, measure how likely they are to be censored (how censorable)</p></li>
-<li><p>Can see whether censorship has a deterrence or backlash eﬀect.</p></li>
+<p><strong>Application to online censorship in China</strong></p>
+<ul class="simple">
+<li><p>Gathered a dataset of Chinese social media posts, including both censored and uncensored posts, from 593 bloggers over a period of six months, totaling 150,000 posts.</p></li>
+<li><p>Utilized a modified version of propensity score matching to identify nearly identical posts, some of which were censored and some of which were not.</p></li>
+<li><p>Measured the censorability of subsequent posts using their text and analyzed whether censorship had a deterrence or backlash effect.</p></li>
 </ul>
-</li>
-</ul>
-<p><strong>Censorship has a backlash eﬀect</strong></p>
-<p><img alt="h:500px" src="../../_images/36.png" /></p>
+<figure class="align-default" id="fig-censorship-backlash">
+<a class="reference internal image-reference" href="../../_images/36.png"><img alt="../../_images/36.png" src="../../_images/36.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 31 </span><span class="caption-text">Censorship has a backlash effect</span><a class="headerlink" href="#fig-censorship-backlash" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <ul class="simple">
 <li><p>Bloggers who are censored respond with more censorable content.</p></li>
 </ul>
+</section>
+<section id="deciphering-monetary-policy-board-minutes-with-text-mining">
+<h2>Deciphering Monetary Policy Board Minutes with Text Mining<a class="headerlink" href="#deciphering-monetary-policy-board-minutes-with-text-mining" title="Permalink to this heading">#</a></h2>
+<p><span id="id12">Lee <em>et al.</em> [<a class="reference internal" href="../../about/index.html#id54" title="Young Joon Lee, Soohyon Kim, Ki Young Park, and others. Deciphering monetary policy board minutes with text mining: the case of south korea. Korean Economic Review, 35:471–511, 2019.">2019</a>]</span></p>
+<ul class="simple">
+<li><p>The study uses text mining to analyze Monetary Policy Board (MPB) minutes of Bank of Korea (BOK).</p></li>
+<li><p>A field-specific Korean dictionary and contiguous sequences of words (n-grams) are used to capture central bank communication subtleties.</p></li>
+<li><p>Text-based indicators help explain current and future BOK monetary policy decisions in conjunction with an augmented Taylor rule, indicating additional information beyond macroeconomic variables.</p></li>
+<li><p>The text-based indicators outperform English-based textual classifications, media-based measure of economic policy uncertainty, and databased measure of macroeconomic uncertainty.</p></li>
+<li><p>The study highlights the importance of using a field-specific dictionary and the original Korean text in the analysis.</p></li>
+</ul>
+<figure class="align-default" id="fig-mp-procedure">
+<a class="reference internal image-reference" href="../../_images/mp_procedure.png"><img alt="../../_images/mp_procedure.png" src="../../_images/mp_procedure.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 32 </span><span class="caption-text">Procedure of the study</span><a class="headerlink" href="#fig-mp-procedure" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="fig-mp-tones">
+<a class="reference internal image-reference" href="../../_images/mp_tones.png"><img alt="../../_images/mp_tones.png" src="../../_images/mp_tones.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 33 </span><span class="caption-text">Text-Based Indicators of MP Sentiments</span><a class="headerlink" href="#fig-mp-tones" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 </section>
 
@@ -971,10 +1040,11 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measuring-economic-policy-uncertainty">Measuring Economic Policy Uncertainty</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-diffusion-of-disruptive-technologies">The Diffusion of Disruptive Technologies</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-words-sweat">When Words Sweat</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#legislative-influence-detectors">“Legislative Influence Detectors”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-legislative-influence-detector">“The Legislative Influence Detector”</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-pork-to-policy">From Pork to Policy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topic-modeling-federal-reserve-bank-transcripts">Topic modeling Federal Reserve Bank transcripts</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-matching-for-causal-inference">Text matching for causal inference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transparency-and-deliberation-within-the-fomcf">Transparency and Deliberation Within the FOMCF</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adjusting-for-confounding-with-text-matching">Adjusting for Confounding with Text Matching</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deciphering-monetary-policy-board-minutes-with-text-mining">Deciphering Monetary Policy Board Minutes with Text Mining</a></li>
 </ul>
   </nav></div>
 

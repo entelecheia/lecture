@@ -484,74 +484,161 @@ name: fig-predicting-default
 Words Predicting Default
 ```
 
-## “Legislative Influence Detectors”
+## “The Legislative Influence Detector”
 
-by Burgess et al
+{cite:t}`burgess2016legislative`
 
-The two largest interest group associations: ALEC (on the conservative side) and ALICE (on the liberal side)
+- State legislatures introduce over 45,000 bills each year.
+- Legislators frequently copy text from other states or interest groups when drafting bills.
+- Existing approaches to detecting text reuse are slow, biased, and incomplete.
+- The Legislative Influence Detector (LID) uses the Smith-Waterman local alignment algorithm to detect sequences of text that occur in model legislation and state bills.
+- LID has found over 45,000 instances of bill-to-bill text reuse and over 14,000 instances of model-legislation-to-bill text reuse.
+- LID reduces the time it takes to manually find text reuse from days to seconds.
 
-![h:500px](../figs/intro_nlp/research/28.png)
+**Interest Group Influence**
 
-![h:500px](../figs/intro_nlp/research/29.png)
+- The study focuses on two major interest group associations: ALEC (conservative) and ALICE (liberal).
+- These associations represent a large number of interest groups, with ALEC representing the National Rifle Association (NRA) and ALICE representing major labor associations.
+- Both ALEC and ALICE have thousands of model bills covering various topics such as labor rights, voting regulations, environmental issues, and economic issues.
+- The main goal of these associations is to provide a database of model legislation for politicians and activists to implement in state legislatures.
 
-**Compare bill texts across states in two-step process:**
+```{figure} ../figs/intro_nlp/research/28.png
+---
+width: 80%
+name: fig-alec-alice
+---
+ALEC and ALICE
+```
 
-- find candidates using elasticsearch (tf-idf similarlity);
-
-- compare candidates using text reuse score.
+```{figure} ../figs/intro_nlp/research/29.png
+---
+width: 80%
+name: fig-alec-alice
+---
+Match between Scott Walker's bill and a bill from Louisiana
+```
 
 ## From Pork to Policy
 
-![h:500px](../figs/intro_nlp/research/30.jpeg)
+{cite:t}`catalinac2018pork`
 
-![h:500px](../figs/intro_nlp/research/31.png)
+- The study examines how candidates adopt different electoral strategies under different electoral systems and intraparty competition.
+- The researchers analyzed 7,497 Japanese-language candidate election manifestos from before and after Japan's 1994 electoral reform using probabilistic topic modeling and qualitative interpretations.
+- The findings suggest that the reform, which eliminated intraparty competition, led to a decline in particularism and an increase in promises of programmatic goods such as national security among candidates affiliated with Japan's Liberal Democratic Party.
+- This change is not explained by the entry of new candidates or other variables that could increase discussion of national security.
+- Opposition candidates relied on programmatic goods under both electoral systems, consistent with the theory.
 
-## Topic modeling Federal Reserve Bank transcripts
+```{figure} ../figs/intro_nlp/research/31.png
+---
+width: 50%
+name: fig-pork-to-policy
+---
+From Pork to Policy
+```
 
-- Analyze speech transcripts from FOMC (Federal Open Market Committee).
-  - private discussions among committee members at Federal Reserve (U.S. Central Bank)
-  - 150 meetings, 20 years, 26,000 speeches, 24,000 unique words.
-- Pre-processing:
-  - drop stopwords, stems; vocab = 10,000 words
-- LDA:
-  - K = 40 topics selected for interpretability / topic coherence.
+## Transparency and Deliberation Within the FOMCF
 
-![h:500px](../figs/intro_nlp/research/32.png)
+{cite:t}`hansen2018transparency`
+
+- The study examines how transparency affects monetary policymakers' deliberations in the Federal Open Market Committee (FOMC).
+- Computational linguistics algorithms are used to analyze communication patterns.
+- A natural experiment in the FOMC in 1993 is used to explore the positive discipline effect and negative conformity effect.
+- Large changes in communication patterns are found after transparency.
+- A difference-in-differences approach is used to identify evidence for both effects.
+- An influence measure is constructed, suggesting that the discipline effect dominates.
+
+```{figure} ../figs/intro_nlp/research/32.png
+---
+width: 80%
+name: fig-topic-distributions
+---
+Topic distributions
+```
 
 **Pro-Cyclical Topics**
 
-![h:500px](../figs/intro_nlp/research/33.png)
+```{figure} ../figs/intro_nlp/research/33.png
+---
+width: 80%
+name: fig-pro-cyclical-topics
+---
+Pro-Cyclical Topics
+```
 
 **Counter-Cyclical Topics**
 
-![h:500px](../figs/intro_nlp/research/34.png)
+```{figure} ../figs/intro_nlp/research/34.png
+---
+width: 80%
+name: fig-counter-cyclical-topics
+---
+Counter-Cyclical Topics
+```
 
 **Effect of Transparency**
 
-![h:500px](../figs/intro_nlp/research/35.png)
+- In 1993, the public availability of transcripts caused an unexpected transparency shock.
+- The impact of increasing transparency includes:
+  - Higher use of discipline and technocratic language, which is likely beneficial.
+  - Higher conformity, which is likely costly.
+- These findings highlight the tradeoffs that come with transparency in bureaucratic organizations.
 
-- In 1993, there was an unexpected transparency shock where transcripts became public.
-- Increasing transparency results in:
-  - higher discipline / technocratic language (probably beneﬁcial)
-  - higher conformity (probably costly)
-- Highlights tradeoffs from transparency in bureaucratic organizations.
+```{figure} ../figs/intro_nlp/research/35.png
+---
+width: 80%
+name: fig-transparency
+---
+Effect of Transparency
+```
 
-## Text matching for causal inference
+## Adjusting for Confounding with Text Matching
 
-Application to online censorship in China by Roberts, Stewart, and Nielsen (2018)
+{cite:t}`roberts2020adjusting`
 
-- Construct a corpus of chinese social media posts, some of which are censored.
+- This paper proposes a method to adjust for confounding in observational studies using text matching.
+- Matching on text is particularly useful in situations where confounding factors cannot be observed or measured directly.
+- The proposed method involves estimating a low-dimensional summary of the text and using it to match treated and control units.
+- The method, called topical inverse regression matching, matches on both the topical content of confounding documents and the probability that each document is treated.
+- The effectiveness of the method is demonstrated through two applications: the effect of author gender on citation counts in international relations literature and the effects of censorship on Chinese social media users.
 
-  - 593 bloggers, 150,000 posts, 6 months
+**Application to online censorship in China**
 
-- They use a variation of propensity score matching to identify almost identical posts, some of which were censored, and some of which were not.
+- Gathered a dataset of Chinese social media posts, including both censored and uncensored posts, from 593 bloggers over a period of six months, totaling 150,000 posts.
+- Utilized a modified version of propensity score matching to identify nearly identical posts, some of which were censored and some of which were not.
+- Measured the censorability of subsequent posts using their text and analyzed whether censorship had a deterrence or backlash effect.
 
-- Outcome:
-  - Using text of subsequent posts, measure how likely they are to be censored (how censorable)
-  - Can see whether censorship has a deterrence or backlash eﬀect.
-
-**Censorship has a backlash eﬀect**
-
-![h:500px](../figs/intro_nlp/research/36.png)
+```{figure} ../figs/intro_nlp/research/36.png
+---
+width: 80%
+name: fig-censorship-backlash
+---
+Censorship has a backlash effect
+```
 
 - Bloggers who are censored respond with more censorable content.
+
+## Deciphering Monetary Policy Board Minutes with Text Mining
+
+{cite:t}`lee2019deciphering`
+
+- The study uses text mining to analyze Monetary Policy Board (MPB) minutes of Bank of Korea (BOK).
+- A field-specific Korean dictionary and contiguous sequences of words (n-grams) are used to capture central bank communication subtleties.
+- Text-based indicators help explain current and future BOK monetary policy decisions in conjunction with an augmented Taylor rule, indicating additional information beyond macroeconomic variables.
+- The text-based indicators outperform English-based textual classifications, media-based measure of economic policy uncertainty, and databased measure of macroeconomic uncertainty.
+- The study highlights the importance of using a field-specific dictionary and the original Korean text in the analysis.
+
+```{figure} ../figs/intro_nlp/research/mp_procedure.png
+---
+width: 80%
+name: fig-mp-procedure
+---
+Procedure of the study
+```
+
+```{figure} ../figs/intro_nlp/research/mp_tones.png
+---
+width: 80%
+name: fig-mp-tones
+---
+Text-Based Indicators of MP Sentiments
+```
