@@ -323,8 +323,6 @@ Sampling from a trained DALL-E is the process of generating new images based on 
 
 ## DALL·E 1 Results
 
-Several image generation examples from the original paper
-
 ```{figure} ../figs/aiart/dalle1/aiart_1_dalle1_examples.png
 ---
 width: 70%
