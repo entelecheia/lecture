@@ -20,7 +20,7 @@
 :width: 100%
 ```
 
-AI is an ever-evolving domain with the power to transform numerous aspects of our existence. As it advances, we must not only examine its technical prowess but also its ethical and societal consequences. Aristotle's ancient Greek notion of entelecheia, which denotes reaching one's full potential or fulfilling one's purpose, can be applied to this consideration.
+Artificial intelligence (AI) is an ever-evolving domain with the power to transform numerous aspects of our existence. As it advances, we must not only examine its technical prowess but also its ethical and societal consequences. Aristotle's ancient Greek notion of entelecheia, which denotes reaching one's full potential or fulfilling one's purpose, can be applied to this consideration.
 
 In AI's context, entelecheia signifies that these technologies should optimally accomplish their intended tasks and be designed with human intelligence principles in mind, such as understanding context, managing ambiguity, and adapting to change. Furthermore, AI should adhere to a set of ethical guidelines that align with societal values.
 
