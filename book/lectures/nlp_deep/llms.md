@@ -1,5 +1,53 @@
 # Large Language Models
 
+## Introduction
+
+- Definition: Large Language Models (LLMs) are advanced machine learning models, primarily based on deep learning, designed to understand and generate human-like text.
+- Capabilities: LLMs can perform a wide range of tasks, such as translation, summarization, answering questions, and generating text.
+- Methodologies: LLMs are primarily based on the Transformer architecture and trained using unsupervised learning on massive text corpora.
+
+## Definition of Large Language Models (LLMs)
+
+- LLMs are neural network-based models, specifically designed to process, understand, and generate human-like text
+- Built on the Transformer architecture, which allows for parallel processing and efficient learning of long-range dependencies
+- Examples include GPT-3, BERT, and T5
+
+## Capabilities of LLMs
+
+- Natural language understanding and generation
+- Sentiment analysis and text classification
+- Language translation
+- Text summarization
+- Question-answering
+- Conversational AI
+- Code generation and completion
+- Domain-specific knowledge extraction
+
+## Methodologies
+
+- Transformer architecture: Key component of LLMs, enables efficient learning of long-range dependencies and parallel processing
+- Attention mechanism: Weights the importance of different words in the input, improves context understanding
+- Pre-training: LLMs are pre-trained on large-scale text corpora, learning grammar, facts, and reasoning abilities
+- Fine-tuning: LLMs can be fine-tuned on specific tasks or domains, enhancing their performance on targeted problems
+
+## Applications
+
+- Chatbots and virtual assistants
+- Content generation and journalism
+- Language translation services
+- Information retrieval and summarization
+- Sentiment analysis for market research
+- Code generation and debugging
+- Education and tutoring
+
+## Surrounding Issues
+
+- Ethical concerns: Potential for generating biased, offensive, or harmful content
+- Data privacy: LLMs can inadvertently memorize sensitive information present in the training data
+- Environmental impact: Training LLMs consumes significant computational resources and energy
+- Accessibility: LLMs require substantial resources, potentially limiting their use by smaller organizations and individuals
+- Explainability: Understanding the reasoning behind LLM-generated outputs remains a challenge
+
 ## Emergent abilities of large language models
 
 {cite:t}`wei2022emergent` defined an emergent ability as an ability that is “not present in small models but is present in large models.”
