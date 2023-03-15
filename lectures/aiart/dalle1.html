@@ -638,6 +638,7 @@ document.write(`
 </section>
 <section id="uncertainty-in-the-posterior">
 <h3>Uncertainty in the Posterior<a class="headerlink" href="#uncertainty-in-the-posterior" title="Permalink to this heading">#</a></h3>
+<p>Uncertainty in the posterior arises due to soft-sampling codebook vectors from the Gumbel-Softmax distribution. This soft-sampling process creates a continuous approximation of the discrete latent space, which introduces some level of uncertainty or imprecision in the model’s predictions or estimated parameters.</p>
 <figure class="align-default" id="fig-dalle1-uncetainty1">
 <a class="reference internal image-reference" href="../../_images/aiart_1_dalle1_uncetainty1.png"><img alt="../../_images/aiart_1_dalle1_uncetainty1.png" src="../../_images/aiart_1_dalle1_uncetainty1.png" style="width: 70%;" /></a>
 <figcaption>
@@ -650,16 +651,25 @@ document.write(`
 <p><span class="caption-number">Fig. 56 </span><span class="caption-text">Uncertainty in the Posterior</span><a class="headerlink" href="#fig-dalle1-uncetainty2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
+<p>To understand uncertainty in the posterior easily, let’s break it down into simpler terms:</p>
+<ul class="simple">
+<li><p>Posterior: In the context of machine learning and probabilistic models, the posterior is the updated probability distribution of a model’s parameters after taking into account observed data.</p></li>
+<li><p>Uncertainty: In this context, uncertainty refers to the lack of confidence or precision in the model’s predictions or estimated parameters.</p></li>
+</ul>
+<p>Now, let’s talk about the Gumbel-Softmax distribution and soft-sampling codebook vectors:</p>
 <ul>
-<li><p>Uncertainty in the posterior is added by soft-sampling codebook vectors from the Gumbel-Softmax distribution.</p></li>
-<li><p>This results in a softened latent space which can be seen as a continuous approximation of the discrete latent space.</p></li>
-<li><p>The Gumbel-Softmax distribution is a type of distribution that allows for sampling from a discrete space while still allowing for gradients to flow through the samples.</p></li>
-<li><p>This is useful for training models with discrete latent spaces, such as VQ-VAE.</p></li>
+<li><p>Codebook vectors: In a VQ-VAE (Vector Quantized Variational AutoEncoder) model, codebook vectors are a set of fixed, learnable vectors that form a discrete latent space. The model maps its continuous latent representations to the nearest codebook vector during the training process.</p></li>
+<li><p>Soft-sampling: Soft-sampling refers to the process of sampling codebook vectors in a “soft” manner, meaning that the samples are taken from a continuous approximation of the discrete latent space. This is done using the Gumbel-Softmax distribution.</p></li>
+<li><p>Gumbel-Softmax distribution: The Gumbel-Softmax distribution is a technique that allows for sampling from a discrete space while maintaining gradients for backpropagation. It involves using a temperature parameter (<span class="math notranslate nohighlight">\(\beta\)</span>) that controls the “sharpness” of the distribution. Lower temperatures lead to a more focused distribution, while higher temperatures result in a more uniform distribution.</p>
+<ul>
 <li><p>The Gumbel-Softmax distribution is defined as:</p>
 <p><span class="math notranslate nohighlight">\(G(z;\mu,\beta) = \frac{\exp((z - \mu)/\beta)}{\sum_{k=1}^K \exp((z_k - \mu)/\beta)}\)</span></p>
 <p>where <span class="math notranslate nohighlight">\(\mu\)</span> is the mean, <span class="math notranslate nohighlight">\(\beta\)</span> is the temperature and <span class="math notranslate nohighlight">\(K\)</span> is the number of classes.</p>
 </li>
 </ul>
+</li>
+</ul>
+<p>This is useful for training models with discrete latent spaces, such as VQ-VAE.</p>
 <p><strong>Comparison of original images (top) and reconstructions from the dVAE (bottom)</strong></p>
 <figure class="align-default" id="fig-dalle1-dvae">
 <a class="reference internal image-reference" href="../../_images/aiart_1_dalle1_dvae.png"><img alt="../../_images/aiart_1_dalle1_dvae.png" src="../../_images/aiart_1_dalle1_dvae.png" style="width: 70%;" /></a>
