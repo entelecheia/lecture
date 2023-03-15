@@ -251,8 +251,6 @@ Now, let's talk about the Gumbel-Softmax distribution and soft-sampling codebook
 
 This is useful for training models with discrete latent spaces, such as VQ-VAE.
 
-**Comparison of original images (top) and reconstructions from the dVAE (bottom)**
-
 ```{figure} ../figs/aiart/dalle1/aiart_1_dalle1_dvae.png
 ---
 width: 70%
@@ -263,7 +261,7 @@ Comparison of original images (top) and reconstructions from the dVAE (bottom)
 
 ### Decoder
 
-A GPT-3 like transformer decoder consumes a sequence of text tokens and (optional) image tokens (here a single image token with id 42) and produces a continuation of an image (here the next image token with id 1369)
+DALL-E's decoder is a GPT-3-like transformer that takes a sequence of text tokens and optional image tokens as input, understands their relationships, and generates a visual representation of the input text by producing a continuation or completion of the image.
 
 ```{figure} ../figs/aiart/dalle1/aiart_1_dalle1_decoder.png
 ---
@@ -273,7 +271,27 @@ name: fig-dalle1-decoder
 Decoder
 ```
 
+The decoder in DALL-E is a crucial component responsible for generating images based on the input sequence of text and image tokens.
+
+- GPT-3-like transformer decoder: A transformer decoder is a neural network architecture that excels in understanding and generating sequences. In DALL-E, the decoder is similar to GPT-3, a powerful language model that has been trained on vast amounts of text.
+
+- Text tokens: These are the individual units of text (words or subwords) that the model processes. In DALL-E, text tokens are used to provide a textual description of the desired image.
+
+- Image tokens: In DALL-E, images are represented as a sequence of image tokens, which are essentially small parts of an image. These tokens are used as input to the decoder, allowing it to generate a continuation or completion of the image.
+
+Here's the process in simple terms:
+
+- The input sequence: A sequence of text tokens describing the desired image and, optionally, some initial image tokens are fed into the decoder.
+
+- The decoder processes the input sequence: The transformer decoder processes the input sequence, understanding the relationship between the text tokens and image tokens.
+
+- Generating image continuation: Based on the processed input sequence, the decoder generates a continuation of the image, adding new image tokens that visually represent the input text.
+
+In the example you provided, the decoder is given a sequence with text tokens and an initial image token (with ID 42). It processes this sequence and generates a continuation of the image by producing the next image token (with ID 1369).
+
 ### Sampling From a Trained DALL-E
+
+Sampling from a trained DALL-E involves preparing an input text description, encoding it, and feeding it to the decoder. The decoder generates a sequence of image tokens based on the input, which are then converted back into an image that represents the desired text description. The sampling process can be controlled using various strategies to influence the randomness and diversity of the generated images.
 
 ```{figure} ../figs/aiart/dalle1/aiart_1_dalle1_sampling.png
 ---
@@ -290,6 +308,18 @@ name: fig-dalle1-sampling2
 ---
 Sampling From a Trained DALL-E
 ```
+
+Sampling from a trained DALL-E is the process of generating new images based on a textual description provided as input.
+
+- Prepare the input: Create a sequence of text tokens based on the desired textual description. This sequence will be used as input to guide the image generation process.
+
+- Encode the input: The text tokens are passed through an encoder, which converts them into a format that can be understood by the model. This typically involves mapping the text tokens to numerical representations called embeddings.
+
+- Generate image tokens: The encoded input is then fed into the DALL-E decoder. The decoder processes the input and generates a sequence of image tokens that visually represent the input text. The image tokens are generated one at a time, with each new token being conditioned on the input text tokens and previously generated image tokens.
+
+- Sampling strategy: During the image token generation process, a sampling strategy is used to control the randomness and diversity of the generated images. Common strategies include temperature-based sampling, where a higher temperature results in more diverse and random images, and top-k sampling, which restricts the token selection to the top-k most likely candidates.
+
+- Convert image tokens to an image: Once the sequence of image tokens is generated, they are converted back into an image format (e.g., a grid of pixels). This reconstructed image is the final output, which should visually represent the input text description.
 
 ## DALL·E 1 Results
 
@@ -312,3 +342,9 @@ name: fig-dalle1-eval
 ---
 Evaluation
 ```
+
+## Conclusion
+
+The DALL-E model represents a significant breakthrough in the field of artificial intelligence, particularly in the area of image generation. By successfully combining the power of transformer-based language models with the ability to generate high-quality images from textual descriptions, DALL-E has demonstrated remarkable capabilities in the realm of creative AI applications.
+
+This innovative model has the potential to impact a wide range of industries, such as advertising, entertainment, education, and art, by enabling the automatic generation of customized visual content based on specific user inputs. Furthermore, DALL-E serves as an inspiration for future research in the intersection of natural language processing and computer vision, potentially paving the way for more advanced AI systems that can understand and manipulate both textual and visual information.
