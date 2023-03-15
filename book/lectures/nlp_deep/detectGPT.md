@@ -27,3 +27,8 @@ This method has shown great promise in detecting machine-generated texts with hi
 Finally, human evaluation is an effective method for detecting machine-written texts. Humans can often detect errors, unusual patterns, or language that does not sound natural in texts. By having human evaluators read and evaluate a sample of text, we can identify texts that are more likely to have been machine-generated.
 
 This method can be effective in detecting machine-generated texts with unique or uncommon patterns that may not be reflected in language model scores or statistical features. However, it may not be as scalable or cost-effective as other methods, and may introduce human biases and errors.
+
+## Referencs
+
+- [DetectGPT](https://detectgpt.ericmitchell.ai/)
+- [GPTZero](https://gptzero.me/)
