@@ -211,6 +211,8 @@ Discrete Spaces
 
 ### Uncertainty in the Posterior
 
+Uncertainty in the posterior arises due to soft-sampling codebook vectors from the Gumbel-Softmax distribution. This soft-sampling process creates a continuous approximation of the discrete latent space, which introduces some level of uncertainty or imprecision in the model's predictions or estimated parameters.
+
 ```{figure} ../figs/aiart/dalle1/aiart_1_dalle1_uncetainty1.png
 ---
 width: 70%
@@ -227,16 +229,27 @@ name: fig-dalle1-uncetainty2
 Uncertainty in the Posterior
 ```
 
-- Uncertainty in the posterior is added by soft-sampling codebook vectors from the Gumbel-Softmax distribution.
-- This results in a softened latent space which can be seen as a continuous approximation of the discrete latent space.
+To understand uncertainty in the posterior easily, let's break it down into simpler terms:
 
-- The Gumbel-Softmax distribution is a type of distribution that allows for sampling from a discrete space while still allowing for gradients to flow through the samples.
-- This is useful for training models with discrete latent spaces, such as VQ-VAE.
-- The Gumbel-Softmax distribution is defined as:
+- Posterior: In the context of machine learning and probabilistic models, the posterior is the updated probability distribution of a model's parameters after taking into account observed data.
 
-  $G(z;\mu,\beta) = \frac{\exp((z - \mu)/\beta)}{\sum_{k=1}^K \exp((z_k - \mu)/\beta)}$
+- Uncertainty: In this context, uncertainty refers to the lack of confidence or precision in the model's predictions or estimated parameters.
 
-  where $\mu$ is the mean, $\beta$ is the temperature and $K$ is the number of classes.
+Now, let's talk about the Gumbel-Softmax distribution and soft-sampling codebook vectors:
+
+- Codebook vectors: In a VQ-VAE (Vector Quantized Variational AutoEncoder) model, codebook vectors are a set of fixed, learnable vectors that form a discrete latent space. The model maps its continuous latent representations to the nearest codebook vector during the training process.
+
+- Soft-sampling: Soft-sampling refers to the process of sampling codebook vectors in a "soft" manner, meaning that the samples are taken from a continuous approximation of the discrete latent space. This is done using the Gumbel-Softmax distribution.
+
+- Gumbel-Softmax distribution: The Gumbel-Softmax distribution is a technique that allows for sampling from a discrete space while maintaining gradients for backpropagation. It involves using a temperature parameter ($\beta$) that controls the "sharpness" of the distribution. Lower temperatures lead to a more focused distribution, while higher temperatures result in a more uniform distribution.
+
+  - The Gumbel-Softmax distribution is defined as:
+
+    $G(z;\mu,\beta) = \frac{\exp((z - \mu)/\beta)}{\sum_{k=1}^K \exp((z_k - \mu)/\beta)}$
+
+    where $\mu$ is the mean, $\beta$ is the temperature and $K$ is the number of classes.
+
+This is useful for training models with discrete latent spaces, such as VQ-VAE.
 
 **Comparison of original images (top) and reconstructions from the dVAE (bottom)**
 
