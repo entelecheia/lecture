@@ -86,11 +86,13 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_deep/llm';</script>
-    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_deep/llm.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_deep/llms';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_deep/llms.html" />
     <link rel="shortcut icon" href="../../_static/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Zero Shot, Prompt, and Search Strategies" href="zeroshot.html" />
+    <link rel="prev" title="Introduction" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -176,10 +178,9 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../nlp_intro/index.html">Introduction to NLP</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../nlp_intro/intro.html">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/ekorpkit.html">Getting started with ekorpkit</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nlp_intro/research.html">Research Applications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nlp_intro/language_models.html">Language Models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nlp_intro/topic.html">Topic Modeling</a></li>
@@ -190,13 +191,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../nlp_intro/word_segmentation.html">Word Segmentation and Association</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nlp_intro/vectorization.html">Vector Semantics and Representation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nlp_intro/word_embeddings.html">Word Embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/ekorpkit.html">Getting started with ekorpkit</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nlp_intro/lab1-corpus.html">Lab 1: Preparing Wikipedia Corpora</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nlp_intro/lab2-corpus-eda.html">Lab 2: EDA on Corpora</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="index.html">Deep Learning for NLP</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Deep Learning for NLP</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ekorpkit.html">Getting started with ekorpkit</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Large Language Models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="zeroshot.html">Zero Shot, Prompt, and Search Strategies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rlhf.html">Reinforcement Learning with Human Feedback (RLHF)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="detectGPT.html">How to Spot Machine-Written Texts</a></li>
@@ -206,6 +208,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="sentencepiece.html">SentencePiece Tokenizer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plms.html">Pretrained Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ekorpkit.html">Getting started with ekorpkit</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lab1-corpus.html">Lab 1: Preparing Wikipedia Corpora</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lab3-train-tokenizers.html">Lab 3: Training Tokenizers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lab4-pretraining-lms.html">Lab 4: Pretraining Language Models</a></li>
@@ -285,55 +288,6 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="article-header-buttons">
 
 
-
-
-
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/nlp_deep/llm.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch onColab"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img src="../../_static/images/logo_colab.png">
-  </span>
-<span class="btn__text-container">Colab</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="initThebeSBT()"
-  class="btn btn-sm btn-launch-thebe dropdown-item"
-  title="Launch Thebe"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="btn__text-container">Live Code</span>
-</button>
-</li>
-      
-  </ul>
-</div>
-
-
-
 <a href="https://github.com/entelecheia/lecture" target="_blank"
    class="btn btn-sm btn-source-repository-button"
    title="Source repository"
@@ -360,7 +314,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/lectures/nlp_deep/llm.ipynb" target="_blank"
+      <li><a href="../../_sources/lectures/nlp_deep/llms.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -370,7 +324,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -452,7 +406,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#emergent-abilities-of-large-language-models">Emergent abilities of large language models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#big-bench-67-tasks">BIG-Bench (67 tasks):</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmlu-51-tasks-see-chinchilla-paper-for-results">MMLU (51 tasks; see Chinchilla paper for results):</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#individual-emergent-tasks-from-papers">Individual emergent tasks from papers:</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -466,13 +425,46 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="large-language-models">
 <h1>Large Language Models<a class="headerlink" href="#large-language-models" title="Permalink to this heading">#</a></h1>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<section id="emergent-abilities-of-large-language-models">
+<h2>Emergent abilities of large language models<a class="headerlink" href="#emergent-abilities-of-large-language-models" title="Permalink to this heading">#</a></h2>
+<p><span id="id1">Wei <em>et al.</em> [<a class="reference internal" href="../../about/index.html#id56" title="Jason Wei, Yi Tay, Rishi Bommasani, Colin Raffel, Barret Zoph, Sebastian Borgeaud, Dani Yogatama, Maarten Bosma, Denny Zhou, Donald Metzler, and others. Emergent abilities of large language models. arXiv preprint arXiv:2206.07682, 2022. URL: https://openreview.net/pdf?id=yzkSU5zdwD.">2022</a>]</span> defined an emergent ability as an ability that is “not present in small models but is present in large models.”</p>
+<figure class="align-default" id="fig-llm-ablities">
+<a class="reference internal image-reference" href="../../_images/llm_ablities.png"><img alt="../../_images/llm_ablities.png" src="../../_images/llm_ablities.png" style="width: 60%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 34 </span><span class="caption-text">Eight examples of emergence in the few-shot prompting setting.</span><a class="headerlink" href="#fig-llm-ablities" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Emergence in large language models refers to abilities not present in small models but found in larger ones. Over 100 examples of emergent abilities have been discovered in models like GPT-3, Chinchilla, and PaLM. These abilities can be classified into two categories: emergent few-shot prompted tasks and emergent prompting strategies.</p>
+<p>Emergent few-shot prompted tasks are tasks where small models perform at random chance, while large models perform well above-random. Sources for these tasks include BIG-Bench, the Massive Multitask Benchmark, and several papers showcasing individual tasks as emergent abilities.</p>
+<p>Emergent prompting strategies are general prompting strategies that work only for sufficiently large-scale language models. Examples include instruction-following, scratchpad, chain-of-thought prompting, and leveraging explanations in prompting.</p>
+<p>Promising future research directions include improving model architectures, enhancing data quality and quantity, optimizing prompting, exploring frontier tasks, and understanding why emergent abilities occur and if they can be predicted.</p>
+<section id="big-bench-67-tasks">
+<h3>BIG-Bench (67 tasks):<a class="headerlink" href="#big-bench-67-tasks" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p><a class="reference external" href="https://analyticsindiamag.com/the-rise-of-decoder-only-transformer-models/">The rise of decoder-only Transformer models</a></p></li>
-<li><p><a class="reference external" href="https://medium.com/&#64;cobusgreyling/the-large-language-model-landscape-9da7ee17710b">The Large Language Model Landscape</a></p></li>
-<li><p><a class="reference external" href="https://towardsdatascience.com/transformers-in-action-attention-is-all-you-need-ac10338a023a">Transformers in Action: Attention Is All You Need</a></p></li>
+<li><p>GPT-3 13B (2 tasks): hindu knowledge, modified arithmetic</p></li>
+<li><p>GPT-3 175B (15 tasks): analytic entailment, codenames, etc.</p></li>
+<li><p>LaMDA 137B (8 tasks): gender inclusive sentences german, repeat copy logic, etc.</p></li>
+<li><p>PaLM 8B (3 tasks): auto debugging, sufficient information, parsinlu reading comprehension</p></li>
+<li><p>PaLM 64B (14 tasks): anachronisms, ascii word recognition, etc.</p></li>
+<li><p>PaLM 540B (25 tasks): analogical similarity, causal judgment, etc.</p></li>
 </ul>
+</section>
+<section id="mmlu-51-tasks-see-chinchilla-paper-for-results">
+<h3>MMLU (51 tasks; see Chinchilla paper for results):<a class="headerlink" href="#mmlu-51-tasks-see-chinchilla-paper-for-results" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Chinchilla 7B (7 tasks): Professional Medicine, High School Statistics, etc.</p></li>
+<li><p>Chinchilla 70B (44 tasks): International Law, Human Aging, etc.</p></li>
+</ul>
+</section>
+<section id="individual-emergent-tasks-from-papers">
+<h3>Individual emergent tasks from papers:<a class="headerlink" href="#individual-emergent-tasks-from-papers" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>GPT-3 paper: 3 digit addition/subtraction (GPT-3 13B), 4-5 digit addition/substraction (GPT-3 175B), leveraging few-shot examples for word denoising (GPT-3 13B)</p></li>
+<li><p>Gopher paper: Toxicity classification (Gopher 7.1B), TruthfulQA (Gopher 280B)</p></li>
+<li><p>Patel &amp; Pavlick: grounded conceptual mappings (GPT-3 175B)</p></li>
+<li><p>PaLM paper: Word in Context benchmark (PaLM 540B)</p></li>
+</ul>
+</section>
 </section>
 </section>
 
@@ -504,6 +496,24 @@ document.write(`
                 <footer class="bd-footer-article">
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introduction</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="zeroshot.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Zero Shot, Prompt, and Search Strategies</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -519,7 +529,12 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#emergent-abilities-of-large-language-models">Emergent abilities of large language models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#big-bench-67-tasks">BIG-Bench (67 tasks):</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmlu-51-tasks-see-chinchilla-paper-for-results">MMLU (51 tasks; see Chinchilla paper for results):</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#individual-emergent-tasks-from-papers">Individual emergent tasks from papers:</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
