@@ -408,16 +408,26 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dotfiles-in-a-gitops-workflow">Dotfiles in a GitOps workflow</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-for-managing-dotfiles">Tools for managing dotfiles</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chezmoi">chezmoi</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#install-chezmoi">Install chezmoi</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-chezmoi">Initialize chezmoi</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#install-packages-with-scripts">Install packages with scripts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-for-dotfiles-management">Tools for Dotfiles Management</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#version-control-systems">Version control systems:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dotfiles-managers">Dotfiles managers:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#synchronization-tools">Synchronization tools:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration-frameworks">Configuration frameworks:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#backup-and-sharing-tools">Backup and sharing tools:</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dotdrop">dotdrop</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dotfiles-in-practice">Dotfiles in Practice</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-dotfiles">Install dotfiles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-dotfiles">Initialize dotfiles</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#repositories-and-repository-templates-for-setting-up-your-own-dotfiles">Repositories and repository templates for setting up your own dotfiles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-the-font-on-windows">Installing the font on <strong>Windows</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuring-the-font-in-vs-code">Configuring the font in <strong>VS Code</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuring-the-font-in-windows-terminal">Configuring the font in <strong>Windows Terminal</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
             </nav>
         </div>
@@ -445,56 +455,162 @@ document.write(`
 </ul>
 <p>While dotfiles management is focused on personalizing user environments and tool configurations, the principles of version control, collaboration, automation, and organization can be applied in a similar manner as GitOps. This allows users to manage their dotfiles more efficiently and consistently across multiple systems.</p>
 </section>
-<section id="tools-for-managing-dotfiles">
-<h2>Tools for managing dotfiles<a class="headerlink" href="#tools-for-managing-dotfiles" title="Permalink to this heading">#</a></h2>
-<section id="chezmoi">
-<h3><a class="reference external" href="https://chezmoi.io">chezmoi</a><a class="headerlink" href="#chezmoi" title="Permalink to this heading">#</a></h3>
-<p>Chezmoi is a tool for managing your dotfiles across multiple machines, securely. Chezmoi allows you to manage your dotfiles in a Git repository.</p>
-<section id="install-chezmoi">
-<h4>Install chezmoi<a class="headerlink" href="#install-chezmoi" title="Permalink to this heading">#</a></h4>
-<p>Before installing chezmoi, make sure that you have installed Git, curl, and a recent version of Go.</p>
-<p>One-line binary install</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>curl<span class="w"> </span>-fsLS<span class="w"> </span>get.chezmoi.io<span class="k">)</span><span class="s2">&quot;</span>
-</pre></div>
-</div>
-<p>Chezmoi will be installed in <span class="math notranslate nohighlight">\(HOME/bin, so make sure that \)</span>HOME/bin is in your $PATH.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
-</pre></div>
-</div>
-<p>For more information, see <a class="reference external" href="https://www.chezmoi.io/install/">Install chezmoi</a>.</p>
+<section id="tools-for-dotfiles-management">
+<h2>Tools for Dotfiles Management<a class="headerlink" href="#tools-for-dotfiles-management" title="Permalink to this heading">#</a></h2>
+<p>Dotfiles are configuration files used to personalize and set up a user’s environment in Unix-based systems. These files typically start with a dot (.) and are hidden by default in the file explorer. Managing dotfiles is important for maintaining a consistent and portable configuration across multiple machines or users. There are several tools available for managing dotfiles:</p>
+<section id="version-control-systems">
+<h3>Version control systems:<a class="headerlink" href="#version-control-systems" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Git</strong>: Git is the most popular version control system and can be used to manage and version your dotfiles. By storing your dotfiles in a Git repository, you can easily synchronize, backup, and share your configurations across multiple machines.</p></li>
+</ul>
 </section>
-<section id="initialize-chezmoi">
-<h4>Initialize chezmoi<a class="headerlink" href="#initialize-chezmoi" title="Permalink to this heading">#</a></h4>
-<p>If it is the first time you use chezmoi, you need to initialize it.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>chezmoi<span class="w"> </span>init
-</pre></div>
-</div>
-<p>Or if you want to use the existing repository as your dotfiles repository, you can use the following command.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>chezmoi<span class="w"> </span>init<span class="w"> </span>https://github.com/<span class="nv">$GITHUB_USERNAME</span>/dotfiles.git
-</pre></div>
-</div>
-<p>Check what changes that chezmoi will make to your home directory by running:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>chezmoi<span class="w"> </span>diff
-</pre></div>
-</div>
-<p>Apply the changes by running:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>chezmoi<span class="w"> </span>apply<span class="w"> </span>-v
-</pre></div>
-</div>
+<section id="dotfiles-managers">
+<h3>Dotfiles managers:<a class="headerlink" href="#dotfiles-managers" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>GNU Stow</strong>: GNU Stow is a symlink manager that can be used to manage dotfiles by organizing them in a central location and creating symlinks to the appropriate locations in the home directory. This makes it easy to keep dotfiles organized and version-controlled.</p></li>
+<li><p><strong>yadm</strong> (Yet Another Dotfiles Manager): yadm is a dotfiles manager built on top of Git that offers additional features like encryption, bootstrapping, and profiles for managing different configurations.</p></li>
+<li><p><strong>chezmoi</strong>: chezmoi is another dotfiles manager that uses a Git-based approach and offers features like templating, secret management, and support for multiple platforms.</p></li>
+<li><p><strong>dotdrop</strong>: dotdrop is a dotfiles manager that uses YAML files to define dotfiles and their destinations. It can be used to manage dotfiles across multiple machines and platforms.</p></li>
+</ul>
 </section>
-<section id="install-packages-with-scripts">
-<h4>Install packages with scripts<a class="headerlink" href="#install-packages-with-scripts" title="Permalink to this heading">#</a></h4>
-<p>Change to the source directory and create a file called <code class="docutils literal notranslate"><span class="pre">run_once_install-packages.sh</span></code>:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>chezmoi<span class="w"> </span><span class="nb">cd</span>
-touch<span class="w"> </span>run_once_install-packages.sh
-</pre></div>
-</div>
+<section id="synchronization-tools">
+<h3>Synchronization tools:<a class="headerlink" href="#synchronization-tools" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>rsync</strong>: rsync is a popular file synchronization tool that can be used to synchronize dotfiles across multiple machines. With rsync, you can ensure that your dotfiles are always up-to-date on all your systems.</p></li>
+<li><p><strong>Unison</strong>: Unison is another file synchronization tool that offers two-way synchronization between different machines. It can be used to synchronize dotfiles and maintain a consistent configuration across multiple environments.</p></li>
+</ul>
+</section>
+<section id="configuration-frameworks">
+<h3>Configuration frameworks:<a class="headerlink" href="#configuration-frameworks" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Oh My Zsh</strong>: Oh My Zsh is a framework for managing Zsh configurations, including themes and plugins. It simplifies the process of customizing and extending the Zsh shell, which is often part of dotfiles management.</p></li>
+<li><p><strong>Oh My Fish</strong>: Oh My Fish is a similar framework to Oh My Zsh but for the Fish shell. It provides a way to manage Fish configurations, themes, and plugins.</p></li>
+</ul>
+</section>
+<section id="backup-and-sharing-tools">
+<h3>Backup and sharing tools:<a class="headerlink" href="#backup-and-sharing-tools" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Dropbox, Google Drive, or other cloud storage services</strong>: You can store your dotfiles in a cloud storage service to easily backup and sync them across multiple machines. This method may require manual intervention to set up symlinks or copy the files to the correct locations.</p></li>
+</ul>
+<p>When selecting tools for dotfiles management, consider your specific needs, such as ease of use, platform support, and integration with other tools or services. Additionally, make sure to keep your dotfiles organized and version-controlled to simplify synchronization and sharing with other users or machines.</p>
 </section>
 </section>
-<section id="dotdrop">
-<h3><a class="reference external" href="https://github.com/deadc0de6/dotdrop">dotdrop</a><a class="headerlink" href="#dotdrop" title="Permalink to this heading">#</a></h3>
-<p>Save your dotfiles once, deploy them everywhere</p>
+<section id="dotfiles-in-practice">
+<h2>Dotfiles in Practice<a class="headerlink" href="#dotfiles-in-practice" title="Permalink to this heading">#</a></h2>
+<p><a class="reference external" href="https://github.com/entelecheia/dotfiles/releases"><img alt="version-image" src="https://img.shields.io/github/v/release/entelecheia/dotfiles?sort=semver" /></a>
+<a class="reference external" href="https://github.com/entelecheia/dotfiles/releases"><img alt="release-date-image" src="https://img.shields.io/github/release-date/entelecheia/dotfiles" /></a>
+<a class="reference external" href="https://github.com/entelecheia/dotfiles/actions/workflows/test.yaml"><img alt="test-image" src="https://github.com/entelecheia/dotfiles/actions/workflows/test.yaml/badge.svg" /></a>
+<a class="reference external" href="https://github.com/entelecheia/dotfiles/blob/main/LICENSE"><img alt="license-image" src="https://img.shields.io/github/license/entelecheia/dotfiles" /></a></p>
+<!-- Links: -->
+<!-- Links: -->
+<ul class="simple">
+<li><p>Documentation: <a class="reference external" href="https://dotfiles.entelecheia.cc">https://dotfiles.entelecheia.cc</a></p></li>
+<li><p>GitHub: <a class="github reference external" href="https://github.com/entelecheia/dotfiles">entelecheia/dotfiles</a></p></li>
+</ul>
+<section id="install-dotfiles">
+<h3>Install dotfiles<a class="headerlink" href="#install-dotfiles" title="Permalink to this heading">#</a></h3>
+<p>You can use the <a class="reference external" href="https://dotfiles.entelecheia.cc/install">install dotfiles script</a> to install the dotfiles on any machine with a single command. Simply run the following command in your terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>wget<span class="w"> </span>-qO-<span class="w"> </span>https://dotfiles.entelecheia.cc/install<span class="k">)</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>💡 For most Ubuntu-based distributions, <code class="docutils literal notranslate"><span class="pre">wget</span></code> is already installed. If you want to use <code class="docutils literal notranslate"><span class="pre">curl</span></code> instead:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://dotfiles.entelecheia.cc/install<span class="k">)</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><img alt="install dotfiles script" src="https://github.com/entelecheia/dotfiles/blob/main/docs/figs/install_dotfiles_script.png?raw=true" /></p>
+<p>For unattended installations such as in a dockerfile, you can use the environment variables to initialize the dotfiles automatically. For example:</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># install dotfiles</span>
+<span class="k">ARG</span><span class="w"> </span><span class="nv">USER_FULLNAME</span><span class="o">=</span><span class="s2">&quot;John Doe&quot;</span>
+<span class="k">ARG</span><span class="w"> </span><span class="nv">USER_EMAIL</span><span class="o">=</span><span class="s2">&quot;john.doe@email.com&quot;</span>
+<span class="k">ARG</span><span class="w"> </span><span class="nv">GITHUB_USERNAME</span><span class="o">=</span><span class="s2">&quot;john-doe&quot;</span>
+<span class="k">ARG</span><span class="w"> </span><span class="nv">SYSTEM_HOSTNANE</span><span class="o">=</span><span class="s2">&quot;devcon-arm64&quot;</span>
+
+<span class="k">ENV</span><span class="w"> </span><span class="nv">USER_FULLNAME</span><span class="o">=</span><span class="nv">$USER_FULLNAME</span>
+<span class="k">ENV</span><span class="w"> </span><span class="nv">USER_EMAIL</span><span class="o">=</span><span class="nv">$USER_EMAIL</span>
+<span class="k">ENV</span><span class="w"> </span><span class="nv">GITHUB_USERNAME</span><span class="o">=</span><span class="nv">$GITHUB_USERNAME</span>
+<span class="k">ENV</span><span class="w"> </span><span class="nv">SYSTEM_HOSTNAME</span><span class="o">=</span><span class="nv">$SYSTEM_HOSTNAME</span>
+<span class="k">ENV</span><span class="w"> </span><span class="nv">WORKSPACE_LOCATION</span><span class="o">=</span><span class="s2">&quot;/&quot;</span>
+<span class="k">ENV</span><span class="w"> </span><span class="nv">DOTFILES_APPLY_ROOTMOI</span><span class="o">=</span><span class="m">0</span>
+<span class="k">ENV</span><span class="w"> </span><span class="nv">REMOTE_CONTAINERS</span><span class="o">=</span><span class="m">1</span>
+
+<span class="k">RUN</span><span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>wget<span class="w"> </span>-qO-<span class="w"> </span>https://dotfiles.entelecheia.cc/install<span class="k">)</span><span class="s2">&quot;</span>
+
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;zsh&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Or you can provide the environment variables in the command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">USER_FULLNAME</span><span class="o">=</span><span class="s2">&quot;John Doe&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="nv">USER_EMAIL</span><span class="o">=</span><span class="s2">&quot;john.doe@email.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="nv">GITHUB_USERNAME</span><span class="o">=</span><span class="s2">&quot;john-doe&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="nv">SYSTEM_HOSTNAME</span><span class="o">=</span><span class="s2">&quot;devcon-arm64&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="nv">WORKSPACE_LOCATION</span><span class="o">=</span><span class="s2">&quot;/&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="nv">DOTFILES_APPLY_ROOTMOI</span><span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="nv">REMOTE_CONTAINERS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>wget<span class="w"> </span>-qO-<span class="w"> </span>https://dotfiles.entelecheia.cc/install<span class="k">)</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
 </section>
+<section id="initialize-dotfiles">
+<h3>Initialize dotfiles<a class="headerlink" href="#initialize-dotfiles" title="Permalink to this heading">#</a></h3>
+<p>When installing the dotfiles, initialization starts automatically. If you want to initialize the dotfiles manually, you can run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chezmoi<span class="w"> </span>init<span class="w"> </span>--apply
+</pre></div>
+</div>
+<p><img alt="initialize dotfiles" src="https://github.com/entelecheia/dotfiles/blob/main/docs/figs/initialize_dotfiles.png?raw=true" /></p>
+</section>
+</section>
+<section id="repositories-and-repository-templates-for-setting-up-your-own-dotfiles">
+<h2>Repositories and repository templates for setting up your own dotfiles<a class="headerlink" href="#repositories-and-repository-templates-for-setting-up-your-own-dotfiles" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/entelecheia/dockerfiles">dockerfiles</a></p></li>
+<li><p><a class="reference external" href="https://github.com/entelecheia/dotdrop-files">dotdrop-files</a></p></li>
+<li><p><a class="reference external" href="https://github.com/entelecheia/password-store">password-store</a></p></li>
+<li><p><a class="reference external" href="https://github.com/entelecheia/passage-store">passage-store</a></p></li>
+</ul>
+</section>
+<section id="installing-the-font-on-windows">
+<h2>Installing the font on <strong>Windows</strong><a class="headerlink" href="#installing-the-font-on-windows" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete.ttf">Download Fira Code Regular Nerd Font Complete</a>.</p></li>
+<li><p>Open the downloaded file and click <strong>Install</strong>.</p></li>
+<li><p>Restart <strong>Windows Terminal</strong> or <strong>VS Code</strong>.</p></li>
+</ol>
+<section id="configuring-the-font-in-vs-code">
+<h3>Configuring the font in <strong>VS Code</strong><a class="headerlink" href="#configuring-the-font-in-vs-code" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Open settings by pressing <kbd>Ctrl/Cmd</kbd>+<kbd>,</kbd>.</p></li>
+<li><p>Change the font family to <strong>FiraCode Nerd Font</strong> in <strong><em>Terminal › Integrated: Font Family</em></strong>.</p></li>
+</ol>
+</section>
+<section id="configuring-the-font-in-windows-terminal">
+<h3>Configuring the font in <strong>Windows Terminal</strong><a class="headerlink" href="#configuring-the-font-in-windows-terminal" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>On <strong>Windows Terminal</strong>, press <kbd>Ctrl</kbd>+<kbd>,</kbd> to open the settings.</p></li>
+<li><p>Go to <strong><em>Profiles -&gt; Defaults</em></strong> in the left panel. Then, go to <strong><em>Additional settings -&gt; Appearance</em></strong>.</p></li>
+<li><p>At <strong><em>Text -&gt; Font face</em></strong>, enable the <strong><em>Show all fonts</em></strong> option and select <strong><em>FiraCode Nerd Font</em></strong>. Like below:</p></li>
+</ol>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://chezmoi.io">chezmoi</a></p></li>
+<li><p><a class="reference external" href="https://github.com/deadc0de6/dotdrop">dotdrop</a></p></li>
+<li><p><a class="reference external" href="https://dotfiles.github.io/">dotfiles</a></p></li>
+<li><p><a class="reference external" href="https://git-secret.io/">git-secret</a></p></li>
+<li><p><a class="reference external" href="https://www.pascallandau.com/blog/git-secret-encrypt-repository-docker/#git-secret-installation">Use git-secret to encrypt secrets</a></p></li>
+<li><p><a class="reference external" href="https://blog.gitguardian.com/secrets-at-the-command-line/">Secrets at the Command Line</a></p></li>
+<li><p><a class="reference external" href="https://betakuang.medium.com/using-command-line-passphrase-input-for-gpg-with-git-for-windows-f78ae2c7cd2e">Using Command-Line Passphrase Input for GPG with Git</a></p></li>
+<li><p><a class="reference external" href="https://devops.datenkollektiv.de/using-sops-with-age-and-git-like-a-pro.html">Using SOPS with Age and Git like a Pro</a></p></li>
+<li><p><a class="reference external" href="https://itnext.io/goodbye-sealed-secrets-hello-sops-3ee6a92662bb">Goodbye Sealed Secrets, hello SOPS</a></p></li>
+<li><p><a class="reference external" href="https://calebhearth.com/sign-git-with-ssh#:%7E:text=configured%20signing%20correctly.-,Verifying,-Git%20also%20lets">Signing Git Commits with Your SSH Key</a></p></li>
+<li><p><a class="reference external" href="https://jdheyburn.co.uk/blog/backup-to-backblaze-b2-using-restic-and-rclone/">Backup to Backblaze B2 using restic and rclone</a></p></li>
+<li><p><a class="reference external" href="https://dev.to/vvidovic/set-up-your-new-machine-in-a-blink-of-an-eye-43j7">Set up your new machine in a blink of an eye</a></p></li>
+<li><p><a class="reference external" href="https://words.filippo.io/dispatches/age-authentication/">AGE AND AUTHENTICATED ENCRYPTION</a></p></li>
+<li><p><a class="reference external" href="https://www.seanh.cc/2022/04/03/restic/#3-install-pass">How I Use Restic to Back up My Home Folders to Backblaze B2</a></p></li>
+</ul>
 </section>
 </section>
 
@@ -560,16 +676,26 @@ touch<span class="w"> </span>run_once_install-packages.sh
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dotfiles-in-a-gitops-workflow">Dotfiles in a GitOps workflow</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-for-managing-dotfiles">Tools for managing dotfiles</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chezmoi">chezmoi</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#install-chezmoi">Install chezmoi</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-chezmoi">Initialize chezmoi</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#install-packages-with-scripts">Install packages with scripts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-for-dotfiles-management">Tools for Dotfiles Management</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#version-control-systems">Version control systems:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dotfiles-managers">Dotfiles managers:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#synchronization-tools">Synchronization tools:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration-frameworks">Configuration frameworks:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#backup-and-sharing-tools">Backup and sharing tools:</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dotdrop">dotdrop</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dotfiles-in-practice">Dotfiles in Practice</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-dotfiles">Install dotfiles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-dotfiles">Initialize dotfiles</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#repositories-and-repository-templates-for-setting-up-your-own-dotfiles">Repositories and repository templates for setting up your own dotfiles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-the-font-on-windows">Installing the font on <strong>Windows</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuring-the-font-in-vs-code">Configuring the font in <strong>VS Code</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuring-the-font-in-windows-terminal">Configuring the font in <strong>Windows Terminal</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
   </nav></div>
 

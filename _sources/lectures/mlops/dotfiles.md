@@ -20,65 +20,164 @@ Although dotfiles management is not directly related to the GitOps process, it c
 
 While dotfiles management is focused on personalizing user environments and tool configurations, the principles of version control, collaboration, automation, and organization can be applied in a similar manner as GitOps. This allows users to manage their dotfiles more efficiently and consistently across multiple systems.
 
-## Tools for managing dotfiles
+## Tools for Dotfiles Management
 
-### [chezmoi](https://chezmoi.io)
+Dotfiles are configuration files used to personalize and set up a user's environment in Unix-based systems. These files typically start with a dot (.) and are hidden by default in the file explorer. Managing dotfiles is important for maintaining a consistent and portable configuration across multiple machines or users. There are several tools available for managing dotfiles:
 
-Chezmoi is a tool for managing your dotfiles across multiple machines, securely. Chezmoi allows you to manage your dotfiles in a Git repository.
+### Version control systems:
 
-#### Install chezmoi
+- **Git**: Git is the most popular version control system and can be used to manage and version your dotfiles. By storing your dotfiles in a Git repository, you can easily synchronize, backup, and share your configurations across multiple machines.
 
-Before installing chezmoi, make sure that you have installed Git, curl, and a recent version of Go.
+### Dotfiles managers:
 
-One-line binary install
+- **GNU Stow**: GNU Stow is a symlink manager that can be used to manage dotfiles by organizing them in a central location and creating symlinks to the appropriate locations in the home directory. This makes it easy to keep dotfiles organized and version-controlled.
+- **yadm** (Yet Another Dotfiles Manager): yadm is a dotfiles manager built on top of Git that offers additional features like encryption, bootstrapping, and profiles for managing different configurations.
+- **chezmoi**: chezmoi is another dotfiles manager that uses a Git-based approach and offers features like templating, secret management, and support for multiple platforms.
+- **dotdrop**: dotdrop is a dotfiles manager that uses YAML files to define dotfiles and their destinations. It can be used to manage dotfiles across multiple machines and platforms.
 
-```sh
-sh -c "$(curl -fsLS get.chezmoi.io)"
+### Synchronization tools:
+
+- **rsync**: rsync is a popular file synchronization tool that can be used to synchronize dotfiles across multiple machines. With rsync, you can ensure that your dotfiles are always up-to-date on all your systems.
+- **Unison**: Unison is another file synchronization tool that offers two-way synchronization between different machines. It can be used to synchronize dotfiles and maintain a consistent configuration across multiple environments.
+
+### Configuration frameworks:
+
+- **Oh My Zsh**: Oh My Zsh is a framework for managing Zsh configurations, including themes and plugins. It simplifies the process of customizing and extending the Zsh shell, which is often part of dotfiles management.
+- **Oh My Fish**: Oh My Fish is a similar framework to Oh My Zsh but for the Fish shell. It provides a way to manage Fish configurations, themes, and plugins.
+
+### Backup and sharing tools:
+
+- **Dropbox, Google Drive, or other cloud storage services**: You can store your dotfiles in a cloud storage service to easily backup and sync them across multiple machines. This method may require manual intervention to set up symlinks or copy the files to the correct locations.
+
+When selecting tools for dotfiles management, consider your specific needs, such as ease of use, platform support, and integration with other tools or services. Additionally, make sure to keep your dotfiles organized and version-controlled to simplify synchronization and sharing with other users or machines.
+
+## Dotfiles in Practice
+
+[![version-image]][release-url]
+[![release-date-image]][release-url]
+[![test-image]][test-url]
+[![license-image]][license-url]
+
+<!-- Links: -->
+
+[test-image]: https://github.com/entelecheia/dotfiles/actions/workflows/test.yaml/badge.svg
+[test-url]: https://github.com/entelecheia/dotfiles/actions/workflows/test.yaml
+[license-image]: https://img.shields.io/github/license/entelecheia/dotfiles
+[license-url]: https://github.com/entelecheia/dotfiles/blob/main/LICENSE
+[version-image]: https://img.shields.io/github/v/release/entelecheia/dotfiles?sort=semver
+[release-date-image]: https://img.shields.io/github/release-date/entelecheia/dotfiles
+[release-url]: https://github.com/entelecheia/dotfiles/releases
+[conventional-commits-image]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white
+[conventional commits]: https://conventionalcommits.org
+[repo-url]: https://github.com/entelecheia/dotfiles
+[pypi-url]: https://pypi.org/project/dotfiles
+[docs-url]: https://dotfiles.entelecheia.cc
+[changelog]: https://github.com/entelecheia/dotfiles/blob/main/CHANGELOG.md
+[contributing guidelines]: https://github.com/entelecheia/dotfiles/blob/main/CONTRIBUTING.md
+
+<!-- Links: -->
+
+- Documentation: [https://dotfiles.entelecheia.cc][docs-url]
+- GitHub: [https://github.com/entelecheia/dotfiles][repo-url]
+
+### Install dotfiles
+
+You can use the [install dotfiles script](https://dotfiles.entelecheia.cc/install) to install the dotfiles on any machine with a single command. Simply run the following command in your terminal:
+
+```bash
+sh -c "$(wget -qO- https://dotfiles.entelecheia.cc/install)"
 ```
 
-Chezmoi will be installed in $HOME/bin, so make sure that $HOME/bin is in your $PATH.
+> 💡 For most Ubuntu-based distributions, `wget` is already installed. If you want to use `curl` instead:
+>
+> ```bash
+>  sh -c "$(curl -fsSL https://dotfiles.entelecheia.cc/install)"
+> ```
 
-```sh
-export PATH="$HOME/bin:$PATH"
+![install dotfiles script](https://github.com/entelecheia/dotfiles/blob/main/docs/figs/install_dotfiles_script.png?raw=true)
+
+For unattended installations such as in a dockerfile, you can use the environment variables to initialize the dotfiles automatically. For example:
+
+```dockerfile
+# install dotfiles
+ARG USER_FULLNAME="John Doe"
+ARG USER_EMAIL="john.doe@email.com"
+ARG GITHUB_USERNAME="john-doe"
+ARG SYSTEM_HOSTNANE="devcon-arm64"
+
+ENV USER_FULLNAME=$USER_FULLNAME
+ENV USER_EMAIL=$USER_EMAIL
+ENV GITHUB_USERNAME=$GITHUB_USERNAME
+ENV SYSTEM_HOSTNAME=$SYSTEM_HOSTNAME
+ENV WORKSPACE_LOCATION="/"
+ENV DOTFILES_APPLY_ROOTMOI=0
+ENV REMOTE_CONTAINERS=1
+
+RUN sh -c "$(wget -qO- https://dotfiles.entelecheia.cc/install)"
+
+CMD ["zsh"]
 ```
 
-For more information, see [Install chezmoi](https://www.chezmoi.io/install/).
+Or you can provide the environment variables in the command line:
 
-#### Initialize chezmoi
-
-If it is the first time you use chezmoi, you need to initialize it.
-
-```sh
-chezmoi init
+```bash
+USER_FULLNAME="John Doe" \
+USER_EMAIL="john.doe@email.com" \
+GITHUB_USERNAME="john-doe" \
+SYSTEM_HOSTNAME="devcon-arm64" \
+WORKSPACE_LOCATION="/" \
+DOTFILES_APPLY_ROOTMOI=0 \
+REMOTE_CONTAINERS=1 \
+sh -c "$(wget -qO- https://dotfiles.entelecheia.cc/install)"
 ```
 
-Or if you want to use the existing repository as your dotfiles repository, you can use the following command.
+### Initialize dotfiles
 
-```sh
-$ chezmoi init https://github.com/$GITHUB_USERNAME/dotfiles.git
+When installing the dotfiles, initialization starts automatically. If you want to initialize the dotfiles manually, you can run the following command:
+
+```bash
+chezmoi init --apply
 ```
 
-Check what changes that chezmoi will make to your home directory by running:
+![initialize dotfiles](https://github.com/entelecheia/dotfiles/blob/main/docs/figs/initialize_dotfiles.png?raw=true)
 
-```sh
-chezmoi diff
-```
+## Repositories and repository templates for setting up your own dotfiles
 
-Apply the changes by running:
+- [dockerfiles](https://github.com/entelecheia/dockerfiles)
+- [dotdrop-files](https://github.com/entelecheia/dotdrop-files)
+- [password-store](https://github.com/entelecheia/password-store)
+- [passage-store](https://github.com/entelecheia/passage-store)
 
-```sh
-chezmoi apply -v
-```
+## Installing the font on **Windows**
 
-#### Install packages with scripts
+1. [Download Fira Code Regular Nerd Font Complete](https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete.ttf).
+2. Open the downloaded file and click **Install**.
+3. Restart **Windows Terminal** or **VS Code**.
 
-Change to the source directory and create a file called `run_once_install-packages.sh`:
+### Configuring the font in **VS Code**
 
-```sh
-chezmoi cd
-touch run_once_install-packages.sh
-```
+1. Open settings by pressing <kbd>Ctrl/Cmd</kbd>+<kbd>,</kbd>.
+2. Change the font family to **FiraCode Nerd Font** in **_Terminal › Integrated: Font Family_**.
 
-### [dotdrop](https://github.com/deadc0de6/dotdrop)
+### Configuring the font in **Windows Terminal**
 
-Save your dotfiles once, deploy them everywhere
+1. On **Windows Terminal**, press <kbd>Ctrl</kbd>+<kbd>,</kbd> to open the settings.
+2. Go to **_Profiles -> Defaults_** in the left panel. Then, go to **_Additional settings -> Appearance_**.
+3. At **_Text -> Font face_**, enable the **_Show all fonts_** option and select **_FiraCode Nerd Font_**. Like below:
+
+## References
+
+- [chezmoi](https://chezmoi.io)
+- [dotdrop](https://github.com/deadc0de6/dotdrop)
+- [dotfiles](https://dotfiles.github.io/)
+- [git-secret](https://git-secret.io/)
+- [Use git-secret to encrypt secrets](https://www.pascallandau.com/blog/git-secret-encrypt-repository-docker/#git-secret-installation)
+- [Secrets at the Command Line](https://blog.gitguardian.com/secrets-at-the-command-line/)
+- [Using Command-Line Passphrase Input for GPG with Git](https://betakuang.medium.com/using-command-line-passphrase-input-for-gpg-with-git-for-windows-f78ae2c7cd2e)
+- [Using SOPS with Age and Git like a Pro](https://devops.datenkollektiv.de/using-sops-with-age-and-git-like-a-pro.html)
+- [Goodbye Sealed Secrets, hello SOPS](https://itnext.io/goodbye-sealed-secrets-hello-sops-3ee6a92662bb)
+- [Signing Git Commits with Your SSH Key](https://calebhearth.com/sign-git-with-ssh#:%7E:text=configured%20signing%20correctly.-,Verifying,-Git%20also%20lets)
+- [Backup to Backblaze B2 using restic and rclone](https://jdheyburn.co.uk/blog/backup-to-backblaze-b2-using-restic-and-rclone/)
+- [Set up your new machine in a blink of an eye](https://dev.to/vvidovic/set-up-your-new-machine-in-a-blink-of-an-eye-43j7)
+- [AGE AND AUTHENTICATED ENCRYPTION](https://words.filippo.io/dispatches/age-authentication/)
+- [How I Use Restic to Back up My Home Folders to Backblaze B2](https://www.seanh.cc/2022/04/03/restic/#3-install-pass)
