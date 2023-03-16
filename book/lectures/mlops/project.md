@@ -1,5 +1,7 @@
 # MLOps Project
 
+![](../figs/mlops/intro/mlops.png)
+
 ## Title
 
 **MLOps Team Project: End-to-End Machine Learning Pipeline from Bare Metal**
