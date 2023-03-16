@@ -2,9 +2,7 @@
 
 ![](../figs/mlops/intro/mlops.png)
 
-## Title
-
-**MLOps Team Project: End-to-End Machine Learning Pipeline from Bare Metal**
+## **MLOps Team Project: End-to-End Machine Learning Pipeline from Bare Metal**
 
 ## Objective
 
@@ -25,7 +23,7 @@ This project aims to teach students the process of building an end-to-end machin
 - Divide the class into sub-teams: OS setup, ML framework setup, model development, and MLOps setup
 - Set up a project management tool (e.g., Trello) to track progress and assign tasks
 
-## 2, Operating system setup
+## 2. Operating system setup
 
 - Choose a Linux distribution (e.g., Ubuntu, CentOS)
 - Install and configure the opera.ing system on a bare metal server
