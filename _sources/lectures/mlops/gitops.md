@@ -16,7 +16,7 @@ GitOps has four key principles:
 
 - Immutability and Observability: GitOps promotes the use of immutable infrastructure, where changes are made by deploying new instances rather than modifying existing ones. This approach improves reliability, consistency, and security. Observability is also a key component, as monitoring and logging tools are used to provide visibility into the system's state and identify discrepancies between the desired and actual state.
 
-## Benefits of GitOps:
+## Benefits of GitOps
 
 GitOps offers numerous benefits that can help teams manage their infrastructure and applications more efficiently, reliably, and securely. By leveraging Git's version control, collaboration, and automation capabilities, GitOps streamlines the process of deploying and maintaining systems, leading to improved productivity and reduced operational risk.
 
@@ -36,7 +36,7 @@ GitOps offers numerous benefits that can help teams manage their infrastructure 
 
 - Continuous Delivery and Integration: GitOps encourages the use of CI/CD pipelines to automate the build, test, and deployment processes. This not only speeds up the delivery of new features but also ensures that code changes are tested and validated before being deployed, minimizing the risk of issues in production environments.
 
-## How GitOps works.
+## How GitOps works
 
 GitOps works by storing your infrastructure and application configurations in a Git repository, automating the process of applying changes to your environments using CI/CD pipelines, and reconciling the actual state of the system with the desired state defined in the Git repository. This approach allows teams to manage infrastructure and applications more efficiently, consistently, and securely, leveraging Git's version control, collaboration, and automation capabilities.
 
@@ -123,7 +123,7 @@ When starting from an empty system and connecting to your infrastructure, follow
 - Document the setup process, including instructions for bootstrapping, dotfiles, and infrastructure access.
 - Test and validate your setup process periodically to ensure reliability and consistency.
 
-## GitOps tools
+## GitOps Tools
 
 There are several tools available that can help you implement a GitOps workflow for managing your infrastructure and applications. While the specific tools you need may depend on your technology stack and requirements, here are some popular tools commonly used in GitOps:
 

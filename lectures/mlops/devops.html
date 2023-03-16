@@ -232,6 +232,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="index.html">Machine Learning Systems Design</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction to MLOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gitops.html">GitOps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dotfiles.html">Dotfiles</a></li>
 </ul>
 </li>
@@ -379,7 +380,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -395,6 +398,17 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benefits-of-devops">Benefits of DevOps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-devops-works">How DevOps works</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices-for-devops">Best Practices for DevOps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#devops-tools">DevOps Tools</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -407,7 +421,51 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="devops">
 <h1>DevOps<a class="headerlink" href="#devops" title="Permalink to this heading">#</a></h1>
 <p><img alt="DevOps" src="../../_images/devops.png" /></p>
-<p>DevOps is a set of practices that combines software development (Dev) and information technology operations (Ops) to shorten the systems development life cycle and provide continuous delivery with high software quality. DevOps is intended to bring together developers and operations teams to improve communication and collaboration, allowing them to build, test, and release software faster and more reliably.</p>
+<p>DevOps is a combination of practices, tools, and cultural philosophies that aims to bridge the gap between software development (Dev) and IT operations (Ops). The main goal of DevOps is to improve collaboration between the development and operations teams, streamline the software development lifecycle, and deliver software faster, more reliably, and with higher quality.</p>
+<p>DevOps encompasses several key principles and practices:</p>
+<ul class="simple">
+<li><p>Continuous Integration (CI): In CI, developers merge their code changes into a shared repository frequently, often multiple times a day. Automated builds and tests are triggered upon each integration, allowing teams to detect and fix issues early in the development process.</p></li>
+<li><p>Continuous Delivery (CD): CD is an extension of CI, aiming to ensure that the code is always in a releasable state. This involves automating the deployment process and making sure that the software can be released to production at any time with minimal manual intervention.</p></li>
+<li><p>Infrastructure as Code (IaC): IaC is the practice of managing and provisioning infrastructure resources (such as networks, servers, and storage) using code and version control systems. This allows teams to automate infrastructure management, improve consistency, and reduce manual errors.</p></li>
+<li><p>Monitoring and Logging: Monitoring and logging involve collecting and analyzing performance metrics, logs, and other data from applications and infrastructure. This helps teams identify issues, troubleshoot problems, and optimize performance.</p></li>
+<li><p>Collaboration and Communication: DevOps emphasizes breaking down silos between development and operations teams. This involves fostering a culture of open communication, sharing knowledge, and working together to achieve common goals.</p></li>
+<li><p>Feedback and Continuous Improvement: DevOps encourages a culture of learning, experimentation, and adaptation. Teams collect feedback from various sources (e.g., monitoring, user feedback) and use this information to iteratively improve their processes, tools, and products.</p></li>
+</ul>
+<section id="benefits-of-devops">
+<h2>Benefits of DevOps<a class="headerlink" href="#benefits-of-devops" title="Permalink to this heading">#</a></h2>
+<p>By adopting DevOps practices, organizations can enjoy numerous benefits that enable them to deliver better software, faster, and more reliably. This helps them stay competitive in the marketplace, meet customer demands, and drive business growth.</p>
+<ul class="simple">
+<li><p>Faster time to market: By streamlining and automating the software development and deployment processes, DevOps enables organizations to release software more quickly and frequently. This helps businesses respond faster to market changes and customer needs.</p></li>
+<li><p>Improved collaboration: DevOps encourages a culture of collaboration and communication between development and operations teams. This breaks down silos and helps teams work together more effectively to achieve common goals.</p></li>
+<li><p>Higher quality software: With continuous integration, automated testing, and continuous delivery, DevOps practices help organizations catch and fix issues early in the development process. This results in higher quality software with fewer defects and better performance.</p></li>
+<li><p>Enhanced reliability: DevOps practices like Infrastructure as Code (IaC) and automated deployment help ensure that infrastructure and application configurations are consistent across environments. This reduces the risk of failures and outages caused by configuration drift and human error.</p></li>
+<li><p>Greater efficiency: DevOps practices automate repetitive tasks, like building, testing, and deploying code. This frees up time for development and operations teams to focus on more valuable tasks, like feature development, performance optimization, and problem-solving.</p></li>
+<li><p>Reduced costs: By improving efficiency, reducing downtime, and streamlining processes, DevOps can help organizations reduce their operational costs and resource usage.</p></li>
+<li><p>Better scalability: DevOps practices, like IaC and containerization, make it easier for organizations to scale their infrastructure and applications to meet changing demands.</p></li>
+<li><p>Continuous improvement: DevOps promotes a culture of learning, experimentation, and feedback. This encourages teams to continuously improve their processes, tools, and products, fostering innovation and growth.</p></li>
+</ul>
+</section>
+<section id="how-devops-works">
+<h2>How DevOps works<a class="headerlink" href="#how-devops-works" title="Permalink to this heading">#</a></h2>
+<p>DevOps works by integrating various components, such as tools, methodologies, and cultural shifts, to achieve these goals.</p>
+<p>Here’s a high-level overview of how DevOps works:</p>
+<ul class="simple">
+<li><p>Culture shift: DevOps starts with fostering a culture of collaboration, communication, and shared responsibility between development and operations teams. This involves breaking down silos, encouraging open communication, and creating an environment where teams work together to achieve common objectives.</p></li>
+<li><p>Agile development: DevOps builds on Agile methodologies that promote iterative development, frequent releases, and continuous improvement. Teams work in small, cross-functional units and follow practices like Scrum or Kanban to manage their work efficiently.</p></li>
+<li><p>Continuous Integration (CI): CI involves developers merging their code changes into a shared repository frequently, often multiple times a day. Automated builds and tests are triggered upon each integration, allowing teams to detect and fix issues early in the development process.</p></li>
+<li><p>Continuous Delivery (CD): CD extends CI by ensuring that the code is always in a releasable state. This involves automating the deployment process and making sure that the software can be released to production with minimal manual intervention.</p></li>
+<li><p>Infrastructure as Code (IaC): IaC is the practice of managing and provisioning infrastructure resources using code and version control systems. This allows teams to automate infrastructure management, improve consistency, and reduce manual errors.</p></li>
+<li><p>Automation: DevOps relies heavily on automation to streamline processes and reduce manual effort. This includes automating builds, tests, deployments, infrastructure provisioning, and monitoring.</p></li>
+<li><p>Monitoring and feedback: DevOps emphasizes collecting and analyzing performance metrics, logs, and other data from applications and infrastructure. Teams use this information to identify issues, troubleshoot problems, optimize performance, and continuously improve their processes and products.</p></li>
+<li><p>Continuous learning and improvement: DevOps encourages a culture of learning, experimentation, and adaptation. Teams use feedback from various sources (e.g., monitoring, user feedback) to iteratively improve their processes, tools, and products.</p></li>
+</ul>
+</section>
+<section id="best-practices-for-devops">
+<h2>Best Practices for DevOps<a class="headerlink" href="#best-practices-for-devops" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="devops-tools">
+<h2>DevOps Tools<a class="headerlink" href="#devops-tools" title="Permalink to this heading">#</a></h2>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -444,6 +502,23 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benefits-of-devops">Benefits of DevOps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-devops-works">How DevOps works</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices-for-devops">Best Practices for DevOps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#devops-tools">DevOps Tools</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

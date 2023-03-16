@@ -234,6 +234,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../mlops/index.html">Machine Learning Systems Design</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../mlops/intro.html">Introduction to MLOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mlops/gitops.html">GitOps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../mlops/dotfiles.html">Dotfiles</a></li>
 </ul>
 </li>
@@ -453,11 +454,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot-and-few-shot-learners">Zero Shot and Few Shot Learners</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot-and-few-shot-learners">Zero Shot and Few Shot Learners</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-engineering">Prompt Engineering</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompting-on-llms">Prompting on LLMs</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot">Zero-shot</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-shot">One-shot</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#few-shot">Few-shot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot-learning">Zero-shot learning:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-shot-learning">One-shot learning:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#few-shot-learning">Few-shot learning:</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot-reasoners-and-chain-of-thought">Zero Shot Reasoners and Chain-of-Thought</a></li>
@@ -484,85 +488,132 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="zero-shot-prompt-and-search-strategies">
 <h1>Zero Shot, Prompt, and Search Strategies<a class="headerlink" href="#zero-shot-prompt-and-search-strategies" title="Permalink to this heading">#</a></h1>
-<p><img alt="bloom" src="../../_images/entelecheia_Zero_Shot.png" /></p>
+<a class="bg-primary mb-1 reference internal image-reference" href="../../_images/entelecheia_Zero_Shot.png"><img alt="Zero Shot, Prompt, and Search Strategies" class="bg-primary mb-1 align-center" src="../../_images/entelecheia_Zero_Shot.png" style="width: 50%;" /></a>
 <section id="zero-shot-and-few-shot-learners">
 <h2>Zero Shot and Few Shot Learners<a class="headerlink" href="#zero-shot-and-few-shot-learners" title="Permalink to this heading">#</a></h2>
-<p><img alt="prompt" src="../../_images/entelecheia_a_robot.png" /></p>
-<p>Large Language Models can show good enough performance for some tasks based on just a few examples.
-These examples are called <code class="docutils literal notranslate"><span class="pre">prompts</span></code> to a language model.</p>
-<p>For clarity, we will define a prompting task as one that requires no fine-tuning to the base language model.
-This is done by inputting some prompts into the language model and asking it to return a response.
-The model does not see any training data for this task and is expected to generalize from these few examples.</p>
-<p>Formatting the examples as input is referred to as <code class="docutils literal notranslate"><span class="pre">prompt</span> <span class="pre">engineering</span></code> and is a process that comes with some trial and error.
-The goal of prompt engineering is to take your prompts and format them in a way, so they are easy to input into the model.</p>
-<p>Language generation based on prompts is a brilliant concept, and it can be done in two ways, mainly - Zero Shot predictions and Few Shot predictions.
-Zero-Shot prediction is where the model is not trained on any data for that specific task, and Few Shot predictions are where the model is trained on a very few amount of data for that specific task.
-In both cases, we need some sort of prompt or seed text to get started with so that the model can generate new text from there.</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="../../_images/entelecheia_a_robot.png"><img alt="Zero Shot and Few Shot Learners" class="bg-primary mb-1 align-center" src="../../_images/entelecheia_a_robot.png" style="width: 90%;" /></a>
+<p>Zero-shot and few-shot learners are machine learning techniques that allow models to generalize and adapt to new tasks with little or no training data. These approaches are particularly useful in situations where obtaining labeled data is difficult or expensive. They are inspired by the human ability to learn new concepts and skills quickly, even from a few examples.</p>
+<p>Zero-shot learning (ZSL) refers to the ability of a model to perform a task without having seen any examples from that specific task during training. It relies on the model’s capacity to generalize from related tasks or to leverage auxiliary information such as relationships between classes, attributes, or semantic information. For example, a zero-shot image classification model might recognize a never-seen-before object by leveraging its understanding of similar objects or associated attributes.</p>
+<p>Few-shot learning (FSL), on the other hand, involves training a model to perform a task with only a small number of examples (typically less than 10) from the target task. This is in contrast to traditional machine learning methods that often require large amounts of labeled data. Few-shot learning aims to quickly adapt to new tasks by leveraging prior knowledge and transfer learning. Meta-learning and memory-augmented neural networks are common approaches to few-shot learning, focusing on learning a model that can adapt rapidly to new tasks based on limited data.</p>
+<p>Both zero-shot and few-shot learners are essential components in the pursuit of artificial general intelligence (AGI), as they enable models to learn efficiently and generalize effectively across various tasks and domains with minimal data.</p>
+<section id="prompt-engineering">
+<h3>Prompt Engineering<a class="headerlink" href="#prompt-engineering" title="Permalink to this heading">#</a></h3>
+<p>Prompt engineering is the process of designing and refining inputs (prompts) for language models like GPT-3 or GPT-4 to obtain better, more accurate, and contextually relevant outputs. Since large-scale language models are trained to generate text based on the input they receive, crafting effective prompts can significantly influence the quality of the generated responses.</p>
+<p>The main goal of prompt engineering is to maximize the usefulness and relevance of a language model’s output by considering factors such as clarity, specificity, context, and constraints. It often involves an iterative process of experimentation and fine-tuning to arrive at the optimal prompt. Some strategies used in prompt engineering include:</p>
+<ul class="simple">
+<li><p>Clarity: Ensure that the prompt is clear and unambiguous, which helps the language model understand the question or context better.</p></li>
+<li><p>Specificity: Make the prompt more specific by including relevant details or asking for specific information. This can help narrow down the potential responses and avoid generic answers.</p></li>
+<li><p>Context: Provide sufficient context to guide the model in generating responses that are relevant to the given situation or domain.</p></li>
+<li><p>Constraints: Apply constraints on the response format or content, such as specifying the desired answer type (e.g., a list or a single word) or limiting the length of the response.</p></li>
+<li><p>Redundancy: Ask the same question in multiple ways or incorporate different perspectives to increase the likelihood of obtaining accurate and comprehensive answers.</p></li>
+<li><p>Instructiveness: Use explicit instructions or guiding questions to direct the model’s attention to the relevant aspects of the problem or task.</p></li>
+</ul>
+<p>Prompt engineering is an essential skill in working with language models as it helps to bridge the gap between the model’s training data and the desired output for specific use cases. By carefully crafting and refining prompts, users can improve the reliability and usefulness of generated responses, making the models more effective across a wide range of applications.</p>
+</section>
 </section>
 <section id="prompting-on-llms">
 <h2>Prompting on LLMs<a class="headerlink" href="#prompting-on-llms" title="Permalink to this heading">#</a></h2>
-<p>All you need to do is input several examples of your prompts into the <code class="docutils literal notranslate"><span class="pre">generate</span></code> function on either <code class="docutils literal notranslate"><span class="pre">gpt2</span></code> or <code class="docutils literal notranslate"><span class="pre">gpt3</span></code>. You don’t even have to specify what kind of task it is, just give it some example inputs and let it figure out how to generalize from there! The only parameters required are:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">text</span></code>, which contains the text you want to be generated for (this should be your prompt set)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">length</span></code>, which specifies how long you want each generated sequence returned by the model</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">num_return_sequences</span></code>, which specifies how many sequences you want to be returned by the model</p></li>
-</ul>
-<p>In Zero-shot predictions, you mainly pass prompts which give a task description to the LLM to generate text. For example, for zero-shot summarization, you can present a body of text to the LLM along with an instruction for it to follow, like ‘In summary’, or ‘tldr:’, or even ‘To explain to a 5-year-old’.</p>
-<p>In Few-Shot summarization, you can preset a few examples of text &amp; their summary to an LLM. You can then present a text to the model and could expect the summary generated by the model. In other words, you give it a few examples vs. none.
-Language generation based on prompts is a brilliant concept and it is so much simpler than fine-tuning.</p>
-<section id="zero-shot">
-<h3>Zero-shot<a class="headerlink" href="#zero-shot" title="Permalink to this heading">#</a></h3>
-<p>The model predicts the answer when provided only a description of the task.
-No gradient updates are performed on the model.</p>
-<ul class="simple">
-<li><p>prompt =&gt; Translate English to French: (This is the task description)</p></li>
-<li><p>Cheese =&gt; (this is you prompting the LLM to complete the sentence)</p></li>
-</ul>
+<p>Large Language Models (LLMs) like GPT-3 or GPT-4 can be used for various tasks, including zero-shot, one-shot, and few-shot learning. Here are some examples using text prompts for each case:</p>
+<section id="zero-shot-learning">
+<h3>Zero-shot learning:<a class="headerlink" href="#zero-shot-learning" title="Permalink to this heading">#</a></h3>
+<p>Task: Sentiment analysis (positive or negative) for a movie review</p>
+<p>Prompt:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Determine</span> <span class="n">the</span> <span class="n">sentiment</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">movie</span> <span class="n">review</span><span class="p">:</span> <span class="s2">&quot;I absolutely loved the movie! The storyline was captivating, and the acting was superb. I can&#39;t wait to watch it again!&quot;</span>
+</pre></div>
+</div>
+<p>Since the LLM has been pre-trained on a diverse range of texts, it should be able to classify the sentiment of the review without any additional examples.</p>
 </section>
-<section id="one-shot">
-<h3>One-shot<a class="headerlink" href="#one-shot" title="Permalink to this heading">#</a></h3>
-<p>In addition to task description, you provide the model with one example of what you are expecting it to produce.</p>
-<ul class="simple">
-<li><p>prompt =&gt; Translate English to French: (Task description for the model)</p></li>
-<li><p>Sea Otter =&gt; loutre de mer (One example for the model to learn from)</p></li>
-<li><p>Cheese =&gt; (providing a prompt to LLM to follow the lead)</p></li>
-</ul>
+<section id="one-shot-learning">
+<h3>One-shot learning:<a class="headerlink" href="#one-shot-learning" title="Permalink to this heading">#</a></h3>
+<p>Task: Animal classification based on a brief description</p>
+<p>Prompt:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Based</span> <span class="n">on</span> <span class="n">the</span> <span class="n">given</span> <span class="n">description</span><span class="p">,</span> <span class="n">classify</span> <span class="n">the</span> <span class="n">animal</span><span class="p">:</span>
+<span class="n">Example</span><span class="p">:</span> <span class="s2">&quot;This animal has a long neck and long legs. It mainly eats leaves from trees.&quot;</span><span class="p">:</span> <span class="n">Giraffe</span>
+
+<span class="n">Description</span><span class="p">:</span> <span class="s2">&quot;This small creature has a bushy tail, sharp claws, and climbs trees to collect nuts.&quot;</span>
+</pre></div>
+</div>
+<p>By providing an example in the prompt, the LLM can use this context to generate an appropriate classification for the given description.</p>
 </section>
-<section id="few-shot">
-<h3>Few-shot<a class="headerlink" href="#few-shot" title="Permalink to this heading">#</a></h3>
-<p>On addition to task description, the model is provided with a few examples of the task.</p>
-<ul class="simple">
-<li><p>prompt =&gt; Translate English to French: (Task description for the model)</p></li>
-<li><p>Sea Otter =&gt; loutre de mer (a few examples for the model to learn from)</p></li>
-<li><p>Plush girafe =&gt; girafe poivree</p></li>
-<li><p>Cheese =&gt; (providing a prompt to LLM to follow the lead)</p></li>
-</ul>
+<section id="few-shot-learning">
+<h3>Few-shot learning:<a class="headerlink" href="#few-shot-learning" title="Permalink to this heading">#</a></h3>
+<p>Task: Convert a sentence from active to passive voice</p>
+<p>Prompt:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Transform</span> <span class="n">the</span> <span class="n">following</span> <span class="n">sentences</span> <span class="kn">from</span> <span class="nn">active</span> <span class="n">to</span> <span class="n">passive</span> <span class="n">voice</span><span class="p">:</span>
+<span class="n">Example</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;John painted the house.&quot;</span> <span class="o">-&gt;</span> <span class="s2">&quot;The house was painted by John.&quot;</span>
+<span class="n">Example</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;She baked a cake.&quot;</span> <span class="o">-&gt;</span> <span class="s2">&quot;A cake was baked by her.&quot;</span>
+
+<span class="n">Sentence</span><span class="p">:</span> <span class="s2">&quot;The cat chased the mouse.&quot;</span>
+</pre></div>
+</div>
+<p>By providing multiple examples, the LLM can better understand the desired transformation and apply it to the input sentence.</p>
+<p>In each case, the prompt is designed to guide the LLM to perform the desired task with varying amounts of examples. The specific syntax for providing these prompts to an LLM like GPT-3 or GPT-4 depends on the API or library you are using, but the core idea remains the same: designing effective prompts to maximize the usefulness and relevance of the generated outputs.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">pipeline</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Zero-shot Learning with Hugging Face&#39;s Transformers</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">pipeline</span>
 
-<span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;zero-shot-classification&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;distilgpt2&quot;</span><span class="p">)</span>
-<span class="n">classifier</span><span class="p">(</span>
-    <span class="s2">&quot;One of the hottest areas of investing in recent years has been ESG&quot;</span><span class="p">,</span>
-    <span class="n">candidate_labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;education&quot;</span><span class="p">,</span> <span class="s2">&quot;politics&quot;</span><span class="p">,</span> <span class="s2">&quot;business&quot;</span><span class="p">],</span>
-<span class="p">)</span>
+<span class="n">review</span> <span class="o">=</span> <span class="s2">&quot;I absolutely loved the movie! The storyline was captivating, and the acting was superb. I can&#39;t wait to watch it again!&quot;</span>
+
+<span class="c1"># Initialize the zero-shot classification pipeline</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;zero-shot-classification&quot;</span><span class="p">)</span>
+
+<span class="c1"># Classify sentiment using the pipeline</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="n">review</span><span class="p">,</span> <span class="n">candidate_labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;positive&quot;</span><span class="p">,</span> <span class="s2">&quot;negative&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;labels&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Some weights of the model checkpoint at distilgpt2 were not used when initializing GPT2ForSequenceClassification: [&#39;lm_head.weight&#39;]
-- This IS expected if you are initializing GPT2ForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
-- This IS NOT expected if you are initializing GPT2ForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
-Some weights of GPT2ForSequenceClassification were not initialized from the model checkpoint at distilgpt2 and are newly initialized: [&#39;score.weight&#39;]
-You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
-Failed to determine &#39;entailment&#39; label id from the label2id mapping in the model config. Setting to -1. Define a descriptive label2id mapping in the model config to ensure correct outputs.
-Using pad_token, but it is not set yet.
-Tokenizer was not supporting padding necessary for zero-shot, attempting to use  `pad_token=eos_token`
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># One-shot Learning</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">pipeline</span>
+
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Based on the given description, classify the animal:</span>
+<span class="s2">Example: &quot;This animal has a long neck and long legs. It mainly eats leaves from trees.&quot;: Giraffe</span>
+
+<span class="s2">Description: &quot;This small creature has a bushy tail, sharp claws, and climbs trees to collect nuts.&quot;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="c1"># Initialize the GPT-3 model and tokenizer</span>
+<span class="n">model</span> <span class="o">=</span> <span class="s2">&quot;openai-gpt&quot;</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;text-generation&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+
+<span class="c1"># Generate a response using the pipeline</span>
+<span class="n">input_ids</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">input_ids</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;sequence&#39;: &#39;One of the hottest areas of investing in recent years has been ESG&#39;,
- &#39;labels&#39;: [&#39;education&#39;, &#39;business&#39;, &#39;politics&#39;],
- &#39;scores&#39;: [0.3732561469078064, 0.3641113340854645, 0.26263248920440674]}
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Few-shot Learning</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">pipeline</span>
+
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Transform the following sentences from active to passive voice:</span>
+<span class="s2">Example 1: &quot;John painted the house.&quot; -&gt; &quot;The house was painted by John.&quot;</span>
+<span class="s2">Example 2: &quot;She baked a cake.&quot; -&gt; &quot;A cake was baked by her.&quot;</span>
+
+<span class="s2">Sentence: &quot;The cat chased the mouse.&quot;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="c1"># Initialize the GPT-3 model and tokenizer</span>
+<span class="n">model</span> <span class="o">=</span> <span class="s2">&quot;openai-gpt&quot;</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;text-generation&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+
+<span class="c1"># Generate a response using the pipeline</span>
+<span class="n">input_ids</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">input_ids</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1149,11 +1200,14 @@ Another way to learn Deep Learning is by coding. For example, I often code to so
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot-and-few-shot-learners">Zero Shot and Few Shot Learners</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot-and-few-shot-learners">Zero Shot and Few Shot Learners</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-engineering">Prompt Engineering</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompting-on-llms">Prompting on LLMs</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot">Zero-shot</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-shot">One-shot</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#few-shot">Few-shot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot-learning">Zero-shot learning:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-shot-learning">One-shot learning:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#few-shot-learning">Few-shot learning:</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot-reasoners-and-chain-of-thought">Zero Shot Reasoners and Chain-of-Thought</a></li>
