@@ -141,14 +141,14 @@ chezmoi init --apply
 
 ![initialize dotfiles](https://github.com/entelecheia/dotfiles/blob/main/docs/figs/initialize_dotfiles.png?raw=true)
 
-## Repositories and repository templates for setting up your own dotfiles
+### Repositories and repository templates for setting up your own dotfiles
 
 - [dockerfiles](https://github.com/entelecheia/dockerfiles)
 - [dotdrop-files](https://github.com/entelecheia/dotdrop-files)
 - [password-store](https://github.com/entelecheia/password-store)
 - [passage-store](https://github.com/entelecheia/passage-store)
 
-## Installing the font on **Windows**
+### Installing the font on **Windows**
 
 1. [Download Fira Code Regular Nerd Font Complete](https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete.ttf).
 2. Open the downloaded file and click **Install**.
