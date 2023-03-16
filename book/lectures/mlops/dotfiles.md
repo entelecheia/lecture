@@ -1,5 +1,12 @@
 # Dotfiles
 
+```{image} ../figs/mlops/dotfiles/dotfiles-logo.png
+:alt: dotfiles-logo
+:class: bg-primary mb-1
+:width: 50%
+:align: center
+```
+
 Dotfiles are configuration files that are used to customize your shell and other applications. Dotfiles are a great way to standardize your development environment. You can use the same dotfiles in your local development environment, in your CI/CD pipeline, and in your production environment.
 
 ## Dotfiles in a GitOps workflow
