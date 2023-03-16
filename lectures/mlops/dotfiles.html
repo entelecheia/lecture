@@ -92,7 +92,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Data Science for Economics and Finance" href="../ds/index.html" />
-    <link rel="prev" title="Development Environment" href="dev-env.html" />
+    <link rel="prev" title="GitOps" href="gitops.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -234,8 +234,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Machine Learning Systems Design</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction to MLOps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="devops.html">DevOps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dev-env.html">Development Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gitops.html">GitOps</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Dotfiles</a></li>
 </ul>
 </li>
@@ -406,13 +405,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chezmoi">chezmoi</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-chezmoi">Install chezmoi</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-chezmoi">Initialize chezmoi</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-packages-with-scripts">Install packages with scripts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dotfiles-in-a-gitops-workflow">Dotfiles in a GitOps workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-for-managing-dotfiles">Tools for managing dotfiles</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chezmoi">chezmoi</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#install-chezmoi">Install chezmoi</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-chezmoi">Initialize chezmoi</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#install-packages-with-scripts">Install packages with scripts</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dotdrop">dotdrop</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dotdrop">dotdrop</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -427,11 +430,26 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="dotfiles">
 <h1>Dotfiles<a class="headerlink" href="#dotfiles" title="Permalink to this heading">#</a></h1>
 <p>Dotfiles are configuration files that are used to customize your shell and other applications. Dotfiles are a great way to standardize your development environment. You can use the same dotfiles in your local development environment, in your CI/CD pipeline, and in your production environment.</p>
+<section id="dotfiles-in-a-gitops-workflow">
+<h2>Dotfiles in a GitOps workflow<a class="headerlink" href="#dotfiles-in-a-gitops-workflow" title="Permalink to this heading">#</a></h2>
+<p>Dotfiles management is not a core component of GitOps; however, it can complement the GitOps approach by applying similar principles of version control, collaboration, and automation to managing personal configurations and settings.</p>
+<p>In a GitOps workflow, Git is used as the single source of truth for managing infrastructure and application configurations. Dotfiles, on the other hand, are configuration files for various tools, applications, and environments, typically used to personalize a user’s system.</p>
+<p>Although dotfiles management is not directly related to the GitOps process, it can benefit from some of the best practices that GitOps promotes:</p>
+<ul class="simple">
+<li><p>Version Control: By storing dotfiles in a Git repository, you can track changes, create backups, and easily restore previous versions if needed. This is similar to how GitOps uses Git as the single source of truth for managing infrastructure and application configurations.</p></li>
+<li><p>Collaboration: Storing dotfiles in a Git repository enables sharing and collaboration with others, which allows you to learn from others’ configurations and apply best practices. In a similar vein, GitOps leverages Git’s collaboration features for managing infrastructure and applications.</p></li>
+<li><p>Automation: You can use scripts or tools to automate the setup and management of your dotfiles, making it easier to replicate your environment across multiple systems or when setting up a new machine. GitOps also emphasizes automation in synchronizing the desired state with the actual state of your infrastructure and applications.</p></li>
+<li><p>Organization and Modularity: Organizing your dotfiles in a structured and modular way makes it easier to manage, maintain, and understand your configurations. This mirrors the GitOps approach, which emphasizes the use of declarative and modular configurations for infrastructure and applications.</p></li>
+</ul>
+<p>While dotfiles management is focused on personalizing user environments and tool configurations, the principles of version control, collaboration, automation, and organization can be applied in a similar manner as GitOps. This allows users to manage their dotfiles more efficiently and consistently across multiple systems.</p>
+</section>
+<section id="tools-for-managing-dotfiles">
+<h2>Tools for managing dotfiles<a class="headerlink" href="#tools-for-managing-dotfiles" title="Permalink to this heading">#</a></h2>
 <section id="chezmoi">
-<h2><a class="reference external" href="https://chezmoi.io">chezmoi</a><a class="headerlink" href="#chezmoi" title="Permalink to this heading">#</a></h2>
+<h3><a class="reference external" href="https://chezmoi.io">chezmoi</a><a class="headerlink" href="#chezmoi" title="Permalink to this heading">#</a></h3>
 <p>Chezmoi is a tool for managing your dotfiles across multiple machines, securely. Chezmoi allows you to manage your dotfiles in a Git repository.</p>
 <section id="install-chezmoi">
-<h3>Install chezmoi<a class="headerlink" href="#install-chezmoi" title="Permalink to this heading">#</a></h3>
+<h4>Install chezmoi<a class="headerlink" href="#install-chezmoi" title="Permalink to this heading">#</a></h4>
 <p>Before installing chezmoi, make sure that you have installed Git, curl, and a recent version of Go.</p>
 <p>One-line binary install</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>curl<span class="w"> </span>-fsLS<span class="w"> </span>get.chezmoi.io<span class="k">)</span><span class="s2">&quot;</span>
@@ -444,7 +462,7 @@ document.write(`
 <p>For more information, see <a class="reference external" href="https://www.chezmoi.io/install/">Install chezmoi</a>.</p>
 </section>
 <section id="initialize-chezmoi">
-<h3>Initialize chezmoi<a class="headerlink" href="#initialize-chezmoi" title="Permalink to this heading">#</a></h3>
+<h4>Initialize chezmoi<a class="headerlink" href="#initialize-chezmoi" title="Permalink to this heading">#</a></h4>
 <p>If it is the first time you use chezmoi, you need to initialize it.</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>chezmoi<span class="w"> </span>init
 </pre></div>
@@ -463,7 +481,7 @@ document.write(`
 </div>
 </section>
 <section id="install-packages-with-scripts">
-<h3>Install packages with scripts<a class="headerlink" href="#install-packages-with-scripts" title="Permalink to this heading">#</a></h3>
+<h4>Install packages with scripts<a class="headerlink" href="#install-packages-with-scripts" title="Permalink to this heading">#</a></h4>
 <p>Change to the source directory and create a file called <code class="docutils literal notranslate"><span class="pre">run_once_install-packages.sh</span></code>:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>chezmoi<span class="w"> </span><span class="nb">cd</span>
 touch<span class="w"> </span>run_once_install-packages.sh
@@ -472,8 +490,9 @@ touch<span class="w"> </span>run_once_install-packages.sh
 </section>
 </section>
 <section id="dotdrop">
-<h2><a class="reference external" href="https://github.com/deadc0de6/dotdrop">dotdrop</a><a class="headerlink" href="#dotdrop" title="Permalink to this heading">#</a></h2>
+<h3><a class="reference external" href="https://github.com/deadc0de6/dotdrop">dotdrop</a><a class="headerlink" href="#dotdrop" title="Permalink to this heading">#</a></h3>
 <p>Save your dotfiles once, deploy them everywhere</p>
+</section>
 </section>
 </section>
 
@@ -506,12 +525,12 @@ touch<span class="w"> </span>run_once_install-packages.sh
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="dev-env.html"
+       href="gitops.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Development Environment</p>
+        <p class="prev-next-title">GitOps</p>
       </div>
     </a>
     <a class="right-next"
@@ -538,13 +557,17 @@ touch<span class="w"> </span>run_once_install-packages.sh
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chezmoi">chezmoi</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-chezmoi">Install chezmoi</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-chezmoi">Initialize chezmoi</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-packages-with-scripts">Install packages with scripts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dotfiles-in-a-gitops-workflow">Dotfiles in a GitOps workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-for-managing-dotfiles">Tools for managing dotfiles</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chezmoi">chezmoi</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#install-chezmoi">Install chezmoi</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-chezmoi">Initialize chezmoi</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#install-packages-with-scripts">Install packages with scripts</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dotdrop">dotdrop</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dotdrop">dotdrop</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
