@@ -18,6 +18,8 @@ DevOps encompasses several key principles and practices:
 
 - **Feedback and Continuous Improvement**: DevOps encourages a culture of learning, experimentation, and adaptation. Teams collect feedback from various sources (e.g., monitoring, user feedback) and use this information to iteratively improve their processes, tools, and products.
 
+![cicd](../figs/mlops/devops/cicd.png)
+
 ## Benefits of DevOps
 
 By adopting DevOps practices, organizations can enjoy numerous benefits that enable them to deliver better software, faster, and more reliably. This helps them stay competitive in the marketplace, meet customer demands, and drive business growth.
@@ -73,6 +75,7 @@ There are a wide range of DevOps tools available that help automate and streamli
 
 - **Jenkins**: An open-source automation server that supports building, testing, and deploying code changes.
 - **GitLab CI/CD**: A built-in CI/CD solution within GitLab, offering pipeline management and automation.
+- **GitHub Actions**: A CI/CD solution that integrates with GitHub repositories and enables automating workflows.
 - **CircleCI**: A cloud-based CI/CD platform that simplifies pipeline setup and management.
 - **Travis CI**: Another cloud-based CI/CD service that integrates with popular version control systems.
 - **Bamboo**: An on-premises CI/CD solution by Atlassian that integrates with other Atlassian tools like Jira and Bitbucket.
