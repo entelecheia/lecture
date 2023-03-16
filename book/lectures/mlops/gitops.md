@@ -1,5 +1,7 @@
 # GitOps
 
+![](../figs/mlops/gitops/gitops.png)
+
 GitOps is a methodology that uses Git as the single source of truth for managing infrastructure and application configurations in a declarative manner. It applies DevOps best practices, such as version control, collaboration, and automation, to streamline infrastructure and application management.
 
 ## What is GitOps?
@@ -8,49 +10,49 @@ GitOps is a modern approach to infrastructure and application management that us
 
 GitOps has four key principles:
 
-- Declarative Configuration: Infrastructure and application configurations are described declaratively, using formats such as YAML or JSON. This allows you to define the desired state of your system in a clear and easy-to-understand manner.
+- **Declarative Configuration**: Infrastructure and application configurations are described declaratively, using formats such as YAML or JSON. This allows you to define the desired state of your system in a clear and easy-to-understand manner.
 
-- Version Control: All configuration files are stored in a Git repository, providing a versioned history of changes, collaboration, and easy rollback capabilities.
+- **Version Control**: All configuration files are stored in a Git repository, providing a versioned history of changes, collaboration, and easy rollback capabilities.
 
-- Automated Synchronization: GitOps relies on automation to reconcile the actual state of the system with the desired state defined in the Git repository. This is typically done through CI/CD pipelines or specialized operators that continuously watch the repository for changes and apply the updates to the system.
+- **Automated Synchronization**: GitOps relies on automation to reconcile the actual state of the system with the desired state defined in the Git repository. This is typically done through CI/CD pipelines or specialized operators that continuously watch the repository for changes and apply the updates to the system.
 
-- Immutability and Observability: GitOps promotes the use of immutable infrastructure, where changes are made by deploying new instances rather than modifying existing ones. This approach improves reliability, consistency, and security. Observability is also a key component, as monitoring and logging tools are used to provide visibility into the system's state and identify discrepancies between the desired and actual state.
+- **Immutability and Observability**: GitOps promotes the use of immutable infrastructure, where changes are made by deploying new instances rather than modifying existing ones. This approach improves reliability, consistency, and security. Observability is also a key component, as monitoring and logging tools are used to provide visibility into the system's state and identify discrepancies between the desired and actual state.
 
 ## Benefits of GitOps
 
 GitOps offers numerous benefits that can help teams manage their infrastructure and applications more efficiently, reliably, and securely. By leveraging Git's version control, collaboration, and automation capabilities, GitOps streamlines the process of deploying and maintaining systems, leading to improved productivity and reduced operational risk.
 
-- Consistency: By using a single source of truth for infrastructure and application configurations in a Git repository, GitOps ensures that environments are consistent across different stages of development, testing, and production. This reduces configuration drift and makes it easier to maintain and troubleshoot systems.
+- **Consistency**: By using a single source of truth for infrastructure and application configurations in a Git repository, GitOps ensures that environments are consistent across different stages of development, testing, and production. This reduces configuration drift and makes it easier to maintain and troubleshoot systems.
 
-- Traceability and Auditability: With GitOps, all changes are tracked in the Git repository, providing a clear and versioned history of modifications. This makes it easy to determine who made a change, when it was made, and why, which is essential for audits and compliance.
+- **Traceability and Auditability**: With GitOps, all changes are tracked in the Git repository, providing a clear and versioned history of modifications. This makes it easy to determine who made a change, when it was made, and why, which is essential for audits and compliance.
 
-- Collaboration: GitOps leverages Git's collaboration features, such as branches, pull requests, and code reviews, allowing teams to work together more effectively. This fosters communication and knowledge sharing, leading to better decision-making and higher-quality configurations.
+- **Collaboration**: GitOps leverages Git's collaboration features, such as branches, pull requests, and code reviews, allowing teams to work together more effectively. This fosters communication and knowledge sharing, leading to better decision-making and higher-quality configurations.
 
-- Faster Recovery: In case of failures or issues, GitOps simplifies the process of reverting to a previous working state or recreating environments. Since the entire system state is captured in the Git repository, teams can quickly identify the cause of an issue and restore the system to a known good state.
+- **Faster Recovery**: In case of failures or issues, GitOps simplifies the process of reverting to a previous working state or recreating environments. Since the entire system state is captured in the Git repository, teams can quickly identify the cause of an issue and restore the system to a known good state.
 
-- Enhanced Security: GitOps promotes secure practices like using signed commits, encrypted secrets, and least privilege access controls. This helps protect sensitive information and reduces the risk of unauthorized changes or security breaches.
+- **Enhanced Security**: GitOps promotes secure practices like using signed commits, encrypted secrets, and least privilege access controls. This helps protect sensitive information and reduces the risk of unauthorized changes or security breaches.
 
-- Simplified Rollouts and Rollbacks: GitOps makes it easier to deploy new features, updates, or fixes by automatically applying changes from the Git repository to the target environment. Similarly, if a problem arises, rolling back to a previous version is as simple as reverting a commit or changing a reference in the Git repository.
+- **Simplified Rollouts and Rollbacks**: GitOps makes it easier to deploy new features, updates, or fixes by automatically applying changes from the Git repository to the target environment. Similarly, if a problem arises, rolling back to a previous version is as simple as reverting a commit or changing a reference in the Git repository.
 
-- Improved Velocity and Agility: By automating the synchronization of the desired state with the actual state, GitOps reduces manual intervention, human error, and the time it takes to apply changes. This allows teams to deliver new features and improvements faster, enabling businesses to be more agile and responsive to market demands.
+- **Improved Velocity and Agility:** By automating the synchronization of the desired state with the actual state, GitOps reduces manual intervention, human error, and the time it takes to apply changes. This allows teams to deliver new features and improvements faster, enabling businesses to be more agile and responsive to market demands.
 
-- Continuous Delivery and Integration: GitOps encourages the use of CI/CD pipelines to automate the build, test, and deployment processes. This not only speeds up the delivery of new features but also ensures that code changes are tested and validated before being deployed, minimizing the risk of issues in production environments.
+- **Continuous Delivery and Integration**: GitOps encourages the use of CI/CD pipelines to automate the build, test, and deployment processes. This not only speeds up the delivery of new features but also ensures that code changes are tested and validated before being deployed, minimizing the risk of issues in production environments.
 
 ## How GitOps works
 
 GitOps works by storing your infrastructure and application configurations in a Git repository, automating the process of applying changes to your environments using CI/CD pipelines, and reconciling the actual state of the system with the desired state defined in the Git repository. This approach allows teams to manage infrastructure and applications more efficiently, consistently, and securely, leveraging Git's version control, collaboration, and automation capabilities.
 
-- Declarative Configuration: Define your infrastructure and application configurations declaratively using files (e.g., YAML, JSON). This includes resources like Kubernetes manifests, Helm charts, or Terraform configurations. These files describe the desired state of your system in a clear and easy-to-understand manner.
+- **Declarative Configuration**: Define your infrastructure and application configurations declaratively using files (e.g., YAML, JSON). This includes resources like Kubernetes manifests, Helm charts, or Terraform configurations. These files describe the desired state of your system in a clear and easy-to-understand manner.
 
-- Git Repository: Store the declarative configuration files in a Git repository, which serves as the single source of truth for your system's desired state. This enables you to leverage Git's version control capabilities, such as tracking changes, collaborating with team members, and rolling back to previous states when needed.
+- **Git Repository**: Store the declarative configuration files in a Git repository, which serves as the single source of truth for your system's desired state. This enables you to leverage Git's version control capabilities, such as tracking changes, collaborating with team members, and rolling back to previous states when needed.
 
-- CI/CD Pipelines: Set up Continuous Integration and Continuous Deployment (CI/CD) pipelines that automatically build, test, and deploy your infrastructure and applications based on changes in the Git repository. These pipelines help ensure that your code is always tested and validated before being deployed to your environments.
+- **CI/CD Pipelines**: Set up Continuous Integration and Continuous Deployment (CI/CD) pipelines that automatically build, test, and deploy your infrastructure and applications based on changes in the Git repository. These pipelines help ensure that your code is always tested and validated before being deployed to your environments.
 
-- Convergence and Synchronization: Use specialized tools, operators, or controllers that watch the Git repository for changes and automatically reconcile the desired state with the actual state of the system. This could involve deploying new application versions, updating configurations, or provisioning new infrastructure resources. Examples of such tools include Flux, Argo CD, and Jenkins X for Kubernetes environments.
+- **Convergence and Synchronization**: Use specialized tools, operators, or controllers that watch the Git repository for changes and automatically reconcile the desired state with the actual state of the system. This could involve deploying new application versions, updating configurations, or provisioning new infrastructure resources. Examples of such tools include Flux, Argo CD, and Jenkins X for Kubernetes environments.
 
-- Observability and Monitoring: Implement monitoring and logging solutions to provide visibility into the state of your infrastructure and applications. This allows you to identify discrepancies between the desired state defined in your Git repository and the actual state of your system, ensuring that any issues are quickly detected and resolved.
+- **Observability and Monitoring**: Implement monitoring and logging solutions to provide visibility into the state of your infrastructure and applications. This allows you to identify discrepancies between the desired state defined in your Git repository and the actual state of your system, ensuring that any issues are quickly detected and resolved.
 
-- Secure Practices: Adopt secure practices in your GitOps workflow, such as using signed commits to ensure authenticity, encrypting sensitive data, and implementing least privilege access controls. This helps protect your configurations and infrastructure from unauthorized access and security breaches.
+- **Secure Practices**: Adopt secure practices in your GitOps workflow, such as using signed commits to ensure authenticity, encrypting sensitive data, and implementing least privilege access controls. This helps protect your configurations and infrastructure from unauthorized access and security breaches.
 
 ## GitOps vs. DevOps
 
@@ -76,21 +78,21 @@ Here is a comparison of the two approaches:
 
 In a GitOps workflow, consistent tool installation and setup are crucial for maintaining reliable and reproducible environments. This can be achieved by employing Infrastructure as Code (IaC), containerization, and configuration management tools. Here's how to ensure consistency when installing and setting up tools in a GitOps workflow:
 
-- Infrastructure as Code (IaC): Use IaC tools like Terraform, AWS CloudFormation, Pulumi, or Google Cloud Deployment Manager to provision and configure infrastructure resources in a declarative and version-controlled manner. This includes setting up CI/CD tools, container orchestration platforms, and other GitOps-related tools consistently across environments.
+- **Infrastructure as Code (IaC)**: Use IaC tools like Terraform, AWS CloudFormation, Pulumi, or Google Cloud Deployment Manager to provision and configure infrastructure resources in a declarative and version-controlled manner. This includes setting up CI/CD tools, container orchestration platforms, and other GitOps-related tools consistently across environments.
 
-- Containerization: Package your applications and tools as containers using technologies like Docker or containerd. Containers encapsulate all dependencies and configurations required to run an application, ensuring consistency across different environments. For container orchestration, use platforms like Kubernetes, which work well with GitOps principles.
+- **Containerization**: Package your applications and tools as containers using technologies like Docker or containerd. Containers encapsulate all dependencies and configurations required to run an application, ensuring consistency across different environments. For container orchestration, use platforms like Kubernetes, which work well with GitOps principles.
 
-- Configuration Management Tools: Use configuration management tools like Ansible, Chef, Puppet, or SaltStack to automate the installation, configuration, and management of GitOps tools across different systems. These tools help ensure consistency by applying predefined configurations and automating common tasks.
+- **Configuration Management Tools**: Use configuration management tools like Ansible, Chef, Puppet, or SaltStack to automate the installation, configuration, and management of GitOps tools across different systems. These tools help ensure consistency by applying predefined configurations and automating common tasks.
 
-- Version Pinning: When using IaC or configuration management tools, make sure to pin the versions of the tools you are installing. This ensures that the same versions are installed across environments, reducing the risk of inconsistencies and incompatibilities. Update the versions deliberately and test the changes in a controlled manner before deploying them to production environments.
+- **Version Pinning**: When using IaC or configuration management tools, make sure to pin the versions of the tools you are installing. This ensures that the same versions are installed across environments, reducing the risk of inconsistencies and incompatibilities. Update the versions deliberately and test the changes in a controlled manner before deploying them to production environments.
 
-- Shared Configuration Repository: Store the configuration files for your tools in a Git repository, which serves as a single source of truth for your tooling setup. This enables you to track changes, collaborate with team members, and ensure that configurations are consistent across environments.
+- **Shared Configuration Repository**: Store the configuration files for your tools in a Git repository, which serves as a single source of truth for your tooling setup. This enables you to track changes, collaborate with team members, and ensure that configurations are consistent across environments.
 
-- Automated Testing: Implement automated testing for your tooling setup and configurations to validate that the desired state is correctly applied across environments. This helps to catch inconsistencies and errors early, before they impact the system.
+- **Automated Testing**: Implement automated testing for your tooling setup and configurations to validate that the desired state is correctly applied across environments. This helps to catch inconsistencies and errors early, before they impact the system.
 
-- Documentation: Document your tooling setup, configurations, and processes in a clear and concise manner. This helps to ensure that team members understand how the GitOps tools are installed and configured, reducing the likelihood of inconsistencies and misconfigurations.
+- **Documentation**: Document your tooling setup, configurations, and processes in a clear and concise manner. This helps to ensure that team members understand how the GitOps tools are installed and configured, reducing the likelihood of inconsistencies and misconfigurations.
 
-- Continuous Improvement: Continuously monitor, review, and improve your tooling setup and configurations. Incorporate feedback from team members and lessons learned from incidents to enhance consistency and reliability.
+- **Continuous Improvement**: Continuously monitor, review, and improve your tooling setup and configurations. Incorporate feedback from team members and lessons learned from incidents to enhance consistency and reliability.
 
 By combining Infrastructure as Code, containerization, configuration management tools, and best practices like version pinning, shared configuration repositories, automated testing, and documentation, you can ensure that your GitOps tools are installed and set up consistently across environments. This consistency is crucial for maintaining the reliability and reproducibility of your infrastructure and application deployments. It also enables your team to collaborate more effectively and streamlines the process of troubleshooting and resolving issues.
 
@@ -127,9 +129,9 @@ When starting from an empty system and connecting to your infrastructure, follow
 
 There are several tools available that can help you implement a GitOps workflow for managing your infrastructure and applications. While the specific tools you need may depend on your technology stack and requirements, here are some popular tools commonly used in GitOps:
 
-- Version Control System: Git is the foundation of GitOps and serves as the single source of truth for your declarative configurations.
+- **Version Control System**: Git is the foundation of GitOps and serves as the single source of truth for your declarative configurations.
 
-- CI/CD Tools: Continuous Integration and Continuous Deployment tools automate the process of building, testing, and deploying your applications and infrastructure based on changes in your Git repository. Some popular CI/CD tools include:
+- **CI/CD Tools**: Continuous Integration and Continuous Deployment tools automate the process of building, testing, and deploying your applications and infrastructure based on changes in your Git repository. Some popular CI/CD tools include:
 
   - Jenkins
   - GitLab CI/CD
@@ -138,7 +140,7 @@ There are several tools available that can help you implement a GitOps workflow 
   - Travis CI
   - Tekton
 
-- Infrastructure as Code (IaC) Tools: These tools enable you to manage and provision infrastructure resources using code. Some popular IaC tools include:
+- **Infrastructure as Code (IaC) Tools**: These tools enable you to manage and provision infrastructure resources using code. Some popular IaC tools include:
 
   - Terraform
   - AWS CloudFormation
@@ -146,20 +148,20 @@ There are several tools available that can help you implement a GitOps workflow 
   - Azure Resource Manager (ARM) Templates
   - Google Cloud Deployment Manager
 
-- Kubernetes Operators and Controllers: For Kubernetes-based environments, there are dedicated GitOps tools that synchronize the desired state defined in your Git repository with the actual state of your cluster. Some popular tools include:
+- **Kubernetes Operators and Controllers**: For Kubernetes-based environments, there are dedicated GitOps tools that synchronize the desired state defined in your Git repository with the actual state of your cluster. Some popular tools include:
 
   - Flux: A GitOps operator that monitors your Git repository and automatically applies changes to your Kubernetes cluster.
   - Argo CD: A declarative, GitOps continuous delivery tool for Kubernetes that ensures your cluster resources match the configurations in your Git repository.
   - Jenkins X: An open-source CI/CD solution for Kubernetes that combines the power of Jenkins pipelines with GitOps principles.
 
-- Configuration Management Tools: These tools help manage the configuration of your applications and infrastructure. Some popular configuration management tools include:
+- **Configuration Management Tools**: These tools help manage the configuration of your applications and infrastructure. Some popular configuration management tools include:
 
   - Ansible
   - Chef
   - Puppet
   - SaltStack
 
-- Secrets Management Tools: For securely managing secrets and sensitive information in a GitOps workflow, consider using one of the following tools:
+- **Secrets Management Tools**: For securely managing secrets and sensitive information in a GitOps workflow, consider using one of the following tools:
 
   - HashiCorp Vault
   - AWS Secrets Manager
@@ -167,7 +169,7 @@ There are several tools available that can help you implement a GitOps workflow 
   - Google Cloud Secret Manager
   - Sealed Secrets (Kubernetes)
 
-- Monitoring and Observability Tools: To monitor your infrastructure and applications, and to ensure that the desired state is correctly synchronized with the actual state, you'll need monitoring and observability tools. Some popular choices include:
+- **Monitoring and Observability Tools**: To monitor your infrastructure and applications, and to ensure that the desired state is correctly synchronized with the actual state, you'll need monitoring and observability tools. Some popular choices include:
 
   - Prometheus
   - Grafana
