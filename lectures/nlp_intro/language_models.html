@@ -548,25 +548,29 @@ document.write(`
 <p>N-grams can be used to estimate the probability of a word given a history (P(w|h)). For instance, if the history h is “I like to eat”, we might want to estimate the probability of the next word being “pizza” (P(pizza|I like to eat)).</p>
 <section id="estimating-probabilities-from-counts">
 <h3>Estimating Probabilities from Counts<a class="headerlink" href="#estimating-probabilities-from-counts" title="Permalink to this heading">#</a></h3>
-<p>We can estimate this probability by counting the occurrences of the history followed by the target word in a large corpus and dividing by the total count of the history:
-$<span class="math notranslate nohighlight">\(
+<p>We can estimate this probability by counting the occurrences of the history followed by the target word in a large corpus and dividing by the total count of the history:</p>
+<div class="math notranslate nohighlight">
+\[
 P(\text{pizza}|\text{I like to eat}) = \frac{C(\text{I like to eat pizza})}{C(\text{I like to eat})}
-\)</span><span class="math notranslate nohighlight">\(
-\)</span><span class="math notranslate nohighlight">\(
+\]</div>
+<div class="math notranslate nohighlight">
+\[
 P(\text{먹습니다}|\text{저는 김치를}) = \frac{C(\text{저는 김치를 먹습니다})}{C(\text{저는 김치를})}
-\)</span>$
-However, even with a large corpus, it’s often not sufficient to provide good estimates due to the creative nature of language and the possibility of unseen word sequences.</p>
+\]</div>
+<p>However, even with a large corpus, it’s often not sufficient to provide good estimates due to the creative nature of language and the possibility of unseen word sequences.</p>
 </section>
 <section id="bigram-model">
 <h3>Bigram Model<a class="headerlink" href="#bigram-model" title="Permalink to this heading">#</a></h3>
-<p>To tackle this issue, we can use the bigram model, which approximates the probability of a word given its entire history by considering only the preceding word:
-$<span class="math notranslate nohighlight">\(
+<p>To tackle this issue, we can use the bigram model, which approximates the probability of a word given its entire history by considering only the preceding word:</p>
+<div class="math notranslate nohighlight">
+\[
 P(\text{pizza}|\text{I like to eat}) \approx P(\text{pizza}|\text{eat})
-\)</span><span class="math notranslate nohighlight">\(
-\)</span><span class="math notranslate nohighlight">\(
+\]</div>
+<div class="math notranslate nohighlight">
+\[
 P(\text{먹습니다}|\text{저는 김치를}) \approx P(\text{먹습니다}|\text{김치를})
-\)</span>$
-This simplification allows us to estimate probabilities more reliably, but it may not capture longer context dependencies. Nevertheless, n-grams serve as a foundational tool for understanding language modeling concepts and can be useful in various NLP applications.</p>
+\]</div>
+<p>This simplification allows us to estimate probabilities more reliably, but it may not capture longer context dependencies. Nevertheless, n-grams serve as a foundational tool for understanding language modeling concepts and can be useful in various NLP applications.</p>
 </section>
 </section>
 <section id="estimating-joint-probabilities-of-word-sequences">
