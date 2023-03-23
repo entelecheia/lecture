@@ -863,12 +863,12 @@ PP(W) = P(w_1, w_2, ..., w_N)^{-1/N}
 <p>In the context of n-gram models, we can compute the perplexity by replacing the joint probability with the product of conditional probabilities of each word given its (n-1) previous words:</p>
 <div class="math notranslate nohighlight">
 \[
-PP(W) = exp(-1/N * (log(P(w_1|w_0)) + log(P(w_2|w_1)) + ... + log(P(w_N|w_(N-1)))))
+PP(W) = exp(-1/N * (log(P(w_1|w_0)) + log(P(w_2|w_1)) + ... + log(P(w_N|w_{N-1}))))
 \]</div>
 <p><strong>Example</strong></p>
 <p>Suppose we have a bigram model and the following test sentence: “I like pizza”. The perplexity of the model on this test sentence can be calculated using the bigram probabilities as follows:</p>
 <ol class="arabic simple">
-<li><p>Compute the log probabilities: <span class="math notranslate nohighlight">\(\log(P(\text{I}|\text{&lt;s&gt;}))\)</span>, <span class="math notranslate nohighlight">\(\log(P(\text{like}|\text{I}))\)</span>, <span class="math notranslate nohighlight">\(\log(P(\text{pizza}|\text{like}))\)</span>, and <span class="math notranslate nohighlight">\(\log(P(\text{&lt;s&gt;}|\text{pizza}))\)</span>.</p></li>
+<li><p>Compute the log probabilities: <span class="math notranslate nohighlight">\(\log(P(\text{I}|\text{&lt;s&gt;}))\)</span>, <span class="math notranslate nohighlight">\(\log(P(\text{like}|\text{I}))\)</span>, <span class="math notranslate nohighlight">\(\log(P(\text{pizza}|\text{like}))\)</span>, and <span class="math notranslate nohighlight">\(\log(P(\text{&lt;/s&gt;}|\text{pizza}))\)</span>.</p></li>
 <li><p>Add up the log probabilities.</p></li>
 <li><p>Divide the sum by the number of words in the test sentence (including the start and end symbols): <span class="math notranslate nohighlight">\(-1/5 * \text{sum of log probabilities}\)</span>.</p></li>
 <li><p>Take the exponent of the result: <span class="math notranslate nohighlight">\(\exp(-1/5 * \text{sum of log probabilities})\)</span>.</p></li>
