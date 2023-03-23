@@ -210,6 +210,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="llms.html">Large Language Models</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Zero Shot, Prompt, and Search Strategies</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="rlhf.html">Reinforcement Learning with Human Feedback (RLHF)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="detectGPT.html">How to Spot Machine-Written Texts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="transformers.html">Transformers </a></li>
@@ -466,6 +467,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Zero Shot, Prompt, and Search Strategies</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot-and-few-shot-learners">Zero Shot and Few Shot Learners</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-engineering">Prompt Engineering</a></li>
 </ul>
@@ -476,18 +478,21 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#few-shot-learning">Few-shot learning:</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot-reasoners-and-chain-of-thought">Zero Shot Reasoners and Chain-of-Thought</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decoding-search-strategies">Decoding / search strategies</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#greedy-search">Greedy Search</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beam-search">Beam search</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling">Sampling</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-k-sampling">Top-K Sampling</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-p-nucleus-sampling">Top-p (nucleus) sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot-reasoners-and-chain-of-thought-prompting">Zero-Shot Reasoners and Chain-of-Thought Prompting</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#decoding-and-search-strategies">Decoding and Search Strategies</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#greedy-search">Greedy Search</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beam-search">Beam search</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling">Sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#top-k-sampling">Top-K Sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#top-p-nucleus-sampling">Top-p (nucleus) sampling</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-decoding-search-strategies">Summary of decoding / search strategies</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-engineering-the-career-of-future">Prompt Engineering: The Career of Future</a></li>
 </ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -632,50 +637,46 @@ document.write(`
 </div>
 </section>
 </section>
-<section id="zero-shot-reasoners-and-chain-of-thought">
-<h2>Zero Shot Reasoners and Chain-of-Thought<a class="headerlink" href="#zero-shot-reasoners-and-chain-of-thought" title="Permalink to this heading">#</a></h2>
-<p>The <a class="reference external" href="https://arxiv.org/abs/2205.11916">paper</a> from University of Tokyo and Google Brain team suggests that LLMs have fundamental zero-shot capabilities in high-level broad cognitive tasks and that these capabilities can be extracted by simple Chain-of-Thought (or CoT) prompting.</p>
-<p>Another <a class="reference external" href="https://arxiv.org/abs/2201.11903">paper</a> by Google Brain team has further investigated the CoT prompting. They noted that by generating a chain-of-thought (or a series of intermediate reasoning steps) LLMs significantly improve their ability to perform complex reasoning. Their experiments on three large language models have shown that chain-of-thought prompting improves performance on a range of arithmetic, common sense, and symbolic reasoning tasks.</p>
-<p>One exmaple:</p>
+<section id="zero-shot-reasoners-and-chain-of-thought-prompting">
+<h2>Zero-Shot Reasoners and Chain-of-Thought Prompting<a class="headerlink" href="#zero-shot-reasoners-and-chain-of-thought-prompting" title="Permalink to this heading">#</a></h2>
+<p>The <a class="reference external" href="https://arxiv.org/abs/2205.11916">University of Tokyo and Google Brain team</a> discovered that large language models (LLMs) possess inherent zero-shot abilities in high-level cognitive tasks. These abilities can be extracted using a method called Chain-of-Thought (CoT) prompting.</p>
+<p>Further research by the <a class="reference external" href="https://arxiv.org/abs/2201.11903">Google Brain team</a> delved into CoT prompting and found that generating a series of intermediate reasoning steps, or a “chain-of-thought,” significantly improves LLMs’ complex reasoning capabilities. Experiments conducted on three LLMs showed that CoT prompting enhances performance in arithmetic, common sense, and symbolic reasoning tasks.</p>
+<p>Here’s an example to illustrate CoT prompting:</p>
 <ul class="simple">
-<li><p>Q: Roger has 5 tennis balls. He buys 2 more cans of tennis balls. Each can has 3 tennis  balls. How many tennis balls does he have now?</p></li>
-<li><p>A: Roger started with 5 balls. 2 cans of 3 tennis balls each is 6 tennis balls. 5 + 6 = 11. The answer is 11.</p></li>
+<li><p>Q: Jane has 7 books on her shelf. She borrowed 4 books from the library. How many books does she have now?</p></li>
+<li><p>A: Jane had 7 books initially. She borrowed 4 books from the library. So, 7 + 4 = 11. The answer is 11.</p></li>
 </ul>
-<p>Additionally:</p>
+<p>And another example:</p>
 <ul class="simple">
-<li><p>Q: The cafeteria had 23 apples. If they used 20 to make lunch and bought 6 more, how many apples do they have</p></li>
-<li><p>A: The cafeteria had 23 apples originally. They used 20 to make lunch. So they had 23 - 20 = 3. They bought 6 more apples, so they have 3 + 6 = 9. The answer is 9.</p></li>
+<li><p>Q: A shop had 15 umbrellas. 8 umbrellas were sold, and they restocked 5 more. How many umbrellas do they have now?</p></li>
+<li><p>A: The shop had 15 umbrellas originally. They sold 8 umbrellas, leaving 15 - 8 = 7. They restocked 5 more umbrellas, so they have 7 + 5 = 12. The answer is 12.</p></li>
 </ul>
-<blockquote>
-<div><p>Chain of thought reasoning allows models to decompose complex problems into intermediate steps that are solved individually. Moreover, the language-based nature of chain of thought makes it applicable to any task that a person could solve via language. We find through empirical experiments that chain of thought prompting can improve performance on various reasoning tasks, and that successful chain of thought reasoning is an emergent property of model scale.</p>
-</div></blockquote>
-</section>
-<section id="decoding-search-strategies">
-<h2>Decoding / search strategies<a class="headerlink" href="#decoding-search-strategies" title="Permalink to this heading">#</a></h2>
-<p><a class="reference external" href="https://huggingface.co/blog/how-to-generate">How to generate text</a> - using different decoding methods for language generation with Transformers
-by Patrick von Platen (Huggingface)</p>
-<ul class="simple">
-<li><p>In recent years, there has been an increasing interest in open-ended language generation thanks to the rise of LLMs trained on millions of documents, such as GPT2, XLNet, OpenAi-GPT, CTRL, TransfoXL, XLM, Bart, T5, GPT3, and BLOOM.</p></li>
-<li><p>Such models have achieved promising results on several generation tasks, including open-ended dialogue, summarization, and story generation.</p></li>
-<li><p>For these models, better decoding methods have played an important role.</p></li>
-</ul>
-<p>Auto-regressive language generation is based on the assumption that the text being generated can be decomposed into a sequence of subparts.
-Each part is dependent on the previous parts, thus we can use an auto-regressive decoder to generate text one token at a time based on its predecessors.</p>
-<div class="math notranslate nohighlight">
-\[ P(w_{1:T} | W_0 ) = \prod_{t=1}^T P(w_{t} | w_{1: t-1}, W_0) \text{ ,with }  w_{1: 0} = \emptyset, \]</div>
-<blockquote>
-<div><p><span class="math notranslate nohighlight">\(W_0\)</span> being the initial <em>context</em> word sequence. The length <span class="math notranslate nohighlight">\(T\)</span> of the word sequence is usually determined <em>on-the-fly</em> and corresponds to the timestep <span class="math notranslate nohighlight">\(t=T\)</span> the EOS token is generated from <span class="math notranslate nohighlight">\(P(w_{t} | w_{1: t-1}, W_{0})\)</span>.</p>
-</div></blockquote>
+<p>In summary, chain-of-thought reasoning enables models to break down complex problems into smaller, manageable steps that can be solved individually. The language-based nature of CoT prompting makes it applicable to any task that can be solved through language. Empirical experiments have shown that CoT prompting improves performance across various reasoning tasks, and successful chain-of-thought reasoning emerges as models scale up.</p>
+<p>Here’s a Python example using Hugging Face Transformers to demonstrate Zero-Shot Reasoners and Chain-of-Thought Prompting with the GPT-2 model:</p>
+<p><strong>Import libraries and prepare the model</strong></p>
+<p>The following code imports necessary libraries, TensorFlow and Hugging Face Transformers, to work with the GPT-2 model. It initializes a GPT-2 tokenizer and loads the pre-trained GPT-2 model from Hugging Face’s model hub. The EOS token is set as the PAD token to avoid warnings during tokenization and padding.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">TFGPT2LMHeadModel</span><span class="p">,</span> <span class="n">GPT2Tokenizer</span>
 
-<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">GPT2Tokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;gpt2&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">generate_chain_of_thought</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">input_ids</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;tf&quot;</span><span class="p">)</span>
+    <span class="n">generated_text</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">input_ids</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="n">max_length</span><span class="p">,</span> <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">generated_text</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="c1"># add the EOS token as PAD token to avoid warnings</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">TFGPT2LMHeadModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;gpt2&quot;</span><span class="p">,</span>
-                                          <span class="n">pad_token_id</span><span class="o">=</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">eos_token_id</span><span class="p">)</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">GPT2Tokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;gpt2&quot;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">TFGPT2LMHeadModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;gpt2&quot;</span><span class="p">,</span> <span class="n">pad_token_id</span><span class="o">=</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">eos_token_id</span><span class="p">)</span>
+
+<span class="c1"># Example problem</span>
+<span class="n">problem</span> <span class="o">=</span> <span class="s2">&quot;Jane has 7 books on her shelf. She borrowed 4 books from the library. How many books does she have now?&quot;</span>
+
+<span class="c1"># Chain-of-Thought Prompt</span>
+<span class="n">cot_prompt</span> <span class="o">=</span> <span class="s2">&quot;To find out the total number of books Jane has now, we can first count the number of books on her shelf, which is 7. Then we count the number of books she borrowed from the library, which is 4. Now, we add these two quantities together. What is 7 + 4?&quot;</span>
+
+<span class="c1"># Generate the answer</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="n">generate_chain_of_thought</span><span class="p">(</span><span class="n">cot_prompt</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -686,13 +687,68 @@ All the layers of TFGPT2LMHeadModel were initialized from the model checkpoint a
 If your task is similar to the task the model of the checkpoint was trained on, you can already use TFGPT2LMHeadModel for predictions without further training.
 </pre></div>
 </div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To find out the total number of books Jane has now, we can first count the number of books on her shelf, which is 7. Then we count the number of books she borrowed from the library, which is 4. Now, we add these two quantities together. What is 7 + 4? Well, it&#39;s the number of books she borrowed from the library. So, if you have a library of about 500 books, you have about 7 books on your shelf. So, if you have
+</pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># You have to install the OpenAI Python library by running the following command:</span>
+<span class="c1"># pip install openai</span>
+<span class="kn">import</span> <span class="nn">openai</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;API_KEY&quot;</span>
+
+<span class="k">def</span> <span class="nf">generate_chain_of_thought</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">model_engine</span><span class="o">=</span><span class="s2">&quot;text-davinci-003&quot;</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">engine</span><span class="o">=</span><span class="n">model_engine</span><span class="p">,</span>
+        <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span>
+        <span class="n">max_tokens</span><span class="o">=</span><span class="n">max_tokens</span><span class="p">,</span>
+        <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">stop</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+<span class="c1"># Example problem</span>
+<span class="n">problem</span> <span class="o">=</span> <span class="s2">&quot;Jane has 7 books on her shelf. She borrowed 4 books from the library. How many books does she have now?&quot;</span>
+
+<span class="c1"># Chain-of-Thought Prompt</span>
+<span class="n">cot_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Jane had 7 books initially. She borrowed 4 books from the library. What is the total number of books Jane has now? 7 + 4 =&quot;</span>
+
+<span class="c1"># Generate the answer</span>
+<span class="n">answer_text</span> <span class="o">=</span> <span class="n">generate_chain_of_thought</span><span class="p">(</span><span class="n">cot_prompt</span><span class="p">)</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\d+&quot;</span><span class="p">,</span> <span class="n">answer_text</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\d+&quot;</span><span class="p">,</span> <span class="n">answer_text</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;unknown&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="decoding-and-search-strategies">
+<h1>Decoding and Search Strategies<a class="headerlink" href="#decoding-and-search-strategies" title="Permalink to this heading">#</a></h1>
+<p>In recent years, there has been a surge of interest in open-ended language generation due to the development of large language models (LLMs) like GPT-2, XLNet, OpenAI-GPT, CTRL, TransfoXL, XLM, BART, T5, GPT-3, and BLOOM. These models have shown promising results in various generation tasks such as open-ended dialogue, summarization, and story generation. Improved decoding methods have played a significant role in the success of these models.</p>
+<p>Auto-regressive language generation assumes that the text being generated can be broken down into a sequence of subparts. Each part depends on the previous parts, allowing an auto-regressive decoder to generate text one token at a time based on its predecessors.</p>
+<p>The probability of generating a word sequence <span class="math notranslate nohighlight">\(w_{1:𝑇}\)</span> given an initial context word sequence <span class="math notranslate nohighlight">\(W_0\)</span> can be expressed as:</p>
+<div class="math notranslate nohighlight">
+\[ P(w_{1:T} | W_0 ) = \prod_{t=1}^T P(w_{t} | w_{1: t-1}, W_0) \text{ ,with }  w_{1: 0} = \emptyset, \]</div>
+<p>Here, <span class="math notranslate nohighlight">\(W_0\)</span> is the initial context word sequence. The length 𝑇 of the word sequence is determined on-the-fly, which means it is decided as the sequence is generated. The sequence generation typically stops when an End-Of-Sequence (EOS) token is generated from the probability distribution <span class="math notranslate nohighlight">\(𝑃(w_t|w_{1:𝑡−1},W_0)\)</span>.</p>
+<p>This auto-regressive approach allows LLMs to generate coherent and contextually relevant text based on the initial context 𝑊0. Different decoding strategies, such as greedy search, beam search, and sampling methods like top-k sampling, have been used to improve the generation quality and diversity.</p>
+<p>For example, consider a language model generating a story based on the context “Once upon a time, in a small village”:</p>
+<ol class="arabic simple">
+<li><p>Greedy search would select the word with the highest probability at each step, potentially leading to repetitive and less diverse text.</p></li>
+<li><p>Beam search would maintain a fixed number of partial sequences (the beam width) and extend them, selecting the most probable overall sequence. This can improve diversity but may still suffer from repetitiveness.</p></li>
+<li><p>Top-k sampling would sample the next word from the top-k most probable words, increasing diversity in the generated text.</p></li>
+</ol>
+<p>These strategies help LLMs generate meaningful and diverse text for various language generation tasks.</p>
 <section id="greedy-search">
-<h3>Greedy Search<a class="headerlink" href="#greedy-search" title="Permalink to this heading">#</a></h3>
-<p><img alt="greedy" src="../../_images/entelecheia_greedy_search.png" /></p>
+<h2>Greedy Search<a class="headerlink" href="#greedy-search" title="Permalink to this heading">#</a></h2>
+<a class="bg-primary mb-1 reference internal image-reference" href="../../_images/entelecheia_greedy_search.png"><img alt="Greedy Search" class="bg-primary mb-1 align-center" src="../../_images/entelecheia_greedy_search.png" style="width: 50%;" /></a>
 <p>Greedy search simply selects the word with the highest probability as its next word: <span class="math notranslate nohighlight">\(w_t = argmax_{w}P(w | w_{1:t-1})\)</span> at each timestep <span class="math notranslate nohighlight">\(t\)</span>.</p>
-<p><img alt="greedy" src="../../_images/deepnlp_2_greedy_search.png" /></p>
+<a class="bg-primary mb-1 reference internal image-reference" href="lectures/nlp_deep/.../figs/deep_nlp/zero/deepnlp_2_greedy_search.png"><img alt="Greedy Search Algorithm" class="bg-primary mb-1 align-center" src="lectures/nlp_deep/.../figs/deep_nlp/zero/deepnlp_2_greedy_search.png" style="width: 70%;" /></a>
 <p>Starting from the word “The” the algorithm greedily chooses the next word of highest probability “nice” and so on, so
 that the final generated word sequence is (“The”, “nice”, “woman”) having an overall probability of <span class="math notranslate nohighlight">\(0.5 \times 0.4 = 0.2\)</span>.</p>
 <ul class="simple">
@@ -728,7 +784,7 @@ I&#39;m not sure how to apply it to real-world applications. I&#39;m not sure ho
 </ul>
 </section>
 <section id="beam-search">
-<h3>Beam search<a class="headerlink" href="#beam-search" title="Permalink to this heading">#</a></h3>
+<h2>Beam search<a class="headerlink" href="#beam-search" title="Permalink to this heading">#</a></h2>
 <p><img alt="beam" src="../../_images/entelecheia_beam_search.png" /></p>
 <p>Beam search reduces the risk of missing hidden high probability word sequences by keeping the most likely <code class="docutils literal notranslate"><span class="pre">num_beams</span></code> of hypotheses at each time step and eventually choosing the hypothesis that has the overall highest probability.</p>
 <ul class="simple">
@@ -871,7 +927,7 @@ In this post, I&#39;ll show you how you can use Deep Learning to build a neural 
 <p><img alt="beam_vs_human" src="../../_images/deepnlp_2_beam_vs_human.png" /></p>
 </section>
 <section id="sampling">
-<h3>Sampling<a class="headerlink" href="#sampling" title="Permalink to this heading">#</a></h3>
+<h2>Sampling<a class="headerlink" href="#sampling" title="Permalink to this heading">#</a></h2>
 <p>Sampling means randomly picking the next word <span class="math notranslate nohighlight">\(w_t\)</span> according to its conditional probability distribution:</p>
 <div class="math notranslate nohighlight">
 \[ w_t \sim P(w|w_{1:t-1}) \]</div>
@@ -960,7 +1016,7 @@ The current human-language
 </ul>
 </section>
 <section id="top-k-sampling">
-<h3>Top-K Sampling<a class="headerlink" href="#top-k-sampling" title="Permalink to this heading">#</a></h3>
+<h2>Top-K Sampling<a class="headerlink" href="#top-k-sampling" title="Permalink to this heading">#</a></h2>
 <p><img alt="top_k" src="../../_images/deepnlp_2_top_k_sampling.png" /></p>
 <p>In <em>Top-K</em> sampling, the <em>K</em> most likely next words are filtered and the probability mass is redistributed among only those <em>K</em> next words. GPT2 adopted this sampling scheme, which was one of the reasons for its success in story generation.</p>
 <ul class="simple">
@@ -1007,7 +1063,7 @@ I enjoy studying deep learning for natural language processing, as well as in te
 </ul>
 </section>
 <section id="top-p-nucleus-sampling">
-<h3>Top-p (nucleus) sampling<a class="headerlink" href="#top-p-nucleus-sampling" title="Permalink to this heading">#</a></h3>
+<h2>Top-p (nucleus) sampling<a class="headerlink" href="#top-p-nucleus-sampling" title="Permalink to this heading">#</a></h2>
 <p><img alt="top_p" src="../../_images/deepnlp_2_top_p_sampling.png" /></p>
 <ul class="simple">
 <li><p>Instead of sampling only from the most likely <em>K</em> words, in <em>Top-p</em> sampling chooses from the smallest possible set of words whose cumulative probability exceeds the probability <em>p</em>.</p></li>
@@ -1100,7 +1156,6 @@ Another way to learn Deep Learning is by coding. For example, I often code to so
 </div>
 </div>
 </div>
-</section>
 </section>
 <section id="summary-of-decoding-search-strategies">
 <h2>Summary of decoding / search strategies<a class="headerlink" href="#summary-of-decoding-search-strategies" title="Permalink to this heading">#</a></h2>
@@ -1212,6 +1267,7 @@ Another way to learn Deep Learning is by coding. For example, I often code to so
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Zero Shot, Prompt, and Search Strategies</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot-and-few-shot-learners">Zero Shot and Few Shot Learners</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-engineering">Prompt Engineering</a></li>
 </ul>
@@ -1222,18 +1278,21 @@ Another way to learn Deep Learning is by coding. For example, I often code to so
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#few-shot-learning">Few-shot learning:</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot-reasoners-and-chain-of-thought">Zero Shot Reasoners and Chain-of-Thought</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decoding-search-strategies">Decoding / search strategies</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#greedy-search">Greedy Search</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beam-search">Beam search</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling">Sampling</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-k-sampling">Top-K Sampling</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-p-nucleus-sampling">Top-p (nucleus) sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot-reasoners-and-chain-of-thought-prompting">Zero-Shot Reasoners and Chain-of-Thought Prompting</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#decoding-and-search-strategies">Decoding and Search Strategies</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#greedy-search">Greedy Search</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beam-search">Beam search</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling">Sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#top-k-sampling">Top-K Sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#top-p-nucleus-sampling">Top-p (nucleus) sampling</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-decoding-search-strategies">Summary of decoding / search strategies</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-engineering-the-career-of-future">Prompt Engineering: The Career of Future</a></li>
 </ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
