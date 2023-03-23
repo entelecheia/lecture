@@ -492,6 +492,14 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-issues-in-n-gram-models">Practical Issues in N-gram Models</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-of-mle">Examples of MLE</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-generate-n-grams-using-nltk">How to generate n-grams using NLTK</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-language-models">Evaluating Language Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perplexity">Perplexity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-sentences-from-a-language-model">Sampling Sentences from a Language Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-using-the-brown-corpus"><strong>An example using the Brown Corpus</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unknown-words">Unknown Words</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#smoothing">Smoothing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
             </nav>
@@ -835,10 +843,291 @@ Trigrams:
 </div>
 </div>
 </section>
+<section id="evaluating-language-models">
+<h2>Evaluating Language Models<a class="headerlink" href="#evaluating-language-models" title="Permalink to this heading">#</a></h2>
+<p>Evaluating language models can be done in two main ways: extrinsic evaluation and intrinsic evaluation.</p>
+<p><em>Extrinsic evaluation</em> is the process of embedding a language model in an application and measuring its performance improvement in that application. For instance, in speech recognition, we can compare two language models by running a speech recognizer with each model and determining which one produces more accurate transcriptions.</p>
+<p>However, running large NLP systems end-to-end can be resource-intensive. As an alternative, we can use <em>intrinsic evaluation</em> metrics to quickly evaluate potential improvements in a language model. Intrinsic evaluation measures the quality of a model independent of any application.</p>
+<p>To perform an intrinsic evaluation, we need a test set and a training set. The training set is used to train the parameters of the n-gram model, while the test set measures the model’s performance. The better model is the one that assigns a higher probability to the test set, meaning it more accurately predicts the test set.</p>
+<p>It’s crucial not to include test sentences in the training set, as this would introduce bias and lead to inaccurate probability-based metrics. Sometimes, we might use a test set so frequently that we tune to its characteristics. In such cases, a fresh test set, called the <em>development test set</em> or <em>devset</em>, should be used.</p>
+<p>To divide data into training, development, and test sets, a common practice is to allocate 80% for training, 10% for development, and 10% for testing. Test data can either be taken from a continuous sequence within the corpus or be selected as smaller “stripes” from random parts of the corpus combined into a test set.</p>
+</section>
+<section id="perplexity">
+<h2>Perplexity<a class="headerlink" href="#perplexity" title="Permalink to this heading">#</a></h2>
+<p>Perplexity is a measure used to evaluate the performance of a language model. It quantifies how well a model predicts the probability distribution of a test set. A lower perplexity value indicates that the model is more accurate in predicting the test set.</p>
+<p>Perplexity can be understood as the weighted average branching factor of a language model. In other words, it represents the average number of possible next words the model considers at each step while generating a sentence. Lower perplexity means the model has fewer choices to consider, resulting in better prediction accuracy.</p>
+<p>The perplexity (PP) of a language model on a test set can be calculated using the following equation:</p>
+<div class="math notranslate nohighlight">
+\[
+PP(W) = P(w_1, w_2, ..., w_N)^(-1/N)
+\]</div>
+<p>Here, W is the sequence of words in the test set, and N is the total number of words in the test set. <span class="math notranslate nohighlight">\(P(w_1, w_2, ..., w_N)\)</span> is the joint probability of the entire word sequence in the test set.</p>
+<p>Since we usually work with log probabilities to avoid numerical underflow, we can rewrite the perplexity equation using log probabilities:</p>
+<div class="math notranslate nohighlight">
+\[
+PP(W) = P(w_1, w_2, ..., w_N)^(-1/N)
+\]</div>
+<p>In the context of n-gram models, we can compute the perplexity by replacing the joint probability with the product of conditional probabilities of each word given its (n-1) previous words:</p>
+<div class="math notranslate nohighlight">
+\[
+PP(W) = exp(-1/N * (log(P(w_1|w_0)) + log(P(w_2|w_1)) + ... + log(P(w_N|w_(N-1)))))
+\]</div>
+<p><strong>Example</strong></p>
+<p>Suppose we have a bigram model and the following test sentence: “I like pizza”. The perplexity of the model on this test sentence can be calculated using the bigram probabilities as follows:</p>
+<ol class="arabic simple">
+<li><p>Compute the log probabilities: <span class="math notranslate nohighlight">\(\log(P(\text{I}|\text{&lt;s&gt;}))\)</span>, <span class="math notranslate nohighlight">\(\log(P(\text{like}|\text{I}))\)</span>, <span class="math notranslate nohighlight">\(\log(P(\text{pizza}|\text{like}))\)</span>, and <span class="math notranslate nohighlight">\(\log(P(\text{&lt;s&gt;}|\text{pizza}))\)</span>.</p></li>
+<li><p>Add up the log probabilities.</p></li>
+<li><p>Divide the sum by the number of words in the test sentence (including the start and end symbols): <span class="math notranslate nohighlight">\(-1/5 * \text{sum of log probabilities}\)</span>.</p></li>
+<li><p>Take the exponent of the result: <span class="math notranslate nohighlight">\(\exp(-1/5 * \text{sum of log probabilities})\)</span>.</p></li>
+</ol>
+<p>The perplexity value obtained will be a measure of how well the bigram model predicts the test sentence “I like pizza”.</p>
+<p>Here’s how to implement perplexity manually using Python and NLTK. We’ll use the Brown Corpus and train a trigram model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">nltk.util</span> <span class="kn">import</span> <span class="n">ngrams</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span><span class="p">,</span> <span class="n">defaultdict</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">brown</span>
+
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">&quot;brown&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set n-gram order to 3 (trigram)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="c1"># Divide the data into 80% training and 20% test</span>
+<span class="n">train_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">brown</span><span class="o">.</span><span class="n">sents</span><span class="p">())</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">)</span>
+<span class="n">train_data</span> <span class="o">=</span> <span class="n">brown</span><span class="o">.</span><span class="n">sents</span><span class="p">()[:</span><span class="n">train_size</span><span class="p">]</span>
+<span class="n">test_data</span> <span class="o">=</span> <span class="n">brown</span><span class="o">.</span><span class="n">sents</span><span class="p">()[</span><span class="n">train_size</span><span class="p">:]</span>
+
+<span class="c1"># Create n-grams and vocabulary from training data</span>
+<span class="n">ngrams_counts</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="n">Counter</span><span class="p">)</span>
+<span class="n">vocabulary</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">train_data</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">gram</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">ng</span> <span class="ow">in</span> <span class="n">ngrams</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="n">gram</span><span class="p">,</span> <span class="n">pad_left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">pad_right</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+            <span class="n">ngrams_counts</span><span class="p">[</span><span class="n">gram</span><span class="p">][</span><span class="n">ng</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">vocabulary</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">ng</span><span class="p">)</span>
+
+<span class="n">V</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vocabulary</span><span class="p">)</span>  <span class="c1"># Vocabulary size</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package brown to /home/yjlee/nltk_data...
+[nltk_data]   Package brown is already up-to-date!
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, let’s calculate the perplexity:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the probability of a trigram using Laplace smoothing</span>
+<span class="k">def</span> <span class="nf">trigram_prob</span><span class="p">(</span><span class="n">trigram</span><span class="p">):</span>
+    <span class="n">bigram</span> <span class="o">=</span> <span class="n">trigram</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">ngrams_counts</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="n">trigram</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">ngrams_counts</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="n">bigram</span><span class="p">]</span> <span class="o">+</span> <span class="n">V</span><span class="p">)</span>
+
+
+<span class="c1"># Calculate perplexity on the test data</span>
+<span class="n">log_prob_sum</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">test_word_count</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">test_data</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">trigram</span> <span class="ow">in</span> <span class="n">ngrams</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">pad_left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">pad_right</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">log_prob_sum</span> <span class="o">+=</span> <span class="n">math</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">trigram_prob</span><span class="p">(</span><span class="n">trigram</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">trigram</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">test_word_count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">perplexity</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="n">log_prob_sum</span> <span class="o">/</span> <span class="n">test_word_count</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Perplexity: </span><span class="si">{</span><span class="n">perplexity</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Perplexity: 39764.020490463474
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sampling-sentences-from-a-language-model">
+<h2>Sampling Sentences from a Language Model<a class="headerlink" href="#sampling-sentences-from-a-language-model" title="Permalink to this heading">#</a></h2>
+<p>Sampling sentences from a language model is a method to generate sentences based on the probabilities defined by the model. By doing this, we can visualize what the language model has learned and understand its knowledge representation. In this process, sentences with higher probabilities are more likely to be generated than those with lower probabilities.</p>
+<p>For example, consider a unigram language model. We can visualize the probability distribution of all the words in the model’s vocabulary, each word covering an interval proportional to its frequency. To generate a sentence, we randomly pick a value between 0 and 1, and select the word whose interval includes the chosen value. We repeat this process until we generate the sentence-final token <code class="docutils literal notranslate"><span class="pre">&lt;/s&gt;</span></code>.</p>
+<p>For bigram models, the process is similar. We first generate a random bigram that starts with <code class="docutils literal notranslate"><span class="pre">&lt;s&gt;</span></code> based on its bigram probability. Let’s say the second word of the bigram is <code class="docutils literal notranslate"><span class="pre">w</span></code>. We then choose a random bigram starting with <code class="docutils literal notranslate"><span class="pre">w</span></code> according to its bigram probability, and continue this process until we generate a sentence.</p>
+<p>In essence, sampling sentences from a language model helps us understand the kind of sentences the model considers to be more likely and thus provides insights into its knowledge representation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="c1"># Sample bigram model</span>
+<span class="n">bigram_model</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;&lt;s&gt;&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;I&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;You&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">},</span>
+    <span class="s1">&#39;I&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;like&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;love&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">},</span>
+    <span class="s1">&#39;You&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;like&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;love&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">},</span>
+    <span class="s1">&#39;like&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;apples&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;bananas&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">},</span>
+    <span class="s1">&#39;love&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;apples&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;bananas&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">},</span>
+    <span class="s1">&#39;apples&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+    <span class="s1">&#39;bananas&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">generate_sentence</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+    <span class="n">sentence</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">current_word</span> <span class="o">=</span> <span class="s1">&#39;&lt;s&gt;&#39;</span>
+    
+    <span class="k">while</span> <span class="n">current_word</span> <span class="o">!=</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">:</span>
+        <span class="n">next_word_candidates</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">model</span><span class="p">[</span><span class="n">current_word</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">next_word_probabilities</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">model</span><span class="p">[</span><span class="n">current_word</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="n">current_word</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choices</span><span class="p">(</span><span class="n">next_word_candidates</span><span class="p">,</span> <span class="n">next_word_probabilities</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="k">if</span> <span class="n">current_word</span> <span class="o">!=</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">:</span>
+            <span class="n">sentence</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_word</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+
+<span class="c1"># Generate 5 sentences</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">generate_sentence</span><span class="p">(</span><span class="n">bigram_model</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>You love apples
+You love bananas
+You like apples
+You like bananas
+I love apples
+</pre></div>
+</div>
+</div>
+</div>
+<p>This code defines a simple bigram model and a function <code class="docutils literal notranslate"><span class="pre">generate_sentence</span></code> to generate sentences using this model. The function starts with the <code class="docutils literal notranslate"><span class="pre">&lt;s&gt;</span></code> token and continues generating words based on the bigram probabilities until it encounters the <code class="docutils literal notranslate"><span class="pre">&lt;/s&gt;</span></code> token. Running this code will generate and print 5 sentences using the given bigram model. Note that this example uses a very simple and limited bigram model, but the same principle can be applied to more complex models.</p>
+<section id="an-example-using-the-brown-corpus">
+<h3><strong>An example using the Brown Corpus</strong><a class="headerlink" href="#an-example-using-the-brown-corpus" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span><span class="p">,</span> <span class="n">Counter</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">brown</span>
+
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">&quot;brown&quot;</span><span class="p">)</span>
+
+<span class="c1"># Load Brown news corpus</span>
+<span class="n">news_sents</span> <span class="o">=</span> <span class="n">brown</span><span class="o">.</span><span class="n">sents</span><span class="p">(</span><span class="n">categories</span><span class="o">=</span><span class="s2">&quot;news&quot;</span><span class="p">)</span>
+
+<span class="c1"># Function to create n-gram models</span>
+<span class="k">def</span> <span class="nf">create_ngram_model</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="n">Counter</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">:</span>
+        <span class="n">sent</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&lt;s&gt;&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">sent</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;&lt;/s&gt;&quot;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sent</span><span class="p">)</span> <span class="o">-</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">ngram</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">sent</span><span class="p">[</span><span class="n">i</span> <span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="n">n</span><span class="p">])</span>
+            <span class="n">prefix</span><span class="p">,</span> <span class="n">word</span> <span class="o">=</span> <span class="n">ngram</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">ngram</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">model</span><span class="p">[</span><span class="n">prefix</span><span class="p">][</span><span class="n">word</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="c1"># Convert counts to probabilities</span>
+    <span class="k">for</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">word_counts</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">word_counts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">word_counts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">model</span><span class="p">[</span><span class="n">prefix</span><span class="p">][</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span> <span class="o">/</span> <span class="n">total</span>
+
+    <span class="k">return</span> <span class="n">model</span>
+
+
+<span class="c1"># Function to generate sentences from n-gram models</span>
+<span class="k">def</span> <span class="nf">generate_sentence</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+    <span class="n">sentence</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">current_ngram</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;&lt;s&gt;&quot;</span><span class="p">,)</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]))</span>
+
+    <span class="k">while</span> <span class="s2">&quot;&lt;/s&gt;&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">current_ngram</span><span class="p">:</span>
+        <span class="n">next_word_candidates</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">model</span><span class="p">[</span><span class="n">current_ngram</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">next_word_probabilities</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">model</span><span class="p">[</span><span class="n">current_ngram</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="n">next_word</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choices</span><span class="p">(</span><span class="n">next_word_candidates</span><span class="p">,</span> <span class="n">next_word_probabilities</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">next_word</span> <span class="o">!=</span> <span class="s2">&quot;&lt;/s&gt;&quot;</span><span class="p">:</span>
+            <span class="n">sentence</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_word</span><span class="p">)</span>
+
+        <span class="n">current_ngram</span> <span class="o">=</span> <span class="n">current_ngram</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="p">(</span><span class="n">next_word</span><span class="p">,)</span>
+
+    <span class="k">return</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+
+
+<span class="c1"># Create bigram, trigram, and 4-gram models</span>
+<span class="n">bigram_model</span> <span class="o">=</span> <span class="n">create_ngram_model</span><span class="p">(</span><span class="n">news_sents</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">trigram_model</span> <span class="o">=</span> <span class="n">create_ngram_model</span><span class="p">(</span><span class="n">news_sents</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">fourgram_model</span> <span class="o">=</span> <span class="n">create_ngram_model</span><span class="p">(</span><span class="n">news_sents</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package brown to /home/yjlee/nltk_data...
+[nltk_data]   Package brown is already up-to-date!
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bigram model sentence: The first year hailed the queen , Brooks Robinson slammed a local director at Rice Stadium Oct. 14 , and must have never have never is to solicit funds for violating the government and won it .
+Trigram model sentence: When Mickey went to see them .
+4-gram model sentence: He managed to maneuver the missile to a landing speed of 200 m.p.h. -- fast even for a high school where there were lots of cars `` might not be realistic and would not work &#39;&#39; .
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate sentences using the models</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bigram model sentence:&quot;</span><span class="p">,</span> <span class="n">generate_sentence</span><span class="p">(</span><span class="n">bigram_model</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Trigram model sentence:&quot;</span><span class="p">,</span> <span class="n">generate_sentence</span><span class="p">(</span><span class="n">trigram_model</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;4-gram model sentence:&quot;</span><span class="p">,</span> <span class="n">generate_sentence</span><span class="p">(</span><span class="n">fourgram_model</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bigram model sentence: A cheer here is clearly that Georgia to the Texas , activities .
+Trigram model sentence: Indications as late as the views of another one .
+4-gram model sentence: The game players saw the Air Force Academy .
+</pre></div>
+</div>
+</div>
+</div>
+<p>This code loads the Brown news corpus, defines functions to create n-gram models and generate sentences using these models, and then creates bigram, trigram, and 4-gram models. It generates and prints one sentence for each model. Note that the generated sentences may vary each time the code is run due to the random sampling process.</p>
+</section>
+</section>
+<section id="unknown-words">
+<h2>Unknown Words<a class="headerlink" href="#unknown-words" title="Permalink to this heading">#</a></h2>
+<p>In language modeling, we may encounter words that we’ve never seen before in the training data, known as unknown words or out-of-vocabulary (OOV) words. Handling these unknown words is an important aspect of language modeling.</p>
+<p>There are two common strategies for dealing with unknown words:</p>
+<ol class="arabic simple">
+<li><p><strong>Closed Vocabulary System</strong>: In this approach, we assume a fixed vocabulary in advance. The test set can only contain words from this known vocabulary, and there will be no unknown words. However, this is not a practical approach in most real-world situations.</p></li>
+<li><p><strong>Open Vocabulary System</strong>: We create an open vocabulary system by adding a pseudo-word <code class="docutils literal notranslate"><span class="pre">&lt;UNK&gt;</span></code> to represent all potential unknown words in the test set. There are two ways to train the probabilities of the unknown word model <code class="docutils literal notranslate"><span class="pre">&lt;UNK&gt;</span></code>:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Choose a fixed vocabulary (word list) in advance, convert any word not in this set to the unknown word token <code class="docutils literal notranslate"><span class="pre">&lt;UNK&gt;</span></code> in the training set, and estimate the probabilities for <code class="docutils literal notranslate"><span class="pre">&lt;UNK&gt;</span></code> based on its counts just like any other regular word in the training set.</p></li>
+<li><p>Alternatively, create a vocabulary implicitly by replacing words in the training data with <code class="docutils literal notranslate"><span class="pre">&lt;UNK&gt;</span></code> based on their frequency. For example, we can replace all words that occur fewer than n times in the training set by <code class="docutils literal notranslate"><span class="pre">&lt;UNK&gt;</span></code> or select a vocabulary size V in advance and choose the top V words by frequency and replace the rest by <code class="docutils literal notranslate"><span class="pre">&lt;UNK&gt;</span></code>. Then, proceed to train the language model, treating <code class="docutils literal notranslate"><span class="pre">&lt;UNK&gt;</span></code> as a regular word.</p></li>
+</ul>
+<p>The choice of <code class="docutils literal notranslate"><span class="pre">&lt;UNK&gt;</span></code> affects metrics like perplexity, as a language model can achieve low perplexity by choosing a small vocabulary and assigning the unknown word a high probability. Perplexities can only be compared across language models with the same vocabularies.</p>
+</section>
+<section id="smoothing">
+<h2>Smoothing<a class="headerlink" href="#smoothing" title="Permalink to this heading">#</a></h2>
+<p>Smoothing is an essential technique in language modeling to address the problem of unseen n-grams in the training data. The main idea behind smoothing is to assign non-zero probabilities to these unseen n-grams, which helps avoid issues like zero probabilities when evaluating a language model on a test set.</p>
+<p>For example, consider a bigram language model trained on a corpus. If a specific word pair (bigram) never appeared in the training data but appears in the test set, the model would assign it a probability of zero. This zero probability would then affect the entire sentence’s probability, making it zero as well. Smoothing techniques help prevent this problem by redistributing some probability mass from seen n-grams to unseen n-grams.</p>
+<p>There are various smoothing techniques, such as Additive (Laplace) smoothing, Good-Turing smoothing, and Kneser-Ney smoothing. One common method is Additive (Laplace) smoothing:</p>
+<p>Let’s assume we have a bigram language model with vocabulary V and bigram counts <span class="math notranslate nohighlight">\(C(w_{i-1}, w_i)\)</span>. Without smoothing, the probability of a bigram is calculated as:</p>
+<div class="math notranslate nohighlight">
+\[ P(w_i | w_{i-1}) = C(w){i-1}, w_i) / \sum C(w_{i-1}, w) \]</div>
+<p>With Additive (Laplace) smoothing, we add a constant k (usually k=1) to the count of each bigram, which in turn adds a non-zero probability to unseen bigrams:</p>
+<div class="math notranslate nohighlight">
+\[ P(w_i | w_{i-1}) = (C(w_{i-1}, w_i) + k) / ( \sum C(w_{i-1}, w) + k * |V| ) \]</div>
+<p>Here, <span class="math notranslate nohighlight">\(|V|\)</span> represents the size of the vocabulary. By adding k to each bigram count, we ensure that unseen bigrams get a non-zero probability, thus preventing zero probabilities in the language model evaluation.</p>
+<p>In summary, smoothing techniques in language modeling help to handle unseen n-grams by redistributing probability mass and ensuring that no n-gram has a zero probability.</p>
+</section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://web.stanford.edu/~jurafsky/slp3/3.pdf">N-gram Language Models</a></p></li>
+<li><p><a class="reference external" href="https://thegradient.pub/understanding-evaluation-metrics-for-language-models">Evaluation Metrics for Language Modeling</a></p></li>
+<li><p><a class="reference external" href="https://towardsdatascience.com/perplexity-in-language-models-87a196019a94">Perplexity in Language Models</a></p></li>
 </ul>
 </section>
 </section>
@@ -929,6 +1218,14 @@ Trigrams:
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-issues-in-n-gram-models">Practical Issues in N-gram Models</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-of-mle">Examples of MLE</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-generate-n-grams-using-nltk">How to generate n-grams using NLTK</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-language-models">Evaluating Language Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perplexity">Perplexity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-sentences-from-a-language-model">Sampling Sentences from a Language Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-using-the-brown-corpus"><strong>An example using the Brown Corpus</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unknown-words">Unknown Words</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#smoothing">Smoothing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
   </nav></div>
