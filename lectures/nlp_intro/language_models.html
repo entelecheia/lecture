@@ -473,13 +473,9 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#n-grams-and-probability-estimation">N-Grams and Probability Estimation</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-probabilities-from-counts">Estimating Probabilities from Counts</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bigram-model">Bigram Model</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-joint-probabilities-of-word-sequences">Estimating Joint Probabilities of Word Sequences</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-joint-probabilities-of-word-sequences">Estimating Joint Probabilities of Word Sequences</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#n-gram-models-and-markov-assumption">N-gram Models and Markov Assumption</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#n-gram-models-and-markov-assumption">N-gram Models and Markov Assumption</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Example</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stock-prices-and-markov-assumption">Stock Prices and Markov Assumption</a></li>
 </ul>
@@ -487,10 +483,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-bigram-or-n-gram-probabilities-using-maximum-likelihood-estimation-mle">Estimating Bigram or N-gram Probabilities using Maximum Likelihood Estimation (MLE)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bigram-probability-calculation">Bigram Probability Calculation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-issues-in-n-gram-models">Practical Issues in N-gram Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-of-mle">Examples of MLE</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-issues-in-n-gram-models">Practical Issues in N-gram Models</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-of-mle">Examples of MLE</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-generate-n-grams-using-nltk">How to generate n-grams using NLTK</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-language-models">Evaluating Language Models</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perplexity">Perplexity</a></li>
@@ -593,15 +589,15 @@ P(\text{먹습니다}|\text{저는 김치를}) \approx P(\text{먹습니다}|\te
 \]</div>
 <p>This simplification allows us to estimate probabilities more reliably, but it may not capture longer context dependencies. Nevertheless, n-grams serve as a foundational tool for understanding language modeling concepts and can be useful in various NLP applications.</p>
 </section>
-</section>
 <section id="estimating-joint-probabilities-of-word-sequences">
-<h2>Estimating Joint Probabilities of Word Sequences<a class="headerlink" href="#estimating-joint-probabilities-of-word-sequences" title="Permalink to this heading">#</a></h2>
+<h3>Estimating Joint Probabilities of Word Sequences<a class="headerlink" href="#estimating-joint-probabilities-of-word-sequences" title="Permalink to this heading">#</a></h3>
 <p>To estimate the joint probability of an entire sequence of words, such as “The cat sat on the mat”, we can decompose this probability using the chain rule of probability:</p>
 <div class="math notranslate nohighlight">
 \[
 P(w_1:n) = P(w_1)P(w_2|w_1)P(w_3|w_1:2)...P(w_n|w_1:n−1) = \prod_{k=1}^n P(w_k|w_1:k−1)
 \]</div>
 <p>This decomposition shows the link between computing the joint probability of a sequence and computing the conditional probability of a word given previous words. However, it doesn’t really seem to help us! Computing the exact probability of a word given a long sequence of preceding words (e.g., P(wn|w1:n−1)) is challenging because language is creative, and any particular context might have never occurred before.</p>
+</section>
 <section id="example">
 <h3>Example<a class="headerlink" href="#example" title="Permalink to this heading">#</a></h3>
 <p>For the sequence “The cat sat on the mat”, we can decompose the joint probability as follows:</p>
@@ -611,9 +607,8 @@ P(\text{The, cat, sat, on, the, mat}) = P(\text{The})P(\text{cat}|\text{The})P(\
 \]</div>
 <p>Estimating each conditional probability using counts from a large corpus is not feasible since many long sequences might never have occurred before.</p>
 </section>
-</section>
 <section id="n-gram-models-and-markov-assumption">
-<h2>N-gram Models and Markov Assumption<a class="headerlink" href="#n-gram-models-and-markov-assumption" title="Permalink to this heading">#</a></h2>
+<h3>N-gram Models and Markov Assumption<a class="headerlink" href="#n-gram-models-and-markov-assumption" title="Permalink to this heading">#</a></h3>
 <p>N-gram models are used to predict the probability of a word given a fixed number of preceding words. The assumption that the probability of a word depends only on a limited number of previous words is called the Markov assumption.</p>
 <p>For a bigram model (N=2), the approximation is:</p>
 <div class="math notranslate nohighlight">
@@ -630,6 +625,7 @@ P(w_n|w_1:n−1) ≈ P(w_n|w_{n−N+1:n−1})
 \[
 P(w_1:n) ≈ \prod_{k=1}^n P(w_k|w_{k−N+1:k−1})
 \]</div>
+</section>
 <section id="id1">
 <h3>Example<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>For the trigram model (N=3), the approximation for the sequence “The cat sat on the mat” is:</p>
@@ -703,9 +699,8 @@ P(\text{The, cat, sat, on, the, mat}) ≈ P(\text{The})P(\text{cat}|\text{The})P
 \[ P(w_n|w_{n−N+1:n−1}) = C(w_{n−N+1:n−1} w_n) / C(w_{n−N+1:n−1}) \]</div>
 <p>Bigram probabilities capture various linguistic phenomena, such as syntax, task-specific patterns, and cultural preferences.</p>
 </section>
-</section>
 <section id="practical-issues-in-n-gram-models">
-<h2>Practical Issues in N-gram Models<a class="headerlink" href="#practical-issues-in-n-gram-models" title="Permalink to this heading">#</a></h2>
+<h3>Practical Issues in N-gram Models<a class="headerlink" href="#practical-issues-in-n-gram-models" title="Permalink to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Higher-order n-grams</strong>: In practice, trigram (conditioning on the previous two words), 4-gram, or even 5-gram models are more common when there is sufficient training data. For larger n-grams, extra contexts are needed to the left and right of the sentence end (e.g., P(I|<code class="docutils literal notranslate"><span class="pre">&lt;s&gt;&lt;s&gt;</span></code>) for trigrams).</p></li>
 <li><p><strong>Log probabilities</strong>: Since multiplying probabilities can lead to numerical underflow, it’s better to represent and compute language model probabilities in log format. Adding log probabilities is equivalent to multiplying probabilities in linear space. Convert back to probabilities when needed by taking the exponential of the log probability:</p></li>
@@ -714,7 +709,7 @@ P(\text{The, cat, sat, on, the, mat}) ≈ P(\text{The})P(\text{cat}|\text{The})P
 \[   p_1 × p_2 × p_3 × p_4 = \exp(\log{p_1} + \log{p_2} + \log{p_3} + \log{p_4}) \]</div>
 </section>
 <section id="examples-of-mle">
-<h2>Examples of MLE<a class="headerlink" href="#examples-of-mle" title="Permalink to this heading">#</a></h2>
+<h3>Examples of MLE<a class="headerlink" href="#examples-of-mle" title="Permalink to this heading">#</a></h3>
 <p>Here’s a practical example of MLE using Python. We’ll estimate the parameter p of a Bernoulli distribution (coin toss) based on some observed data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -761,6 +756,7 @@ MLE for sigma (standard deviation): 0.6441273166075167
 </div>
 </div>
 </div>
+</section>
 </section>
 <section id="how-to-generate-n-grams-using-nltk">
 <h2>How to generate n-grams using NLTK<a class="headerlink" href="#how-to-generate-n-grams-using-nltk" title="Permalink to this heading">#</a></h2>
@@ -1199,13 +1195,9 @@ Trigram model sentence: Indications as late as the views of another one .
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#n-grams-and-probability-estimation">N-Grams and Probability Estimation</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-probabilities-from-counts">Estimating Probabilities from Counts</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bigram-model">Bigram Model</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-joint-probabilities-of-word-sequences">Estimating Joint Probabilities of Word Sequences</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-joint-probabilities-of-word-sequences">Estimating Joint Probabilities of Word Sequences</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#n-gram-models-and-markov-assumption">N-gram Models and Markov Assumption</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#n-gram-models-and-markov-assumption">N-gram Models and Markov Assumption</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Example</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stock-prices-and-markov-assumption">Stock Prices and Markov Assumption</a></li>
 </ul>
@@ -1213,10 +1205,10 @@ Trigram model sentence: Indications as late as the views of another one .
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-bigram-or-n-gram-probabilities-using-maximum-likelihood-estimation-mle">Estimating Bigram or N-gram Probabilities using Maximum Likelihood Estimation (MLE)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bigram-probability-calculation">Bigram Probability Calculation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-issues-in-n-gram-models">Practical Issues in N-gram Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-of-mle">Examples of MLE</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-issues-in-n-gram-models">Practical Issues in N-gram Models</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-of-mle">Examples of MLE</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-generate-n-grams-using-nltk">How to generate n-grams using NLTK</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-language-models">Evaluating Language Models</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perplexity">Perplexity</a></li>
