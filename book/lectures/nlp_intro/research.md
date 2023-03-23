@@ -536,7 +536,7 @@ name: fig-pork-to-policy
 From Pork to Policy
 ```
 
-## Transparency and Deliberation Within the FOMCF
+## Transparency and Deliberation Within the FOMC
 
 {cite:t}`hansen2018transparency`
 
