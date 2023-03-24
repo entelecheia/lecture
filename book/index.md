@@ -4,6 +4,7 @@
 [![course-img]][course-url]
 [![lecture-img]][lecture-url]
 [![linkedin-img]][linkedin-url]
+[![last-commit-img]][last-commit-url]
 
 [home-img]: https://img.shields.io/badge/www-entelecheia.me-blue
 [home-url]: https://entelecheia.me
@@ -13,6 +14,8 @@
 [lecture-url]: https://lecture.entelecheia.ai
 [linkedin-img]: https://img.shields.io/badge/LinkedIn-blue?logo=linkedin
 [linkedin-url]: https://www.linkedin.com/in/entelecheia/
+[last-commit-img]: https://img.shields.io/github/last-commit/entelecheia/lecture?label=last%20update
+[last-commit-url]: https://github.com/entelecheia/lecture
 
 ## ἐντελέχεια in Artificial Intelligence
 
