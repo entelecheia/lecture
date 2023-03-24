@@ -16,8 +16,8 @@
 
 ## ἐντελέχεια in Artificial Intelligence
 
-```{video} https://assets.entelecheia.cc/video/intro.mp4
-:width: 790
+```{youtube} p0ZGCfjusIA
+:width: 100%
 ```
 
 As artificial intelligence (AI) steadily develops and transforms, it carries the capacity to reshape numerous facets of our existence. While advancing, it is vital not only to concentrate on its technical prowess but also to contemplate the ethical and societal consequences. We can take inspiration from Aristotle's ancient Greek idea of entelecheia, which conveys the notion of achieving one's full potential or accomplishing one's purpose.
