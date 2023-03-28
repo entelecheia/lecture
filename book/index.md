@@ -3,7 +3,7 @@
 [![home-img]][home-url]
 [![course-img]][course-url]
 [![lecture-img]][lecture-url]
-[![linkedin-img]][linkedin-url]
+[![chrome-web-store-image]][chrome-web-store-url]
 [![last-commit-img]][last-commit-url]
 
 [home-img]: https://img.shields.io/badge/www-entelecheia.me-blue
@@ -16,6 +16,8 @@
 [linkedin-url]: https://www.linkedin.com/in/entelecheia/
 [last-commit-img]: https://img.shields.io/github/last-commit/entelecheia/lecture?label=last%20update
 [last-commit-url]: https://github.com/entelecheia/lecture
+[chrome-web-store-image]: https://img.shields.io/chrome-web-store/v/lfgfgbomindbccgidgalhhndggddpagd
+[chrome-web-store-url]: https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd
 
 ## ἐντελέχεια in Artificial Intelligence
 
