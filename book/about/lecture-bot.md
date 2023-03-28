@@ -21,6 +21,10 @@
 
 <!-- Links: -->
 
+```{youtube} 0aAeqGBcN3Q
+:width: 100%
+```
+
 Introducing ἐντελέχεια.άι LectureBot - the ultimate Chrome extension for on-demand information and understanding of any web page, powered by the revolutionary ChatGPT language model. With ἐντελέχεια.άι LectureBot, you can access an AI tutor who will provide instant, comprehensive, and concise answers to your questions about the content you're browsing.
 
 ## Key features of ἐντελέχεια.άι LectureBot:
