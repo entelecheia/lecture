@@ -31,7 +31,7 @@
   1. Potential areas of contribution
   2. Refining your research question
 
-IV. Developing a Research Methodology
+**IV. Developing a Research Methodology**
 
 - A. The significance of a well-defined methodology
 - B. Types of AI research methodologies
@@ -43,7 +43,7 @@ IV. Developing a Research Methodology
   1. Aligning with your research question
   2. Ensuring reproducibility and validity
 
-V. Implementing the Research
+**V. Implementing the Research**
 
 - A. Data collection and preprocessing
   1. Publicly available datasets
@@ -59,7 +59,7 @@ V. Implementing the Research
   1. Technical issues
   2. Ethical considerations
 
-VI. Writing the Thesis
+**VI. Writing the Thesis**
 
 - A. The structure of a thesis
   1. Abstract
@@ -78,7 +78,7 @@ VI. Writing the Thesis
   1. From your supervisor
   2. From peers and colleagues
 
-VII. Conclusion
+**VII. Conclusion**
 
 - A. The significance of a well-executed AI thesis
 - B. Potential impact on the field and future research
