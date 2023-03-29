@@ -4,63 +4,63 @@
 
 - A. Definition of key terms
 
-  1. Authentication: The process of verifying the identity of a user, device, or system.
-  2. Encryption: The process of converting plaintext data into an unintelligible format (ciphertext) to protect its confidentiality.
-  3. Signing: The process of creating a digital signature to verify the integrity and authenticity of data.
+  1. **Authentication**: The process of verifying the identity of a user, device, or system.
+  2. **Encryption**: The process of converting plaintext data into an unintelligible format (ciphertext) to protect its confidentiality.
+  3. **Signing**: The process of creating a digital signature to verify the integrity and authenticity of data.
 
 - B. Importance of security in communication
-  1. Confidentiality: Ensuring that data is protected from unauthorized access.
-  2. Integrity: Ensuring that data remains unaltered during transmission or storage.
-  3. Authenticity: Ensuring that data originates from a trusted source.
+  1. **Confidentiality**: Ensuring that data is protected from unauthorized access.
+  2. **Integrity**: Ensuring that data remains unaltered during transmission or storage.
+  3. **Authenticity**: Ensuring that data originates from a trusted source.
 
 **II. Authentication**
 
 - A. Types of authentication
 
-1. Single-factor authentication (SFA): Requires one form of identification, such as a password.
-2. Two-factor authentication (2FA): Requires two independent forms of identification, typically involving something the user knows (password) and something the user has (hardware token, SMS code, etc.).
-3. Multi-factor authentication (MFA): Involves three or more independent forms of identification.
+1. **Single-factor authentication (SFA)**: Requires one form of identification, such as a password.
+2. **Two-factor authentication (2FA)**: Requires two independent forms of identification, typically involving something the user knows (password) and something the user has (hardware token, SMS code, etc.).
+3. **Multi-factor authentication (MFA)**: Involves three or more independent forms of identification.
 
 - B. Authentication protocols
-  1. Kerberos: A network authentication protocol using secret-key cryptography.
-  2. OAuth: An open standard for authorization, allowing users to share their data with third-party applications without sharing their credentials.
-  3. OpenID Connect: A simple identity layer built on top of OAuth 2.0, enabling clients to verify the identity of users.
+  1. **Kerberos**: A network authentication protocol using secret-key cryptography.
+  2. **OAuth**: An open standard for authorization, allowing users to share their data with third-party applications without sharing their credentials.
+  3. **OpenID Connect**: A simple identity layer built on top of OAuth 2.0, enabling clients to verify the identity of users.
 
 **III. Encryption**
 
 - A. Types of encryption
 
-  1. Symmetric-key encryption: Uses the same key for encryption and decryption (e.g., AES, DES, and RC4).
-  2. Asymmetric-key encryption: Uses different keys for encryption and decryption, known as the public key and private key (e.g., RSA, ECC, and ElGamal).
+  1. **Symmetric-key encryption**: Uses the same key for encryption and decryption (e.g., AES, DES, and RC4).
+  2. **Asymmetric-key encryption**: Uses different keys for encryption and decryption, known as the public key and private key (e.g., RSA, ECC, and ElGamal).
 
 - B. Key management and distribution
 
-  1. Key generation: Securely generating encryption keys.
-  2. Key storage: Safeguarding keys to prevent unauthorized access.
-  3. Key distribution: Securely exchanging encryption keys between parties.
+  1. **Key generation**: Securely generating encryption keys.
+  2. **Key storage**: Safeguarding keys to prevent unauthorized access.
+  3. **Key distribution**: Securely exchanging encryption keys between parties.
 
 - C. Encryption protocols
-  1. Secure Sockets Layer (SSL) and Transport Layer Security (TLS): Protocols that provide secure communication over a network, commonly used in HTTPS.
-  2. Internet Protocol Security (IPsec): A set of protocols that secure communications at the IP layer, commonly used in VPNs.
-  3. Pretty Good Privacy (PGP): A data encryption and decryption tool used for secure email communication.
+  1. **Secure Sockets Layer (SSL) and Transport Layer Security (TLS)**: Protocols that provide secure communication over a network, commonly used in HTTPS.
+  2. **Internet Protocol Security (IPsec)**: A set of protocols that secure communications at the IP layer, commonly used in VPNs.
+  3. **Pretty Good Privacy (PGP)**: A data encryption and decryption tool used for secure email communication.
 
 **IV. Signing**
 
 - A. Digital signatures
 
-  1. Definition: A cryptographic technique used to verify the authenticity and integrity of data.
-  2. Process: Involves hashing the data and encrypting the hash using the sender's private key.
-  3. Verification: The receiver decrypts the signature using the sender's public key and compares the resulting hash with a newly computed hash of the received data.
+  1. **Definition**: A cryptographic technique used to verify the authenticity and integrity of data.
+  2. **Process**: Involves hashing the data and encrypting the hash using the sender's private key.
+  3. **Verification**: The receiver decrypts the signature using the sender's public key and compares the resulting hash with a newly computed hash of the received data.
 
 - B. Public Key Infrastructure (PKI)
 
-  1. Components: Digital certificates, Certificate Authorities (CAs), Registration Authorities (RAs), and certificate repositories.
-  2. Purpose: To establish a chain of trust for verifying the authenticity of public keys.
+  1. **Components**: Digital certificates, Certificate Authorities (CAs), Registration Authorities (RAs), and certificate repositories.
+  2. **Purpose**: To establish a chain of trust for verifying the authenticity of public keys.
 
 - C. Digital signature standards
-  1. Digital Signature Algorithm (DSA): A federal standard for digital signatures.
-  2. Elliptic Curve Digital Signature Algorithm (ECDSA): A variant of DSA that uses elliptic curve cryptography.
-  3. RSA: A widely used public-key cryptosystem that also supports digital signatures.
+  1. **Digital Signature Algorithm (DSA)**: A federal standard for digital signatures.
+  2. **Elliptic Curve Digital Signature Algorithm (ECDSA)**: A variant of DSA that uses elliptic curve cryptography.
+  3. **RSA**: A widely used public-key cryptosystem that also supports digital signatures.
 
 **V. Conclusion**
 
@@ -70,15 +70,15 @@
 
 **VI. Practical Applications**
 
-- A. Secure communication: HTTPS, VPNs, and secure email.
-- B. Access control: Password management systems, smart card authentication, and biometric systems.
-- C. Secure data storage: Encrypted databases and file systems, cloud storage encryption, and hardware security modules (HSMs).
+- A. **Secure communication**: HTTPS, VPNs, and secure email.
+- B. **Access control**: Password management systems, smart card authentication, and biometric systems.
+- C. **Secure data storage**: Encrypted databases and file systems, cloud storage encryption, and hardware security modules (HSMs).
 
 **VII. Future Trends and Challenges**
 
-- A. Quantum computing: The potential impact on current cryptographic systems and the development of post-quantum cryptography.
-- B. The Internet of Things (IoT): The challenges of securing billions of interconnected devices and ensuring data privacy.
-- C. Artificial intelligence (AI) and machine learning (ML): The role of these technologies in improving security measures and detecting new threats, as well as their potential use by malicious actors.
+- A. **Quantum computing**: The potential impact on current cryptographic systems and the development of post-quantum cryptography.
+- B. **The Internet of Things (IoT)**: The challenges of securing billions of interconnected devices and ensuring data privacy.
+- C. **Artificial intelligence (AI) and machine learning (ML)**: The role of these technologies in improving security measures and detecting new threats, as well as their potential use by malicious actors.
 
 **VIII. Key Takeaways**
 
@@ -167,19 +167,19 @@ The process of creating a digital signature involves the following steps:
 
 To verify a digital signature, the recipient performs the following steps:
 
-1.  Detach the signature from the message: The recipient separates the digital signature from the original message or document.
-2.  Decrypt the signature with the public key: The recipient uses the sender's public key to decrypt the digital signature, revealing the original hash value.
-3.  Generate a hash of the received message: The recipient computes a new hash value from the received message using the same cryptographic hash function.
-4.  Compare the hash values: If the hash values match, the signature is considered valid, and the message is authenticated and confirmed to be unaltered. If the hash values do not match, the signature is deemed invalid, indicating that the message has been tampered with or the sender is not who they claim to be.
+1.  **Detach the signature from the message**: The recipient separates the digital signature from the original message or document.
+2.  **Decrypt the signature with the public key**: The recipient uses the sender's public key to decrypt the digital signature, revealing the original hash value.
+3.  **Generate a hash of the received message**: The recipient computes a new hash value from the received message using the same cryptographic hash function.
+4.  **Compare the hash values**: If the hash values match, the signature is considered valid, and the message is authenticated and confirmed to be unaltered. If the hash values do not match, the signature is deemed invalid, indicating that the message has been tampered with or the sender is not who they claim to be.
 
 ### C. Practical Applications of Digital Signatures
 
 Digital signatures are widely used to provide integrity and authenticity in various applications, including:
 
-1.  Secure email communication: Digital signatures can be used in email communication to authenticate the sender and ensure the integrity of the email content. Tools such as Pretty Good Privacy (PGP) and S/MIME enable users to sign and verify email messages using digital signatures.
-2.  Code signing: Software developers use digital signatures to sign their applications and code libraries, ensuring that the distributed software has not been tampered with and originates from a trusted source. Code signing helps protect users from downloading and installing malicious software.
-3.  Document signing: Digital signatures can be applied to electronic documents, such as PDFs or Word files, to confirm the authenticity of the document and verify that it has not been altered since it was signed. This is particularly useful in legal, financial, and business contexts where the integrity of documents is of utmost importance.
-4.  Cryptocurrency transactions: In blockchain-based systems like Bitcoin, digital signatures are used to authenticate transactions and prove ownership of the digital assets being transferred.
+1.  **Secure email communication**: Digital signatures can be used in email communication to authenticate the sender and ensure the integrity of the email content. Tools such as Pretty Good Privacy (PGP) and S/MIME enable users to sign and verify email messages using digital signatures.
+2.  **Code signing**: Software developers use digital signatures to sign their applications and code libraries, ensuring that the distributed software has not been tampered with and originates from a trusted source. Code signing helps protect users from downloading and installing malicious software.
+3.  **Document signing**: Digital signatures can be applied to electronic documents, such as PDFs or Word files, to confirm the authenticity of the document and verify that it has not been altered since it was signed. This is particularly useful in legal, financial, and business contexts where the integrity of documents is of utmost importance.
+4.  **Cryptocurrency transactions**: In blockchain-based systems like Bitcoin, digital signatures are used to authenticate transactions and prove ownership of the digital assets being transferred.
 
 In conclusion, signing is an essential aspect of information security that helps ensure the integrity and authenticity of data. By implementing digital signatures in communication, software distribution, and document management, organizations can enhance trust in their digital systems and protect sensitive information from tampering and forgery.
 
@@ -251,22 +251,22 @@ Secure Shell (SSH) is a cryptographic network protocol used to securely access a
 
 SSH provides several benefits for Git and GitHub operations, including:
 
-1.  Security: SSH encrypts the communication between the local machine and the remote repository, protecting sensitive data and ensuring that the connection remains secure even on unsecured networks.
-2.  Authentication: SSH enables the use of public-key authentication, which is a stronger and more convenient method of authentication compared to using a username and password.
-3.  Ease of use: Once the SSH keys are set up, users can perform Git operations without entering their credentials repeatedly, streamlining the development workflow.
+1.  **Security**: SSH encrypts the communication between the local machine and the remote repository, protecting sensitive data and ensuring that the connection remains secure even on unsecured networks.
+2.  **Authentication**: SSH enables the use of public-key authentication, which is a stronger and more convenient method of authentication compared to using a username and password.
+3.  **Ease of use**: Once the SSH keys are set up, users can perform Git operations without entering their credentials repeatedly, streamlining the development workflow.
 
 ### B. Setting Up SSH for Git and GitHub Operations
 
 To set up SSH for Git and GitHub operations, follow these steps:
 
-1.  Generate an SSH key pair: On your local machine, use the `ssh-keygen` command to generate an SSH key pair, consisting of a public key and a private key. The public key will be shared with the remote Git repository, while the private key should be kept secure and confidential on your local machine.
+1.  **Generate an SSH key pair**: On your local machine, use the `ssh-keygen` command to generate an SSH key pair, consisting of a public key and a private key. The public key will be shared with the remote Git repository, while the private key should be kept secure and confidential on your local machine.
 
 ```bash
 ssh-keygen -t ed25519 -C "your_email@example.com"
 ```
 
-2.  Add the public key to your GitHub account: Log in to your GitHub account, go to Settings > SSH and GPG keys, and click on the "New SSH key" button. Provide a title for the key and paste the content of the public key file (typically named `id_ed25519.pub`) into the "Key" field. Save the new SSH key.
-3.  Test the SSH connection: To verify that the SSH key has been correctly set up, run the following command:
+2.  **Add the public key to your GitHub account**: Log in to your GitHub account, go to Settings > SSH and GPG keys, and click on the "New SSH key" button. Provide a title for the key and paste the content of the public key file (typically named `id_ed25519.pub`) into the "Key" field. Save the new SSH key.
+3.  **Test the SSH connection**: To verify that the SSH key has been correctly set up, run the following command:
 
 ```bash
 ssh -T git@github.com
@@ -292,8 +292,8 @@ SSH signing is a feature that allows you to sign your Git commits and tags using
 
 The process of setting up SSH signing is similar to setting up SSH for Git and GitHub operations. Here's how you can enable SSH signing for your Git commits and tags:
 
-1.  Enable SSH signing in your GitHub account: Log in to your GitHub account, go to Settings > SSH and GPG keys. Ensure that the public key you want to use for signing is added to your account. Then, click on the "Enable SSH signing" button next to the SSH key you want to use for signing.
-2.  Configure Git to use SSH signing: On your local machine, run the following Git commands to configure your Git client to use SSH signing with your SSH key:
+1.  **Enable SSH signing in your GitHub account**: Log in to your GitHub account, go to Settings > SSH and GPG keys. Ensure that the public key you want to use for signing is added to your account. Then, click on the "Enable SSH signing" button next to the SSH key you want to use for signing.
+2.  **Configure Git to use SSH signing**: On your local machine, run the following Git commands to configure your Git client to use SSH signing with your SSH key:
 
 ```bash
 git config --global user.signingkey key_id
@@ -302,7 +302,7 @@ git config --global commit.gpgsign true
 
 Replace `key_id` with the fingerprint of the SSH key you want to use for signing. This can be found in the details of the SSH key in your GitHub account settings.
 
-3.  Sign Git commits and tags: With SSH signing enabled, you can now sign your Git commits and tags using your SSH key. When creating a new commit or tag, use the `-S` option to sign it:
+3.  **Sign Git commits and tags**: With SSH signing enabled, you can now sign your Git commits and tags using your SSH key. When creating a new commit or tag, use the `-S` option to sign it:
 
 ```bash
 git commit -S -m "Your commit message"
