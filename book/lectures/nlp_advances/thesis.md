@@ -98,18 +98,18 @@ Selecting a research topic is the first and arguably one of the most critical st
 
 ### A. Identifying your research interests
 
-1. Explore existing AI domains: Familiarize yourself with the various subfields of AI, such as natural language processing, computer vision, machine learning, robotics, and more. Determine which areas pique your interest and align with your skills and background knowledge.
-2. Identify gaps in the literature: Read widely within your chosen domain, paying close attention to the current challenges and limitations faced by researchers. Take note of any unanswered questions or underexplored areas that could serve as potential research topics.
+1. **Explore existing AI domains**: Familiarize yourself with the various subfields of AI, such as natural language processing, computer vision, machine learning, robotics, and more. Determine which areas pique your interest and align with your skills and background knowledge.
+2. **Identify gaps in the literature**: Read widely within your chosen domain, paying close attention to the current challenges and limitations faced by researchers. Take note of any unanswered questions or underexplored areas that could serve as potential research topics.
 
 ### B. Consult with your supervisor
 
-1. Their expertise and guidance: Your thesis supervisor is a valuable resource during the topic selection process. They can provide insights into the current state of research, suggest potential topics based on their expertise, and guide you in refining your research question.
-2. Aligning your interests with their research: It is beneficial to choose a research topic that aligns with your supervisor's research interests, as they will be more equipped to provide relevant guidance and support throughout the thesis-writing process.
+1. **Their expertise and guidance**: Your thesis supervisor is a valuable resource during the topic selection process. They can provide insights into the current state of research, suggest potential topics based on their expertise, and guide you in refining your research question.
+2. **Aligning your interests with their research**: It is beneficial to choose a research topic that aligns with your supervisor's research interests, as they will be more equipped to provide relevant guidance and support throughout the thesis-writing process.
 
 ### C. Defining the scope of your research
 
-1. Narrowing down the topic: Once you have identified a general area of interest, it is essential to narrow down your focus. A well-defined research topic allows you to delve deeper into a specific aspect of AI and contribute more meaningfully to the field.
-2. Formulating a research question: Develop a clear and concise research question that will guide your thesis. This question should be specific, feasible, and relevant to the field of AI. Ensure that your research question addresses a gap in the existing literature and has the potential to advance knowledge within your chosen domain.
+1. **Narrowing down the topic**: Once you have identified a general area of interest, it is essential to narrow down your focus. A well-defined research topic allows you to delve deeper into a specific aspect of AI and contribute more meaningfully to the field.
+2. **Formulating a research question**: Develop a clear and concise research question that will guide your thesis. This question should be specific, feasible, and relevant to the field of AI. Ensure that your research question addresses a gap in the existing literature and has the potential to advance knowledge within your chosen domain.
 
 In conclusion, choosing a research topic for your AI thesis requires careful consideration of your interests, existing literature, and the guidance of your supervisor. Selecting a topic that is both engaging and relevant to the field will not only make the thesis-writing process more enjoyable but also increase the likelihood of producing a meaningful and impactful piece of research.
 
@@ -123,18 +123,18 @@ A thorough literature review demonstrates your understanding of the current stat
 
 ### B. Identifying relevant sources
 
-1. Databases and search engines: Use specialized databases and search engines, such as IEEE Xplore, ACM Digital Library, and Google Scholar, to find relevant articles, conference papers, and other research materials related to your topic.
-2. Academic journals and conferences: Consult high-impact journals and reputable conferences within the AI field, such as Neural Information Processing Systems (NeurIPS), International Conference on Learning Representations (ICLR), and the Journal of Artificial Intelligence Research (JAIR), to ensure that you are up-to-date with the latest findings and advancements.
+1. **Databases and search engines**: Use specialized databases and search engines, such as IEEE Xplore, ACM Digital Library, and Google Scholar, to find relevant articles, conference papers, and other research materials related to your topic.
+2. **Academic journals and conferences**: Consult high-impact journals and reputable conferences within the AI field, such as Neural Information Processing Systems (NeurIPS), International Conference on Learning Representations (ICLR), and the Journal of Artificial Intelligence Research (JAIR), to ensure that you are up-to-date with the latest findings and advancements.
 
 ### C. Organizing and synthesizing the literature
 
-1. Categorizing findings: As you review the literature, create categories or themes that encompass the various aspects of your research topic. This will help you structure your review and identify connections between different studies.
-2. Identifying patterns and trends: Look for recurring themes, methodologies, and findings across the literature. This will help you gain a better understanding of the current state of research and provide insights into potential directions for your study.
+1. **Categorizing findings**: As you review the literature, create categories or themes that encompass the various aspects of your research topic. This will help you structure your review and identify connections between different studies.
+2. **Identifying patterns and trends**: Look for recurring themes, methodologies, and findings across the literature. This will help you gain a better understanding of the current state of research and provide insights into potential directions for your study.
 
 ### D. Identifying gaps and opportunities
 
-1. Potential areas of contribution: As you review the literature, pay close attention to any gaps, inconsistencies, or limitations in the existing research. These areas present opportunities for your study to make a meaningful contribution to the field.
-2. Refining your research question: Based on your literature review, you may need to revise or further refine your research question to ensure that it addresses a relevant gap in the existing knowledge.
+1. **Potential areas of contribution**: As you review the literature, pay close attention to any gaps, inconsistencies, or limitations in the existing research. These areas present opportunities for your study to make a meaningful contribution to the field.
+2. **Refining your research question**: Based on your literature review, you may need to revise or further refine your research question to ensure that it addresses a relevant gap in the existing knowledge.
 
 In summary, conducting a thorough literature review is an essential step in the thesis-writing process, as it provides the necessary context for your research and demonstrates its relevance within the field of AI. By identifying and addressing gaps in the existing literature, your study will be better positioned to make a meaningful contribution to the field and advance our understanding of AI and its applications.
 
