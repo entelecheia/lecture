@@ -1,5 +1,9 @@
 # Art and Music in Light of AI
 
+```{youtube} Tv2TuWGf4p0
+:width: 100%
+```
+
 ## Introduction
 
 The rapidly advancing field of artificial intelligence (AI) has had a significant impact on various aspects of human life, and the realms of art and music are no exception. The integration of AI has sparked a new era of artistic exploration, where humans and machines collaborate to push the boundaries of creativity. AI-generated art and music have the potential to redefine our understanding of artistry and challenge traditional notions of creativity, originality, and authorship.
