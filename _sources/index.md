@@ -37,6 +37,33 @@ Additionally, there's increasing concern about AI systems that can imitate or ev
 
 Aristotle's concept of entelecheia can provide valuable guidance for AI, underlining the importance of realizing its full potential and achieving intended goals. As AI advances, we must address its ethical and societal consequences and strive for entelecheia, ensuring AI serves the greater good of humanity.
 
+## LectureBot for ἐντελέχεια.άι
+
+[![chrome-web-store-image]][chrome-web-store-url]
+[![version-image]][release-url]
+[![release-date-image]][release-url]
+[![license-image]][license-url]
+
+<!-- Links: -->
+
+[chrome-web-store-image]: https://img.shields.io/chrome-web-store/v/lfgfgbomindbccgidgalhhndggddpagd
+[chrome-web-store-url]: https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd
+[license-image]: https://img.shields.io/github/license/entelecheia/entelecheia-lecture-bot
+[license-url]: https://github.com/entelecheia/entelecheia-lecture-bot/blob/main/LICENSE
+[version-image]: https://img.shields.io/github/v/release/entelecheia/entelecheia-lecture-bot?sort=semver
+[release-date-image]: https://img.shields.io/github/release-date/entelecheia/entelecheia-lecture-bot
+[release-url]: https://github.com/entelecheia/entelecheia-lecture-bot/releases
+[repo-url]: https://github.com/entelecheia/entelecheia-lecture-bot
+[docs-url]: https://lecture-bot.entelecheia.ai
+[changelog]: https://github.com/entelecheia/entelecheia-lecture-bot/blob/main/docs/CHANGELOG.md
+[contributing guidelines]: https://github.com/entelecheia/entelecheia-lecture-bot/blob/main/CONTRIBUTING.md
+
+<!-- Links: -->
+
+```{youtube} 0aAeqGBcN3Q
+:width: 100%
+```
+
 ## Table of Contents
 
 ```{tableofcontents}
