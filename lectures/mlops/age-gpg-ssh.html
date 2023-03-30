@@ -1,0 +1,726 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>SSH, GPG, and AGE &#8212; ἐντελέχεια.άι</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../_static/tabs.js"></script>
+    <script src="../../_static/js/hoverxref.js"></script>
+    <script src="../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/chatgpt.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/mlops/age-gpg-ssh';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/mlops/age-gpg-ssh.html" />
+    <link rel="shortcut icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+
+  <div class="bd-header-announcement container-fluid bd-header-announcement">
+    <div class="bd-header-announcement__content"><p>
+  <strong>Announcement:</strong>
+  You can install the accompanying AI tutor <a href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd">here</a>.
+</p>
+</div>
+  </div>
+
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">ἐντελέχεια.άι</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nlp_intro/index.html">Introduction to NLP</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/research.html">Research Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/language_models.html">Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/topic.html">Topic Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/topic_models.html">Topic Models </a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/topic_coherence.html">Topic Coherence Measures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/sentiments.html">Sentiment Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/tokenization.html">Tokenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/word_segmentation.html">Word Segmentation and Association</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/vectorization.html">Vector Semantics and Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/word_embeddings.html">Word Embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/ekorpkit.html">Getting started with ekorpkit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/lab1-corpus.html">Lab 1: Preparing Wikipedia Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/lab2-corpus-eda.html">Lab 2: EDA on Corpora</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nlp_deep/index.html">Deep Learning for NLP</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/llms.html">Large Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/zeroshot.html">Zero Shot and Prompt Engineering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/decoding.html">Decoding and Search Strategies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/transformers.html">Transformers </a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/rlhf.html">Reinforcement Learning with Human Feedback (RLHF)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/detectGPT.html">How to Spot Machine-Written Texts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/t5.html">T5: Text-To-Text Transfer Transformer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/tokenization.html">Tokenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/sentencepiece.html">SentencePiece Tokenizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/plms.html">Pretrained Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/ekorpkit.html">Getting started with ekorpkit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/lab1-corpus.html">Lab 1: Preparing Wikipedia Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/lab3-train-tokenizers.html">Lab 3: Training Tokenizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/lab4-pretraining-lms.html">Lab 4: Pretraining Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nlp_advances/index.html">Advances in AI and NLP</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_advances/thesis.html">Writing a Thesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_advances/detectGPT.html">DetectGPT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_advances/gpt4.html">GPT-4</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../aiart/index.html">AI Art (Generative AI)</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/aiart.html">Art and Music in Light of AI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/dalle1.html">DALL·E 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/dalle2.html">DALL·E 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/imagen.html">Imagen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/textual-inversion.html">Textual Inversion (Dreambooth)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/whisper.html">Automatic Speech Recognition (Whisper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/text2music.html">Text to Music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/image2music.html">Image to Music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/robot_drawings.html">Robot Drawing Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/project-themes.html">Project Themes - A Brave New World</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index.html">Machine Learning Systems Design</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction to MLOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project.html">MLOps Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="devops.html">DevOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gitops.html">GitOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="devsecops.html">DevSecOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dotfiles.html">Dotfiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth-enc-sign.html">Authentication, Encryption, and Signing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ds/index.html">Data Science for Economics and Finance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../about/lecture-bot.html">LectureBot for ἐντελέχεια.άι</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/lectures/mlops/age-gpg-ssh.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>SSH, GPG, and AGE</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#secure-shell-ssh">Secure Shell (SSH)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gnu-privacy-guard-gpg">GNU Privacy Guard (GPG)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#age">age</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison">Comparison</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-ssh-gpg-and-age-a-practical-guide">Using SSH, GPG, and AGE: A Practical Guide</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-ssh">Using SSH</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-gpg">Using GPG</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-age">Using AGE</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ssh-in-git-and-github-operations">SSH in Git and GitHub Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-importance-of-ssh-in-git-and-github-operations">A. Importance of SSH in Git and GitHub Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-setting-up-ssh-for-git-and-github-operations">B. Setting Up SSH for Git and GitHub Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-using-ssh-for-git-and-github-operations">C. Using SSH for Git and GitHub Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-ssh-signing">D. SSH Signing</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="ssh-gpg-and-age">
+<h1>SSH, GPG, and AGE<a class="headerlink" href="#ssh-gpg-and-age" title="Permalink to this heading">#</a></h1>
+<p><strong>A Comparative Study of SSH, GPG, and AGE: Encryption and Authentication Tools</strong></p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>Secure communication is a vital aspect of modern computing, and encryption plays a crucial role in ensuring data privacy and integrity. In this lecture, we will explore three widely-used tools for encryption and authentication: Secure Shell (SSH), GNU Privacy Guard (GPG), and age. We will compare their features, use cases, and limitations to help you better understand which tool is most suitable for your specific needs.</p>
+<section id="secure-shell-ssh">
+<h3>Secure Shell (SSH)<a class="headerlink" href="#secure-shell-ssh" title="Permalink to this heading">#</a></h3>
+<p>SSH is a cryptographic network protocol that enables secure communication between two devices. It is widely used for remote administration, file transfers, and secure command execution. Some key features of SSH are:</p>
+<ul class="simple">
+<li><p>Public-key authentication: SSH uses a key pair (public and private keys) for authentication. The public key is shared with the server, while the private key remains securely on the client.</p></li>
+<li><p>Encryption: SSH uses symmetric encryption algorithms to protect data in transit, ensuring confidentiality and integrity.</p></li>
+<li><p>Port forwarding and tunneling: SSH can create secure tunnels for forwarding network traffic, providing additional security and privacy.</p></li>
+</ul>
+</section>
+<section id="gnu-privacy-guard-gpg">
+<h3>GNU Privacy Guard (GPG)<a class="headerlink" href="#gnu-privacy-guard-gpg" title="Permalink to this heading">#</a></h3>
+<p>GPG is an open-source implementation of the OpenPGP standard, providing encryption, decryption, and digital signatures. GPG is popular for encrypting emails, files, and communication channels. Key features of GPG are:</p>
+<ul class="simple">
+<li><p>Asymmetric encryption: GPG uses public-key cryptography, allowing users to encrypt data using the recipient’s public key, which can only be decrypted by the recipient’s private key.</p></li>
+<li><p>Digital signatures: GPG enables users to sign data using their private key, allowing the recipient to verify the sender’s identity and the integrity of the data using the sender’s public key.</p></li>
+<li><p>Key management: GPG supports a web of trust, allowing users to verify and trust other users’ public keys through a decentralized network of signatures.</p></li>
+</ul>
+</section>
+<section id="age">
+<h3>age<a class="headerlink" href="#age" title="Permalink to this heading">#</a></h3>
+<p>age is a modern file encryption tool designed for simplicity and ease of use. It aims to provide secure encryption without the complexities associated with tools like GPG. Some features of age are:</p>
+<ul class="simple">
+<li><p>User-friendly: age is designed with simplicity in mind, making it accessible for users who may not be familiar with cryptography.</p></li>
+<li><p>Asymmetric and symmetric encryption: age supports both public-key encryption using X25519 key pairs and passphrase-based encryption using scrypt.</p></li>
+<li><p>Streamable and seekable: age can handle large files efficiently, as it splits files into smaller chunks and encrypts them individually, allowing for streaming and seeking.</p></li>
+</ul>
+</section>
+<section id="comparison">
+<h3>Comparison<a class="headerlink" href="#comparison" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Complexity: SSH and GPG can be complex and challenging to configure correctly, while age is designed with simplicity in mind.</p></li>
+<li><p>Use cases: SSH is primarily focused on secure remote access and communication, GPG is widely used for email and file encryption, and age is tailored for file encryption.</p></li>
+<li><p>Encryption and authentication: SSH provides strong encryption and public-key authentication, GPG supports asymmetric encryption, and digital signatures, while age offers both asymmetric and symmetric encryption.</p></li>
+<li><p>Key management: GPG has a more comprehensive key management system with its web of trust, while age relies on simpler key distribution methods.</p></li>
+</ul>
+</section>
+<section id="conclusion">
+<h3>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h3>
+<p>SSH, GPG, and age are all powerful encryption and authentication tools, each with its unique strengths and use cases. While SSH excels in secure remote communication and administration, GPG is an excellent choice for email and file encryption with a robust key management system. On the other hand, age provides a user-friendly and efficient file encryption solution without the complexities associated with GPG. By understanding the features and limitations of each tool, you can make an informed decision about which tool best meets your security needs.</p>
+</section>
+</section>
+<section id="using-ssh-gpg-and-age-a-practical-guide">
+<h2>Using SSH, GPG, and AGE: A Practical Guide<a class="headerlink" href="#using-ssh-gpg-and-age-a-practical-guide" title="Permalink to this heading">#</a></h2>
+<p>In this section, we will explore how to use SSH, GPG, and AGE for common tasks, such as secure communication, file encryption, and authentication.</p>
+<section id="using-ssh">
+<h3>Using SSH<a class="headerlink" href="#using-ssh" title="Permalink to this heading">#</a></h3>
+<p>a) Generate an SSH key pair: Before using SSH, you need to generate a key pair (public and private keys). Open a terminal and run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;your_email@example.com&quot;</span>
+</pre></div>
+</div>
+<p>This will create an Ed25519 key pair, storing the private key in <code class="docutils literal notranslate"><span class="pre">~/.ssh/id_ed25519</span></code> and the public key in <code class="docutils literal notranslate"><span class="pre">~/.ssh/id_ed25519.pub</span></code>.</p>
+<p>b) Copy the public key to the remote server: To enable public-key authentication, copy your public key to the remote server using the <code class="docutils literal notranslate"><span class="pre">ssh-copy-id</span></code> command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-copy-id<span class="w"> </span>user@remote_server
+</pre></div>
+</div>
+<p>c) Connect to the remote server: Now, you can connect to the remote server securely using SSH:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>user@remote_server
+</pre></div>
+</div>
+</section>
+<section id="using-gpg">
+<h3>Using GPG<a class="headerlink" href="#using-gpg" title="Permalink to this heading">#</a></h3>
+<p>a) Generate a GPG key pair: First, generate a GPG key pair by running the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gpg<span class="w"> </span>--full-generate-key
+</pre></div>
+</div>
+<p>Follow the prompts to create a key pair with your desired parameters.</p>
+<p>b) Encrypt a file: To encrypt a file using the recipient’s public key, run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gpg<span class="w"> </span>--encrypt<span class="w"> </span>--recipient<span class="w"> </span>recipient@example.com<span class="w"> </span>input_file.txt
+</pre></div>
+</div>
+<p>This will create an encrypted file named <code class="docutils literal notranslate"><span class="pre">input_file.txt.gpg</span></code>.</p>
+<p>c) Decrypt a file: To decrypt a file encrypted with your public key, run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gpg<span class="w"> </span>--decrypt<span class="w"> </span>--output<span class="w"> </span>output_file.txt<span class="w"> </span>input_file.txt.gpg
+</pre></div>
+</div>
+</section>
+<section id="using-age">
+<h3>Using AGE<a class="headerlink" href="#using-age" title="Permalink to this heading">#</a></h3>
+<p>a) Generate an AGE key pair: First, generate an AGE key pair by running the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Copy<span class="w"> </span>codeage-keygen<span class="w"> </span>-o<span class="w"> </span>age_key
+</pre></div>
+</div>
+<p>This will create an X25519 key pair, with the private key and public key stored in the <code class="docutils literal notranslate"><span class="pre">age_key</span></code> file.</p>
+<p>b) Encrypt a file using a public key: To encrypt a file using the recipient’s public key, run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>age<span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;age1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&quot;</span><span class="w"> </span>input_file.txt<span class="w"> </span>-o<span class="w"> </span>input_file.txt.age
+</pre></div>
+</div>
+<p>Replace the recipient’s public key inside the quotes with the appropriate value. This will create an encrypted file named <code class="docutils literal notranslate"><span class="pre">input_file.txt.age</span></code>.</p>
+<p>c) Decrypt a file using a private key: To decrypt a file encrypted with your public key, run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>age<span class="w"> </span>-d<span class="w"> </span>-i<span class="w"> </span>age_key<span class="w"> </span>input_file.txt.age<span class="w"> </span>-o<span class="w"> </span>output_file.txt
+</pre></div>
+</div>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">age_key</span></code> with the path to your private key file.</p>
+<p>These examples provide a basic understanding of how to use SSH, GPG, and AGE for secure communication, file encryption, and authentication. Each tool has additional features and options that can be explored in their respective documentation to further enhance your security and privacy.</p>
+</section>
+</section>
+<section id="ssh-in-git-and-github-operations">
+<h2>SSH in Git and GitHub Operations<a class="headerlink" href="#ssh-in-git-and-github-operations" title="Permalink to this heading">#</a></h2>
+<p>Secure Shell (SSH) is a cryptographic network protocol used to securely access and manage network devices and servers over an unsecured network. In the context of Git and GitHub operations, SSH is used to authenticate and establish secure connections between a local machine and a remote Git repository hosted on a platform like GitHub, GitLab, or Bitbucket. This section will discuss the importance of SSH in Git and GitHub operations and guide you through the process of setting up and using SSH for secure Git operations.</p>
+<section id="a-importance-of-ssh-in-git-and-github-operations">
+<h3>A. Importance of SSH in Git and GitHub Operations<a class="headerlink" href="#a-importance-of-ssh-in-git-and-github-operations" title="Permalink to this heading">#</a></h3>
+<p>SSH provides several benefits for Git and GitHub operations, including:</p>
+<ol class="arabic simple">
+<li><p><strong>Security</strong>: SSH encrypts the communication between the local machine and the remote repository, protecting sensitive data and ensuring that the connection remains secure even on unsecured networks.</p></li>
+<li><p><strong>Authentication</strong>: SSH enables the use of public-key authentication, which is a stronger and more convenient method of authentication compared to using a username and password.</p></li>
+<li><p><strong>Ease of use</strong>: Once the SSH keys are set up, users can perform Git operations without entering their credentials repeatedly, streamlining the development workflow.</p></li>
+</ol>
+</section>
+<section id="b-setting-up-ssh-for-git-and-github-operations">
+<h3>B. Setting Up SSH for Git and GitHub Operations<a class="headerlink" href="#b-setting-up-ssh-for-git-and-github-operations" title="Permalink to this heading">#</a></h3>
+<p>To set up SSH for Git and GitHub operations, follow these steps:</p>
+<ol class="arabic simple">
+<li><p><strong>Generate an SSH key pair</strong>: On your local machine, use the <code class="docutils literal notranslate"><span class="pre">ssh-keygen</span></code> command to generate an SSH key pair, consisting of a public key and a private key. The public key will be shared with the remote Git repository, while the private key should be kept secure and confidential on your local machine.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;your_email@example.com&quot;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Add the public key to your GitHub account</strong>: Log in to your GitHub account, go to Settings &gt; SSH and GPG keys, and click on the “New SSH key” button. Provide a title for the key and paste the content of the public key file (typically named <code class="docutils literal notranslate"><span class="pre">id_ed25519.pub</span></code>) into the “Key” field. Save the new SSH key.</p></li>
+<li><p><strong>Test the SSH connection</strong>: To verify that the SSH key has been correctly set up, run the following command:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>-T<span class="w"> </span>git@github.com
+</pre></div>
+</div>
+<p>If the connection is successful, you will receive a message indicating that you have successfully authenticated with GitHub.</p>
+</section>
+<section id="c-using-ssh-for-git-and-github-operations">
+<h3>C. Using SSH for Git and GitHub Operations<a class="headerlink" href="#c-using-ssh-for-git-and-github-operations" title="Permalink to this heading">#</a></h3>
+<p>Once SSH is set up, you can use it to perform secure Git operations with the remote repository. When cloning a new repository or adding a remote repository to an existing local Git repository, use the SSH URL instead of the HTTPS URL.</p>
+<p>For example, when cloning a repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:username/repository.git
+</pre></div>
+</div>
+<p>By using the SSH URL, you can securely push, pull, and fetch changes between your local machine and the remote repository without entering your credentials every time.</p>
+</section>
+<section id="d-ssh-signing">
+<h3>D. SSH Signing<a class="headerlink" href="#d-ssh-signing" title="Permalink to this heading">#</a></h3>
+<p>SSH signing is a feature that allows you to sign your Git commits and tags using your SSH key instead of using a GPG key. This can be useful if you already have an SSH key set up and don’t want to manage a separate GPG key for signing. It is important to note that this feature is currently supported by GitHub and may not be available on other Git hosting platforms.</p>
+<p>The process of setting up SSH signing is similar to setting up SSH for Git and GitHub operations. Here’s how you can enable SSH signing for your Git commits and tags:</p>
+<ol class="arabic simple">
+<li><p><strong>Enable SSH signing in your GitHub account</strong>: Log in to your GitHub account, go to Settings &gt; SSH and GPG keys. Ensure that the public key you want to use for signing is added to your account. Then, click on the “Enable SSH signing” button next to the SSH key you want to use for signing.</p></li>
+<li><p><strong>Configure Git to use SSH signing</strong>: On your local machine, run the following Git commands to configure your Git client to use SSH signing with your SSH key:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.signingkey<span class="w"> </span>key_id
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>commit.gpgsign<span class="w"> </span><span class="nb">true</span>
+</pre></div>
+</div>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">key_id</span></code> with the fingerprint of the SSH key you want to use for signing. This can be found in the details of the SSH key in your GitHub account settings.</p>
+<ol class="arabic simple" start="3">
+<li><p><strong>Sign Git commits and tags</strong>: With SSH signing enabled, you can now sign your Git commits and tags using your SSH key. When creating a new commit or tag, use the <code class="docutils literal notranslate"><span class="pre">-S</span></code> option to sign it:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-S<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Your commit message&quot;</span>
+git<span class="w"> </span>tag<span class="w"> </span>-s<span class="w"> </span>v1.0.0<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Your tag message&quot;</span>
+</pre></div>
+</div>
+<p>These commands will create a signed commit or tag using your SSH key. The signature will be verified by GitHub when you push the commit or tag to the remote repository.</p>
+<p>In summary, SSH signing is an alternative method to GPG signing for Git commits and tags that allows you to use your SSH key for signing purposes. This can be a convenient option if you already have an SSH key set up for Git and GitHub operations and want to simplify your key management. However, keep in mind that SSH signing support may vary across different Git hosting platforms.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/lecture",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lectures/mlops"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#secure-shell-ssh">Secure Shell (SSH)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gnu-privacy-guard-gpg">GNU Privacy Guard (GPG)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#age">age</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison">Comparison</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-ssh-gpg-and-age-a-practical-guide">Using SSH, GPG, and AGE: A Practical Guide</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-ssh">Using SSH</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-gpg">Using GPG</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-age">Using AGE</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ssh-in-git-and-github-operations">SSH in Git and GitHub Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-importance-of-ssh-in-git-and-github-operations">A. Importance of SSH in Git and GitHub Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-setting-up-ssh-for-git-and-github-operations">B. Setting Up SSH for Git and GitHub Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-using-ssh-for-git-and-github-operations">C. Using SSH for Git and GitHub Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-ssh-signing">D. SSH Signing</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://entelecheia.me">Young Joon Lee</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

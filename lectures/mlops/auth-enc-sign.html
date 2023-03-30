@@ -443,13 +443,6 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-privacy-preserving-technologies">E. Privacy-Preserving Technologies</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ssh-in-git-and-github-operations">SSH in Git and GitHub Operations</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-importance-of-ssh-in-git-and-github-operations">A. Importance of SSH in Git and GitHub Operations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-setting-up-ssh-for-git-and-github-operations">B. Setting Up SSH for Git and GitHub Operations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-using-ssh-for-git-and-github-operations">C. Using SSH for Git and GitHub Operations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-ssh-signing">D. SSH Signing</a></li>
-</ul>
-</li>
 </ul>
             </nav>
         </div>
@@ -719,69 +712,6 @@ document.write(`
 <p>In conclusion, the future of information security will be shaped by emerging trends and challenges that impact authentication, encryption, and signing techniques. Staying informed about these developments and proactively addressing potential challenges will be crucial for organizations to maintain a strong security posture and protect sensitive data in an ever-evolving digital landscape.</p>
 </section>
 </section>
-<section id="ssh-in-git-and-github-operations">
-<h2>SSH in Git and GitHub Operations<a class="headerlink" href="#ssh-in-git-and-github-operations" title="Permalink to this heading">#</a></h2>
-<p>Secure Shell (SSH) is a cryptographic network protocol used to securely access and manage network devices and servers over an unsecured network. In the context of Git and GitHub operations, SSH is used to authenticate and establish secure connections between a local machine and a remote Git repository hosted on a platform like GitHub, GitLab, or Bitbucket. This section will discuss the importance of SSH in Git and GitHub operations and guide you through the process of setting up and using SSH for secure Git operations.</p>
-<section id="a-importance-of-ssh-in-git-and-github-operations">
-<h3>A. Importance of SSH in Git and GitHub Operations<a class="headerlink" href="#a-importance-of-ssh-in-git-and-github-operations" title="Permalink to this heading">#</a></h3>
-<p>SSH provides several benefits for Git and GitHub operations, including:</p>
-<ol class="arabic simple">
-<li><p><strong>Security</strong>: SSH encrypts the communication between the local machine and the remote repository, protecting sensitive data and ensuring that the connection remains secure even on unsecured networks.</p></li>
-<li><p><strong>Authentication</strong>: SSH enables the use of public-key authentication, which is a stronger and more convenient method of authentication compared to using a username and password.</p></li>
-<li><p><strong>Ease of use</strong>: Once the SSH keys are set up, users can perform Git operations without entering their credentials repeatedly, streamlining the development workflow.</p></li>
-</ol>
-</section>
-<section id="b-setting-up-ssh-for-git-and-github-operations">
-<h3>B. Setting Up SSH for Git and GitHub Operations<a class="headerlink" href="#b-setting-up-ssh-for-git-and-github-operations" title="Permalink to this heading">#</a></h3>
-<p>To set up SSH for Git and GitHub operations, follow these steps:</p>
-<ol class="arabic simple">
-<li><p><strong>Generate an SSH key pair</strong>: On your local machine, use the <code class="docutils literal notranslate"><span class="pre">ssh-keygen</span></code> command to generate an SSH key pair, consisting of a public key and a private key. The public key will be shared with the remote Git repository, while the private key should be kept secure and confidential on your local machine.</p></li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;your_email@example.com&quot;</span>
-</pre></div>
-</div>
-<ol class="arabic simple" start="2">
-<li><p><strong>Add the public key to your GitHub account</strong>: Log in to your GitHub account, go to Settings &gt; SSH and GPG keys, and click on the “New SSH key” button. Provide a title for the key and paste the content of the public key file (typically named <code class="docutils literal notranslate"><span class="pre">id_ed25519.pub</span></code>) into the “Key” field. Save the new SSH key.</p></li>
-<li><p><strong>Test the SSH connection</strong>: To verify that the SSH key has been correctly set up, run the following command:</p></li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>-T<span class="w"> </span>git@github.com
-</pre></div>
-</div>
-<p>If the connection is successful, you will receive a message indicating that you have successfully authenticated with GitHub.</p>
-</section>
-<section id="c-using-ssh-for-git-and-github-operations">
-<h3>C. Using SSH for Git and GitHub Operations<a class="headerlink" href="#c-using-ssh-for-git-and-github-operations" title="Permalink to this heading">#</a></h3>
-<p>Once SSH is set up, you can use it to perform secure Git operations with the remote repository. When cloning a new repository or adding a remote repository to an existing local Git repository, use the SSH URL instead of the HTTPS URL.</p>
-<p>For example, when cloning a repository:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:username/repository.git
-</pre></div>
-</div>
-<p>By using the SSH URL, you can securely push, pull, and fetch changes between your local machine and the remote repository without entering your credentials every time.</p>
-</section>
-<section id="d-ssh-signing">
-<h3>D. SSH Signing<a class="headerlink" href="#d-ssh-signing" title="Permalink to this heading">#</a></h3>
-<p>SSH signing is a feature that allows you to sign your Git commits and tags using your SSH key instead of using a GPG key. This can be useful if you already have an SSH key set up and don’t want to manage a separate GPG key for signing. It is important to note that this feature is currently supported by GitHub and may not be available on other Git hosting platforms.</p>
-<p>The process of setting up SSH signing is similar to setting up SSH for Git and GitHub operations. Here’s how you can enable SSH signing for your Git commits and tags:</p>
-<ol class="arabic simple">
-<li><p><strong>Enable SSH signing in your GitHub account</strong>: Log in to your GitHub account, go to Settings &gt; SSH and GPG keys. Ensure that the public key you want to use for signing is added to your account. Then, click on the “Enable SSH signing” button next to the SSH key you want to use for signing.</p></li>
-<li><p><strong>Configure Git to use SSH signing</strong>: On your local machine, run the following Git commands to configure your Git client to use SSH signing with your SSH key:</p></li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.signingkey<span class="w"> </span>key_id
-git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>commit.gpgsign<span class="w"> </span><span class="nb">true</span>
-</pre></div>
-</div>
-<p>Replace <code class="docutils literal notranslate"><span class="pre">key_id</span></code> with the fingerprint of the SSH key you want to use for signing. This can be found in the details of the SSH key in your GitHub account settings.</p>
-<ol class="arabic simple" start="3">
-<li><p><strong>Sign Git commits and tags</strong>: With SSH signing enabled, you can now sign your Git commits and tags using your SSH key. When creating a new commit or tag, use the <code class="docutils literal notranslate"><span class="pre">-S</span></code> option to sign it:</p></li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-S<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Your commit message&quot;</span>
-git<span class="w"> </span>tag<span class="w"> </span>-s<span class="w"> </span>v1.0.0<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Your tag message&quot;</span>
-</pre></div>
-</div>
-<p>These commands will create a signed commit or tag using your SSH key. The signature will be verified by GitHub when you push the commit or tag to the remote repository.</p>
-<p>In summary, SSH signing is an alternative method to GPG signing for Git commits and tags that allows you to use your SSH key for signing purposes. This can be a convenient option if you already have an SSH key set up for Git and GitHub operations and want to simplify your key management. However, keep in mind that SSH signing support may vary across different Git hosting platforms.</p>
-</section>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -878,13 +808,6 @@ git<span class="w"> </span>tag<span class="w"> </span>-s<span class="w"> </span>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-blockchain-and-distributed-ledger-technologies">C. Blockchain and Distributed Ledger Technologies</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-ai-and-machine-learning-in-cybersecurity">D. AI and Machine Learning in Cybersecurity</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-privacy-preserving-technologies">E. Privacy-Preserving Technologies</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ssh-in-git-and-github-operations">SSH in Git and GitHub Operations</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-importance-of-ssh-in-git-and-github-operations">A. Importance of SSH in Git and GitHub Operations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-setting-up-ssh-for-git-and-github-operations">B. Setting Up SSH for Git and GitHub Operations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-using-ssh-for-git-and-github-operations">C. Using SSH for Git and GitHub Operations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-ssh-signing">D. SSH Signing</a></li>
 </ul>
 </li>
 </ul>

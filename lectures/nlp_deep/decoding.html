@@ -462,7 +462,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling">Sampling</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#top-k-sampling">Top-K Sampling</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#top-p-nucleus-sampling">Top-p (nucleus) sampling</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-decoding-search-strategies">Summary of decoding / search strategies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-engineering">Prompt Engineering</a></li>
 </ul>
             </nav>
@@ -481,8 +481,8 @@ document.write(`
 <p>Auto-regressive language generation assumes that the text being generated can be broken down into a sequence of subparts. Each part depends on the previous parts, allowing an auto-regressive decoder to generate text one token at a time based on its predecessors.</p>
 <p>The probability of generating a word sequence <span class="math notranslate nohighlight">\(w_{1:𝑇}\)</span> given an initial context word sequence <span class="math notranslate nohighlight">\(W_0\)</span> can be expressed as:</p>
 <div class="math notranslate nohighlight">
-\[ P(w*{1:T} | W_0 ) = \prod*{t=1}^T P(w*{t} | w*{1: t-1}, W*0) \text{ ,with } w*{1: 0} = \emptyset, \]</div>
-<p>Here, <span class="math notranslate nohighlight">\(W_0\)</span> is the initial context word sequence. The length 𝑇 of the word sequence is determined on-the-fly, which means it is decided as the sequence is generated. The sequence generation typically stops when an End-Of-Sequence (EOS) token is generated from the probability distribution <span class="math notranslate nohighlight">\(𝑃(w_t|w_{1:𝑡−1},W_0)\)</span>.</p>
+\[ P(w_{1:T} | W_0 ) = \prod_{t=1}^T P(w_{t} | w_{1: t-1}, W_0) \text{ ,with } w_{1: 0} = \emptyset, \]</div>
+<p>Here, <span class="math notranslate nohighlight">\(W_0\)</span> is the initial context word sequence. The length 𝑇 of the word sequence is determined on-the-fly, which means it is decided as the sequence is generated. The sequence generation typically stops when an End-Of-Sequence (EOS) token is generated from the probability distribution <span class="math notranslate nohighlight">\(𝑃(w_t|w_{1:t−1},W_0)\)</span>.</p>
 <p>This auto-regressive approach allows LLMs to generate coherent and contextually relevant text based on the initial context 𝑊0. Different decoding strategies, such as greedy search, beam search, and sampling methods like top-k sampling, have been used to improve the generation quality and diversity.</p>
 <p>For example, consider a language model generating a story based on the context “Once upon a time, in a small village”:</p>
 <ol class="arabic simple">
@@ -942,8 +942,8 @@ Another way to learn Deep Learning is by coding. For example, I often code to so
 </div>
 <p>The output consists of multiple independently sampled sequences, which can be further analyzed or used according to specific requirements.</p>
 </section>
-<section id="summary-of-decoding-search-strategies">
-<h2>Summary of decoding / search strategies<a class="headerlink" href="#summary-of-decoding-search-strategies" title="Permalink to this heading">#</a></h2>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
 <p>Various decoding or search strategies are used in open-ended language generation tasks. Here’s an overview of the most common strategies and their characteristics:</p>
 <ul class="simple">
 <li><p>Greedy Search:</p>
@@ -1063,7 +1063,7 @@ Another way to learn Deep Learning is by coding. For example, I often code to so
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling">Sampling</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#top-k-sampling">Top-K Sampling</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#top-p-nucleus-sampling">Top-p (nucleus) sampling</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-decoding-search-strategies">Summary of decoding / search strategies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-engineering">Prompt Engineering</a></li>
 </ul>
   </nav></div>
