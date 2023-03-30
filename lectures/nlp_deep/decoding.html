@@ -481,7 +481,7 @@ document.write(`
 <p>Auto-regressive language generation assumes that the text being generated can be broken down into a sequence of subparts. Each part depends on the previous parts, allowing an auto-regressive decoder to generate text one token at a time based on its predecessors.</p>
 <p>The probability of generating a word sequence <span class="math notranslate nohighlight">\(w_{1:𝑇}\)</span> given an initial context word sequence <span class="math notranslate nohighlight">\(W_0\)</span> can be expressed as:</p>
 <div class="math notranslate nohighlight">
-\[ P(w_{1:T} | W_0 ) = \prod_{t=1}^T P(w_{t} | w_{1: t-1}, W_0) \text{ ,with }  w_{1: 0} = \emptyset, \]</div>
+\[ P(w*{1:T} | W_0 ) = \prod*{t=1}^T P(w*{t} | w*{1: t-1}, W*0) \text{ ,with } w*{1: 0} = \emptyset, \]</div>
 <p>Here, <span class="math notranslate nohighlight">\(W_0\)</span> is the initial context word sequence. The length 𝑇 of the word sequence is determined on-the-fly, which means it is decided as the sequence is generated. The sequence generation typically stops when an End-Of-Sequence (EOS) token is generated from the probability distribution <span class="math notranslate nohighlight">\(𝑃(w_t|w_{1:𝑡−1},W_0)\)</span>.</p>
 <p>This auto-regressive approach allows LLMs to generate coherent and contextually relevant text based on the initial context 𝑊0. Different decoding strategies, such as greedy search, beam search, and sampling methods like top-k sampling, have been used to improve the generation quality and diversity.</p>
 <p>For example, consider a language model generating a story based on the context “Once upon a time, in a small village”:</p>
@@ -527,7 +527,12 @@ If your task is similar to the task the model of the checkpoint was trained on, 
 <p>Greedy search is a decoding strategy used in language generation tasks. It works by selecting the word with the highest probability as the next word in the generated sequence, given the previous words.</p>
 <p>In each step of the generation process, the model computes the probabilities of all possible words, given the context of the previously generated words. Greedy search then chooses the word with the highest probability and appends it to the output sequence. This process is repeated until a predefined stopping condition is met, such as reaching the maximum output length or generating an end-of-sentence (EOS) token.</p>
 <p>While greedy search is computationally efficient and straightforward to implement, it has some drawbacks. The main limitation is that it can generate suboptimal output sequences since it doesn’t explore other possible word combinations. It always chooses the locally optimal word without considering the global context, which might lead to less coherent or less diverse generated text. Other search strategies, like beam search or nucleus sampling, can help overcome these limitations by exploring a larger space of possible output sequences.</p>
-<a class="bg-primary mb-1 reference internal image-reference" href="../../_images/deepnlp_2_greedy_search.png"><img alt="Greedy Search Algorithm" class="bg-primary mb-1 align-center" src="../../_images/deepnlp_2_greedy_search.png" style="width: 70%;" /></a>
+<figure class="align-default" id="fig-greedy-search">
+<a class="reference internal image-reference" href="../../_images/deepnlp_2_greedy_search.png"><img alt="../../_images/deepnlp_2_greedy_search.png" src="../../_images/deepnlp_2_greedy_search.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 35 </span><span class="caption-text">Greedy Search Example</span><a class="headerlink" href="#fig-greedy-search" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>The next word is chosen using the formula <span class="math notranslate nohighlight">\(w_t = \operatorname{argmax}_{w}P(w | w_{1:t-1})\)</span> at each timestep <span class="math notranslate nohighlight">\(t\)</span>, where <span class="math notranslate nohighlight">\(w_t\)</span> is the next word and <span class="math notranslate nohighlight">\(w_{1:t-1}\)</span> are the previous words in the sequence.</p>
 <p>For example, starting with the word “The”, the algorithm evaluates the probabilities of all possible next words and greedily selects the one with the highest probability, such as “nice”. The process is repeated to generate the subsequent words in the sequence. In this case, the final generated word sequence is (“The”, “nice”, “woman”). The overall probability of this sequence is calculated by multiplying the probabilities of each chosen word, which is <span class="math notranslate nohighlight">\(0.5 \times 0.4 = 0.2\)</span> in this example.</p>
 <p>While greedy search is computationally efficient and easy to implement, it has some limitations. The algorithm always chooses the locally optimal word without considering the global context, which might lead to less coherent or less diverse generated text. Other search strategies, like beam search or nucleus sampling, can help overcome these limitations by exploring a larger space of possible output sequences.</p>
@@ -576,7 +581,12 @@ I&#39;m not sure how to apply it to real-world applications. I&#39;m not sure ho
 <p>The process is repeated at each timestep until a predefined stopping condition is met, such as reaching the maximum output length or generating an end-of-sentence (EOS) token. The candidate sequence with the highest overall probability is selected as the final output.</p>
 <p>Beam search offers a balance between computational complexity and the quality of generated text. A larger beam size increases the chances of finding better output sequences but also increases the computational cost. On the other hand, a smaller beam size is more computationally efficient but may generate less diverse and less coherent text.</p>
 <p>In summary, beam search is a decoding strategy that explores multiple word combinations during text generation, which can lead to more diverse and coherent output compared to greedy search. However, it comes at the cost of increased computational complexity, depending on the beam size.</p>
-<a class="bg-primary mb-1 reference internal image-reference" href="../../_images/deepnlp_2_greedy_search.png"><img alt="Beam Search Algorithm" class="bg-primary mb-1 align-center" src="../../_images/deepnlp_2_greedy_search.png" style="width: 60%;" /></a>
+<figure class="align-default" id="fig-beam-search">
+<a class="reference internal image-reference" href="../../_images/deepnlp_2_beam_search.png"><img alt="../../_images/deepnlp_2_beam_search.png" src="../../_images/deepnlp_2_beam_search.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 36 </span><span class="caption-text">Beam Search Example</span><a class="headerlink" href="#fig-beam-search" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <ul class="simple">
 <li><p>Beam search with <code class="docutils literal notranslate"><span class="pre">num_beams=2</span></code>: Beam search is a decoding strategy that considers multiple hypotheses during text generation. In this example, we set the beam size to 2, meaning the algorithm will keep track of the two most likely word sequences at each timestep.</p></li>
 <li><p>At timestep 1: Instead of only considering the most likely hypothesis (“The”, “nice”), as in greedy search, beam search also maintains the second most likely hypothesis (“The”, “dog”).</p></li>
@@ -597,7 +607,7 @@ I&#39;m not sure how to apply it to real-world applications. I&#39;m not sure ho
     <span class="n">early_stopping</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">*</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">*</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">beam_output</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -635,7 +645,7 @@ Deep learning is a type of artificial intelligence (AI) that can be applied to r
     <span class="n">early_stopping</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">*</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">*</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">beam_output</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -667,10 +677,9 @@ In this post, I&#39;ll show you how you can use Deep Learning to build a neural 
 <span class="p">)</span>
 
 <span class="c1"># now we have 3 output sequences</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">*</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">*</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">beam_output</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">beam_outputs</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-        <span class="n">i</span><span class="p">,</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">beam_output</span><span class="p">,</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">beam_output</span><span class="p">,</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
@@ -700,20 +709,29 @@ In this post, I&#39;ll show you how you can use Deep Learning to build a neural 
 <li><p>Human-like language generation: High-quality human language typically contains a mix of both predictable and surprising elements. In other words, as humans, we appreciate generated text that is not too predictable or boring. According to a study by <a class="reference external" href="https://arxiv.org/abs/1904.09751">Ari Holtzman et al. (2019)</a>, beam search tends to favor high-probability words, which may lead to less engaging and less human-like text generation.</p></li>
 </ul>
 <p>In summary, while beam search can be effective for certain text generation tasks, its limitations in handling varying output lengths, repetitiveness, and the need for more surprising and engaging text make it less suitable for open-ended generation tasks like dialog and story generation.</p>
-<a class="bg-primary mb-1 reference internal image-reference" href="../../_images/deepnlp_2_beam_vs_human.png"><img alt="Beam Search vs Human" class="bg-primary mb-1 align-center" src="../../_images/deepnlp_2_beam_vs_human.png" style="width: 60%;" /></a>
+<figure class="align-default" id="fig-beam-search-vs-human">
+<a class="reference internal image-reference" href="../../_images/deepnlp_2_beam_vs_human.png"><img alt="../../_images/deepnlp_2_beam_vs_human.png" src="../../_images/deepnlp_2_beam_vs_human.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 37 </span><span class="caption-text">Beam Search vs Human</span><a class="headerlink" href="#fig-beam-search-vs-human" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="sampling">
 <h2>Sampling<a class="headerlink" href="#sampling" title="Permalink to this heading">#</a></h2>
 <p>Sampling means randomly picking the next word <span class="math notranslate nohighlight">\(w_t\)</span> according to its conditional probability distribution:</p>
 <div class="math notranslate nohighlight">
-\[ w_t \sim P(w|w_{1:t-1}) \]</div>
+\[ w*t \sim P(w|w*{1:t-1}) \]</div>
 <p>The following graphic visualizes language generation when sampling.</p>
-<p><img alt="sampling" src="../../_images/deepnlp_2_sampling_search.png" /></p>
-<p>Language generation using sampling is not <em>deterministic</em> anymore.
-The word (“car”) is sampled from the conditioned probability distribution <span class="math notranslate nohighlight">\(P(w | \text{&quot;The&quot;})\)</span>, followed by sampling (“drives”) from <span class="math notranslate nohighlight">\(P(w | \text{&quot;The&quot;}, \text{&quot;car&quot;})\)</span>.</p>
-<ul class="simple">
-<li><p>Set <code class="docutils literal notranslate"><span class="pre">do_sample=True</span></code> and deactivate <em>Top-K</em> sampling via <code class="docutils literal notranslate"><span class="pre">top_k=0</span></code>.</p></li>
-</ul>
+<figure class="align-default" id="fig-sampling-search">
+<a class="reference internal image-reference" href="../../_images/deepnlp_2_sampling_search.png"><img alt="../../_images/deepnlp_2_sampling_search.png" src="../../_images/deepnlp_2_sampling_search.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 38 </span><span class="caption-text">Sampling Search</span><a class="headerlink" href="#fig-sampling-search" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>In contrast to deterministic methods like greedy search, language generation using sampling introduces an element of randomness.</p>
+<p>For example, given the starting word “The”, the next word “car” is sampled from the conditional probability distribution <span class="math notranslate nohighlight">\(P(w | \text{&quot;The&quot;})\)</span>. Following this, the word “drives” is sampled from the distribution <span class="math notranslate nohighlight">\(P(w | \text{&quot;The&quot;}, \text{&quot;car&quot;})\)</span>.</p>
+<p>This stochastic approach results in a more diverse range of generated text compared to deterministic methods, as it allows for the exploration of various word combinations based on their conditional probabilities.</p>
+<p>In the following code snippet, we set <code class="docutils literal notranslate"><span class="pre">do_sample=True</span></code> and deactivate <em>Top-K</em> sampling via <code class="docutils literal notranslate"><span class="pre">top_k=0</span></code>. By doing this, we enable sampling for generating text:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set seed to reproduce results. Feel free to change the seed though to get different results</span>
@@ -727,7 +745,7 @@ The word (“car”) is sampled from the conditioned probability distribution <s
     <span class="n">top_k</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">*</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">*</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">sample_output</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -740,19 +758,20 @@ I enjoy studying deep learning for natural language processing, especially to se
 </div>
 </div>
 </div>
-<ul class="simple">
-<li><p>The text seems alright - but when taking a closer look, it is not very coherent.</p></li>
-<li><p>Some words don’t sound like they were written by a human.</p></li>
-<li><p>That is the big problem when sampling word sequences: The models often generate incoherent gibberish.</p></li>
-<li><p>A trick is to make the distribution <span class="math notranslate nohighlight">\(P(w|w_{1:t-1})\)</span> sharper (increasing the likelihood of high probability words and decreasing the likelihood of low probability words) by lowering the so-called <code class="docutils literal notranslate"><span class="pre">temperature</span></code> of the <a class="reference external" href="https://en.wikipedia.org/wiki/Softmax_function#Smooth_arg_max">softmax</a>.</p></li>
-</ul>
-<p><img alt="temperature" src="../../_images/deepnlp_2_sampling_search_with_temp.png" /></p>
-<ul class="simple">
-<li><p>The conditional next word distribution of step t=1 becomes much sharper leaving almost no chance for word (“car”) to be selected.</p></li>
-</ul>
-<ul class="simple">
-<li><p>Cool down the distribution in the library by setting <code class="docutils literal notranslate"><span class="pre">temperature=0.7</span></code>.</p></li>
-</ul>
+<p>While the generated text seems fine at first glance, a closer look reveals that it lacks coherence and contains words that do not sound natural. This incoherent gibberish is a common problem with sampling word sequences.</p>
+<p>To address this issue, we can adjust the <code class="docutils literal notranslate"><span class="pre">temperature</span></code> of the <a class="reference external" href="https://en.wikipedia.org/wiki/Softmax_function#Smooth_arg_max">softmax</a> function. This modification sharpens the distribution <span class="math notranslate nohighlight">\(P(w|w\_{1:t-1})\)</span>, increasing the likelihood of high probability words and decreasing the likelihood of low probability words. The following code snippet demonstrates how to apply a temperature of 0.7:</p>
+<figure class="align-default" id="fig-sampling-search-with-temp">
+<a class="reference internal image-reference" href="../../_images/deepnlp_2_sampling_search_with_temp.png"><img alt="../../_images/deepnlp_2_sampling_search_with_temp.png" src="../../_images/deepnlp_2_sampling_search_with_temp.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 39 </span><span class="caption-text">Sampling Search with Temperature</span><a class="headerlink" href="#fig-sampling-search-with-temp" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Temperature is a hyperparameter used in language generation models to control the randomness and diversity of the generated text. It is applied to the softmax function, which converts logits (the raw model outputs) into probabilities. The temperature essentially adjusts the sharpness of the probability distribution over the possible next words in a sequence.</p>
+<p>When the temperature is high (e.g., greater than 1), the model’s output probabilities become more uniform, meaning that the generated text will be more diverse and random, sometimes even incoherent. High temperature values encourage the model to explore less likely words and make it more creative.</p>
+<p>On the other hand, when the temperature is low (e.g., less than 1), the probability distribution becomes more focused, and the model becomes more conservative. The generated text will be more coherent and predictable, with a higher probability of choosing the most likely words. However, when the temperature is too low (approaching 0), the generated text may become too repetitive and less interesting, resembling the output of greedy decoding.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set seed to reproduce results. Feel free to change the seed though to get different results</span>
@@ -767,7 +786,7 @@ I enjoy studying deep learning for natural language processing, especially to se
     <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">*</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">*</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">sample_output</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -786,22 +805,19 @@ The current human-language
 </div>
 </div>
 </div>
-<ul class="simple">
-<li><p>There are less weird n-grams and the output is a bit more coherent now.</p></li>
-<li><p>While applying temperature can make a distribution less random, in its limit, when setting <code class="docutils literal notranslate"><span class="pre">temperature</span></code> <span class="math notranslate nohighlight">\(\to 0\)</span>, temperature scaled sampling becomes equal to greedy decoding and will suffer from the same problems as before.</p></li>
-</ul>
+<p>By applying a temperature of 0.7, the generated text becomes less random and more coherent, with fewer unnatural n-grams. However, it’s important to note that as the temperature approaches 0, the sampling process becomes similar to greedy decoding, which comes with its own set of issues, such as a lack of diversity in the generated text.</p>
 </section>
 <section id="top-k-sampling">
 <h2>Top-K Sampling<a class="headerlink" href="#top-k-sampling" title="Permalink to this heading">#</a></h2>
-<p><img alt="top_k" src="../../_images/deepnlp_2_top_k_sampling.png" /></p>
-<p>In <em>Top-K</em> sampling, the <em>K</em> most likely next words are filtered and the probability mass is redistributed among only those <em>K</em> next words. GPT2 adopted this sampling scheme, which was one of the reasons for its success in story generation.</p>
-<ul class="simple">
-<li><p>Having set <span class="math notranslate nohighlight">\(K = 6\)</span>, in both sampling steps we limit our sampling pool to 6 words.</p></li>
-<li><p>While the 6 most likely words, defined as <span class="math notranslate nohighlight">\(V_{\text{top-K}}\)</span> encompass only two-thirds of the whole
-probability mass in the first step, it includes almost all of the probability mass in the second step.</p></li>
-<li><p>Nevertheless, we see that it successfully eliminates the rather weird candidates (“not”, “the”, “small”, “told”) in the second sampling step.</p></li>
-</ul>
-<p>Let’s see how <em>Top-K</em> can be used in the library by setting <code class="docutils literal notranslate"><span class="pre">top_k=50</span></code>:</p>
+<figure class="align-default" id="fig-top-k-sampling">
+<a class="reference internal image-reference" href="../../_images/deepnlp_2_top_k_sampling.png"><img alt="../../_images/deepnlp_2_top_k_sampling.png" src="../../_images/deepnlp_2_top_k_sampling.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 40 </span><span class="caption-text">Top-K Sampling</span><a class="headerlink" href="#fig-top-k-sampling" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Top-K sampling is a technique used in language generation models to make the generated text more coherent and meaningful. In Top-K sampling, only the <span class="math notranslate nohighlight">\(K\)</span> most likely next words are considered, and the probability mass is redistributed among these <span class="math notranslate nohighlight">\(K\)</span> next words.</p>
+<p>Setting <span class="math notranslate nohighlight">\(K=6\)</span>, for example, limits our sampling pool to the top 6 words in each step. This can eliminate unlikely candidates, making the generated text more human-like. However, one concern with Top-K sampling is that it doesn’t adapt dynamically to the number of words filtered from the next word probability distribution <span class="math notranslate nohighlight">\(P(w|w_{1:t-1})\)</span>. This could lead to problems, as some words might be sampled from a very sharp distribution, while others from a much flatter distribution.</p>
+<p>Let’s see how Top-K can be used in the library by setting <code class="docutils literal notranslate"><span class="pre">top_k=50</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set seed to reproduce results. Feel free to change the seed though to get different results</span>
@@ -815,7 +831,7 @@ probability mass in the first step, it includes almost all of the probability ma
     <span class="n">top_k</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">*</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">*</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">sample_output</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -828,28 +844,24 @@ I enjoy studying deep learning for natural language processing, as well as in te
 </div>
 </div>
 </div>
-<ul class="simple">
-<li><p>The text is arguably the most <em>human-sounding</em> text so far.</p></li>
-<li><p>One concern with <em>Top-K</em> sampling is that it does not dynamically adapt the number of words that are filtered from the next word probability distribution <span class="math notranslate nohighlight">\(P(w|w_{1:t-1})\)</span>.</p></li>
-<li><p>This can be problematic as some words might be sampled from a very sharp distribution (distribution on the right in the graph above), whereas others from a much more flat distribution (distribution on the left in the graph above).</p></li>
-<li><p>In step <span class="math notranslate nohighlight">\(t=1\)</span>, Top-K eliminates the possibility to sample (“people”,”big”,”house”,”cat”), which seem like reasonable candidates.</p></li>
-<li><p>On the other hand, in step <span class="math notranslate nohighlight">\(t=2\)</span> the method includes the arguably ill-fitted words (“down”,”a”) in the sample pool of words.</p></li>
-<li><p>Thus, limiting the sample pool to a fixed size <span class="math notranslate nohighlight">\(K\)</span> could endanger the model to produce gibberish for sharp distributions and limit the model’s creativity for flat distribution.</p></li>
-<li><p>This intuition led Ari Holtzman et al. (2019) to create <em><strong>Top-p</strong></em>- or <em><strong>nucleus</strong></em>-sampling.</p></li>
-</ul>
+<p>The generated text appears to be more human-sounding than before. However, using a fixed K size can have drawbacks:</p>
+<ol class="arabic simple">
+<li><p>It could limit the model’s creativity for flatter probability distributions, as it might filter out reasonable candidates that could have led to more diverse and interesting text.</p></li>
+<li><p>For sharper distributions, it could include ill-fitted words in the sample pool, endangering the model to produce gibberish.</p></li>
+</ol>
+<p>To address these concerns, Ari Holtzman et al. (2019) introduced Top-p or nucleus sampling, which dynamically selects the <span class="math notranslate nohighlight">\(K\)</span> value based on a threshold probability <span class="math notranslate nohighlight">\(p\)</span>, leading to a more adaptive approach.</p>
 </section>
 <section id="top-p-nucleus-sampling">
 <h2>Top-p (nucleus) sampling<a class="headerlink" href="#top-p-nucleus-sampling" title="Permalink to this heading">#</a></h2>
-<p><img alt="top_p" src="../../_images/deepnlp_2_top_p_sampling.png" /></p>
-<ul class="simple">
-<li><p>Instead of sampling only from the most likely <em>K</em> words, in <em>Top-p</em> sampling chooses from the smallest possible set of words whose cumulative probability exceeds the probability <em>p</em>.</p></li>
-<li><p>The probability mass is then redistributed among this set of words.</p></li>
-<li><p>This way, the size of the set of words (<em>a.k.a</em> the number of words in the set) can dynamically increase and decrease according to the next word’s probability distribution.</p></li>
-<li><p>Having set <span class="math notranslate nohighlight">\(p=0.92\)</span>, <em>Top-p</em> sampling picks the <em>minimum</em> number of words to exceed together <span class="math notranslate nohighlight">\(p=92\)</span> of the probability mass, defined as <span class="math notranslate nohighlight">\(V_{\text{top-p}}\)</span>.</p></li>
-<li><p>In the first example, this included the 9 most likely words, whereas it only has to pick the top 3 words in the second example to exceed 92%.</p></li>
-<li><p>It can be seen that it keeps a wide range of words where the next word is arguably less predictable, <em>e.g.</em> <span class="math notranslate nohighlight">\(P(w | \text{&quot;The''})\)</span>, and only a few words when the next word seems more predictable, <em>e.g.</em> <span class="math notranslate nohighlight">\(P(w | \text{&quot;The&quot;}, \text{&quot;car&quot;})\)</span>.</p></li>
-</ul>
-<p>Activate <em>Top-p</em> sampling by setting <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;</span> <span class="pre">top_p</span> <span class="pre">&lt;</span> <span class="pre">1</span></code>:</p>
+<figure class="align-default" id="fig-top-p-sampling">
+<a class="reference internal image-reference" href="../../_images/deepnlp_2_top_p_sampling.png"><img alt="../../_images/deepnlp_2_top_p_sampling.png" src="../../_images/deepnlp_2_top_p_sampling.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 41 </span><span class="caption-text">Top-p Sampling</span><a class="headerlink" href="#fig-top-p-sampling" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Top-p sampling, also known as nucleus sampling, is a technique that chooses words from the smallest possible set whose cumulative probability exceeds a predefined threshold probability p. The probability mass is then redistributed among this set of words. This approach allows the size of the word set to dynamically increase and decrease according to the next word’s probability distribution.</p>
+<p>In Top-p sampling, the model selects the minimum number of words needed to exceed the probability mass p. For example, with p=0.92, the model selects the most likely words whose cumulative probability is at least 92%. This method keeps a wide range of words when the next word is less predictable and narrows down the selection when the next word seems more predictable.</p>
+<p>To activate Top-p sampling, set <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;</span> <span class="pre">top_p</span> <span class="pre">&lt;</span> <span class="pre">1</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set seed to reproduce results. Feel free to change the seed though to get different results</span>
@@ -864,7 +876,7 @@ I enjoy studying deep learning for natural language processing, as well as in te
     <span class="n">top_k</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">*</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">*</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">sample_output</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -887,11 +899,8 @@ The Recent Advances in the Study of Mindfulness and Success in Society. The resu
 </div>
 </div>
 </div>
-<p>Great, that sounds like it could have been written by a human. Well, maybe not quite yet.</p>
-<p>While in theory, <em>Top-p</em> seems more elegant than <em>Top-K</em>, both methods work well in practice.
-<em>Top-p</em> can also be used in combination with <em>Top-K</em>, which can avoid very low ranked words while allowing for some
-dynamic selection.</p>
-<p>Finally, to get multiple independently sampled outputs, we can <em>again</em> set the parameter <code class="docutils literal notranslate"><span class="pre">num_return_sequences</span> <span class="pre">&gt;</span> <span class="pre">1</span></code>:</p>
+<p>The generated text appears more human-like. In practice, both <em>Top-p</em> and <em>Top-K</em> sampling work well. You can also combine <em>Top-p</em> with <em>Top-K</em> sampling, which can prevent the selection of very low-ranked words while allowing for some dynamic word selection.</p>
+<p>To get multiple independently sampled outputs, set the parameter <code class="docutils literal notranslate"><span class="pre">num_return_sequences</span> <span class="pre">&gt;</span> <span class="pre">1</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set seed to reproduce results. Feel free to change the seed though to get different results</span>
@@ -907,10 +916,9 @@ dynamic selection.</p>
     <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">*</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">*</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">sample_output</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sample_outputs</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-        <span class="n">i</span><span class="p">,</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">sample_output</span><span class="p">,</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">sample_output</span><span class="p">,</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
@@ -932,53 +940,59 @@ Another way to learn Deep Learning is by coding. For example, I often code to so
 </div>
 </div>
 </div>
+<p>The output consists of multiple independently sampled sequences, which can be further analyzed or used according to specific requirements.</p>
 </section>
 <section id="summary-of-decoding-search-strategies">
 <h2>Summary of decoding / search strategies<a class="headerlink" href="#summary-of-decoding-search-strategies" title="Permalink to this heading">#</a></h2>
-<p>As <em>ad-hoc</em> decoding methods, <em>top-p</em> and <em>top-K</em> sampling seem to produce more fluent text than traditional <em>greedy</em> - and <em>beam</em> search on open-ended language generation. Recently, there has been more evidence though that the apparent flaws of <em>greedy</em> and <em>beam</em> search - mainly generating repetitive word sequences - are caused by the model (especially the way the model is trained), rather than the decoding method, <em>cf.</em> <a class="reference external" href="https://arxiv.org/pdf/1908.04319.pdf">Welleck et al. (2019)</a>. Also, as demonstrated in <a class="reference external" href="https://arxiv.org/abs/2002.02492">Welleck et al. (2020)</a>, it looks as <em>top-K</em> and <em>top-p</em> sampling also suffer from generating repetitive word sequences.</p>
+<p>Various decoding or search strategies are used in open-ended language generation tasks. Here’s an overview of the most common strategies and their characteristics:</p>
 <ul class="simple">
-<li><p>Greedy Search</p>
+<li><p>Greedy Search:</p>
 <ul>
-<li><p>simply chooses the next word at each timestep t+1 that has the highest predicted probability of following the word at t.</p></li>
-<li><p>One of the main issues here is that greedy search will miss words with a high probability at t+1 if it is preceded by a word with a low probability at t.</p></li>
+<li><p>At each time step, Greedy Search selects the word with the highest predicted probability to follow the previous word.</p></li>
+<li><p>One of the main issues with Greedy Search is that it may miss high-probability words at a certain time step if they are preceded by a low-probability word in the previous step.</p></li>
+<li><p>This method often generates repetitive and predictable text, which may not resemble natural human language.</p></li>
+</ul>
+</li>
+<li><p>Beam Search:</p>
+<ul>
+<li><p>Beam Search tracks the n-th (num_beams) most likely word sequences and ultimately outputs the most likely sequence.</p></li>
+<li><p>While this method may seem promising, it struggles when the output length can be highly variable, as is the case with open-ended text generation.</p></li>
+<li><p>Like Greedy Search, Beam Search can also produce repetitive and uninteresting text that doesn’t align with the way humans perform the same task.</p></li>
+</ul>
+</li>
+<li><p>Sampling With Top-k + Top-p:</p>
+<ul>
+<li><p>This strategy combines three methods to address the issues faced by Greedy and Beam Search.</p></li>
+<li><p>Sampling involves choosing the next word randomly based on its conditional probability distribution.</p></li>
+<li><p>In Top-k sampling, the model selects the k most likely words and redistributes the probability mass among them before choosing the next word.</p></li>
+<li><p>Top-p sampling adds an additional constraint to Top-k by choosing words from the smallest set whose cumulative probability exceeds p.</p></li>
+<li><p>While these methods produce more fluent and human-like text, they may still generate repetitive word sequences.</p></li>
 </ul>
 </li>
 </ul>
-<ul class="simple">
-<li><p>Beam Search</p>
-<ul>
-<li><p>keeps track of the n-th (num_beams) most likely word sequences and outputs the most likely sequence.</p></li>
-<li><p>Sounds great, but this method breaks down when the output length can be highly variable — as in the case of open-ended text generation.</p></li>
-<li><p>Both greedy and beam search also produce outputs whose distribution does not align very well with the way humans might perform the same task (i.e. both are liable to produce fairly repetitive, boring text).</p></li>
-</ul>
-</li>
-</ul>
-<ul class="simple">
-<li><p>Sampling With Top-k + Top-p</p>
-<ul>
-<li><p>a combination of three methods.</p></li>
-<li><p>By sampling, we mean that the next word is chosen randomly based on its conditional probability distribution (von Platen, 2020).</p></li>
-<li><p>In Top-k, we choose the k most likely words, and then redistribute the probability mass amongst them before the next draw.</p></li>
-<li><p>Top-p adds an additional constraint to top-k, in that we’re choosing from the smallest set of words whose cumulative probability exceed p.</p></li>
-</ul>
-</li>
-</ul>
+<p>Recent research indicates that the flaws of Greedy and Beam Search, mainly generating repetitive word sequences, are caused by the model itself rather than the decoding method. Top-k and Top-p sampling also suffer from generating repetitive word sequences, but they often provide better results in open-ended language generation tasks compared to Greedy and Beam Search.</p>
+<p><em>cf.</em> <a class="reference external" href="https://arxiv.org/pdf/1908.04319.pdf">Welleck et al. (2019)</a>, <a class="reference external" href="https://arxiv.org/abs/2002.02492">Welleck et al. (2020)</a></p>
 </section>
 <section id="prompt-engineering-the-career-of-future">
 <h2>Prompt Engineering: The Career of Future<a class="headerlink" href="#prompt-engineering-the-career-of-future" title="Permalink to this heading">#</a></h2>
-<a class="bg-primary mb-1 reference internal image-reference" href="../../_images/deepnlp_2_prompt.png"><img alt="Prompt Engineering" class="bg-primary mb-1 align-center" src="../../_images/deepnlp_2_prompt.png" style="width: 50%;" /></a>
-<p>(source: <a class="reference external" href="https://twitter.com/karpathy/status/1273788774422441984/photo/1">https://twitter.com/karpathy/status/1273788774422441984/photo/1</a>)</p>
+<figure class="align-default" id="fig-prompt-engineering">
+<a class="reference internal image-reference" href="../../_images/deepnlp_2_prompt.png"><img alt="../../_images/deepnlp_2_prompt.png" src="../../_images/deepnlp_2_prompt.png" style="width: 50%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 42 </span><span class="caption-text">Prompt Engineering (<a class="reference external" href="https://twitter.com/karpathy/status/1273788774422441984/photo/1">source</a>)</span><a class="headerlink" href="#fig-prompt-engineering" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <blockquote>
-<div><p>With the No-Code revolution around the corner, and the coming of new-age technologies like GPT-3 we may see a stark difference between the career of today and the careers of tomorrow…</p>
+<div><p>With the No-Code revolution on the horizon and the advent of new-age technologies like GPT-3, we may see a significant difference between the careers of today and those of tomorrow…</p>
 </div></blockquote>
-<p>As a rule of thumb while designing the training prompt you should aim towards getting a zero-shot response from the model, if that isn’t possible move forward with few examples rather than providing it with an entire corpus. The standard flow for training prompt design should look like: Zero-Shot → Few Shots → Corpus-based Priming.</p>
+<p>When designing training prompts, the goal is to obtain a zero-shot response from the model. If that isn’t possible, consider providing a few examples rather than an entire corpus. The standard workflow for training prompt design should follow this order: Zero-Shot → Few-Shot → Corpus-based Priming.</p>
 <ul class="simple">
-<li><p>Step 1: Define the problem you are trying to solve and bucket it into one of the possible natural language tasks classification, Q &amp; A, text generation, creative writing, etc.</p></li>
-<li><p>Step 2: Ask yourself if there is a way to get a solution with zero-shot (i.e. without priming the GPT-3 model with any external training examples)</p></li>
-<li><p>Step 3: If you think that you need external examples to prime the model for your use case, go back to step-2 and think really hard.</p></li>
-<li><p>Step 4: Now think of how you might encounter the problem in a textual fashion given the “text-in, text-out” interface of GPT-3. Think about all the possible scenarios to represent your problem in textual form.</p></li>
-<li><p>Step 5: If you end up using the external examples, use as few as possible and try to include variety in your examples without essentially overfitting the model or skewing the predictions.</p></li>
+<li><p>Step 1: Clearly define the problem you want to solve and categorize it into one of the possible natural language tasks, such as classification, Q&amp;A, text generation, creative writing, etc.</p></li>
+<li><p>Step 2: Determine if it’s possible to obtain a solution using a zero-shot approach (i.e., without priming the GPT-3 model with any external training examples).</p></li>
+<li><p>Step 3: If you believe that external examples are necessary to prime the model for your use case, revisit Step 2 and carefully reconsider the need for additional examples.</p></li>
+<li><p>Step 4: Consider how the problem might be encountered in a textual format, given GPT-3’s “text-in, text-out” interface. Contemplate various ways to represent your problem using text.</p></li>
+<li><p>Step 5: If you decide to use external examples, use as few as possible while ensuring diversity in your examples. This helps avoid overfitting the model or skewing its predictions.</p></li>
 </ul>
+<p>By following these steps, you can effectively design prompts that address specific problems while minimizing the need for additional training examples, resulting in more accurate and efficient outcomes.</p>
 </section>
 </section>
 
