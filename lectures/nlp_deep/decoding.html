@@ -1,0 +1,1106 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Decoding and Search Strategies &#8212; ἐντελέχεια.άι</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../_static/tabs.js"></script>
+    <script src="../../_static/js/hoverxref.js"></script>
+    <script src="../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/chatgpt.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_deep/decoding';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_deep/decoding.html" />
+    <link rel="shortcut icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Transformers" href="transformers.html" />
+    <link rel="prev" title="Zero Shot, Prompt, and Search Strategies" href="zeroshot.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+
+  <div class="bd-header-announcement container-fluid bd-header-announcement">
+    <div class="bd-header-announcement__content"><p>
+  <strong>Announcement:</strong>
+  You can install the accompanying AI tutor <a href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd">here</a>.
+</p>
+</div>
+  </div>
+
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">ἐντελέχεια.άι</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nlp_intro/index.html">Introduction to NLP</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/research.html">Research Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/language_models.html">Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/topic.html">Topic Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/topic_models.html">Topic Models </a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/topic_coherence.html">Topic Coherence Measures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/sentiments.html">Sentiment Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/tokenization.html">Tokenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/word_segmentation.html">Word Segmentation and Association</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/vectorization.html">Vector Semantics and Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/word_embeddings.html">Word Embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/ekorpkit.html">Getting started with ekorpkit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/lab1-corpus.html">Lab 1: Preparing Wikipedia Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/lab2-corpus-eda.html">Lab 2: EDA on Corpora</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Deep Learning for NLP</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="llms.html">Large Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zeroshot.html">Zero Shot, Prompt, and Search Strategies</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Decoding and Search Strategies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transformers.html">Transformers </a></li>
+<li class="toctree-l2"><a class="reference internal" href="rlhf.html">Reinforcement Learning with Human Feedback (RLHF)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="detectGPT.html">How to Spot Machine-Written Texts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="t5.html">T5: Text-To-Text Transfer Transformer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tokenization.html">Tokenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sentencepiece.html">SentencePiece Tokenizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plms.html">Pretrained Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ekorpkit.html">Getting started with ekorpkit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab1-corpus.html">Lab 1: Preparing Wikipedia Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab3-train-tokenizers.html">Lab 3: Training Tokenizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab4-pretraining-lms.html">Lab 4: Pretraining Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nlp_advances/index.html">Advances in AI and NLP</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_advances/thesis.html">Writing a Thesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_advances/detectGPT.html">DetectGPT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_advances/gpt4.html">GPT-4</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../aiart/index.html">AI Art (Generative AI)</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/aiart.html">Art and Music in Light of AI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/dalle1.html">DALL·E 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/dalle2.html">DALL·E 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/imagen.html">Imagen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/textual-inversion.html">Textual Inversion (Dreambooth)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/whisper.html">Automatic Speech Recognition (Whisper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/text2music.html">Text to Music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/image2music.html">Image to Music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/robot_drawings.html">Robot Drawing Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/project-themes.html">Project Themes - A Brave New World</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../mlops/index.html">Machine Learning Systems Design</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../mlops/intro.html">Introduction to MLOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mlops/project.html">MLOps Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mlops/devops.html">DevOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mlops/gitops.html">GitOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mlops/devsecops.html">DevSecOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mlops/dotfiles.html">Dotfiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mlops/auth-enc-sign.html">Authentication, Encryption, and Signing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ds/index.html">Data Science for Economics and Finance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../about/lecture-bot.html">LectureBot for ἐντελέχεια.άι</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/nlp_deep/decoding.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/lectures/nlp_deep/decoding.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Decoding and Search Strategies</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#greedy-search">Greedy Search</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beam-search">Beam search</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling">Sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#top-k-sampling">Top-K Sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#top-p-nucleus-sampling">Top-p (nucleus) sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-decoding-search-strategies">Summary of decoding / search strategies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-engineering-the-career-of-future">Prompt Engineering: The Career of Future</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="decoding-and-search-strategies">
+<h1>Decoding and Search Strategies<a class="headerlink" href="#decoding-and-search-strategies" title="Permalink to this heading">#</a></h1>
+<p>In recent years, there has been a surge of interest in open-ended language generation due to the development of large language models (LLMs) like GPT-2, XLNet, OpenAI-GPT, CTRL, TransfoXL, XLM, BART, T5, GPT-3, and BLOOM. These models have shown promising results in various generation tasks such as open-ended dialogue, summarization, and story generation. Improved decoding methods have played a significant role in the success of these models.</p>
+<p>Auto-regressive language generation assumes that the text being generated can be broken down into a sequence of subparts. Each part depends on the previous parts, allowing an auto-regressive decoder to generate text one token at a time based on its predecessors.</p>
+<p>The probability of generating a word sequence <span class="math notranslate nohighlight">\(w_{1:𝑇}\)</span> given an initial context word sequence <span class="math notranslate nohighlight">\(W_0\)</span> can be expressed as:</p>
+<div class="math notranslate nohighlight">
+\[ P(w_{1:T} | W_0 ) = \prod_{t=1}^T P(w_{t} | w_{1: t-1}, W_0) \text{ ,with }  w_{1: 0} = \emptyset, \]</div>
+<p>Here, <span class="math notranslate nohighlight">\(W_0\)</span> is the initial context word sequence. The length 𝑇 of the word sequence is determined on-the-fly, which means it is decided as the sequence is generated. The sequence generation typically stops when an End-Of-Sequence (EOS) token is generated from the probability distribution <span class="math notranslate nohighlight">\(𝑃(w_t|w_{1:𝑡−1},W_0)\)</span>.</p>
+<p>This auto-regressive approach allows LLMs to generate coherent and contextually relevant text based on the initial context 𝑊0. Different decoding strategies, such as greedy search, beam search, and sampling methods like top-k sampling, have been used to improve the generation quality and diversity.</p>
+<p>For example, consider a language model generating a story based on the context “Once upon a time, in a small village”:</p>
+<ol class="arabic simple">
+<li><p>Greedy search would select the word with the highest probability at each step, potentially leading to repetitive and less diverse text.</p></li>
+<li><p>Beam search would maintain a fixed number of partial sequences (the beam width) and extend them, selecting the most probable overall sequence. This can improve diversity but may still suffer from repetitiveness.</p></li>
+<li><p>Top-k sampling would sample the next word from the top-k most probable words, increasing diversity in the generated text.</p></li>
+</ol>
+<p>These strategies help LLMs generate meaningful and diverse text for various language generation tasks.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># If you run this notebook in Colab, set Hardware accelerator to GPU.</span>
+<span class="c1"># Then, install transformers</span>
+<span class="o">%</span><span class="k">pip</span> install -U transformers tensorflow
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">TFGPT2LMHeadModel</span><span class="p">,</span> <span class="n">GPT2Tokenizer</span>
+
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">GPT2Tokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;gpt2&quot;</span><span class="p">)</span>
+
+<span class="c1"># add the EOS token as PAD token to avoid warnings</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">TFGPT2LMHeadModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;gpt2&quot;</span><span class="p">,</span> <span class="n">pad_token_id</span><span class="o">=</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">eos_token_id</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>All model checkpoint layers were used when initializing TFGPT2LMHeadModel.
+
+All the layers of TFGPT2LMHeadModel were initialized from the model checkpoint at gpt2.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use TFGPT2LMHeadModel for predictions without further training.
+</pre></div>
+</div>
+</div>
+</div>
+<section id="greedy-search">
+<h2>Greedy Search<a class="headerlink" href="#greedy-search" title="Permalink to this heading">#</a></h2>
+<a class="bg-primary mb-1 reference internal image-reference" href="../../_images/entelecheia_greedy_search.png"><img alt="Greedy Search" class="bg-primary mb-1 align-center" src="../../_images/entelecheia_greedy_search.png" style="width: 50%;" /></a>
+<p>Greedy search is a decoding strategy used in language generation tasks. It works by selecting the word with the highest probability as the next word in the generated sequence, given the previous words.</p>
+<p>In each step of the generation process, the model computes the probabilities of all possible words, given the context of the previously generated words. Greedy search then chooses the word with the highest probability and appends it to the output sequence. This process is repeated until a predefined stopping condition is met, such as reaching the maximum output length or generating an end-of-sentence (EOS) token.</p>
+<p>While greedy search is computationally efficient and straightforward to implement, it has some drawbacks. The main limitation is that it can generate suboptimal output sequences since it doesn’t explore other possible word combinations. It always chooses the locally optimal word without considering the global context, which might lead to less coherent or less diverse generated text. Other search strategies, like beam search or nucleus sampling, can help overcome these limitations by exploring a larger space of possible output sequences.</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="../../_images/deepnlp_2_greedy_search.png"><img alt="Greedy Search Algorithm" class="bg-primary mb-1 align-center" src="../../_images/deepnlp_2_greedy_search.png" style="width: 70%;" /></a>
+<p>The next word is chosen using the formula <span class="math notranslate nohighlight">\(w_t = \operatorname{argmax}_{w}P(w | w_{1:t-1})\)</span> at each timestep <span class="math notranslate nohighlight">\(t\)</span>, where <span class="math notranslate nohighlight">\(w_t\)</span> is the next word and <span class="math notranslate nohighlight">\(w_{1:t-1}\)</span> are the previous words in the sequence.</p>
+<p>For example, starting with the word “The”, the algorithm evaluates the probabilities of all possible next words and greedily selects the one with the highest probability, such as “nice”. The process is repeated to generate the subsequent words in the sequence. In this case, the final generated word sequence is (“The”, “nice”, “woman”). The overall probability of this sequence is calculated by multiplying the probabilities of each chosen word, which is <span class="math notranslate nohighlight">\(0.5 \times 0.4 = 0.2\)</span> in this example.</p>
+<p>While greedy search is computationally efficient and easy to implement, it has some limitations. The algorithm always chooses the locally optimal word without considering the global context, which might lead to less coherent or less diverse generated text. Other search strategies, like beam search or nucleus sampling, can help overcome these limitations by exploring a larger space of possible output sequences.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># encode context the generation is conditioned on</span>
+<span class="n">input_ids</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="s2">&quot;I enjoy studying deep learning for natural language processing&quot;</span><span class="p">,</span>
+    <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;tf&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># generate text until the output length (which includes the context length) reaches 50</span>
+<span class="n">greedy_output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">input_ids</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">*</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">greedy_output</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Output:
+----------------------------------------------------------------------------------------------------
+I enjoy studying deep learning for natural language processing, but I&#39;m not sure how to apply it to real-world applications.
+
+I&#39;m not sure how to apply it to real-world applications. I&#39;m not sure how to apply it to real-world applications. I&#39;m not sure how to apply it to real-world applications. I&#39;m not sure how to apply it to real-world applications. I&#39;m not sure how to apply it to real-world applications. I&#39;m not
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Generating word sequences with GPT-2: To generate word sequences using GPT-2, you provide a context, such as (“I”, “enjoy”, “studying”, “deep”, “learning”, “for”, “natural”, “language”, “processing”), and the model predicts the most likely words to follow the given context.</p></li>
+<li><p>Repetitive output: A common issue in language generation, especially when using greedy or beam search, is that the model often starts repeating itself. This occurs because these search strategies tend to get stuck in a loop of selecting locally optimal words without considering the broader context.</p></li>
+<li><p>Drawbacks of greedy search:</p>
+<ul>
+<li><p>Misses high probability words: Greedy search can miss high probability words that are hidden behind a low probability word. Since the algorithm always chooses the word with the highest probability at each step, it doesn’t explore other word combinations that could lead to better overall sequences.</p></li>
+<li><p>Lack of diversity: Greedy search may generate less diverse and less coherent text, as it only focuses on the locally optimal choice. Other search strategies, like beam search or nucleus sampling, can help mitigate these issues by exploring a larger space of possible output sequences and considering global context.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="beam-search">
+<h2>Beam search<a class="headerlink" href="#beam-search" title="Permalink to this heading">#</a></h2>
+<a class="bg-primary mb-1 reference internal image-reference" href="../../_images/entelecheia_beam_search.png"><img alt="Beam Search" class="bg-primary mb-1 align-center" src="../../_images/entelecheia_beam_search.png" style="width: 50%;" /></a>
+<p>Beam search is a decoding strategy used in language generation tasks to generate more diverse and coherent text compared to greedy search. It is a type of breadth-first search algorithm that maintains a fixed number of candidate sequences, called “beams,” at each step of the generation process.</p>
+<p>The main idea behind beam search is to explore multiple word options at each step, rather than choosing only the word with the highest probability, as in greedy search. The algorithm starts by selecting the top k words with the highest probabilities, where k is the beam size. It then extends each of these words with the top k words, given the context. This results in k * k new candidate sequences. The algorithm keeps only the top k sequences with the highest overall probabilities and discards the rest.</p>
+<p>The process is repeated at each timestep until a predefined stopping condition is met, such as reaching the maximum output length or generating an end-of-sentence (EOS) token. The candidate sequence with the highest overall probability is selected as the final output.</p>
+<p>Beam search offers a balance between computational complexity and the quality of generated text. A larger beam size increases the chances of finding better output sequences but also increases the computational cost. On the other hand, a smaller beam size is more computationally efficient but may generate less diverse and less coherent text.</p>
+<p>In summary, beam search is a decoding strategy that explores multiple word combinations during text generation, which can lead to more diverse and coherent output compared to greedy search. However, it comes at the cost of increased computational complexity, depending on the beam size.</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="../../_images/deepnlp_2_greedy_search.png"><img alt="Beam Search Algorithm" class="bg-primary mb-1 align-center" src="../../_images/deepnlp_2_greedy_search.png" style="width: 60%;" /></a>
+<ul class="simple">
+<li><p>Beam search with <code class="docutils literal notranslate"><span class="pre">num_beams=2</span></code>: Beam search is a decoding strategy that considers multiple hypotheses during text generation. In this example, we set the beam size to 2, meaning the algorithm will keep track of the two most likely word sequences at each timestep.</p></li>
+<li><p>At timestep 1: Instead of only considering the most likely hypothesis (“The”, “nice”), as in greedy search, beam search also maintains the second most likely hypothesis (“The”, “dog”).</p></li>
+<li><p>At timestep 2: Beam search evaluates the probabilities of extending both hypotheses with the top two words. It finds that the word sequence (“The”, “dog”, “has”), with a probability of 0.36, is more likely than (“The”, “nice”, “woman”), which has a probability of 0.2.</p></li>
+<li><p>Optimal solution found: In this toy example, beam search successfully discovers the most likely word sequence, which was missed by the greedy search.</p></li>
+<li><p>Comparison to greedy search: Beam search generally finds output sequences with higher probabilities than greedy search. However, it’s not guaranteed to always find the most likely output, especially for large search spaces or small beam sizes. The quality of the generated text depends on the beam size, with larger beam sizes typically producing better results at the cost of increased computational complexity.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">num_beams</span> <span class="pre">&gt;</span> <span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">early_stopping=True</span></code> so that generation is finished when all beam hypotheses reached the EOS token</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># activate beam search and early_stopping</span>
+<span class="n">beam_output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span>
+    <span class="n">input_ids</span><span class="p">,</span>
+    <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">num_beams</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">early_stopping</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">*</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">beam_output</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Output:
+----------------------------------------------------------------------------------------------------
+I enjoy studying deep learning for natural language processing, and I&#39;m excited to see how it can be applied to real-world applications.
+
+What is Deep Learning?
+
+Deep learning is a type of artificial intelligence (AI) that can be applied to real-world applications. Deep learning is a type of artificial intelligence (AI) that can be applied to real-world applications.
+
+Deep learning is a type of artificial intelligence (AI) that can be applied to real-world applications
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>While the result is arguably more fluent, the output still includes repetitions of the same word sequences.</p></li>
+<li><p>A simple remedy is to introduce <em>n-grams</em> penalties as introduced by Paulus et al. (2017) and Klein et al. (2017).</p></li>
+<li><p>The most common n-grams penalty makes sure that no <em>n-gram</em> appears twice by manually setting the probability of next words that could create an already seen <em>n-gram</em> to 0.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Setting <code class="docutils literal notranslate"><span class="pre">no_repeat_ngram_size=2</span></code> to prevent 2-gram repetitions: By including this parameter in the generate function, we ensure that no 2-gram appears twice in the generated text.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set no_repeat_ngram_size to 2</span>
+<span class="n">beam_output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span>
+    <span class="n">input_ids</span><span class="p">,</span>
+    <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">num_beams</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">no_repeat_ngram_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">early_stopping</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">*</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">beam_output</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Output:
+----------------------------------------------------------------------------------------------------
+I enjoy studying deep learning for natural language processing, and I&#39;m excited to see how it can be applied to real-world applications.
+
+In this post, I&#39;ll show you how you can use Deep Learning to build a neural network that can learn to read and write a sentence. In this article, you&#39;ll learn how to use the Deep Neural Network (DNN) to learn a language. You&#39;ll also learn about how the DNN works and what you need to do to get started
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Improved output: The generated text no longer contains repeated 2-grams, which results in a more coherent output. However, it’s important to use n-gram penalties with caution, as they can prevent the repetition of important phrases. For example, a text about “New York” should not have a 2-gram penalty, as it would limit the number of times the city’s name appears.</p></li>
+<li><p>Comparing and selecting the best beam: To compare the top beams after generation and choose the best one, set the <code class="docutils literal notranslate"><span class="pre">num_return_sequences</span></code> parameter to the desired number of highest-scoring beams to return. Ensure that <code class="docutils literal notranslate"><span class="pre">num_return_sequences</span> <span class="pre">&lt;=</span> <span class="pre">num_beams</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set return_num_sequences &gt; 1</span>
+<span class="n">beam_outputs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span>
+    <span class="n">input_ids</span><span class="p">,</span>
+    <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">num_beams</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">no_repeat_ngram_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">early_stopping</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># now we have 3 output sequences</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">*</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">beam_output</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">beam_outputs</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">i</span><span class="p">,</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">beam_output</span><span class="p">,</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Output:
+----------------------------------------------------------------------------------------------------
+0: I enjoy studying deep learning for natural language processing, and I&#39;m excited to see how it can be applied to real-world applications.
+
+In this post, I&#39;ll show you how you can use Deep Learning to build a neural network that can learn to read and write a sentence. In this article, you&#39;ll learn how to use the Deep Neural Network (DNN) to learn a language. You&#39;ll also learn about how the DNN works and what you need to do to get started
+1: I enjoy studying deep learning for natural language processing, and I&#39;m excited to see how it can be applied to real-world applications.
+
+In this post, I&#39;ll show you how you can use Deep Learning to build a neural network that can learn to read and write a sentence. In this article, you&#39;ll learn how to use the Deep Neural Network (DNN) to learn a language. You&#39;ll also learn about how the DNN works and what you need to know about it to
+2: I enjoy studying deep learning for natural language processing, and I&#39;m excited to see how it can be applied to real-world applications.
+
+In this post, I&#39;ll show you how you can use Deep Learning to build a neural network that can learn to read and write a sentence. In this article, you&#39;ll learn how to use the Deep Neural Network (DNN) to learn a language. You&#39;ll also learn about how the DNN works and what you need to know to get started
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Analyzing the results: The output shows three different generated sequences, each being a top-scoring beam. The differences between these beams might be marginal, especially when using a small number of beams (e.g., 5). By examining these alternatives, you can select the one that best fits your requirements.</p></li>
+</ul>
+<p>In open-ended text generation tasks, there are several reasons why beam search might not be the most suitable option:</p>
+<ul class="simple">
+<li><p>Predictable length vs. varying length: Beam search tends to perform well in tasks where the desired length of the generated output is more or less predictable, such as machine translation or summarization. However, in open-ended generation tasks like dialog and story generation, the desired output length can vary significantly, making beam search less optimal.</p></li>
+<li><p>Repetitive generation: Beam search often results in repetitive text generation. This issue can be particularly challenging to control in tasks like story generation, where applying n-gram or other penalties to prevent repetition may require extensive fine-tuning to strike the right balance between avoiding repetitive phrases and forcing unnatural “no-repetition” constraints.</p></li>
+<li><p>Human-like language generation: High-quality human language typically contains a mix of both predictable and surprising elements. In other words, as humans, we appreciate generated text that is not too predictable or boring. According to a study by <a class="reference external" href="https://arxiv.org/abs/1904.09751">Ari Holtzman et al. (2019)</a>, beam search tends to favor high-probability words, which may lead to less engaging and less human-like text generation.</p></li>
+</ul>
+<p>In summary, while beam search can be effective for certain text generation tasks, its limitations in handling varying output lengths, repetitiveness, and the need for more surprising and engaging text make it less suitable for open-ended generation tasks like dialog and story generation.</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="../../_images/deepnlp_2_beam_vs_human.png"><img alt="Beam Search vs Human" class="bg-primary mb-1 align-center" src="../../_images/deepnlp_2_beam_vs_human.png" style="width: 60%;" /></a>
+</section>
+<section id="sampling">
+<h2>Sampling<a class="headerlink" href="#sampling" title="Permalink to this heading">#</a></h2>
+<p>Sampling means randomly picking the next word <span class="math notranslate nohighlight">\(w_t\)</span> according to its conditional probability distribution:</p>
+<div class="math notranslate nohighlight">
+\[ w_t \sim P(w|w_{1:t-1}) \]</div>
+<p>The following graphic visualizes language generation when sampling.</p>
+<p><img alt="sampling" src="../../_images/deepnlp_2_sampling_search.png" /></p>
+<p>Language generation using sampling is not <em>deterministic</em> anymore.
+The word (“car”) is sampled from the conditioned probability distribution <span class="math notranslate nohighlight">\(P(w | \text{&quot;The&quot;})\)</span>, followed by sampling (“drives”) from <span class="math notranslate nohighlight">\(P(w | \text{&quot;The&quot;}, \text{&quot;car&quot;})\)</span>.</p>
+<ul class="simple">
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">do_sample=True</span></code> and deactivate <em>Top-K</em> sampling via <code class="docutils literal notranslate"><span class="pre">top_k=0</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set seed to reproduce results. Feel free to change the seed though to get different results</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">set_seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># activate sampling and deactivate top_k by setting top_k sampling to 0</span>
+<span class="n">sample_output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span>
+    <span class="n">input_ids</span><span class="p">,</span>
+    <span class="n">do_sample</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">top_k</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">*</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">sample_output</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Output:
+----------------------------------------------------------------------------------------------------
+I enjoy studying deep learning for natural language processing, especially to see how it does useful things over evolutionary time once you shift the ideology of theoretical language. I also really like developing algorithmically tailored introductory programming books to teach my students, but I simply don&#39;t have the spare time to do all that I did before. HALAX fight3r also released their original issue warning the public that Gaming with Game Software may be detrimental to your solidified web skills and appearances, likely to undermine your beliefs and help
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>The text seems alright - but when taking a closer look, it is not very coherent.</p></li>
+<li><p>Some words don’t sound like they were written by a human.</p></li>
+<li><p>That is the big problem when sampling word sequences: The models often generate incoherent gibberish.</p></li>
+<li><p>A trick is to make the distribution <span class="math notranslate nohighlight">\(P(w|w_{1:t-1})\)</span> sharper (increasing the likelihood of high probability words and decreasing the likelihood of low probability words) by lowering the so-called <code class="docutils literal notranslate"><span class="pre">temperature</span></code> of the <a class="reference external" href="https://en.wikipedia.org/wiki/Softmax_function#Smooth_arg_max">softmax</a>.</p></li>
+</ul>
+<p><img alt="temperature" src="../../_images/deepnlp_2_sampling_search_with_temp.png" /></p>
+<ul class="simple">
+<li><p>The conditional next word distribution of step t=1 becomes much sharper leaving almost no chance for word (“car”) to be selected.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Cool down the distribution in the library by setting <code class="docutils literal notranslate"><span class="pre">temperature=0.7</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set seed to reproduce results. Feel free to change the seed though to get different results</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">set_seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># use temperature to decrease the sensitivity to low probability candidates</span>
+<span class="n">sample_output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span>
+    <span class="n">input_ids</span><span class="p">,</span>
+    <span class="n">do_sample</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">top_k</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">*</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">sample_output</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Output:
+----------------------------------------------------------------------------------------------------
+I enjoy studying deep learning for natural language processing, but this is a simplistic example of how the language can be applied to a complex problem.
+
+Using more complex architectures
+
+The most common approach is to look at a whole set of ML designs that are quite complex and require a lot of work to deploy. For example, the first ML project I&#39;m learning is the human language learning project. Let&#39;s take a look at the human-language learning project.
+
+The current human-language
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>There are less weird n-grams and the output is a bit more coherent now.</p></li>
+<li><p>While applying temperature can make a distribution less random, in its limit, when setting <code class="docutils literal notranslate"><span class="pre">temperature</span></code> <span class="math notranslate nohighlight">\(\to 0\)</span>, temperature scaled sampling becomes equal to greedy decoding and will suffer from the same problems as before.</p></li>
+</ul>
+</section>
+<section id="top-k-sampling">
+<h2>Top-K Sampling<a class="headerlink" href="#top-k-sampling" title="Permalink to this heading">#</a></h2>
+<p><img alt="top_k" src="../../_images/deepnlp_2_top_k_sampling.png" /></p>
+<p>In <em>Top-K</em> sampling, the <em>K</em> most likely next words are filtered and the probability mass is redistributed among only those <em>K</em> next words. GPT2 adopted this sampling scheme, which was one of the reasons for its success in story generation.</p>
+<ul class="simple">
+<li><p>Having set <span class="math notranslate nohighlight">\(K = 6\)</span>, in both sampling steps we limit our sampling pool to 6 words.</p></li>
+<li><p>While the 6 most likely words, defined as <span class="math notranslate nohighlight">\(V_{\text{top-K}}\)</span> encompass only two-thirds of the whole
+probability mass in the first step, it includes almost all of the probability mass in the second step.</p></li>
+<li><p>Nevertheless, we see that it successfully eliminates the rather weird candidates (“not”, “the”, “small”, “told”) in the second sampling step.</p></li>
+</ul>
+<p>Let’s see how <em>Top-K</em> can be used in the library by setting <code class="docutils literal notranslate"><span class="pre">top_k=50</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set seed to reproduce results. Feel free to change the seed though to get different results</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">set_seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># set top_k to 50</span>
+<span class="n">sample_output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span>
+    <span class="n">input_ids</span><span class="p">,</span>
+    <span class="n">do_sample</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">top_k</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">*</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">sample_output</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Output:
+----------------------------------------------------------------------------------------------------
+I enjoy studying deep learning for natural language processing, as well as in terms of learning from experience. As well as having my students who are learning an intermediate language and learn how to use it in a meaningful way or with a minimal effort, I can also focus on learning programming languages like C++ (though I wouldn&#39;t go so far as to call that &quot;advanced&quot;), Python (for those that aren&#39;t familiar with Python) or Java (I think I actually want to see what I can learn
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>The text is arguably the most <em>human-sounding</em> text so far.</p></li>
+<li><p>One concern with <em>Top-K</em> sampling is that it does not dynamically adapt the number of words that are filtered from the next word probability distribution <span class="math notranslate nohighlight">\(P(w|w_{1:t-1})\)</span>.</p></li>
+<li><p>This can be problematic as some words might be sampled from a very sharp distribution (distribution on the right in the graph above), whereas others from a much more flat distribution (distribution on the left in the graph above).</p></li>
+<li><p>In step <span class="math notranslate nohighlight">\(t=1\)</span>, Top-K eliminates the possibility to sample (“people”,”big”,”house”,”cat”), which seem like reasonable candidates.</p></li>
+<li><p>On the other hand, in step <span class="math notranslate nohighlight">\(t=2\)</span> the method includes the arguably ill-fitted words (“down”,”a”) in the sample pool of words.</p></li>
+<li><p>Thus, limiting the sample pool to a fixed size <span class="math notranslate nohighlight">\(K\)</span> could endanger the model to produce gibberish for sharp distributions and limit the model’s creativity for flat distribution.</p></li>
+<li><p>This intuition led Ari Holtzman et al. (2019) to create <em><strong>Top-p</strong></em>- or <em><strong>nucleus</strong></em>-sampling.</p></li>
+</ul>
+</section>
+<section id="top-p-nucleus-sampling">
+<h2>Top-p (nucleus) sampling<a class="headerlink" href="#top-p-nucleus-sampling" title="Permalink to this heading">#</a></h2>
+<p><img alt="top_p" src="../../_images/deepnlp_2_top_p_sampling.png" /></p>
+<ul class="simple">
+<li><p>Instead of sampling only from the most likely <em>K</em> words, in <em>Top-p</em> sampling chooses from the smallest possible set of words whose cumulative probability exceeds the probability <em>p</em>.</p></li>
+<li><p>The probability mass is then redistributed among this set of words.</p></li>
+<li><p>This way, the size of the set of words (<em>a.k.a</em> the number of words in the set) can dynamically increase and decrease according to the next word’s probability distribution.</p></li>
+<li><p>Having set <span class="math notranslate nohighlight">\(p=0.92\)</span>, <em>Top-p</em> sampling picks the <em>minimum</em> number of words to exceed together <span class="math notranslate nohighlight">\(p=92\)</span> of the probability mass, defined as <span class="math notranslate nohighlight">\(V_{\text{top-p}}\)</span>.</p></li>
+<li><p>In the first example, this included the 9 most likely words, whereas it only has to pick the top 3 words in the second example to exceed 92%.</p></li>
+<li><p>It can be seen that it keeps a wide range of words where the next word is arguably less predictable, <em>e.g.</em> <span class="math notranslate nohighlight">\(P(w | \text{&quot;The''})\)</span>, and only a few words when the next word seems more predictable, <em>e.g.</em> <span class="math notranslate nohighlight">\(P(w | \text{&quot;The&quot;}, \text{&quot;car&quot;})\)</span>.</p></li>
+</ul>
+<p>Activate <em>Top-p</em> sampling by setting <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;</span> <span class="pre">top_p</span> <span class="pre">&lt;</span> <span class="pre">1</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set seed to reproduce results. Feel free to change the seed though to get different results</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">set_seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># deactivate top_k sampling and sample only from 92% most likely words</span>
+<span class="n">sample_output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span>
+    <span class="n">input_ids</span><span class="p">,</span>
+    <span class="n">do_sample</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">top_p</span><span class="o">=</span><span class="mf">0.92</span><span class="p">,</span>
+    <span class="n">top_k</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">*</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">sample_output</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Output:
+----------------------------------------------------------------------------------------------------
+I enjoy studying deep learning for natural language processing. Learn more at lecture.lightlink.com.
+
+Ciao — Social conscious &quot;synchronization&quot; between conscious and nonconscious participants at the Cognition Experience. Learn more at lecture.lightlink.com.
+
+Everett&#39;s Processio
+
+A video discussion
+
+The Evolution of Mindfulness in Today&#39;s Economy
+
+The Recent Advances in the Study of Mindfulness and Success in Society. The results from St Louis University
+</pre></div>
+</div>
+</div>
+</div>
+<p>Great, that sounds like it could have been written by a human. Well, maybe not quite yet.</p>
+<p>While in theory, <em>Top-p</em> seems more elegant than <em>Top-K</em>, both methods work well in practice.
+<em>Top-p</em> can also be used in combination with <em>Top-K</em>, which can avoid very low ranked words while allowing for some
+dynamic selection.</p>
+<p>Finally, to get multiple independently sampled outputs, we can <em>again</em> set the parameter <code class="docutils literal notranslate"><span class="pre">num_return_sequences</span> <span class="pre">&gt;</span> <span class="pre">1</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set seed to reproduce results. Feel free to change the seed though to get different results</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">set_seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># set top_k = 50 and set top_p = 0.95 and num_return_sequences = 3</span>
+<span class="n">sample_outputs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span>
+    <span class="n">input_ids</span><span class="p">,</span>
+    <span class="n">do_sample</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">top_k</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">top_p</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>
+    <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">*</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">sample_output</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sample_outputs</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">i</span><span class="p">,</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">sample_output</span><span class="p">,</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Output:
+----------------------------------------------------------------------------------------------------
+0: I enjoy studying deep learning for natural language processing, as I&#39;ve learned it quickly enough for me to understand it. The idea of modeling learning comes from both of these worlds. The first is that of natural language processing and the second is a mathematical theory that allows you to draw meaningful conclusions. To understand what is in the world of Natural Language Processing, go to the book by Mike Biederman of the University of Toronto or check out his website at www.layers.com. You are also
+1: I enjoy studying deep learning for natural language processing. My favourite part, even though it is just about my main job, is learning to play a game. That is exactly what I am doing on my website. All this is part of my job as a developer and I love playing games.
+
+My job with this company was to create a website where my students could explore the world as they would enjoy learning about computer science, physics, or any other science.
+
+In doing so, I
+2: I enjoy studying deep learning for natural language processing. In my experience it doesn&#39;t help my training to teach my students how to do it, but it&#39;s an awesome source for training and has led to many exciting discoveries about Deep Learning and neural nets in general.
+
+Learning to code
+
+Another way to learn Deep Learning is by coding. For example, I often code to solve problem A and then use it for the solving of problem B. This is where the language really comes in. I
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="summary-of-decoding-search-strategies">
+<h2>Summary of decoding / search strategies<a class="headerlink" href="#summary-of-decoding-search-strategies" title="Permalink to this heading">#</a></h2>
+<p>As <em>ad-hoc</em> decoding methods, <em>top-p</em> and <em>top-K</em> sampling seem to produce more fluent text than traditional <em>greedy</em> - and <em>beam</em> search on open-ended language generation. Recently, there has been more evidence though that the apparent flaws of <em>greedy</em> and <em>beam</em> search - mainly generating repetitive word sequences - are caused by the model (especially the way the model is trained), rather than the decoding method, <em>cf.</em> <a class="reference external" href="https://arxiv.org/pdf/1908.04319.pdf">Welleck et al. (2019)</a>. Also, as demonstrated in <a class="reference external" href="https://arxiv.org/abs/2002.02492">Welleck et al. (2020)</a>, it looks as <em>top-K</em> and <em>top-p</em> sampling also suffer from generating repetitive word sequences.</p>
+<ul class="simple">
+<li><p>Greedy Search</p>
+<ul>
+<li><p>simply chooses the next word at each timestep t+1 that has the highest predicted probability of following the word at t.</p></li>
+<li><p>One of the main issues here is that greedy search will miss words with a high probability at t+1 if it is preceded by a word with a low probability at t.</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Beam Search</p>
+<ul>
+<li><p>keeps track of the n-th (num_beams) most likely word sequences and outputs the most likely sequence.</p></li>
+<li><p>Sounds great, but this method breaks down when the output length can be highly variable — as in the case of open-ended text generation.</p></li>
+<li><p>Both greedy and beam search also produce outputs whose distribution does not align very well with the way humans might perform the same task (i.e. both are liable to produce fairly repetitive, boring text).</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Sampling With Top-k + Top-p</p>
+<ul>
+<li><p>a combination of three methods.</p></li>
+<li><p>By sampling, we mean that the next word is chosen randomly based on its conditional probability distribution (von Platen, 2020).</p></li>
+<li><p>In Top-k, we choose the k most likely words, and then redistribute the probability mass amongst them before the next draw.</p></li>
+<li><p>Top-p adds an additional constraint to top-k, in that we’re choosing from the smallest set of words whose cumulative probability exceed p.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="prompt-engineering-the-career-of-future">
+<h2>Prompt Engineering: The Career of Future<a class="headerlink" href="#prompt-engineering-the-career-of-future" title="Permalink to this heading">#</a></h2>
+<a class="bg-primary mb-1 reference internal image-reference" href="../../_images/deepnlp_2_prompt.png"><img alt="Prompt Engineering" class="bg-primary mb-1 align-center" src="../../_images/deepnlp_2_prompt.png" style="width: 50%;" /></a>
+<p>(source: <a class="reference external" href="https://twitter.com/karpathy/status/1273788774422441984/photo/1">https://twitter.com/karpathy/status/1273788774422441984/photo/1</a>)</p>
+<blockquote>
+<div><p>With the No-Code revolution around the corner, and the coming of new-age technologies like GPT-3 we may see a stark difference between the career of today and the careers of tomorrow…</p>
+</div></blockquote>
+<p>As a rule of thumb while designing the training prompt you should aim towards getting a zero-shot response from the model, if that isn’t possible move forward with few examples rather than providing it with an entire corpus. The standard flow for training prompt design should look like: Zero-Shot → Few Shots → Corpus-based Priming.</p>
+<ul class="simple">
+<li><p>Step 1: Define the problem you are trying to solve and bucket it into one of the possible natural language tasks classification, Q &amp; A, text generation, creative writing, etc.</p></li>
+<li><p>Step 2: Ask yourself if there is a way to get a solution with zero-shot (i.e. without priming the GPT-3 model with any external training examples)</p></li>
+<li><p>Step 3: If you think that you need external examples to prime the model for your use case, go back to step-2 and think really hard.</p></li>
+<li><p>Step 4: Now think of how you might encounter the problem in a textual fashion given the “text-in, text-out” interface of GPT-3. Think about all the possible scenarios to represent your problem in textual form.</p></li>
+<li><p>Step 5: If you end up using the external examples, use as few as possible and try to include variety in your examples without essentially overfitting the model or skewing the predictions.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/lecture",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lectures/nlp_deep"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="zeroshot.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Zero Shot, Prompt, and Search Strategies</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="transformers.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Transformers </p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#greedy-search">Greedy Search</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beam-search">Beam search</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling">Sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#top-k-sampling">Top-K Sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#top-p-nucleus-sampling">Top-p (nucleus) sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-decoding-search-strategies">Summary of decoding / search strategies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-engineering-the-career-of-future">Prompt Engineering: The Career of Future</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://entelecheia.me">Young Joon Lee</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
