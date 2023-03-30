@@ -463,17 +463,29 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilistic-latent-semantic-analysis-plsa">Probabilistic Latent Semantic Analysis (pLSA)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latent-dirichlet-allocation-lda">Latent Dirichlet Allocation (LDA)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#non-negative-matrix-factorization-nmf">Non-negative Matrix Factorization (NMF)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlated-topic-model-ctm">Correlated Topic Model (CTM)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inference">Inference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">Applications</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-topic-models-dtm">Dynamic Topic Models (DTM)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Overview</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Inference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Applications</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topic-modeling-example-using-nmf-and-svd">Topic Modeling Example using NMF and SVD</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-problem">The problem</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation">Motivation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing">Data Processing</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#singular-value-decomposition-svd">Singular Value Decomposition (SVD)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Non-negative Matrix Factorization (NMF)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Non-negative Matrix Factorization (NMF)</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nmf-applications">NMF Applications</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nmf-using-scikit-learn">NMF using scikit-learn</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#runcated-svd">runcated SVD</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#truncated-svd">Truncated SVD</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shortcomings-of-classical-algorithms-for-decomposition">Shortcomings of classical algorithms for decomposition:</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages-of-randomized-algorithms">Advantages of randomized algorithms:</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#timing-comparison">Timing comparison</a></li>
@@ -515,11 +527,11 @@ document.write(`
 <section id="topic-modeling-methodologies">
 <h2>Topic Modeling Methodologies<a class="headerlink" href="#topic-modeling-methodologies" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
-<li><p>Probabilistic Latent Semantic Analysis (pLSA): pLSA is a precursor to LDA and is based on a generative probabilistic model. It discovers latent topics in a document collection by modeling the co-occurrence of words and documents as a mixture of multinomial distributions. Despite its success in revealing hidden topics, pLSA suffers from overfitting due to the lack of regularization.</p></li>
-<li><p>Latent Dirichlet Allocation (LDA): LDA is a widely-used generative probabilistic model for topic modeling, which extends pLSA by incorporating Dirichlet priors for document-topic and topic-term distributions. LDA’s assumptions about the generative process of documents and the incorporation of Dirichlet priors help in overcoming overfitting and provide better generalization.</p></li>
-<li><p>Non-negative Matrix Factorization (NMF): NMF is a linear algebraic method for dimensionality reduction, which has been applied to topic modeling. NMF factorizes the document-term matrix into two non-negative lower-dimensional matrices representing document-topic and topic-term relationships. Although NMF lacks the probabilistic foundation of LDA, it often results in more interpretable topics.</p></li>
-<li><p>Correlated Topic Model (CTM): CTM is an extension of LDA that allows topics to be correlated, capturing more complex relationships between topics. In CTM, the distribution of topics within documents is modeled using a logistic normal distribution instead of a Dirichlet distribution. This approach results in more realistic topic models, especially when topics are not independent in the underlying data.</p></li>
-<li><p>Dynamic Topic Models (DTM): DTM is a class of topic models designed to analyze the evolution of topics over time. By modeling topic distributions as a function of time, DTMs can capture the temporal dynamics of topics in ordered document collections. This makes DTMs suitable for analyzing text data with an inherent temporal structure, such as news articles or scientific publications.</p></li>
+<li><p><strong>Probabilistic Latent Semantic Analysis (pLSA)</strong>: pLSA is a precursor to LDA and is based on a generative probabilistic model. It discovers latent topics in a document collection by modeling the co-occurrence of words and documents as a mixture of multinomial distributions. Despite its success in revealing hidden topics, pLSA suffers from overfitting due to the lack of regularization.</p></li>
+<li><p><strong>Latent Dirichlet Allocation (LDA)</strong>: LDA is a widely-used generative probabilistic model for topic modeling, which extends pLSA by incorporating Dirichlet priors for document-topic and topic-term distributions. LDA’s assumptions about the generative process of documents and the incorporation of Dirichlet priors help in overcoming overfitting and provide better generalization.</p></li>
+<li><p><strong>Non-negative Matrix Factorization (NMF)</strong>: NMF is a linear algebraic method for dimensionality reduction, which has been applied to topic modeling. NMF factorizes the document-term matrix into two non-negative lower-dimensional matrices representing document-topic and topic-term relationships. Although NMF lacks the probabilistic foundation of LDA, it often results in more interpretable topics.</p></li>
+<li><p><strong>Correlated Topic Model (CTM)</strong>: CTM is an extension of LDA that allows topics to be correlated, capturing more complex relationships between topics. In CTM, the distribution of topics within documents is modeled using a logistic normal distribution instead of a Dirichlet distribution. This approach results in more realistic topic models, especially when topics are not independent in the underlying data.</p></li>
+<li><p><strong>Dynamic Topic Models (DTM)</strong>: DTM is a class of topic models designed to analyze the evolution of topics over time. By modeling topic distributions as a function of time, DTMs can capture the temporal dynamics of topics in ordered document collections. This makes DTMs suitable for analyzing text data with an inherent temporal structure, such as news articles or scientific publications.</p></li>
 </ol>
 <p>Each of these topic modeling methodologies offers unique advantages and drawbacks, catering to different needs and data types. By understanding the underlying principles and assumptions of these methods, researchers and practitioners can select the most appropriate approach for their specific text data analysis tasks and effectively extract meaningful insights from large-scale unstructured document collections.</p>
 </section>
@@ -628,23 +640,105 @@ document.write(`
 </figure>
 <p>After applying NMF, we can examine the resulting term-topic and document-topic matrices to identify the underlying topics and their association with the original questions. For instance, we might find that Topic 1 is related to football and sports, while Topic 2 is related to politics and leadership. The document-topic matrix would then show the extent to which each question is associated with these topics, allowing us to interpret the hidden topic structure in the data.</p>
 <figure class="align-default" id="fig-nmf-example2">
-<a class="reference internal image-reference" href="lectures/figs/intro_nlp/topic/22.png"><img alt="lectures/figs/intro_nlp/topic/22.png" src="lectures/figs/intro_nlp/topic/22.png" style="width: 70%;" /></a>
+<a class="reference internal image-reference" href="../../_images/212.png"><img alt="../../_images/212.png" src="../../_images/212.png" style="width: 70%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 40 </span><span class="caption-text">Non-negative Matrix Factorization Example Result</span><a class="headerlink" href="#fig-nmf-example2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>NMF has several attractive properties that make it suitable for topic modeling:</p>
 <ol class="arabic simple">
-<li><p>Non-negativity constraint: The non-negativity constraint on the factor matrices ensures that the resulting topics and their relationships to documents are interpretable, as they reflect additive combinations of the original features.</p></li>
-<li><p>Sparsity: NMF often results in sparse representations, where each document is associated with only a few topics, and each topic is characterized by a limited set of words. This sparsity promotes interpretability and simplifies the identification of meaningful topics.</p></li>
-<li><p>Flexibility: NMF can be adapted to different problem settings by incorporating additional constraints or using different objective functions, such as the Kullback-Leibler divergence or the Itakura-Saito divergence, to better capture the underlying structure of the data.</p></li>
+<li><p><strong>Non-negativity constraint</strong>: The non-negativity constraint on the factor matrices ensures that the resulting topics and their relationships to documents are interpretable, as they reflect additive combinations of the original features.</p></li>
+<li><p><strong>Sparsity</strong>: NMF often results in sparse representations, where each document is associated with only a few topics, and each topic is characterized by a limited set of words. This sparsity promotes interpretability and simplifies the identification of meaningful topics.</p></li>
+<li><p><strong>Flexibility</strong>: NMF can be adapted to different problem settings by incorporating additional constraints or using different objective functions, such as the Kullback-Leibler divergence or the Itakura-Saito divergence, to better capture the underlying structure of the data.</p></li>
 </ol>
 <p>However, NMF also has some limitations:</p>
 <ol class="arabic simple">
-<li><p>Lack of probabilistic foundation: Unlike LDA, NMF is not based on a probabilistic generative model, which may limit its applicability in certain scenarios where probabilistic interpretations are desired.</p></li>
-<li><p>Non-unique solutions: NMF does not guarantee unique factorization, as there can be multiple combinations of <span class="math notranslate nohighlight">\(W\)</span> and <span class="math notranslate nohighlight">\(H\)</span> that approximate the original matrix <span class="math notranslate nohighlight">\(X\)</span>. This can lead to inconsistencies in the extracted topics.</p></li>
+<li><p><strong>Lack of probabilistic foundation</strong>: Unlike LDA, NMF is not based on a probabilistic generative model, which may limit its applicability in certain scenarios where probabilistic interpretations are desired.</p></li>
+<li><p><strong>Non-unique solutions</strong>: NMF does not guarantee unique factorization, as there can be multiple combinations of <span class="math notranslate nohighlight">\(W\)</span> and <span class="math notranslate nohighlight">\(H\)</span> that approximate the original matrix <span class="math notranslate nohighlight">\(X\)</span>. This can lead to inconsistencies in the extracted topics.</p></li>
 </ol>
 <p>Despite these limitations, NMF remains a popular and useful technique for topic modeling, as it often provides interpretable and meaningful topic representations in a computationally efficient manner.</p>
+</section>
+<section id="correlated-topic-model-ctm">
+<h2>Correlated Topic Model (CTM)<a class="headerlink" href="#correlated-topic-model-ctm" title="Permalink to this heading">#</a></h2>
+<p>The Correlated Topic Model (CTM) is an extension of the Latent Dirichlet Allocation (LDA) model that takes into account the correlations between topics. CTM, like LDA, is a generative probabilistic model used to discover latent topics in a document collection. However, unlike LDA, which assumes that the topics are independent, CTM allows for modeling correlations between topics, making it better suited for capturing more complex topic structures in the documents.</p>
+<section id="overview">
+<h3>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h3>
+<p>In LDA, the topic distribution of each document is generated from a Dirichlet distribution with a fixed concentration parameter. This assumption leads to the independence of topics in the LDA model. On the other hand, CTM assumes that the topic proportions for a document are generated from a logistic normal distribution, which allows for modeling the correlations between topics.</p>
+<p>The generative process of CTM can be described as follows:</p>
+<ol class="arabic simple">
+<li><p>For each topic <span class="math notranslate nohighlight">\(k\)</span>, choose a distribution over words <span class="math notranslate nohighlight">\(\beta_k\)</span> from a Dirichlet distribution with parameter <span class="math notranslate nohighlight">\(\eta\)</span>.</p></li>
+<li><p>For each document <span class="math notranslate nohighlight">\(d\)</span> in the corpus:</p>
+<ul class="simple">
+<li><p>a. Choose a topic distribution <span class="math notranslate nohighlight">\(\theta_d\)</span> from a logistic normal distribution with mean <span class="math notranslate nohighlight">\(\mu\)</span> and covariance matrix <span class="math notranslate nohighlight">\(\Sigma\)</span>.</p></li>
+<li><p>b. For each word <span class="math notranslate nohighlight">\(w\)</span> in document <span class="math notranslate nohighlight">\(d\)</span>:</p>
+<ul>
+<li><p>i. Choose a topic <span class="math notranslate nohighlight">\(z_{d,w}\)</span> from the distribution <span class="math notranslate nohighlight">\(\theta_d\)</span>.</p></li>
+<li><p>ii. Choose a word <span class="math notranslate nohighlight">\(w_{d,n}\)</span> from the distribution over words for the chosen topic <span class="math notranslate nohighlight">\(\beta_{z_{d,w}}\)</span>.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="inference">
+<h3>Inference<a class="headerlink" href="#inference" title="Permalink to this heading">#</a></h3>
+<p>Inference in CTM is more challenging than in LDA due to the use of the logistic normal distribution. Approximate inference methods, such as variational inference or Markov Chain Monte Carlo (MCMC) sampling, are often employed to estimate the model parameters.</p>
+<p>Variational inference for CTM involves optimizing a lower bound on the log likelihood of the observed data using mean-field variational methods. This approach approximates the true posterior distribution with a simpler distribution that can be optimized iteratively to fit the data.</p>
+</section>
+<section id="applications">
+<h3>Applications<a class="headerlink" href="#applications" title="Permalink to this heading">#</a></h3>
+<p>Like LDA, CTM can be used in various text mining and natural language processing tasks, such as:</p>
+<ul class="simple">
+<li><p>Topic modeling: Discovering the underlying topics in a document collection.</p></li>
+<li><p>Document classification: Assigning documents to categories based on their topic distribution.</p></li>
+<li><p>Information retrieval: Improving search results by considering topic correlations.</p></li>
+<li><p>Recommender systems: Recommending content based on topic similarity.</p></li>
+</ul>
+<p>CTM is particularly useful when there is a need to model complex relationships between topics, which can lead to more accurate and informative topic representations in the documents.</p>
+</section>
+</section>
+<section id="dynamic-topic-models-dtm">
+<h2>Dynamic Topic Models (DTM)<a class="headerlink" href="#dynamic-topic-models-dtm" title="Permalink to this heading">#</a></h2>
+<p>Dynamic Topic Models (DTM) are an extension of traditional topic models like Latent Dirichlet Allocation (LDA) that incorporate a temporal aspect. The main idea behind DTM is to model how topics evolve over time in a document collection. This allows for the discovery of not only the latent topics but also how their word distributions and prevalence change across different time periods.</p>
+<section id="id1">
+<h3>Overview<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>DTM builds on the foundation of LDA by introducing a time component to the generative process. In DTM, the documents are divided into time slices, and a separate LDA model is generated for each time slice. The topics from adjacent time slices are connected through a state-space model, which captures the evolution of topics over time.</p>
+<p>The generative process of DTM can be described as follows:</p>
+<ol class="arabic simple">
+<li><p>For each time slice <span class="math notranslate nohighlight">\(t\)</span>:</p>
+<ul class="simple">
+<li><p>a. For each topic <span class="math notranslate nohighlight">\(k\)</span>, choose a distribution over words <span class="math notranslate nohighlight">\(\beta_{t,k}\)</span> from a Dirichlet distribution with parameter <span class="math notranslate nohighlight">\(\eta\)</span>.</p></li>
+<li><p>b. For each document <span class="math notranslate nohighlight">\(d\)</span> in time slice <span class="math notranslate nohighlight">\(t\)</span>:</p>
+<ul>
+<li><p>i. Choose a topic distribution <span class="math notranslate nohighlight">\(\theta_{t,d}\)</span> from a Dirichlet distribution with parameter <span class="math notranslate nohighlight">\(α\)</span>.</p></li>
+<li><p>ii. For each word <span class="math notranslate nohighlight">\(w\)</span> in document <span class="math notranslate nohighlight">\(d\)</span>:</p>
+<ol class="arabic simple">
+<li><p>Choose a topic <span class="math notranslate nohighlight">\(z_{t,d,w}\)</span> from the distribution <span class="math notranslate nohighlight">\(\theta_{t,d}\)</span>.</p></li>
+<li><p>Choose a word <span class="math notranslate nohighlight">\(w_{t,d,n}\)</span> from the distribution over words for the chosen topic <span class="math notranslate nohighlight">\(\beta_{t,z_{t,d,w}}\)</span>.</p></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>The main difference between DTM and LDA lies in the choice of <span class="math notranslate nohighlight">\(\beta_{t,k}\)</span>, which models the evolution of topics across time slices. In DTM, the distribution over words for a topic at time <span class="math notranslate nohighlight">\(t\)</span> is influenced by the distribution over words for the same topic at time <span class="math notranslate nohighlight">\(t-1\)</span>.</p>
+</section>
+<section id="id2">
+<h3>Inference<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p>Inference in DTM is more challenging than in LDA due to the temporal dependencies between topics across different time slices. Approximate inference methods, such as variational inference or Markov Chain Monte Carlo (MCMC) sampling, are employed to estimate the model parameters. In particular, a specialized variational inference algorithm, called the Kalman variational inference, has been developed for DTM, which takes advantage of the state-space model structure to improve inference efficiency.</p>
+</section>
+<section id="id3">
+<h3>Applications<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<p>DTM can be applied to various text mining and natural language processing tasks that require the analysis of temporal patterns in documents, such as:</p>
+<ul class="simple">
+<li><p>Temporal topic modeling: Discovering the latent topics and their evolution over time in a document collection.</p></li>
+<li><p>Trend analysis: Identifying emerging or declining trends in a corpus.</p></li>
+<li><p>Document classification: Assigning documents to categories based on their topic distribution and time information.</p></li>
+<li><p>Information retrieval: Improving search results by considering both topic similarity and temporal relevance.</p></li>
+</ul>
+<p>DTM is especially useful when analyzing document collections with a strong temporal component, such as news articles, scientific publications, or social media data, where understanding the dynamics of topics is crucial for accurate analysis and interpretation.</p>
+</section>
 </section>
 <section id="topic-modeling-example-using-nmf-and-svd">
 <h2>Topic Modeling Example using NMF and SVD<a class="headerlink" href="#topic-modeling-example-using-nmf-and-svd" title="Permalink to this heading">#</a></h2>
@@ -997,8 +1091,8 @@ Wall time: 17.8 s
 </div>
 <p>In this part, we define a function <code class="docutils literal notranslate"><span class="pre">show_topics</span></code> to display the top words associated with each topic. We then use this function to display the top topics extracted using SVD. The results match the expected clusters, even though this is an <strong>unsupervised algorithm</strong> - meaning we never provided information about the grouping of our documents during the process.</p>
 </section>
-<section id="id1">
-<h3>Non-negative Matrix Factorization (NMF)<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<section id="id4">
+<h3>Non-negative Matrix Factorization (NMF)<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
 <p>In contrast to constraining our factors to be <em>orthogonal</em> as in SVD, we can constrain them to be <em>non-negative</em>. NMF is a factorization of a non-negative data set <span class="math notranslate nohighlight">\(V\)</span> into non-negative matrices <span class="math notranslate nohighlight">\(W\)</span> and <span class="math notranslate nohighlight">\(H\)</span>: <span class="math notranslate nohighlight">\(V=WH\)</span>. Often, positive factors are <strong>more easily interpretable</strong>, contributing to NMF’s popularity.</p>
 <p>NMF is a non-exact factorization that factors a matrix into one skinny positive matrix and one short positive matrix. It is NP-hard and non-unique, with various versions created by adding different constraints.</p>
 <figure class="align-default" id="fig-nmf-doc">
@@ -1071,8 +1165,8 @@ Wall time: 2.86 s
 </div>
 </section>
 </section>
-<section id="runcated-svd">
-<h3>runcated SVD<a class="headerlink" href="#runcated-svd" title="Permalink to this heading">#</a></h3>
+<section id="truncated-svd">
+<h3>Truncated SVD<a class="headerlink" href="#truncated-svd" title="Permalink to this heading">#</a></h3>
 <p>When we calculated NMF, we saved a lot of time by only calculating the subset of columns we were interested in. We can achieve a similar benefit with SVD by using truncated SVD. Truncated SVD focuses on the vectors corresponding to the <strong>largest</strong> singular values, which can save computation time.</p>
 <section id="shortcomings-of-classical-algorithms-for-decomposition">
 <h4>Shortcomings of classical algorithms for decomposition:<a class="headerlink" href="#shortcomings-of-classical-algorithms-for-decomposition" title="Permalink to this heading">#</a></h4>
@@ -1141,7 +1235,7 @@ Wall time: 5.91 s
 \text{cosine\_similarity}(A, B) = \frac{A \cdot B}{\|A\| \|B\|} = \frac{\sum_{i=1}^n A_iB_i}{\sqrt{\sum_{i=1}^n A_i^2}\sqrt{\sum_{i=1}^n B_i^2}}
 \]</div>
 <figure class="align-default" id="fig-cosine-sim">
-<a class="reference internal image-reference" href="lectures/figs/intro_nlp/topic/1.png"><img alt="lectures/figs/intro_nlp/topic/1.png" src="lectures/figs/intro_nlp/topic/1.png" style="width: 70%;" /></a>
+<a class="reference internal image-reference" href="../../_images/213.png"><img alt="../../_images/213.png" src="../../_images/213.png" style="width: 70%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 44 </span><span class="caption-text">Cosine Similarity Example</span><a class="headerlink" href="#fig-cosine-sim" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1236,17 +1330,29 @@ Wall time: 5.91 s
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilistic-latent-semantic-analysis-plsa">Probabilistic Latent Semantic Analysis (pLSA)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latent-dirichlet-allocation-lda">Latent Dirichlet Allocation (LDA)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#non-negative-matrix-factorization-nmf">Non-negative Matrix Factorization (NMF)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlated-topic-model-ctm">Correlated Topic Model (CTM)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inference">Inference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">Applications</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-topic-models-dtm">Dynamic Topic Models (DTM)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Overview</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Inference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Applications</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topic-modeling-example-using-nmf-and-svd">Topic Modeling Example using NMF and SVD</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-problem">The problem</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation">Motivation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing">Data Processing</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#singular-value-decomposition-svd">Singular Value Decomposition (SVD)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Non-negative Matrix Factorization (NMF)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Non-negative Matrix Factorization (NMF)</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nmf-applications">NMF Applications</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nmf-using-scikit-learn">NMF using scikit-learn</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#runcated-svd">runcated SVD</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#truncated-svd">Truncated SVD</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shortcomings-of-classical-algorithms-for-decomposition">Shortcomings of classical algorithms for decomposition:</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages-of-randomized-algorithms">Advantages of randomized algorithms:</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#timing-comparison">Timing comparison</a></li>
