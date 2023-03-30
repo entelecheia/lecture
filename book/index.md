@@ -16,8 +16,6 @@
 [linkedin-url]: https://www.linkedin.com/in/entelecheia/
 [last-commit-img]: https://img.shields.io/github/last-commit/entelecheia/lecture?label=last%20update
 [last-commit-url]: https://github.com/entelecheia/lecture
-[chrome-web-store-image]: https://img.shields.io/chrome-web-store/v/lfgfgbomindbccgidgalhhndggddpagd
-[chrome-web-store-url]: https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd
 
 ## ἐντελέχεια in Artificial Intelligence
 
