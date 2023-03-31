@@ -8,13 +8,26 @@ MLOps, or Machine Learning Operations, is a related field that applies DevOps pr
 
 Machine learning systems design and MLOps are critical to ensuring the success of machine learning projects, improving the accuracy and efficiency of models, and delivering value to users and customers.
 
-```{figure} ../../tex/mlops/intro/mlops-cycle.png
----
-width: 500px
-name: fig-mlops-cycle
----
-The MLOps cycle.
+```{mermaid}
+graph LR
+A[1. Data Collection] --> B[2. Data Preparation]
+B --> C[3. Feature Selection]
+C --> D[4. Model Training]
+D --> E[5. Model Validation]
+E --> F[6. Model Integration]
+F --> G[7. Monitoring & Maintenance]
+G --> A
+
+style A fill:#f9d5e5
+style B fill:#eeac99
+style C fill:#e06377
+style D fill:#c83349
+style E fill:#5b9aa0
+style F fill:#d6e4aa
+style G fill:#c9a690
 ```
+
+In summary, this chapter covers the following topics:
 
 - Machine learning systems design involves creating and implementing machine learning models and algorithms to solve real-world problems.
 - The design process includes defining software architecture, selecting algorithms, and designing infrastructure to meet specific requirements.
