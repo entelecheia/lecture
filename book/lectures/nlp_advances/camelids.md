@@ -1,13 +1,17 @@
 # Meet the Camelids: A Family of LLMs
 
+```{youtube} saNnrmlET4M
+:width: 100%
+```
+
+Camelids are a remarkable family of mammals that thrive in some of the most inhospitable environments on Earth. While the camel may be the most famous of the group, lesser-known members like the llama, alpaca, vicuña, and guanaco also possess unique characteristics and adaptations that make them equally fascinating.
+
 ```{image} ../figs/nlp_advances/camelids/camelids.png
 :alt: Camelids
 :class: bg-primary mb-1
 :width: 50%
 :align: center
 ```
-
-Camelids are a remarkable family of mammals that thrive in some of the most inhospitable environments on Earth. While the camel may be the most famous of the group, lesser-known members like the llama, alpaca, vicuña, and guanaco also possess unique characteristics and adaptations that make them equally fascinating.
 
 ## Introduction
 
@@ -33,7 +37,7 @@ Alpaca is intended solely for academic research, and commercial use is prohibite
 
 ## VICUÑA
 
-by [he Team with members from UC Berkeley, CMU, Stanford, and UC San Diego](https://vicuna.lmsys.org/)
+by the [team with members from UC Berkeley, CMU, Stanford, and UC San Diego](https://vicuna.lmsys.org/)
 
 Vicuna-13B is an open-source chatbot inspired by Meta's LLaMA and Stanford's Alpaca project. It is fine-tuned on a LLaMA base model using user-shared conversations from ShareGPT.com. The training scripts were enhanced to handle multi-round conversations and long sequences, with training completed in one day using PyTorch FSDP on 8 A100 GPUs. A lightweight distributed serving system was implemented for the demo. To evaluate the model quality, 80 diverse questions were created, and GPT-4 was used to judge the model outputs. Vicuna-13B has demonstrated competitive performance compared to other open-source models like Stanford Alpaca, and an online demo is available for the community to test the chatbot's capabilities.
 
