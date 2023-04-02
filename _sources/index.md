@@ -6,7 +6,7 @@
 [![chrome-web-store-image]][chrome-web-store-url]
 [![last-commit-img]][last-commit-url]
 
-[home-img]: https://img.shields.io/badge/www-entelecheia.me-blue
+[home-img]: https://img.shields.io/badge/home-entelecheia.me-blue
 [home-url]: https://entelecheia.me
 [course-img]: https://img.shields.io/badge/course-entelecheia.ai-blue
 [course-url]: https://course.entelecheia.ai
