@@ -468,7 +468,11 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-head-attention">Multi-head attention</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tranformer-architecture">Tranformer Architecture</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tranformer-architecture">Tranformer Architecture</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoder">Encoder</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decoder">Decoder</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problems-with-the-transformer-architecture">Problems with the Transformer architecture</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-is-not-all-you-need">Attention Is Not All You Need</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#so-why-are-transformers-so-powerful">So why are transformers so powerful?</a></li>
@@ -547,111 +551,90 @@ document.write(`
 <p>In each of these cases, the attention mechanism can identify and focus on the most relevant words in the sentence to provide context and meaning to the central action of “gave”. By doing so, the model can extract essential information and relationships within the sentence in a highly parallelized and efficient manner. This powerful mechanism is at the core of the Transformer architecture, enabling it to excel in various natural language processing tasks, such as machine translation, text summarization, and question answering.</p>
 <section id="how-do-we-implement-this-attention-mechanism">
 <h3>How do we implement this attention mechanism?<a class="headerlink" href="#how-do-we-implement-this-attention-mechanism" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>To understand the computation of attention we can draw parallels to the world of databases.</p></li>
-<li><p>When we do a search in the database we submit a query (Q) and we search among the available data for one or more keys that satisfy the query.</p></li>
-<li><p>The keys are the words in the sentence and the query is the word we want to focus on.</p></li>
-<li><p>The result of the search is the value of the key that satisfies the query.</p></li>
-</ul>
 <figure class="align-default" id="fig-attention-calculate">
 <a class="reference internal image-reference" href="../../_images/attention-calculate.gif"><img alt="../../_images/attention-calculate.gif" src="../../_images/attention-calculate.gif" style="width: 70%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 58 </span><span class="caption-text">Attention mechanism</span><a class="headerlink" href="#fig-attention-calculate" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<ul class="simple">
-<li><p>We begin by looking at the sentence on which to compute attention as a set of vectors.</p></li>
-<li><p>Each word, via a word embedding mechanism, is encoded into a vector K.</p></li>
-<li><p>These vectors are the keys to search for with respect to a query.</p></li>
-<li><p>A query is a vector Q that represents the word we want to focus on.</p></li>
-<li><p>The query could be a word from the same sentence (self-attention) or a word from another sentence (cross-attention).</p></li>
-<li><p>When then compute the similarity between the query Q and each of the available keys K.</p></li>
-<li><p>The similarity is computed by multiplying the query Q by the transpose of the keys K.</p></li>
-<li><p>The result of this operation is a vector of scores that represent the similarity between the query and each of the keys.</p></li>
-<li><p>The scores are then normalized to obtain a probability distribution by applying the softmax function.</p></li>
-<li><p>The result of the softmax function is a vector of probabilities that represent the attention weights.</p></li>
-<li><p>The attention weights are then multiplied by the sentence vector, which is a vector of the same dimension as the keys, where each value represents the word in the sentence.</p></li>
-<li><p>The result of this operation is a vector that represents the context of the word we want to focus on.</p></li>
-<li><p>The context vector C is a vector of the same dimensionality as the keys K, where each element is a weighted sum of the keys K.</p></li>
-<li><p>The context vector C is then passed to a linear layer, which is a fully connected layer, to obtain the final result of the attention mechanism.</p></li>
-</ul>
+<p>To understand and implement the attention mechanism, let’s break it down into a series of steps. We’ll use an analogy with databases to help explain the process more clearly.</p>
+<ol class="arabic simple">
+<li><p><strong>Encoding words as vectors</strong>: First, we represent the sentence as a set of vectors. Each word in the sentence is encoded into a vector using a word embedding mechanism. We’ll call these vectors “keys” (K).</p></li>
+<li><p><strong>Defining the query</strong>: We then define a query (Q) as a vector representing the word we want to focus on. The query can be a word from the same sentence (self-attention) or a word from another sentence (cross-attention).</p></li>
+<li><p><strong>Computing similarity</strong>: We calculate the similarity between the query (Q) and each of the keys (K) in the sentence. This is typically done by computing the dot product between the query vector and the transpose of the key vectors. The result is a vector of scores, with each score representing the similarity between the query and a key.</p></li>
+<li><p><strong>Normalization</strong>: We normalize the scores by applying the softmax function, which converts the scores into a probability distribution. The resulting vector contains the “attention weights” that signify the importance of each word in the sentence with respect to the query.</p></li>
+<li><p><strong>Computing the context</strong>: We multiply the attention weights by the sentence vectors, which are the same dimension as the keys (K). This results in a context vector (C), which is a weighted sum of the words in the sentence, capturing the relevant context for the word we want to focus on.</p></li>
+<li><p><strong>Linear transformation</strong>: Finally, the context vector (C) is passed through a linear layer, which is a fully connected layer, to obtain the final output of the attention mechanism.</p></li>
+</ol>
 <figure class="align-default" id="fig-attention-focus">
 <a class="reference internal image-reference" href="../../_images/attention-focus.jpeg"><img alt="../../_images/attention-focus.jpeg" src="../../_images/attention-focus.jpeg" style="width: 70%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 59 </span><span class="caption-text">Attention implementation</span><a class="headerlink" href="#fig-attention-focus" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<ul class="simple">
-<li><p>Each vector represents a word in the sentence.</p></li>
-<li><p>The word we want to focus on is represented by the vector Q.</p></li>
-<li><p>We then compute the similarity between the vector Q and each of the vectors in the sentence.</p></li>
-<li><p>The similarity is computed by multiplying the vector Q by the vector of each word in the sentence.</p></li>
-<li><p>The result of the multiplication is a scalar value that represents the similarity between the vector Q and the vector of the word in the sentence.</p></li>
-<li><p>The scalar value is then passed through a softmax function, which normalizes the values between 0 and 1.</p></li>
-<li><p>The result of the softmax function is the attention vector.</p></li>
-<li><p>The attention vector is a vector of the same size as the sentence, where each value represents the attention that should be given to each word in the sentence.</p></li>
-<li><p>The attention vector is then multiplied by the sentence vector, which is a vector of the same size as the sentence, where each value represents the word in the sentence.</p></li>
-<li><p>The result of the multiplication is a vector of the same size as the sentence, where each value represents the weighted sum of the words in the sentence.</p></li>
-<li><p>The weighted sum is then passed through a linear layer, which is a fully connected layer, to obtain the final result.</p></li>
-</ul>
+<p>To summarize, the attention mechanism involves encoding words in a sentence as vectors, defining a query vector for the word of interest, calculating the similarity between the query and each word in the sentence, and using the resulting attention weights to compute a context vector that captures the relevant information about the word of focus. This context vector is then transformed by a linear layer to obtain the final output.</p>
+<p>By following these steps, the attention mechanism can selectively focus on different parts of the input sentence to provide the necessary context for understanding and processing the information. This powerful mechanism is at the core of the Transformer architecture and plays a crucial role in its success in various natural language processing tasks.</p>
 </section>
 <section id="multi-head-attention">
 <h3>Multi-head attention<a class="headerlink" href="#multi-head-attention" title="Permalink to this heading">#</a></h3>
-<p>This mechanism would be sufficient if we wanted to focus on a single word. However, we want to focus on from several points of view.</p>
-<ul class="simple">
-<li><p>With a simliar mechanism, we can use multiple keys to focus on different words in the sentence.</p></li>
-<li><p>The results are then concatenated to obtain a single, summarized vector of all the attention mechanisms.</p></li>
-<li><p>This mechanism is called multi-head attention.</p></li>
-</ul>
+<p>The basic attention mechanism described earlier focuses on a single word and its context within a sentence. However, to effectively capture various relationships between words, we need to examine the input from multiple perspectives. This is where the multi-head attention mechanism comes into play.</p>
+<p>Multi-head attention is an extension of the basic attention mechanism that utilizes multiple sets of queries, keys, and values, known as “heads”. Each head has its own set of learnable parameters and is designed to capture different aspects of the relationships between words in the input. By using multiple heads, the model can attend to different parts of the input simultaneously and understand the input more comprehensively.</p>
+<p>Here’s how multi-head attention works:</p>
+<ol class="arabic simple">
+<li><p><strong>Multiple sets of queries, keys, and values</strong>: Instead of using a single set of query, key, and value vectors, we use multiple sets (or “heads”) with their own learnable parameters. Each head focuses on different aspects of the relationships between words in the input.</p></li>
+<li><p><strong>Compute attention for each head</strong>: For each head, we perform the same attention mechanism steps as before, namely, computing similarity scores, normalizing the scores using the softmax function, computing the context vector, and transforming the context vector using a linear layer.</p></li>
+<li><p><strong>Concatenate the results</strong>: Once we have obtained the context vectors for each head, we concatenate these vectors to form a single, combined context vector. This concatenated vector captures information from all the attention heads and provides a more comprehensive understanding of the relationships between words in the input.</p></li>
+<li><p><strong>Final linear transformation</strong>: The concatenated vector is passed through an additional linear layer to produce the final output of the multi-head attention mechanism.</p></li>
+</ol>
 <figure class="align-default" id="fig-attention-multihead">
 <a class="reference internal image-reference" href="../../_images/attention-multihead.jpeg"><img alt="../../_images/attention-multihead.jpeg" src="../../_images/attention-multihead.jpeg" style="width: 70%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 60 </span><span class="caption-text">Multi-head attention</span><a class="headerlink" href="#fig-attention-multihead" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
+<p>In summary, multi-head attention enhances the basic attention mechanism by using multiple heads to focus on different parts of the input simultaneously. This allows the model to capture a more comprehensive understanding of the relationships between words in the input, ultimately improving its performance in various natural language processing tasks.</p>
 </section>
 </section>
 <section id="tranformer-architecture">
 <h2>Tranformer Architecture<a class="headerlink" href="#tranformer-architecture" title="Permalink to this heading">#</a></h2>
-<p>The Transformer architecture is composed of two main components: the encoder and the decoder.</p>
+<p>The Transformer architecture, designed for various natural language processing tasks such as translation, consists of two primary components: the encoder and the decoder. Let’s consider a Transformer model trained to translate a sentence from English to Italian and examine the roles of the encoder and decoder in this process.</p>
 <figure class="align-default" id="fig-attention-architecture">
 <a class="reference internal image-reference" href="lectures/figs/deep_nlp/transformers/attention-architecture.gif"><img alt="lectures/figs/deep_nlp/transformers/attention-architecture.gif" src="lectures/figs/deep_nlp/transformers/attention-architecture.gif" style="width: 70%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 61 </span><span class="caption-text">Transformer architecture</span><a class="headerlink" href="#fig-attention-architecture" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Consider a transformer model that is trained to translate a sentence from English to Italian.</p>
-<ul class="simple">
-<li><p>The encoder is responsible for encoding the input sentence into a vector.</p></li>
-<li><p>The encoder takes as input a sentence in English and returns a vector.</p></li>
-<li><p>Unlike the RNN, the encoder does not need to process the sentence sequentially.</p></li>
-<li><p>Before passing the sentence to the encoder, the sentence is first tokenized into words.</p></li>
-<li><p>Each word is then passed through a word embedding mechanism to obtain a vector.</p></li>
-<li><p>Before proceeding with the attention computation, the vectors are combined with a positional encoding vector.</p></li>
-<li><p>The positional encoding vector is a vector of the same size as the word embedding vector, where each value represents the position of the word in the sentence based on sine and cosine functions.</p></li>
-<li><p>This is important because the order of the words in the sentence is more than relevant and this information is required to understand the meaning of the sentence.</p></li>
-<li><p>The result of the addition is then passed to the multi-head attention mechanism.</p></li>
-<li><p>The result is normalized and passed to a feed-forward neural network.</p></li>
-<li><p>The encoding can be repeated multiple times to obtain a more detailed representation of the sentence.</p></li>
-</ul>
-<ul class="simple">
-<li><p>The decoder is responsible for decoding the vector into a sentence in Italian.</p></li>
-<li><p>The decoder takes as input the output of the encoder and returns a sentence in Italian.</p></li>
-<li><p>Assume that we have already translated the first two words and we want to predict the third word of the sentence in Italian.</p></li>
-<li><p>The decoder takes as input the first two words of the sentence in Italian and the output of the encoder.</p></li>
-<li><p>The positional encoding and multi-head attention mechanisms are applied to the first two words of the sentence in Italian.</p></li>
-<li><p>The result is then concatenated with the output of the encoder.</p></li>
-<li><p>The attention is recalculated on the concatenated vector.</p></li>
-<li><p>The result is normalized and passed to a feed-forward neural network.</p></li>
-<li><p>The result will be a vector of potential candidates for the third word of the sentence in Italian.</p></li>
-<li><p>In the next iteration, the decoder will take as input the first three words of the sentence in Italian and the output of the encoder.</p></li>
-</ul>
+<section id="encoder">
+<h3>Encoder<a class="headerlink" href="#encoder" title="Permalink to this heading">#</a></h3>
+<p>The encoder’s role is to convert the input sentence into a meaningful vector representation. The steps involved are as follows:</p>
+<ol class="arabic simple">
+<li><p><strong>Tokenization</strong>: The input sentence in English is first tokenized into individual words.</p></li>
+<li><p><strong>Word Embedding</strong>: Each word is converted into a vector using a word embedding mechanism.</p></li>
+<li><p><strong>Positional Encoding</strong>: Since the Transformer does not process the sentence sequentially, positional encoding vectors are added to the word embeddings to retain information about the order of the words in the sentence. These vectors are computed using sine and cosine functions and are of the same size as the word embedding vectors.</p></li>
+<li><p><strong>Multi-head Attention</strong>: The combined vectors are passed through the multi-head attention mechanism, which captures the relationships between words in the input sentence.</p></li>
+<li><p><strong>Normalization and Feed-Forward Neural Network</strong>: The output from the attention mechanism is normalized and passed through a feed-forward neural network.</p></li>
+<li><p><strong>Stacking Encoder Layers</strong>: The encoding process can be repeated multiple times, with each layer refining the sentence representation further.</p></li>
+</ol>
+</section>
+<section id="decoder">
+<h3>Decoder<a class="headerlink" href="#decoder" title="Permalink to this heading">#</a></h3>
+<p>The decoder’s responsibility is to transform the encoded vector representation into a translated sentence in the target language, in this case, Italian. The steps involved are:</p>
+<ol class="arabic simple">
+<li><p><strong>Input Preparation</strong>: The decoder takes as input the previously translated words in Italian and the output from the encoder. Initially, the input consists of the first two translated words.</p></li>
+<li><p><strong>Positional Encoding and Multi-head Attention</strong>: The decoder applies positional encoding and multi-head attention mechanisms to the translated words in Italian.</p></li>
+<li><p><strong>Concatenation and Recalculation</strong>: The output from the attention mechanism is concatenated with the output from the encoder, and attention is recalculated on the concatenated vector.</p></li>
+<li><p><strong>Normalization and Feed-Forward Neural Network</strong>: The concatenated vector is normalized and passed through a feed-forward neural network.</p></li>
+<li><p><strong>Predicting Next Word</strong>: The output from the neural network is a vector of potential candidates for the next word in the translated Italian sentence.</p></li>
+<li><p><strong>Iterative Decoding</strong>: In the next iteration, the decoder takes as input the first three translated words in Italian along with the encoder’s output. This process is repeated until the entire translated sentence is generated.</p></li>
+</ol>
+<p>In summary, the Transformer architecture consists of an encoder that converts the input sentence into a vector representation and a decoder that translates the encoded vector into the target language. The model leverages multi-head attention, positional encoding, and feed-forward neural networks to capture and process the relationships between words effectively, resulting in improved performance in various natural language processing tasks.</p>
 <figure class="align-default" id="fig-transformer-best">
 <a class="reference internal image-reference" href="../../_images/transformer-best.jpeg"><img alt="../../_images/transformer-best.jpeg" src="../../_images/transformer-best.jpeg" style="width: 70%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 62 </span><span class="caption-text">Problems with the Transformer architecture</span><a class="headerlink" href="#fig-transformer-best" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
+</section>
 </section>
 <section id="problems-with-the-transformer-architecture">
 <h2>Problems with the Transformer architecture<a class="headerlink" href="#problems-with-the-transformer-architecture" title="Permalink to this heading">#</a></h2>
@@ -964,7 +947,11 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-head-attention">Multi-head attention</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tranformer-architecture">Tranformer Architecture</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tranformer-architecture">Tranformer Architecture</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoder">Encoder</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decoder">Decoder</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problems-with-the-transformer-architecture">Problems with the Transformer architecture</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-is-not-all-you-need">Attention Is Not All You Need</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#so-why-are-transformers-so-powerful">So why are transformers so powerful?</a></li>
