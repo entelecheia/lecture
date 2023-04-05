@@ -638,21 +638,19 @@ document.write(`
 </section>
 <section id="problems-with-the-transformer-architecture">
 <h2>Problems with the Transformer architecture<a class="headerlink" href="#problems-with-the-transformer-architecture" title="Permalink to this heading">#</a></h2>
+<p>The Transformer architecture has revolutionized the field of natural language processing, offering significant improvements in various tasks. However, it also comes with some inherent limitations:</p>
 <figure class="align-default" id="fig-transformer-problem">
 <a class="reference internal image-reference" href="../../_images/transformer-problem.gif"><img alt="../../_images/transformer-problem.gif" src="../../_images/transformer-problem.gif" style="width: 70%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 63 </span><span class="caption-text">Problems with the Transformer architecture</span><a class="headerlink" href="#fig-transformer-problem" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>The Transformer architecture is a very powerful architecture, but it has some problems.</p>
-<ul class="simple">
-<li><p>One of its strengths is also its weakness, the calculation of attention is very expensive.</p></li>
-<li><p>The attention mechanism is very expensive because it requires a lot of computation.</p></li>
-<li><p>In order to calculate the attention of each word with respect to all the others I have to perform <span class="math notranslate nohighlight">\(N^2\)</span> calculations.</p></li>
-<li><p>Graphically you can imagine a matrix that has to be filled with the attention values of each word compared to any other word.</p></li>
-<li><p>Optionally and usually on the decoder, it is possible to calculate the masked attention to avoid the calculation of the attention of a word with respect to the following words.</p></li>
-<li><p>The masked attention is a mechanism that allows you to calculate the attention of a word with respect to the previous words.</p></li>
-</ul>
+<ol class="arabic simple">
+<li><p><strong>Computational Complexity</strong>: One of the main strengths of the Transformer architecture, its attention mechanism, also contributes to its primary weakness: high computational complexity. The attention mechanism requires a significant amount of computation, particularly when dealing with long input sequences.</p></li>
+<li><p><strong>Quadratic Scaling</strong>: In order to compute the attention for each word with respect to all other words, the model needs to perform <span class="math notranslate nohighlight">\(N^2\)</span> calculations, where N is the number of words in the input. This can be visualized as filling a matrix with attention values for each word pair, leading to quadratic scaling in terms of computational complexity.</p></li>
+<li><p><strong>Masked Attention</strong>: To mitigate the computational complexity to some extent, particularly in the decoder, masked attention is sometimes used. Masked attention is a mechanism that calculates the attention of a word only with respect to previous words, excluding the following words in the sequence. While this approach reduces complexity, it still doesn’t fully resolve the issue, especially for very long sequences.</p></li>
+</ol>
+<p>In summary, while the Transformer architecture has significantly advanced the field of natural language processing, it comes with some inherent challenges, particularly in terms of computational complexity and quadratic scaling. Efforts to address these issues are ongoing, with researchers continually exploring new techniques and optimizations to further improve the efficiency and performance of Transformer-based models.</p>
 <figure class="align-default" id="fig-transformer-n2">
 <a class="reference internal image-reference" href="../../_images/transformer-N2.gif"><img alt="../../_images/transformer-N2.gif" src="../../_images/transformer-N2.gif" style="width: 70%;" /></a>
 <figcaption>
@@ -662,29 +660,31 @@ document.write(`
 </section>
 <section id="attention-is-not-all-you-need">
 <h2>Attention Is Not All You Need<a class="headerlink" href="#attention-is-not-all-you-need" title="Permalink to this heading">#</a></h2>
-<p>In March 2021, Google researchers published a paper titled, “Attention Is Not All You Need” <span id="id4">[<a class="reference internal" href="../../about/index.html#id9" title="Yihe Dong, Jean-Baptiste Cordonnier, and Andreas Loukas. Attention is not all you need: pure attention loses rank doubly exponentially with depth. In International Conference on Machine Learning, 2793–2803. PMLR, 2021.">Dong <em>et al.</em>, 2021</a>]</span>.</p>
-<ul class="simple">
-<li><p>The researchers conducted experiments analyzing the behaviour of the self-attention mechanism conducted without any of the other components of the transformers.</p></li>
-<li><p>They found that it converges to a rank 1 matrix with a doubly exponential rate.</p></li>
-<li><p>This means that this mechanism, by itself, is practically useless.</p></li>
-</ul>
+<p>In March 2021, Google researchers published a paper titled “Attention Is Not All You Need” <span id="id4">[<a class="reference internal" href="../../about/index.html#id9" title="Yihe Dong, Jean-Baptiste Cordonnier, and Andreas Loukas. Attention is not all you need: pure attention loses rank doubly exponentially with depth. In International Conference on Machine Learning, 2793–2803. PMLR, 2021.">Dong <em>et al.</em>, 2021</a>]</span>, challenging the prevailing notion that the self-attention mechanism was the sole key to the Transformer’s success.</p>
+<p>In the paper, the researchers conducted experiments specifically analyzing the behavior of the self-attention mechanism in isolation, without incorporating any of the other components that make up the Transformer architecture. They sought to understand the self-attention mechanism’s limitations and how it interacts with the other components of the Transformer model.</p>
+<p>Their findings revealed that, when used in isolation, the self-attention mechanism converges to a rank 1 matrix with a doubly exponential rate. In other words, the self-attention mechanism alone is not sufficient to achieve meaningful results, and it is practically ineffective without the other components of the Transformer architecture.</p>
+<p>The research underscores the importance of considering the interplay of various components within the Transformer model, rather than solely focusing on the attention mechanism. This insight can help guide further development and improvement of Transformer-based models, as researchers continue to explore the optimal balance and combination of different components for various natural language processing tasks.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the context of the paper “Attention Is Not All You Need,” “convergence to a rank 1 matrix” refers to the behavior of the self-attention mechanism when used in isolation. A rank 1 matrix is a matrix whose columns (or rows) can be expressed as a linear combination of a single vector. In other words, all the columns (or rows) of the matrix are essentially scaled versions of the same vector.</p>
+<p>Converging to a rank 1 matrix implies that the self-attention mechanism, when used alone, produces an output that has very limited expressiveness and diversity. Since the information in a rank 1 matrix can be represented by just one vector, it indicates that the self-attention mechanism isn’t capable of capturing complex relationships and patterns in the data by itself.</p>
+<p>The researchers found that combining the self-attention mechanism with other components of the Transformer architecture, like skip connections and MLPs, is essential to achieving the powerful performance that the Transformer model is known for. The combination of these components allows the Transformer to overcome the limitations of the self-attention mechanism and effectively capture complex patterns and dependencies in the input data.</p>
+</div>
 <section id="so-why-are-transformers-so-powerful">
 <h3>So why are transformers so powerful?<a class="headerlink" href="#so-why-are-transformers-so-powerful" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>The researchers found that the self-attention mechanism is not the only component that makes transformers so powerful.</p></li>
-<li><p>It is due to a tug of war between the self-attention mechanism that tends to reduce the rank of the matrix and two other components of transformers, skip connections and MLP.</p></li>
-<li><p>The skip connections allow the model to diversify the distribution of paths avoiding all the same path.</p></li>
-<li><p>This drastically reduces the probability of the model converging to a rank 1 matrix.</p></li>
-<li><p>The MLP instead manages to increase the rank of the matrix due to the non-linearity of the activation function.</p></li>
-<li><p>Therefore, attention is not all you need, but it is necessary to have skip connections and MLP to make transformers powerful.</p></li>
-<li><p>The transformer architecture manages to use the self-attention mechanism to its advantage to achieve impressive results.</p></li>
-</ul>
+<p>The success of the Transformer model is not solely due to the self-attention mechanism, as previously thought. The Google researchers discovered that the power of the Transformer model comes from a combination of components working together:</p>
+<ol class="arabic simple">
+<li><p><strong>Self-attention mechanism</strong>: This component allows the model to focus on different parts of the input, depending on their relevance to the task at hand.</p></li>
+<li><p><strong>Skip connections</strong>: Also known as residual connections, skip connections allow the model to maintain information from earlier layers without losing it in the process. This helps the model diversify the distribution of paths and avoid convergence to a rank 1 matrix, which would make it ineffective.</p></li>
+<li><p><strong>MLP (Multilayer Perceptron)</strong>: The MLP component adds non-linearity to the model due to the activation functions used in its layers. This non-linearity helps increase the rank of the matrix, contributing to the model’s expressive power.</p></li>
+</ol>
 <figure class="align-default" id="fig-transformer-tug-of-war">
 <a class="reference internal image-reference" href="../../_images/transformer-tug-of-war.jpeg"><img alt="../../_images/transformer-tug-of-war.jpeg" src="../../_images/transformer-tug-of-war.jpeg" style="width: 70%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 65 </span><span class="caption-text">Tug of war between the self-attention mechanism and skip connections and MLP</span><a class="headerlink" href="#fig-transformer-tug-of-war" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
+<p>In summary, the true strength of the Transformer model comes from the combined effect of the self-attention mechanism, skip connections, and MLP. These components work together in a delicate balance to make the Transformer architecture highly effective at processing and understanding complex input data, ultimately leading to its impressive performance in various natural language processing tasks.</p>
 </section>
 </section>
 <section id="vision-transformers">
