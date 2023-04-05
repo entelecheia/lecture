@@ -485,6 +485,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformer-in-transformer">Transformer in Transformer</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#timesformers">TimeSformers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multimodal-machine-learning">Multimodal Machine Learning</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vatt-transformers-for-multimodal-self-supervised-learning">VATT: Transformers for Multimodal Self-Supervised Learning</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gato-a-generalist-agent">GATO: A Generalist Agent</a></li>
@@ -599,7 +600,7 @@ document.write(`
 <h2>Tranformer Architecture<a class="headerlink" href="#tranformer-architecture" title="Permalink to this heading">#</a></h2>
 <p>The Transformer architecture, designed for various natural language processing tasks such as translation, consists of two primary components: the encoder and the decoder. Let’s consider a Transformer model trained to translate a sentence from English to Italian and examine the roles of the encoder and decoder in this process.</p>
 <figure class="align-default" id="fig-attention-architecture">
-<a class="reference internal image-reference" href="lectures/figs/deep_nlp/transformers/attention-architecture.gif"><img alt="lectures/figs/deep_nlp/transformers/attention-architecture.gif" src="lectures/figs/deep_nlp/transformers/attention-architecture.gif" style="width: 70%;" /></a>
+<a class="reference internal image-reference" href="../../_images/timesformer-architecture.gif"><img alt="../../_images/timesformer-architecture.gif" src="../../_images/timesformer-architecture.gif" style="width: 70%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 61 </span><span class="caption-text">Transformer architecture</span><a class="headerlink" href="#fig-attention-architecture" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -650,13 +651,13 @@ document.write(`
 <li><p><strong>Quadratic Scaling</strong>: In order to compute the attention for each word with respect to all other words, the model needs to perform <span class="math notranslate nohighlight">\(N^2\)</span> calculations, where N is the number of words in the input. This can be visualized as filling a matrix with attention values for each word pair, leading to quadratic scaling in terms of computational complexity.</p></li>
 <li><p><strong>Masked Attention</strong>: To mitigate the computational complexity to some extent, particularly in the decoder, masked attention is sometimes used. Masked attention is a mechanism that calculates the attention of a word only with respect to previous words, excluding the following words in the sequence. While this approach reduces complexity, it still doesn’t fully resolve the issue, especially for very long sequences.</p></li>
 </ol>
-<p>In summary, while the Transformer architecture has significantly advanced the field of natural language processing, it comes with some inherent challenges, particularly in terms of computational complexity and quadratic scaling. Efforts to address these issues are ongoing, with researchers continually exploring new techniques and optimizations to further improve the efficiency and performance of Transformer-based models.</p>
 <figure class="align-default" id="fig-transformer-n2">
 <a class="reference internal image-reference" href="../../_images/transformer-N2.gif"><img alt="../../_images/transformer-N2.gif" src="../../_images/transformer-N2.gif" style="width: 70%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 64 </span><span class="caption-text">Attention matrix</span><a class="headerlink" href="#fig-transformer-n2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
+<p>In summary, while the Transformer architecture has significantly advanced the field of natural language processing, it comes with some inherent challenges, particularly in terms of computational complexity and quadratic scaling. Efforts to address these issues are ongoing, with researchers continually exploring new techniques and optimizations to further improve the efficiency and performance of Transformer-based models.</p>
 </section>
 <section id="attention-is-not-all-you-need">
 <h2>Attention Is Not All You Need<a class="headerlink" href="#attention-is-not-all-you-need" title="Permalink to this heading">#</a></h2>
@@ -689,39 +690,28 @@ document.write(`
 </section>
 <section id="vision-transformers">
 <h2>Vision Transformers<a class="headerlink" href="#vision-transformers" title="Permalink to this heading">#</a></h2>
-<p>“If Transformers have been found to be so effective in the field of Natural Language Processing, how will they perform with images?”</p>
+<p>The success of Transformers in the field of Natural Language Processing raises the question of whether they can be equally effective in the realm of image processing. In order to explore this possibility, let’s consider an example: a picture of a dog standing in front of a wall.</p>
+<p>When we look at the picture, our attention is naturally drawn to the dog, which is the main subject of the image, while the wall serves as the background. This ability to focus on the dominant subject in the scene is a crucial aspect of understanding and interpreting the image’s content.</p>
+<p>This concept of focusing on the most important parts of the input is similar to what the self-attention mechanism does when applied to sentences in Natural Language Processing tasks. The self-attention mechanism helps the model pay attention to the most relevant words or phrases, depending on the context and the task.</p>
+<p>Applying the self-attention mechanism to images involves the same principle. By focusing on the most important features or regions in the image, the model can effectively extract valuable information, recognize patterns, and understand the content of the image. This approach has led to the development of Vision Transformers, which leverage the power of the Transformer architecture to achieve impressive performance in various computer vision tasks.</p>
 <figure class="align-default" id="fig-vit">
 <a class="reference internal image-reference" href="../../_images/vit.jpeg"><img alt="../../_images/vit.jpeg" src="../../_images/vit.jpeg" style="width: 70%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 66 </span><span class="caption-text">Vision Transformer</span><a class="headerlink" href="#fig-vit" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>If we consider a picture of a dog standing in front of a wall, we can imagine that the dog is the main subject of the picture and the wall is the background.</p>
-<ul class="simple">
-<li><p>This is because we are focusing on the dominant subject of the picture.</p></li>
-<li><p>This is the same concept that we use to understand the meaning of a sentence.</p></li>
-<li><p>This is exactly what the self-attention mechanism applied to images does.</p></li>
-</ul>
 <section id="how-to-input-images-into-a-transformer">
 <h3>How to input images into a transformer?<a class="headerlink" href="#how-to-input-images-into-a-transformer" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>A first solution would be to use all the pixels of the image and pass them to the transformer.</p></li>
-<li><p>This solution is not very efficient because it would require a lot of computation.</p></li>
-<li><p>The calculation of attention has a complexity equal to <span class="math notranslate nohighlight">\(O(N^2)\)</span>, where <span class="math notranslate nohighlight">\(N\)</span> is the number of pixels.</p></li>
-<li><p>This means that the calculation of attention would require <span class="math notranslate nohighlight">\(O(N^4)\)</span> calculations.</p></li>
-<li><p>This is not a viable solution because it would require a lot of computation.</p></li>
-</ul>
 <figure class="align-default" id="fig-vit-pixels">
 <a class="reference internal image-reference" href="../../_images/vit-pixels.gif"><img alt="../../_images/vit-pixels.gif" src="../../_images/vit-pixels.gif" style="width: 70%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 67 </span><span class="caption-text">Vision Transformer with pixels</span><a class="headerlink" href="#fig-vit-pixels" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>The solution is simple.</p>
-<ul class="simple">
-<li><p>The image is divided into patches.</p></li>
-<li><p>Each patch is converted into a vector using a linear projection.</p></li>
-</ul>
+<p>Feeding images into a Transformer requires a method that efficiently handles the high computational complexity associated with image data. One might initially consider using all the image pixels as input to the Transformer, but this approach would not be efficient due to the significant computational resources required.</p>
+<p>The attention calculation in Transformers has a complexity of <span class="math notranslate nohighlight">\(O(N^2)\)</span>, where <span class="math notranslate nohighlight">\(N\)</span> represents the number of pixels. Consequently, the attention calculation would require <span class="math notranslate nohighlight">\(O(N^4)\)</span> operations, which is highly resource-intensive and not a practical solution for processing images, especially those with high resolutions.</p>
+<p>A more feasible approach to input images into a Transformer is to divide the image into smaller patches and convert each patch into a vector. This method greatly reduces the computational complexity while still preserving the necessary information for the model to process.</p>
+<p>By breaking the image down into smaller patches, the Transformer can focus on individual regions, extracting valuable features from each patch. Each patch is then converted into a vector using a linear projection, allowing the Transformer to process the image data more efficiently without compromising its ability to perform various computer vision tasks effectively.</p>
 <figure class="align-default" id="fig-vit-projection">
 <a class="reference internal image-reference" href="../../_images/vit-projection.gif"><img alt="../../_images/vit-projection.gif" src="../../_images/vit-projection.gif" style="width: 70%;" /></a>
 <figcaption>
@@ -731,150 +721,118 @@ document.write(`
 </section>
 <section id="vision-transformer-architecture">
 <h3>Vision Transformer Architecture<a class="headerlink" href="#vision-transformer-architecture" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Vectors obtained from a linear projection are then coupled with positional encoding vectors.</p></li>
-<li><p>The result is then passed to a classic transformer architecture.</p></li>
-<li><p>The result is a vector that represents the image.</p></li>
-<li><p>The vector is then passed to a classifier to obtain the final result.</p></li>
-</ul>
+<p>The Vision Transformer (ViT) architecture is designed to process images effectively by adapting the standard Transformer architecture for computer vision tasks. Here’s a breakdown of the key steps involved in the Vision Transformer architecture:</p>
+<ol class="arabic simple">
+<li><p>The image is divided into patches, and each patch is converted into a vector using a linear projection. These vectors represent the individual regions of the image, capturing essential information from each patch.</p></li>
+<li><p>Positional encoding vectors are added to the patch vectors. This step is crucial for providing the Transformer with information about the spatial positions of the patches within the image, ensuring that the model can understand the relationships between different regions.</p></li>
+<li><p>The combined patch and positional encoding vectors are then passed through a standard Transformer architecture, which is composed of layers of self-attention and feed-forward neural networks. This allows the model to process the image data effectively, learning to recognize patterns and features within the image.</p></li>
+<li><p>The output of the Transformer is a vector that represents the entire image, encapsulating the critical information and relationships between the different regions. This vector is then passed to a classifier, which can be a linear layer, a convolutional neural network, or another appropriate model, to produce the final result. This could be a classification label, an object detection output, or any other desired output for a specific computer vision task.</p></li>
+</ol>
 <figure class="align-default" id="fig-vit-architecture">
 <a class="reference internal image-reference" href="../../_images/vit-architecture.gif"><img alt="../../_images/vit-architecture.gif" src="../../_images/vit-architecture.gif" style="width: 70%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 69 </span><span class="caption-text">Vision Transformer Architecture</span><a class="headerlink" href="#fig-vit-architecture" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
+<p>The Vision Transformer architecture leverages the power of Transformers to tackle various computer vision tasks efficiently and effectively, achieving impressive results in image classification, object detection, and more.</p>
 </section>
 </section>
 <section id="transformer-in-transformer">
 <h2>Transformer in Transformer<a class="headerlink" href="#transformer-in-transformer" title="Permalink to this heading">#</a></h2>
-<p>In the transition from patch to vector, any kind of information about the position of pixels in the patch is lost. Is it possible to find a better way to get the vectors to submit to the transformer?</p>
-<p>The authors of Transformer in Transformer (TnT) <span id="id5">[<a class="reference internal" href="../../about/index.html#id10" title="Kai Han, An Xiao, Enhua Wu, Jianyuan Guo, Chunjing Xu, and Yunhe Wang. Transformer in transformer. Advances in Neural Information Processing Systems, 34:15908–15919, 2021.">Han <em>et al.</em>, 2021</a>]</span> point out because the arrangement of pixels within a portion of the image to be analyzed is certain information we would not want to lose in order to make a quality prediction.</p>
-<ul class="simple">
-<li><p>Their proposal is then to take each individual patch (pxp) of the image, which are themselves images on 3 RGB channels, and transform it into a c-channel tensor.</p></li>
-<li><p>This tensor is then divided into <span class="math notranslate nohighlight">\(p^\prime\)</span> parts with <span class="math notranslate nohighlight">\(p^\prime&lt;p\)</span>, in the example <span class="math notranslate nohighlight">\(p^\prime=4\)</span>.</p></li>
-<li><p>This yields <span class="math notranslate nohighlight">\(p’\)</span> vectors in <span class="math notranslate nohighlight">\(c\)</span> dimensions.</p></li>
-<li><p>These vectors now contain information about the arrangement of pixels within the patch.</p></li>
-<li><p>They are then concatenated and linearly projected in order to make them the same size as the vector obtained from the linear projection of the original patch and combined with it.</p></li>
-<li><p>By doing this the authors have managed to further improve performance on various computer vision tasks.</p></li>
-</ul>
 <figure class="align-default" id="fig-tnt">
 <a class="reference internal image-reference" href="../../_images/tnt.gif"><img alt="../../_images/tnt.gif" src="../../_images/tnt.gif" style="width: 70%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 70 </span><span class="caption-text">Transformer in Transformer</span><a class="headerlink" href="#fig-tnt" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
+<p>The Transformer in Transformer (TnT) architecture <span id="id5">[<a class="reference internal" href="../../about/index.html#id10" title="Kai Han, An Xiao, Enhua Wu, Jianyuan Guo, Chunjing Xu, and Yunhe Wang. Transformer in transformer. Advances in Neural Information Processing Systems, 34:15908–15919, 2021.">Han <em>et al.</em>, 2021</a>]</span> aims to address the issue of losing spatial information within image patches when transforming them into vectors for the standard Vision Transformer. The authors propose an approach that preserves the arrangement of pixels within patches, leading to improved performance on various computer vision tasks. Here’s a step-by-step explanation of the TnT architecture:</p>
+<ol class="arabic simple">
+<li><p>For each individual patch (pxp) of the input image, which consists of 3 RGB channels, the TnT architecture transforms it into a c-channel tensor. This tensor retains the spatial information and arrangement of pixels within the patch.</p></li>
+<li><p>The c-channel tensor is then divided into smaller <span class="math notranslate nohighlight">\(p^\prime\)</span> parts, where <span class="math notranslate nohighlight">\(p^\prime\)</span> is less than <span class="math notranslate nohighlight">\(p\)</span>. For example, if <span class="math notranslate nohighlight">\(p^\prime\)</span> is 4, the tensor is divided into four smaller sections.</p></li>
+<li><p>By dividing the tensor into smaller parts, <span class="math notranslate nohighlight">\(p^\prime\)</span> vectors in <span class="math notranslate nohighlight">\(c\)</span> dimensions are obtained. These vectors now carry information about the arrangement of pixels within the patch, ensuring that important spatial details are preserved.</p></li>
+<li><p>The <span class="math notranslate nohighlight">\(p^\prime\)</span> vectors are concatenated and linearly projected to match the size of the vector obtained from the linear projection of the original patch. This step allows the model to effectively combine the preserved spatial information with the original patch representation.</p></li>
+<li><p>The concatenated and linearly projected vectors are then combined with the original patch vector, forming a more informative representation of the image patch for the Transformer to process.</p></li>
+</ol>
 <figure class="align-default" id="id6">
 <a class="reference internal image-reference" href="../../_images/tnt-architecture.gif"><img alt="../../_images/tnt-architecture.gif" src="../../_images/tnt-architecture.gif" style="width: 70%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 71 </span><span class="caption-text">Transformer in Transformer Architecture</span><a class="headerlink" href="#id6" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
+<p>The Transformer in Transformer architecture enhances the standard Vision Transformer by incorporating crucial spatial information from image patches. As a result, TnT delivers improved performance on a variety of computer vision tasks, such as image classification and object detection.</p>
 </section>
 <section id="timesformers">
 <h2>TimeSformers<a class="headerlink" href="#timesformers" title="Permalink to this heading">#</a></h2>
-<p>In 2021 Facebook researchers tried to apply this architecture to video as well.</p>
-<ul class="simple">
-<li><p>The idea is to divide the video into frames and then apply the same procedure as for images.</p></li>
-<li><p>There is only one small detail that makes them different from Vision Transformers.</p></li>
-<li><p>You have to take into account the temporal dimension of the video besides the spatial dimension.</p></li>
-</ul>
-<p><img alt="" src="lectures/figs/deep_nlp/transformers/timesformer-video.gif" /></p>
-<p>The authors have suggested several new attention mechanisms, from those that focus exclusively on space, used primarily as a reference point, to those that compute attention axially, scattered, or jointly between space and time.</p>
 <figure class="align-default" id="fig-timesformer-architecture">
 <a class="reference internal image-reference" href="../../_images/timesformer-architecture.gif"><img alt="../../_images/timesformer-architecture.gif" src="../../_images/timesformer-architecture.gif" style="width: 70%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 72 </span><span class="caption-text">TimeSformer Architecture</span><a class="headerlink" href="#fig-timesformer-architecture" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
+<p>n 2021, Facebook researchers explored the possibility of applying the Vision Transformer architecture to videos, leading to the development of TimeSformers. The core idea is to divide a video into individual frames and process them using a similar procedure as for images. However, there is an essential distinction between TimeSformers and Vision Transformers: TimeSformers must take into account the temporal dimension of the video in addition to the spatial dimension.</p>
+<p>To address this challenge, the authors proposed several new attention mechanisms. These mechanisms range from focusing exclusively on space (used primarily as a reference point) to computing attention axially, scattered, or jointly between space and time.</p>
+<p>The most effective method, achieving the best results, is called Divided Space-Time Attention. This approach involves selecting a frame at a specific time (t) and one of its patches as a query. The model then computes the spatial attention across the entire frame, followed by calculating the temporal attention within the same patch of the query but in the previous and next frames.</p>
 <figure class="align-default" id="fig-timesformer-attentions">
 <a class="reference internal image-reference" href="../../_images/timesformer-attentions.jpeg"><img alt="../../_images/timesformer-attentions.jpeg" src="../../_images/timesformer-attentions.jpeg" style="width: 70%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 73 </span><span class="caption-text">TimeSformer Attention Mechanisms</span><a class="headerlink" href="#fig-timesformer-attentions" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<ul class="simple">
-<li><p>The method that has achieved the best results is Divided Space-Time Attention.</p></li>
-<li><p>It consists, given a frame at instant t and one of its patches as a query, to compute the spatial attention over the whole frame and then the temporal attention in the same patch of the query but in the previous and next frame.</p></li>
-<li><p>Why does this approach work so well?</p></li>
-<li><p>The reason is that it learns more separate features than other approaches and is, therefore, better able to understand videos from different categories.</p></li>
-</ul>
-<p>We can see this in the following visualization where each video is represented by a point in space and its colour represents the category it belongs to.</p>
+<p>The Divided Space-Time Attention approach works exceptionally well because it learns more distinct features compared to other methods. This capability enables the model to better understand and classify videos from various categories. By incorporating both spatial and temporal dimensions, TimeSformers can effectively process and analyze video data, leading to improved performance on video-related tasks.</p>
+<p>In the following visualization, each video is represented by a point in space, and its color indicates the category it belongs to.</p>
 <figure class="align-default" id="fig-timesformer-divide">
 <a class="reference internal image-reference" href="../../_images/timesformer-divide.jpeg"><img alt="../../_images/timesformer-divide.jpeg" src="../../_images/timesformer-divide.jpeg" style="width: 70%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 74 </span><span class="caption-text">TimeSformer Divide Space-Time Attention</span><a class="headerlink" href="#fig-timesformer-divide" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<ul class="simple">
-<li><p>The authors ound that the higher the resolution the better the accuracy of the model, up to a point.</p></li>
-<li><p>As for the number of frames, again as the number of frames increases, the accuracy also increases.</p></li>
-<li><p>It was not possible to make tests with a higher number of frames than that shown in the graph and therefore potentially the accuracy could still improve.</p></li>
-<li><p>The upper limit of this improvement is not yet known.</p></li>
-</ul>
+<p>The authors discovered that increasing the resolution of the video leads to better model accuracy, up to a certain point. Similarly, they found that as the number of frames in a video increases, the model’s accuracy also improves. However, they were unable to conduct tests with a higher number of frames than what is shown in the graph, so it remains unclear whether the accuracy could continue to improve with even more frames. The upper limit of this potential improvement is still unknown.</p>
+<p>In summary, TimeSformers benefit from higher resolution and a greater number of frames in videos, which contribute to improved accuracy in understanding and classifying video content. However, further research is needed to determine the optimal balance between resolution and frame count for the best possible performance.</p>
 <figure class="align-default" id="fig-timesformer-resolution">
 <a class="reference internal image-reference" href="../../_images/timesformer-resolution.jpeg"><img alt="../../_images/timesformer-resolution.jpeg" src="../../_images/timesformer-resolution.jpeg" style="width: 70%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 75 </span><span class="caption-text">TimeSformer Resolution</span><a class="headerlink" href="#fig-timesformer-resolution" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>In Vision Transformers it is known that a larger training dataset often results in better accuracy. This was also checked by the authors on TimeSformers and again, as the number of training videos considered increases, the accuracy also increases.</p>
+<p>Similar to Vision Transformers, the authors of TimeSformers explored the impact of using larger training datasets on the model’s accuracy. They found that as the number of training videos considered increases, the accuracy of the model also improves. This suggests that TimeSformers, like Vision Transformers, can benefit from larger datasets for better performance.</p>
 <figure class="align-default" id="fig-timesformer-dataset">
 <a class="reference internal image-reference" href="../../_images/timesformer-dataset.jpeg"><img alt="../../_images/timesformer-dataset.jpeg" src="../../_images/timesformer-dataset.jpeg" style="width: 70%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 76 </span><span class="caption-text">TimeSformer Dataset</span><a class="headerlink" href="#fig-timesformer-dataset" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Transformers have just landed in the world of computer vision and seem to be more than determined to replace traditional convolutional networks or at least carve out an important role for themselves in this area.</p>
-<ul class="simple">
-<li><p>Transformers are a powerful architecture that has revolutionized the field of Natural Language Processing.</p></li>
-<li><p>They have been able to achieve impressive results in various tasks.</p></li>
-<li><p>They have also been applied to other areas such as computer vision.</p></li>
-<li><p>The results obtained are very promising and it is likely that they will continue to improve in the future.</p></li>
-</ul>
+<p>In essence, having more training data allows the model to learn a broader range of features and patterns, which in turn helps it to generalize better when encountering new video content. This finding highlights the importance of using large and diverse training datasets to maximize the potential and accuracy of TimeSformers.</p>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+<p>Transformers have recently made their way into the realm of computer vision, showing great potential to either replace traditional convolutional networks or, at the very least, claim a significant role within this domain.</p>
+<p>Originally, transformers gained prominence in the field of Natural Language Processing, where they demonstrated remarkable performance across a variety of tasks. This powerful architecture has since been adapted and applied to computer vision, yielding promising results that suggest their effectiveness will only continue to grow in the future.</p>
+<p>The success of transformers in both NLP and computer vision showcases their versatility and adaptability, indicating that they may play an increasingly important role in the advancement of machine learning techniques across multiple domains.</p>
 </section>
 <section id="multimodal-machine-learning">
 <h2>Multimodal Machine Learning<a class="headerlink" href="#multimodal-machine-learning" title="Permalink to this heading">#</a></h2>
-<p>Having now a single architecture capable of working with different types of data, we can now start to think about how to combine them.</p>
-<ul class="simple">
-<li><p>This is called multimodal machine learning.</p></li>
-<li><p>People are able to combine information from several sources to draw their own inferences.</p></li>
-<li><p>They simultaneously receive data by observing the world around them with their eyes, but also by smelling its scents, listening to its sounds or touching its shapes.</p></li>
-<li><p>This is why we are able to understand the world around us.</p></li>
-<li><p>We can now try to replicate this ability in machines.</p></li>
-<li><p>The problem lies in treating all the different inputs in the same way without losing information.</p></li>
-<li><p>Trnasformers are a good candidate for this task.</p></li>
-<li><p>They are able to process different types of data and combine them in a single architecture.</p></li>
-</ul>
+<p>Multimodal machine learning is an emerging field that aims to develop models capable of processing and combining different types of data, much like how humans are able to draw inferences from various sources of information.</p>
+<p>People can understand the world around them by integrating information gathered through their senses, such as sight, smell, hearing, and touch. This ability to process and synthesize multiple sources of data allows us to make sense of our surroundings.</p>
+<p>The challenge in multimodal machine learning lies in designing models that can treat various inputs consistently and effectively without losing vital information. Transformers, with their proven capability to work with different data types, present a promising solution for this task.</p>
+<p>As a versatile architecture, transformers can process and combine diverse data sources within a single model, paving the way for advancements in multimodal machine learning and the development of more sophisticated AI systems that can better understand and interact with the world around them.</p>
 </section>
 <section id="vatt-transformers-for-multimodal-self-supervised-learning">
 <h2>VATT: Transformers for Multimodal Self-Supervised Learning<a class="headerlink" href="#vatt-transformers-for-multimodal-self-supervised-learning" title="Permalink to this heading">#</a></h2>
-<p>One of the most important applications of Transformers in the field of Multimodal Machine Learning is VATT <span id="id7">[<a class="reference internal" href="../../about/index.html#id11" title="Hassan Akbari, Liangzhe Yuan, Rui Qian, Wei-Hong Chuang, Shih-Fu Chang, Yin Cui, and Boqing Gong. Vatt: transformers for multimodal self-supervised learning from raw video, audio and text. Advances in Neural Information Processing Systems, 34:24206–24221, 2021.">Akbari <em>et al.</em>, 2021</a>]</span>.</p>
+<p>VATT (Visual-Audio Text Transformer) is a significant development in the field of Multimodal Machine Learning <span id="id7">[<a class="reference internal" href="../../about/index.html#id11" title="Hassan Akbari, Liangzhe Yuan, Rui Qian, Wei-Hong Chuang, Shih-Fu Chang, Yin Cui, and Boqing Gong. Vatt: transformers for multimodal self-supervised learning from raw video, audio and text. Advances in Neural Information Processing Systems, 34:24206–24221, 2021.">Akbari <em>et al.</em>, 2021</a>]</span>. This innovative architecture utilizes a single Transformer Encoder to process different types of input data simultaneously, transforming each into a sequence of tokens.</p>
 <figure class="align-default" id="fig-vatt">
 <a class="reference internal image-reference" href="../../_images/vatt.gif"><img alt="../../_images/vatt.gif" src="../../_images/vatt.gif" style="width: 70%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 77 </span><span class="caption-text">VATT Architecture</span><a class="headerlink" href="#fig-vatt" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>The proposed architecture is composed of a single Transformer Encoder on which three distinct forward calls are made.</p>
-<ul class="simple">
-<li><p>One call for each type of input data is always transformed into a sequence of tokens.</p></li>
-<li><p>The transformer takes these sequences as input and returns three distinct sets of features.</p></li>
-<li><p>Then the features are given in input to a contrastive estimation block that calculates a single loss and performs the backward.</p></li>
-<li><p>In this way the loss is the result of the error committed on all the three types of data considered.</p></li>
-<li><p>Therefore the model, between the epochs, will learn to reduce it by managing better the information coming from all the three different sources.</p></li>
-<li><p>VATT represents the culmination of what Multimodal Machine Learning had been trying to achieve for years, a single model that handles completely different types of data together.</p></li>
-</ul>
+<p>During the forward pass, the transformer takes in these sequences and generates three distinct sets of features, one for each type of input data. These features are then fed into a contrastive estimation block, which calculates a single loss and performs the backward pass. As a result, the model learns to minimize the loss by better managing and integrating information from all three data sources.</p>
+<p>VATT embodies the primary goal of Multimodal Machine Learning, which is to develop a unified model capable of handling and processing various data types effectively. This breakthrough has the potential to significantly advance the field and inspire further innovations in the development of multimodal AI systems.</p>
 </section>
 <section id="gato-a-generalist-agent">
 <h2>GATO: A Generalist Agent<a class="headerlink" href="#gato-a-generalist-agent" title="Permalink to this heading">#</a></h2>
-<p>Is it possible to realize a neural network capable of receiving inputs of different types and then being able to perform different tasks?</p>
-<ul class="simple">
-<li><p>This is the question that the authors of GATO <span id="id8">[<a class="reference internal" href="../../about/index.html#id12" title="Scott Reed, Konrad Zolna, Emilio Parisotto, Sergio Gomez Colmenarejo, Alexander Novikov, Gabriel Barth-Maron, Mai Gimenez, Yury Sulsky, Jackie Kay, Jost Tobias Springenberg, and others. A generalist agent. arXiv preprint arXiv:2205.06175, 2022.">Reed <em>et al.</em>, 2022</a>]</span> have tried to answer.</p></li>
-<li><p>GATO is a multi-modal, multi-task, multi-embodiment generalist that represents one of the most impressive achievements in this field today.</p></li>
-<li><p>How does it work?</p></li>
-<li><p>GATO is composed of a single Transformer Encoder that receives as input a sequence of tokens representing the different types of data.</p></li>
-<li><p>Thanks to this unification of inputs and to the Transformer architecture, GATO is able to learn to combine the different types of data and to perform different tasks, achieving an unprecedented level of generalisation.</p></li>
-</ul>
+<p>he concept of creating a neural network that can handle various input types and perform multiple tasks is the driving force behind GATO (Generalist Agent) <span id="id8">[<a class="reference internal" href="../../about/index.html#id12" title="Scott Reed, Konrad Zolna, Emilio Parisotto, Sergio Gomez Colmenarejo, Alexander Novikov, Gabriel Barth-Maron, Mai Gimenez, Yury Sulsky, Jackie Kay, Jost Tobias Springenberg, and others. A generalist agent. arXiv preprint arXiv:2205.06175, 2022.">Reed <em>et al.</em>, 2022</a>]</span>. As one of the most remarkable accomplishments in the field, GATO demonstrates the potential for multi-modal, multi-task, and multi-embodiment learning in a single model.</p>
+<p>GATO operates using a single Transformer Encoder, which processes a sequence of tokens representing different data types. The key to GATO’s success lies in its ability to unify these inputs and leverage the Transformer architecture to learn how to effectively combine diverse data types. As a result, GATO can perform various tasks, achieving an unparalleled degree of generalization.</p>
+<p>In summary, GATO represents a significant advancement in the development of neural networks capable of handling multiple input types and tasks, showcasing the potential for even more sophisticated AI systems in the future.</p>
 <p><img alt="" src="lectures/figs/deep_nlp/transformers/gato.gif" /></p>
 <p><img alt="" src="lectures/figs/deep_nlp/transformers/gato-examples.gif" /></p>
 </section>
@@ -964,6 +922,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformer-in-transformer">Transformer in Transformer</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#timesformers">TimeSformers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multimodal-machine-learning">Multimodal Machine Learning</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vatt-transformers-for-multimodal-self-supervised-learning">VATT: Transformers for Multimodal Self-Supervised Learning</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gato-a-generalist-agent">GATO: A Generalist Agent</a></li>
