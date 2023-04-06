@@ -1,0 +1,793 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Unix Password Managers &#8212; ἐντελέχεια.άι</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../_static/tabs.js"></script>
+    <script src="../../_static/js/hoverxref.js"></script>
+    <script src="../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/chatgpt.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/mlops/pass';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/mlops/pass.html" />
+    <link rel="shortcut icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Data Science for Economics and Finance" href="../ds/index.html" />
+    <link rel="prev" title="Github’s Fork &amp; Pull Workflow" href="github.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+
+  <div class="bd-header-announcement container-fluid bd-header-announcement">
+    <div class="bd-header-announcement__content"><p>
+  <strong>Announcement:</strong>
+  You can install the accompanying AI tutor <a href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd">here</a>.
+</p>
+</div>
+  </div>
+
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">ἐντελέχεια.άι</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nlp_intro/index.html">Introduction to NLP</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/research.html">Research Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/language_models.html">Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/topic_modeling.html">Topic Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/topic_coherence.html">Topic Coherence Measures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/sentiments.html">Sentiment Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/tokenization.html">Tokenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/word_segmentation.html">Word Segmentation and Association</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/vectorization.html">Vector Semantics and Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/word_embeddings.html">Word Embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/ekorpkit.html">Getting started with ekorpkit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/lab1-corpus.html">Lab 1: Preparing Wikipedia Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/lab2-corpus-eda.html">Lab 2: EDA on Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_intro/lab4-tomotopy.html">Lab 4: Topic Modeling Tools- Tomotopy</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nlp_deep/index.html">Deep Learning for NLP</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/llms.html">Large Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/zeroshot.html">Zero Shot and Prompt Engineering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/decoding.html">Decoding and Search Strategies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/transformers.html">Transformers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/rlhf.html">Reinforcement Learning with Human Feedback (RLHF)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/detectGPT.html">How to Spot Machine-Written Texts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/t5.html">T5: Text-To-Text Transfer Transformer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/tokenization.html">Tokenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/sentencepiece.html">SentencePiece Tokenizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/plms.html">Pretrained Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/ekorpkit.html">Getting started with ekorpkit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/lab1-corpus.html">Lab 1: Preparing Wikipedia Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/lab3-train-tokenizers.html">Lab 3: Training Tokenizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_deep/lab4-pretraining-lms.html">Lab 4: Pretraining Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nlp_advances/index.html">Advances in AI and NLP</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_advances/thesis.html">Writing a Thesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_advances/detectGPT.html">DetectGPT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_advances/gpt4.html">GPT-4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_advances/camelids.html">Meet the Camelids: A Family of LLMs</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../aiart/index.html">AI Art (Generative AI)</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/aiart.html">Art and Music in Light of AI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/dalle1.html">DALL·E 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/dalle2.html">DALL·E 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/imagen.html">Imagen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/textual-inversion.html">Textual Inversion (Dreambooth)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/whisper.html">Automatic Speech Recognition (Whisper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/text2music.html">Text to Music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/image2music.html">Image to Music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/robot_drawings.html">Robot Drawing Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aiart/project-themes.html">Project Themes - A Brave New World</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Machine Learning Systems Design</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction to MLOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project.html">MLOps Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="devops.html">DevOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gitops.html">GitOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="devsecops.html">DevSecOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dotfiles.html">Dotfiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth-enc-sign.html">Authentication, Encryption, and Signing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="age-gpg-ssh.html">SSH, GPG, and AGE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="github.html">Github’s Fork &amp; Pull Workflow</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Unix Password Managers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ds/index.html">Data Science for Economics and Finance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../about/lecture-bot.html">LectureBot for ἐντελέχεια.άι</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/lectures/mlops/pass.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Unix Password Managers</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-pass">Installing <code class="docutils literal notranslate"><span class="pre">pass</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-age-and-rage">Installing <code class="docutils literal notranslate"><span class="pre">age</span></code> and <code class="docutils literal notranslate"><span class="pre">rage</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-age-plugin-yubikey">Installing ‘age-plugin-yubikey’</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization">Initialization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initializing-pass">Initializing <code class="docutils literal notranslate"><span class="pre">pass</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initializing-passage">Initializing <code class="docutils literal notranslate"><span class="pre">passage</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-setup">Simple Setup</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-with-password-protected-key">Setup with Password-Protected Key</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-with-age-plugin-yubikey">Setup with age-plugin-yubikey</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-passwords">Adding Passwords</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-passwords">Generating Passwords</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieving-passwords">Retrieving Passwords</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-passwords">Updating Passwords</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differences-between-pass-and-passage">Differences between <code class="docutils literal notranslate"><span class="pre">pass</span></code> and <code class="docutils literal notranslate"><span class="pre">passage</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-features">Additional Features</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integrating-with-fzf">Integrating with fzf</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#migrating-from-pass-to-passage">Migrating from <code class="docutils literal notranslate"><span class="pre">pass</span></code> to <code class="docutils literal notranslate"><span class="pre">passage</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="unix-password-managers">
+<h1>Unix Password Managers<a class="headerlink" href="#unix-password-managers" title="Permalink to this heading">#</a></h1>
+<p><strong><code class="docutils literal notranslate"><span class="pre">pass</span></code> and <code class="docutils literal notranslate"><span class="pre">passage</span></code> - Unix Password Managers</strong></p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">pass</span></code> is a simple yet powerful password manager for Unix-based systems that leverages the robustness and security of GnuPG (GNU Privacy Guard) to encrypt and manage passwords. <code class="docutils literal notranslate"><span class="pre">passage</span></code> is a fork of <code class="docutils literal notranslate"><span class="pre">pass</span></code> that replaces GnuPG with <code class="docutils literal notranslate"><span class="pre">age</span></code> (<a class="reference external" href="https://age-encryption.org">https://age-encryption.org</a>) as its backend encryption tool. This lecture note will introduce both <code class="docutils literal notranslate"><span class="pre">pass</span></code> and ‘passage,’ discuss their installation and usage, provide examples to help you better understand the tools, and explain the differences between them.</p>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h2>
+<section id="installing-pass">
+<h3>Installing <code class="docutils literal notranslate"><span class="pre">pass</span></code><a class="headerlink" href="#installing-pass" title="Permalink to this heading">#</a></h3>
+<p>For Debian/Ubuntu:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>pass
+</pre></div>
+</div>
+<p>For MacOS (with Homebrew):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew<span class="w"> </span>install<span class="w"> </span>pass
+</pre></div>
+</div>
+</section>
+<section id="installing-age-and-rage">
+<h3>Installing <code class="docutils literal notranslate"><span class="pre">age</span></code> and <code class="docutils literal notranslate"><span class="pre">rage</span></code><a class="headerlink" href="#installing-age-and-rage" title="Permalink to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">age</span></code>:</p>
+<div class="highlight-basgh notranslate"><div class="highlight"><pre><span></span>go get -u github.com/FiloSottile/age/cmd/age
+
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">rage</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cargo<span class="w"> </span>install<span class="w"> </span>rage
+</pre></div>
+</div>
+</section>
+<section id="installing-age-plugin-yubikey">
+<h3>Installing ‘age-plugin-yubikey’<a class="headerlink" href="#installing-age-plugin-yubikey" title="Permalink to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cargo<span class="w"> </span>install<span class="w"> </span>age-plugin-yubikey
+</pre></div>
+</div>
+</section>
+</section>
+<section id="initialization">
+<h2>Initialization<a class="headerlink" href="#initialization" title="Permalink to this heading">#</a></h2>
+<section id="initializing-pass">
+<h3>Initializing <code class="docutils literal notranslate"><span class="pre">pass</span></code><a class="headerlink" href="#initializing-pass" title="Permalink to this heading">#</a></h3>
+<p>Create a GPG key (if you do not have one):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gpg<span class="w"> </span>--gen-key
+</pre></div>
+</div>
+<p>Initialize <code class="docutils literal notranslate"><span class="pre">pass</span></code> with the key’s ID:</p>
+<div class="highlight-basg notranslate"><div class="highlight"><pre><span></span>pass init &lt;GPG-key-ID&gt;
+</pre></div>
+</div>
+</section>
+<section id="initializing-passage">
+<h3>Initializing <code class="docutils literal notranslate"><span class="pre">passage</span></code><a class="headerlink" href="#initializing-passage" title="Permalink to this heading">#</a></h3>
+<section id="simple-setup">
+<h4>Simple Setup<a class="headerlink" href="#simple-setup" title="Permalink to this heading">#</a></h4>
+<p>Save the key on disk:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>age-keygen<span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.passage/identities
+</pre></div>
+</div>
+</section>
+<section id="setup-with-password-protected-key">
+<h4>Setup with Password-Protected Key<a class="headerlink" href="#setup-with-password-protected-key" title="Permalink to this heading">#</a></h4>
+<p>Use the identity file password as the primary password to unlock the store:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">KEY</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>age-keygen<span class="k">)</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$KEY</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>age<span class="w"> </span>-p<span class="w"> </span>-a<span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.passage/identities
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$KEY</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>age-keygen<span class="w"> </span>-y<span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.passage/store/.age-recipients
+</pre></div>
+</div>
+</section>
+<section id="setup-with-age-plugin-yubikey">
+<h4>Setup with age-plugin-yubikey<a class="headerlink" href="#setup-with-age-plugin-yubikey" title="Permalink to this heading">#</a></h4>
+<p>Requires age v1.1.0 or rage (<a class="github reference external" href="https://github.com/str4d/rage">str4d/rage</a>), and the PIV plugin age-plugin-yubikey (<a class="github reference external" href="https://github.com/str4d/age-plugin-yubikey">str4d/age-plugin-yubikey</a>). Add more YubiKeys or age keys to the <code class="docutils literal notranslate"><span class="pre">.age-recipients</span></code> file as recovery options.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>bashage-plugin-yubikey # run interactive setup
+age-plugin-yubikey --identity &gt;&gt; $HOME/.passage/identities
+age-plugin-yubikey --list &gt;&gt; $HOME/.passage/store/.age-recipients
+
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">#</a></h2>
+<section id="adding-passwords">
+<h3>Adding Passwords<a class="headerlink" href="#adding-passwords" title="Permalink to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">pass</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pass<span class="w"> </span>insert<span class="w"> </span>&lt;entry-name&gt;
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">passage</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>passage<span class="w"> </span>insert<span class="w"> </span>&lt;entry-name&gt;
+</pre></div>
+</div>
+</section>
+<section id="generating-passwords">
+<h3>Generating Passwords<a class="headerlink" href="#generating-passwords" title="Permalink to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">pass</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pass<span class="w"> </span>generate<span class="w"> </span>&lt;entry-name&gt;<span class="w"> </span>&lt;password-length&gt;
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">passage</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>passage<span class="w"> </span>generate<span class="w"> </span>&lt;entry-name&gt;<span class="w"> </span>&lt;password-length&gt;
+</pre></div>
+</div>
+</section>
+<section id="retrieving-passwords">
+<h3>Retrieving Passwords<a class="headerlink" href="#retrieving-passwords" title="Permalink to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">pass</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pass<span class="w"> </span>show<span class="w"> </span>&lt;entry-name&gt;
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">passage</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>passage<span class="w"> </span>show<span class="w"> </span>&lt;entry-name&gt;
+</pre></div>
+</div>
+</section>
+<section id="updating-passwords">
+<h3>Updating Passwords<a class="headerlink" href="#updating-passwords" title="Permalink to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">pass</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pass<span class="w"> </span>edit<span class="w"> </span>&lt;entry-name&gt;
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">passage</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>passage<span class="w"> </span>edit<span class="w"> </span>&lt;entry-name&gt;
+</pre></div>
+</div>
+<p>4.5. Deleting Passwords</p>
+<p><code class="docutils literal notranslate"><span class="pre">pass</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pass<span class="w"> </span>rm<span class="w"> </span>&lt;entry-name&gt;
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">passage</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>passage<span class="w"> </span>rm<span class="w"> </span>&lt;entry-name&gt;
+</pre></div>
+</div>
+</section>
+</section>
+<section id="differences-between-pass-and-passage">
+<h2>Differences between <code class="docutils literal notranslate"><span class="pre">pass</span></code> and <code class="docutils literal notranslate"><span class="pre">passage</span></code><a class="headerlink" href="#differences-between-pass-and-passage" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Default password store location: <code class="docutils literal notranslate"><span class="pre">$HOME/.passage/store</span></code> for <code class="docutils literal notranslate"><span class="pre">passage</span></code> and <code class="docutils literal notranslate"><span class="pre">$HOME/.password-store</span></code> for <code class="docutils literal notranslate"><span class="pre">pass</span></code>.</p></li>
+<li><p>Encryption backend: <code class="docutils literal notranslate"><span class="pre">passage</span></code> uses <code class="docutils literal notranslate"><span class="pre">age</span></code> encryption, while <code class="docutils literal notranslate"><span class="pre">pass</span></code> uses GnuPG.</p></li>
+<li><p>Decryption: <code class="docutils literal notranslate"><span class="pre">passage</span></code> uses Age identities at <code class="docutils literal notranslate"><span class="pre">$HOME/.passage/identities</span></code> with the <code class="docutils literal notranslate"><span class="pre">-i</span> <span class="pre">age</span></code> CLI option, while <code class="docutils literal notranslate"><span class="pre">pass</span></code> uses GPG keys.</p></li>
+<li><p>Encryption: <code class="docutils literal notranslate"><span class="pre">passage</span></code> uses the nearest <code class="docutils literal notranslate"><span class="pre">.age-recipients</span></code> file with the <code class="docutils literal notranslate"><span class="pre">-R</span> <span class="pre">age</span></code> CLI option or the identities file with the <code class="docutils literal notranslate"><span class="pre">-i</span></code> option. <code class="docutils literal notranslate"><span class="pre">pass</span></code> uses GPG recipient keys.</p></li>
+<li><p>Extensions: Stored in <code class="docutils literal notranslate"><span class="pre">$HOME/.passage/extensions</span></code> for <code class="docutils literal notranslate"><span class="pre">passage</span></code> and <code class="docutils literal notranslate"><span class="pre">$HOME/.password-store/.extensions</span></code> for <code class="docutils literal notranslate"><span class="pre">pass</span></code>. Extensions compatible with both tools can switch on the <code class="docutils literal notranslate"><span class="pre">PASSAGE</span></code> variable.</p></li>
+<li><p>Init command: Not available in ‘passage,’ but present in ‘pass.’</p></li>
+<li><p>Moving/Copying secrets: Always re-encrypts the secret in ‘passage,’ while <code class="docutils literal notranslate"><span class="pre">pass</span></code> keeps the original encryption.</p></li>
+</ul>
+</section>
+<section id="additional-features">
+<h2>Additional Features<a class="headerlink" href="#additional-features" title="Permalink to this heading">#</a></h2>
+<section id="integrating-with-fzf">
+<h3>Integrating with fzf<a class="headerlink" href="#integrating-with-fzf" title="Permalink to this heading">#</a></h3>
+<p>This script invokes <code class="docutils literal notranslate"><span class="pre">passage</span></code> with any (or no) flags and spawns a fuzzy search dialog using fzf (<a class="github reference external" href="https://github.com/junegunn/fzf">junegunn/fzf</a>) for selecting the secret.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>bashCopy code#! /usr/bin/env bash
+set -eou pipefail
+PREFIX=&quot;${PASSAGE_DIR:-$HOME/.passage/store}&quot;
+FZF_DEFAULT_OPTS=&quot;&quot;
+name=&quot;$(find &quot;$PREFIX&quot; -type f -name &#39;*.age&#39; | \
+  sed -e &quot;s|$PREFIX/||&quot; -e &#39;s|\.age$||&#39; | \
+  fzf --height 40% --reverse --no-multi)&quot;
+passage &quot;${@}&quot; &quot;$name&quot;
+
+</pre></div>
+</div>
+</section>
+<section id="migrating-from-pass-to-passage">
+<h3>Migrating from <code class="docutils literal notranslate"><span class="pre">pass</span></code> to <code class="docutils literal notranslate"><span class="pre">passage</span></code><a class="headerlink" href="#migrating-from-pass-to-passage" title="Permalink to this heading">#</a></h3>
+<p>This script migrates your secrets from <code class="docutils literal notranslate"><span class="pre">pass</span></code> to ‘passage.’</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bashCopy</span> <span class="n">code</span><span class="c1">#! /usr/bin/env bash</span>
+<span class="nb">set</span> <span class="o">-</span><span class="n">eou</span> <span class="n">pipefail</span>
+<span class="n">cd</span> <span class="s2">&quot;${PASSWORD_STORE_DIR:-$HOME/.password-store}&quot;</span>
+<span class="k">while</span> <span class="n">read</span> <span class="o">-</span><span class="n">r</span> <span class="o">-</span><span class="n">d</span> <span class="s2">&quot;&quot;</span> <span class="n">passfile</span><span class="p">;</span> <span class="n">do</span>
+  <span class="n">name</span><span class="o">=</span><span class="s2">&quot;${passfile#./}&quot;</span><span class="p">;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;${name%.gpg}&quot;</span>
+  <span class="p">[[</span> <span class="o">-</span><span class="n">f</span> <span class="s2">&quot;${PASSAGE_DIR:-$HOME/.passage/store}/$name.age&quot;</span> <span class="p">]]</span> <span class="o">&amp;&amp;</span> <span class="k">continue</span>
+  <span class="k">pass</span> <span class="s2">&quot;$name&quot;</span> <span class="o">|</span> <span class="n">passage</span> <span class="n">insert</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;$name&quot;</span> <span class="o">||</span> <span class="p">{</span> <span class="n">passage</span> <span class="n">rm</span> <span class="s2">&quot;$name&quot;</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span> <span class="p">}</span>
+<span class="n">done</span> <span class="o">&lt;</span> <span class="o">&lt;</span><span class="p">(</span><span class="n">find</span> <span class="o">.</span> <span class="o">-</span><span class="n">path</span> <span class="s1">&#39;*/.git&#39;</span> <span class="o">-</span><span class="n">prune</span> <span class="o">-</span><span class="n">o</span> <span class="o">-</span><span class="n">iname</span> <span class="s1">&#39;*.gpg&#39;</span> <span class="o">-</span><span class="n">print0</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">pass</span></code> and <code class="docutils literal notranslate"><span class="pre">passage</span></code> are secure password managers for Unix-based systems, with <code class="docutils literal notranslate"><span class="pre">pass</span></code> using GnuPG encryption and <code class="docutils literal notranslate"><span class="pre">passage</span></code> using <code class="docutils literal notranslate"><span class="pre">age</span></code> encryption. By understanding their differences and following the examples provided, you can set up and manage your password store with either tool. The integration with fzf and the migration script from <code class="docutils literal notranslate"><span class="pre">pass</span></code> to <code class="docutils literal notranslate"><span class="pre">passage</span></code> make it easy to transition and enhance your password management experience.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/lecture",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lectures/mlops"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="github.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Github’s Fork &amp; Pull Workflow</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../ds/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Data Science for Economics and Finance</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-pass">Installing <code class="docutils literal notranslate"><span class="pre">pass</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-age-and-rage">Installing <code class="docutils literal notranslate"><span class="pre">age</span></code> and <code class="docutils literal notranslate"><span class="pre">rage</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-age-plugin-yubikey">Installing ‘age-plugin-yubikey’</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization">Initialization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initializing-pass">Initializing <code class="docutils literal notranslate"><span class="pre">pass</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initializing-passage">Initializing <code class="docutils literal notranslate"><span class="pre">passage</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-setup">Simple Setup</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-with-password-protected-key">Setup with Password-Protected Key</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-with-age-plugin-yubikey">Setup with age-plugin-yubikey</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-passwords">Adding Passwords</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-passwords">Generating Passwords</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieving-passwords">Retrieving Passwords</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-passwords">Updating Passwords</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differences-between-pass-and-passage">Differences between <code class="docutils literal notranslate"><span class="pre">pass</span></code> and <code class="docutils literal notranslate"><span class="pre">passage</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-features">Additional Features</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integrating-with-fzf">Integrating with fzf</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#migrating-from-pass-to-passage">Migrating from <code class="docutils literal notranslate"><span class="pre">pass</span></code> to <code class="docutils literal notranslate"><span class="pre">passage</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://entelecheia.me">Young Joon Lee</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
