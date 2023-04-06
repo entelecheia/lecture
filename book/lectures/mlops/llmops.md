@@ -39,15 +39,15 @@ Monitoring and maintaining LLMs in production environments involve tracking perf
 
 The LLMOps landscape can be broadly categorized into:
 
-a. Platforms for fine-tuning, versioning, and deploying LLMs: These platforms handle the infrastructure, making it easier to work with LLMs.
+- a. Platforms for fine-tuning, versioning, and deploying LLMs: These platforms handle the infrastructure, making it easier to work with LLMs.
 
-b. No-code and low-code platforms: Designed specifically for LLMs, these platforms offer high abstraction layers for easy adoption but limited flexibility.
+- b. No-code and low-code platforms: Designed specifically for LLMs, these platforms offer high abstraction layers for easy adoption but limited flexibility.
 
-c. Code-first platforms: Built for custom ML systems, including LLMs, these platforms offer high flexibility and easy access to compute resources for expert users.
+- c. Code-first platforms: Built for custom ML systems, including LLMs, these platforms offer high flexibility and easy access to compute resources for expert users.
 
-d. Frameworks: Tools that standardize interfaces between different LLMs, streamline prompt management, and simplify the development of LLM applications.
+- d. Frameworks: Tools that standardize interfaces between different LLMs, streamline prompt management, and simplify the development of LLM applications.
 
-e. Ancillary tools: These tools focus on specific parts of the workflow, such as testing prompts, incorporating human feedback, or evaluating datasets.
+- e. Ancillary tools: These tools focus on specific parts of the workflow, such as testing prompts, incorporating human feedback, or evaluating datasets.
 
 ## Best Practices for LLMOps
 
