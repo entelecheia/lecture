@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>&lt;no title&gt; &#8212; ἐντελέχεια.άι</title>
+    <title>Docker - Containerization and Management &#8212; ἐντελέχεια.άι</title>
   
   
   
@@ -190,7 +190,7 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../nlp_intro/index.html">Introduction to NLP</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../nlp_intro/intro.html">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nlp_intro/research.html">Research Applications</a></li>
@@ -248,7 +248,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../aiart/project-themes.html">Project Themes - A Brave New World</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="index.html">Machine Learning Systems Design</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Machine Learning Systems Design</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction to MLOps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="project.html">MLOps Project</a></li>
 <li class="toctree-l2"><a class="reference internal" href="devops.html">DevOps</a></li>
@@ -259,6 +259,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="age-gpg-ssh.html">SSH, GPG, and AGE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="github.html">Github’s Fork &amp; Pull Workflow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pass.html">Unix Password Managers</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Docker - Containerization and Management</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../ds/index.html">Data Science for Economics and Finance</a></li>
@@ -404,7 +405,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>Docker - Containerization and Management</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -413,9 +414,46 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-components">Core Components</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-engine">Docker Engine</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-images">Docker Images</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-containers">Docker Containers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfile">Dockerfile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-registry">Docker Registry</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-docker-commands">Basic Docker Commands</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pull-an-image">Pull an Image</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-images">List Images</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-run-a-container">Create and Run a Container</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-containers">List Containers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stop-a-container">Stop a Container</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-a-container">Remove a Container</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-an-image">Remove an Image</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-docker-images-with-dockerfile">Building Docker Images with Dockerfile</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-dockerfile">Create a Dockerfile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-image">Build the Image</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-compose">Docker Compose</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-docker-compose">Install Docker Compose</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-docker-compose-yml-file">Create a <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> File</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#start-services">Start Services</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stop-services">Stop Services</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-volumes">Docker Volumes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-volume">Create a Volume</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-a-volume-in-a-container">Use a Volume in a Container</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
             </nav>
         </div>
     </div>
@@ -426,7 +464,204 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  
+  <section class="tex2jax_ignore mathjax_ignore" id="docker-containerization-and-management">
+<h1>Docker - Containerization and Management<a class="headerlink" href="#docker-containerization-and-management" title="Permalink to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>Docker is an open-source platform that simplifies the process of building, shipping, and running applications by utilizing containerization technology. Containers allow developers to package an application with all its dependencies, libraries, and configuration files, making it easy to deploy and run on any system consistently. This lecture note will provide an overview of Docker, its core components, and basic usage examples to help you understand how Docker can enhance your development workflow.</p>
+</section>
+<section id="core-components">
+<h2>Core Components<a class="headerlink" href="#core-components" title="Permalink to this heading">#</a></h2>
+<section id="docker-engine">
+<h3>Docker Engine<a class="headerlink" href="#docker-engine" title="Permalink to this heading">#</a></h3>
+<p>The Docker Engine is the core component that powers the Docker platform. It is responsible for creating, managing, and orchestrating containers. It consists of a daemon process (dockerd), a REST API, and a command-line interface (CLI).</p>
+</section>
+<section id="docker-images">
+<h3>Docker Images<a class="headerlink" href="#docker-images" title="Permalink to this heading">#</a></h3>
+<p>Docker images are read-only templates containing the application code, dependencies, libraries, and configuration files required to create and run a container. Images are stored in Docker registries and can be pulled to create containers.</p>
+</section>
+<section id="docker-containers">
+<h3>Docker Containers<a class="headerlink" href="#docker-containers" title="Permalink to this heading">#</a></h3>
+<p>A Docker container is a lightweight, standalone, and executable software package created from a Docker image. It includes everything needed to run an application, ensuring consistency across different environments.</p>
+</section>
+<section id="dockerfile">
+<h3>Dockerfile<a class="headerlink" href="#dockerfile" title="Permalink to this heading">#</a></h3>
+<p>A Dockerfile is a script containing instructions to build a Docker image. It specifies the base image, dependencies, configurations, and any other settings necessary to create a custom image tailored to your application.</p>
+</section>
+<section id="docker-registry">
+<h3>Docker Registry<a class="headerlink" href="#docker-registry" title="Permalink to this heading">#</a></h3>
+<p>A Docker registry is a centralized storage location for Docker images. Docker Hub is a public registry maintained by Docker Inc., but you can also create private registries or use third-party solutions.</p>
+</section>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h2>
+<p>Install Docker on your system by following the official installation guide:</p>
+<ul class="simple">
+<li><p>Linux: <a class="reference external" href="https://docs.docker.com/engine/install/">https://docs.docker.com/engine/install/</a></p></li>
+<li><p>MacOS: <a class="reference external" href="https://docs.docker.com/docker-for-mac/install/">https://docs.docker.com/docker-for-mac/install/</a></p></li>
+<li><p>Windows: <a class="reference external" href="https://docs.docker.com/docker-for-windows/install/">https://docs.docker.com/docker-for-windows/install/</a></p></li>
+</ul>
+</section>
+<section id="basic-docker-commands">
+<h2>Basic Docker Commands<a class="headerlink" href="#basic-docker-commands" title="Permalink to this heading">#</a></h2>
+<section id="pull-an-image">
+<h3>Pull an Image<a class="headerlink" href="#pull-an-image" title="Permalink to this heading">#</a></h3>
+<p>Download an image from a registry:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>&lt;image-name&gt;
+</pre></div>
+</div>
+</section>
+<section id="list-images">
+<h3>List Images<a class="headerlink" href="#list-images" title="Permalink to this heading">#</a></h3>
+<p>Display all images available locally:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>images
+</pre></div>
+</div>
+</section>
+<section id="create-and-run-a-container">
+<h3>Create and Run a Container<a class="headerlink" href="#create-and-run-a-container" title="Permalink to this heading">#</a></h3>
+<p>Create a container from an image and start it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--name<span class="w"> </span>&lt;container-name&gt;<span class="w"> </span>&lt;image-name&gt;
+</pre></div>
+</div>
+</section>
+<section id="list-containers">
+<h3>List Containers<a class="headerlink" href="#list-containers" title="Permalink to this heading">#</a></h3>
+<p>List all running containers:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>ps
+</pre></div>
+</div>
+<p>List all containers, including stopped ones:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>ps<span class="w"> </span>-a
+</pre></div>
+</div>
+</section>
+<section id="stop-a-container">
+<h3>Stop a Container<a class="headerlink" href="#stop-a-container" title="Permalink to this heading">#</a></h3>
+<p>Stop a running container:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>stop<span class="w"> </span>&lt;container-name&gt;
+</pre></div>
+</div>
+</section>
+<section id="remove-a-container">
+<h3>Remove a Container<a class="headerlink" href="#remove-a-container" title="Permalink to this heading">#</a></h3>
+<p>Remove a stopped container:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>rm<span class="w"> </span>&lt;container-name&gt;
+</pre></div>
+</div>
+</section>
+<section id="remove-an-image">
+<h3>Remove an Image<a class="headerlink" href="#remove-an-image" title="Permalink to this heading">#</a></h3>
+<p>Remove an unused image:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>rmi<span class="w"> </span>&lt;image-name&gt;
+</pre></div>
+</div>
+</section>
+</section>
+<section id="building-docker-images-with-dockerfile">
+<h2>Building Docker Images with Dockerfile<a class="headerlink" href="#building-docker-images-with-dockerfile" title="Permalink to this heading">#</a></h2>
+<section id="create-a-dockerfile">
+<h3>Create a Dockerfile<a class="headerlink" href="#create-a-dockerfile" title="Permalink to this heading">#</a></h3>
+<p>Create a file named <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> in your project directory, and add instructions based on your application requirements.</p>
+<p>Example Dockerfile:</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Use the official Python base image</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">python:3.8-slim</span>
+
+<span class="c"># Set the working directory</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+
+<span class="c"># Copy requirements file</span>
+<span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
+
+<span class="c"># Install dependencies</span>
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+
+<span class="c"># Copy application code</span>
+<span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+
+<span class="c"># Expose the application port</span>
+<span class="k">EXPOSE</span><span class="w"> </span><span class="s">8080</span>
+
+<span class="c"># Start the application</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;app.py&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="build-the-image">
+<h3>Build the Image<a class="headerlink" href="#build-the-image" title="Permalink to this heading">#</a></h3>
+<p>Build the image from the Dockerfile:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>&lt;image-name&gt;<span class="w"> </span>.
+</pre></div>
+</div>
+</section>
+</section>
+<section id="docker-compose">
+<h2>Docker Compose<a class="headerlink" href="#docker-compose" title="Permalink to this heading">#</a></h2>
+<p>Docker Compose is a tool for defining and running multi-container Docker applications. It allows you to configure your application’s services, networks, and volumes in a single <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file, simplifying the process of managing complex applications with multiple dependencies.</p>
+<section id="install-docker-compose">
+<h3>Install Docker Compose<a class="headerlink" href="#install-docker-compose" title="Permalink to this heading">#</a></h3>
+<p>Follow the official installation guide:</p>
+<ul class="simple">
+<li><p>Linux: <a class="reference external" href="https://docs.docker.com/compose/install/">https://docs.docker.com/compose/install/</a></p></li>
+<li><p>MacOS &amp; Windows: Docker Compose comes pre-installed with Docker Desktop.</p></li>
+</ul>
+</section>
+<section id="create-a-docker-compose-yml-file">
+<h3>Create a <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> File<a class="headerlink" href="#create-a-docker-compose-yml-file" title="Permalink to this heading">#</a></h3>
+<p>Create a <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file in your project directory and define your application’s services, networks, and volumes.</p>
+<p>Example <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.8&quot;</span>
+
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">web</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;8080:8080&quot;</span>
+<span class="w">  </span><span class="nt">redis</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;redis:alpine&quot;</span>
+</pre></div>
+</div>
+<p>In this example, we have two services: <code class="docutils literal notranslate"><span class="pre">web</span></code> and <code class="docutils literal notranslate"><span class="pre">redis</span></code>. The <code class="docutils literal notranslate"><span class="pre">web</span></code> service is built from the current directory, and its port 8080 is mapped to the host’s port 8080. The <code class="docutils literal notranslate"><span class="pre">redis</span></code> service uses the official Redis image from Docker Hub.</p>
+</section>
+<section id="start-services">
+<h3>Start Services<a class="headerlink" href="#start-services" title="Permalink to this heading">#</a></h3>
+<p>Start all services defined in the <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker-compose<span class="w"> </span>up
+</pre></div>
+</div>
+</section>
+<section id="stop-services">
+<h3>Stop Services<a class="headerlink" href="#stop-services" title="Permalink to this heading">#</a></h3>
+<p>Stop all services:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker-compose<span class="w"> </span>down
+</pre></div>
+</div>
+</section>
+</section>
+<section id="docker-volumes">
+<h2>Docker Volumes<a class="headerlink" href="#docker-volumes" title="Permalink to this heading">#</a></h2>
+<p>Docker volumes are used to persist data generated by and used by Docker containers. They allow you to separate your application’s data from the container’s lifecycle, ensuring that your data remains intact even if the container is removed.</p>
+<section id="create-a-volume">
+<h3>Create a Volume<a class="headerlink" href="#create-a-volume" title="Permalink to this heading">#</a></h3>
+<p>Create a new Docker volume:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>volume<span class="w"> </span>create<span class="w"> </span>&lt;volume-name&gt;
+</pre></div>
+</div>
+</section>
+<section id="use-a-volume-in-a-container">
+<h3>Use a Volume in a Container<a class="headerlink" href="#use-a-volume-in-a-container" title="Permalink to this heading">#</a></h3>
+<p>To use a volume in a container, you need to mount it using the <code class="docutils literal notranslate"><span class="pre">-v</span></code> or <code class="docutils literal notranslate"><span class="pre">--mount</span></code> flag:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </span>&lt;volume-name&gt;:/data<span class="w"> </span>&lt;image-name&gt;
+</pre></div>
+</div>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+<p>Docker is a powerful platform that simplifies the process of building, deploying, and managing applications using containerization. Understanding its core components and commands, building custom images with Dockerfiles, managing multi-container applications with Docker Compose, and persisting data with Docker volumes will help you streamline your development workflow and ensure consistent application behavior across different environments.</p>
+</section>
+</section>
+
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
@@ -487,9 +722,46 @@ document.write(`
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-components">Core Components</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-engine">Docker Engine</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-images">Docker Images</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-containers">Docker Containers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfile">Dockerfile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-registry">Docker Registry</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-docker-commands">Basic Docker Commands</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pull-an-image">Pull an Image</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-images">List Images</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-run-a-container">Create and Run a Container</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-containers">List Containers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stop-a-container">Stop a Container</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-a-container">Remove a Container</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-an-image">Remove an Image</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-docker-images-with-dockerfile">Building Docker Images with Dockerfile</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-dockerfile">Create a Dockerfile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-image">Build the Image</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-compose">Docker Compose</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-docker-compose">Install Docker Compose</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-docker-compose-yml-file">Create a <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> File</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#start-services">Start Services</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stop-services">Stop Services</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-volumes">Docker Volumes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-volume">Create a Volume</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-a-volume-in-a-container">Use a Volume in a Container</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
   </nav></div>
 
 </div></div>
