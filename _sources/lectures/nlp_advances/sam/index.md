@@ -185,5 +185,5 @@ Looking forward, a closer integration of pixel-level image understanding and hig
 ## References
 
 - [Segment Everything](https://segment-anything.com)
+- [Segment Everython Paper](https://arxiv.org/pdf/2304.02643.pdf)
 - [Segment Everython GitHub](https://github.com/facebookresearch/segment-anything)
-- [Segment Everython Paer](https://arxiv.org/pdf/2304.02643.pdf)
