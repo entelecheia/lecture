@@ -1,0 +1,957 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>BERT: Bidirectional Encoder Representations from Transformers &#8212; ἐντελέχεια.άι</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/js/hoverxref.js"></script>
+    <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/chatgpt.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_deep/bert/bert';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_deep/bert/bert.html" />
+    <link rel="shortcut icon" href="../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+
+  <div class="bd-header-announcement container-fluid bd-header-announcement">
+    <div class="bd-header-announcement__content"><p>
+  <strong>Announcement:</strong>
+  You can install the accompanying AI tutor <a href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd">here</a>.
+</p>
+</div>
+  </div>
+
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">ἐντελέχεια.άι</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../index.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_intro/index.html">Introduction to NLP</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/research.html">Research Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/language_models.html">Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/topic_modeling.html">Topic Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/topic_coherence.html">Topic Coherence Measures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/sentiments.html">Sentiment Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/tokenization.html">Tokenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/word_segmentation.html">Word Segmentation and Association</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/vectorization.html">Vector Semantics and Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/word_embeddings.html">Word Embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/ekorpkit.html">Getting started with ekorpkit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/lab1-corpus.html">Lab 1: Preparing Wikipedia Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/lab2-corpus-eda.html">Lab 2: EDA on Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/lab4-tomotopy.html">Lab 4: Topic Modeling Tools- Tomotopy</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">Deep Learning for NLP</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../llms.html">Large Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../zeroshot.html">Zero Shot and Prompt Engineering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../decoding.html">Decoding and Search Strategies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../transformers.html">Transformers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rlhf.html">Reinforcement Learning with Human Feedback (RLHF)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../detectGPT.html">How to Spot Machine-Written Texts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../t5.html">T5: Text-To-Text Transfer Transformer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tokenization.html">Tokenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sentencepiece.html">SentencePiece Tokenizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plms.html">Pretrained Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ekorpkit.html">Getting started with ekorpkit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lab1-corpus.html">Lab 1: Preparing Wikipedia Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lab3-train-tokenizers.html">Lab 3: Training Tokenizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lab4-pretraining-lms.html">Lab 4: Pretraining Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_advances/index.html">Advances in AI and NLP</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/thesis.html">Writing a Thesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/detectGPT.html">DetectGPT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/gpt4.html">GPT-4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/camelids.html">Meet the Camelids: A Family of LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/sam/index.html">Segment Everything</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../aiart/index.html">AI Art (Generative AI)</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/aiart.html">Art and Music in Light of AI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/dalle1.html">DALL·E 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/dalle2.html">DALL·E 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/imagen.html">Imagen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/textual-inversion.html">Textual Inversion (Dreambooth)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/whisper.html">Automatic Speech Recognition (Whisper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/text2music.html">Text to Music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/image2music.html">Image to Music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/robot_drawings.html">Robot Drawing Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/project-themes.html">Project Themes - A Brave New World</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../mlops/index.html">Machine Learning Systems Design</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/intro.html">Introduction to MLOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/project.html">MLOps Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/devops.html">DevOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/gitops.html">GitOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/devsecops.html">DevSecOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/llmops.html">LLMOps - Large Language Model Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/dotfiles.html">Dotfiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/auth-enc-sign.html">Authentication, Encryption, and Signing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/age-gpg-ssh.html">SSH, GPG, and AGE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/github.html">Github’s Fork &amp; Pull Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/pass.html">Unix Password Managers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/docker.html">Docker - Containerization and Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/simple-pipeline/index.html">Simple MLOps Pipeline</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ds/index.html">Data Science for Economics and Finance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../about/lecture-bot.html">LectureBot for ἐντελέχεια.άι</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/nlp_deep/bert/bert.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/lectures/nlp_deep/bert/bert.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>BERT: Bidirectional Encoder Representations from Transformers</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-architecture-of-bert">The Architecture of BERT</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-mechanism">Attention Mechanism</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attending-to-language">Attending to language</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-head-attention">Multi-head attention</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-attention">Visualizing Attention</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deconstructing-attention">Deconstructing Attention</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where-do-these-query-and-key-vectors-come-from">Where do these query and key vectors come from?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explaining-berts-attention-patterns">Explaining BERT’s attention patterns</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-bert-actually-learn">What does BERT actually learn?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delimiter-focused-attention-patterns">Delimiter-focused attention patterns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bag-of-words-attention-pattern">Bag of Words attention pattern</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-word-attention-pattern">Next-word attention pattern</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-to-previous-word">Attention to previous word</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-to-identical-related-words-pattern">Attention to identical/related words pattern</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-to-identical-related-words-in-other-sentence">Attention to identical/related words in other sentence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-to-other-words-predictive-of-word">Attention to other words predictive of word</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="bert-bidirectional-encoder-representations-from-transformers">
+<h1>BERT: Bidirectional Encoder Representations from Transformers<a class="headerlink" href="#bert-bidirectional-encoder-representations-from-transformers" title="Permalink to this heading">#</a></h1>
+<p><img alt="bert" src="lectures/nlp_deep/figs/deep_nlp/bert/entelecheia_bert.png" /></p>
+<ul class="simple">
+<li><p>The year 2018 marked a turning point for the field of Natural Language Processing (NLP).</p></li>
+<li><p>The BERT <span id="id1">[<a class="reference internal" href="../../../about/index.html#id15" title="Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. Bert: pre-training of deep bidirectional transformers for language understanding. arXiv preprint arXiv:1810.04805, 2018. URL: https://arxiv.org/abs/1810.04805.">Devlin <em>et al.</em>, 2018</a>]</span> paper introduced a new language representation model that outperformed all previous models on a wide range of NLP tasks.</p></li>
+<li><p>BERT is a deep bidirectional transformer model that is pre-trained on a large corpus of unlabeled text.</p></li>
+<li><p>The model is trained to predict masked words in a sentence and is also trained to predict the next sentence in a sequence of sentences.</p></li>
+<li><p>The pre-trained model can then be fine-tuned on a variety of downstream NLP tasks with state-of-the-art results.</p></li>
+</ul>
+<p>BERT builds on two key ideas:</p>
+<ul class="simple">
+<li><p>The transformer architecture <span id="id2">[<a class="reference internal" href="../../../about/index.html#id5" title="Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez, Łukasz Kaiser, and Illia Polosukhin. Attention is all you need. Advances in neural information processing systems, 2017.">Vaswani <em>et al.</em>, 2017</a>]</span></p></li>
+<li><p>Unsupervised pre-training</p></li>
+</ul>
+<p>BERT is pre-trained on a large corpus of unlabeled text. Its weights are learned by predicting masked words in a sentence and predicting the next sentence in a sequence of sentences.</p>
+<p>BERT is a deep bidirectional transformer model. It is a multi-headed beast with 12(24) layers, 12(16) attention heads, and 110 million parameters. Since model weights are not shared across layers, the total number of different attention weights is 12(24) x 12(16) = 144(384).</p>
+<section id="the-architecture-of-bert">
+<h2>The Architecture of BERT<a class="headerlink" href="#the-architecture-of-bert" title="Permalink to this heading">#</a></h2>
+<p>The core component of BERT is the attention mechanism.</p>
+<p>Attention is a way for a model to assign weights to different parts of the input based on their importance to some task.</p>
+<p>For the sentence <code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">dog</span> <span class="pre">from</span> <span class="pre">down</span> <span class="pre">the</span> <span class="pre">street</span> <span class="pre">ran</span> <span class="pre">up</span> <span class="pre">to</span> <span class="pre">me</span> <span class="pre">and</span> <span class="pre">___</span></code>, to complete the sentence, a model may give more attention to the word <code class="docutils literal notranslate"><span class="pre">dog</span></code> than to the word <code class="docutils literal notranslate"><span class="pre">street</span></code>. Because knowing that the subject of the sentence is a dog is more important than knowing that where the dog is from.</p>
+<section id="attention-mechanism">
+<h3>Attention Mechanism<a class="headerlink" href="#attention-mechanism" title="Permalink to this heading">#</a></h3>
+<p>The attention mechanism is quite simple. It is a function that takes in two inputs: a query and a key. The query is the part of the input that we want to focus on. The key is the part of the input that we want to compare the query to. The output of the attention mechanism is a weighted sum of the values of the key. The weights are computed by a function of the query and the key.</p>
+<p>Suppose you have some sequence of words <span class="math notranslate nohighlight">\(X\)</span>, where each element <span class="math notranslate nohighlight">\(x_i\)</span> is a (refered to as the value) of dimension <span class="math notranslate nohighlight">\(d\)</span>.</p>
+<p>In the following example, <span class="math notranslate nohighlight">\(X\)</span> is a sequence of 3 words, each represented by a 4-dimensional vector.</p>
+<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/sentence_vector.png" /></p>
+<p>Attention is simply a function that takes X as input and returns another sequence Y of the same length as X, composed of vectors of the same dimension as the vectors in X.</p>
+<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/attention_input_output.png" /></p>
+<p>Each vector in Y is computed by taking a weighted average of the vectors in X.</p>
+<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/attention_weighted_average.gif" /></p>
+<p>That is, attention is just a weighted average of the values of the vectors in X. The weights show how much the model <strong>attends</strong> to each vector in X when computing the output vector.</p>
+</section>
+<section id="attending-to-language">
+<h3>Attending to language<a class="headerlink" href="#attending-to-language" title="Permalink to this heading">#</a></h3>
+<p>How does attention work in the context of language?</p>
+<p>Suppose we have a sentence <code class="docutils literal notranslate"><span class="pre">the</span> <span class="pre">dog</span> <span class="pre">ran</span></code>. We can represent this sentence as a sequence of vectors, where each vector is a word embedding.</p>
+<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/word_embedding.png" /></p>
+<p>A word embedding is a vector representation of a word. It is a vector of real numbers. Each element of the vector represents a dimension of the word that captures some aspect of its meaning.</p>
+<p>Those aspects can be semantic, syntactic, or even phonetic. For example, the first element of the vector may represent the semantic meaning of the word, the second element may represent the syntactic meaning of the word, and the third element may represent the phonetic meaning of the word.</p>
+<p>In practice, word embeddings are not interpretable. We don’t know what each element of the vector represents. But we can use them to compute the meaning of a sentence.</p>
+<p>For example, we can perform arithmetic operations on word embeddings. For example, we can compute the vector representation of the word <code class="docutils literal notranslate"><span class="pre">cat</span></code> by adding the vectors of the words <code class="docutils literal notranslate"><span class="pre">kitten</span></code> and <code class="docutils literal notranslate"><span class="pre">dog</span></code> and subtracting the vector of the word <code class="docutils literal notranslate"><span class="pre">puppy</span></code>.</p>
+<div class="math notranslate nohighlight">
+\[\text{cat} - \text{kitten} \approx \text{dog} - \text{puppy}\]</div>
+<p>Attention is also a form of arithmetic operation. Therefore, you can apply attention to word embeddings to compute the meaning of a sentence.</p>
+<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/attention_weighted_average.gif" /></p>
+<p>For example, the embedding of the word <code class="docutils literal notranslate"><span class="pre">dog</span></code> in <span class="math notranslate nohighlight">\(Y\)</span> is computed by taking a weighted average of the embeddings of the words <code class="docutils literal notranslate"><span class="pre">the</span></code>, <code class="docutils literal notranslate"><span class="pre">dog</span></code>, and <code class="docutils literal notranslate"><span class="pre">ran</span></code> in <span class="math notranslate nohighlight">\(X\)</span> with weights of 0.2, 0.7, and 0.1 respectively.</p>
+<p>How does this process help the model to understand the meaning of a sentence?</p>
+<p>To fully understand the meaning of a sentence, we need to know the meaning of each word in the sentence. But we can’t just look at each word in the sentence in isolation. We need to know the context of the word.</p>
+<p>The attention mechanism allows the model to focus on the words that are most important to the meaning of the sentence.</p>
+</section>
+<section id="multi-head-attention">
+<h3>Multi-head attention<a class="headerlink" href="#multi-head-attention" title="Permalink to this heading">#</a></h3>
+<p>BERT learns multiple attention mechanisms, called heads, which operate in parallel. Each head is a different attention mechanism. The output of each head is concatenated and fed into a feed-forward neural network.</p>
+<p>Multi-head attention enables the model to learn broader types of relationships between words in a sentence than a single attention mechanism.</p>
+<p>BERT also stacks multiple layers of multi-head attention. Each layer of multi-head attention takes the output of the previous layer as input. The output of the last layer of multi-head attention is fed into a feed-forward neural network.</p>
+<p>Through this architecture, BERT is able to learn very rich representations of language as it gets to the deeper layers of the network.</p>
+<p>Because the attention heads do not share parameters, each head learns a different type of relationship between words in a sentence.</p>
+</section>
+</section>
+<section id="visualizing-attention">
+<h2>Visualizing Attention<a class="headerlink" href="#visualizing-attention" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %pip install bertviz</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;retina&#39;
+
+<span class="kn">from</span> <span class="nn">bertviz</span> <span class="kn">import</span> <span class="n">model_view</span><span class="p">,</span> <span class="n">head_view</span>
+<span class="kn">from</span> <span class="nn">bertviz.neuron_view</span> <span class="kn">import</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span><span class="p">,</span> <span class="n">utils</span>
+
+<span class="n">utils</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">set_verbosity_error</span><span class="p">()</span>  <span class="c1"># Suppress standard warnings</span>
+
+<span class="n">model_version</span> <span class="o">=</span> <span class="s2">&quot;bert-base-uncased&quot;</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_version</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_version</span><span class="p">,</span> <span class="n">output_attentions</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sentence_a</span> <span class="o">=</span> <span class="s2">&quot;I went to the store.&quot;</span>
+<span class="n">sentence_b</span> <span class="o">=</span> <span class="s2">&quot;At the store, I bought fresh strawberries.&quot;</span>
+
+<span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">sentence_a</span><span class="p">,</span> <span class="n">sentence_b</span><span class="p">],</span>
+    <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+<span class="n">attention</span> <span class="o">=</span> <span class="n">outputs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">tokens</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">convert_ids_to_tokens</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Each cell in the model view shows the attention pattern of a single head. The attention pattern of each head is different. The attention patterns are specific to the input sentence.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># model_view(attention, tokens)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="deconstructing-attention">
+<h2>Deconstructing Attention<a class="headerlink" href="#deconstructing-attention" title="Permalink to this heading">#</a></h2>
+<p>Let’s take a closer look at how attention works.</p>
+<p>Now that we know that attention is a weighted average of the values of the vectors in X, let’s look at how the weights are computed.</p>
+<p>The weights are computed by a function of the query and the key. The query is the part of the input that we want to focus on. The key is the part of the input that we want to compare the query to.</p>
+<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/attention_query_key.png" /></p>
+<p>These vectors can be thought of as a type of word embedding like the value vectors we saw earlier, but constructed specifically for determining the similarity between words.</p>
+<p>The similarity between two words is computed by taking the dot product of the query and key vectors of those words.</p>
+<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/attention_query_key_dot_product.png" /></p>
+<p>To convert the dot product into a probability, we apply a softmax function to the dot product, which normalizes the dot product so that it sums to 1.</p>
+<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/attention_query_key_softmax.png" /></p>
+<p>The softmax values on the right represent the final weights of the attention mechanism.</p>
+<section id="where-do-these-query-and-key-vectors-come-from">
+<h3>Where do these query and key vectors come from?<a class="headerlink" href="#where-do-these-query-and-key-vectors-come-from" title="Permalink to this heading">#</a></h3>
+<p>We now understand that attention weights are computed from query and key vectors. But where do these vectors come from?</p>
+<p>The query and key vectors are computed from the value vectors. The query and key vectors are computed by passing the value vectors through two different linear layers.</p>
+<p>We can visualize how attention weights are computed from query and key vectors using the neuron view.</p>
+<p>This view traces the computation of attention from the selected word on the left to the complete sequence of words on the right. Positive values are colored blue and negative values orange, with color intensity representing magnitude.</p>
+<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/neuron_view.png" /></p>
+<p>Let’s go through the columns in the neuron view one at a time.</p>
+<p><strong>Query q</strong>: the query vector q encodes the word on the left that is paying attention, i.e. the one that is “querying” the other words. In the example above, the query vector for “on” (the selected word) is highlighted.</p>
+<p><strong>Key k</strong>: the key vector k encodes the word on the right to which attention is being paid. The key vector and the query vector together determine a compatibility score between the two words.</p>
+<p><strong>q×k (elementwise)</strong>: the elementwise product between the query vector of the selected word and each of the key vectors. This is a precursor to the dot product (the sum of the elementwise product) and is included for visualization purposes because it shows how individual elements in the query and key vectors contribute to the dot product.</p>
+<p><strong>q·k</strong>: the scaled dot product (see above) of the selected query vector and each of the key vectors. This is the unnormalized attention score.</p>
+<p><strong>Softmax</strong>: the softmax of the scaled dot product. This normalizes the attention scores to be positive and sum to one.</p>
+</section>
+</section>
+<section id="explaining-berts-attention-patterns">
+<h2>Explaining BERT’s attention patterns<a class="headerlink" href="#explaining-berts-attention-patterns" title="Permalink to this heading">#</a></h2>
+<p>Let’s explore the attention patterns of various layers of the BERT (the BERT-Base, uncased version).</p>
+<blockquote>
+<div><p>Sentence A: I went to the store.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Sentence B: At the store, I bought fresh strawberries.</p>
+</div></blockquote>
+<p>BERT uses WordPiece tokenization and inserts special classifier ([CLS]) and separator ([SEP]) tokens, so the actual input sequence is:</p>
+<blockquote>
+<div><p>[CLS] I went to the store . [SEP] At the store , I bought fresh straw ##berries . [SEP]</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bertviz.transformers_neuron_view</span> <span class="kn">import</span> <span class="n">BertModel</span><span class="p">,</span> <span class="n">BertTokenizer</span>
+<span class="kn">from</span> <span class="nn">bertviz.neuron_view</span> <span class="kn">import</span> <span class="n">show</span>
+
+<span class="n">model_type</span> <span class="o">=</span> <span class="s2">&quot;bert&quot;</span>
+<span class="n">do_lower_case</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">neuron_model</span> <span class="o">=</span> <span class="n">BertModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_version</span><span class="p">,</span> <span class="n">output_attentions</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">neuron_tokenizer</span> <span class="o">=</span> <span class="n">BertTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">model_version</span><span class="p">,</span> <span class="n">do_lower_case</span><span class="o">=</span><span class="n">do_lower_case</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show</span><span class="p">(</span>
+    <span class="n">neuron_model</span><span class="p">,</span> <span class="n">model_type</span><span class="p">,</span> <span class="n">neuron_tokenizer</span><span class="p">,</span> <span class="n">sentence_a</span><span class="p">,</span> <span class="n">sentence_b</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">head</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="p">[</span><span class="s2">&quot;I went to the store.&quot;</span><span class="p">,</span> <span class="s2">&quot;At the store, I bought fresh strawberries.&quot;</span><span class="p">],</span>
+    <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+<span class="n">attention</span> <span class="o">=</span> <span class="n">outputs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">tokens</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">convert_ids_to_tokens</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="what-does-bert-actually-learn">
+<h2>What does BERT actually learn?<a class="headerlink" href="#what-does-bert-actually-learn" title="Permalink to this heading">#</a></h2>
+<section id="delimiter-focused-attention-patterns">
+<h3>Delimiter-focused attention patterns<a class="headerlink" href="#delimiter-focused-attention-patterns" title="Permalink to this heading">#</a></h3>
+<p>This pattern serves as a kind of “no-op”; an attention head focuses on the [SEP] tokens when it can’t find anything else to focus on.</p>
+<p>How exactly is BERT able to fixate on the [SEP] tokens? The answer lies in the query and key vectors.</p>
+<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/neuron_view_delimiter.png" /></p>
+<p>In the Key column, the key vectors for the two occurrences of [SEP] carry a distinctive signature: they both have a small number of active neurons with strongly positive (blue) or negative (orange) values, and a larger number of neurons with values close to zero (light blue/orange or white):</p>
+<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/key_vector_sep.png" /></p>
+<p>The query vectors tend to match the [SEP] key vectors along those active neurons, resulting in high values for the elementwise product q×k, as in this example:</p>
+<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/query_key_sep.png" /></p>
+<p>The query vectors for the other words follow a similar pattern: they match the [SEP] key vector along the same set of neurons. Thus it seems that BERT has designated a small set of neurons as “[SEP]-matching neurons,” and the query vectors assigned values that match the [SEP] key vectors at these positions.</p>
+<p>Select layer 6, head 4. In this pattern, attention is directed to the delimiter tokens, [CLS] and [SEP].</p>
+<ul class="simple">
+<li><p>For example, most of the attention is directed to [SEP].</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">head_view</span><span class="p">(</span><span class="n">attention</span><span class="p">,</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">heads</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="bag-of-words-attention-pattern">
+<h3>Bag of Words attention pattern<a class="headerlink" href="#bag-of-words-attention-pattern" title="Permalink to this heading">#</a></h3>
+<p>In this pattern, attention is divided fairly evenly across all words in the same sentence:</p>
+<p>BERT is essentially computing a bag-of-words embedding by taking an (almost) unweighted average of the word embeddings in the same sentence.</p>
+<p>How does BERT finesse the queries and keys to form this attention pattern? Let’s again turn to the neuron view:</p>
+<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/neuron_view_bow.png" /></p>
+<p>In the <span class="math notranslate nohighlight">\(q×k\)</span> column, we see a clear pattern: a small number of neurons (2–4) dominate the calculation of the attention scores. When query and key vector are in the same sentence (the first sentence, in this case), the product shows high values (blue) at these neurons. When query and key vector are in different sentences, the product is strongly negative (orange) at these same positions, as in this example:</p>
+<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/query_key_bow.png" /></p>
+<p>When query and key are both from sentence 1, they tend to have values with the same sign along the active neurons, resulting in a positive product. When the query is from sentence 1, and the key is from sentence 2, the same neurons tend to have values with opposite signs, resulting in a negative product.</p>
+<p>How does BERT know the concept of “sentence”, especially in the first layer of the network before higher-level abstractions are formed? As mentioned earlier, BERT accepts special [SEP] tokens that mark sentence boundaries. Additionally, BERT incorporates sentence-level embeddings that are added to the input layer. The information encoded in these sentence embeddings flows to downstream variables, i.e. queries and keys, and enables them to acquire sentence-specific values.</p>
+<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/sentence_embedding.png" /></p>
+<p>Select layer 0, head 0</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">head_view</span><span class="p">(</span><span class="n">attention</span><span class="p">,</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">heads</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="next-word-attention-pattern">
+<h3>Next-word attention pattern<a class="headerlink" href="#next-word-attention-pattern" title="Permalink to this heading">#</a></h3>
+<p>It makes sense that the model would focus on the next word, because adjacent words are often the most relevant for understanding a word’s meaning in context. Traditional n-gram language models are based on this same intuition.</p>
+<p>Let’s check out the neuron view for this pattern:</p>
+<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/neuron_view_next_word.png" /></p>
+<p>We see that the product of the query vector for “the” and the key vector for “store” (the next word) is strongly positive across most neurons. For tokens other than the next token, the key-query product contains some combination of positive and negative values. The result is a high attention score between “the” and “store”.</p>
+<p>For this attention pattern, a large number of neurons figure into the attention score, and these neurons differ depending on the token position, as illustrated here:</p>
+<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/query_key_next_word.png" /></p>
+<p>This behavior differs from the delimiter-focused and the sentence-focused attention patterns, in which a small, fixed set of neurons determine the attention scores. For those two patterns, only a few neurons are required because the patterns are so simple, and there is little variation in the words that receive attention. In contrast, the next-word attention pattern needs to track which of the 512 words receives attention from a given position, i.e., which is the next word. To do so it needs to generate queries and keys such that each query vector matches with a unique key vector from the 512 possibilities. This would be difficult to accomplish using a small subset of neurons.</p>
+<p><strong>How is BERT able to generate these position-aware queries and keys?</strong></p>
+<ul class="simple">
+<li><p>The answer lies in BERT’s position embeddings, which are added to the word embeddings at the input layer.</p></li>
+<li><p>BERT learns a separate position embedding for each position in the sequence, and adds these to the word embeddings.</p></li>
+<li><p>This position information flows to downstream variables, i.e. queries and keys, and enables them to acquire position-specific values.</p></li>
+</ul>
+<p>Select layer 2, head 0. (The selected head is indicated by the highlighted square in the color bar at the top.) Most of the attention at a particular position is directed to the next token in the sequence.</p>
+<ul class="simple">
+<li><p>If you do not select any token, the visualization shows the attention pattern for all tokens in the sequence.</p></li>
+<li><p>If you select a token, the visualization shows the attention pattern for the selected token.</p></li>
+<li><p>If you select a token <code class="docutils literal notranslate"><span class="pre">i</span></code>, virtually all the attention is directed to the next token <code class="docutils literal notranslate"><span class="pre">went</span></code>.</p></li>
+<li><p>The [SEP] token disrupts the next-token attention pattern, as most of the attention from [SEP] is directed to [CLS] (the first token in the sequence) rather than the next token.</p></li>
+<li><p>This pattern, attention to the next token, appears to work primarily within a sentence.</p></li>
+<li><p>This pattern is related to the idea of a recurrent neural network (RNN) that is trained to predict the next word in a sequence.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">head_view</span><span class="p">(</span><span class="n">attention</span><span class="p">,</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">heads</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="attention-to-previous-word">
+<h3>Attention to previous word<a class="headerlink" href="#attention-to-previous-word" title="Permalink to this heading">#</a></h3>
+<p>Select layer 6, head 11. In this pattern, much of the attention is directed to the previous token in the sequence.</p>
+<ul class="simple">
+<li><p>For example, most of the attention from <code class="docutils literal notranslate"><span class="pre">went</span></code> is directed to the previous token <code class="docutils literal notranslate"><span class="pre">i</span></code>.</p></li>
+<li><p>The pattern is not as distinct as the next-token pattern, but it is still present.</p></li>
+<li><p>Some attention is also dispersed to other tokens in the sequence, especially to the [SEP] token.</p></li>
+<li><p>This pattern is also related to the idea of an RNN, in this case the forward direction of an RNN.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">head_view</span><span class="p">(</span><span class="n">attention</span><span class="p">,</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">heads</span><span class="o">=</span><span class="p">[</span><span class="mi">11</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="attention-to-identical-related-words-pattern">
+<h3>Attention to identical/related words pattern<a class="headerlink" href="#attention-to-identical-related-words-pattern" title="Permalink to this heading">#</a></h3>
+<p>Select layer 2, head 6. In this pattern, much of the attention is directed to identical or related words, including the source word itself.</p>
+<ul class="simple">
+<li><p>For example, most of the attention for the first occurrence of <code class="docutils literal notranslate"><span class="pre">store</span></code> is directed to itself and to the second occurrence of <code class="docutils literal notranslate"><span class="pre">store</span></code>.</p></li>
+<li><p>This pattern is not as distict as some of the other patterns.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">head_view</span><span class="p">(</span><span class="n">attention</span><span class="p">,</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">heads</span><span class="o">=</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="attention-to-identical-related-words-in-other-sentence">
+<h3>Attention to identical/related words in other sentence<a class="headerlink" href="#attention-to-identical-related-words-in-other-sentence" title="Permalink to this heading">#</a></h3>
+<p>Select layer 10, head 10. In this pattern, much of the attention is directed to identical or related words in the other sentence.</p>
+<ul class="simple">
+<li><p>For example, most of the attention of <code class="docutils literal notranslate"><span class="pre">store</span></code> in the second sentence is directed to <code class="docutils literal notranslate"><span class="pre">store</span></code> in the first sentence.</p></li>
+<li><p>This is helpful for the next sentence prediction task, which is one of the pre-training tasks for BERT.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">head_view</span><span class="p">(</span><span class="n">attention</span><span class="p">,</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">heads</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="attention-to-other-words-predictive-of-word">
+<h3>Attention to other words predictive of word<a class="headerlink" href="#attention-to-other-words-predictive-of-word" title="Permalink to this heading">#</a></h3>
+<p>Select layer 2, head 1. In this pattern, attention seems to be directed to other words that are predictive of the source word, excluding the source word itself.</p>
+<ul class="simple">
+<li><p>For example, most of the attention for <code class="docutils literal notranslate"><span class="pre">straw</span></code> is directed to <code class="docutils literal notranslate"><span class="pre">##berries</span></code>, and most of the attention from <code class="docutils literal notranslate"><span class="pre">##berries</span></code> is focused on <code class="docutils literal notranslate"><span class="pre">straw</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">head_view</span><span class="p">(</span><span class="n">attention</span><span class="p">,</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">heads</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://towardsdatascience.com/deconstructing-bert-part-2-visualizing-the-inner-workings-of-attention-60a16d86b5c1">Deconstructing BERT</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/lecture",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lectures/nlp_deep/bert"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-architecture-of-bert">The Architecture of BERT</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-mechanism">Attention Mechanism</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attending-to-language">Attending to language</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-head-attention">Multi-head attention</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-attention">Visualizing Attention</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deconstructing-attention">Deconstructing Attention</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where-do-these-query-and-key-vectors-come-from">Where do these query and key vectors come from?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explaining-berts-attention-patterns">Explaining BERT’s attention patterns</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-bert-actually-learn">What does BERT actually learn?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delimiter-focused-attention-patterns">Delimiter-focused attention patterns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bag-of-words-attention-pattern">Bag of Words attention pattern</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-word-attention-pattern">Next-word attention pattern</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-to-previous-word">Attention to previous word</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-to-identical-related-words-pattern">Attention to identical/related words pattern</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-to-identical-related-words-in-other-sentence">Attention to identical/related words in other sentence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-to-other-words-predictive-of-word">Attention to other words predictive of word</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://entelecheia.me">Young Joon Lee</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
