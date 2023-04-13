@@ -1,4 +1,4 @@
-# Docker - Containerization and Management
+# Containerization - Docker
 
 ## Introduction
 
