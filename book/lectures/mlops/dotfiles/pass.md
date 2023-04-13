@@ -212,7 +212,7 @@ done < <(find . -path '*/.git' -prune -o -iname '*.gpg' -print0)
 
 ## Helper Scripts
 
-There are a few helper scripts that can be used to make `pass` and `passage` more convenient to use. These scripts are instaleed in the process of setting up `dotfiles` and can be found in the `.local/bin` directory.
+There are a few helper scripts that can be used to make `pass` and `passage` more convenient to use. These scripts are installed in the process of setting up `dotfiles` and can be found in the `.local/bin` directory.
 
 ### `pass-clone`
 
