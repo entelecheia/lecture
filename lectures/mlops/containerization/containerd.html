@@ -429,21 +429,27 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-containerd"><strong>1. Overview of containerd</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-components-of-containerd"><strong>2. Key components of containerd</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-containerd"><strong>3. Working with containerd</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-cases-and-scenarios"><strong>4. Use cases and scenarios</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-containerd">1. Overview of containerd</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-components-of-containerd">2. Key components of containerd</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-containerd">3. Working with containerd</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-cases-and-scenarios">4. Use cases and scenarios</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-with-containerd">Getting Started with Containerd</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-containerd"><strong>1. Installing containerd</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-ctr-command-line-tool"><strong>2. Using the <code class="docutils literal notranslate"><span class="pre">ctr</span></code> command-line tool</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-a-simple-container"><strong>3. Running a simple container</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#managing-container-images"><strong>4. Managing container images</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inspecting-container-details"><strong>5. Inspecting container details</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-containerd">1. Installing containerd</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-ctr-command-line-tool">2. Using the <code class="docutils literal notranslate"><span class="pre">ctr</span></code> command-line tool</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-a-simple-container">3. Running a simple container</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#managing-container-images">4. Managing container images</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inspecting-container-details">5. Inspecting container details</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-create-a-container-image">How to create a container image</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-create-a-container-image">How to create a container image</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-buildkit">1. Install BuildKit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-dockerfile">2. Create a Dockerfile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-image-using-buildkit">3. Build the image using BuildKit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-the-image-in-containerd">4. Verify the image in containerd</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-between-containerd-and-kubernetes">Relationship between containerd and Kubernetes</a></li>
 </ul>
             </nav>
@@ -462,7 +468,7 @@ document.write(`
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p><strong>Containerd</strong> is an industry-standard container runtime focused on simplicity, robustness, and portability. It is a core component of the Docker ecosystem and also serves as an independent project under the Cloud Native Computing Foundation (CNCF). The primary goal of containerd is to provide a lightweight, standalone runtime for managing containers.</p>
 <section id="overview-of-containerd">
-<h3><strong>1. Overview of containerd</strong><a class="headerlink" href="#overview-of-containerd" title="Permalink to this heading">#</a></h3>
+<h3>1. Overview of containerd<a class="headerlink" href="#overview-of-containerd" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Minimalist Design</strong>: containerd emphasizes a stripped-down design that focuses on the core functionality of managing containers, such as creating, starting, stopping, and monitoring them.</p></li>
 <li><p><strong>Performance</strong>: containerd is designed for improved performance and reduced footprint compared to Docker, making it suitable for resource-constrained environments and large-scale deployments.</p></li>
@@ -471,7 +477,7 @@ document.write(`
 </ul>
 </section>
 <section id="key-components-of-containerd">
-<h3><strong>2. Key components of containerd</strong><a class="headerlink" href="#key-components-of-containerd" title="Permalink to this heading">#</a></h3>
+<h3>2. Key components of containerd<a class="headerlink" href="#key-components-of-containerd" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>containerd daemon</strong>: The core component of containerd, responsible for managing containers and their life cycles. The daemon communicates with clients via a gRPC API.</p></li>
 <li><p><strong>ctr</strong>: A lightweight command-line interface (CLI) tool for interacting with the containerd daemon, enabling users to manage containers directly.</p></li>
@@ -481,7 +487,7 @@ document.write(`
 </ul>
 </section>
 <section id="working-with-containerd">
-<h3><strong>3. Working with containerd</strong><a class="headerlink" href="#working-with-containerd" title="Permalink to this heading">#</a></h3>
+<h3>3. Working with containerd<a class="headerlink" href="#working-with-containerd" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Installing containerd</strong>: Containerd can be installed on various platforms, such as Linux and Windows, through package managers or by downloading pre-built binaries.</p></li>
 <li><p><strong>Managing containers</strong>: Users can interact with containerd through the <code class="docutils literal notranslate"><span class="pre">ctr</span></code> CLI tool or by directly accessing the containerd API via gRPC.</p></li>
@@ -490,7 +496,7 @@ document.write(`
 </ul>
 </section>
 <section id="use-cases-and-scenarios">
-<h3><strong>4. Use cases and scenarios</strong><a class="headerlink" href="#use-cases-and-scenarios" title="Permalink to this heading">#</a></h3>
+<h3>4. Use cases and scenarios<a class="headerlink" href="#use-cases-and-scenarios" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Edge computing</strong>: containerd’s lightweight design and resource efficiency make it well-suited for edge computing environments with limited resources.</p></li>
 <li><p><strong>Large-scale deployments</strong>: containerd’s focus on performance and simplicity makes it a strong choice for large-scale container deployments where resource utilization and management overhead are critical concerns.</p></li>
@@ -509,7 +515,7 @@ document.write(`
 <li><p>Inspecting container details</p></li>
 </ol>
 <section id="installing-containerd">
-<h3><strong>1. Installing containerd</strong><a class="headerlink" href="#installing-containerd" title="Permalink to this heading">#</a></h3>
+<h3>1. Installing containerd<a class="headerlink" href="#installing-containerd" title="Permalink to this heading">#</a></h3>
 <p><strong>On Ubuntu:</strong></p>
 <p>To install containerd on Ubuntu, run the following commands:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
@@ -531,11 +537,11 @@ sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">en
 </div>
 </section>
 <section id="using-the-ctr-command-line-tool">
-<h3><strong>2. Using the <code class="docutils literal notranslate"><span class="pre">ctr</span></code> command-line tool</strong><a class="headerlink" href="#using-the-ctr-command-line-tool" title="Permalink to this heading">#</a></h3>
+<h3>2. Using the <code class="docutils literal notranslate"><span class="pre">ctr</span></code> command-line tool<a class="headerlink" href="#using-the-ctr-command-line-tool" title="Permalink to this heading">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">ctr</span></code> tool is the primary command-line interface for interacting with containerd. You can use it to manage containers, images, and other resources. To see a list of available commands, run <code class="docutils literal notranslate"><span class="pre">ctr</span> <span class="pre">--help</span></code>.</p>
 </section>
 <section id="running-a-simple-container">
-<h3><strong>3. Running a simple container</strong><a class="headerlink" href="#running-a-simple-container" title="Permalink to this heading">#</a></h3>
+<h3>3. Running a simple container<a class="headerlink" href="#running-a-simple-container" title="Permalink to this heading">#</a></h3>
 <p>In this example, we will run an Nginx container using containerd. First, pull the Nginx image:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>ctr<span class="w"> </span>images<span class="w"> </span>pull<span class="w"> </span>docker.io/library/nginx:latest
 </pre></div>
@@ -554,7 +560,7 @@ sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">en
 </div>
 </section>
 <section id="managing-container-images">
-<h3><strong>4. Managing container images</strong><a class="headerlink" href="#managing-container-images" title="Permalink to this heading">#</a></h3>
+<h3>4. Managing container images<a class="headerlink" href="#managing-container-images" title="Permalink to this heading">#</a></h3>
 <p>containerd supports managing container images from OCI-compliant image registries. You can pull, list, and remove images using the <code class="docutils literal notranslate"><span class="pre">ctr</span></code> tool.</p>
 <ul>
 <li><p><strong>Pulling images</strong>: Use the <code class="docutils literal notranslate"><span class="pre">ctr</span> <span class="pre">images</span> <span class="pre">pull</span></code> command to download container images. For example:</p>
@@ -575,7 +581,7 @@ sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">en
 </ul>
 </section>
 <section id="inspecting-container-details">
-<h3><strong>5. Inspecting container details</strong><a class="headerlink" href="#inspecting-container-details" title="Permalink to this heading">#</a></h3>
+<h3>5. Inspecting container details<a class="headerlink" href="#inspecting-container-details" title="Permalink to this heading">#</a></h3>
 <p>You can inspect various aspects of a running container, such as its configuration, environment variables, and mounts, using the <code class="docutils literal notranslate"><span class="pre">ctr</span></code> tool.</p>
 <ul>
 <li><p><strong>Inspecting container configuration</strong>: To view the configuration of a container, use the following command:</p>
@@ -599,7 +605,8 @@ sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">en
 <section id="how-to-create-a-container-image">
 <h2>How to create a container image<a class="headerlink" href="#how-to-create-a-container-image" title="Permalink to this heading">#</a></h2>
 <p>Creating an image for containerd involves building an OCI (Open Container Initiative) compliant image, which can be used by containerd and other OCI-compliant container runtimes. In this guide, we will walk through the process of creating a container image using BuildKit, an advanced toolkit for building container images that works with containerd.</p>
-<p><strong>1. Install BuildKit</strong></p>
+<section id="install-buildkit">
+<h3>1. Install BuildKit<a class="headerlink" href="#install-buildkit" title="Permalink to this heading">#</a></h3>
 <p>First, we need to install BuildKit. You can find installation instructions for various platforms in the <a class="reference external" href="https://github.com/moby/buildkit">BuildKit repository</a>.</p>
 <p>For Ubuntu, you can install BuildKit using the following commands:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
@@ -611,7 +618,9 @@ sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w
 sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>buildkit
 </pre></div>
 </div>
-<p><strong>2. Create a Dockerfile</strong></p>
+</section>
+<section id="create-a-dockerfile">
+<h3>2. Create a Dockerfile<a class="headerlink" href="#create-a-dockerfile" title="Permalink to this heading">#</a></h3>
 <p>Next, create a <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> that describes the image you want to build. As an example, we will create a simple Alpine-based image that includes the <code class="docutils literal notranslate"><span class="pre">curl</span></code> utility:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FROM</span> <span class="n">alpine</span><span class="p">:</span><span class="n">latest</span>
 <span class="n">RUN</span> <span class="n">apk</span> <span class="n">add</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">cache</span> <span class="n">curl</span>
@@ -619,7 +628,9 @@ sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> <
 </pre></div>
 </div>
 <p>Save this content in a file named <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> in your working directory.</p>
-<p><strong>3. Build the image using BuildKit</strong></p>
+</section>
+<section id="build-the-image-using-buildkit">
+<h3>3. Build the image using BuildKit<a class="headerlink" href="#build-the-image-using-buildkit" title="Permalink to this heading">#</a></h3>
 <p>To build the image using BuildKit, first set the <code class="docutils literal notranslate"><span class="pre">BUILDKIT_HOST</span></code> environment variable to point to the BuildKit daemon:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">BUILDKIT_HOST</span><span class="o">=</span><span class="s2">&quot;unix:///var/run/buildkit/buildkitd.sock&quot;</span>
 </pre></div>
@@ -640,13 +651,16 @@ sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> <
 <li><p><code class="docutils literal notranslate"><span class="pre">--output</span> <span class="pre">type=image,name=my-containerd-image,oci-mediatypes=true,push=false</span></code>: Configures the output as an OCI-compliant image named <code class="docutils literal notranslate"><span class="pre">my-containerd-image</span></code> and disables pushing the image to a registry.</p></li>
 </ul>
 <p>After the build is complete, the image will be available locally in containerd.</p>
-<p><strong>4. Verify the image in containerd</strong></p>
+</section>
+<section id="verify-the-image-in-containerd">
+<h3>4. Verify the image in containerd<a class="headerlink" href="#verify-the-image-in-containerd" title="Permalink to this heading">#</a></h3>
 <p>To verify that the image is available in containerd, use the <code class="docutils literal notranslate"><span class="pre">ctr</span></code> command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>ctr<span class="w"> </span>images<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>my-containerd-image
 </pre></div>
 </div>
 <p>You should see the <code class="docutils literal notranslate"><span class="pre">my-containerd-image</span></code> listed among the available images.</p>
 <p>That’s it! You’ve successfully created an image for containerd using BuildKit. You can now use this image to create and run containers with containerd or any other OCI-compliant container runtime.</p>
+</section>
 </section>
 <section id="relationship-between-containerd-and-kubernetes">
 <h2>Relationship between containerd and Kubernetes<a class="headerlink" href="#relationship-between-containerd-and-kubernetes" title="Permalink to this heading">#</a></h2>
@@ -723,21 +737,27 @@ sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> <
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-containerd"><strong>1. Overview of containerd</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-components-of-containerd"><strong>2. Key components of containerd</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-containerd"><strong>3. Working with containerd</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-cases-and-scenarios"><strong>4. Use cases and scenarios</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-containerd">1. Overview of containerd</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-components-of-containerd">2. Key components of containerd</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-containerd">3. Working with containerd</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-cases-and-scenarios">4. Use cases and scenarios</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-with-containerd">Getting Started with Containerd</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-containerd"><strong>1. Installing containerd</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-ctr-command-line-tool"><strong>2. Using the <code class="docutils literal notranslate"><span class="pre">ctr</span></code> command-line tool</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-a-simple-container"><strong>3. Running a simple container</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#managing-container-images"><strong>4. Managing container images</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inspecting-container-details"><strong>5. Inspecting container details</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-containerd">1. Installing containerd</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-ctr-command-line-tool">2. Using the <code class="docutils literal notranslate"><span class="pre">ctr</span></code> command-line tool</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-a-simple-container">3. Running a simple container</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#managing-container-images">4. Managing container images</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inspecting-container-details">5. Inspecting container details</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-create-a-container-image">How to create a container image</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-create-a-container-image">How to create a container image</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-buildkit">1. Install BuildKit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-dockerfile">2. Create a Dockerfile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-image-using-buildkit">3. Build the image using BuildKit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-the-image-in-containerd">4. Verify the image in containerd</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-between-containerd-and-kubernetes">Relationship between containerd and Kubernetes</a></li>
 </ul>
   </nav></div>
