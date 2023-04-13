@@ -1,0 +1,795 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>containerd &#8212; ἐντελέχεια.άι</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/js/hoverxref.js"></script>
+    <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/chatgpt.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/mlops/containerization/containerd';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/mlops/containerization/containerd.html" />
+    <link rel="shortcut icon" href="../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Simple MLOps Pipeline" href="../simple-pipeline/index.html" />
+    <link rel="prev" title="Containerization - Docker and containerd" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+
+  <div class="bd-header-announcement container-fluid bd-header-announcement">
+    <div class="bd-header-announcement__content"><p>
+  <strong>Announcement:</strong>
+  You can install the accompanying AI tutor <a href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd">here</a>.
+</p>
+</div>
+  </div>
+
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">ἐντελέχεια.άι</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../index.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_intro/index.html">Introduction to NLP</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/research.html">Research Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/language_models.html">Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/topic_modeling.html">Topic Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/topic_coherence.html">Topic Coherence Measures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/sentiments.html">Sentiment Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/tokenization.html">Tokenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/word_segmentation.html">Word Segmentation and Association</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/vectorization.html">Vector Semantics and Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/word_embeddings.html">Word Embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/ekorpkit.html">Getting started with ekorpkit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/lab1-corpus.html">Lab 1: Preparing Wikipedia Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/lab2-corpus-eda.html">Lab 2: EDA on Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/lab4-tomotopy.html">Lab 4: Topic Modeling Tools- Tomotopy</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_deep/index.html">Deep Learning for NLP</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/llms.html">Large Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/zeroshot.html">Zero Shot and Prompt Engineering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/decoding.html">Decoding and Search Strategies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/transformers.html">Transformers</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/bert/index.html">BERT: Bidirectional Encoder Representations from Transformers</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/bert/bertviz.html">BERT: Visualizing Attention</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/t5.html">T5: Text-To-Text Transfer Transformer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/tokenization.html">Tokenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/sentencepiece.html">SentencePiece Tokenizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/plms.html">Pretrained Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/rlhf.html">Reinforcement Learning with Human Feedback (RLHF)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/detectGPT.html">How to Spot Machine-Written Texts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/ekorpkit.html">Getting started with ekorpkit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/lab1-corpus.html">Lab 1: Preparing Wikipedia Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/lab3-train-tokenizers.html">Lab 3: Training Tokenizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/lab4-pretraining-lms.html">Lab 4: Pretraining Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_advances/index.html">Advances in AI and NLP</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/thesis.html">Writing a Thesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/detectGPT.html">DetectGPT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/gpt4.html">GPT-4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/camelids.html">Meet the Camelids: A Family of LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/sam/index.html">Segment Everything</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../aiart/index.html">AI Art (Generative AI)</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/aiart.html">Art and Music in Light of AI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/dalle1.html">DALL·E 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/dalle2.html">DALL·E 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/imagen.html">Imagen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/textual-inversion.html">Textual Inversion (Dreambooth)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/whisper.html">Automatic Speech Recognition (Whisper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/text2music.html">Text to Music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/image2music.html">Image to Music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/robot_drawings.html">Robot Drawing Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/project-themes.html">Project Themes - A Brave New World</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Machine Learning Systems Design</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../intro.html">Introduction to MLOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../project.html">MLOps Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devops.html">DevOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gitops.html">GitOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devsecops.html">DevSecOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../llmops.html">LLMOps - Large Language Model Operations</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../dotfiles/index.html">Dotfiles</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dotfiles/age-gpg-ssh.html">SSH, GPG, and AGE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dotfiles/pass.html">Unix Password Managers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dotfiles/dotdrop.html">Dotdrop: A Powerful Tool for Managing Dotfiles</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../auth-enc-sign.html">Authentication, Encryption, and Signing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../github.html">Github’s Fork &amp; Pull Workflow</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Containerization - Docker and containerd</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">containerd</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../simple-pipeline/index.html">Simple MLOps Pipeline</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ds/index.html">Data Science for Economics and Finance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../about/lecture-bot.html">LectureBot for ἐντελέχεια.άι</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/lectures/mlops/containerization/containerd.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>containerd</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-containerd"><strong>1. Overview of containerd</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-components-of-containerd"><strong>2. Key components of containerd</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-containerd"><strong>3. Working with containerd</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-cases-and-scenarios"><strong>4. Use cases and scenarios</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-with-containerd">Getting Started with Containerd</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-containerd"><strong>1. Installing containerd</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-ctr-command-line-tool"><strong>2. Using the <code class="docutils literal notranslate"><span class="pre">ctr</span></code> command-line tool</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-a-simple-container"><strong>3. Running a simple container</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#managing-container-images"><strong>4. Managing container images</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inspecting-container-details"><strong>5. Inspecting container details</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-create-a-container-image">How to create a container image</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-between-containerd-and-kubernetes">Relationship between containerd and Kubernetes</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="containerd">
+<h1><code class="docutils literal notranslate"><span class="pre">containerd</span></code><a class="headerlink" href="#containerd" title="Permalink to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p><strong>Containerd</strong> is an industry-standard container runtime focused on simplicity, robustness, and portability. It is a core component of the Docker ecosystem and also serves as an independent project under the Cloud Native Computing Foundation (CNCF). The primary goal of containerd is to provide a lightweight, standalone runtime for managing containers.</p>
+<section id="overview-of-containerd">
+<h3><strong>1. Overview of containerd</strong><a class="headerlink" href="#overview-of-containerd" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Minimalist Design</strong>: containerd emphasizes a stripped-down design that focuses on the core functionality of managing containers, such as creating, starting, stopping, and monitoring them.</p></li>
+<li><p><strong>Performance</strong>: containerd is designed for improved performance and reduced footprint compared to Docker, making it suitable for resource-constrained environments and large-scale deployments.</p></li>
+<li><p><strong>Modularity</strong>: containerd can be used as a component in more extensive container platforms or integrated with other tools, providing flexibility and customization options.</p></li>
+<li><p><strong>OCI Compatibility</strong>: containerd is compatible with the Open Container Initiative (OCI) runtime and image specifications, ensuring interoperability with other OCI-compliant tools and platforms.</p></li>
+</ul>
+</section>
+<section id="key-components-of-containerd">
+<h3><strong>2. Key components of containerd</strong><a class="headerlink" href="#key-components-of-containerd" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>containerd daemon</strong>: The core component of containerd, responsible for managing containers and their life cycles. The daemon communicates with clients via a gRPC API.</p></li>
+<li><p><strong>ctr</strong>: A lightweight command-line interface (CLI) tool for interacting with the containerd daemon, enabling users to manage containers directly.</p></li>
+<li><p><strong>runc</strong>: The default OCI-compliant runtime used by containerd to run containers. Users can also use alternative OCI-compliant runtimes, such as kata-containers or gVisor.</p></li>
+<li><p><strong>snapshotters</strong>: Pluggable components that manage filesystem snapshots for containers, providing support for various storage backends and filesystems.</p></li>
+<li><p><strong>content store</strong>: A content-addressable storage system for managing container images and binary data in a secure and efficient manner.</p></li>
+</ul>
+</section>
+<section id="working-with-containerd">
+<h3><strong>3. Working with containerd</strong><a class="headerlink" href="#working-with-containerd" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Installing containerd</strong>: Containerd can be installed on various platforms, such as Linux and Windows, through package managers or by downloading pre-built binaries.</p></li>
+<li><p><strong>Managing containers</strong>: Users can interact with containerd through the <code class="docutils literal notranslate"><span class="pre">ctr</span></code> CLI tool or by directly accessing the containerd API via gRPC.</p></li>
+<li><p><strong>Container images</strong>: containerd supports pulling and managing container images from OCI-compliant image registries, such as Docker Hub.</p></li>
+<li><p><strong>Integration with Kubernetes</strong>: containerd can be used as the container runtime for Kubernetes clusters, enabling users to leverage its performance and modularity benefits in a Kubernetes environment.</p></li>
+</ul>
+</section>
+<section id="use-cases-and-scenarios">
+<h3><strong>4. Use cases and scenarios</strong><a class="headerlink" href="#use-cases-and-scenarios" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Edge computing</strong>: containerd’s lightweight design and resource efficiency make it well-suited for edge computing environments with limited resources.</p></li>
+<li><p><strong>Large-scale deployments</strong>: containerd’s focus on performance and simplicity makes it a strong choice for large-scale container deployments where resource utilization and management overhead are critical concerns.</p></li>
+<li><p><strong>Custom container platforms</strong>: containerd’s modular design allows it to be integrated with custom container platforms and orchestrators, providing a flexible and customizable container runtime solution.</p></li>
+</ul>
+</section>
+</section>
+<section id="getting-started-with-containerd">
+<h2>Getting Started with Containerd<a class="headerlink" href="#getting-started-with-containerd" title="Permalink to this heading">#</a></h2>
+<p>In this section, we will walk you through the process of installing and using <strong>containerd</strong> to manage containers. We will cover the following topics:</p>
+<ol class="arabic simple">
+<li><p>Installing containerd</p></li>
+<li><p>Using the <code class="docutils literal notranslate"><span class="pre">ctr</span></code> command-line tool</p></li>
+<li><p>Running a simple container</p></li>
+<li><p>Managing container images</p></li>
+<li><p>Inspecting container details</p></li>
+</ol>
+<section id="installing-containerd">
+<h3><strong>1. Installing containerd</strong><a class="headerlink" href="#installing-containerd" title="Permalink to this heading">#</a></h3>
+<p><strong>On Ubuntu:</strong></p>
+<p>To install containerd on Ubuntu, run the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>containerd
+</pre></div>
+</div>
+<p><strong>On CentOS:</strong></p>
+<p>To install containerd on CentOS, first enable the EPEL repository and then install containerd:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>epel-release
+sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>containerd
+</pre></div>
+</div>
+<p><strong>On Windows:</strong></p>
+<p>You can download the latest containerd release for Windows from the <a class="reference external" href="https://github.com/containerd/containerd/releases">GitHub releases page</a>. Extract the archive and add the <code class="docutils literal notranslate"><span class="pre">bin</span></code> directory to your system’s PATH.</p>
+<p>After installation, start the containerd service:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>containerd
+sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>containerd
+</pre></div>
+</div>
+</section>
+<section id="using-the-ctr-command-line-tool">
+<h3><strong>2. Using the <code class="docutils literal notranslate"><span class="pre">ctr</span></code> command-line tool</strong><a class="headerlink" href="#using-the-ctr-command-line-tool" title="Permalink to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">ctr</span></code> tool is the primary command-line interface for interacting with containerd. You can use it to manage containers, images, and other resources. To see a list of available commands, run <code class="docutils literal notranslate"><span class="pre">ctr</span> <span class="pre">--help</span></code>.</p>
+</section>
+<section id="running-a-simple-container">
+<h3><strong>3. Running a simple container</strong><a class="headerlink" href="#running-a-simple-container" title="Permalink to this heading">#</a></h3>
+<p>In this example, we will run an Nginx container using containerd. First, pull the Nginx image:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>ctr<span class="w"> </span>images<span class="w"> </span>pull<span class="w"> </span>docker.io/library/nginx:latest
+</pre></div>
+</div>
+<p>Next, create a new container using the pulled image:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>ctr<span class="w"> </span>containers<span class="w"> </span>create<span class="w"> </span>docker.io/library/nginx:latest<span class="w"> </span>nginx-container
+</pre></div>
+</div>
+<p>Finally, start the container:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>ctr<span class="w"> </span>containers<span class="w"> </span>start<span class="w"> </span>nginx-container
+</pre></div>
+</div>
+<p>The Nginx container should now be running. To check its status, use the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>ctr<span class="w"> </span>containers<span class="w"> </span>list
+</pre></div>
+</div>
+</section>
+<section id="managing-container-images">
+<h3><strong>4. Managing container images</strong><a class="headerlink" href="#managing-container-images" title="Permalink to this heading">#</a></h3>
+<p>containerd supports managing container images from OCI-compliant image registries. You can pull, list, and remove images using the <code class="docutils literal notranslate"><span class="pre">ctr</span></code> tool.</p>
+<ul>
+<li><p><strong>Pulling images</strong>: Use the <code class="docutils literal notranslate"><span class="pre">ctr</span> <span class="pre">images</span> <span class="pre">pull</span></code> command to download container images. For example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>ctr<span class="w"> </span>images<span class="w"> </span>pull<span class="w"> </span>docker.io/library/alpine:latest
+</pre></div>
+</div>
+</li>
+<li><p><strong>Listing images</strong>: To see a list of downloaded images, run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>ctr<span class="w"> </span>images<span class="w"> </span>list
+</pre></div>
+</div>
+</li>
+<li><p><strong>Removing images</strong>: To remove an image, use the <code class="docutils literal notranslate"><span class="pre">ctr</span> <span class="pre">images</span> <span class="pre">remove</span></code> command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>ctr<span class="w"> </span>images<span class="w"> </span>remove<span class="w"> </span>docker.io/library/alpine:latest
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="inspecting-container-details">
+<h3><strong>5. Inspecting container details</strong><a class="headerlink" href="#inspecting-container-details" title="Permalink to this heading">#</a></h3>
+<p>You can inspect various aspects of a running container, such as its configuration, environment variables, and mounts, using the <code class="docutils literal notranslate"><span class="pre">ctr</span></code> tool.</p>
+<ul>
+<li><p><strong>Inspecting container configuration</strong>: To view the configuration of a container, use the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>ctr<span class="w"> </span>containers<span class="w"> </span>info<span class="w"> </span>nginx-container
+</pre></div>
+</div>
+</li>
+<li><p><strong>Inspecting container processes</strong>: To view the processes running inside a container, use the <code class="docutils literal notranslate"><span class="pre">ctr</span> <span class="pre">containers</span> <span class="pre">exec</span></code> command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>ctr<span class="w"> </span>containers<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--exec-id<span class="w"> </span>my-exec-id<span class="w"> </span>nginx-container<span class="w"> </span>ps<span class="w"> </span>aux
+</pre></div>
+</div>
+</li>
+<li><p><strong>Inspecting container logs</strong>: To view the logs of a running container, use the <code class="docutils literal notranslate"><span class="pre">ctr</span> <span class="pre">containers</span> <span class="pre">logs</span></code> command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>ctr<span class="w"> </span>containers<span class="w"> </span>logs<span class="w"> </span>nginx-container
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="how-to-create-a-container-image">
+<h2>How to create a container image<a class="headerlink" href="#how-to-create-a-container-image" title="Permalink to this heading">#</a></h2>
+<p>Creating an image for containerd involves building an OCI (Open Container Initiative) compliant image, which can be used by containerd and other OCI-compliant container runtimes. In this guide, we will walk through the process of creating a container image using BuildKit, an advanced toolkit for building container images that works with containerd.</p>
+<p><strong>1. Install BuildKit</strong></p>
+<p>First, we need to install BuildKit. You can find installation instructions for various platforms in the <a class="reference external" href="https://github.com/moby/buildkit">BuildKit repository</a>.</p>
+<p>For Ubuntu, you can install BuildKit using the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>buildkit
+</pre></div>
+</div>
+<p>For CentOS, you can install BuildKit with the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>epel-release
+sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>buildkit
+</pre></div>
+</div>
+<p><strong>2. Create a Dockerfile</strong></p>
+<p>Next, create a <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> that describes the image you want to build. As an example, we will create a simple Alpine-based image that includes the <code class="docutils literal notranslate"><span class="pre">curl</span></code> utility:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FROM</span> <span class="n">alpine</span><span class="p">:</span><span class="n">latest</span>
+<span class="n">RUN</span> <span class="n">apk</span> <span class="n">add</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">cache</span> <span class="n">curl</span>
+<span class="n">CMD</span> <span class="p">[</span><span class="s2">&quot;curl&quot;</span><span class="p">,</span> <span class="s2">&quot;--help&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Save this content in a file named <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> in your working directory.</p>
+<p><strong>3. Build the image using BuildKit</strong></p>
+<p>To build the image using BuildKit, first set the <code class="docutils literal notranslate"><span class="pre">BUILDKIT_HOST</span></code> environment variable to point to the BuildKit daemon:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">BUILDKIT_HOST</span><span class="o">=</span><span class="s2">&quot;unix:///var/run/buildkit/buildkitd.sock&quot;</span>
+</pre></div>
+</div>
+<p>Next, run the <code class="docutils literal notranslate"><span class="pre">buildctl</span></code> command to build the image:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>buildctl<span class="w"> </span>build<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--frontend<span class="w"> </span>dockerfile.v0<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--local<span class="w"> </span><span class="nv">context</span><span class="o">=</span>.<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--local<span class="w"> </span><span class="nv">dockerfile</span><span class="o">=</span>.<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span><span class="nv">type</span><span class="o">=</span>image,name<span class="o">=</span>my-containerd-image,oci-mediatypes<span class="o">=</span>true,push<span class="o">=</span><span class="nb">false</span>
+</pre></div>
+</div>
+<p>In this command:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--frontend</span> <span class="pre">dockerfile.v0</span></code>: Specifies the Dockerfile frontend for BuildKit.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--local</span> <span class="pre">context=.</span></code>: Sets the build context to the current directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--local</span> <span class="pre">dockerfile=.</span></code>: Indicates that the Dockerfile is located in the current directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--output</span> <span class="pre">type=image,name=my-containerd-image,oci-mediatypes=true,push=false</span></code>: Configures the output as an OCI-compliant image named <code class="docutils literal notranslate"><span class="pre">my-containerd-image</span></code> and disables pushing the image to a registry.</p></li>
+</ul>
+<p>After the build is complete, the image will be available locally in containerd.</p>
+<p><strong>4. Verify the image in containerd</strong></p>
+<p>To verify that the image is available in containerd, use the <code class="docutils literal notranslate"><span class="pre">ctr</span></code> command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>ctr<span class="w"> </span>images<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>my-containerd-image
+</pre></div>
+</div>
+<p>You should see the <code class="docutils literal notranslate"><span class="pre">my-containerd-image</span></code> listed among the available images.</p>
+<p>That’s it! You’ve successfully created an image for containerd using BuildKit. You can now use this image to create and run containers with containerd or any other OCI-compliant container runtime.</p>
+</section>
+<section id="relationship-between-containerd-and-kubernetes">
+<h2>Relationship between containerd and Kubernetes<a class="headerlink" href="#relationship-between-containerd-and-kubernetes" title="Permalink to this heading">#</a></h2>
+<p>Kubernetes is an open-source container orchestration platform that automates the deployment, scaling, and management of containerized applications. It works with various container runtimes, including Docker, containerd, and CRI-O, through the Container Runtime Interface (CRI).</p>
+<p>The relationship between Kubernetes and containerd can be summarized as follows:</p>
+<ol class="arabic simple">
+<li><p><strong>Container Runtime</strong>: Containerd is one of the supported container runtimes for Kubernetes. It provides the necessary features to run containers and manage their lifecycle, as well as image distribution and storage. Containerd can replace Docker as the container runtime in Kubernetes clusters, providing a more lightweight and focused runtime that is tailored for use with Kubernetes.</p></li>
+<li><p><strong>Container Runtime Interface (CRI)</strong>: Kubernetes uses the CRI to communicate with container runtimes like containerd. The CRI is a standard API that abstracts the underlying container runtime from the Kubernetes components, allowing Kubernetes to work with different container runtimes without modification. Containerd implements the CRI through the <code class="docutils literal notranslate"><span class="pre">containerd/cri</span></code> plugin, which translates CRI API calls from Kubernetes into containerd API calls.</p></li>
+<li><p><strong>Runtime Class</strong>: Kubernetes supports selecting the container runtime for each pod through the RuntimeClass feature. This allows you to choose between different container runtimes (e.g., Docker, containerd, or CRI-O) on a per-pod basis. By configuring the appropriate RuntimeClass, you can instruct Kubernetes to use containerd for specific pods in your cluster.</p></li>
+<li><p><strong>Simplified Stack</strong>: In some cases, using containerd instead of Docker as the container runtime in Kubernetes clusters can result in a simpler and more efficient stack. This is because containerd is a more focused and lightweight runtime compared to Docker, which includes additional components that may not be necessary in a Kubernetes environment (e.g., Docker Compose or Docker Swarm). By using containerd, you can potentially reduce the resource footprint and complexity of your Kubernetes nodes.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/lecture",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lectures/mlops/containerization"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Containerization - Docker and containerd</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../simple-pipeline/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Simple MLOps Pipeline</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-containerd"><strong>1. Overview of containerd</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-components-of-containerd"><strong>2. Key components of containerd</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-containerd"><strong>3. Working with containerd</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-cases-and-scenarios"><strong>4. Use cases and scenarios</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-with-containerd">Getting Started with Containerd</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-containerd"><strong>1. Installing containerd</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-ctr-command-line-tool"><strong>2. Using the <code class="docutils literal notranslate"><span class="pre">ctr</span></code> command-line tool</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-a-simple-container"><strong>3. Running a simple container</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#managing-container-images"><strong>4. Managing container images</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inspecting-container-details"><strong>5. Inspecting container details</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-create-a-container-image">How to create a container image</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-between-containerd-and-kubernetes">Relationship between containerd and Kubernetes</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://entelecheia.me">Young Joon Lee</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
