@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Containerization - Docker &#8212; ἐντελέχεια.άι</title>
+    <title>Containerization - Docker and containerd &#8212; ἐντελέχεια.άι</title>
   
   
   
@@ -268,7 +268,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../auth-enc-sign.html">Authentication, Encryption, and Signing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../github.html">Github’s Fork &amp; Pull Workflow</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Containerization - Docker</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Containerization - Docker and containerd</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../simple-pipeline/index.html">Simple MLOps Pipeline</a></li>
 </ul>
 </li>
@@ -415,7 +415,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Containerization - Docker</h1>
+    <h1>Containerization - Docker and containerd</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -426,7 +426,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-components">Core Components</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-components-of-docker">Core Components of Docker</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-engine">Docker Engine</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-images">Docker Images</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-containers">Docker Containers</a></li>
@@ -481,14 +481,30 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="containerization-docker">
-<h1>Containerization - Docker<a class="headerlink" href="#containerization-docker" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="containerization-docker-and-containerd">
+<h1>Containerization - Docker and containerd<a class="headerlink" href="#containerization-docker-and-containerd" title="Permalink to this heading">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
-<p>Docker is an open-source platform that simplifies the process of building, shipping, and running applications by utilizing containerization technology. Containers allow developers to package an application with all its dependencies, libraries, and configuration files, making it easy to deploy and run on any system consistently. This lecture note will provide an overview of Docker, its core components, and basic usage examples to help you understand how Docker can enhance your development workflow.</p>
+<p><strong>Containerization</strong> is a lightweight virtualization technology that allows developers to package applications and their dependencies into portable units called <strong>containers</strong>. These containers can be deployed and run on different platforms and environments, ensuring consistent behavior and performance. Two popular containerization technologies are <strong>Docker</strong> and <strong>containerd</strong>.</p>
+<p><strong>Docker</strong> is a widely-used platform that simplifies the creation, deployment, and management of containers. Docker has become synonymous with containerization due to its user-friendly interface, extensive ecosystem, and comprehensive toolset. Some key features of Docker include:</p>
+<ul class="simple">
+<li><p><strong>Docker Engine</strong>: The core component of Docker, responsible for creating, managing, and orchestrating containers.</p></li>
+<li><p><strong>Docker Images</strong>: Snapshots of containers containing the application, dependencies, and configurations, which can be shared and reused across different environments.</p></li>
+<li><p><strong>Docker Hub</strong>: A public registry for sharing and distributing Docker images, making it easy to find and deploy pre-built images.</p></li>
+<li><p><strong>Docker Compose</strong>: A tool for defining and running multi-container applications using a YAML configuration file.</p></li>
+<li><p><strong>Docker Swarm</strong>: A native clustering and orchestration solution for Docker, allowing users to create and manage a swarm of Docker nodes and deploy services across them.</p></li>
+</ul>
+<p>On the other hand, <strong>containerd</strong> is a lightweight, standalone runtime for managing containers. Originally developed as a component of Docker, containerd has evolved into an independent project under the Cloud Native Computing Foundation (CNCF). While it lacks some of the high-level features and user-friendliness of Docker, containerd is designed to be a more focused and efficient runtime. Some key aspects of containerd include:</p>
+<ul class="simple">
+<li><p><strong>Minimalist Design</strong>: containerd focuses on the core functionality of managing containers, such as creating, starting, and stopping them.</p></li>
+<li><p><strong>Performance</strong>: containerd is designed for better performance and a smaller footprint compared to Docker, making it suitable for resource-constrained environments.</p></li>
+<li><p><strong>Modularity</strong>: containerd can be used as a component in more extensive container platforms or integrated with other tools, providing flexibility and customization options.</p></li>
+<li><p><strong>OCI Compatibility</strong>: containerd is compatible with the Open Container Initiative (OCI) runtime and image specifications, ensuring interoperability with other OCI-compliant tools and platforms.</p></li>
+</ul>
+<p>In conclusion, <strong>Docker</strong> is a comprehensive and user-friendly containerization platform, offering a wide range of tools and features that make it easy to create, deploy, and manage containers. <strong>containerd</strong>, on the other hand, is a minimalist and focused runtime that can be integrated with other tools and platforms, providing better performance and modularity. Choosing between Docker and containerd depends on the specific needs and constraints of the project, with Docker being more suitable for those looking for a complete, out-of-the-box solution, and containerd being a good fit for more customized and performance-oriented scenarios.</p>
 </section>
-<section id="core-components">
-<h2>Core Components<a class="headerlink" href="#core-components" title="Permalink to this heading">#</a></h2>
+<section id="core-components-of-docker">
+<h2>Core Components of Docker<a class="headerlink" href="#core-components-of-docker" title="Permalink to this heading">#</a></h2>
 <section id="docker-engine">
 <h3>Docker Engine<a class="headerlink" href="#docker-engine" title="Permalink to this heading">#</a></h3>
 <p>The Docker Engine is the core component that powers the Docker platform. It is responsible for creating, managing, and orchestrating containers. It consists of a daemon process (dockerd), a REST API, and a command-line interface (CLI).</p>
@@ -909,7 +925,7 @@ The <code class="docutils literal notranslate"><span class="pre">dk-compose</spa
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-components">Core Components</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-components-of-docker">Core Components of Docker</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-engine">Docker Engine</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-images">Docker Images</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-containers">Docker Containers</a></li>
