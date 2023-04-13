@@ -474,6 +474,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-architecture-of-bert">The Architecture of BERT</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-mechanism">Attention Mechanism</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attending-to-language">Attending to Language</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-in-bert-easy-version">Attention in BERT (Easy Version)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-head-attention">Multi-head Attention</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-training-and-fine-tuning">Pre-training and Fine-tuning</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-training">Pre-training</a></li>
@@ -548,6 +549,24 @@ document.write(`
 <p>How does this process help the model understand the meaning of a sentence?</p>
 <p>To fully comprehend the meaning of a sentence, we need to know the meaning of each word in the sentence. However, we can’t just examine each word in the sentence in isolation - we need to know the context of the word.</p>
 <p>The <strong>attention mechanism</strong> enables the model to focus on the words that are most important for the meaning of the sentence.</p>
+</section>
+<section id="attention-in-bert-easy-version">
+<h3>Attention in BERT (Easy Version)<a class="headerlink" href="#attention-in-bert-easy-version" title="Permalink to this heading">#</a></h3>
+<p>The attention mechanism is a technique used by neural networks to focus on relevant parts of the input data when processing it. In the context of natural language processing, it helps the model pay more attention to important words in a sentence.</p>
+<p>Let’s illustrate the attention mechanism with a simple example:</p>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph TD
+A[Input: the cat ran] --&gt; B[Attention Weights] --&gt; C[Output: cat]
+</pre></div>
+</div>
+<p>In this example, we have an input sentence “the cat ran”. The attention mechanism assigns weights to each word in the sentence based on their importance. These weights are represented by the “Attention Weights” node in the diagram.</p>
+<p>After calculating the attention weights, the model computes an output by combining the input words according to the weights. In this case, the model focuses more on the word “cat” and generates an output accordingly.</p>
+<p>Here is another diagram showing the attention mechanism with attention weights:</p>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph LR
+A[Input: the cat ran] --&gt; B[Attention Weights: 0.1, 0.8, 0.1] --&gt; C[Output: cat]
+</pre></div>
+</div>
+<p>In this diagram, we have added attention weights for each word in the input sentence. The weights (0.1, 0.8, 0.1) indicate that the model focuses most of its attention on the word “cat” (0.8), while giving less importance to the words “the” and “ran” (0.1 each).</p>
+<p>To sum up, the attention mechanism allows a neural network to focus on the most relevant parts of the input data by assigning importance weights to the elements, making it easier for the model to process and understand the input.</p>
 </section>
 <section id="multi-head-attention">
 <h3>Multi-head Attention<a class="headerlink" href="#multi-head-attention" title="Permalink to this heading">#</a></h3>
@@ -666,6 +685,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-architecture-of-bert">The Architecture of BERT</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-mechanism">Attention Mechanism</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attending-to-language">Attending to Language</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-in-bert-easy-version">Attention in BERT (Easy Version)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-head-attention">Multi-head Attention</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-training-and-fine-tuning">Pre-training and Fine-tuning</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-training">Pre-training</a></li>
