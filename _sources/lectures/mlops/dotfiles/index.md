@@ -1,6 +1,6 @@
 # Dotfiles
 
-```{image} ../figs/mlops/dotfiles/dotfiles-logo.png
+```{image} figs/dotfiles-logo.png
 :alt: dotfiles-logo
 :class: bg-primary mb-1
 :width: 50%
