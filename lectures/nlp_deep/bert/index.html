@@ -93,6 +93,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../../../_static/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="T5: Text-To-Text Transfer Transformer" href="../t5.html" />
+    <link rel="prev" title="Transformers" href="../transformers.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -188,7 +190,7 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_intro/index.html">Introduction to NLP</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/intro.html">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/research.html">Research Applications</a></li>
@@ -206,19 +208,20 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/lab4-tomotopy.html">Lab 4: Topic Modeling Tools- Tomotopy</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">Deep Learning for NLP</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Deep Learning for NLP</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../intro.html">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../llms.html">Large Language Models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../zeroshot.html">Zero Shot and Prompt Engineering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../decoding.html">Decoding and Search Strategies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../transformers.html">Transformers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../rlhf.html">Reinforcement Learning with Human Feedback (RLHF)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../detectGPT.html">How to Spot Machine-Written Texts</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">BERT: Bidirectional Encoder Representations from Transformers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../t5.html">T5: Text-To-Text Transfer Transformer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tokenization.html">Tokenization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../sentencepiece.html">SentencePiece Tokenizer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../plms.html">Pretrained Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rlhf.html">Reinforcement Learning with Human Feedback (RLHF)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../detectGPT.html">How to Spot Machine-Written Texts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ekorpkit.html">Getting started with ekorpkit</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../lab1-corpus.html">Lab 1: Preparing Wikipedia Corpora</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../lab3-train-tokenizers.html">Lab 3: Training Tokenizers</a></li>
@@ -467,27 +470,15 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-architecture-of-bert">The Architecture of BERT</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-mechanism">Attention Mechanism</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attending-to-language">Attending to language</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-head-attention">Multi-head attention</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attending-to-language">Attending to Language</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-head-attention">Multi-head Attention</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-training-and-fine-tuning">Pre-training and Fine-tuning</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-training">Pre-training</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tuning">Fine-tuning</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-attention">Visualizing Attention</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deconstructing-attention">Deconstructing Attention</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where-do-these-query-and-key-vectors-come-from">Where do these query and key vectors come from?</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explaining-berts-attention-patterns">Explaining BERT’s attention patterns</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-bert-actually-learn">What does BERT actually learn?</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delimiter-focused-attention-patterns">Delimiter-focused attention patterns</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bag-of-words-attention-pattern">Bag of Words attention pattern</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-word-attention-pattern">Next-word attention pattern</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-to-previous-word">Attention to previous word</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-to-identical-related-words-pattern">Attention to identical/related words pattern</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-to-identical-related-words-in-other-sentence">Attention to identical/related words in other sentence</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-to-other-words-predictive-of-word">Attention to other words predictive of word</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
             </nav>
         </div>
@@ -502,336 +493,107 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="bert-bidirectional-encoder-representations-from-transformers">
 <h1>BERT: Bidirectional Encoder Representations from Transformers<a class="headerlink" href="#bert-bidirectional-encoder-representations-from-transformers" title="Permalink to this heading">#</a></h1>
 <a class="bg-primary mb-1 reference internal image-reference" href="../../../_images/entelecheia_bert.png"><img alt="bert" class="bg-primary mb-1 align-center" src="../../../_images/entelecheia_bert.png" style="width: 70%;" /></a>
-<ul class="simple">
-<li><p>The year 2018 marked a turning point for the field of Natural Language Processing (NLP).</p></li>
-<li><p>The BERT <span id="id1">[<a class="reference internal" href="../../../about/index.html#id15" title="Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. Bert: pre-training of deep bidirectional transformers for language understanding. arXiv preprint arXiv:1810.04805, 2018. URL: https://arxiv.org/abs/1810.04805.">Devlin <em>et al.</em>, 2018</a>]</span> paper introduced a new language representation model that outperformed all previous models on a wide range of NLP tasks.</p></li>
-<li><p>BERT is a deep bidirectional transformer model that is pre-trained on a large corpus of unlabeled text.</p></li>
-<li><p>The model is trained to predict masked words in a sentence and is also trained to predict the next sentence in a sequence of sentences.</p></li>
-<li><p>The pre-trained model can then be fine-tuned on a variety of downstream NLP tasks with state-of-the-art results.</p></li>
-</ul>
-<p>BERT builds on two key ideas:</p>
-<ul class="simple">
-<li><p>The transformer architecture <span id="id2">[<a class="reference internal" href="../../../about/index.html#id5" title="Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez, Łukasz Kaiser, and Illia Polosukhin. Attention is all you need. Advances in neural information processing systems, 2017.">Vaswani <em>et al.</em>, 2017</a>]</span></p></li>
-<li><p>Unsupervised pre-training</p></li>
-</ul>
-<p>BERT is pre-trained on a large corpus of unlabeled text. Its weights are learned by predicting masked words in a sentence and predicting the next sentence in a sequence of sentences.</p>
-<p>BERT is a deep bidirectional transformer model. It is a multi-headed beast with 12(24) layers, 12(16) attention heads, and 110 million parameters. Since model weights are not shared across layers, the total number of different attention weights is 12(24) x 12(16) = 144(384).</p>
+<p><strong>2018</strong> was a significant year for the field of <strong>Natural Language Processing (NLP)</strong>, as it witnessed a groundbreaking development with the introduction of <strong>BERT</strong>. The BERT paper <span id="id1">[<a class="reference internal" href="../../../about/index.html#id15" title="Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. Bert: pre-training of deep bidirectional transformers for language understanding. arXiv preprint arXiv:1810.04805, 2018. URL: https://arxiv.org/abs/1810.04805.">Devlin <em>et al.</em>, 2018</a>]</span> presented a novel language representation model that outperformed all previous models across a broad spectrum of NLP tasks.</p>
+<p><strong>BERT</strong> stands for <strong>Bidirectional Encoder Representations from Transformers</strong>. It is a deep bidirectional transformer model that is pre-trained on a vast corpus of unlabeled text. The model is designed to predict masked words within a sentence and to anticipate the subsequent sentence in a sequence of sentences. The pre-trained model can then be fine-tuned for various downstream NLP tasks, yielding state-of-the-art results.</p>
+<p>BERT builds upon two essential ideas:</p>
+<ol class="arabic simple">
+<li><p><strong>The Transformer architecture</strong> <span id="id2">[<a class="reference internal" href="../../../about/index.html#id5" title="Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez, Łukasz Kaiser, and Illia Polosukhin. Attention is all you need. Advances in neural information processing systems, 2017.">Vaswani <em>et al.</em>, 2017</a>]</span></p></li>
+<li><p><strong>Unsupervised pre-training</strong></p></li>
+</ol>
+<p>During the <strong>pre-training</strong> phase, BERT is exposed to a massive corpus of unlabeled text. The model learns its weights by predicting masked words in a sentence and forecasting the next sentence in a sequence of sentences.</p>
+<p>As a <strong>deep bidirectional transformer model</strong>, BERT has a complex structure with multiple layers, attention heads, and millions of parameters. Specifically, it has 12 (or 24) layers, 12 (or 16) attention heads, and 110 million parameters. The model does not share weights across layers, which means the total number of distinct attention weights amounts to 144 (or 384) - calculated as 12 (or 24) x 12 (or 16).</p>
 <section id="the-architecture-of-bert">
 <h2>The Architecture of BERT<a class="headerlink" href="#the-architecture-of-bert" title="Permalink to this heading">#</a></h2>
-<p>The core component of BERT is the attention mechanism.</p>
-<p>Attention is a way for a model to assign weights to different parts of the input based on their importance to some task.</p>
-<p>For the sentence <code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">dog</span> <span class="pre">from</span> <span class="pre">down</span> <span class="pre">the</span> <span class="pre">street</span> <span class="pre">ran</span> <span class="pre">up</span> <span class="pre">to</span> <span class="pre">me</span> <span class="pre">and</span> <span class="pre">___</span></code>, to complete the sentence, a model may give more attention to the word <code class="docutils literal notranslate"><span class="pre">dog</span></code> than to the word <code class="docutils literal notranslate"><span class="pre">street</span></code>. Because knowing that the subject of the sentence is a dog is more important than knowing that where the dog is from.</p>
+<p>The <strong>core component</strong> of BERT is the <strong>attention mechanism</strong>. Attention allows a model to assign weights to different parts of the input based on their importance for a specific task.</p>
+<p>For example, in the sentence <code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">dog</span> <span class="pre">from</span> <span class="pre">down</span> <span class="pre">the</span> <span class="pre">street</span> <span class="pre">ran</span> <span class="pre">up</span> <span class="pre">to</span> <span class="pre">me</span> <span class="pre">and</span> <span class="pre">___</span></code>, to complete the sentence, a model may give more attention to the word <code class="docutils literal notranslate"><span class="pre">dog</span></code> than to the word <code class="docutils literal notranslate"><span class="pre">street</span></code>. This is because knowing that the subject of the sentence is a dog is more important than knowing where the dog is from.</p>
 <section id="attention-mechanism">
 <h3>Attention Mechanism<a class="headerlink" href="#attention-mechanism" title="Permalink to this heading">#</a></h3>
-<p>The attention mechanism is quite simple. It is a function that takes in two inputs: a query and a key. The query is the part of the input that we want to focus on. The key is the part of the input that we want to compare the query to. The output of the attention mechanism is a weighted sum of the values of the key. The weights are computed by a function of the query and the key.</p>
-<p>Suppose you have some sequence of words <span class="math notranslate nohighlight">\(X\)</span>, where each element <span class="math notranslate nohighlight">\(x_i\)</span> is a (refered to as the value) of dimension <span class="math notranslate nohighlight">\(d\)</span>.</p>
+<p>The attention mechanism is relatively simple. It comprises a function that takes in two inputs: a <strong>query</strong> and a <strong>key</strong>. The query represents the part of the input that we want to focus on, while the key is the part of the input that we want to compare the query to. The output of the attention mechanism is a weighted sum of the <strong>values</strong> of the key. The weights are computed by a function of the query and the key.</p>
+<p>Suppose you have a sequence of words <span class="math notranslate nohighlight">\(X\)</span>, where each element <span class="math notranslate nohighlight">\(x_i\)</span> is a value of dimension <span class="math notranslate nohighlight">\(d\)</span> (referred to as the value).</p>
 <p>In the following example, <span class="math notranslate nohighlight">\(X\)</span> is a sequence of 3 words, each represented by a 4-dimensional vector.</p>
-<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/sentence_vector.png" /></p>
-<p>Attention is simply a function that takes X as input and returns another sequence Y of the same length as X, composed of vectors of the same dimension as the vectors in X.</p>
-<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/attention_input_output.png" /></p>
-<p>Each vector in Y is computed by taking a weighted average of the vectors in X.</p>
-<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/attention_weighted_average.gif" /></p>
-<p>That is, attention is just a weighted average of the values of the vectors in X. The weights show how much the model <strong>attends</strong> to each vector in X when computing the output vector.</p>
+<figure class="align-default" id="fig-sentence-vector">
+<a class="reference internal image-reference" href="../../../_images/sentence_vector.png"><img alt="../../../_images/sentence_vector.png" src="../../../_images/sentence_vector.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 78 </span><span class="caption-text">Sentence vector</span><a class="headerlink" href="#fig-sentence-vector" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Attention is essentially a function that takes <span class="math notranslate nohighlight">\(X\)</span> as input and returns another sequence <span class="math notranslate nohighlight">\(Y\)</span> of the same length as <span class="math notranslate nohighlight">\(X\)</span>, composed of vectors with the same dimension as the vectors in <span class="math notranslate nohighlight">\(X\)</span>.</p>
+<figure class="align-default" id="fig-sentence-input-output">
+<a class="reference internal image-reference" href="../../../_images/attention_input_output.png"><img alt="../../../_images/attention_input_output.png" src="../../../_images/attention_input_output.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 79 </span><span class="caption-text">Sentence input and output</span><a class="headerlink" href="#fig-sentence-input-output" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Each vector in <span class="math notranslate nohighlight">\(Y\)</span> is computed by taking a weighted average of the vectors in <span class="math notranslate nohighlight">\(X\)</span>. In other words, attention is just a weighted average of the values of the vectors in <span class="math notranslate nohighlight">\(X\)</span>. The weights indicate how much the model <strong>attends</strong> to each vector in <span class="math notranslate nohighlight">\(X\)</span> when computing the output vector.</p>
 </section>
 <section id="attending-to-language">
-<h3>Attending to language<a class="headerlink" href="#attending-to-language" title="Permalink to this heading">#</a></h3>
-<p>How does attention work in the context of language?</p>
-<p>Suppose we have a sentence <code class="docutils literal notranslate"><span class="pre">the</span> <span class="pre">dog</span> <span class="pre">ran</span></code>. We can represent this sentence as a sequence of vectors, where each vector is a word embedding.</p>
-<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/word_embedding.png" /></p>
-<p>A word embedding is a vector representation of a word. It is a vector of real numbers. Each element of the vector represents a dimension of the word that captures some aspect of its meaning.</p>
-<p>Those aspects can be semantic, syntactic, or even phonetic. For example, the first element of the vector may represent the semantic meaning of the word, the second element may represent the syntactic meaning of the word, and the third element may represent the phonetic meaning of the word.</p>
-<p>In practice, word embeddings are not interpretable. We don’t know what each element of the vector represents. But we can use them to compute the meaning of a sentence.</p>
-<p>For example, we can perform arithmetic operations on word embeddings. For example, we can compute the vector representation of the word <code class="docutils literal notranslate"><span class="pre">cat</span></code> by adding the vectors of the words <code class="docutils literal notranslate"><span class="pre">kitten</span></code> and <code class="docutils literal notranslate"><span class="pre">dog</span></code> and subtracting the vector of the word <code class="docutils literal notranslate"><span class="pre">puppy</span></code>.</p>
+<h3>Attending to Language<a class="headerlink" href="#attending-to-language" title="Permalink to this heading">#</a></h3>
+<p>How does attention work in the context of language? To understand this, let’s consider a sentence, <code class="docutils literal notranslate"><span class="pre">the</span> <span class="pre">dog</span> <span class="pre">ran</span></code>. We can represent this sentence as a sequence of <strong>vectors</strong>, where each vector is a <strong>word embedding</strong>.</p>
+<figure class="align-default" id="fig-word-embedding">
+<a class="reference internal image-reference" href="../../../_images/word_embedding.png"><img alt="../../../_images/word_embedding.png" src="../../../_images/word_embedding.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 80 </span><span class="caption-text">Word embedding</span><a class="headerlink" href="#fig-word-embedding" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>A word embedding is a vector representation of a word, consisting of real numbers. Each element of the vector represents a dimension of the word that captures some aspect of its meaning. These aspects can be semantic, syntactic, or even phonetic. For example, the first element of the vector may represent the semantic meaning of the word, the second element may represent the syntactic meaning, and the third element may represent the phonetic meaning of the word.</p>
+<p>In practice, word embeddings are not interpretable. We don’t know what each element of the vector represents. However, we can use them to compute the meaning of a sentence.</p>
+<p>For example, we can perform arithmetic operations on word embeddings. For instance, we can compute the vector representation of the word <code class="docutils literal notranslate"><span class="pre">cat</span></code> by adding the vectors of the words <code class="docutils literal notranslate"><span class="pre">kitten</span></code> and <code class="docutils literal notranslate"><span class="pre">dog</span></code>, and subtracting the vector of the word <code class="docutils literal notranslate"><span class="pre">puppy</span></code>.</p>
 <div class="math notranslate nohighlight">
 \[\text{cat} - \text{kitten} \approx \text{dog} - \text{puppy}\]</div>
-<p>Attention is also a form of arithmetic operation. Therefore, you can apply attention to word embeddings to compute the meaning of a sentence.</p>
-<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/attention_weighted_average.gif" /></p>
-<p>For example, the embedding of the word <code class="docutils literal notranslate"><span class="pre">dog</span></code> in <span class="math notranslate nohighlight">\(Y\)</span> is computed by taking a weighted average of the embeddings of the words <code class="docutils literal notranslate"><span class="pre">the</span></code>, <code class="docutils literal notranslate"><span class="pre">dog</span></code>, and <code class="docutils literal notranslate"><span class="pre">ran</span></code> in <span class="math notranslate nohighlight">\(X\)</span> with weights of 0.2, 0.7, and 0.1 respectively.</p>
-<p>How does this process help the model to understand the meaning of a sentence?</p>
-<p>To fully understand the meaning of a sentence, we need to know the meaning of each word in the sentence. But we can’t just look at each word in the sentence in isolation. We need to know the context of the word.</p>
-<p>The attention mechanism allows the model to focus on the words that are most important to the meaning of the sentence.</p>
+<p><strong>Attention</strong> is also a form of arithmetic operation. Therefore, you can apply attention to word embeddings to compute the meaning of a sentence.</p>
+<p>For example, the embedding of the word <code class="docutils literal notranslate"><span class="pre">dog</span></code> in <span class="math notranslate nohighlight">\(Y\)</span> is computed by taking a weighted average of the embeddings of the words <code class="docutils literal notranslate"><span class="pre">the</span></code>, <code class="docutils literal notranslate"><span class="pre">dog</span></code>, and <code class="docutils literal notranslate"><span class="pre">ran</span></code> in <span class="math notranslate nohighlight">\(X\)</span> with weights of 0.2, 0.7, and 0.1, respectively.</p>
+<p>How does this process help the model understand the meaning of a sentence?</p>
+<p>To fully comprehend the meaning of a sentence, we need to know the meaning of each word in the sentence. However, we can’t just examine each word in the sentence in isolation - we need to know the context of the word.</p>
+<p>The <strong>attention mechanism</strong> enables the model to focus on the words that are most important for the meaning of the sentence.</p>
 </section>
 <section id="multi-head-attention">
-<h3>Multi-head attention<a class="headerlink" href="#multi-head-attention" title="Permalink to this heading">#</a></h3>
-<p>BERT learns multiple attention mechanisms, called heads, which operate in parallel. Each head is a different attention mechanism. The output of each head is concatenated and fed into a feed-forward neural network.</p>
-<p>Multi-head attention enables the model to learn broader types of relationships between words in a sentence than a single attention mechanism.</p>
-<p>BERT also stacks multiple layers of multi-head attention. Each layer of multi-head attention takes the output of the previous layer as input. The output of the last layer of multi-head attention is fed into a feed-forward neural network.</p>
-<p>Through this architecture, BERT is able to learn very rich representations of language as it gets to the deeper layers of the network.</p>
-<p>Because the attention heads do not share parameters, each head learns a different type of relationship between words in a sentence.</p>
+<h3>Multi-head Attention<a class="headerlink" href="#multi-head-attention" title="Permalink to this heading">#</a></h3>
+<p>BERT incorporates multiple attention mechanisms, called <strong>heads</strong>, which operate simultaneously. Each head represents a distinct attention mechanism. The output of each head is concatenated and then fed into a feed-forward neural network.</p>
+<p><strong>Multi-head attention</strong> empowers the model to learn a wider variety of relationships between words in a sentence compared to a single attention mechanism.</p>
+<p>In addition, BERT stacks multiple layers of multi-head attention. Each layer of multi-head attention receives the output of the previous layer as input. The output of the last layer of multi-head attention is then fed into a feed-forward neural network.</p>
+<p>Through this architecture, BERT can learn highly sophisticated representations of language as it progresses through the deeper layers of the network.</p>
+<p>Since the attention heads do not share parameters, each head is capable of learning a different type of relationship between words in a sentence. This feature further enriches the model’s understanding of language and its ability to capture various linguistic patterns.</p>
+<div align="center" class="mermaid align-center">
+            graph TD
+    A[Input Embeddings] --&gt; B[Multi-head Attention 1]
+    B --&gt; C[Layer Normalization 1]
+    C --&gt; D[Feed-forward Neural Network 1]
+    D --&gt; E[Layer Normalization 2]
+    E --&gt; F[Multi-head Attention 2]
+    F --&gt; G[Layer Normalization 3]
+    G --&gt; H[Feed-forward Neural Network 2]
+    H --&gt; I[Layer Normalization 4]
+    I --&gt; J[Output]
+    B --&gt;|Head 1| K[Concatenate]
+    B --&gt;|Head 2| K
+    B --&gt;|Head 3| K
+    K --&gt; L[Feed-forward Neural Network 1']
+    L --&gt; C
+    F --&gt;|Head 1| M[Concatenate]
+    F --&gt;|Head 2| M
+    F --&gt;|Head 3| M
+    M --&gt; N[Feed-forward Neural Network 2']
+    N --&gt; G
+        </div>
+        </section>
+<section id="pre-training-and-fine-tuning">
+<h3>Pre-training and Fine-tuning<a class="headerlink" href="#pre-training-and-fine-tuning" title="Permalink to this heading">#</a></h3>
+<p>A key aspect of BERT that we haven’t discussed yet is its <strong>two-step training process</strong>: pre-training and fine-tuning. This process is essential for BERT to achieve state-of-the-art performance across a wide range of NLP tasks.</p>
+<section id="pre-training">
+<h4>Pre-training<a class="headerlink" href="#pre-training" title="Permalink to this heading">#</a></h4>
+<p>During the <strong>pre-training</strong> phase, BERT is trained on a large corpus of unlabeled text data using two unsupervised learning objectives: <strong>Masked Language Modeling (MLM)</strong> and <strong>Next Sentence Prediction (NSP)</strong>.</p>
+<ol class="arabic simple">
+<li><p><strong>Masked Language Modeling</strong>: In this task, some words in a sentence are randomly masked, and the model is trained to predict the masked words based on the surrounding context. This forces the model to learn contextual representations of words.</p></li>
+<li><p><strong>Next Sentence Prediction</strong>: In this task, the model is given two sentences and is trained to predict whether the second sentence follows the first one in the original text. This helps the model to learn relationships between sentences and capture long-range dependencies.</p></li>
+</ol>
+<p>By training on these unsupervised tasks, BERT learns a powerful language representation that can be fine-tuned for various downstream tasks.</p>
+</section>
+<section id="fine-tuning">
+<h4>Fine-tuning<a class="headerlink" href="#fine-tuning" title="Permalink to this heading">#</a></h4>
+<p>After the pre-training phase, BERT is <strong>fine-tuned</strong> on specific NLP tasks using labeled data. Fine-tuning involves training the model for a few additional epochs on the task-specific dataset with a task-specific architecture. During fine-tuning, the model’s pre-trained weights are updated to better capture the patterns in the task-specific dataset.</p>
+<p>This two-step training process allows BERT to leverage the vast amount of knowledge learned from the large pre-training corpus and adapt it to specific tasks with relatively small amounts of labeled data. As a result, BERT achieves state-of-the-art performance across a wide variety of NLP tasks, such as sentiment analysis, named entity recognition, and question answering.</p>
 </section>
 </section>
-<section id="visualizing-attention">
-<h2>Visualizing Attention<a class="headerlink" href="#visualizing-attention" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %pip install bertviz</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;retina&#39;
-
-<span class="kn">from</span> <span class="nn">bertviz</span> <span class="kn">import</span> <span class="n">model_view</span><span class="p">,</span> <span class="n">head_view</span>
-<span class="kn">from</span> <span class="nn">bertviz.neuron_view</span> <span class="kn">import</span> <span class="n">show</span>
-<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span><span class="p">,</span> <span class="n">utils</span>
-
-<span class="n">utils</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">set_verbosity_error</span><span class="p">()</span>  <span class="c1"># Suppress standard warnings</span>
-
-<span class="n">model_version</span> <span class="o">=</span> <span class="s2">&quot;bert-base-uncased&quot;</span>
-<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_version</span><span class="p">)</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_version</span><span class="p">,</span> <span class="n">output_attentions</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sentence_a</span> <span class="o">=</span> <span class="s2">&quot;I went to the store.&quot;</span>
-<span class="n">sentence_b</span> <span class="o">=</span> <span class="s2">&quot;At the store, I bought fresh strawberries.&quot;</span>
-
-<span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="p">[</span><span class="n">sentence_a</span><span class="p">,</span> <span class="n">sentence_b</span><span class="p">],</span>
-    <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
-<span class="n">attention</span> <span class="o">=</span> <span class="n">outputs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">tokens</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">convert_ids_to_tokens</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Each cell in the model view shows the attention pattern of a single head. The attention pattern of each head is different. The attention patterns are specific to the input sentence.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># model_view(attention, tokens)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="deconstructing-attention">
-<h2>Deconstructing Attention<a class="headerlink" href="#deconstructing-attention" title="Permalink to this heading">#</a></h2>
-<p>Let’s take a closer look at how attention works.</p>
-<p>Now that we know that attention is a weighted average of the values of the vectors in X, let’s look at how the weights are computed.</p>
-<p>The weights are computed by a function of the query and the key. The query is the part of the input that we want to focus on. The key is the part of the input that we want to compare the query to.</p>
-<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/attention_query_key.png" /></p>
-<p>These vectors can be thought of as a type of word embedding like the value vectors we saw earlier, but constructed specifically for determining the similarity between words.</p>
-<p>The similarity between two words is computed by taking the dot product of the query and key vectors of those words.</p>
-<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/attention_query_key_dot_product.png" /></p>
-<p>To convert the dot product into a probability, we apply a softmax function to the dot product, which normalizes the dot product so that it sums to 1.</p>
-<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/attention_query_key_softmax.png" /></p>
-<p>The softmax values on the right represent the final weights of the attention mechanism.</p>
-<section id="where-do-these-query-and-key-vectors-come-from">
-<h3>Where do these query and key vectors come from?<a class="headerlink" href="#where-do-these-query-and-key-vectors-come-from" title="Permalink to this heading">#</a></h3>
-<p>We now understand that attention weights are computed from query and key vectors. But where do these vectors come from?</p>
-<p>The query and key vectors are computed from the value vectors. The query and key vectors are computed by passing the value vectors through two different linear layers.</p>
-<p>We can visualize how attention weights are computed from query and key vectors using the neuron view.</p>
-<p>This view traces the computation of attention from the selected word on the left to the complete sequence of words on the right. Positive values are colored blue and negative values orange, with color intensity representing magnitude.</p>
-<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/neuron_view.png" /></p>
-<p>Let’s go through the columns in the neuron view one at a time.</p>
-<p><strong>Query q</strong>: the query vector q encodes the word on the left that is paying attention, i.e. the one that is “querying” the other words. In the example above, the query vector for “on” (the selected word) is highlighted.</p>
-<p><strong>Key k</strong>: the key vector k encodes the word on the right to which attention is being paid. The key vector and the query vector together determine a compatibility score between the two words.</p>
-<p><strong>q×k (elementwise)</strong>: the elementwise product between the query vector of the selected word and each of the key vectors. This is a precursor to the dot product (the sum of the elementwise product) and is included for visualization purposes because it shows how individual elements in the query and key vectors contribute to the dot product.</p>
-<p><strong>q·k</strong>: the scaled dot product (see above) of the selected query vector and each of the key vectors. This is the unnormalized attention score.</p>
-<p><strong>Softmax</strong>: the softmax of the scaled dot product. This normalizes the attention scores to be positive and sum to one.</p>
-</section>
-</section>
-<section id="explaining-berts-attention-patterns">
-<h2>Explaining BERT’s attention patterns<a class="headerlink" href="#explaining-berts-attention-patterns" title="Permalink to this heading">#</a></h2>
-<p>Let’s explore the attention patterns of various layers of the BERT (the BERT-Base, uncased version).</p>
-<blockquote>
-<div><p>Sentence A: I went to the store.</p>
-</div></blockquote>
-<blockquote>
-<div><p>Sentence B: At the store, I bought fresh strawberries.</p>
-</div></blockquote>
-<p>BERT uses WordPiece tokenization and inserts special classifier ([CLS]) and separator ([SEP]) tokens, so the actual input sequence is:</p>
-<blockquote>
-<div><p>[CLS] I went to the store . [SEP] At the store , I bought fresh straw ##berries . [SEP]</p>
-</div></blockquote>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bertviz.transformers_neuron_view</span> <span class="kn">import</span> <span class="n">BertModel</span><span class="p">,</span> <span class="n">BertTokenizer</span>
-<span class="kn">from</span> <span class="nn">bertviz.neuron_view</span> <span class="kn">import</span> <span class="n">show</span>
-
-<span class="n">model_type</span> <span class="o">=</span> <span class="s2">&quot;bert&quot;</span>
-<span class="n">do_lower_case</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">neuron_model</span> <span class="o">=</span> <span class="n">BertModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_version</span><span class="p">,</span> <span class="n">output_attentions</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">neuron_tokenizer</span> <span class="o">=</span> <span class="n">BertTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
-    <span class="n">model_version</span><span class="p">,</span> <span class="n">do_lower_case</span><span class="o">=</span><span class="n">do_lower_case</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show</span><span class="p">(</span>
-    <span class="n">neuron_model</span><span class="p">,</span> <span class="n">model_type</span><span class="p">,</span> <span class="n">neuron_tokenizer</span><span class="p">,</span> <span class="n">sentence_a</span><span class="p">,</span> <span class="n">sentence_b</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">head</span><span class="o">=</span><span class="mi">0</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="p">[</span><span class="s2">&quot;I went to the store.&quot;</span><span class="p">,</span> <span class="s2">&quot;At the store, I bought fresh strawberries.&quot;</span><span class="p">],</span>
-    <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
-<span class="n">attention</span> <span class="o">=</span> <span class="n">outputs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">tokens</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">convert_ids_to_tokens</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="what-does-bert-actually-learn">
-<h2>What does BERT actually learn?<a class="headerlink" href="#what-does-bert-actually-learn" title="Permalink to this heading">#</a></h2>
-<section id="delimiter-focused-attention-patterns">
-<h3>Delimiter-focused attention patterns<a class="headerlink" href="#delimiter-focused-attention-patterns" title="Permalink to this heading">#</a></h3>
-<p>This pattern serves as a kind of “no-op”; an attention head focuses on the [SEP] tokens when it can’t find anything else to focus on.</p>
-<p>How exactly is BERT able to fixate on the [SEP] tokens? The answer lies in the query and key vectors.</p>
-<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/neuron_view_delimiter.png" /></p>
-<p>In the Key column, the key vectors for the two occurrences of [SEP] carry a distinctive signature: they both have a small number of active neurons with strongly positive (blue) or negative (orange) values, and a larger number of neurons with values close to zero (light blue/orange or white):</p>
-<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/key_vector_sep.png" /></p>
-<p>The query vectors tend to match the [SEP] key vectors along those active neurons, resulting in high values for the elementwise product q×k, as in this example:</p>
-<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/query_key_sep.png" /></p>
-<p>The query vectors for the other words follow a similar pattern: they match the [SEP] key vector along the same set of neurons. Thus it seems that BERT has designated a small set of neurons as “[SEP]-matching neurons,” and the query vectors assigned values that match the [SEP] key vectors at these positions.</p>
-<p>Select layer 6, head 4. In this pattern, attention is directed to the delimiter tokens, [CLS] and [SEP].</p>
-<ul class="simple">
-<li><p>For example, most of the attention is directed to [SEP].</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">head_view</span><span class="p">(</span><span class="n">attention</span><span class="p">,</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">heads</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="bag-of-words-attention-pattern">
-<h3>Bag of Words attention pattern<a class="headerlink" href="#bag-of-words-attention-pattern" title="Permalink to this heading">#</a></h3>
-<p>In this pattern, attention is divided fairly evenly across all words in the same sentence:</p>
-<p>BERT is essentially computing a bag-of-words embedding by taking an (almost) unweighted average of the word embeddings in the same sentence.</p>
-<p>How does BERT finesse the queries and keys to form this attention pattern? Let’s again turn to the neuron view:</p>
-<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/neuron_view_bow.png" /></p>
-<p>In the <span class="math notranslate nohighlight">\(q×k\)</span> column, we see a clear pattern: a small number of neurons (2–4) dominate the calculation of the attention scores. When query and key vector are in the same sentence (the first sentence, in this case), the product shows high values (blue) at these neurons. When query and key vector are in different sentences, the product is strongly negative (orange) at these same positions, as in this example:</p>
-<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/query_key_bow.png" /></p>
-<p>When query and key are both from sentence 1, they tend to have values with the same sign along the active neurons, resulting in a positive product. When the query is from sentence 1, and the key is from sentence 2, the same neurons tend to have values with opposite signs, resulting in a negative product.</p>
-<p>How does BERT know the concept of “sentence”, especially in the first layer of the network before higher-level abstractions are formed? As mentioned earlier, BERT accepts special [SEP] tokens that mark sentence boundaries. Additionally, BERT incorporates sentence-level embeddings that are added to the input layer. The information encoded in these sentence embeddings flows to downstream variables, i.e. queries and keys, and enables them to acquire sentence-specific values.</p>
-<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/sentence_embedding.png" /></p>
-<p>Select layer 0, head 0</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">head_view</span><span class="p">(</span><span class="n">attention</span><span class="p">,</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">heads</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="next-word-attention-pattern">
-<h3>Next-word attention pattern<a class="headerlink" href="#next-word-attention-pattern" title="Permalink to this heading">#</a></h3>
-<p>It makes sense that the model would focus on the next word, because adjacent words are often the most relevant for understanding a word’s meaning in context. Traditional n-gram language models are based on this same intuition.</p>
-<p>Let’s check out the neuron view for this pattern:</p>
-<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/neuron_view_next_word.png" /></p>
-<p>We see that the product of the query vector for “the” and the key vector for “store” (the next word) is strongly positive across most neurons. For tokens other than the next token, the key-query product contains some combination of positive and negative values. The result is a high attention score between “the” and “store”.</p>
-<p>For this attention pattern, a large number of neurons figure into the attention score, and these neurons differ depending on the token position, as illustrated here:</p>
-<p><img alt="" src="lectures/nlp_deep/figs/deep_nlp/bert/query_key_next_word.png" /></p>
-<p>This behavior differs from the delimiter-focused and the sentence-focused attention patterns, in which a small, fixed set of neurons determine the attention scores. For those two patterns, only a few neurons are required because the patterns are so simple, and there is little variation in the words that receive attention. In contrast, the next-word attention pattern needs to track which of the 512 words receives attention from a given position, i.e., which is the next word. To do so it needs to generate queries and keys such that each query vector matches with a unique key vector from the 512 possibilities. This would be difficult to accomplish using a small subset of neurons.</p>
-<p><strong>How is BERT able to generate these position-aware queries and keys?</strong></p>
-<ul class="simple">
-<li><p>The answer lies in BERT’s position embeddings, which are added to the word embeddings at the input layer.</p></li>
-<li><p>BERT learns a separate position embedding for each position in the sequence, and adds these to the word embeddings.</p></li>
-<li><p>This position information flows to downstream variables, i.e. queries and keys, and enables them to acquire position-specific values.</p></li>
-</ul>
-<p>Select layer 2, head 0. (The selected head is indicated by the highlighted square in the color bar at the top.) Most of the attention at a particular position is directed to the next token in the sequence.</p>
-<ul class="simple">
-<li><p>If you do not select any token, the visualization shows the attention pattern for all tokens in the sequence.</p></li>
-<li><p>If you select a token, the visualization shows the attention pattern for the selected token.</p></li>
-<li><p>If you select a token <code class="docutils literal notranslate"><span class="pre">i</span></code>, virtually all the attention is directed to the next token <code class="docutils literal notranslate"><span class="pre">went</span></code>.</p></li>
-<li><p>The [SEP] token disrupts the next-token attention pattern, as most of the attention from [SEP] is directed to [CLS] (the first token in the sequence) rather than the next token.</p></li>
-<li><p>This pattern, attention to the next token, appears to work primarily within a sentence.</p></li>
-<li><p>This pattern is related to the idea of a recurrent neural network (RNN) that is trained to predict the next word in a sequence.</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">head_view</span><span class="p">(</span><span class="n">attention</span><span class="p">,</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">heads</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="attention-to-previous-word">
-<h3>Attention to previous word<a class="headerlink" href="#attention-to-previous-word" title="Permalink to this heading">#</a></h3>
-<p>Select layer 6, head 11. In this pattern, much of the attention is directed to the previous token in the sequence.</p>
-<ul class="simple">
-<li><p>For example, most of the attention from <code class="docutils literal notranslate"><span class="pre">went</span></code> is directed to the previous token <code class="docutils literal notranslate"><span class="pre">i</span></code>.</p></li>
-<li><p>The pattern is not as distinct as the next-token pattern, but it is still present.</p></li>
-<li><p>Some attention is also dispersed to other tokens in the sequence, especially to the [SEP] token.</p></li>
-<li><p>This pattern is also related to the idea of an RNN, in this case the forward direction of an RNN.</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">head_view</span><span class="p">(</span><span class="n">attention</span><span class="p">,</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">heads</span><span class="o">=</span><span class="p">[</span><span class="mi">11</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="attention-to-identical-related-words-pattern">
-<h3>Attention to identical/related words pattern<a class="headerlink" href="#attention-to-identical-related-words-pattern" title="Permalink to this heading">#</a></h3>
-<p>Select layer 2, head 6. In this pattern, much of the attention is directed to identical or related words, including the source word itself.</p>
-<ul class="simple">
-<li><p>For example, most of the attention for the first occurrence of <code class="docutils literal notranslate"><span class="pre">store</span></code> is directed to itself and to the second occurrence of <code class="docutils literal notranslate"><span class="pre">store</span></code>.</p></li>
-<li><p>This pattern is not as distict as some of the other patterns.</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">head_view</span><span class="p">(</span><span class="n">attention</span><span class="p">,</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">heads</span><span class="o">=</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="attention-to-identical-related-words-in-other-sentence">
-<h3>Attention to identical/related words in other sentence<a class="headerlink" href="#attention-to-identical-related-words-in-other-sentence" title="Permalink to this heading">#</a></h3>
-<p>Select layer 10, head 10. In this pattern, much of the attention is directed to identical or related words in the other sentence.</p>
-<ul class="simple">
-<li><p>For example, most of the attention of <code class="docutils literal notranslate"><span class="pre">store</span></code> in the second sentence is directed to <code class="docutils literal notranslate"><span class="pre">store</span></code> in the first sentence.</p></li>
-<li><p>This is helpful for the next sentence prediction task, which is one of the pre-training tasks for BERT.</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">head_view</span><span class="p">(</span><span class="n">attention</span><span class="p">,</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">heads</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="attention-to-other-words-predictive-of-word">
-<h3>Attention to other words predictive of word<a class="headerlink" href="#attention-to-other-words-predictive-of-word" title="Permalink to this heading">#</a></h3>
-<p>Select layer 2, head 1. In this pattern, attention seems to be directed to other words that are predictive of the source word, excluding the source word itself.</p>
-<ul class="simple">
-<li><p>For example, most of the attention for <code class="docutils literal notranslate"><span class="pre">straw</span></code> is directed to <code class="docutils literal notranslate"><span class="pre">##berries</span></code>, and most of the attention from <code class="docutils literal notranslate"><span class="pre">##berries</span></code> is focused on <code class="docutils literal notranslate"><span class="pre">straw</span></code>.</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">head_view</span><span class="p">(</span><span class="n">attention</span><span class="p">,</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">heads</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://towardsdatascience.com/deconstructing-bert-part-2-visualizing-the-inner-workings-of-attention-60a16d86b5c1">Deconstructing BERT</a></p></li>
-</ul>
 </section>
 </section>
 
@@ -863,6 +625,24 @@ document.write(`
                 <footer class="bd-footer-article">
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="../transformers.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Transformers</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../t5.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">T5: Text-To-Text Transfer Transformer</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -880,27 +660,15 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-architecture-of-bert">The Architecture of BERT</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-mechanism">Attention Mechanism</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attending-to-language">Attending to language</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-head-attention">Multi-head attention</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attending-to-language">Attending to Language</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-head-attention">Multi-head Attention</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-training-and-fine-tuning">Pre-training and Fine-tuning</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-training">Pre-training</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tuning">Fine-tuning</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-attention">Visualizing Attention</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deconstructing-attention">Deconstructing Attention</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where-do-these-query-and-key-vectors-come-from">Where do these query and key vectors come from?</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explaining-berts-attention-patterns">Explaining BERT’s attention patterns</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-bert-actually-learn">What does BERT actually learn?</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delimiter-focused-attention-patterns">Delimiter-focused attention patterns</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bag-of-words-attention-pattern">Bag of Words attention pattern</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-word-attention-pattern">Next-word attention pattern</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-to-previous-word">Attention to previous word</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-to-identical-related-words-pattern">Attention to identical/related words pattern</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-to-identical-related-words-in-other-sentence">Attention to identical/related words in other sentence</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-to-other-words-predictive-of-word">Attention to other words predictive of word</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
   </nav></div>
 
