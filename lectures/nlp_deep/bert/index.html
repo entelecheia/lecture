@@ -475,6 +475,10 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-mechanism">Attention Mechanism</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attending-to-language">Attending to Language</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-in-bert-easy-version">Attention in BERT (Easy Version)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deconstructing-attention">Deconstructing Attention</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-origin-of-query-and-key-vectors">The Origin of Query and Key Vectors</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-head-attention">Multi-head Attention</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-training-and-fine-tuning">Pre-training and Fine-tuning</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-training">Pre-training</a></li>
@@ -554,19 +558,67 @@ document.write(`
 <h3>Attention in BERT (Easy Version)<a class="headerlink" href="#attention-in-bert-easy-version" title="Permalink to this heading">#</a></h3>
 <p>The attention mechanism is a technique used by neural networks to focus on relevant parts of the input data when processing it. In the context of natural language processing, it helps the model pay more attention to important words in a sentence.</p>
 <p>Let’s illustrate the attention mechanism with a simple example:</p>
-<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph TD
+<div align="center" class="mermaid align-center">
+            graph TD
 A[Input: the cat ran] --&gt; B[Attention Weights] --&gt; C[Output: cat]
-</pre></div>
-</div>
-<p>In this example, we have an input sentence “the cat ran”. The attention mechanism assigns weights to each word in the sentence based on their importance. These weights are represented by the “Attention Weights” node in the diagram.</p>
+        </div>
+        <p>In this example, we have an input sentence “the cat ran”. The attention mechanism assigns weights to each word in the sentence based on their importance. These weights are represented by the “Attention Weights” node in the diagram.</p>
 <p>After calculating the attention weights, the model computes an output by combining the input words according to the weights. In this case, the model focuses more on the word “cat” and generates an output accordingly.</p>
 <p>Here is another diagram showing the attention mechanism with attention weights:</p>
-<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph LR
+<div align="center" class="mermaid align-center">
+            graph LR
 A[Input: the cat ran] --&gt; B[Attention Weights: 0.1, 0.8, 0.1] --&gt; C[Output: cat]
-</pre></div>
-</div>
-<p>In this diagram, we have added attention weights for each word in the input sentence. The weights (0.1, 0.8, 0.1) indicate that the model focuses most of its attention on the word “cat” (0.8), while giving less importance to the words “the” and “ran” (0.1 each).</p>
+        </div>
+        <p>In this diagram, we have added attention weights for each word in the input sentence. The weights (0.1, 0.8, 0.1) indicate that the model focuses most of its attention on the word “cat” (0.8), while giving less importance to the words “the” and “ran” (0.1 each).</p>
 <p>To sum up, the attention mechanism allows a neural network to focus on the most relevant parts of the input data by assigning importance weights to the elements, making it easier for the model to process and understand the input.</p>
+</section>
+</section>
+<section id="deconstructing-attention">
+<h2>Deconstructing Attention<a class="headerlink" href="#deconstructing-attention" title="Permalink to this heading">#</a></h2>
+<p>Let’s dive deeper into the attention mechanism and understand how it computes the weights for each word in the input.</p>
+<p>As we know, attention is a <strong>weighted average</strong> of the values of the vectors in X. The critical aspect here is determining how these weights are computed. To do so, attention relies on <strong>queries</strong> and <strong>keys</strong>.</p>
+<figure class="align-default" id="fig-attention-query-key">
+<a class="reference internal image-reference" href="../../../_images/attention_query_key.png"><img alt="../../../_images/attention_query_key.png" src="../../../_images/attention_query_key.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 81 </span><span class="caption-text">Attention query and key</span><a class="headerlink" href="#fig-attention-query-key" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p><strong>Queries</strong> and <strong>keys</strong> are similar to word embeddings, like the value vectors we saw earlier. However, they are specifically designed for determining the similarity between words in the input.</p>
+<p>The <strong>similarity</strong> between two words is calculated by taking the <strong>dot product</strong> of the query and key vectors of those words.</p>
+<figure class="align-default" id="fig-attention-query-key-dot-product">
+<a class="reference internal image-reference" href="../../../_images/attention_query_key_dot_product.png"><img alt="../../../_images/attention_query_key_dot_product.png" src="../../../_images/attention_query_key_dot_product.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 82 </span><span class="caption-text">Attention query and key dot product</span><a class="headerlink" href="#fig-attention-query-key-dot-product" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>To transform the dot product into a <strong>probability</strong>, we apply a <strong>softmax function</strong> to the dot product. The softmax function normalizes the dot product so that it sums to 1, giving us a probability distribution.</p>
+<figure class="align-default" id="fig-attention-query-key-softmax">
+<a class="reference internal image-reference" href="../../../_images/attention_query_key_softmax.png"><img alt="../../../_images/attention_query_key_softmax.png" src="../../../_images/attention_query_key_softmax.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 83 </span><span class="caption-text">Attention query and key softmax</span><a class="headerlink" href="#fig-attention-query-key-softmax" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The softmax values on the right represent the final weights of the attention mechanism. These weights indicate the importance of each word in the input when computing the output vector.</p>
+<p>In summary, the attention mechanism calculates the importance of each word in the input by comparing their query and key vectors through the dot product. It then normalizes these dot products using the softmax function to obtain the final attention weights.</p>
+<section id="the-origin-of-query-and-key-vectors">
+<h3>The Origin of Query and Key Vectors<a class="headerlink" href="#the-origin-of-query-and-key-vectors" title="Permalink to this heading">#</a></h3>
+<p>We have seen that attention weights are computed using query and key vectors, but how are these vectors generated?</p>
+<p>The <strong>query and key vectors</strong> are derived from the value vectors. They are calculated by passing the value vectors through <strong>two different linear layers</strong>.</p>
+<p>We can visualize the process of computing attention weights from query and key vectors using the <strong>neuron view</strong>.</p>
+<figure class="align-default" id="fig-neuron-view">
+<a class="reference internal image-reference" href="../../../_images/neuron_view.png"><img alt="../../../_images/neuron_view.png" src="../../../_images/neuron_view.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 84 </span><span class="caption-text">Neuron view</span><a class="headerlink" href="#fig-neuron-view" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The neuron view demonstrates the computation of attention from the selected word on the left to the entire sequence of words on the right. Positive values are displayed in blue and negative values in orange, with the color intensity representing the magnitude.</p>
+<p>Let’s examine each column in the neuron view individually:</p>
+<p><strong>Query q</strong>: The query vector ‘q’ encodes the word on the left that is paying attention or “querying” the other words. In the example above, the query vector for “on” (the selected word) is highlighted.</p>
+<p><strong>Key k</strong>: The key vector ‘k’ encodes the word on the right to which attention is being directed. The query vector and key vector work together to determine a compatibility score between the two words.</p>
+<p><strong>q×k (elementwise)</strong>: This is the elementwise product between the query vector of the selected word and each of the key vectors. Although it is a precursor to the dot product (the sum of the elementwise product), it is included in the visualization to show how individual elements in the query and key vectors contribute to the dot product.</p>
+<p><strong>q·k</strong>: This is the scaled dot product of the selected query vector and each of the key vectors. It represents the unnormalized attention score.</p>
+<p><strong>Softmax</strong>: This column displays the softmax of the scaled dot product, which normalizes the attention scores to be positive and sum to one.</p>
+<p>In summary, the attention mechanism computes attention weights using query and key vectors, which are derived from value vectors by passing them through two distinct linear layers. The neuron view provides a visualization of this process, illustrating the calculation of attention scores and their normalization using softmax.</p>
 </section>
 <section id="multi-head-attention">
 <h3>Multi-head Attention<a class="headerlink" href="#multi-head-attention" title="Permalink to this heading">#</a></h3>
@@ -686,6 +738,10 @@ A[Input: the cat ran] --&gt; B[Attention Weights: 0.1, 0.8, 0.1] --&gt; C[Output
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-mechanism">Attention Mechanism</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attending-to-language">Attending to Language</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-in-bert-easy-version">Attention in BERT (Easy Version)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deconstructing-attention">Deconstructing Attention</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-origin-of-query-and-key-vectors">The Origin of Query and Key Vectors</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-head-attention">Multi-head Attention</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-training-and-fine-tuning">Pre-training and Fine-tuning</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-training">Pre-training</a></li>
