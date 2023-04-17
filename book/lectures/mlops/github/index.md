@@ -76,3 +76,5 @@ In this lecture, we have learned about Github's Fork & Pull workflow and how it 
 ## References
 
 - [GitHub Standard Fork & Pull Request Workflow](https://gist.github.com/Chaser324/ce0505fbed06b947d962#file-github-forking-md)
+- [Introducing code owners](https://github.blog/2017-07-06-introducing-code-owners/)
+- [How to Create a Good Pull Request Template](https://dev.to/opensauced/how-to-create-a-good-pull-request-template-and-why-you-should-add-gifs-4i0l)
