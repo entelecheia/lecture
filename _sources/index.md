@@ -65,7 +65,7 @@ Aristotle's concept of entelecheia can provide valuable guidance for AI, underli
 ## Table of Contents
 
 ```{tableofcontents}
-:depth: 4
+
 ```
 
 <!-- Links: -->
