@@ -188,3 +188,9 @@ chezmoi init --apply
 - [Set up your new machine in a blink of an eye](https://dev.to/vvidovic/set-up-your-new-machine-in-a-blink-of-an-eye-43j7)
 - [AGE AND AUTHENTICATED ENCRYPTION](https://words.filippo.io/dispatches/age-authentication/)
 - [How I Use Restic to Back up My Home Folders to Backblaze B2](https://www.seanh.cc/2022/04/03/restic/#3-install-pass)
+
+## Next
+
+```{tableofcontents}
+
+```

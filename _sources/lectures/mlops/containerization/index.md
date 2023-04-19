@@ -410,3 +410,9 @@ dk-compose down my_project -t prod
 ```
 
 Remember that the `dk-compose` script should be executable and located in a directory included in the `PATH` variable (e.g., `.local/bin`).
+
+## Next
+
+```{tableofcontents}
+
+```
