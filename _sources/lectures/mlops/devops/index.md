@@ -104,3 +104,9 @@ There are a wide range of DevOps tools available that help automate and streamli
 - **Splunk**: A platform for log management, analysis, and visualization that supports real-time monitoring and alerting.
 
 These are just a few examples of the many DevOps tools available. When selecting tools for your organization, consider factors like ease of use, integration with existing systems, scalability, and the specific requirements of your development and operations processes.
+
+## Next
+
+```{tableofcontents}
+
+```
