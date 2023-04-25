@@ -57,9 +57,7 @@ Collecting high-quality data for training LLMs can be a complex and resource-int
 
 To overcome these challenges, researchers and companies developing LLMs must invest in innovative methods for data collection, preprocessing, and filtering. This may involve leveraging public datasets, partnering with organizations that possess proprietary data, or developing in-house tools and algorithms for data acquisition and processing. By addressing these challenges, LLM developers can ensure the quality and reliability of their models, paving the way for more accurate and useful NLP applications.
 
-## Three Data Must-Haves for Powerful LLMs
-
-# Three Data Must-Haves for NLP
+## Three Data Must-Haves for NLP
 
 To train high-performing LLMs and improve the overall effectiveness of NLP applications, companies and researchers should prioritize the following three key attributes when selecting datasets for training:
 
