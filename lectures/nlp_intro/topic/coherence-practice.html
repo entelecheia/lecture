@@ -648,10 +648,10 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create some random topics</span>
 <span class="n">topics</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">[</span><span class="s2">&quot;space&quot;</span><span class="p">,</span> <span class="s2">&quot;planet&quot;</span><span class="p">,</span> <span class="s2">&quot;mars&quot;</span><span class="p">,</span> <span class="s2">&quot;galaxy&quot;</span><span class="p">],</span>
-    <span class="p">[</span><span class="s2">&quot;cold&quot;</span><span class="p">,</span> <span class="s2">&quot;medicine&quot;</span><span class="p">,</span> <span class="s2">&quot;doctor&quot;</span><span class="p">,</span> <span class="s2">&quot;health&quot;</span><span class="p">,</span> <span class="s2">&quot;water&quot;</span><span class="p">],</span>
-    <span class="p">[</span><span class="s2">&quot;cats&quot;</span><span class="p">,</span> <span class="s2">&quot;health&quot;</span><span class="p">,</span> <span class="s2">&quot;keyboard&quot;</span><span class="p">,</span> <span class="s2">&quot;car&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">],</span>
-    <span class="p">[</span><span class="s2">&quot;windows&quot;</span><span class="p">,</span> <span class="s2">&quot;mac&quot;</span><span class="p">,</span> <span class="s2">&quot;computer&quot;</span><span class="p">,</span> <span class="s2">&quot;operating&quot;</span><span class="p">,</span> <span class="s2">&quot;system&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;car&quot;</span><span class="p">,</span> <span class="s2">&quot;engine&quot;</span><span class="p">,</span> <span class="s2">&quot;tire&quot;</span><span class="p">,</span> <span class="s2">&quot;gasoline&quot;</span><span class="p">,</span> <span class="s2">&quot;speed&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;dog&quot;</span><span class="p">,</span> <span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="s2">&quot;animal&quot;</span><span class="p">,</span> <span class="s2">&quot;pet&quot;</span><span class="p">,</span> <span class="s2">&quot;veterinarian&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;movie&quot;</span><span class="p">,</span> <span class="s2">&quot;director&quot;</span><span class="p">,</span> <span class="s2">&quot;actor&quot;</span><span class="p">,</span> <span class="s2">&quot;scene&quot;</span><span class="p">,</span> <span class="s2">&quot;cinema&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;music&quot;</span><span class="p">,</span> <span class="s2">&quot;song&quot;</span><span class="p">,</span> <span class="s2">&quot;artist&quot;</span><span class="p">,</span> <span class="s2">&quot;instrument&quot;</span><span class="p">,</span> <span class="s2">&quot;concert&quot;</span><span class="p">],</span>
 <span class="p">]</span>
 
 <span class="c1"># Create a dictionary with the vocabulary</span>
@@ -662,6 +662,22 @@ document.write(`
 
 <span class="c1"># Compute coherence scores per topic</span>
 <span class="n">coherence_per_topic</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">get_coherence_per_topic</span><span class="p">()</span>
+
+<span class="c1"># Instantiate the CoherenceModel with c_uci coherence measure</span>
+<span class="n">cm_uci</span> <span class="o">=</span> <span class="n">CoherenceModel</span><span class="p">(</span>
+    <span class="n">topics</span><span class="o">=</span><span class="n">topics</span><span class="p">,</span> <span class="n">texts</span><span class="o">=</span><span class="n">texts</span><span class="p">,</span> <span class="n">coherence</span><span class="o">=</span><span class="s2">&quot;c_uci&quot;</span><span class="p">,</span> <span class="n">dictionary</span><span class="o">=</span><span class="n">word2id</span>
+<span class="p">)</span>
+
+<span class="c1"># Compute coherence scores per topic</span>
+<span class="n">coherence_per_topic_uci</span> <span class="o">=</span> <span class="n">cm_uci</span><span class="o">.</span><span class="n">get_coherence_per_topic</span><span class="p">()</span>
+
+<span class="c1"># Instantiate the CoherenceModel with u_mass coherence measure</span>
+<span class="n">cm_umass</span> <span class="o">=</span> <span class="n">CoherenceModel</span><span class="p">(</span>
+    <span class="n">topics</span><span class="o">=</span><span class="n">topics</span><span class="p">,</span> <span class="n">texts</span><span class="o">=</span><span class="n">texts</span><span class="p">,</span> <span class="n">coherence</span><span class="o">=</span><span class="s2">&quot;u_mass&quot;</span><span class="p">,</span> <span class="n">dictionary</span><span class="o">=</span><span class="n">word2id</span>
+<span class="p">)</span>
+
+<span class="c1"># Compute coherence scores per topic</span>
+<span class="n">coherence_per_topic_umass</span> <span class="o">=</span> <span class="n">cm_umass</span><span class="o">.</span><span class="n">get_coherence_per_topic</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -672,42 +688,194 @@ document.write(`
 <p>Finally, we visualize the coherence scores in a heatmap. Each row represents a topic, and the color intensity indicates the coherence score. The darker the color, the higher the coherence score. This provides an easy way to visually compare the coherence of different topics.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prepare the data for visualization</span>
-<span class="n">topics_str</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">topics</span><span class="p">]</span>
-<span class="n">data_topic_score</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-    <span class="n">data</span><span class="o">=</span><span class="nb">zip</span><span class="p">(</span><span class="n">topics_str</span><span class="p">,</span> <span class="n">coherence_per_topic</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Topic&quot;</span><span class="p">,</span> <span class="s2">&quot;Coherence&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Combine all coherence scores into a single DataFrame</span>
+<span class="n">all_coherence_scores</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;Topic&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">topics</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s2">&quot;Coherence&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">coherence_per_topic</span><span class="p">,</span> <span class="n">coherence_per_topic_uci</span><span class="p">,</span> <span class="n">coherence_per_topic_umass</span><span class="p">]</span>
+        <span class="p">),</span>
+        <span class="s2">&quot;Measure&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;c_v&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">topics</span><span class="p">)</span>
+        <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;c_uci&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">topics</span><span class="p">)</span>
+        <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;u_mass&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">topics</span><span class="p">),</span>
+    <span class="p">}</span>
 <span class="p">)</span>
-<span class="n">data_topic_score</span> <span class="o">=</span> <span class="n">data_topic_score</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Topic&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualize the coherence scores</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Topics coherence</span><span class="se">\n</span><span class="s2"> $C_v$&quot;</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
-    <span class="n">data</span><span class="o">=</span><span class="n">data_topic_score</span><span class="p">,</span>
-    <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Reds&quot;</span><span class="p">,</span>
-    <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;.2f&quot;</span><span class="p">,</span>
-    <span class="n">linecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
-    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">all_coherence_scores</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/f8e24caf0df90bcfae5f10f5c2d243c05a00962cbd84bb02459be6e7593b1b74.png" src="../../../_images/f8e24caf0df90bcfae5f10f5c2d243c05a00962cbd84bb02459be6e7593b1b74.png" />
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Topic</th>
+      <th>Coherence</th>
+      <th>Measure</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>car, engine, tire, gasoline, speed</td>
+      <td>0.702137</td>
+      <td>c_v</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>dog, cat, animal, pet, veterinarian</td>
+      <td>0.326970</td>
+      <td>c_v</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>movie, director, actor, scene, cinema</td>
+      <td>0.238576</td>
+      <td>c_v</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>music, song, artist, instrument, concert</td>
+      <td>0.333913</td>
+      <td>c_v</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>car, engine, tire, gasoline, speed</td>
+      <td>-0.406149</td>
+      <td>c_uci</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>dog, cat, animal, pet, veterinarian</td>
+      <td>-3.889160</td>
+      <td>c_uci</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>movie, director, actor, scene, cinema</td>
+      <td>-7.223855</td>
+      <td>c_uci</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>music, song, artist, instrument, concert</td>
+      <td>-6.404229</td>
+      <td>c_uci</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>car, engine, tire, gasoline, speed</td>
+      <td>-2.893048</td>
+      <td>u_mass</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>dog, cat, animal, pet, veterinarian</td>
+      <td>-6.618890</td>
+      <td>u_mass</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>movie, director, actor, scene, cinema</td>
+      <td>-15.593594</td>
+      <td>u_mass</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>music, song, artist, instrument, concert</td>
+      <td>-9.202692</td>
+      <td>u_mass</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Here, we have the coherence scores for four different topics using three coherence measures: <span class="math notranslate nohighlight">\(c_{v}\)</span>, <span class="math notranslate nohighlight">\(c_{uci}\)</span>, and <span class="math notranslate nohighlight">\(u_{mass}\)</span>. Let’s interpret the results:</p>
+<ol class="arabic simple">
+<li><p>Topic 1: “car, engine, tire, gasoline, speed”</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(c_{v}\)</span> coherence score: 0.702137</p></li>
+<li><p><span class="math notranslate nohighlight">\(c_{uci}\)</span> coherence score: -0.406149</p></li>
+<li><p><span class="math notranslate nohighlight">\(u_{mass}\)</span> coherence score: -2.893048</p></li>
+</ul>
+</li>
+</ol>
+<p>Topic 1 seems to be the most coherent topic according to the <span class="math notranslate nohighlight">\(c_{v}\)</span> measure, while it has a relatively low negative score for the <span class="math notranslate nohighlight">\(c_{uci}\)</span> and <span class="math notranslate nohighlight">\(u_{mass}\)</span> measures. This suggests that this topic is quite coherent and has a strong relationship between the words, especially when considering the <span class="math notranslate nohighlight">\(c_{v}\)</span> measure.</p>
+<ol class="arabic simple" start="2">
+<li><p>Topic 2: “dog, cat, animal, pet, veterinarian”</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(c_{v}\)</span> coherence score: 0.326970</p></li>
+<li><p><span class="math notranslate nohighlight">\(c_{uci}\)</span> coherence score: -3.889160</p></li>
+<li><p><span class="math notranslate nohighlight">\(u_{mass}\)</span> coherence score: -6.618890</p></li>
+</ul>
+</li>
+</ol>
+<p>Topic 2 has a lower <span class="math notranslate nohighlight">\(c_{v}\)</span> coherence score than Topic 1, but it’s still positive, indicating a reasonable level of coherence. However, the <span class="math notranslate nohighlight">\(c_{uci}\)</span> and <span class="math notranslate nohighlight">\(u_{mass}\)</span> measures show relatively large negative scores, suggesting a weaker relationship between the words in this topic.</p>
+<ol class="arabic simple" start="3">
+<li><p>Topic 3: “movie, director, actor, scene, cinema”</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(c_{v}\)</span> coherence score: 0.238576</p></li>
+<li><p><span class="math notranslate nohighlight">\(c_{uci}\)</span> coherence score: -7.223855</p></li>
+<li><p><span class="math notranslate nohighlight">\(u_{mass}\)</span> coherence score: -15.593594</p></li>
+</ul>
+</li>
+</ol>
+<p>Topic 3 has the lowest <span class="math notranslate nohighlight">\(c_{v}\)</span> coherence score among the four topics, but it’s still positive. However, it has the largest negative scores for both the <span class="math notranslate nohighlight">\(c_{uci}\)</span> and <span class="math notranslate nohighlight">\(u_{mass}\)</span> measures, which suggests that the relationship between the words in this topic is the weakest among the four topics.</p>
+<ol class="arabic simple" start="4">
+<li><p>Topic 4: “music, song, artist, instrument, concert”</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(c_{v}\)</span> coherence score: 0.333913</p></li>
+<li><p><span class="math notranslate nohighlight">\(c_{uci}\)</span> coherence score: -6.404229</p></li>
+<li><p><span class="math notranslate nohighlight">\(u_{mass}\)</span> coherence score: -9.202692</p></li>
+</ul>
+</li>
+</ol>
+<p>Topic 4 has a similar <span class="math notranslate nohighlight">\(c_{v}\)</span> coherence score as Topic 2, indicating a decent level of coherence. The <span class="math notranslate nohighlight">\(c_{uci}\)</span> and <span class="math notranslate nohighlight">\(u_{mass}\)</span> measures show large negative scores, but they are not as low as Topic 3’s scores.</p>
+<p>In summary, according to the <span class="math notranslate nohighlight">\(c_{v}\)</span> coherence measure, Topic 1 is the most coherent, followed by Topics 2, 4, and 3. However, the <span class="math notranslate nohighlight">\(c_{uci}\)</span> and <span class="math notranslate nohighlight">\(u_{mass}\)</span> measures give relatively large negative scores for all the topics, with Topic 3 consistently being the least coherent. It’s important to note that the scale and interpretation of the coherence measures differ, so comparing the raw scores across measures can be misleading.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set plot style</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;ggplot&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create a bar plot with subplots for each coherence measure</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Coherence Scores per Topic and Measure&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">measure</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s2">&quot;c_v&quot;</span><span class="p">,</span> <span class="s2">&quot;c_uci&quot;</span><span class="p">,</span> <span class="s2">&quot;u_mass&quot;</span><span class="p">]):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">all_coherence_scores</span><span class="p">[</span><span class="n">all_coherence_scores</span><span class="p">[</span><span class="s2">&quot;Measure&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">measure</span><span class="p">]</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Topic&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Coherence&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">measure</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+<span class="c1"># Add a y-label to the leftmost subplot</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Coherence Score&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
 </div>
 </div>
-<p>From the heatmap, we can observe that the first topic, related to space, has the highest coherence score, indicating that the words in this topic are more related to each other compared to the other topics. The third topic, with a mix of unrelated words, has the lowest coherence score, which aligns with our expectation that the words in this topic do not form a coherent concept.</p>
+<div class="cell_output docutils container">
+<img alt="../../../_images/004167822c736918d6736e070d5a1c48b4fd9858a3f7ee4c8e5db66a70b9d0ff.png" src="../../../_images/004167822c736918d6736e070d5a1c48b4fd9858a3f7ee4c8e5db66a70b9d0ff.png" />
+</div>
+</div>
 </section>
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
