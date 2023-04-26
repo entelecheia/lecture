@@ -79,7 +79,7 @@ By using this approach, our model computes the final coherence score based on th
 
 Another example is the S-one-all segmentation, which entails creating pairs of each word with all other words. Applying it to $W$ yields the following pairs:
 
-$$ S = \{(\{w*1\}, \{w_2, w_3, \dots, w_n\}), (\{w_2\}, \{w_1, w_3, \dots, w_n\}), \dots, (\{w_n\}, \{w_1, w_2, \dots, w*{n-1}\})\} $$
+$$ S = \{(\{w_1\}, \{w_2, w_3, \dots, w_n\}), (\{w_2\}, \{w_1, w_3, \dots, w_n\}), \dots, (\{w_n\}, \{w_1, w_2, \dots, w*{n-1}\})\} $$
 
 By using this approach, our model computes the final coherence score based on the relationship between each word in the topic and all the other words in the topic. This way, the segmentation step allows us to choose different strategies to investigate the coherence of a given topic.
 
