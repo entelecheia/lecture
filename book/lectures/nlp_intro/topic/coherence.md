@@ -98,7 +98,7 @@ $$ P\_{bd}(w) = \frac{count(D_w)}{N} $$
 
 Similarly, the probability $P(w_1, w_2)$ can be estimated by counting the number of documents in which both $w_1$ and $w_2$ appear and dividing the result by the total number of documents in the corpus:
 
-$$ P(w*1, w_2) = \frac{count(D*{w_1, w_2})}{N} $$
+$$ P(w_1, w_2) = \frac{count(D*{w_1, w_2})}{N} $$
 
 Another approach is to use sentence-level probabilities. In this case, the probability $P_{bs}(w)$ is calculated by counting the number of sentences in which the word $w$ appears and dividing the result by the total number of sentences in the corpus.
 
@@ -133,11 +133,11 @@ Confirmation measures can be classified into two types: direct and indirect.
 
 The direct confirmation measure is a straightforward approach that compares the probabilities of word subsets $W^{\prime}$ and $W^*$.
 
-$$ m*r(S_i) = \frac{P(W^{\prime}, W^*)}{P(W^{\prime})P(W^\*)} $$
+$$ m_r(S_i) = \frac{P(W^{\prime}, W^*)}{P(W^{\prime})P(W^*)} $$
 
 Alternatively, using logarithms:
 
-$$ m\_{lr}(S*i) = log \frac{P(W^{\prime}, W^*) + \epsilon}{P(W^{\prime})P(W^\_) + \epsilon} $$
+$$ m_{lr}(S_i) = log \frac{P(W^{\prime}, W^*) + \epsilon}{P(W^{\prime})P(W^\_) + \epsilon} $$
 
 Here, $\epsilon$ represents a small constant that prevents undefined values for logarithms.
 
@@ -145,7 +145,7 @@ Here, $\epsilon$ represents a small constant that prevents undefined values for 
 
 The indirect confirmation measure is a more sophisticated method. It computes a direct confirmation measure for each word in the subsets $W^{\prime}$ and $W^*$, producing a vector of confirmation scores for each word in $W^{\prime}$.
 
-$$ \vec{v}_m(W^{\prime}) = \left\{\sum_{w \in W^{\prime}} m(w*i, w_j)\right\}*{j=1,2, …, |W|} $$
+$$ \vec{v}_m(W^{\prime}) = \left\{\sum_{w \in W^{\prime}} m(w_i, w_j)\right\}*{j=1,2, …, |W|} $$
 
 where $|W|$ denotes the number of words in $W$.
 
