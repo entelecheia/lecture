@@ -73,7 +73,7 @@ Segmentation can be understood as the method we use to combine words in a topic 
 
 For instance, the S-one-one segmentation requires the creation of pairs of distinct words. If $W = \{w_1, w_2, \dots, w_n\}$, then the S-one-one segmentation generates the following pairs:
 
-$$ S = \{(w*1, w_2), (w_1, w_3), \dots, (w_1, w_n), (w_2, w_3), \dots, (w_2, w_n), \dots, (w*{n-1}, w_n)\} $$
+$$ S = \{(w_1, w_2), (w_1, w_3), \dots, (w_1, w_n), (w_2, w_3), \dots, (w_2, w_n), \dots, (w*{n-1}, w_n)\} $$
 
 By using this approach, our model computes the final coherence score based on the relationship between each word in the topic and the other words in the topic.
 
