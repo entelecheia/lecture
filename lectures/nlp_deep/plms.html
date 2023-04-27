@@ -94,7 +94,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Reinforcement Learning with Human Feedback (RLHF)" href="rlhf.html" />
-    <link rel="prev" title="ByT5: Towards a token-free future with pre-trained byte-to-byte models" href="byt5.html" />
+    <link rel="prev" title="SentencePiece Tokenizer" href="sentencepiece.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -218,15 +218,15 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="llms.html">Large Language Models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="zeroshot.html">Zero Shot and Prompt Engineering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="decoding.html">Decoding and Search Strategies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="transformers.html">Transformers</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="bert/index.html">BERT: Bidirectional Encoder Representations from Transformers</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="bert/bertviz.html">BERT: Visualizing Attention</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="transformers/index.html">Transformers</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="transformers/bert.html">BERT: Bidirectional Encoder Representations from Transformers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transformers/bertviz.html">BERT: Visualizing Attention</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transformers/t5.html">T5: Text-To-Text Transfer Transformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transformers/byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="t5.html">T5: Text-To-Text Transfer Transformer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tokenization.html">Tokenization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sentencepiece.html">SentencePiece Tokenizer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Pretrained Language Models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rlhf.html">Reinforcement Learning with Human Feedback (RLHF)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="detectGPT.html">How to Spot Machine-Written Texts</a></li>
@@ -601,7 +601,7 @@ p^*(w) \approx \prod_{i=1}^n \hat{p}_{\theta}(w_i \mid w_1, \ldots, w_{i-1})
 <li><p>However, this approach does not take into account the dependency between the masked words.</p></li>
 </ul>
 <p>For example, in the sentence “I went to the [MASK] to deposit my [MASK]”, the model should predict “bank” for the first masked word and “check” for the second masked word. However, the model may predict “bank” for the first word and “luggage” for the second word because the model does not take into account the dependency between the masked words.</p>
-<a class="reference internal image-reference" href="../../_images/t5-mask-patterns.png"><img alt="t5-mask-patterns" class="align-center" src="../../_images/t5-mask-patterns.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="lectures/nlp_deep/figs/t5-mask-patterns.png"><img alt="t5-mask-patterns" class="align-center" src="lectures/nlp_deep/figs/t5-mask-patterns.png" style="width: 500px;" /></a>
 </section>
 <section id="causal-masked-language-modeling">
 <h3>Causal Masked Language Modeling<a class="headerlink" href="#causal-masked-language-modeling" title="Permalink to this heading">#</a></h3>
@@ -633,7 +633,7 @@ p^*(w) \approx \prod_{i=1}^n \hat{p}_{\theta}(w_i \mid w_1, \ldots, w_{i-1})
 <li><p><strong>Decoder-only PLMs</strong> (e.g. GPT-2, CTRL, etc.) only use the decoder to generate the output sequence. The encoder is not used. The decoder is trained to predict the next word in the sequence of words.</p></li>
 <li><p><strong>Encoder-decoder PLMs</strong> (e.g. T5, BART, MASS, etc.) use both the encoder and the decoder. The encoder is used to encode the input sequence into a vector representation. The decoder is used to generate the output sequence.</p></li>
 </ul>
-<p><img alt="" src="../../_images/t5-structure.png" /></p>
+<p><img alt="" src="lectures/nlp_deep/figs/t5-structure.png" /></p>
 </section>
 <section id="gpt-family">
 <h2>GPT Family<a class="headerlink" href="#gpt-family" title="Permalink to this heading">#</a></h2>
@@ -731,7 +731,7 @@ p^*(w) \approx \prod_{i=1}^n \hat{p}_{\theta}(w_i \mid w_1, \ldots, w_{i-1})
 <li><p>T5: Text-to-Text Transfer Transformer</p></li>
 <li><p>We have the separate lecture on T5. Please refer to the lecture on T5 for more details.</p></li>
 </ul>
-<a class="bg-primary mb-1 reference internal image-reference" href="../../_images/t5-training.png"><img alt="t5-training" class="bg-primary mb-1 align-center" src="../../_images/t5-training.png" style="width: 400px;" /></a>
+<a class="bg-primary mb-1 reference internal image-reference" href="lectures/nlp_deep/figs/t5-training.png"><img alt="t5-training" class="bg-primary mb-1 align-center" src="lectures/nlp_deep/figs/t5-training.png" style="width: 400px;" /></a>
 </section>
 <section id="bart">
 <h2>BART<a class="headerlink" href="#bart" title="Permalink to this heading">#</a></h2>
@@ -804,12 +804,12 @@ p^*(w) \approx \prod_{i=1}^n \hat{p}_{\theta}(w_i \mid w_1, \ldots, w_{i-1})
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="byt5.html"
+       href="sentencepiece.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">ByT5: Towards a token-free future with pre-trained byte-to-byte models</p>
+        <p class="prev-next-title">SentencePiece Tokenizer</p>
       </div>
     </a>
     <a class="right-next"
