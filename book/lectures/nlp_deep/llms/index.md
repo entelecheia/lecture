@@ -114,7 +114,7 @@ Addressing these surrounding issues requires a collective effort from researcher
 
 {cite:t}`wei2022emergent` defined an emergent ability as an ability that is “not present in small models but is present in large models.”
 
-```{figure} ../figs/deep_nlp/llms/llm_ablities.png
+```{figure} figs/llm_ablities.png
 ---
 width: 60%
 name: fig-llm-ablities
@@ -150,3 +150,9 @@ Promising future research directions include improving model architectures, enha
 - Gopher paper: Toxicity classification (Gopher 7.1B), TruthfulQA (Gopher 280B)
 - Patel & Pavlick: grounded conceptual mappings (GPT-3 175B)
 - PaLM paper: Word in Context benchmark (PaLM 540B)
+
+## Next
+
+```{tableofcontents}
+
+```
