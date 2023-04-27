@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>ByT5: Towards a token-free future with pre-trained byte-to-byte models &#8212; ἐντελέχεια.άι</title>
+    <title>Datasets for NLP &#8212; ἐντελέχεια.άι</title>
   
   
   
@@ -88,13 +88,13 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_deep/transformers/byt5';</script>
-    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_deep/transformers/byt5.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_deep/datasets/index';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_deep/datasets/index.html" />
     <link rel="shortcut icon" href="../../../_static/favicon-v2-circle.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Datasets for NLP" href="../datasets/index.html" />
-    <link rel="prev" title="T5: Text-To-Text Transfer Transformer" href="t5.html" />
+    <link rel="next" title="Tokenization" href="../tokenization/index.html" />
+    <link rel="prev" title="ByT5: Towards a token-free future with pre-trained byte-to-byte models" href="../transformers/byt5.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -221,14 +221,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="../llms/plms.html">Pretrained Language Models</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Transformers</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="bert.html">BERT: Bidirectional Encoder Representations from Transformers</a></li>
-<li class="toctree-l3"><a class="reference internal" href="bertviz.html">BERT: Visualizing Attention</a></li>
-<li class="toctree-l3"><a class="reference internal" href="t5.html">T5: Text-To-Text Transfer Transformer</a></li>
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../transformers/index.html">Transformers</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../transformers/bert.html">BERT: Bidirectional Encoder Representations from Transformers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../transformers/bertviz.html">BERT: Visualizing Attention</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../transformers/t5.html">T5: Text-To-Text Transfer Transformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../transformers/byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../datasets/index.html">Datasets for NLP</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Datasets for NLP</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../tokenization/sentencepiece.html">SentencePiece Tokenizer</a></li>
 </ul>
@@ -343,55 +343,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/nlp_deep/transformers/byt5.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch onColab"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img src="../../../_static/images/logo_colab.png">
-  </span>
-<span class="btn__text-container">Colab</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="initThebeSBT()"
-  class="btn btn-sm btn-launch-thebe dropdown-item"
-  title="Launch Thebe"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="btn__text-container">Live Code</span>
-</button>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -400,7 +351,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../../_sources/lectures/nlp_deep/transformers/byt5.ipynb" target="_blank"
+      <li><a href="../../../_sources/lectures/nlp_deep/datasets/index.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -410,7 +361,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -482,7 +433,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>ByT5: Towards a token-free future with pre-trained byte-to-byte models</h1>
+    <h1>Datasets for NLP</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -492,30 +443,20 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-token-in-machine-learning">What Is A Token In Machine Learning?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-byt5">What Is ByT5?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-changes-to-the-mt5-architecture">Key Changes To the mT5 Architecture</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-tokens-are-used">How Tokens Are Used</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-technical-details">The Technical Details</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pros-and-cons-of-byt5">The Pros And Cons Of ByT5</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pros">Pros</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cons">Cons</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-state-of-llms-today">The State of LLMs Today</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#high-quality-vs-low-quality-data">High-Quality vs. Low-Quality Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenges-in-collecting-data">Challenges in Collecting Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#three-data-must-haves-for-nlp">Three Data Must-Haves for NLP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acquiring-high-quality-datasets">Acquiring High-Quality Datasets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#public-datasets">Public datasets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specialized-domains">Specialized domains</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-results">The Results</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#english-classification-tasks-glue-superglue">English Classification Tasks (GLUE, SuperGLUE)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#english-generation-tasks-xsum-tweetqa-drop">English Generation Tasks (XSum, TweetQA, DROP)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-lingual-benchmarks">Cross-lingual Benchmarks</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#word-level-tasks">Word-Level Tasks</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#experiments-on-synthetic-noise">Experiments on Synthetic Noise</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ablation-study">Ablation Study</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proprietary-datasets">Proprietary datasets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multilingual-datasets">Multilingual datasets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-your-own-dataset-through-web-crawling">Building your own dataset through web crawling</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
             </nav>
         </div>
@@ -527,206 +468,109 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="byt5-towards-a-token-free-future-with-pre-trained-byte-to-byte-models">
-<h1>ByT5: Towards a token-free future with pre-trained byte-to-byte models<a class="headerlink" href="#byt5-towards-a-token-free-future-with-pre-trained-byte-to-byte-models" title="Permalink to this heading">#</a></h1>
-<p><img alt="" src="../../../_images/byt5-intro.png" /></p>
-<p>The ByT5 model was presented in <span id="id1">[<a class="reference internal" href="../../../about/index.html#id22" title="Linting Xue, Aditya Barua, Noah Constant, Rami Al-Rfou, Sharan Narang, Mihir Kale, Adam Roberts, and Colin Raffel. Byt5: towards a token-free future with pre-trained byte-to-byte models. Transactions of the Association for Computational Linguistics, 10:291–306, 2022. URL: https://arxiv.org/pdf/2105.13626v1.pdf.">Xue <em>et al.</em>, 2022</a>]</span>.</p>
-<p>The abstract from the paper is the following:</p>
-<blockquote>
-<div><p>Most widely-used pre-trained language models operate on sequences of tokens corresponding to word or subword units. Encoding text as a sequence of tokens requires a tokenizer, which is typically created as an independent artifact from the model. Token-free models that instead operate directly on raw text (bytes or characters) have many benefits: they can process text in any language out of the box, they are more robust to noise, and they minimize technical debt by removing complex and error-prone text preprocessing pipelines. Since byte or character sequences are longer than token sequences, past work on token-free models has often introduced new model architectures designed to amortize the cost of operating directly on raw text. In this paper, we show that a standard Transformer architecture can be used with minimal modifications to process byte sequences. We carefully characterize the trade-offs in terms of parameter count, training FLOPs, and inference speed, and show that byte-level models are competitive with their token-level counterparts. We also demonstrate that byte-level models are significantly more robust to noise and perform better on tasks that are sensitive to spelling and pronunciation. As part of our contribution, we release a new set of pre-trained byte-level Transformer models based on the T5 architecture, as well as all code and data used in our experiments.</p>
-</div></blockquote>
-<section id="what-is-a-token-in-machine-learning">
-<h2>What Is A Token In Machine Learning?<a class="headerlink" href="#what-is-a-token-in-machine-learning" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>A token is a sequence of characters that is considered as a single entity during processing.</p></li>
-<li><p>Tokens are usually derived from words, but they can also be derived from subwords, characters, or even bytes.</p></li>
-<li><p>For example, the sentence “The quick brown fox jumps over the lazy dog” can be tokenized into the following tokens: [“The”, “quick”, “brown”, “fox”, “jumps”, “over”, “the”, “lazy”, “dog”].</p></li>
-<li><p>Some words can be tokenized into multiple tokens, for example, “don’t” can be tokenized into [“do”, “n’t”].</p></li>
-<li><p>At the byte or chracter level, the sentence can be tokenized into the 43 character tokens.</p></li>
-<li><p>In transformer models, tokens are usually represented as vectors of fixed length, for example, 512-dimensional vectors to limit the cost of computation.</p></li>
-<li><p>Attention mechanisms are expensive, and the cost of computation increases with the order of <span class="math notranslate nohighlight">\(N^2\)</span> where <span class="math notranslate nohighlight">\(N\)</span> is the number of tokens in the sequence.</p></li>
-<li><p>This explains why tokenization is important, it dramatically reduces the number of tokens in a sequence, and thus the cost of computation.</p></li>
-</ul>
+  <section class="tex2jax_ignore mathjax_ignore" id="datasets-for-nlp">
+<h1>Datasets for NLP<a class="headerlink" href="#datasets-for-nlp" title="Permalink to this heading">#</a></h1>
+<a class="bg-primary mb-1 reference internal image-reference" href="../../../_images/ekorpkit-corpus.png"><img alt="ekorpkit-corpus" class="bg-primary mb-1 align-center" src="../../../_images/ekorpkit-corpus.png" style="width: 70%;" /></a>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>Natural language processing (NLP) is a subfield of artificial intelligence (AI) that focuses on enabling computers to understand, interpret, and generate human language. NLP involves a wide range of tasks, such as sentiment analysis, text summarization, machine translation, and question-answering systems. Central to the success of NLP applications are large language models (LLMs), which are machine learning models trained on vast amounts of text data.</p>
+<p>LLMs are based on deep learning neural networks, such as the Transformer architecture, and are designed to learn the intricate patterns and structures of natural language. These models have significantly advanced the field of NLP, enabling applications like conversational AI, automated content generation, and information extraction. However, the quality of these models heavily depends on the datasets used for training.</p>
+<p>High-quality datasets are essential for training LLMs, as they help the models to learn and generalize better, thus improving their performance on various NLP tasks.</p>
 </section>
-<section id="what-is-byt5">
-<h2>What Is ByT5?<a class="headerlink" href="#what-is-byt5" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>ByT5 is a token-free model that operates directly on raw text (bytes or characters).</p></li>
-<li><p>Therefore, it does not require a tokenizer, and it can process text in any language out of the box.</p></li>
-<li><p>One advantage of token-free models is that they are more robust to noise.</p></li>
-<li><p>Also, out-of-vocabulary words are not a problem for token-free models. It is <code class="docutils literal notranslate"><span class="pre">&lt;UNK&gt;</span></code>-free.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&lt;UNK&gt;</span></code> is the token used to represent out-of-vocabulary words in token-based models.</p></li>
-<li><p>The proposed ByT5 is based on Google’s recent token-based mT5 (Massively Multilingual Text-to-Text Transfer Transformer)</p></li>
-</ul>
-<p><img alt="" src="../../../_images/byt5-vs-mt5.png" /></p>
+<section id="the-state-of-llms-today">
+<h2>The State of LLMs Today<a class="headerlink" href="#the-state-of-llms-today" title="Permalink to this heading">#</a></h2>
+<p>LLMs have seen rapid advancements in recent years, driven by the increasing interest in natural language processing and AI applications. These models have grown in scale and complexity, with the number of parameters (i.e., the model’s “knowledge”) increasing exponentially to improve their understanding of language and context. The state-of-the-art LLMs developed by leading technology companies, like OpenAI, Google, Nvidia, and Microsoft, have contributed significantly to the progress of NLP.</p>
+<p>OpenAI’s GPT-3, released in June 2020, was a milestone in LLM development, featuring 175 billion parameters. It showcased an impressive understanding of context and the ability to generate human-like text, demonstrating the potential of LLMs in various applications. In response, other tech giants have invested in developing their own LLMs. For instance, Google’s Bard, which is still in the beta testing phase, aims to compete with GPT-3 in terms of versatility and accuracy.</p>
+<p>More recently, Nvidia and Microsoft announced the Megatron-Turing Natural Language Generation model (MT-NLG), a massive monolithic transformer language model with 530 billion parameters. Google followed suit by announcing the development of PaLM, a 540 billion-parameter model. These advancements highlight the continuous growth and competition in the LLM landscape.</p>
+<p>The core component driving the success of these LLMs is the training data used to fine-tune their understanding of language, context, and semantics. Training data is a collection of text from various sources, such as websites, books, scientific papers, and social media, that helps the LLM learn the intricacies of language. However, the quality of the training data has a significant impact on the performance of the LLM, making the choice of datasets a critical aspect of LLM development.</p>
+<p>As the race to develop more sophisticated LLMs intensifies, it becomes increasingly important to understand the challenges associated with collecting high-quality datasets and the various sources from which these datasets can be acquired. By addressing these challenges, researchers and companies can enhance the capabilities of LLMs and unlock new potential applications in natural language processing.</p>
 </section>
-<section id="key-changes-to-the-mt5-architecture">
-<h2>Key Changes To the mT5 Architecture<a class="headerlink" href="#key-changes-to-the-mt5-architecture" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Feeding UTF-8 bytes of the SentencePiece vocabulary directly to the embedding layer without any text preprocessing.</p></li>
-<li><p>An additional 3 IDs are reserved for the special tokens: padding, end-of-sequence, and an unused token.</p></li>
-<li><p>The team then modifies the pretrained task such that instead of adding 100 new tokens for the sentinels, they reuse the final 100 byte IDs.</p></li>
-<li><p>Rather than using an average span length of 3 subwords, they mask longer byte-spans with a mean length of 20 bytes.</p></li>
-<li><p>They found that byte-level models with a heavier encoder perform better on both classification and generation tasks.</p></li>
-<li><p>They dropped any illegal bytes in the model’s ouput to keep the output valid UTF-8.</p></li>
-</ul>
+<section id="high-quality-vs-low-quality-data">
+<h2>High-Quality vs. Low-Quality Data<a class="headerlink" href="#high-quality-vs-low-quality-data" title="Permalink to this heading">#</a></h2>
+<p>The quality of training data used to develop LLMs is crucial for their performance, generalization capabilities, and applicability across a wide range of NLP tasks. In this context, it is essential to differentiate between high-quality and low-quality data, as they have different implications for the resulting LLM.</p>
+<p><strong>High-quality data</strong> typically originates from reliable, vetted sources, such as peer-reviewed articles, reputable news websites, and curated knowledge repositories like encyclopedias. This type of data is characterized by its accuracy, consistency, and relevance to the target domain. High-quality data helps LLMs learn meaningful patterns, comprehend complex language structures, and improve their understanding of context. As a result, LLMs trained on high-quality data tend to be more versatile and accurate in their performance.</p>
+<p><strong>Low-quality data</strong> , on the other hand, is often sourced from unfiltered, user-generated content, such as social media posts, web forums, and informal blogs. This type of data may contain inaccuracies, inconsistencies, and noisy information that can negatively impact the LLM’s learning process. Training LLMs on low-quality datasets can lead to several issues, including:</p>
+<ol class="arabic simple">
+<li><p><strong>Data bias</strong> : If the training data contains unbalanced or biased information, the LLM may learn to favor certain inputs or produce biased outputs. This can result in the model performing poorly on particular inputs or generating outputs that perpetuate stereotypes and misinformation.</p></li>
+<li><p><strong>Spurious correlations</strong> : Low-quality datasets may contain language patterns that are specific to a certain context or source, leading the LLM to learn incorrect shortcuts and associations. This can cause the model to make mistakes when faced with real-world scenarios, as it may rely on these spurious correlations instead of understanding the true underlying structure of the language.</p></li>
+<li><p><strong>Mislabeled examples</strong> : Noisy and mislabeled data can introduce confusion into the LLM’s learning process, ultimately lowering the quality of its outputs. The model may struggle to discern between relevant and irrelevant information, making it difficult to generate accurate and coherent responses.</p></li>
+</ol>
+<p>Given these potential issues, it is evident that there is a growing demand for high-quality, high-volume datasets in LLM development. Ensuring that LLMs are trained on high-quality data not only improves their performance but also mitigates the risks associated with data bias and spurious correlations, resulting in more reliable and trustworthy AI applications.</p>
 </section>
-<section id="how-tokens-are-used">
-<h2>How Tokens Are Used<a class="headerlink" href="#how-tokens-are-used" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>The mT5 tokens are much shorter than the ByT5 tokens because every character is a token in ByT5.</p></li>
-<li><p>The model is designed to remove <span class="math notranslate nohighlight">\(n\)</span> tokens from the input and replace with placeholder tokens.</p></li>
-<li><p>The encoder is given the content with the sets of tokens missing and the placeholder to understand where the tokens are missing.</p></li>
-<li><p>The decoder is given the missing tokens and the placeholder assigned to the content that is hidden to it.</p></li>
-<li><p>Essentially, the encoder knows the content with the tokens missing and the decoder knows the missing tokens.</p></li>
-<li><p>On training, accuracy is measured by how well the decoder can predict the missing tokens.</p></li>
-<li><p>Accuracy of 80% means that the decoder can predict 80% of the missing tokens correctly.</p></li>
-</ul>
-<p><img alt="" src="../../../_images/byt5-mc4.png" /></p>
+<section id="challenges-in-collecting-data">
+<h2>Challenges in Collecting Data<a class="headerlink" href="#challenges-in-collecting-data" title="Permalink to this heading">#</a></h2>
+<p>Collecting high-quality data for training LLMs can be a complex and resource-intensive process. There are several challenges associated with acquiring, preprocessing, and filtering data to ensure that it meets the requirements for training state-of-the-art LLMs. These challenges include:</p>
+<ol class="arabic simple">
+<li><p><strong>Data scarcity</strong>: Finding high-quality data sources is a daunting task, as much of the publicly available data consists of unfiltered or lightly filtered content. This can make it difficult for researchers to obtain large volumes of reliable, high-quality data for training LLMs. Furthermore, the rapid growth of LLMs exacerbates this issue, as the demand for high-quality data outpaces the availability of such data sources.</p></li>
+<li><p><strong>Data diversity</strong>: Ensuring that the training data is diverse and representative of various domains, genres, and languages is essential for developing versatile LLMs. However, acquiring diverse datasets can be challenging, as it may require access to proprietary or specialized data sources that may not be readily available.</p></li>
+<li><p><strong>Data preprocessing and cleaning</strong>: Raw data often contains noise, inconsistencies, and irrelevant information that must be removed or corrected before the data can be used for training LLMs. This preprocessing and cleaning process can be time-consuming and expensive, as it may require manual intervention or the development of specialized algorithms to filter and structure the data.</p></li>
+<li><p><strong>Data labeling and annotation</strong>: Supervised learning approaches, which require labeled data, can be particularly challenging when working with large datasets. Manual labeling can be costly and time-consuming, while automated labeling methods may introduce errors or inaccuracies. This challenge is further compounded when dealing with multilingual or specialized domain data, which may require expertise in specific languages or subject areas.</p></li>
+<li><p><strong>Legal and ethical considerations</strong>: Collecting data for LLM training may involve accessing copyrighted or sensitive information, which raises legal and ethical concerns. Ensuring compliance with data protection regulations, such as GDPR, and respecting user privacy can be challenging, as it may require additional measures to anonymize or obtain consent for the use of personal data.</p></li>
+</ol>
+<p>To overcome these challenges, researchers and companies developing LLMs must invest in innovative methods for data collection, preprocessing, and filtering. This may involve leveraging public datasets, partnering with organizations that possess proprietary data, or developing in-house tools and algorithms for data acquisition and processing. By addressing these challenges, LLM developers can ensure the quality and reliability of their models, paving the way for more accurate and useful NLP applications.</p>
 </section>
-<section id="the-technical-details">
-<h2>The Technical Details<a class="headerlink" href="#the-technical-details" title="Permalink to this heading">#</a></h2>
-<blockquote>
-<div><p>“We release ByT5 in five sizes analogous to T5 and mT5 (Small, Base, Large, XL, XXL). We aim for ByT5 to cover the same use cases as mT5: it is a general-purpose pre-trained text-to-text model covering 100+ languages. We expect ByT5 will be particular useful for tasks operating on short-to-medium length text sequences (a few sentences or less), as these will incur less slowdown in fine-tuning and inference.”</p>
-</div></blockquote>
-<ul class="simple">
-<li><p>There are five sizes of ByT5 models covering 100+ languages.</p></li>
-<li><p>The prediction is that ByT5 will be better for tasks operating on shorter text sequences.</p></li>
-<li><p>A marginally better model that takes 100x more time to train and run is not a good trade-off.</p></li>
-<li><p>ByT5 requires ~5x more tokens for the same text length compared to mT5.</p></li>
-</ul>
-<blockquote>
-<div><p>“Second, we modify the pre-training task. mT5 uses the “span corruption” pre-training objective first proposed by Raffel et al. (2020) where spans of tokens in unlabeled text data are replaced with a single “sentinel” ID and the model must fill in the missing spans. Rather than adding 100 new tokens for the sentinels, we find it sufficient to reuse the final 100 byte IDs. While mT5 uses an average span length of 3 subword tokens, we find that masking longer byte-spans is valuable.”</p>
-</div></blockquote>
-<ul class="simple">
-<li><p>mT5 replaces 3 tokens with a sentinel token.</p></li>
-<li><p>ByT5 replaces 20 bytes with a sentinel token.</p></li>
-</ul>
-<blockquote>
-<div><p>“Third, we find that ByT5 performs best when we decouple the depth of the encoder and decoder transformer stacks. While T5 and mT5 used “balanced” architectures, we find byte-level models benefit significantly from a “heavier” encoder. Specifically, we set our encoder depth to 3 times that of the decoder.”</p>
-</div></blockquote>
-<ul class="simple">
-<li><p>mT5 used balances architectures with the same number of layers in the encoder and decoder.</p></li>
-<li><p>ByT5 uses a heavier encoder with 3 times the number of layers as the decoder.</p></li>
-</ul>
+<section id="three-data-must-haves-for-nlp">
+<h2>Three Data Must-Haves for NLP<a class="headerlink" href="#three-data-must-haves-for-nlp" title="Permalink to this heading">#</a></h2>
+<p>To train high-performing LLMs and improve the overall effectiveness of NLP applications, companies and researchers should prioritize the following three key attributes when selecting datasets for training:</p>
+<ol class="arabic simple">
+<li><p><strong>Rich metadata</strong>: When choosing a dataset, it is essential to consider the metadata that accompanies the text. Rich metadata, which includes information such as authorship, publication date, source, content length, and topic, can significantly enhance the LLM’s understanding of context and improve its performance on various NLP tasks. High-quality dataset providers should offer numerous metadata parameters, including descriptive, structural, and administrative information. Additionally, the datasets should be cleaned and structured, with all irrelevant HTML elements removed.</p></li>
+<li><p><strong>Filtering options</strong>: Datasets can be more useful and efficient when they offer extensive filtering options. By filtering data based on specific criteria such as language, location, keywords, sentiment, and more, you can improve the relevance and quality of the dataset. This customization allows you to focus on the data most pertinent to your LLM’s intended applications, reducing the need for manual processing and enhancing the overall efficiency of the training process. Choose a dataset provider that enables you to filter data by various fields and criteria, ensuring the highest quality and relevance for your LLM.</p></li>
+<li><p><strong>Frequent data updates</strong>: For LLMs to stay relevant and up-to-date, it is essential to have access to frequently updated datasets. Many publicly available datasets may only be updated periodically, resulting in outdated or stale information. By choosing a dataset provider that offers near real-time updates, LLM developers can access the latest information and trends as they become available, ensuring that the model remains current and effective in handling emerging topics and language patterns.</p></li>
+</ol>
 </section>
-<section id="the-pros-and-cons-of-byt5">
-<h2>The Pros And Cons Of ByT5<a class="headerlink" href="#the-pros-and-cons-of-byt5" title="Permalink to this heading">#</a></h2>
-<section id="pros">
-<h3>Pros<a class="headerlink" href="#pros" title="Permalink to this heading">#</a></h3>
-<ul>
-<li><p>In a model with a large vocabulary, the vocaboulary matrix can take up a substantial proportion of the model’s parameters.</p></li>
-<li><p>Vocabulary of mT5 takes up 85% ~ 16% of the model’s parameters depending on the model size.</p></li>
-<li><p>By switching to a byte-level model, the saved parameters can be used for other purposes, such as adding more layers or making the layers wider.</p>
-<p><img alt="" src="../../../_images/byt5-vocab.png" /></p>
-</li>
-</ul>
+<section id="acquiring-high-quality-datasets">
+<h2>Acquiring High-Quality Datasets<a class="headerlink" href="#acquiring-high-quality-datasets" title="Permalink to this heading">#</a></h2>
+<p>When it comes to training LLMs for NLP applications, the quality of the dataset is crucial. To acquire high-quality datasets, you can consider several options, including public datasets, proprietary datasets, and creating your own dataset through web crawling. Here, we explore various options for acquiring high-quality datasets.</p>
+<section id="public-datasets">
+<h3>Public datasets<a class="headerlink" href="#public-datasets" title="Permalink to this heading">#</a></h3>
+<p>Public datasets are often a good starting point when searching for high-quality data. While many public datasets may consist of unfiltered or lightly filtered content, some are curated and maintained by reputable organizations, ensuring a higher level of quality. Some popular public datasets include:</p>
+<ol class="arabic simple">
+<li><p><strong>Common Crawl</strong>: A massive, publicly available web crawl dataset that contains petabytes of raw web page data, extracted metadata, and plain text extractions.</p></li>
+<li><p><strong>WebText2</strong>: A large-scale web text dataset that has been cleaned and preprocessed for NLP applications.</p></li>
+<li><p><strong>Wikipedia database</strong>: The full text of Wikipedia articles provides a high-quality source of diverse and well-structured information.</p></li>
+</ol>
 </section>
-<section id="cons">
-<h3>Cons<a class="headerlink" href="#cons" title="Permalink to this heading">#</a></h3>
-<ul>
-<li><p>Byte-level sequences are much longer than token-level sequences, and this increases the cost of computation.</p></li>
-<li><p>If the decoder is particularly large, autoregressive sampling can be expensive.</p></li>
-<li><p>In terms of FLOPs (floating-point operations per second), ByT5 requires ~1.2x more operations for the pre-training.</p></li>
-<li><p>On word-level tasks, ByT5 is fairly competitive with mT5.</p></li>
-<li><p>On tasks with longer input sequences, the slowdown is more pronounced.</p>
-<p><img alt="" src="../../../_images/byt5-flops-pretrain.png" /></p>
-</li>
-</ul>
+<section id="specialized-domains">
+<h3>Specialized domains<a class="headerlink" href="#specialized-domains" title="Permalink to this heading">#</a></h3>
+<p>Datasets from specialized domains can provide valuable training data for LLMs, particularly for applications that require domain-specific knowledge. Some examples include:</p>
+<ol class="arabic simple">
+<li><p><strong>PubMed</strong>: A database of biomedical and life science literature.</p></li>
+<li><p><strong>USPTO</strong>: United States Patent and Trademark Office data, containing patent applications and granted patents.</p></li>
+<li><p><strong>Courtlistener</strong>: A repository of legal opinions and court documents.</p></li>
+</ol>
 </section>
 </section>
-<section id="the-results">
-<h2>The Results<a class="headerlink" href="#the-results" title="Permalink to this heading">#</a></h2>
-<blockquote>
-<div><p>“ByT5 is competitive with mT5 on standard English and multilingual NLP benchmarks and outperforms mT5 at small model sizes. Additionally ByT5 excels on free-form generation tasks and transliteration.”</p>
-</div></blockquote>
-<section id="english-classification-tasks-glue-superglue">
-<h3>English Classification Tasks (GLUE, SuperGLUE)<a class="headerlink" href="#english-classification-tasks-glue-superglue" title="Permalink to this heading">#</a></h3>
-<ul>
-<li><p>ByT5 outperforms mT5 on small and base model sizes by sizable margins, and loses close battles on larger models.</p>
-<p><img alt="" src="../../../_images/byt5-glue.png" /></p>
-</li>
-</ul>
+<section id="proprietary-datasets">
+<h2>Proprietary datasets<a class="headerlink" href="#proprietary-datasets" title="Permalink to this heading">#</a></h2>
+<p>Companies and organizations often have access to proprietary datasets that can be leveraged for training LLMs. These datasets may include internal documents, customer interactions, or other domain-specific content that is not publicly available.</p>
 </section>
-<section id="english-generation-tasks-xsum-tweetqa-drop">
-<h3>English Generation Tasks (XSum, TweetQA, DROP)<a class="headerlink" href="#english-generation-tasks-xsum-tweetqa-drop" title="Permalink to this heading">#</a></h3>
-<ul>
-<li><p>XSum gets the model to summarize a news article in a single sentence, and TweetQA is question answering from Tweets. DROP is a challenging reading comprehension task that requires numerical reasoning.</p></li>
-<li><p>ByT5 outperforms mT5 on all three tasks across all model sizes.</p>
-<p><img alt="" src="../../../_images/byt5-gen.png" /></p>
-</li>
-</ul>
+<section id="multilingual-datasets">
+<h2>Multilingual datasets<a class="headerlink" href="#multilingual-datasets" title="Permalink to this heading">#</a></h2>
+<p>Developing LLMs that support multiple languages requires incorporating multilingual datasets into the training process. These datasets should ideally cover a wide range of languages, dialects, and writing systems to ensure the LLM’s versatility and applicability across different linguistic contexts. However, there are some challenges associated with multilingual models:</p>
+<ol class="arabic simple">
+<li><p><strong>Imbalanced data</strong>: High-quality datasets are often more readily available for widely spoken languages, such as English, Chinese, and Spanish. This can lead to an imbalance in the training data, where the LLM becomes more proficient in some languages than others. Striving for balanced representation across languages is essential for fair and effective multilingual models.</p></li>
+<li><p><strong>Low-resource languages</strong>: Many languages, particularly those with fewer speakers or limited digital presence, suffer from a lack of high-quality training data. These low-resource languages are often underrepresented in multilingual datasets, leading to less accurate and less reliable NLP applications for these languages. To address this issue, researchers can explore techniques such as data augmentation, transfer learning, and unsupervised learning to leverage the limited data available and improve the LLM’s performance for low-resource languages.</p></li>
+<li><p><strong>Language-specific nuances</strong>: Each language has its unique characteristics, such as grammar, syntax, and cultural context, which can pose challenges when developing a multilingual LLM. Ensuring that the training data incorporates language-specific nuances and contexts is crucial for achieving accurate and reliable NLP applications across different languages.</p></li>
+</ol>
+<p>To create or obtain multilingual datasets, consider the following resources:</p>
+<ol class="arabic simple">
+<li><p><strong>Language-specific datasets</strong>: High-quality datasets containing text from various languages, such as web news articles or social media content. Examples include the Korean datasets for Korean text or the Leipzig Corpora Collection for numerous languages.</p></li>
+<li><p><strong>Multilingual parallel corpora</strong>: Datasets containing aligned texts in multiple languages, often used for tasks like machine translation. Examples include the Europarl Parallel Corpus or the United Nations Parallel Corpus.</p></li>
+<li><p><strong>Cross-lingual datasets</strong>: Datasets designed specifically for cross-lingual tasks, such as the Cross-lingual Natural Language Inference (XNLI) dataset or the Tatoeba dataset.</p></li>
+</ol>
+<p>By incorporating multilingual datasets and addressing the challenges associated with imbalanced data, low-resource languages, and language-specific nuances, you can develop LLMs that effectively support a wide range of languages and provide accurate NLP applications across diverse linguistic contexts.</p>
 </section>
-<section id="cross-lingual-benchmarks">
-<h3>Cross-lingual Benchmarks<a class="headerlink" href="#cross-lingual-benchmarks" title="Permalink to this heading">#</a></h3>
-<ul>
-<li><p>Changes to vocabulary and tokenization are likely to affect different languages in different ways.</p></li>
-<li><p>On the most realistic in-language setting, where some gold training data is available in all languages, ByT5 surpasses the previous state-of-art mT5 on all tasks and model sizes.</p></li>
-<li><p>One might expect languages with rich inflectional morphology (e.g. Turkish) to benefit most from the move away from a fixed vocabulary.</p></li>
-<li><p>Languages with a higher SentencePiece token compression rate (e.g. Thai and Telugu) tend to favor mT5, whereas those with a lower compression rate (e.g. Indonesian and Vietnamese) tend to favor ByT5.</p>
-<p><img alt="" src="../../../_images/byt5-xling.png" /></p>
-</li>
-</ul>
-</section>
-<section id="word-level-tasks">
-<h3>Word-Level Tasks<a class="headerlink" href="#word-level-tasks" title="Permalink to this heading">#</a></h3>
-<ul>
-<li><p>Unsurprisingly, “characteraware” models excel on tasks around word-internal phenonema.</p></li>
-<li><p>These core NLP tasks have often been overlooked in evaluating general-purpose NLP models.</p>
-<p><img alt="" src="../../../_images/byt5-word.png" /></p>
-</li>
-</ul>
-</section>
-</section>
-<section id="experiments-on-synthetic-noise">
-<h2>Experiments on Synthetic Noise<a class="headerlink" href="#experiments-on-synthetic-noise" title="Permalink to this heading">#</a></h2>
-<p>The authors test six types of noise on the model:</p>
-<ul class="simple">
-<li><p><strong>Drop</strong>: Each character has a 10% chance of being dropped.</p></li>
-<li><p><strong>Add/Drop/Mutate</strong>: At each character position, there is a 10% chance of applying one of three actions, with equal likelihood: Add (inserts a random character from the input), Drop (deletes this character) or Mutate (replaces this character with a random character from the input).</p></li>
-<li><p><strong>Repetitions</strong>: Each character has a 20% chance of being selected for repetition. If selected, 1–3 repetitions (with equal likelihood) are appended after the original character.</p></li>
-<li><p><strong>Antspeak</strong>: Each character is capitalized and padded with spaces. For example, “abc def” becomes “ A B C D E F ”.</p></li>
-<li><p><strong>Uppercase</strong>: Each character is converted to uppercase. Here, we restrict to languages whose scripts distinguish case (for XNLI: Bulgarian, English, French, German, Greek, Russian, Spanish, Swahili, Turkish, Vietnamese; for TyDiQA-GoldP: English, Finnish, Indonesian, Russian, Swahili).</p></li>
-<li><p><strong>Random case</strong>: Each character is set to a random case (upper or lower). Again, only languages whose scripts distinguish case are considered.</p></li>
-</ul>
-<section id="results">
-<h3>Results<a class="headerlink" href="#results" title="Permalink to this heading">#</a></h3>
-<ul>
-<li><p>Character-level models are more robust to real and synthetic noise than BPE or word-based models, across a range of morphological, syntactic and semantic tagging tasks.</p></li>
-<li><p>Token-free models are more robust to noise across many tasks.</p>
-<p><img alt="" src="../../../_images/byt5-noise.png" /></p>
-</li>
-</ul>
-</section>
-</section>
-<section id="ablation-study">
-<h2>Ablation Study<a class="headerlink" href="#ablation-study" title="Permalink to this heading">#</a></h2>
-<blockquote>
-<div><p>“ByT5 outperforms mT5 in any of these four scenarios: (1) at model sizes under 1 billion parameters, (2) on generative tasks, (3) on multilingual tasks with in-language labels, and (4) in the presence of various types of noise.”</p>
-</div></blockquote>
-<blockquote>
-<div><p>“… the gains we observe with ByT5 are achieved despite the fact that the model is pretrained on 4 times less text than mT5. This suggests that byte-level models could be more data efficient learners.”</p>
-</div></blockquote>
-<blockquote>
-<div><p>“Our “hands-off” approach of feeding raw UTF-8 bytes directly into the transformer costs +33% pre-training time, as well as longer inference time (10–50% longer for small models, and 100–600% longer for our largest models). As such, there is significant room for improvement. We believe techniques such as hash embeddings, local attention and down-sampling (Clark et al., 2021), as well as sparse computation (Fedus et al., 2021) can help address latency issues, removing the remaining barriers to a token-free future.”</p>
-</div></blockquote>
+<section id="building-your-own-dataset-through-web-crawling">
+<h2>Building your own dataset through web crawling<a class="headerlink" href="#building-your-own-dataset-through-web-crawling" title="Permalink to this heading">#</a></h2>
+<p>When existing datasets don’t meet your requirements, you can consider building your own dataset by developing a web crawler. Web crawlers can be programmed to scrape specific websites or domains, allowing you to collect targeted and relevant information for your LLM.</p>
+<ol class="arabic simple">
+<li><p><strong>Web scraping tools</strong>: Utilize web scraping tools and libraries such as Scrapy, BeautifulSoup, or Selenium to extract data from websites.</p></li>
+<li><p><strong>Customization</strong>: Customize your crawler to focus on specific topics, languages, or websites, ensuring that the collected data is relevant to your LLM’s intended applications.</p></li>
+</ol>
 </section>
 <section id="conclusion">
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>While ByT5 takes longer to train, and underperforms in some tasks (zero-shot translation for example) the payoff for tasks where noise is an issue (think social and voice) is significant.</p></li>
-<li><p>Token-free models and token-based models can coexist, and the best model for a given task will be assigned based on the task’s characteristics.</p></li>
-<li><p>Token-free models will likely dramatically enhance voice search technologies where noise is prevalent.</p></li>
-<li><p>Token-free models could collect information from noisy environments and to more quickly learn new terms being used as shorthand, slang, or jargon, and even emojis.</p></li>
-<li><p>These information could be used to improve the performance of token-based models.</p></li>
-</ul>
-</section>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://arxiv.org/pdf/2105.13626v1.pdf">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></p></li>
-<li><p><a class="reference external" href="https://wandb.ai/onlineinference/byt5/reports/ByT5-What-It-Might-Mean-For-SEO--Vmlldzo4NzY1NzE#what-is-byt5?">ByT5: What It Might Mean For SEO</a></p></li>
-</ul>
+<p>Acquiring high-quality datasets for training LLMs is a critical aspect of developing effective NLP applications. By exploring public datasets, specialized domain data, multilingual resources, proprietary datasets, and even creating your own dataset through web crawling, you can ensure that your LLM is trained on the most relevant and high-quality data available. Prioritizing rich metadata, filtering options, and frequent updates will lead to improved performance and more accurate NLP applications.</p>
 </section>
 </section>
 
@@ -743,7 +587,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./lectures/nlp_deep/transformers"
+            path: "./lectures/nlp_deep/datasets"
         },
         predefinedOutput: true
     }
@@ -762,20 +606,20 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="t5.html"
+       href="../transformers/byt5.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">T5: Text-To-Text Transfer Transformer</p>
+        <p class="prev-next-title">ByT5: Towards a token-free future with pre-trained byte-to-byte models</p>
       </div>
     </a>
     <a class="right-next"
-       href="../datasets/index.html"
+       href="../tokenization/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Datasets for NLP</p>
+        <p class="prev-next-title">Tokenization</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -797,30 +641,20 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-token-in-machine-learning">What Is A Token In Machine Learning?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-byt5">What Is ByT5?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-changes-to-the-mt5-architecture">Key Changes To the mT5 Architecture</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-tokens-are-used">How Tokens Are Used</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-technical-details">The Technical Details</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pros-and-cons-of-byt5">The Pros And Cons Of ByT5</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pros">Pros</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cons">Cons</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-state-of-llms-today">The State of LLMs Today</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#high-quality-vs-low-quality-data">High-Quality vs. Low-Quality Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenges-in-collecting-data">Challenges in Collecting Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#three-data-must-haves-for-nlp">Three Data Must-Haves for NLP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acquiring-high-quality-datasets">Acquiring High-Quality Datasets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#public-datasets">Public datasets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specialized-domains">Specialized domains</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-results">The Results</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#english-classification-tasks-glue-superglue">English Classification Tasks (GLUE, SuperGLUE)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#english-generation-tasks-xsum-tweetqa-drop">English Generation Tasks (XSum, TweetQA, DROP)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-lingual-benchmarks">Cross-lingual Benchmarks</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#word-level-tasks">Word-Level Tasks</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#experiments-on-synthetic-noise">Experiments on Synthetic Noise</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ablation-study">Ablation Study</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proprietary-datasets">Proprietary datasets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multilingual-datasets">Multilingual datasets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-your-own-dataset-through-web-crawling">Building your own dataset through web crawling</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
   </nav></div>
 
