@@ -1,7 +1,5 @@
 # Bibliography
 
-## References
-
 ```{bibliography}
 
 ```
