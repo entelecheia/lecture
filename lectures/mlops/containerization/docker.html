@@ -1,0 +1,1033 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Docker &#8212; ἐντελέχεια.άι</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/js/hoverxref.js"></script>
+    <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/chatgpt.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/mlops/containerization/docker';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/mlops/containerization/docker.html" />
+    <link rel="shortcut icon" href="../../../_static/favicon-v2-circle.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="containerd" href="containerd.html" />
+    <link rel="prev" title="Containerization" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+
+  <div class="bd-header-announcement container-fluid bd-header-announcement">
+    <div class="bd-header-announcement__content"><p>
+  <strong>Announcement:</strong>
+  You can install the accompanying AI tutor <a href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd" target="_blank">here</a>.
+  <a class="reference external" href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd" target="_blank"><img alt="chrome-web-store-image" src="https://img.shields.io/chrome-web-store/v/lfgfgbomindbccgidgalhhndggddpagd" /></a>
+</p>
+</div>
+  </div>
+
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">ἐντελέχεια.άι</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../index.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_intro/index.html">Introduction to NLP</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/research.html">Research Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/language_models.html">Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/datasets/index.html">Datasets for NLP</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/topic/index.html">Topic Modeling</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/coherence.html">Topic Coherence Measures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/coherence-practice.html">Topic Coherence in Practice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/tomotopy.html">Topic Modeling Tools - Tomotopy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/sentiments.html">Sentiment Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/tokenization.html">Tokenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/word_segmentation.html">Word Segmentation and Association</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/vectorization.html">Vector Semantics and Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/word_embeddings.html">Word Embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/ekorpkit.html">Getting started with ekorpkit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/lab1-corpus.html">Lab 1: Preparing Wikipedia Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/lab2-corpus-eda.html">Lab 2: EDA on Corpora</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_deep/index.html">Deep Learning for NLP</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/intro.html">Introduction</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/llms/index.html">Large Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/zeroshot.html">Zero Shot and Prompt Engineering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/decoding.html">Decoding and Search Strategies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/plms.html">Pretrained Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/transformers/index.html">Transformers</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/bert.html">BERT: Bidirectional Encoder Representations from Transformers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/bertviz.html">BERT: Visualizing Attention</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/t5.html">T5: Text-To-Text Transfer Transformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/datasets/index.html">Datasets for NLP</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/sentencepiece.html">SentencePiece Tokenizer</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/rlhf.html">Reinforcement Learning with Human Feedback (RLHF)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/detectGPT.html">How to Spot Machine-Written Texts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/ekorpkit.html">Getting started with ekorpkit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/lab1-corpus.html">Lab 1: Preparing Wikipedia Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/lab3-train-tokenizers.html">Lab 3: Training Tokenizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/lab4-pretraining-lms.html">Lab 4: Pretraining Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_advances/index.html">Advances in AI and NLP</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/thesis.html">Writing a Thesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/detectGPT.html">DetectGPT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/gpt4.html">GPT-4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/camelids.html">Meet the Camelids: A Family of LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/sam/index.html">Segment Everything</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../aiart/index.html">AI Art (Generative AI)</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/aiart.html">Art and Music in Light of AI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/dalle1.html">DALL·E 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/dalle2.html">DALL·E 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/imagen.html">Imagen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/textual-inversion.html">Textual Inversion (Dreambooth)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/whisper.html">Automatic Speech Recognition (Whisper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/text2music.html">Text to Music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/image2music.html">Image to Music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/robot_drawings.html">Robot Drawing Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/project-themes.html">Project Themes - A Brave New World</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Machine Learning Systems Design</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../intro.html">Introduction to MLOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../project.html">MLOps Project</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../devops/index.html">DevOps</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../devops/gitops.html">GitOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devops/devsecops.html">DevSecOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devops/llmops.html">LLMOps - Large Language Model Operations</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../dotfiles/index.html">Dotfiles</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai">Dotfiles in Practice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dotfiles/dotdrop.html">Dotdrop: A Powerful Tool for Managing Dotfiles</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../security/index.html">Security Management</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../security/auth-enc-sign.html">Authentication, Encryption, and Signing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../security/age-gpg-ssh.html">SSH, GPG, and AGE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../security/pass.html">Unix Password Managers</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../github/index.html">Github’s Fork &amp; Pull Workflow</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../github/template.html">Project Templating Tools</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://hyperfast-python.entelecheia.ai/">Hyperfast Python Template</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Containerization</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="containerd.html"><code class="docutils literal notranslate"><span class="pre">containerd</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../simple-pipeline/index.html">Simple MLOps Pipeline</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ds/index.html">Data Science for Economics and Finance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../about/lecture-bot.html">LectureBot for ἐντελέχεια.άι</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/lectures/mlops/containerization/docker.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Docker</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-components-of-docker">Core Components of Docker</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-engine">Docker Engine</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-images">Docker Images</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-containers">Docker Containers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfile">Dockerfile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-registry">Docker Registry</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-docker-commands">Basic Docker Commands</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pull-an-image">Pull an Image</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-images">List Images</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-run-a-container">Create and Run a Container</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-containers">List Containers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stop-a-container">Stop a Container</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-a-container">Remove a Container</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-an-image">Remove an Image</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-docker-images-with-dockerfile">Building Docker Images with Dockerfile</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-dockerfile">Create a Dockerfile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-image">Build the Image</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-compose">Docker Compose</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-docker-compose">Install Docker Compose</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-docker-compose-yml-file">Create a <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> File</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#start-services">Start Services</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stop-services">Stop Services</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-volumes">Docker Volumes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-volume">Create a Volume</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-a-volume-in-a-container">Use a Volume in a Container</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#helper-scripts">Helper Scripts</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfiles-clone-script"><code class="docutils literal notranslate"><span class="pre">dockerfiles-clone</span></code> Script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfiles-pull-script"><code class="docutils literal notranslate"><span class="pre">dockerfiles-pull</span></code> Script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfiles-sync-script"><code class="docutils literal notranslate"><span class="pre">dockerfiles-sync</span></code> Script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dk-compose-script"><code class="docutils literal notranslate"><span class="pre">dk-compose</span></code> Script</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="docker">
+<h1>Docker<a class="headerlink" href="#docker" title="Permalink to this heading">#</a></h1>
+<section id="core-components-of-docker">
+<h2>Core Components of Docker<a class="headerlink" href="#core-components-of-docker" title="Permalink to this heading">#</a></h2>
+<section id="docker-engine">
+<h3>Docker Engine<a class="headerlink" href="#docker-engine" title="Permalink to this heading">#</a></h3>
+<p>The Docker Engine is the core component that powers the Docker platform. It is responsible for creating, managing, and orchestrating containers. It consists of a daemon process (dockerd), a REST API, and a command-line interface (CLI).</p>
+</section>
+<section id="docker-images">
+<h3>Docker Images<a class="headerlink" href="#docker-images" title="Permalink to this heading">#</a></h3>
+<p>Docker images are read-only templates containing the application code, dependencies, libraries, and configuration files required to create and run a container. Images are stored in Docker registries and can be pulled to create containers.</p>
+</section>
+<section id="docker-containers">
+<h3>Docker Containers<a class="headerlink" href="#docker-containers" title="Permalink to this heading">#</a></h3>
+<p>A Docker container is a lightweight, standalone, and executable software package created from a Docker image. It includes everything needed to run an application, ensuring consistency across different environments.</p>
+</section>
+<section id="dockerfile">
+<h3>Dockerfile<a class="headerlink" href="#dockerfile" title="Permalink to this heading">#</a></h3>
+<p>A Dockerfile is a script containing instructions to build a Docker image. It specifies the base image, dependencies, configurations, and any other settings necessary to create a custom image tailored to your application.</p>
+</section>
+<section id="docker-registry">
+<h3>Docker Registry<a class="headerlink" href="#docker-registry" title="Permalink to this heading">#</a></h3>
+<p>A Docker registry is a centralized storage location for Docker images. Docker Hub is a public registry maintained by Docker Inc., but you can also create private registries or use third-party solutions.</p>
+</section>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h2>
+<p>Install Docker on your system by following the official installation guide:</p>
+<ul class="simple">
+<li><p>Linux: <a class="reference external" href="https://docs.docker.com/engine/install/">https://docs.docker.com/engine/install/</a></p></li>
+<li><p>MacOS: <a class="reference external" href="https://docs.docker.com/docker-for-mac/install/">https://docs.docker.com/docker-for-mac/install/</a></p></li>
+<li><p>Windows: <a class="reference external" href="https://docs.docker.com/docker-for-windows/install/">https://docs.docker.com/docker-for-windows/install/</a></p></li>
+</ul>
+</section>
+<section id="basic-docker-commands">
+<h2>Basic Docker Commands<a class="headerlink" href="#basic-docker-commands" title="Permalink to this heading">#</a></h2>
+<section id="pull-an-image">
+<h3>Pull an Image<a class="headerlink" href="#pull-an-image" title="Permalink to this heading">#</a></h3>
+<p>Download an image from a registry:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>&lt;image-name&gt;
+</pre></div>
+</div>
+</section>
+<section id="list-images">
+<h3>List Images<a class="headerlink" href="#list-images" title="Permalink to this heading">#</a></h3>
+<p>Display all images available locally:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>images
+</pre></div>
+</div>
+</section>
+<section id="create-and-run-a-container">
+<h3>Create and Run a Container<a class="headerlink" href="#create-and-run-a-container" title="Permalink to this heading">#</a></h3>
+<p>Create a container from an image and start it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--name<span class="w"> </span>&lt;container-name&gt;<span class="w"> </span>&lt;image-name&gt;
+</pre></div>
+</div>
+</section>
+<section id="list-containers">
+<h3>List Containers<a class="headerlink" href="#list-containers" title="Permalink to this heading">#</a></h3>
+<p>List all running containers:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>ps
+</pre></div>
+</div>
+<p>List all containers, including stopped ones:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>ps<span class="w"> </span>-a
+</pre></div>
+</div>
+</section>
+<section id="stop-a-container">
+<h3>Stop a Container<a class="headerlink" href="#stop-a-container" title="Permalink to this heading">#</a></h3>
+<p>Stop a running container:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>stop<span class="w"> </span>&lt;container-name&gt;
+</pre></div>
+</div>
+</section>
+<section id="remove-a-container">
+<h3>Remove a Container<a class="headerlink" href="#remove-a-container" title="Permalink to this heading">#</a></h3>
+<p>Remove a stopped container:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>rm<span class="w"> </span>&lt;container-name&gt;
+</pre></div>
+</div>
+</section>
+<section id="remove-an-image">
+<h3>Remove an Image<a class="headerlink" href="#remove-an-image" title="Permalink to this heading">#</a></h3>
+<p>Remove an unused image:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>rmi<span class="w"> </span>&lt;image-name&gt;
+</pre></div>
+</div>
+</section>
+</section>
+<section id="building-docker-images-with-dockerfile">
+<h2>Building Docker Images with Dockerfile<a class="headerlink" href="#building-docker-images-with-dockerfile" title="Permalink to this heading">#</a></h2>
+<section id="create-a-dockerfile">
+<h3>Create a Dockerfile<a class="headerlink" href="#create-a-dockerfile" title="Permalink to this heading">#</a></h3>
+<p>Create a file named <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> in your project directory, and add instructions based on your application requirements.</p>
+<p>Example Dockerfile:</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Use the official Python base image</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">python:3.8-slim</span>
+
+<span class="c"># Set the working directory</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+
+<span class="c"># Copy requirements file</span>
+<span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
+
+<span class="c"># Install dependencies</span>
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+
+<span class="c"># Copy application code</span>
+<span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+
+<span class="c"># Expose the application port</span>
+<span class="k">EXPOSE</span><span class="w"> </span><span class="s">8080</span>
+
+<span class="c"># Start the application</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;app.py&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="build-the-image">
+<h3>Build the Image<a class="headerlink" href="#build-the-image" title="Permalink to this heading">#</a></h3>
+<p>Build the image from the Dockerfile:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>&lt;image-name&gt;<span class="w"> </span>.
+</pre></div>
+</div>
+</section>
+</section>
+<section id="docker-compose">
+<h2>Docker Compose<a class="headerlink" href="#docker-compose" title="Permalink to this heading">#</a></h2>
+<p>Docker Compose is a tool for defining and running multi-container Docker applications. It allows you to configure your application’s services, networks, and volumes in a single <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file, simplifying the process of managing complex applications with multiple dependencies.</p>
+<section id="install-docker-compose">
+<h3>Install Docker Compose<a class="headerlink" href="#install-docker-compose" title="Permalink to this heading">#</a></h3>
+<p>Follow the official installation guide:</p>
+<ul class="simple">
+<li><p>Linux: <a class="reference external" href="https://docs.docker.com/compose/install/">https://docs.docker.com/compose/install/</a></p></li>
+<li><p>MacOS &amp; Windows: Docker Compose comes pre-installed with Docker Desktop.</p></li>
+</ul>
+</section>
+<section id="create-a-docker-compose-yml-file">
+<h3>Create a <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> File<a class="headerlink" href="#create-a-docker-compose-yml-file" title="Permalink to this heading">#</a></h3>
+<p>Create a <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file in your project directory and define your application’s services, networks, and volumes.</p>
+<p>Example <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.8&quot;</span>
+
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">web</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;8080:8080&quot;</span>
+<span class="w">  </span><span class="nt">redis</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;redis:alpine&quot;</span>
+</pre></div>
+</div>
+<p>In this example, we have two services: <code class="docutils literal notranslate"><span class="pre">web</span></code> and <code class="docutils literal notranslate"><span class="pre">redis</span></code>. The <code class="docutils literal notranslate"><span class="pre">web</span></code> service is built from the current directory, and its port 8080 is mapped to the host’s port 8080. The <code class="docutils literal notranslate"><span class="pre">redis</span></code> service uses the official Redis image from Docker Hub.</p>
+</section>
+<section id="start-services">
+<h3>Start Services<a class="headerlink" href="#start-services" title="Permalink to this heading">#</a></h3>
+<p>Start all services defined in the <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker-compose<span class="w"> </span>up
+</pre></div>
+</div>
+</section>
+<section id="stop-services">
+<h3>Stop Services<a class="headerlink" href="#stop-services" title="Permalink to this heading">#</a></h3>
+<p>Stop all services:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker-compose<span class="w"> </span>down
+</pre></div>
+</div>
+</section>
+</section>
+<section id="docker-volumes">
+<h2>Docker Volumes<a class="headerlink" href="#docker-volumes" title="Permalink to this heading">#</a></h2>
+<p>Docker volumes are used to persist data generated by and used by Docker containers. They allow you to separate your application’s data from the container’s lifecycle, ensuring that your data remains intact even if the container is removed.</p>
+<section id="create-a-volume">
+<h3>Create a Volume<a class="headerlink" href="#create-a-volume" title="Permalink to this heading">#</a></h3>
+<p>Create a new Docker volume:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>volume<span class="w"> </span>create<span class="w"> </span>&lt;volume-name&gt;
+</pre></div>
+</div>
+</section>
+<section id="use-a-volume-in-a-container">
+<h3>Use a Volume in a Container<a class="headerlink" href="#use-a-volume-in-a-container" title="Permalink to this heading">#</a></h3>
+<p>To use a volume in a container, you need to mount it using the <code class="docutils literal notranslate"><span class="pre">-v</span></code> or <code class="docutils literal notranslate"><span class="pre">--mount</span></code> flag:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </span>&lt;volume-name&gt;:/data<span class="w"> </span>&lt;image-name&gt;
+</pre></div>
+</div>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+<p>Docker is a powerful platform that simplifies the process of building, deploying, and managing applications using containerization. Understanding its core components and commands, building custom images with Dockerfiles, managing multi-container applications with Docker Compose, and persisting data with Docker volumes will help you streamline your development workflow and ensure consistent application behavior across different environments.</p>
+</section>
+<section id="helper-scripts">
+<h2>Helper Scripts<a class="headerlink" href="#helper-scripts" title="Permalink to this heading">#</a></h2>
+<p>There are a few helper scripts that can be used to simplify the process of building and running Docker containers. These scripts are installed in the process of setting up <code class="docutils literal notranslate"><span class="pre">dotfiles</span></code> and can be found in the <code class="docutils literal notranslate"><span class="pre">.local/bin</span></code> directory.</p>
+<section id="dockerfiles-clone-script">
+<h3><code class="docutils literal notranslate"><span class="pre">dockerfiles-clone</span></code> Script<a class="headerlink" href="#dockerfiles-clone-script" title="Permalink to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">dockerfiles-clone</span></code> script is designed to help you clone or update the Dockerfiles repository on your system. To use this script, follow these steps:</p>
+<ol class="arabic">
+<li><p><strong>Configure Environment Variables (optional):</strong>
+If you have specific values for <code class="docutils literal notranslate"><span class="pre">DOCKERFILES_REPO</span></code> or <code class="docutils literal notranslate"><span class="pre">DOCKERFILES_DIR</span></code>, you can set these environment variables before running the script. Otherwise, the script will use the default values specified in the script.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">DOCKERFILES_REPO</span><span class="o">=</span><span class="s2">&quot;https://github.com/username/dockerfiles.git&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">DOCKERFILES_DIR</span><span class="o">=</span><span class="s2">&quot;/path/to/dockerfiles&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Run the Script:</strong>
+Execute the <code class="docutils literal notranslate"><span class="pre">dockerfiles-clone</span></code> script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dockerfiles-clone
+</pre></div>
+</div>
+<p>This script will perform the following tasks:</p>
+<ul class="simple">
+<li><p>Check if the Dockerfiles repository is set. If not, it will display a message and exit.</p></li>
+<li><p>If the Dockerfiles directory exists, it will prompt you to remove the existing directory.</p>
+<ul>
+<li><p>If you choose to remove the existing directory, it will delete the directory and proceed to clone the repository.</p></li>
+<li><p>If you choose not to remove the existing directory, it will display a message and exit.</p></li>
+</ul>
+</li>
+<li><p>If the Dockerfiles directory does not exist, it will clone the Dockerfiles repository to the specified directory.</p></li>
+</ul>
+</li>
+</ol>
+<p>After running the <code class="docutils literal notranslate"><span class="pre">dockerfiles-clone</span></code> script, your Dockerfiles repository will be cloned or updated, and you can start using the Dockerfiles on your system.</p>
+</section>
+<section id="dockerfiles-pull-script">
+<h3><code class="docutils literal notranslate"><span class="pre">dockerfiles-pull</span></code> Script<a class="headerlink" href="#dockerfiles-pull-script" title="Permalink to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">dockerfiles-pull</span></code> script helps you update the Dockerfiles repository on your system. To use this script, follow these steps:</p>
+<ol class="arabic">
+<li><p><strong>Configure Environment Variables (optional):</strong>
+If you have specific values for <code class="docutils literal notranslate"><span class="pre">DOCKERFILES_REPO</span></code> or <code class="docutils literal notranslate"><span class="pre">DOCKERFILES_DIR</span></code>, you can set these environment variables before running the script. Otherwise, the script will use the default values specified in the script.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">DOCKERFILES_REPO</span><span class="o">=</span><span class="s2">&quot;https://github.com/username/dockerfiles.git&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">DOCKERFILES_DIR</span><span class="o">=</span><span class="s2">&quot;/path/to/dockerfiles&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Run the Script:</strong>
+Execute the <code class="docutils literal notranslate"><span class="pre">dockerfiles-pull</span></code> script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dockerfiles-pull
+</pre></div>
+</div>
+<p>This script will perform the following tasks:</p>
+<ul class="simple">
+<li><p>Check if the Dockerfiles directory exists.</p></li>
+<li><p>If the directory exists and is a valid Git repository, it will update the Dockerfiles repository using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">--rebase</span> <span class="pre">--autostash</span></code>.</p></li>
+</ul>
+</li>
+</ol>
+<p>After running the <code class="docutils literal notranslate"><span class="pre">dockerfiles-pull</span></code> script, your Dockerfiles repository will be updated, and you can continue using the latest Dockerfiles on your system.</p>
+</section>
+<section id="dockerfiles-sync-script">
+<h3><code class="docutils literal notranslate"><span class="pre">dockerfiles-sync</span></code> Script<a class="headerlink" href="#dockerfiles-sync-script" title="Permalink to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">dockerfiles-sync</span></code> script helps you synchronize Dockerfiles between your project directory and the shared Dockerfiles directory. To use this script, follow these steps:</p>
+<ol class="arabic">
+<li><p><strong>Configure Environment Variables (optional):</strong>
+If you have specific values for <code class="docutils literal notranslate"><span class="pre">WORKSPACE_PROJECT_DIR</span></code> or <code class="docutils literal notranslate"><span class="pre">DOCKERFILES_SHARE_DIR</span></code>, you can set these environment variables before running the script. Otherwise, the script will use the default values specified in the script.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">WORKSPACE_PROJECT_DIR</span><span class="o">=</span><span class="s2">&quot;/path/to/workspace/project/directory&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">DOCKERFILES_SHARE_DIR</span><span class="o">=</span><span class="s2">&quot;/path/to/dockerfiles/share/directory&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Run the Script:</strong>
+Execute the <code class="docutils literal notranslate"><span class="pre">dockerfiles-sync</span></code> script with the desired options:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dockerfiles-sync<span class="w"> </span><span class="o">[</span>DOCKER_NAME<span class="o">]</span><span class="w"> </span><span class="o">[</span>--from-project<span class="o">]</span><span class="w"> </span><span class="o">[</span>--project-directory<span class="w"> </span>PROJECT_DIR<span class="o">]</span><span class="w"> </span><span class="o">[</span>--dockerfiles-directory<span class="w"> </span>DOCKERFILES_DIR<span class="o">]</span><span class="w"> </span><span class="o">[</span>-h<span class="p">|</span>--help<span class="o">]</span>
+</pre></div>
+</div>
+<p>Available options:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DOCKER_NAME</span></code>: Specify the name of a specific Docker project to sync.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--from-project</span></code>: Sync Dockerfiles from the project directory to the shared Dockerfiles directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--project-directory</span> <span class="pre">PROJECT_DIR</span></code>: Set the project directory path.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--dockerfiles-directory</span> <span class="pre">DOCKERFILES_DIR</span></code>: Set the shared Dockerfiles directory path.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-h|--help</span></code>: Display usage information.</p></li>
+</ul>
+<p>Examples:</p>
+<ul>
+<li><p>Sync all Dockerfiles from the shared Dockerfiles directory to the workspace project directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dockerfiles-sync
+</pre></div>
+</div>
+</li>
+<li><p>Sync a specific Dockerfile from the shared Dockerfiles directory to the workspace project directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dockerfiles-sync<span class="w"> </span>my-docker-project
+</pre></div>
+</div>
+</li>
+<li><p>Sync all Dockerfiles from the workspace project directory to the shared Dockerfiles directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dockerfiles-sync<span class="w"> </span>--from-project
+</pre></div>
+</div>
+</li>
+<li><p>Sync a specific Dockerfile from the workspace project directory to the shared Dockerfiles directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dockerfiles-sync<span class="w"> </span>my-docker-project<span class="w"> </span>--from-project
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+<p>After running the <code class="docutils literal notranslate"><span class="pre">dockerfiles-sync</span></code> script, your Dockerfiles will be synchronized between the specified directories.
+The <code class="docutils literal notranslate"><span class="pre">dk-compose</span></code> script is a convenient wrapper for managing Docker Compose projects. To use the script, follow the usage format below:</p>
+</section>
+<section id="dk-compose-script">
+<h3><code class="docutils literal notranslate"><span class="pre">dk-compose</span></code> Script<a class="headerlink" href="#dk-compose-script" title="Permalink to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Usage:<span class="w"> </span>dk-compose<span class="w"> </span>COMMAND<span class="w"> </span>DOCKER_NAME<span class="w"> </span><span class="o">[</span>-t<span class="p">|</span>--tag<span class="w"> </span>TAG<span class="o">]</span><span class="w"> </span><span class="o">[</span>--from-project<span class="o">]</span><span class="w"> </span><span class="o">[</span>--project-directory<span class="w"> </span>PROJECT_DIR<span class="o">]</span><span class="w"> </span><span class="o">[</span>--dockerfiles-directory<span class="w"> </span>DOCKERFILES_DIR<span class="o">]</span><span class="w"> </span><span class="o">[</span>-c<span class="p">|</span>--compose-filename<span class="w"> </span>COMPOSE_FILENAME<span class="o">]</span><span class="w"> </span><span class="o">[</span>-e<span class="p">|</span>--env-filename<span class="w"> </span>ENV_FILENAME<span class="o">]</span><span class="w"> </span><span class="o">[</span>-v<span class="p">|</span>--version<span class="w"> </span>VERSION<span class="o">]</span><span class="w"> </span><span class="o">[</span>-l<span class="p">|</span>--latest<span class="o">]</span><span class="w"> </span><span class="o">[</span>--push<span class="o">]</span><span class="w"> </span><span class="o">[</span>-n<span class="p">|</span>--name<span class="w"> </span>CONTAINER_NAME<span class="o">]</span><span class="w"> </span><span class="o">[</span>--network<span class="w"> </span>DOCKER_NETWORK_NAME<span class="o">]</span><span class="w"> </span><span class="o">[</span>-u<span class="p">|</span>--username<span class="w"> </span>USERNAME<span class="o">]</span><span class="w"> </span><span class="o">[</span>-h<span class="p">|</span>--help<span class="o">]</span>
+</pre></div>
+</div>
+<p><strong>COMMAND</strong> - One of the following Docker Compose commands:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">build</span></code>: Build the Docker services defined in the Compose file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run</span></code>: Run a one-off command on a service.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">up</span></code>: Create and start the containers defined in the Compose file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">down</span></code>: Stop and remove containers, networks, and volumes defined in the Compose file.</p></li>
+</ul>
+<p><strong>DOCKER_NAME</strong> - The name of the Docker project.</p>
+<p><strong>Options:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-t,</span> <span class="pre">--tag</span> <span class="pre">TAG</span></code>: Specify a tag to use for the Docker Compose file and environment file. The script will look for files named <code class="docutils literal notranslate"><span class="pre">docker-compose-TAG.yaml</span></code> and <code class="docutils literal notranslate"><span class="pre">docker.TAG.env</span></code>, where <code class="docutils literal notranslate"><span class="pre">TAG</span></code> is the provided tag.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--from-project</span></code>: Use the project directory as the source of the Docker Compose files instead of the default Dockerfiles directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--project-directory</span> <span class="pre">PROJECT_DIR</span></code>: Provide a custom path to the project directory. If not specified, the script will use the default project directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--dockerfiles-directory</span> <span class="pre">DOCKERFILES_DIR</span></code>: Provide a custom path to the directory containing the Dockerfiles. If not specified, the script will use the default Dockerfiles directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-c,</span> <span class="pre">--compose-filename</span> <span class="pre">COMPOSE_FILENAME</span></code>: Specify a custom Docker Compose file name. If not specified, the script will use the default <code class="docutils literal notranslate"><span class="pre">docker-compose.yaml</span></code> or <code class="docutils literal notranslate"><span class="pre">docker-compose-TAG.yaml</span></code> based on the provided tag.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-e,</span> <span class="pre">--env-filename</span> <span class="pre">ENV_FILENAME</span></code>: Specify a custom environment file name. If not specified, the script will use the default <code class="docutils literal notranslate"><span class="pre">docker.env</span></code> or <code class="docutils literal notranslate"><span class="pre">docker.TAG.env</span></code> based on the provided tag.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-v,</span> <span class="pre">--version</span> <span class="pre">VERSION</span></code>: Specify the version of the Docker image to use. This will be set as the <code class="docutils literal notranslate"><span class="pre">VERSION</span></code> environment variable for the Docker Compose process.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-l,</span> <span class="pre">--latest</span></code>: Use the latest version of the Docker image. Sets the <code class="docutils literal notranslate"><span class="pre">VERSION</span></code> environment variable to “latest”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--push</span></code>: After successfully building the Docker image, push the image to a remote repository.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-n,</span> <span class="pre">--name</span> <span class="pre">CONTAINER_NAME</span></code>: Specify a custom name for the container that will be created.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--network</span> <span class="pre">DOCKER_NETWORK_NAME</span></code>: Specify the name of the Docker network to use or create. If the network does not exist, the script will create it.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-u,</span> <span class="pre">--username</span> <span class="pre">USERNAME</span></code>: Specify the username to use for the Docker image. If not provided, the script will use the default username from the configuration.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-h,</span> <span class="pre">--help</span></code>: Display the usage information for the script.</p></li>
+</ul>
+<p><strong>Examples:</strong></p>
+<ol class="arabic simple">
+<li><p>Build a Docker project named <code class="docutils literal notranslate"><span class="pre">my_project</span></code> with tag <code class="docutils literal notranslate"><span class="pre">dev</span></code>:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dk</span><span class="o">-</span><span class="n">compose</span> <span class="n">build</span> <span class="n">my_project</span> <span class="o">-</span><span class="n">t</span> <span class="n">dev</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Run a one-off command (<code class="docutils literal notranslate"><span class="pre">some_command</span></code>) on the <code class="docutils literal notranslate"><span class="pre">my_service</span></code> service in the <code class="docutils literal notranslate"><span class="pre">my_project</span></code> Docker project:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dk</span><span class="o">-</span><span class="n">compose</span> <span class="n">run</span> <span class="n">my_project</span> <span class="o">--</span><span class="n">name</span> <span class="n">my_service</span> <span class="n">some_command</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Start the containers defined in the <code class="docutils literal notranslate"><span class="pre">my_project</span></code> Docker project with tag <code class="docutils literal notranslate"><span class="pre">prod</span></code>:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dk</span><span class="o">-</span><span class="n">compose</span> <span class="n">up</span> <span class="n">my_project</span> <span class="o">-</span><span class="n">t</span> <span class="n">prod</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Stop and remove the containers, networks, and volumes defined in the <code class="docutils literal notranslate"><span class="pre">my_project</span></code> Docker project with tag <code class="docutils literal notranslate"><span class="pre">prod</span></code>:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dk</span><span class="o">-</span><span class="n">compose</span> <span class="n">down</span> <span class="n">my_project</span> <span class="o">-</span><span class="n">t</span> <span class="n">prod</span>
+</pre></div>
+</div>
+<p>Remember that the <code class="docutils literal notranslate"><span class="pre">dk-compose</span></code> script should be executable and located in a directory included in the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> variable (e.g., <code class="docutils literal notranslate"><span class="pre">.local/bin</span></code>).</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/lecture",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lectures/mlops/containerization"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Containerization</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="containerd.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><code class="docutils literal notranslate"><span class="pre">containerd</span></code></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-components-of-docker">Core Components of Docker</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-engine">Docker Engine</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-images">Docker Images</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-containers">Docker Containers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfile">Dockerfile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-registry">Docker Registry</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-docker-commands">Basic Docker Commands</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pull-an-image">Pull an Image</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-images">List Images</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-run-a-container">Create and Run a Container</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-containers">List Containers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stop-a-container">Stop a Container</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-a-container">Remove a Container</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-an-image">Remove an Image</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-docker-images-with-dockerfile">Building Docker Images with Dockerfile</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-dockerfile">Create a Dockerfile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-image">Build the Image</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-compose">Docker Compose</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-docker-compose">Install Docker Compose</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-docker-compose-yml-file">Create a <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> File</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#start-services">Start Services</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stop-services">Stop Services</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-volumes">Docker Volumes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-volume">Create a Volume</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-a-volume-in-a-container">Use a Volume in a Container</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#helper-scripts">Helper Scripts</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfiles-clone-script"><code class="docutils literal notranslate"><span class="pre">dockerfiles-clone</span></code> Script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfiles-pull-script"><code class="docutils literal notranslate"><span class="pre">dockerfiles-pull</span></code> Script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfiles-sync-script"><code class="docutils literal notranslate"><span class="pre">dockerfiles-sync</span></code> Script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dk-compose-script"><code class="docutils literal notranslate"><span class="pre">dk-compose</span></code> Script</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
