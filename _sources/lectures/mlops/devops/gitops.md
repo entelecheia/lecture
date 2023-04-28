@@ -1,6 +1,6 @@
 # GitOps
 
-![](../figs/mlops/gitops/gitops.png)
+![](figs/gitops.png)
 
 GitOps is a methodology that uses Git as the single source of truth for managing infrastructure and application configurations in a declarative manner. It applies DevOps best practices, such as version control, collaboration, and automation, to streamline infrastructure and application management.
 
