@@ -17,7 +17,7 @@
 [last-commit-img]: https://img.shields.io/github/last-commit/entelecheia/lecture?label=last%20update
 [last-commit-url]: https://github.com/entelecheia/lecture
 
-## ἐντελέχεια in Artificial Intelligence
+**ἐντελέχεια in Artificial Intelligence**
 
 ```{youtube} p0ZGCfjusIA
 :width: 100%
@@ -35,7 +35,7 @@ Additionally, there's increasing concern about AI systems that can imitate or ev
 
 Aristotle's concept of entelecheia can provide valuable guidance for AI, underlining the importance of realizing its full potential and achieving intended goals. As AI advances, we must address its ethical and societal consequences and strive for entelecheia, ensuring AI serves the greater good of humanity.
 
-## LectureBot for ἐντελέχεια.άι
+**LectureBot for ἐντελέχεια.άι**
 
 [![chrome-web-store-image]][chrome-web-store-url]
 [![version-image]][release-url]
@@ -62,7 +62,7 @@ Aristotle's concept of entelecheia can provide valuable guidance for AI, underli
 :width: 100%
 ```
 
-## Table of Contents
+**Table of Contents**
 
 ```{tableofcontents}
 
