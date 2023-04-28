@@ -1,4 +1,4 @@
-# LLMOps - Large Language Model Operations
+# LLMOps
 
 ![](figs/llmops.png)
 source: [valohai](https://valohai.com/blog/llmops/)
