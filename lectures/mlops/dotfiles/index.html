@@ -273,6 +273,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">Dotfiles</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai">Dotfiles in Practice</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dotdrop.html">Dotdrop: A Powerful Tool for Managing Dotfiles</a></li>
 </ul>
 </li>
@@ -455,16 +456,6 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#backup-and-sharing-tools">Backup and sharing tools:</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dotfiles-in-practice">Dotfiles in Practice</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-dotfiles">Install dotfiles</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-dotfiles">Initialize dotfiles</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#repositories-and-repository-templates-for-setting-up-your-own-dotfiles">Repositories and repository templates for setting up your own dotfiles</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-the-font-on-windows">Installing the font on <strong>Windows</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuring-the-font-in-vs-code">Configuring the font in <strong>VS Code</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuring-the-font-in-windows-terminal">Configuring the font in <strong>Windows Terminal</strong></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next">Next</a></li>
 </ul>
             </nav>
@@ -534,127 +525,11 @@ document.write(`
 <p>When selecting tools for dotfiles management, consider your specific needs, such as ease of use, platform support, and integration with other tools or services. Additionally, make sure to keep your dotfiles organized and version-controlled to simplify synchronization and sharing with other users or machines.</p>
 </section>
 </section>
-<section id="dotfiles-in-practice">
-<h2>Dotfiles in Practice<a class="headerlink" href="#dotfiles-in-practice" title="Permalink to this heading">#</a></h2>
-<p><a class="reference external" href="https://github.com/entelecheia/dotfiles/releases"><img alt="version-image" src="https://img.shields.io/github/v/release/entelecheia/dotfiles?sort=semver" /></a>
-<a class="reference external" href="https://github.com/entelecheia/dotfiles/releases"><img alt="release-date-image" src="https://img.shields.io/github/release-date/entelecheia/dotfiles" /></a>
-<a class="reference external" href="https://github.com/entelecheia/dotfiles/actions/workflows/test.yaml"><img alt="test-image" src="https://github.com/entelecheia/dotfiles/actions/workflows/test.yaml/badge.svg" /></a>
-<a class="reference external" href="https://github.com/entelecheia/dotfiles/blob/main/LICENSE"><img alt="license-image" src="https://img.shields.io/github/license/entelecheia/dotfiles" /></a></p>
-<!-- Links: -->
-<!-- Links: -->
-<ul class="simple">
-<li><p>Documentation: <a class="reference external" href="https://dotfiles.entelecheia.ai">https://dotfiles.entelecheia.ai</a></p></li>
-<li><p>GitHub: <a class="github reference external" href="https://github.com/entelecheia/dotfiles">entelecheia/dotfiles</a></p></li>
-</ul>
-<section id="install-dotfiles">
-<h3>Install dotfiles<a class="headerlink" href="#install-dotfiles" title="Permalink to this heading">#</a></h3>
-<p>You can use the <a class="reference external" href="https://dotfiles.entelecheia.ai/install">install dotfiles script</a> to install the dotfiles on any machine with a single command. Simply run the following command in your terminal:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>wget<span class="w"> </span>-qO-<span class="w"> </span>https://dotfiles.entelecheia.ai/install<span class="k">)</span><span class="s2">&quot;</span>
-</pre></div>
-</div>
-<blockquote>
-<div><p>💡 For most Ubuntu-based distributions, <code class="docutils literal notranslate"><span class="pre">wget</span></code> is already installed. If you want to use <code class="docutils literal notranslate"><span class="pre">curl</span></code> instead:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://dotfiles.entelecheia.ai/install<span class="k">)</span><span class="s2">&quot;</span>
-</pre></div>
-</div>
-</div></blockquote>
-<p><img alt="install dotfiles script" src="https://github.com/entelecheia/dotfiles/blob/main/docs/figs/install_dotfiles_script.png?raw=true" /></p>
-<p>For unattended installations such as in a dockerfile, you can use the environment variables to initialize the dotfiles automatically. For example:</p>
-<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># install dotfiles</span>
-<span class="k">ARG</span><span class="w"> </span><span class="nv">USER_FULLNAME</span><span class="o">=</span><span class="s2">&quot;John Doe&quot;</span>
-<span class="k">ARG</span><span class="w"> </span><span class="nv">USER_EMAIL</span><span class="o">=</span><span class="s2">&quot;john.doe@email.com&quot;</span>
-<span class="k">ARG</span><span class="w"> </span><span class="nv">GITHUB_USERNAME</span><span class="o">=</span><span class="s2">&quot;john-doe&quot;</span>
-<span class="k">ARG</span><span class="w"> </span><span class="nv">SYSTEM_HOSTNANE</span><span class="o">=</span><span class="s2">&quot;devcon-arm64&quot;</span>
-
-<span class="k">ENV</span><span class="w"> </span><span class="nv">USER_FULLNAME</span><span class="o">=</span><span class="nv">$USER_FULLNAME</span>
-<span class="k">ENV</span><span class="w"> </span><span class="nv">USER_EMAIL</span><span class="o">=</span><span class="nv">$USER_EMAIL</span>
-<span class="k">ENV</span><span class="w"> </span><span class="nv">GITHUB_USERNAME</span><span class="o">=</span><span class="nv">$GITHUB_USERNAME</span>
-<span class="k">ENV</span><span class="w"> </span><span class="nv">SYSTEM_HOSTNAME</span><span class="o">=</span><span class="nv">$SYSTEM_HOSTNAME</span>
-<span class="k">ENV</span><span class="w"> </span><span class="nv">WORKSPACE_LOCATION</span><span class="o">=</span><span class="s2">&quot;/&quot;</span>
-<span class="k">ENV</span><span class="w"> </span><span class="nv">DOTFILES_APPLY_ROOTMOI</span><span class="o">=</span><span class="m">0</span>
-<span class="k">ENV</span><span class="w"> </span><span class="nv">REMOTE_CONTAINERS</span><span class="o">=</span><span class="m">1</span>
-
-<span class="k">RUN</span><span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>wget<span class="w"> </span>-qO-<span class="w"> </span>https://dotfiles.entelecheia.ai/install<span class="k">)</span><span class="s2">&quot;</span>
-
-<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;zsh&quot;</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>Or you can provide the environment variables in the command line:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">USER_FULLNAME</span><span class="o">=</span><span class="s2">&quot;John Doe&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="nv">USER_EMAIL</span><span class="o">=</span><span class="s2">&quot;john.doe@email.com&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="nv">GITHUB_USERNAME</span><span class="o">=</span><span class="s2">&quot;john-doe&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="nv">SYSTEM_HOSTNAME</span><span class="o">=</span><span class="s2">&quot;devcon-arm64&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="nv">WORKSPACE_LOCATION</span><span class="o">=</span><span class="s2">&quot;/&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="nv">DOTFILES_APPLY_ROOTMOI</span><span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
-<span class="nv">REMOTE_CONTAINERS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
-sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>wget<span class="w"> </span>-qO-<span class="w"> </span>https://dotfiles.entelecheia.ai/install<span class="k">)</span><span class="s2">&quot;</span>
-</pre></div>
-</div>
-</section>
-<section id="initialize-dotfiles">
-<h3>Initialize dotfiles<a class="headerlink" href="#initialize-dotfiles" title="Permalink to this heading">#</a></h3>
-<p>When installing the dotfiles, initialization starts automatically. If you want to initialize the dotfiles manually, you can run the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chezmoi<span class="w"> </span>init<span class="w"> </span>--apply
-</pre></div>
-</div>
-<p><img alt="initialize dotfiles" src="https://github.com/entelecheia/dotfiles/blob/main/docs/figs/initialize_dotfiles.png?raw=true" /></p>
-</section>
-<section id="repositories-and-repository-templates-for-setting-up-your-own-dotfiles">
-<h3>Repositories and repository templates for setting up your own dotfiles<a class="headerlink" href="#repositories-and-repository-templates-for-setting-up-your-own-dotfiles" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/entelecheia/dockerfiles">dockerfiles</a></p></li>
-<li><p><a class="reference external" href="https://github.com/entelecheia/dotdrop-files">dotdrop-files</a></p></li>
-<li><p><a class="reference external" href="https://github.com/entelecheia/password-store">password-store</a></p></li>
-<li><p><a class="reference external" href="https://github.com/entelecheia/passage-store">passage-store</a></p></li>
-</ul>
-</section>
-<section id="installing-the-font-on-windows">
-<h3>Installing the font on <strong>Windows</strong><a class="headerlink" href="#installing-the-font-on-windows" title="Permalink to this heading">#</a></h3>
-<ol class="arabic simple">
-<li><p><a class="reference external" href="https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete.ttf">Download Fira Code Regular Nerd Font Complete</a>.</p></li>
-<li><p>Open the downloaded file and click <strong>Install</strong>.</p></li>
-<li><p>Restart <strong>Windows Terminal</strong> or <strong>VS Code</strong>.</p></li>
-</ol>
-</section>
-<section id="configuring-the-font-in-vs-code">
-<h3>Configuring the font in <strong>VS Code</strong><a class="headerlink" href="#configuring-the-font-in-vs-code" title="Permalink to this heading">#</a></h3>
-<ol class="arabic simple">
-<li><p>Open settings by pressing <kbd>Ctrl/Cmd</kbd>+<kbd>,</kbd>.</p></li>
-<li><p>Change the font family to <strong>FiraCode Nerd Font</strong> in <strong><em>Terminal › Integrated: Font Family</em></strong>.</p></li>
-</ol>
-</section>
-<section id="configuring-the-font-in-windows-terminal">
-<h3>Configuring the font in <strong>Windows Terminal</strong><a class="headerlink" href="#configuring-the-font-in-windows-terminal" title="Permalink to this heading">#</a></h3>
-<ol class="arabic simple">
-<li><p>On <strong>Windows Terminal</strong>, press <kbd>Ctrl</kbd>+<kbd>,</kbd> to open the settings.</p></li>
-<li><p>Go to <strong><em>Profiles -&gt; Defaults</em></strong> in the left panel. Then, go to <strong><em>Additional settings -&gt; Appearance</em></strong>.</p></li>
-<li><p>At <strong><em>Text -&gt; Font face</em></strong>, enable the <strong><em>Show all fonts</em></strong> option and select <strong><em>FiraCode Nerd Font</em></strong>. Like below:</p></li>
-</ol>
-</section>
-</section>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://chezmoi.io">chezmoi</a></p></li>
-<li><p><a class="reference external" href="https://github.com/deadc0de6/dotdrop">dotdrop</a></p></li>
-<li><p><a class="reference external" href="https://dotfiles.github.io/">dotfiles</a></p></li>
-<li><p><a class="reference external" href="https://git-secret.io/">git-secret</a></p></li>
-<li><p><a class="reference external" href="https://www.pascallandau.com/blog/git-secret-encrypt-repository-docker/#git-secret-installation">Use git-secret to encrypt secrets</a></p></li>
-<li><p><a class="reference external" href="https://blog.gitguardian.com/secrets-at-the-command-line/">Secrets at the Command Line</a></p></li>
-<li><p><a class="reference external" href="https://betakuang.medium.com/using-command-line-passphrase-input-for-gpg-with-git-for-windows-f78ae2c7cd2e">Using Command-Line Passphrase Input for GPG with Git</a></p></li>
-<li><p><a class="reference external" href="https://devops.datenkollektiv.de/using-sops-with-age-and-git-like-a-pro.html">Using SOPS with Age and Git like a Pro</a></p></li>
-<li><p><a class="reference external" href="https://itnext.io/goodbye-sealed-secrets-hello-sops-3ee6a92662bb">Goodbye Sealed Secrets, hello SOPS</a></p></li>
-<li><p><a class="reference external" href="https://calebhearth.com/sign-git-with-ssh#:%7E:text=configured%20signing%20correctly.-,Verifying,-Git%20also%20lets">Signing Git Commits with Your SSH Key</a></p></li>
-<li><p><a class="reference external" href="https://jdheyburn.co.uk/blog/backup-to-backblaze-b2-using-restic-and-rclone/">Backup to Backblaze B2 using restic and rclone</a></p></li>
-<li><p><a class="reference external" href="https://dev.to/vvidovic/set-up-your-new-machine-in-a-blink-of-an-eye-43j7">Set up your new machine in a blink of an eye</a></p></li>
-<li><p><a class="reference external" href="https://words.filippo.io/dispatches/age-authentication/">AGE AND AUTHENTICATED ENCRYPTION</a></p></li>
-<li><p><a class="reference external" href="https://www.seanh.cc/2022/04/03/restic/#3-install-pass">How I Use Restic to Back up My Home Folders to Backblaze B2</a></p></li>
-</ul>
-</section>
 <section id="next">
 <h2>Next<a class="headerlink" href="#next" title="Permalink to this heading">#</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference external" href="https://dotfiles.entelecheia.ai">Dotfiles in Practice</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dotdrop.html">Dotdrop: A Powerful Tool for Managing Dotfiles</a></li>
 </ul>
 </div>
@@ -737,16 +612,6 @@ sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</spa
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#backup-and-sharing-tools">Backup and sharing tools:</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dotfiles-in-practice">Dotfiles in Practice</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-dotfiles">Install dotfiles</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-dotfiles">Initialize dotfiles</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#repositories-and-repository-templates-for-setting-up-your-own-dotfiles">Repositories and repository templates for setting up your own dotfiles</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-the-font-on-windows">Installing the font on <strong>Windows</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuring-the-font-in-vs-code">Configuring the font in <strong>VS Code</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuring-the-font-in-windows-terminal">Configuring the font in <strong>Windows Terminal</strong></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next">Next</a></li>
 </ul>
   </nav></div>
