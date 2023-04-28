@@ -40,7 +40,7 @@ In summary, this chapter covers the following topics:
 
 ## Hidden Technical Debt in Machine Learning Systems
 
-```{figure} ../figs/mlops/intro/mlcode.png
+```{figure} figs/mlcode.png
 ---
 width: 700px
 name: fig-mlcode
@@ -85,7 +85,7 @@ MLOps requires a broader set of skills and expertise than DevOps, including mach
 
 Another key difference between DevOps and MLOps is the nature of the models being developed. In traditional software development, the code can be version-controlled and tested easily, while in machine learning, the models are more complex, and it's not always easy to understand how the model arrived at its output.
 
-```{figure} ../figs/mlops/intro/mlops-cycle.jpg
+```{figure} figs/mlops-cycle.jpg
 ---
 width: 500px
 name: fig-mlops-cycle2

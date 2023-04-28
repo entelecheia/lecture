@@ -1,6 +1,6 @@
 # DevOps
 
-![DevOps](../figs/mlops/devops/devops.png)
+![DevOps](figs/devops.png)
 
 DevOps is a combination of practices, tools, and cultural philosophies that aims to bridge the gap between software development (Dev) and IT operations (Ops). The main goal of DevOps is to improve collaboration between the development and operations teams, streamline the software development lifecycle, and deliver software faster, more reliably, and with higher quality.
 
@@ -18,7 +18,7 @@ DevOps encompasses several key principles and practices:
 
 - **Feedback and Continuous Improvement**: DevOps encourages a culture of learning, experimentation, and adaptation. Teams collect feedback from various sources (e.g., monitoring, user feedback) and use this information to iteratively improve their processes, tools, and products.
 
-![cicd](../figs/mlops/devops/cicd.png)
+![cicd](figs/cicd.png)
 
 ## Benefits of DevOps
 
