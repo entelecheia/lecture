@@ -277,6 +277,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="../dotfiles/dotdrop.html">Dotdrop</a></li>
 <li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dotdrop/">Dotdrop Setup Script</a></li>
 <li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/github/">GitHub Setup Script</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/ssh-gpg-age/">SSH, GPG, and Age Setup Script</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/pass/">Pass and Passage Setup Script</a></li>
 </ul>
 </li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Security Management</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
@@ -475,14 +477,6 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-ssh-signing">D. SSH Signing</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#helper-scripts">Helper Scripts</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dotfiles-setup-ssh"><code class="docutils literal notranslate"><span class="pre">dotfiles-setup-ssh</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dotfiles-setup-age"><code class="docutils literal notranslate"><span class="pre">dotfiles-setup-age</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dotfiles-setup-gpg-option"><code class="docutils literal notranslate"><span class="pre">dotfiles-setup-gpg</span> <span class="pre">[OPTION]</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#github-auth-option"><code class="docutils literal notranslate"><span class="pre">github-auth</span> <span class="pre">[OPTION]</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dotfiles-setup-github-keys"><code class="docutils literal notranslate"><span class="pre">dotfiles-setup-github-keys</span></code></a></li>
-</ul>
-</li>
 </ul>
             </nav>
         </div>
@@ -660,105 +654,6 @@ git<span class="w"> </span>tag<span class="w"> </span>-s<span class="w"> </span>
 <p>In summary, SSH signing is an alternative method to GPG signing for Git commits and tags that allows you to use your SSH key for signing purposes. This can be a convenient option if you already have an SSH key set up for Git and GitHub operations and want to simplify your key management. However, keep in mind that SSH signing support may vary across different Git hosting platforms.</p>
 </section>
 </section>
-<section id="helper-scripts">
-<h2>Helper Scripts<a class="headerlink" href="#helper-scripts" title="Permalink to this heading">#</a></h2>
-<p>There are a few helper scripts that can be used to make the process of setting up and using SSH, GPG, and AGE easier. These scripts are installed in the process of setting up <code class="docutils literal notranslate"><span class="pre">dotfiles</span></code> and can be found in the <code class="docutils literal notranslate"><span class="pre">.local/bin</span></code> directory.</p>
-<section id="dotfiles-setup-ssh">
-<h3><code class="docutils literal notranslate"><span class="pre">dotfiles-setup-ssh</span></code><a class="headerlink" href="#dotfiles-setup-ssh" title="Permalink to this heading">#</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">dotfiles-setup-ssh</span></code> script is a utility for setting up SSH keys, configuring git for GPG signing, and managing SSH-related files. Before running the script, ensure that it is executable and located in a directory included in your PATH variable.</p>
-<p>To use the script, simply run the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dotfiles-setup-ssh
-</pre></div>
-</div>
-<p>The script performs the following actions:</p>
-<ol class="arabic simple">
-<li><p>Creates the <code class="docutils literal notranslate"><span class="pre">${SSH_HOME}</span></code> directory if it does not exist.</p></li>
-<li><p>Generates an SSH key with the specified algorithm and email if <code class="docutils literal notranslate"><span class="pre">${SSH_KEY_FILE}</span></code> does not exist; otherwise, changes the SSH key file permissions to <code class="docutils literal notranslate"><span class="pre">600</span></code>.</p></li>
-<li><p>Copies the SSH config file to <code class="docutils literal notranslate"><span class="pre">${SSH_CONFIG_FILE}</span></code> if it does not exist.</p></li>
-<li><p>Copies the gitconfig file to the <code class="docutils literal notranslate"><span class="pre">.gitconfig</span></code> file in the home directory.</p></li>
-<li><p>Adds the SSH key to the <code class="docutils literal notranslate"><span class="pre">allowed_signers</span></code> and <code class="docutils literal notranslate"><span class="pre">authorized_keys</span></code> files, and configures git for GPG signing using the SSH key.</p></li>
-<li><p>For macOS, adds the SSH key to the macOS keychain.</p></li>
-<li><p>Refreshes the <code class="docutils literal notranslate"><span class="pre">ssh-agent</span></code> to load new keys if the <code class="docutils literal notranslate"><span class="pre">ssh-agent</span></code> command is available.</p></li>
-</ol>
-<p>Note: Before running the script, make sure you have the necessary dependencies and configurations in place.</p>
-</section>
-<section id="dotfiles-setup-age">
-<h3><code class="docutils literal notranslate"><span class="pre">dotfiles-setup-age</span></code><a class="headerlink" href="#dotfiles-setup-age" title="Permalink to this heading">#</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">dotfiles-setup-age</span></code> script is a utility for setting up the Age encryption tool, generating Age keys, and managing Age-related files. Before running the script, ensure that it is executable and located in a directory included in your PATH variable (e.g., <code class="docutils literal notranslate"><span class="pre">${HOME}/.local/bin</span></code>).</p>
-<p>To use the script, simply run the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dotfiles</span><span class="o">-</span><span class="n">setup</span><span class="o">-</span><span class="n">age</span>
-</pre></div>
-</div>
-<p>The script performs the following actions:</p>
-<ol class="arabic simple">
-<li><p>Ensures that <code class="docutils literal notranslate"><span class="pre">${HOME}/.local/bin</span></code>, <code class="docutils literal notranslate"><span class="pre">${GOROOT}/bin</span></code>, and <code class="docutils literal notranslate"><span class="pre">${GOPATH}/bin</span></code> are included in the PATH variable.</p></li>
-<li><p>Creates the <code class="docutils literal notranslate"><span class="pre">${SSH_HOME}</span></code> directory if it does not exist.</p></li>
-<li><p>Generates an Age key using <code class="docutils literal notranslate"><span class="pre">age-keygen</span></code> if <code class="docutils literal notranslate"><span class="pre">${AGE_KEY_FILE}</span></code> does not exist.</p></li>
-<li><p>Adds the Age key (AGE_RECIPIENT) to the <code class="docutils literal notranslate"><span class="pre">authorized_age_keys</span></code> file, or creates the file with the key if it does not exist.</p></li>
-</ol>
-<p>Note: Before running the script, make sure you have the Age encryption tool installed. If it is not installed, the script will prompt you to install it manually.</p>
-</section>
-<section id="dotfiles-setup-gpg-option">
-<h3><code class="docutils literal notranslate"><span class="pre">dotfiles-setup-gpg</span> <span class="pre">[OPTION]</span></code><a class="headerlink" href="#dotfiles-setup-gpg-option" title="Permalink to this heading">#</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">dotfiles-setup-gpg</span></code> script is a utility for setting up and managing GPG keys, as well as exporting GPG public and private keys. Before running the script, ensure that it is executable and located in a directory included in your PATH variable (e.g., <code class="docutils literal notranslate"><span class="pre">${HOME}/.local/bin</span></code>).</p>
-<p>To use the script, simply run the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dotfiles</span><span class="o">-</span><span class="n">setup</span><span class="o">-</span><span class="n">gpg</span>
-</pre></div>
-</div>
-<p>Optionally, you can use the <code class="docutils literal notranslate"><span class="pre">--interactive</span></code> or <code class="docutils literal notranslate"><span class="pre">-i</span></code> flag to run the script in interactive mode:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dotfiles</span><span class="o">-</span><span class="n">setup</span><span class="o">-</span><span class="n">gpg</span> <span class="o">--</span><span class="n">interactive</span>
-</pre></div>
-</div>
-<p>The script performs the following actions:</p>
-<ol class="arabic simple">
-<li><p>Determines if the script should run in interactive mode based on the provided flag.</p></li>
-<li><p>Sets the necessary environment variables and exports them.</p></li>
-<li><p>Creates the <code class="docutils literal notranslate"><span class="pre">${SSH_HOME}</span></code> directory if it does not exist.</p></li>
-<li><p>Checks if the GPG public key and private key are valid and imported. If not, it imports them.</p></li>
-<li><p>Generates a new GPG key if none exists, exports the public and private keys, and saves them to respective files.</p></li>
-<li><p>Saves the GPG key ID to a file if it’s different or if the file doesn’t exist.</p></li>
-<li><p>(Optional) Adds the GPG key to the Git configuration and enables commit signing if the <code class="docutils literal notranslate"><span class="pre">GPGSIGN</span></code> variable is set to “true”.</p></li>
-</ol>
-<p>Note: Before running the script, make sure you have the GPG encryption tool installed.</p>
-</section>
-<section id="github-auth-option">
-<h3><code class="docutils literal notranslate"><span class="pre">github-auth</span> <span class="pre">[OPTION]</span></code><a class="headerlink" href="#github-auth-option" title="Permalink to this heading">#</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">github-auth</span></code> script is a utility for logging in to GitHub and configuring Git authentication using the GitHub CLI (<code class="docutils literal notranslate"><span class="pre">gh</span></code>). Before running the script, ensure that it is executable and located in a directory included in your PATH variable (e.g., <code class="docutils literal notranslate"><span class="pre">${HOME}/.local/bin</span></code>).</p>
-<p>To use the script, simply run the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">github</span><span class="o">-</span><span class="n">auth</span>
-</pre></div>
-</div>
-<p>Optionally, you can use the <code class="docutils literal notranslate"><span class="pre">--interactive</span></code> or <code class="docutils literal notranslate"><span class="pre">-i</span></code> flag to run the script in interactive mode:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">github</span><span class="o">-</span><span class="n">auth</span> <span class="o">--</span><span class="n">interactive</span>
-</pre></div>
-</div>
-<p>The script performs the following actions:</p>
-<ol class="arabic simple">
-<li><p>Determines if the script should run in interactive mode based on the provided flag.</p></li>
-<li><p>Checks if the <code class="docutils literal notranslate"><span class="pre">GITHUB_USERNAME</span></code> environment variable is set. If not, it skips the GitHub authentication process.</p></li>
-<li><p>Checks if the <code class="docutils literal notranslate"><span class="pre">gh</span></code> (GitHub CLI) command is installed. If not, it skips the GitHub authentication process.</p></li>
-<li><p>Configures the Git protocol to use HTTPS for GitHub.</p></li>
-<li><p>If in interactive mode, logs in to GitHub using <code class="docutils literal notranslate"><span class="pre">gh</span> <span class="pre">auth</span> <span class="pre">login</span></code>. If not in interactive mode, logs in using the provided <code class="docutils literal notranslate"><span class="pre">GITHUB_TOKEN</span></code> environment variable.</p></li>
-</ol>
-<p>Note: Before running the script, make sure you have the GitHub CLI (<code class="docutils literal notranslate"><span class="pre">gh</span></code>) installed. To install it, follow the instructions at <a class="github reference external" href="https://github.com/cli/cli#installation">cli/cli</a>.</p>
-</section>
-<section id="dotfiles-setup-github-keys">
-<h3><code class="docutils literal notranslate"><span class="pre">dotfiles-setup-github-keys</span></code><a class="headerlink" href="#dotfiles-setup-github-keys" title="Permalink to this heading">#</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">dotfiles-setup-github-keys</span></code> script is a utility for adding your SSH and GPG keys to your GitHub account, assuming you have already authenticated using the <code class="docutils literal notranslate"><span class="pre">gh</span></code> (GitHub CLI) tool. Before running the script, ensure that it is executable and located in a directory included in your PATH variable (e.g., <code class="docutils literal notranslate"><span class="pre">${HOME}/.local/bin</span></code>).</p>
-<p>To use the script, simply run the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dotfiles-setup-github-keys
-</pre></div>
-</div>
-<p>The script performs the following actions:</p>
-<ol class="arabic simple">
-<li><p>Checks if the <code class="docutils literal notranslate"><span class="pre">GITHUB_USERNAME</span></code> environment variable is set. If not, it skips the GitHub authentication process.</p></li>
-<li><p>Checks if the <code class="docutils literal notranslate"><span class="pre">gh</span></code> (GitHub CLI) command is installed and if you are authenticated to GitHub.</p></li>
-<li><p>If authenticated, it attempts to add your SSH key to your GitHub account, if not already added.</p></li>
-<li><p>If your GPG public key file exists, it provides instructions for manually adding your GPG key to your GitHub account, as the GitHub CLI does not currently support this functionality.</p></li>
-</ol>
-<p>Note: Before running the script, make sure you have the GitHub CLI (<code class="docutils literal notranslate"><span class="pre">gh</span></code>) installed and authenticated. To install it, follow the instructions at <a class="github reference external" href="https://github.com/cli/cli#installation">cli/cli</a>, and to authenticate, use the <code class="docutils literal notranslate"><span class="pre">github-auth</span></code> script described in a previous section or refer to the <code class="docutils literal notranslate"><span class="pre">gh</span></code> documentation.</p>
-</section>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -847,14 +742,6 @@ git<span class="w"> </span>tag<span class="w"> </span>-s<span class="w"> </span>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-setting-up-ssh-for-git-and-github-operations">B. Setting Up SSH for Git and GitHub Operations</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-using-ssh-for-git-and-github-operations">C. Using SSH for Git and GitHub Operations</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-ssh-signing">D. SSH Signing</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#helper-scripts">Helper Scripts</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dotfiles-setup-ssh"><code class="docutils literal notranslate"><span class="pre">dotfiles-setup-ssh</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dotfiles-setup-age"><code class="docutils literal notranslate"><span class="pre">dotfiles-setup-age</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dotfiles-setup-gpg-option"><code class="docutils literal notranslate"><span class="pre">dotfiles-setup-gpg</span> <span class="pre">[OPTION]</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#github-auth-option"><code class="docutils literal notranslate"><span class="pre">github-auth</span> <span class="pre">[OPTION]</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dotfiles-setup-github-keys"><code class="docutils literal notranslate"><span class="pre">dotfiles-setup-github-keys</span></code></a></li>
 </ul>
 </li>
 </ul>
