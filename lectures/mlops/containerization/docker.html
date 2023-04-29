@@ -276,9 +276,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai">Dotfiles Repository</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../dotfiles/dotdrop.html">Dotdrop</a></li>
 <li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dotdrop/">Dotdrop Setup Script</a></li>
-<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/github/">GitHub Setup Script</a></li>
-<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/ssh-gpg-age/">SSH, GPG, and Age Setup Script</a></li>
-<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/pass/">Pass and Passage Setup Script</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/github/">GitHub Setup Scripts</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/ssh-gpg-age/">SSH, GPG, and Age Setup Scripts</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/pass/">Pass and Passage Scripts</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dockerfiles/">Dockerfiles Scripts</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../security/index.html">Security Management</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -493,13 +494,6 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#helper-scripts">Helper Scripts</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfiles-clone-script"><code class="docutils literal notranslate"><span class="pre">dockerfiles-clone</span></code> Script</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfiles-pull-script"><code class="docutils literal notranslate"><span class="pre">dockerfiles-pull</span></code> Script</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfiles-sync-script"><code class="docutils literal notranslate"><span class="pre">dockerfiles-sync</span></code> Script</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dk-compose-script"><code class="docutils literal notranslate"><span class="pre">dk-compose</span></code> Script</a></li>
-</ul>
-</li>
 </ul>
             </nav>
         </div>
@@ -703,174 +697,6 @@ document.write(`
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
 <p>Docker is a powerful platform that simplifies the process of building, deploying, and managing applications using containerization. Understanding its core components and commands, building custom images with Dockerfiles, managing multi-container applications with Docker Compose, and persisting data with Docker volumes will help you streamline your development workflow and ensure consistent application behavior across different environments.</p>
 </section>
-<section id="helper-scripts">
-<h2>Helper Scripts<a class="headerlink" href="#helper-scripts" title="Permalink to this heading">#</a></h2>
-<p>There are a few helper scripts that can be used to simplify the process of building and running Docker containers. These scripts are installed in the process of setting up <code class="docutils literal notranslate"><span class="pre">dotfiles</span></code> and can be found in the <code class="docutils literal notranslate"><span class="pre">.local/bin</span></code> directory.</p>
-<section id="dockerfiles-clone-script">
-<h3><code class="docutils literal notranslate"><span class="pre">dockerfiles-clone</span></code> Script<a class="headerlink" href="#dockerfiles-clone-script" title="Permalink to this heading">#</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">dockerfiles-clone</span></code> script is designed to help you clone or update the Dockerfiles repository on your system. To use this script, follow these steps:</p>
-<ol class="arabic">
-<li><p><strong>Configure Environment Variables (optional):</strong>
-If you have specific values for <code class="docutils literal notranslate"><span class="pre">DOCKERFILES_REPO</span></code> or <code class="docutils literal notranslate"><span class="pre">DOCKERFILES_DIR</span></code>, you can set these environment variables before running the script. Otherwise, the script will use the default values specified in the script.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">DOCKERFILES_REPO</span><span class="o">=</span><span class="s2">&quot;https://github.com/username/dockerfiles.git&quot;</span>
-<span class="nb">export</span><span class="w"> </span><span class="nv">DOCKERFILES_DIR</span><span class="o">=</span><span class="s2">&quot;/path/to/dockerfiles&quot;</span>
-</pre></div>
-</div>
-</li>
-<li><p><strong>Run the Script:</strong>
-Execute the <code class="docutils literal notranslate"><span class="pre">dockerfiles-clone</span></code> script:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dockerfiles-clone
-</pre></div>
-</div>
-<p>This script will perform the following tasks:</p>
-<ul class="simple">
-<li><p>Check if the Dockerfiles repository is set. If not, it will display a message and exit.</p></li>
-<li><p>If the Dockerfiles directory exists, it will prompt you to remove the existing directory.</p>
-<ul>
-<li><p>If you choose to remove the existing directory, it will delete the directory and proceed to clone the repository.</p></li>
-<li><p>If you choose not to remove the existing directory, it will display a message and exit.</p></li>
-</ul>
-</li>
-<li><p>If the Dockerfiles directory does not exist, it will clone the Dockerfiles repository to the specified directory.</p></li>
-</ul>
-</li>
-</ol>
-<p>After running the <code class="docutils literal notranslate"><span class="pre">dockerfiles-clone</span></code> script, your Dockerfiles repository will be cloned or updated, and you can start using the Dockerfiles on your system.</p>
-</section>
-<section id="dockerfiles-pull-script">
-<h3><code class="docutils literal notranslate"><span class="pre">dockerfiles-pull</span></code> Script<a class="headerlink" href="#dockerfiles-pull-script" title="Permalink to this heading">#</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">dockerfiles-pull</span></code> script helps you update the Dockerfiles repository on your system. To use this script, follow these steps:</p>
-<ol class="arabic">
-<li><p><strong>Configure Environment Variables (optional):</strong>
-If you have specific values for <code class="docutils literal notranslate"><span class="pre">DOCKERFILES_REPO</span></code> or <code class="docutils literal notranslate"><span class="pre">DOCKERFILES_DIR</span></code>, you can set these environment variables before running the script. Otherwise, the script will use the default values specified in the script.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">DOCKERFILES_REPO</span><span class="o">=</span><span class="s2">&quot;https://github.com/username/dockerfiles.git&quot;</span>
-<span class="nb">export</span><span class="w"> </span><span class="nv">DOCKERFILES_DIR</span><span class="o">=</span><span class="s2">&quot;/path/to/dockerfiles&quot;</span>
-</pre></div>
-</div>
-</li>
-<li><p><strong>Run the Script:</strong>
-Execute the <code class="docutils literal notranslate"><span class="pre">dockerfiles-pull</span></code> script:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dockerfiles-pull
-</pre></div>
-</div>
-<p>This script will perform the following tasks:</p>
-<ul class="simple">
-<li><p>Check if the Dockerfiles directory exists.</p></li>
-<li><p>If the directory exists and is a valid Git repository, it will update the Dockerfiles repository using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">--rebase</span> <span class="pre">--autostash</span></code>.</p></li>
-</ul>
-</li>
-</ol>
-<p>After running the <code class="docutils literal notranslate"><span class="pre">dockerfiles-pull</span></code> script, your Dockerfiles repository will be updated, and you can continue using the latest Dockerfiles on your system.</p>
-</section>
-<section id="dockerfiles-sync-script">
-<h3><code class="docutils literal notranslate"><span class="pre">dockerfiles-sync</span></code> Script<a class="headerlink" href="#dockerfiles-sync-script" title="Permalink to this heading">#</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">dockerfiles-sync</span></code> script helps you synchronize Dockerfiles between your project directory and the shared Dockerfiles directory. To use this script, follow these steps:</p>
-<ol class="arabic">
-<li><p><strong>Configure Environment Variables (optional):</strong>
-If you have specific values for <code class="docutils literal notranslate"><span class="pre">WORKSPACE_PROJECT_DIR</span></code> or <code class="docutils literal notranslate"><span class="pre">DOCKERFILES_SHARE_DIR</span></code>, you can set these environment variables before running the script. Otherwise, the script will use the default values specified in the script.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">WORKSPACE_PROJECT_DIR</span><span class="o">=</span><span class="s2">&quot;/path/to/workspace/project/directory&quot;</span>
-<span class="nb">export</span><span class="w"> </span><span class="nv">DOCKERFILES_SHARE_DIR</span><span class="o">=</span><span class="s2">&quot;/path/to/dockerfiles/share/directory&quot;</span>
-</pre></div>
-</div>
-</li>
-<li><p><strong>Run the Script:</strong>
-Execute the <code class="docutils literal notranslate"><span class="pre">dockerfiles-sync</span></code> script with the desired options:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dockerfiles-sync<span class="w"> </span><span class="o">[</span>DOCKER_NAME<span class="o">]</span><span class="w"> </span><span class="o">[</span>--from-project<span class="o">]</span><span class="w"> </span><span class="o">[</span>--project-directory<span class="w"> </span>PROJECT_DIR<span class="o">]</span><span class="w"> </span><span class="o">[</span>--dockerfiles-directory<span class="w"> </span>DOCKERFILES_DIR<span class="o">]</span><span class="w"> </span><span class="o">[</span>-h<span class="p">|</span>--help<span class="o">]</span>
-</pre></div>
-</div>
-<p>Available options:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">DOCKER_NAME</span></code>: Specify the name of a specific Docker project to sync.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--from-project</span></code>: Sync Dockerfiles from the project directory to the shared Dockerfiles directory.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--project-directory</span> <span class="pre">PROJECT_DIR</span></code>: Set the project directory path.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--dockerfiles-directory</span> <span class="pre">DOCKERFILES_DIR</span></code>: Set the shared Dockerfiles directory path.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-h|--help</span></code>: Display usage information.</p></li>
-</ul>
-<p>Examples:</p>
-<ul>
-<li><p>Sync all Dockerfiles from the shared Dockerfiles directory to the workspace project directory:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dockerfiles-sync
-</pre></div>
-</div>
-</li>
-<li><p>Sync a specific Dockerfile from the shared Dockerfiles directory to the workspace project directory:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dockerfiles-sync<span class="w"> </span>my-docker-project
-</pre></div>
-</div>
-</li>
-<li><p>Sync all Dockerfiles from the workspace project directory to the shared Dockerfiles directory:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dockerfiles-sync<span class="w"> </span>--from-project
-</pre></div>
-</div>
-</li>
-<li><p>Sync a specific Dockerfile from the workspace project directory to the shared Dockerfiles directory:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dockerfiles-sync<span class="w"> </span>my-docker-project<span class="w"> </span>--from-project
-</pre></div>
-</div>
-</li>
-</ul>
-</li>
-</ol>
-<p>After running the <code class="docutils literal notranslate"><span class="pre">dockerfiles-sync</span></code> script, your Dockerfiles will be synchronized between the specified directories.
-The <code class="docutils literal notranslate"><span class="pre">dk-compose</span></code> script is a convenient wrapper for managing Docker Compose projects. To use the script, follow the usage format below:</p>
-</section>
-<section id="dk-compose-script">
-<h3><code class="docutils literal notranslate"><span class="pre">dk-compose</span></code> Script<a class="headerlink" href="#dk-compose-script" title="Permalink to this heading">#</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Usage:<span class="w"> </span>dk-compose<span class="w"> </span>COMMAND<span class="w"> </span>DOCKER_NAME<span class="w"> </span><span class="o">[</span>-t<span class="p">|</span>--tag<span class="w"> </span>TAG<span class="o">]</span><span class="w"> </span><span class="o">[</span>--from-project<span class="o">]</span><span class="w"> </span><span class="o">[</span>--project-directory<span class="w"> </span>PROJECT_DIR<span class="o">]</span><span class="w"> </span><span class="o">[</span>--dockerfiles-directory<span class="w"> </span>DOCKERFILES_DIR<span class="o">]</span><span class="w"> </span><span class="o">[</span>-c<span class="p">|</span>--compose-filename<span class="w"> </span>COMPOSE_FILENAME<span class="o">]</span><span class="w"> </span><span class="o">[</span>-e<span class="p">|</span>--env-filename<span class="w"> </span>ENV_FILENAME<span class="o">]</span><span class="w"> </span><span class="o">[</span>-v<span class="p">|</span>--version<span class="w"> </span>VERSION<span class="o">]</span><span class="w"> </span><span class="o">[</span>-l<span class="p">|</span>--latest<span class="o">]</span><span class="w"> </span><span class="o">[</span>--push<span class="o">]</span><span class="w"> </span><span class="o">[</span>-n<span class="p">|</span>--name<span class="w"> </span>CONTAINER_NAME<span class="o">]</span><span class="w"> </span><span class="o">[</span>--network<span class="w"> </span>DOCKER_NETWORK_NAME<span class="o">]</span><span class="w"> </span><span class="o">[</span>-u<span class="p">|</span>--username<span class="w"> </span>USERNAME<span class="o">]</span><span class="w"> </span><span class="o">[</span>-h<span class="p">|</span>--help<span class="o">]</span>
-</pre></div>
-</div>
-<p><strong>COMMAND</strong> - One of the following Docker Compose commands:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">build</span></code>: Build the Docker services defined in the Compose file.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">run</span></code>: Run a one-off command on a service.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">up</span></code>: Create and start the containers defined in the Compose file.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">down</span></code>: Stop and remove containers, networks, and volumes defined in the Compose file.</p></li>
-</ul>
-<p><strong>DOCKER_NAME</strong> - The name of the Docker project.</p>
-<p><strong>Options:</strong></p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">-t,</span> <span class="pre">--tag</span> <span class="pre">TAG</span></code>: Specify a tag to use for the Docker Compose file and environment file. The script will look for files named <code class="docutils literal notranslate"><span class="pre">docker-compose-TAG.yaml</span></code> and <code class="docutils literal notranslate"><span class="pre">docker.TAG.env</span></code>, where <code class="docutils literal notranslate"><span class="pre">TAG</span></code> is the provided tag.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--from-project</span></code>: Use the project directory as the source of the Docker Compose files instead of the default Dockerfiles directory.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--project-directory</span> <span class="pre">PROJECT_DIR</span></code>: Provide a custom path to the project directory. If not specified, the script will use the default project directory.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--dockerfiles-directory</span> <span class="pre">DOCKERFILES_DIR</span></code>: Provide a custom path to the directory containing the Dockerfiles. If not specified, the script will use the default Dockerfiles directory.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-c,</span> <span class="pre">--compose-filename</span> <span class="pre">COMPOSE_FILENAME</span></code>: Specify a custom Docker Compose file name. If not specified, the script will use the default <code class="docutils literal notranslate"><span class="pre">docker-compose.yaml</span></code> or <code class="docutils literal notranslate"><span class="pre">docker-compose-TAG.yaml</span></code> based on the provided tag.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-e,</span> <span class="pre">--env-filename</span> <span class="pre">ENV_FILENAME</span></code>: Specify a custom environment file name. If not specified, the script will use the default <code class="docutils literal notranslate"><span class="pre">docker.env</span></code> or <code class="docutils literal notranslate"><span class="pre">docker.TAG.env</span></code> based on the provided tag.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-v,</span> <span class="pre">--version</span> <span class="pre">VERSION</span></code>: Specify the version of the Docker image to use. This will be set as the <code class="docutils literal notranslate"><span class="pre">VERSION</span></code> environment variable for the Docker Compose process.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-l,</span> <span class="pre">--latest</span></code>: Use the latest version of the Docker image. Sets the <code class="docutils literal notranslate"><span class="pre">VERSION</span></code> environment variable to “latest”.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--push</span></code>: After successfully building the Docker image, push the image to a remote repository.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-n,</span> <span class="pre">--name</span> <span class="pre">CONTAINER_NAME</span></code>: Specify a custom name for the container that will be created.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--network</span> <span class="pre">DOCKER_NETWORK_NAME</span></code>: Specify the name of the Docker network to use or create. If the network does not exist, the script will create it.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-u,</span> <span class="pre">--username</span> <span class="pre">USERNAME</span></code>: Specify the username to use for the Docker image. If not provided, the script will use the default username from the configuration.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-h,</span> <span class="pre">--help</span></code>: Display the usage information for the script.</p></li>
-</ul>
-<p><strong>Examples:</strong></p>
-<ol class="arabic simple">
-<li><p>Build a Docker project named <code class="docutils literal notranslate"><span class="pre">my_project</span></code> with tag <code class="docutils literal notranslate"><span class="pre">dev</span></code>:</p></li>
-</ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dk</span><span class="o">-</span><span class="n">compose</span> <span class="n">build</span> <span class="n">my_project</span> <span class="o">-</span><span class="n">t</span> <span class="n">dev</span>
-</pre></div>
-</div>
-<ol class="arabic simple" start="2">
-<li><p>Run a one-off command (<code class="docutils literal notranslate"><span class="pre">some_command</span></code>) on the <code class="docutils literal notranslate"><span class="pre">my_service</span></code> service in the <code class="docutils literal notranslate"><span class="pre">my_project</span></code> Docker project:</p></li>
-</ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dk</span><span class="o">-</span><span class="n">compose</span> <span class="n">run</span> <span class="n">my_project</span> <span class="o">--</span><span class="n">name</span> <span class="n">my_service</span> <span class="n">some_command</span>
-</pre></div>
-</div>
-<ol class="arabic simple" start="3">
-<li><p>Start the containers defined in the <code class="docutils literal notranslate"><span class="pre">my_project</span></code> Docker project with tag <code class="docutils literal notranslate"><span class="pre">prod</span></code>:</p></li>
-</ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dk</span><span class="o">-</span><span class="n">compose</span> <span class="n">up</span> <span class="n">my_project</span> <span class="o">-</span><span class="n">t</span> <span class="n">prod</span>
-</pre></div>
-</div>
-<ol class="arabic simple" start="4">
-<li><p>Stop and remove the containers, networks, and volumes defined in the <code class="docutils literal notranslate"><span class="pre">my_project</span></code> Docker project with tag <code class="docutils literal notranslate"><span class="pre">prod</span></code>:</p></li>
-</ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dk</span><span class="o">-</span><span class="n">compose</span> <span class="n">down</span> <span class="n">my_project</span> <span class="o">-</span><span class="n">t</span> <span class="n">prod</span>
-</pre></div>
-</div>
-<p>Remember that the <code class="docutils literal notranslate"><span class="pre">dk-compose</span></code> script should be executable and located in a directory included in the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> variable (e.g., <code class="docutils literal notranslate"><span class="pre">.local/bin</span></code>).</p>
-</section>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -977,13 +803,6 @@ The <code class="docutils literal notranslate"><span class="pre">dk-compose</spa
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#helper-scripts">Helper Scripts</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfiles-clone-script"><code class="docutils literal notranslate"><span class="pre">dockerfiles-clone</span></code> Script</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfiles-pull-script"><code class="docutils literal notranslate"><span class="pre">dockerfiles-pull</span></code> Script</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfiles-sync-script"><code class="docutils literal notranslate"><span class="pre">dockerfiles-sync</span></code> Script</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dk-compose-script"><code class="docutils literal notranslate"><span class="pre">dk-compose</span></code> Script</a></li>
-</ul>
-</li>
 </ul>
   </nav></div>
 
