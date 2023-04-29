@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Dotdrop: A Powerful Tool for Managing Dotfiles &#8212; ἐντελέχεια.άι</title>
+    <title>Dotdrop &#8212; ἐντελέχεια.άι</title>
   
   
   
@@ -273,8 +273,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Dotfiles</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai">Dotfiles in Practice</a></li>
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">Dotdrop: A Powerful Tool for Managing Dotfiles</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai">Dotfiles Repository</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Dotdrop</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dotdrop/">dotfiles-setup-dotdrop Script</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../security/index.html">Security Management</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -442,7 +443,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Dotdrop: A Powerful Tool for Managing Dotfiles</h1>
+    <h1>Dotdrop</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -454,7 +455,6 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dotfiles-setup-dotdrop-script"><code class="docutils literal notranslate"><span class="pre">dotfiles-setup-dotdrop</span></code> Script</a></li>
 </ul>
             </nav>
         </div>
@@ -466,8 +466,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="dotdrop-a-powerful-tool-for-managing-dotfiles">
-<h1>Dotdrop: A Powerful Tool for Managing Dotfiles<a class="headerlink" href="#dotdrop-a-powerful-tool-for-managing-dotfiles" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="dotdrop">
+<h1>Dotdrop<a class="headerlink" href="#dotdrop" title="Permalink to this heading">#</a></h1>
+<p><strong>A Powerful Tool for Managing Dotfiles</strong></p>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>Dotdrop is a versatile and efficient tool designed to help you manage your dotfiles across multiple systems, making it easier than ever to synchronize and deploy configuration files. Dotfiles, named for their leading dot (e.g., .bashrc, .vimrc), are hidden configuration files used by various applications and tools in UNIX-based systems. They store your personalized settings, making it convenient to set up your preferred environment on multiple machines.</p>
@@ -547,34 +548,6 @@ If you make changes to your dotfiles, you can easily synchronize them back to th
 </ol>
 <p>These basic steps should help you get started with Dotdrop for managing and deploying your dotfiles across different systems. For advanced usage, such as templating and custom actions, refer to the official Dotdrop documentation.</p>
 </section>
-<section id="dotfiles-setup-dotdrop-script">
-<h2><code class="docutils literal notranslate"><span class="pre">dotfiles-setup-dotdrop</span></code> Script<a class="headerlink" href="#dotfiles-setup-dotdrop-script" title="Permalink to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">dotfiles-setup-dotdrop</span></code> script is designed to help you set up or update the Dotdrop repository and deploy the dotfiles to your system. To use this script, follow these steps:</p>
-<ol class="arabic">
-<li><p><strong>Configure Environment Variables (optional):</strong>
-If you have specific values for <code class="docutils literal notranslate"><span class="pre">DOTDROP_PROFILE</span></code> or <code class="docutils literal notranslate"><span class="pre">DOTDROP_CONFIG</span></code>, you can set these environment variables before running the script. Otherwise, the script will use the default values specified in the script.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">DOTDROP_PROFILE</span><span class="o">=</span><span class="s2">&quot;my-profile&quot;</span>
-<span class="n">export</span> <span class="n">DOTDROP_CONFIG</span><span class="o">=</span><span class="s2">&quot;/path/to/config.yaml&quot;</span>
-</pre></div>
-</div>
-</li>
-<li><p><strong>Run the Script:</strong>
-Execute the <code class="docutils literal notranslate"><span class="pre">dotfiles-setup-dotdrop</span></code> script:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dotfiles</span><span class="o">-</span><span class="n">setup</span><span class="o">-</span><span class="n">dotdrop</span>
-</pre></div>
-</div>
-<p>This script will perform the following tasks:</p>
-<ul class="simple">
-<li><p>Ensure that <code class="docutils literal notranslate"><span class="pre">${HOME}/.local/bin</span></code> is included in your <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.</p></li>
-<li><p>Clone or update the Dotdrop repository.</p></li>
-<li><p>If you have a local Dotdrop repository, it will copy or update the repository to <code class="docutils literal notranslate"><span class="pre">${HOME}/.config/dotdrop</span></code>.</p></li>
-<li><p>If you have a remote repository, it will clone or update the repository accordingly.</p></li>
-<li><p>Install or update dotfiles using the specified Dotdrop profile and configuration.</p></li>
-</ul>
-</li>
-</ol>
-<p>After running the <code class="docutils literal notranslate"><span class="pre">dotfiles-setup-dotdrop</span></code> script, your dotfiles will be managed and deployed using Dotdrop, and your system should be configured according to the specified Dotdrop profile.</p>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -646,7 +619,6 @@ Execute the <code class="docutils literal notranslate"><span class="pre">dotfile
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dotfiles-setup-dotdrop-script"><code class="docutils literal notranslate"><span class="pre">dotfiles-setup-dotdrop</span></code> Script</a></li>
 </ul>
   </nav></div>
 
