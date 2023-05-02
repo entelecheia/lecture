@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Download and Extract Company Disclosure from DART &#8212; ἐντελέχεια.άι</title>
+    <title>Lab: Crawling DART Data &#8212; ἐντελέχεια.άι</title>
   
   
   
@@ -88,11 +88,13 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_intro/datasets/dart';</script>
-    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_intro/datasets/dart.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_intro/datasets/lab-dart';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_intro/datasets/lab-dart.html" />
     <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Topic Modeling" href="../topic/index.html" />
+    <link rel="prev" title="Corpus and Text Data Collection" href="corpus.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -189,13 +191,14 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">Introduction to NLP</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Introduction to NLP</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../intro.html">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../research.html">Research Applications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../language_models.html">Language Models</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="index.html">Datasets for NLP</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Datasets for NLP</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="corpus.html">Corpus and Text Data Collection</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Lab: Crawling DART Data</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../topic/index.html">Topic Modeling</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -365,7 +368,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/nlp_intro/datasets/dart.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/nlp_intro/datasets/lab-dart.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -414,7 +417,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../../_sources/lectures/nlp_intro/datasets/dart.ipynb" target="_blank"
+      <li><a href="../../../_sources/lectures/nlp_intro/datasets/lab-dart.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -483,7 +486,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -494,11 +499,30 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Download and Extract Company Disclosure from DART</h1>
+    <h1>Lab: Crawling DART Data</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparation">Preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-opendartreader">Introduction to OpenDartReader</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start">Quick Start</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-public-disclosure-information">Accessing Public Disclosure Information</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-company-overview-information">Accessing Company Overview Information</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-disclosure-documents">Accessing Disclosure Documents</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-corporate-codes">Finding Corporate Codes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-and-extract-company-disclosure-from-dart">Download and Extract Company Disclosure from DART</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#crawling-the-m-da-section-from-the-financial-statement">Crawling the M&amp;DA Section from the Financial Statement</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -508,8 +532,12 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <p><a href="https://colab.research.google.com/github/entelecheia/378A/blob/main/notebooks/03/03_dart.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
-<p>Environment setup to persist data in Google Drive</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-crawling-dart-data">
+<h1>Lab: Crawling DART Data<a class="headerlink" href="#lab-crawling-dart-data" title="Permalink to this heading">#</a></h1>
+<p>In this lab, we will learn how to crawl financial data from the DART system (Data Analysis, Retrieval, and Transfer System) provided by the Financial Supervisory Service of South Korea. We will use the <strong>OpenDartReader</strong> library to access the Open DART API, which provides financial information about Korean companies. Additionally, we will extract specific sections from the financial statements using <strong>BeautifulSoup</strong>.</p>
+<section id="preparation">
+<h2>Preparation<a class="headerlink" href="#preparation" title="Permalink to this heading">#</a></h2>
+<p>First, let’s set up the workspace and required directories:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
@@ -519,9 +547,9 @@ document.write(`
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">):</span>
       <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s2">&quot;/content/drive&quot;</span><span class="p">)</span>
       <span class="o">!</span>ln<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;/content/drive/My Drive/colab_workspace&quot;</span><span class="w"> </span>workspace
-    <span class="n">WORKSPACE_DIR</span> <span class="o">=</span> <span class="s2">&quot;/content/workspace&quot;</span>
+    <span class="n">WORKSPACE_DIR</span> <span class="o">=</span> <span class="s2">&quot;/content/workspace/projects/dart&quot;</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">WORKSPACE_DIR</span> <span class="o">=</span> <span class="s2">&quot;../../workspace&quot;</span> 
+    <span class="n">WORKSPACE_DIR</span> <span class="o">=</span> <span class="s2">&quot;examples/dart&quot;</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;WORKSPACE_DIR = </span><span class="si">{</span><span class="n">WORKSPACE_DIR</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">data_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">WORKSPACE_DIR</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">)</span>
 <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -529,616 +557,163 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mounted at /content/drive
-WORKSPACE_DIR = /content/workspace
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WORKSPACE_DIR = examples/dart
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="introduction-to-opendartreader">
+<h2>Introduction to OpenDartReader<a class="headerlink" href="#introduction-to-opendartreader" title="Permalink to this heading">#</a></h2>
+<p><strong>OpenDartReader</strong> is an open-source Python library that makes it easy to use the Open DART API. The Open DART API provides access to financial data from the Korean Financial Supervisory Service’s electronic disclosure system. This API is well-designed and offers a range of useful features. However, using the API directly can be cumbersome, as it requires additional work, such as converting received data into a more usable format like Pandas DataFrame.</p>
+<p>OpenDartReader simplifies these tasks by providing a user-friendly interface for accessing the Open DART API. It also offers utility functions for downloading and processing attachments and documents, making it easy to retrieve financial statements in Excel format, for example.</p>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h2>
+<p>To install OpenDartReader, simply run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>opendartreader
+</pre></div>
+</div>
+<p>If you need to upgrade an existing installation, use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>opendartreader
+</pre></div>
+</div>
+</section>
+<section id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this heading">#</a></h2>
+<p>First, import the OpenDartReader library and create an instance using your API key:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %%capture</span>
-<span class="o">%</span><span class="k">pip</span> install opendartreader
-<span class="o">%</span><span class="k">pip</span> install python-dotenv
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: opendartreader in /usr/local/lib/python3.7/dist-packages (0.1.6)
-Requirement already satisfied: requests-file in /usr/local/lib/python3.7/dist-packages (from opendartreader) (1.5.1)
-Requirement already satisfied: requests&gt;=2.3.0 in /usr/local/lib/python3.7/dist-packages (from opendartreader) (2.27.1)
-Requirement already satisfied: pandas&gt;=0.19.2 in /usr/local/lib/python3.7/dist-packages (from opendartreader) (1.2.5)
-Requirement already satisfied: lxml in /usr/local/lib/python3.7/dist-packages (from opendartreader) (4.2.6)
-Requirement already satisfied: numpy&gt;=1.16.5 in /usr/local/lib/python3.7/dist-packages (from pandas&gt;=0.19.2-&gt;opendartreader) (1.21.5)
-Requirement already satisfied: python-dateutil&gt;=2.7.3 in /usr/local/lib/python3.7/dist-packages (from pandas&gt;=0.19.2-&gt;opendartreader) (2.8.2)
-Requirement already satisfied: pytz&gt;=2017.3 in /usr/local/lib/python3.7/dist-packages (from pandas&gt;=0.19.2-&gt;opendartreader) (2018.9)
-Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.7/dist-packages (from python-dateutil&gt;=2.7.3-&gt;pandas&gt;=0.19.2-&gt;opendartreader) (1.15.0)
-Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/local/lib/python3.7/dist-packages (from requests&gt;=2.3.0-&gt;opendartreader) (1.24.3)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.7/dist-packages (from requests&gt;=2.3.0-&gt;opendartreader) (2021.10.8)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.7/dist-packages (from requests&gt;=2.3.0-&gt;opendartreader) (3.3)
-Requirement already satisfied: charset-normalizer~=2.0.0 in /usr/local/lib/python3.7/dist-packages (from requests&gt;=2.3.0-&gt;opendartreader) (2.0.12)
-Requirement already satisfied: python-dotenv in /usr/local/lib/python3.7/dist-packages (0.19.2)
+<span class="o">%</span><span class="k">pip</span> install opendartreader python-dotenv
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span><span class="p">,</span> <span class="n">find_dotenv</span>
-<span class="c1"># find .env automagically by walking up directories until it&#39;s found</span>
-<span class="n">dotenv_path</span> <span class="o">=</span> <span class="n">WORKSPACE_DIR</span> <span class="o">+</span> <span class="s1">&#39;/.env&#39;</span>
-<span class="c1"># load up the entries as environment variables</span>
-<span class="n">load_dotenv</span><span class="p">(</span><span class="n">dotenv_path</span><span class="p">)</span>
-<span class="n">DART_API_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;DART_API_KEY&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<section id="download-and-extract-company-disclosure-from-dart">
-<h1>Download and Extract Company Disclosure from DART<a class="headerlink" href="#download-and-extract-company-disclosure-from-dart" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">OpenDartReader</span>
 
-<span class="n">dart</span> <span class="o">=</span> <span class="n">OpenDartReader</span><span class="p">(</span><span class="n">DART_API_KEY</span><span class="p">)</span> 
+<span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;your_api_key_here&quot;</span>
+<span class="n">dart</span> <span class="o">=</span> <span class="n">OpenDartReader</span><span class="p">(</span><span class="n">api_key</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># == 1. 공시정보 검색 ==</span>
-<span class="c1"># 삼성전자 2019-07-01 하루 동안 공시 목록 (날짜에 다양한 포맷이 가능합니다)</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="s1">&#39;005930&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;2019-7-1&#39;</span><span class="p">)</span>
+<section id="accessing-public-disclosure-information">
+<h3>Accessing Public Disclosure Information<a class="headerlink" href="#accessing-public-disclosure-information" title="Permalink to this heading">#</a></h3>
+<p>You can access the public disclosure information of a specific company (e.g., Samsung Electronics) using the <code class="docutils literal notranslate"><span class="pre">list()</span></code> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># All public disclosures for Samsung Electronics since its IPO</span>
+<span class="n">dart</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="s1">&#39;삼성전자&#39;</span><span class="p">)</span>  <span class="c1"># Use either the company name or the stock code (e.g., &#39;005930&#39;)</span>
+</pre></div>
+</div>
+<p>You can also specify a date range for retrieving public disclosures:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Public disclosures for Samsung Electronics after a specific date</span>
+<span class="n">dart</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="s1">&#39;005930&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s1">&#39;2022-01-01&#39;</span><span class="p">)</span>  <span class="c1"># Disclosures from 2022-01-01 to today</span>
 
-<span class="c1"># 삼성전자 상장이후 모든 공시 목록 (5,142 건+)</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="s1">&#39;005930&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s1">&#39;1900&#39;</span><span class="p">)</span> 
-
-<span class="c1"># 삼성전자 2010-01-01 ~ 2019-12-31 모든 공시 목록 (2,676 건)</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="s1">&#39;005930&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s1">&#39;2010-01-01&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;2019-12-31&#39;</span><span class="p">)</span> 
-
-<span class="c1"># 삼성전자 1999-01-01 이후 모든 정기보고서</span>
+<span class="c1"># Public disclosures for Samsung Electronics within a specific date range</span>
+<span class="n">dart</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="s1">&#39;005930&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s1">&#39;2022-04-28&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;2022-04-28&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Additionally, you can retrieve specific types of disclosures, such as annual reports, by specifying the <code class="docutils literal notranslate"><span class="pre">kind</span></code> parameter:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># All annual reports (including corrected ones) for Samsung Electronics since 1999</span>
 <span class="n">dart</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="s1">&#39;005930&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s1">&#39;1999-01-01&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="n">final</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="c1"># 삼성전자 1999년~2019년 모든 정기보고서(최종보고서)</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="s1">&#39;005930&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s1">&#39;1999-01-01&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;2019-12-31&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span> 
-
-
-<span class="c1"># 2020-07-01 하루동안 모든 공시목록</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">end</span><span class="o">=</span><span class="s1">&#39;20200701&#39;</span><span class="p">)</span>
-
-<span class="c1"># 2020-01-01 ~ 2020-01-10 모든 회사의 모든 공시목록 (4,209 건)</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;2020-01-01&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;2020-01-10&#39;</span><span class="p">)</span>
-
-<span class="c1"># 2020-01-01 ~ 2020-01-10 모든 회사의 모든 공시목록 (정정된 공시포함) (4,876 건)</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;2020-01-01&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;2020-01-10&#39;</span><span class="p">,</span> <span class="n">final</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-<span class="c1"># 2020-07-01 부터 현재까지 모든 회사의 정기보고서</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;2020-07-01&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
-
-<span class="c1"># 2019-01-01 ~ 2019-03-31 모든 회사의 정기보고서 (961건)</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;20190101&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;20190331&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
-
-<span class="c1"># 기업의 개황정보</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">company</span><span class="p">(</span><span class="s1">&#39;005930&#39;</span><span class="p">)</span>
-
-<span class="c1"># 회사명에 삼성전자가 포함된 회사들에 대한 개황정보</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">company_by_name</span><span class="p">(</span><span class="s1">&#39;삼성전자&#39;</span><span class="p">)</span>
-
-<span class="c1"># 삼성전자 사업보고서 (2018.12) 원문 텍스트</span>
-<span class="n">xml_text</span> <span class="o">=</span> <span class="n">dart</span><span class="o">.</span><span class="n">document</span><span class="p">(</span><span class="s1">&#39;20190401004781&#39;</span><span class="p">)</span>
-
-
-<span class="c1"># ==== 2. 사업보고서 ====</span>
-<span class="c1"># 삼성전자(005930), 배당관련 사항, 2018년</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="s1">&#39;005930&#39;</span><span class="p">,</span> <span class="s1">&#39;배당&#39;</span><span class="p">,</span> <span class="mi">2018</span><span class="p">)</span> 
-
-<span class="c1"># 서울반도체(046890), 최대주주 관한 사항, 2018년</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="s1">&#39;046890&#39;</span><span class="p">,</span> <span class="s1">&#39;최대주주&#39;</span><span class="p">,</span> <span class="mi">2018</span><span class="p">)</span> 
-
-<span class="c1"># 서울반도체(046890), 임원 관한 사항, 2018년</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="s1">&#39;046890&#39;</span><span class="p">,</span> <span class="s1">&#39;임원&#39;</span><span class="p">,</span> <span class="mi">2018</span><span class="p">)</span> 
-
-<span class="c1"># 삼성바이오로직스(207940), 2019년, 소액주주에 관한 사항</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="s1">&#39;207940&#39;</span><span class="p">,</span> <span class="s1">&#39;소액주주&#39;</span><span class="p">,</span> <span class="s1">&#39;2019&#39;</span><span class="p">)</span>
-
-
-<span class="c1"># ==== 3. 상장기업 재무정보 ====</span>
-<span class="c1"># 삼성전자 2018 재무제표 </span>
-<span class="n">dart</span><span class="o">.</span><span class="n">finstate</span><span class="p">(</span><span class="s1">&#39;삼성전자&#39;</span><span class="p">,</span> <span class="mi">2018</span><span class="p">)</span> <span class="c1"># 사업보고서</span>
-
-<span class="c1"># 삼성전자 2018Q1 재무제표</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">finstate</span><span class="p">(</span><span class="s1">&#39;삼성전자&#39;</span><span class="p">,</span> <span class="mi">2018</span><span class="p">,</span> <span class="n">reprt_code</span><span class="o">=</span><span class="s1">&#39;11013&#39;</span><span class="p">)</span>
-
-<span class="c1"># 여러종목 한번에</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">finstate</span><span class="p">(</span><span class="s1">&#39;00126380,00164779,00164742&#39;</span><span class="p">,</span> <span class="mi">2018</span><span class="p">)</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">finstate</span><span class="p">(</span><span class="s1">&#39;005930, 000660, 005380&#39;</span><span class="p">,</span> <span class="mi">2018</span><span class="p">)</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">finstate</span><span class="p">(</span><span class="s1">&#39;삼성전자, SK하이닉스, 현대자동차&#39;</span><span class="p">,</span> <span class="mi">2018</span><span class="p">)</span>
-
-<span class="c1"># 단일기업 전체 재무제표 (삼성전자 2018 전체 재무제표)</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">finstate_all</span><span class="p">(</span><span class="s1">&#39;005930&#39;</span><span class="p">,</span> <span class="mi">2018</span><span class="p">)</span>
-
-<span class="c1"># 재무제표 XBRL 원본 파일 저장 (삼성전자 2018 사업보고서)</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">finstate_xml</span><span class="p">(</span><span class="s1">&#39;20190401004781&#39;</span><span class="p">,</span> <span class="n">save_as</span><span class="o">=</span><span class="s1">&#39;삼성전자_2018_사업보고서_XBRL.zip&#39;</span><span class="p">)</span>
-
-<span class="c1"># XBRL 표준계정과목체계(계정과목)</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">xbrl_taxonomy</span><span class="p">(</span><span class="s1">&#39;BS1&#39;</span><span class="p">)</span>
-
-
-<span class="c1"># ==== 4. 지분공시 ====</span>
-<span class="c1"># 대량보유 상황보고 (종목코드, 종목명, 고유번호 모두 지정 가능)</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">major_shareholders</span><span class="p">(</span><span class="s1">&#39;삼성전자&#39;</span><span class="p">)</span>
-
-<span class="c1"># 임원ㆍ주요주주 소유보고 (종목코드, 종목명, 고유번호 모두 지정 가능)</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">major_shareholders_exec</span><span class="p">(</span><span class="s1">&#39;005930&#39;</span><span class="p">)</span>
-
-
-<span class="c1"># ==== 5. 확장 기능 ====</span>
-<span class="c1"># 지정한 날짜의 공시목록 전체 (시간 정보 포함)</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">list_date_ex</span><span class="p">(</span><span class="s1">&#39;2020-01-03&#39;</span><span class="p">)</span>
-
-<span class="c1"># 개별 문서 제목과 URL</span>
-<span class="n">rcp_no</span> <span class="o">=</span> <span class="s1">&#39;20190401004781&#39;</span> <span class="c1"># 삼성전자 2018년 사업보고서</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">sub_docs</span><span class="p">(</span><span class="n">rcp_no</span><span class="p">)</span>
-
-<span class="c1"># 제목이 잘 매치되는 순서로 소트</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">sub_docs</span><span class="p">(</span><span class="s1">&#39;20190401004781&#39;</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s1">&#39;사업의 내용&#39;</span><span class="p">)</span>
-
-<span class="c1"># 첨부 문서 제목과 URL</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">attach_doc_list</span><span class="p">(</span><span class="n">rcp_no</span><span class="p">)</span>
-
-<span class="c1"># 제목이 잘 매치되는 순서로 소트</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">attach_doc_list</span><span class="p">(</span><span class="n">rcp_no</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s1">&#39;감사보고서&#39;</span><span class="p">)</span>
-
-<span class="c1"># 첨부 파일 제목과 URL</span>
-<span class="n">dart</span><span class="o">.</span><span class="n">attach_file_list</span><span class="p">(</span><span class="n">rcp_no</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 삼성전자 1999-01-01 이후 모든 정기보고서</span>
+<span class="c1"># All final annual reports for Samsung Electronics since 1999</span>
 <span class="n">dart</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="s1">&#39;005930&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s1">&#39;1999-01-01&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</section>
+<section id="accessing-company-overview-information">
+<h3>Accessing Company Overview Information<a class="headerlink" href="#accessing-company-overview-information" title="Permalink to this heading">#</a></h3>
+<p>To obtain a company’s overview information, use the <code class="docutils literal notranslate"><span class="pre">company()</span></code> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Overview information for Samsung Electronics</span>
+<span class="n">dart</span><span class="o">.</span><span class="n">company</span><span class="p">(</span><span class="s1">&#39;005930&#39;</span><span class="p">)</span>
+</pre></div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html">
-  <div id="df-a3080ed9-38d7-4c3a-a3b3-47859752dc41">
-    <div class="colab-df-container">
-      <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>corp_code</th>
-      <th>corp_name</th>
-      <th>stock_code</th>
-      <th>corp_cls</th>
-      <th>report_nm</th>
-      <th>rcept_no</th>
-      <th>flr_nm</th>
-      <th>rcept_dt</th>
-      <th>rm</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>00126380</td>
-      <td>삼성전자</td>
-      <td>005930</td>
-      <td>Y</td>
-      <td>사업보고서 (2021.12)</td>
-      <td>20220308000798</td>
-      <td>삼성전자</td>
-      <td>20220308</td>
-      <td>연</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>00126380</td>
-      <td>삼성전자</td>
-      <td>005930</td>
-      <td>Y</td>
-      <td>분기보고서 (2021.09)</td>
-      <td>20211115001965</td>
-      <td>삼성전자</td>
-      <td>20211115</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>00126380</td>
-      <td>삼성전자</td>
-      <td>005930</td>
-      <td>Y</td>
-      <td>반기보고서 (2021.06)</td>
-      <td>20210817001416</td>
-      <td>삼성전자</td>
-      <td>20210817</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>00126380</td>
-      <td>삼성전자</td>
-      <td>005930</td>
-      <td>Y</td>
-      <td>분기보고서 (2021.03)</td>
-      <td>20210517001185</td>
-      <td>삼성전자</td>
-      <td>20210517</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>00126380</td>
-      <td>삼성전자</td>
-      <td>005930</td>
-      <td>Y</td>
-      <td>사업보고서 (2020.12)</td>
-      <td>20210309000744</td>
-      <td>삼성전자</td>
-      <td>20210309</td>
-      <td>연</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>86</th>
-      <td>00126380</td>
-      <td>삼성전자</td>
-      <td>005930</td>
-      <td>Y</td>
-      <td>반기보고서 (2000.06)</td>
-      <td>20000814000482</td>
-      <td>삼성전자</td>
-      <td>20000814</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>87</th>
-      <td>00126380</td>
-      <td>삼성전자</td>
-      <td>005930</td>
-      <td>Y</td>
-      <td>[첨부추가]사업보고서 (1999.12)</td>
-      <td>20000330000796</td>
-      <td>삼성전자</td>
-      <td>20000330</td>
-      <td>연</td>
-    </tr>
-    <tr>
-      <th>88</th>
-      <td>00126380</td>
-      <td>삼성전자</td>
-      <td>005930</td>
-      <td>Y</td>
-      <td>분기보고서 (2000.03)</td>
-      <td>20000515000739</td>
-      <td>삼성전자</td>
-      <td>20000515</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>89</th>
-      <td>00126380</td>
-      <td>삼성전자</td>
-      <td>005930</td>
-      <td>Y</td>
-      <td>[기재정정]반기보고서 (1999.06)</td>
-      <td>19990824000003</td>
-      <td>삼성전자</td>
-      <td>19990824</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>90</th>
-      <td>00126380</td>
-      <td>삼성전자</td>
-      <td>005930</td>
-      <td>Y</td>
-      <td>[기재정정]사업보고서 (1998.12)</td>
-      <td>19990626000007</td>
-      <td>삼성전자</td>
-      <td>19990626</td>
-      <td>연</td>
-    </tr>
-  </tbody>
-</table>
-<p>91 rows × 9 columns</p>
+<p>You can also search for companies with a specific name using the <code class="docutils literal notranslate"><span class="pre">company_by_name()</span></code> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Overview information for companies with &quot;Samsung Electronics&quot; in their name</span>
+<span class="n">dart</span><span class="o">.</span><span class="n">company_by_name</span><span class="p">(</span><span class="s1">&#39;삼성전자&#39;</span><span class="p">)</span>
+</pre></div>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-a3080ed9-38d7-4c3a-a3b3-47859752dc41')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
-        
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M0 0h24v24H0V0z" fill="none"/>
-    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
-  </svg>
-      </button>
-      
-  <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-      <script>
-        const buttonEl =
-          document.querySelector('#df-a3080ed9-38d7-4c3a-a3b3-47859752dc41 button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-a3080ed9-38d7-4c3a-a3b3-47859752dc41');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
-
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
-  </div>
-  </div></div>
+</section>
+<section id="accessing-disclosure-documents">
+<h3>Accessing Disclosure Documents<a class="headerlink" href="#accessing-disclosure-documents" title="Permalink to this heading">#</a></h3>
+<p>To access the original disclosure document in XML format, use the <code class="docutils literal notranslate"><span class="pre">document()</span></code> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Samsung Electronics&#39; 2022 semi-annual business report in XML format</span>
+<span class="n">xml_text</span> <span class="o">=</span> <span class="n">dart</span><span class="o">.</span><span class="n">document</span><span class="p">(</span><span class="s1">&#39;20220816001711&#39;</span><span class="p">)</span>
+</pre></div>
 </div>
+<p>To retrieve a list of all documents related to a specific disclosure, such as the business report and audit report, use the <code class="docutils literal notranslate"><span class="pre">document_all()</span></code> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">xml_text_list</span> <span class="o">=</span> <span class="n">dart</span><span class="o">.</span><span class="n">document_all</span><span class="p">(</span><span class="s1">&#39;20220816001711&#39;</span><span class="p">)</span>
+<span class="n">xml_text</span> <span class="o">=</span> <span class="n">xml_text_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="finding-corporate-codes">
+<h3>Finding Corporate Codes<a class="headerlink" href="#finding-corporate-codes" title="Permalink to this heading">#</a></h3>
+<p>You can find a company’s unique corporate code using the <code class="docutils literal notranslate"><span class="pre">find_corp_code()</span></code> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find corporate code using the stock code</span>
+<span class="n">dart</span><span class="o">.</span><span class="n">find_corp_code</span><span class="p">(</span><span class="s1">&#39;005930&#39;</span><span class="p">)</span>
+
+<span class="c1"># Find corporate code using the company name</span>
+<span class="n">dart</span><span class="o">.</span><span class="n">find_corp_code</span><span class="p">(</span><span class="s1">&#39;삼성전자&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="download-and-extract-company-disclosure-from-dart">
+<h2>Download and Extract Company Disclosure from DART<a class="headerlink" href="#download-and-extract-company-disclosure-from-dart" title="Permalink to this heading">#</a></h2>
+<p>First, load the DART API key from the .env file:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 제목이 잘 매치되는 순서로 소트</span>
-<span class="n">sub_docs</span> <span class="o">=</span> <span class="n">dart</span><span class="o">.</span><span class="n">sub_docs</span><span class="p">(</span><span class="s1">&#39;20220308000798&#39;</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s1">&#39;이사의 경영진단 및 분석의견&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span><span class="p">,</span> <span class="n">find_dotenv</span>
+
+<span class="n">dotenv_path</span> <span class="o">=</span> <span class="n">WORKSPACE_DIR</span> <span class="o">+</span> <span class="s2">&quot;/.env&quot;</span>
+<span class="n">load_dotenv</span><span class="p">(</span><span class="n">dotenv_path</span><span class="p">)</span>
+<span class="n">DART_API_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;DART_API_KEY&quot;</span><span class="p">)</span>
+
+<span class="n">dart</span> <span class="o">=</span> <span class="n">OpenDartReader</span><span class="p">(</span><span class="n">DART_API_KEY</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, retrieve a list of Samsung Electronics’ annual reports since 1999:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dart</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="s2">&quot;005930&quot;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s2">&quot;1999-01-01&quot;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we can sort the documents by their relevance to the search query using the <code class="docutils literal notranslate"><span class="pre">sub_docs()</span></code> method:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sub_docs</span> <span class="o">=</span> <span class="n">dart</span><span class="o">.</span><span class="n">sub_docs</span><span class="p">(</span><span class="s2">&quot;20220308000798&quot;</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;이사의 경영진단 및 분석의견&quot;</span><span class="p">)</span>
 <span class="n">sub_docs</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html">
-  <div id="df-e783a828-9004-417f-8ea4-607140965bb0">
-    <div class="colab-df-container">
-      <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>title</th>
-      <th>url</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>5</th>
-      <td>IV. 이사의 경영진단 및 분석의견</td>
-      <td>http://dart.fss.or.kr/report/viewer.do?rcpNo=2...</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>【 대표이사 등의 확인 】</td>
-      <td>http://dart.fss.or.kr/report/viewer.do?rcpNo=2...</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>사 업 보 고 서</td>
-      <td>http://dart.fss.or.kr/report/viewer.do?rcpNo=2...</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>V. 회계감사인의 감사의견 등</td>
-      <td>http://dart.fss.or.kr/report/viewer.do?rcpNo=2...</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>VI. 이사회 등 회사의 기관에 관한 사항</td>
-      <td>http://dart.fss.or.kr/report/viewer.do?rcpNo=2...</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>I. 회사의 개요</td>
-      <td>http://dart.fss.or.kr/report/viewer.do?rcpNo=2...</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>II. 사업의 내용</td>
-      <td>http://dart.fss.or.kr/report/viewer.do?rcpNo=2...</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>【 전문가의 확인 】</td>
-      <td>http://dart.fss.or.kr/report/viewer.do?rcpNo=2...</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>VIII. 임원 및 직원 등에 관한 사항</td>
-      <td>http://dart.fss.or.kr/report/viewer.do?rcpNo=2...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>III. 재무에 관한 사항</td>
-      <td>http://dart.fss.or.kr/report/viewer.do?rcpNo=2...</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>VII. 주주에 관한 사항</td>
-      <td>http://dart.fss.or.kr/report/viewer.do?rcpNo=2...</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>IX. 계열회사 등에 관한 사항</td>
-      <td>http://dart.fss.or.kr/report/viewer.do?rcpNo=2...</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>XI. 그 밖에 투자자 보호를 위하여 필요한 사항</td>
-      <td>http://dart.fss.or.kr/report/viewer.do?rcpNo=2...</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>X. 대주주 등과의 거래내용</td>
-      <td>http://dart.fss.or.kr/report/viewer.do?rcpNo=2...</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>XII. 상세표</td>
-      <td>http://dart.fss.or.kr/report/viewer.do?rcpNo=2...</td>
-    </tr>
-  </tbody>
-</table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-e783a828-9004-417f-8ea4-607140965bb0')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
-        
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M0 0h24v24H0V0z" fill="none"/>
-    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
-  </svg>
-      </button>
-      
-  <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-      <script>
-        const buttonEl =
-          document.querySelector('#df-e783a828-9004-417f-8ea4-607140965bb0 button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-e783a828-9004-417f-8ea4-607140965bb0');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
-
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
-  </div>
-  </div></div>
-</div>
+<p>Finally, obtain the URL for the most relevant document:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="n">sub_docs</span><span class="o">.</span><span class="n">url</span><span class="p">[</span><span class="n">sub_docs</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="crawling-the-m-da-section-from-the-financial-statement">
+<h2>Crawling the M&amp;DA Section from the Financial Statement<a class="headerlink" href="#crawling-the-m-da-section-from-the-financial-statement" title="Permalink to this heading">#</a></h2>
+<p>To extract the Management’s Discussion and Analysis (M&amp;DA) section from the financial statement, we will use the <strong>BeautifulSoup</strong> library. First, install the library:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>beautifulsoup4
+</pre></div>
+</div>
+<p>Now, import the necessary libraries and fetch the target URL’s content:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install beautifulsoup4
 </pre></div>
 </div>
 </div>
@@ -1147,20 +722,16 @@ Requirement already satisfied: python-dotenv in /usr/local/lib/python3.7/dist-pa
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
-        
+
 <span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
+<span class="n">soup</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#soup.get_text()</span>
-</pre></div>
-</div>
-</div>
-</div>
+<p>This code retrieves the text content of the M&amp;DA section from the financial statement, which can be further processed and analyzed as needed.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1194,6 +765,24 @@ Requirement already satisfied: python-dotenv in /usr/local/lib/python3.7/dist-pa
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="corpus.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Corpus and Text Data Collection</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../topic/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Topic Modeling</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
@@ -1203,6 +792,31 @@ Requirement already satisfied: python-dotenv in /usr/local/lib/python3.7/dist-pa
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparation">Preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-opendartreader">Introduction to OpenDartReader</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start">Quick Start</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-public-disclosure-information">Accessing Public Disclosure Information</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-company-overview-information">Accessing Company Overview Information</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-disclosure-documents">Accessing Disclosure Documents</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-corporate-codes">Finding Corporate Codes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-and-extract-company-disclosure-from-dart">Download and Extract Company Disclosure from DART</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#crawling-the-m-da-section-from-the-financial-statement">Crawling the M&amp;DA Section from the Financial Statement</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
