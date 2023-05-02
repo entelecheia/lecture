@@ -1,0 +1,854 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Motion Capture and Motion Synthesis &#8212; ἐντελέχεια.άι</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/js/hoverxref.js"></script>
+    <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/chatgpt.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_advances/motion-capture-and-synthesis/index';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_advances/motion-capture-and-synthesis/index.html" />
+    <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="AI Art (Generative AI)" href="../../aiart/index.html" />
+    <link rel="prev" title="Segment Everything" href="../sam/index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+
+  <div class="bd-header-announcement container-fluid bd-header-announcement">
+    <div class="bd-header-announcement__content"><p>
+  <strong>Announcement:</strong>
+  You can install the accompanying AI tutor <a href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd" target="_blank">here</a>.
+  <a class="reference external" href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd" target="_blank"><img alt="chrome-web-store-image" src="https://img.shields.io/chrome-web-store/v/lfgfgbomindbccgidgalhhndggddpagd" /></a>
+</p>
+</div>
+  </div>
+
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">ἐντελέχεια.άι</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../index.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_intro/index.html">Introduction to NLP</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/intro/index.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/research/index.html">Research Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/lm/index.html">Language Models</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/datasets/corpus.html">Corpus and Text Data Collection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/datasets/lab-dart.html">Lab: Crawling DART Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/topic/index.html">Topic Modeling</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/coherence.html">Topic Coherence Measures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/coherence-practice.html">Topic Coherence in Practice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/tomotopy.html">Topic Modeling Tools - Tomotopy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/sentiments/index.html">Sentiment Analysis</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/segmentation.html">Word Segmentation and Association</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/embeddings/index.html">Word Embeddings</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_deep/index.html">Deep Learning for NLP</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/intro.html">Introduction</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/llms/index.html">Large Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/zeroshot.html">Zero Shot and Prompt Engineering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/decoding.html">Decoding and Search Strategies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/plms.html">Pretrained Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/transformers/index.html">Transformers</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/bert.html">BERT: Bidirectional Encoder Representations from Transformers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/bertviz.html">BERT: Visualizing Attention</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/t5.html">T5: Text-To-Text Transfer Transformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/datasets/lab-corpus.html">Lab 1: Preparing Wikipedia Corpora</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/sentencepiece.html">SentencePiece Tokenizer</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/rlhf.html">Reinforcement Learning with Human Feedback (RLHF)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/detectGPT.html">How to Spot Machine-Written Texts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/ekorpkit.html">Getting started with ekorpkit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/lab3-train-tokenizers.html">Lab 3: Training Tokenizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/lab4-pretraining-lms.html">Lab 4: Pretraining Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Advances in AI and NLP</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../thesis.html">Writing a Thesis</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../gpt/index.html">Generative Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../gpt/detectGPT.html">DetectGPT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gpt/gpt4.html">GPT-4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gpt/camelids.html">Meet the Camelids: A Family of LLMs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../sam/index.html">Segment Everything</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Motion Capture and Motion Synthesis</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../aiart/index.html">AI Art (Generative AI)</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/aiart.html">Art and Music in Light of AI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/dalle1.html">DALL·E 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/dalle2.html">DALL·E 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/imagen.html">Imagen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/textual-inversion.html">Textual Inversion (Dreambooth)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/whisper.html">Automatic Speech Recognition (Whisper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/text2music.html">Text to Music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/image2music.html">Image to Music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/robot_drawings.html">Robot Drawing Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/project-themes.html">Project Themes - A Brave New World</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../mlops/index.html">Machine Learning Systems Design</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/intro.html">Introduction to MLOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/project.html">MLOps Project</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/devops/index.html">DevOps</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/gitops.html">GitOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/devsecops.html">DevSecOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/llmops.html">LLMOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/dotfiles/index.html">Dotfiles</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai">Dotfiles Repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/dotfiles/dotdrop.html">Dotdrop</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dotdrop/">Dotdrop Setup Script</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/github/">GitHub Setup Scripts</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/ssh-gpg-age/">SSH, GPG, and Age Setup Scripts</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/pass/">Pass and Passage Scripts</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/doppler/">Doppler Usage</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dockerfiles/">Dockerfiles Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/security/index.html">Security Management</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/auth-enc-sign.html">Authentication, Encryption, and Signing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/age-gpg-ssh.html">SSH, GPG, and AGE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/pass.html">Unix Password Managers</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/github/index.html">Github’s Fork &amp; Pull Workflow</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/github/template.html">Project Templating Tools</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://hyperfast-python.entelecheia.ai/">Hyperfast Python Template</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://hyperfast-template.entelecheia.ai/">Hyperfast Template</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/containerization/index.html">Containerization</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/containerization/docker.html">Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/containerization/containerd.html"><code class="docutils literal notranslate"><span class="pre">containerd</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/simple-pipeline/index.html">Simple MLOps Pipeline</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ds/index.html">Data Science for Economics and Finance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../about/lecture-bot.html">LectureBot for ἐντελέχεια.άι</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://course.entelecheia.ai">course.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://research.entelecheia.ai">research.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/lectures/nlp_advances/motion-capture-and-synthesis/index.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Motion Capture and Motion Synthesis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-functioned-neural-networks-for-character-control">Phase-Functioned Neural Networks for Character Control</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#audio-to-body-dynamics">Audio to Body Dynamics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#everybody-dance-now">Everybody Dance Now</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sfv-reinforcement-learning-of-physical-skills-from-videos">SFV: Reinforcement Learning of Physical Skills from Videos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deeplabcut">DeepLabCut</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-deeplabcut">Why use DeepLabCut?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deeplabcut-live">DeepLabCut-Live!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physics-based-human-motion-estimation-and-synthesis-from-videos">Physics-based Human Motion Estimation and Synthesis from Videos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motiondiffuse-text-driven-human-motion-generation-with-diffusion-model">MotionDiffuse: Text-Driven Human Motion Generation with Diffusion Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mdm-human-motion-diffusion-model">MDM: Human Motion Diffusion Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-diverse-and-natural-3d-human-motions-from-text">Generating Diverse and Natural 3D Human Motions from Text</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flame-free-form-language-based-motion-synthesis-editing">FLAME: Free-form Language-based Motion Synthesis &amp; Editing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="motion-capture-and-motion-synthesis">
+<h1>Motion Capture and Motion Synthesis<a class="headerlink" href="#motion-capture-and-motion-synthesis" title="Permalink to this heading">#</a></h1>
+<p>Motion capture and motion synthesis are fundamental techniques in creating lifelike animations and interactive virtual characters. Motion capture records the movements of real-world subjects, while motion synthesis generates new, realistic motions based on the captured data or other inputs. Together, these techniques enable the creation of compelling and immersive experiences in various industries, from entertainment to medical applications.</p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p><strong>Motion capture</strong> and <strong>motion synthesis</strong> are two crucial techniques in the field of computer graphics, animation, and virtual reality, enabling the creation of realistic and interactive character animations. They play a vital role in various industries, including film, gaming, sports, and medical applications. This introduction will provide an overview of motion capture and motion synthesis, explaining their importance and how they work together to bring digital characters to life.</p>
+<p><strong>Motion capture</strong>, often abbreviated as <strong>mocap</strong>, is the process of recording the movement of objects or people in real-time. This technique captures the position, orientation, and dynamics of a subject, typically using markers or sensors placed on key points of the body. These data points are then translated into a digital format, creating a 3D representation of the subject’s movements. Motion capture can be achieved through various methods, including <strong>marker-based, markerless, and inertial systems</strong>, each with their own advantages and limitations.</p>
+<p><strong>Motion synthesis</strong>, on the other hand, focuses on generating new, natural-looking movements for digital characters based on the captured data or other inputs. This process often involves blending and interpolating between different motion clips, creating smooth transitions and ensuring that the resulting motion appears seamless and realistic. Motion synthesis techniques can be categorized into two main approaches: <strong>kinematic</strong> and <strong>physics-based methods</strong>.</p>
+<p><strong>Kinematic motion synthesis</strong> models make predictions without necessarily satisfying physics constraints. These methods blend motion clips and concatenate them into a coherent trajectory, often using techniques such as <strong>motion graphs, motion fields, and recurrent neural networks</strong>. Parametric kinematic methods rely on time-series generative models, like <strong>variational autoencoders</strong> and <strong>autoregressive models</strong>, to maintain consistency in the predicted motion.</p>
+<p><strong>Physics-based motion synthesis</strong>, in contrast, generates motion predictions that adhere to the body dynamics and are informed by physics constraints, such as contacts and forces. These methods aim to produce more realistic movements by incorporating techniques like <strong>contact-invariant optimization, model-based sampling planning, and model-free reinforcement learning</strong>.</p>
+</section>
+<section id="phase-functioned-neural-networks-for-character-control">
+<h2>Phase-Functioned Neural Networks for Character Control<a class="headerlink" href="#phase-functioned-neural-networks-for-character-control" title="Permalink to this heading">#</a></h2>
+<p>by <span id="id1"></span></p>
+<blockquote>
+<div><p><a class="reference external" href="https://www.theorangeduck.com/media/uploads/other_stuff/phasefunction.pdf">[Paper]</a> | <a class="reference external" href="https://theorangeduck.com/media/uploads/other_stuff/pfnn_slides.pdf">[Slides]</a></p>
+</div></blockquote>
+<p><strong>Human-like Character Animation System Uses AI to Navigate Terrains</strong></p>
+<div class="video_wrapper" style="padding-bottom: 56.250000%; padding-top: 30px; position: relative; width: 100%">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/Ul0Gilv5wvY" style="border: 0; height: 100%; left: 0; position: absolute; top: 0; width: 100%">
+</iframe></div><p>The paper, ‘<strong>Phase-Functioned Neural Networks for Character Control</strong>’, presents a novel neural network architecture called <strong>Phase-Functioned Neural Network (PFNN)</strong>, designed for real-time character control in virtual environments, such as video games and virtual reality systems. The main goal is to produce natural and fluid character motions by learning from a large dataset of locomotion, including walking, running, jumping, and climbing movements.</p>
+<p>The PFNN works by generating the weights of a regression network at each frame as a function of the <strong>phase</strong> - a variable representing the timing of the motion cycle. Once generated, the network weights are used to perform a regression from the control parameters at that frame to the corresponding pose of the character. This approach prevents mixing data from different phases, instead constructing a regression function that evolves smoothly over time with respect to the phase.</p>
+<p>The methodology involves training the PFNN on a large, high-dimensional dataset where environmental geometry and human motion data are coupled. The neural network is capable of learning from this data, and once trained, it can automatically generate appropriate and expressive locomotion for a character moving over rough terrain, jumping, and avoiding obstacles in both natural and urban environments.</p>
+<p>The training data preparation process includes fitting motion capture data into a large database of artificial heightmaps extracted from video game environments. This allows the PFNN to learn from a diverse set of motion data and interactions with the environment.</p>
+<p>The main contributions of the paper are:</p>
+<ol class="arabic simple">
+<li><p>A novel real-time motion synthesis framework called <strong>Phase-Functioned Neural Network (PFNN)</strong>, capable of performing character control using a large set of motion data, including interactions with the environment.</p></li>
+<li><p>A process to prepare training data for the PFNN by fitting locomotion data to geometry extracted from virtual environments.</p></li>
+</ol>
+</section>
+<section id="audio-to-body-dynamics">
+<h2>Audio to Body Dynamics<a class="headerlink" href="#audio-to-body-dynamics" title="Permalink to this heading">#</a></h2>
+<p>by <span id="id2"></span></p>
+<blockquote>
+<div><p><a class="reference external" href="https://arviolin.github.io/AudioBodyDynamics/ARmusic_paper_final.pdf">[Paper]</a> | <a class="reference external" href="https://www.youtube.com/watch?v=-GcdRBNP3GQ">[Video]</a></p>
+</div></blockquote>
+<div class="video_wrapper" style="padding-bottom: 56.250000%; padding-top: 30px; position: relative; width: 100%">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/-GcdRBNP3GQ" style="border: 0; height: 100%; left: 0; position: absolute; top: 0; width: 100%">
+</iframe></div><p>The paper ‘<strong>Audio to Body Dynamics</strong>’ presents a method that takes an audio input of violin or piano playing and outputs a video of skeleton predictions, which are then used to animate an avatar. The key idea is to create an animation of an avatar that moves their hands similarly to how a pianist or violinist would do, just from the audio input. The goal is to explore whether natural and logical body dynamics can be predicted from music at all.</p>
+<p>The researchers built a <strong>Long-Short-Term-Memory (LSTM) network</strong> trained on violin and piano recital videos available on the internet. The network learns the correlation between audio features and body skeleton landmarks. The predicted points are applied onto a rigged avatar to create the animation.</p>
+<p>The method consists of two main steps:</p>
+<ol class="arabic simple">
+<li><p>Building an LSTM network that learns the correlation between audio features and body skeleton landmarks.</p></li>
+<li><p>Automatically animating an avatar using the predicted landmarks, resulting in an avatar that moves according to the audio input.</p></li>
+</ol>
+<p>The researchers collected videos for both piano and violin recitals, processing them by detecting upper body and fingers in each frame of each video. They used a total of 50 points per frame, where 21 points represent the fingers in each hand and 8 points for the upper body.</p>
+<p>Two separate neural networks were trained for each set (violin and piano). The output skeletons show promising results, producing interesting body dynamics. The supplementary videos provided with the paper demonstrate the effectiveness of the method in generating natural-looking animations from audio input.</p>
+</section>
+<section id="everybody-dance-now">
+<h2>Everybody Dance Now<a class="headerlink" href="#everybody-dance-now" title="Permalink to this heading">#</a></h2>
+<p>by <span id="id3"></span></p>
+<blockquote>
+<div><p><a class="reference external" href="https://arxiv.org/pdf/1808.07371v1.pdf">[Paper]</a> | <a class="reference external" href="https://www.youtube.com/watch?v=PCBTZh41Ris">[Video]</a></p>
+</div></blockquote>
+<p><strong>AI Can Transform Anyone Into a Professional Dancer</strong></p>
+<div class="video_wrapper" style="padding-bottom: 56.250000%; padding-top: 30px; position: relative; width: 100%">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/PCBTZh41Ris" style="border: 0; height: 100%; left: 0; position: absolute; top: 0; width: 100%">
+</iframe></div><p><strong>Everybody Dance Now</strong> is a paper that presents a simple method for motion transfer, allowing the performance of a source subject (a person dancing) to be transferred to a target subject (an amateur) after just a few minutes of the target performing standard moves. This method focuses on per-frame image-to-image translation with spatio-temporal smoothing, utilizing pose detections as an intermediate representation between the source and target subjects to learn a mapping from pose images to the target subject’s appearance.</p>
+<p>The main contributions of this paper are:</p>
+<ol class="arabic simple">
+<li><p>A <strong>learning-based pipeline</strong> for human motion transfer between videos, which does not require expensive 3D or motion capture data.</p></li>
+<li><p>The high quality of the generated results, demonstrating complex motion transfer in realistic and detailed videos.</p></li>
+</ol>
+<p>The process involves the following steps:</p>
+<ol class="arabic simple">
+<li><p>Obtaining <strong>pose detections</strong> for each frame of the target video, yielding a set of corresponding pairs (pose stick figure, target person image).</p></li>
+<li><p>Learning an <strong>image-to-image translation model</strong> between pose stick figures and images of the target person in a supervised way.</p></li>
+<li><p>Transferring motion from source to target by inputting the pose stick figures into the trained model, obtaining images of the target subject in the same pose as the source.</p></li>
+<li><p>Encouraging <strong>temporal smoothness</strong> in the generated videos by conditioning the prediction at each frame on that of the previous time step.</p></li>
+<li><p>Increasing facial realism in the results by including a specialized <strong>GAN</strong> (Generative Adversarial Network) trained to generate the target person’s face.</p></li>
+</ol>
+<p>This method allows untrained amateurs to perform complex movements like dancing, martial arts kicks, or spinning like ballerinas by transferring the motion from a source subject to the target subject.</p>
+</section>
+<section id="sfv-reinforcement-learning-of-physical-skills-from-videos">
+<h2>SFV: Reinforcement Learning of Physical Skills from Videos<a class="headerlink" href="#sfv-reinforcement-learning-of-physical-skills-from-videos" title="Permalink to this heading">#</a></h2>
+<p>by <span id="id4"></span></p>
+<blockquote>
+<div><p><a class="reference external" href="https://arxiv.org/pdf/1810.03599.pdf">[Paper]</a> | <a class="reference external" href="https://www.youtube.com/watch?v=4Qg5I5vhX7Q">[Video]</a></p>
+</div></blockquote>
+<p><strong>This Reinforcement Learning Algorithm Can Capture Motion and Recreate It</strong></p>
+<div class="video_wrapper" style="padding-bottom: 56.250000%; padding-top: 30px; position: relative; width: 100%">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/4Qg5I5vhX7Q" style="border: 0; height: 100%; left: 0; position: absolute; top: 0; width: 100%">
+</iframe></div><p>Researchers from the <strong>University of California, Berkeley</strong> have developed a <strong>reinforcement learning-based system</strong> that can automatically capture and mimic motions it observes in YouTube videos. This advancement in character animation leverages motion capture data, which has been a popular source of motion data for decades.</p>
+<p><strong>Data-driven methods</strong> have been a cornerstone of character animation for decades, with <strong>motion-capture</strong> being one of the most popular sources of motion data. Motion-capture data is a staple for kinematic methods and is widely used in physics-based character animation. However, acquiring mocap data can pose challenges, often requiring heavily instrumented environments and actors. As an alternative, <strong>monocular video</strong> provides a more abundant and flexible source of motion data, but extracting motion information from these videos remains challenging.</p>
+<p>In this paper, the researchers propose a method for acquiring dynamic character controllers directly from monocular video, using a combination of <strong>pose estimation</strong> and <strong>deep reinforcement learning</strong>. Recent advances in deep learning techniques have produced breakthrough results for vision-based 3D pose estimation from monocular images. However, pose estimation alone is insufficient for producing high-fidelity and physically plausible motions, as errors and inconsistencies accumulate, leading to unnatural character behaviors.</p>
+<p><img alt="" src="../../../_images/sfv-pipeline.png" /></p>
+<p>The proposed framework combines deep pose estimation and reinforcement learning to enable simulated characters to learn a diverse collection of dynamic and acrobatic skills directly from video demonstrations. The researchers introduce several extensions to both the pose tracking system and the reinforcement learning algorithm, including a <strong>motion reconstruction method</strong> that improves the quality of reference motions for imitation and an <strong>adaptive state initialization</strong> method for dynamic curriculum generation.</p>
+<p>This framework can reproduce a significantly larger repertoire of skills and higher fidelity motions from videos than prior methods. It is evaluated on a large set of challenging skills, including dances, acrobatics, and martial arts, and can retarget video demonstrations to different morphologies and environments. Additionally, the researchers demonstrate a novel physics-based motion completion application that leverages a corpus of learned controllers to predict an actor’s full-body motion from a single still image.</p>
+</section>
+<section id="deeplabcut">
+<h2>DeepLabCut<a class="headerlink" href="#deeplabcut" title="Permalink to this heading">#</a></h2>
+<p>by <span id="id5"></span></p>
+<blockquote>
+<div><p><a class="reference external" href="https://drive.google.com/file/d/12N9kHAOuo48kkNg20AAzS70VkyJX1Hao/view">[Paper]</a></p>
+</div></blockquote>
+<p><strong>DeepLabCut</strong> is an efficient method for <strong>2D and 3D markerless pose estimation</strong> based on <strong>transfer learning</strong> with deep neural networks. It achieves excellent results, comparable to human labeling accuracy, with minimal training data (typically 50-200 frames). This versatile framework has been used to track various body parts in multiple species across a broad collection of behaviors. DeepLabCut is open-source, fast, robust, and can be used for computing 3D pose estimates or for multi-animal tracking. The package is collaboratively developed by the Mathis Group &amp; Mathis Lab at EPFL.</p>
+<section id="why-use-deeplabcut">
+<h3>Why use DeepLabCut?<a class="headerlink" href="#why-use-deeplabcut" title="Permalink to this heading">#</a></h3>
+<p>DeepLabCut has been successfully applied to various tasks and species, including trail tracking, reaching in mice, various Drosophila behaviors, rats, humans, fish species, bacteria, leeches, robots, cheetahs, mouse whiskers, and racehorses. The toolbox utilizes feature detectors from state-of-the-art algorithms for human pose estimation, such as <strong>DeeperCut</strong>. The package has evolved since then, adding faster and higher-performance variants with <strong>MobileNetV2s, EfficientNets, and DLCRNet backbones</strong>.</p>
+<p>DeepLabCut offers several advantages, such as:</p>
+<ul class="simple">
+<li><p><strong>Little training data required</strong>: Transfer learning enables the network to learn from a limited number of training data for multiple, challenging behaviors.</p></li>
+<li><p><strong>Robustness to video compression</strong>: The feature detectors are robust against video compression artifacts.</p></li>
+<li><p><strong>3D pose estimation</strong>: DeepLabCut allows 3D pose estimation with a single network and camera, as well as with a single network trained on data from multiple cameras, combined with standard triangulation methods.</p></li>
+</ul>
+<p><img alt="DeepLabCut Examples" src="https://static1.squarespace.com/static/57f6d51c9f74566f55ecf271/t/5c3fbed74fa51acecd63deeb/1547681534736/MouseLocomotion_warren.gif?format=500w" /></p>
+<p>DeepLabCut is embedded in a larger open-source ecosystem, providing behavioral tracking for neuroscience, ecology, medical, and technical applications. Many new tools are being actively developed, such as <a class="reference external" href="https://github.com/DeepLabCut/DLCutils">DLC-Utils</a>, which offers helper code.</p>
+<p align="center">
+<img src="https://images.squarespace-cdn.com/content/v1/57f6d51c9f74566f55ecf271/1588292233203-FD1DVKAQYNV2TU91CO7R/ke17ZwdGBToddI8pDm48kIX24IsDPzy6M4KUaihfICJZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIxtGUdkzp028KVNnpOijF3PweOM5su6FUQHO6Wkh72Nw/dlc_eco.gif?format=1000w" width="80%">
+</p>
+</section>
+</section>
+<section id="deeplabcut-live">
+<h2>DeepLabCut-Live!<a class="headerlink" href="#deeplabcut-live" title="Permalink to this heading">#</a></h2>
+<p>by <span id="id6"></span></p>
+<blockquote>
+<div><p><a class="reference external" href="https://elifesciences.org/articles/61909.pdf">[Paper]</a></p>
+</div></blockquote>
+<p><strong>DeepLabCut-Live!</strong> is a new package that enables low-latency <strong>real-time pose estimation</strong> (within 15 ms, &gt;100 FPS) using DeepLabCut. It features an additional forward-prediction module for zero-latency feedback and a dynamic-cropping mode for higher inference speeds. DeepLabCut-Live! offers three options for ease of use:</p>
+<ol class="arabic simple">
+<li><p>A stand-alone <strong>DLC-Live! GUI</strong></p></li>
+<li><p>Integration into <strong>Bonsai</strong></p></li>
+<li><p>Integration into <strong>AutoPilot</strong></p></li>
+</ol>
+<p>Additionally, performance has been benchmarked on a wide range of systems, allowing experimentalists to easily decide on the required hardware for their needs.</p>
+<p><img alt="DeepLabCut-Live! Overview" src="https://iiif.elifesciences.org/lax/61909%2Felife-61909-fig1-v3.tif/full/full/0/default.jpg" /></p>
+<p><em>Figure 1: Overview of using DLC networks in real-time experiments within Bonsai, the DLC-Live! GUI, and AutoPilot.</em></p>
+<p>DeepLabCut-Live! provides significant speed and latency improvements compared to existing real-time pose estimation software. The software optimizes inference code and uses lightweight DeepLabCut models, which perform well on GPUs, CPUs, and affordable embedded systems like the NVIDIA Jetson platform. A module to export and load trained neural network models easily has been introduced, improving model transfer between machines, model sharing, and integration with other software packages.</p>
+<p>The package achieves low latency real-time pose estimation, with delays as low as 10 ms using GPUs and 30 ms using CPUs. The forward-prediction module can counteract delays by predicting the animal’s future pose, providing ultra-low latency feedback (even down to sub-zero ms delay). This level of performance has been previously attainable only with marked animals but not with markerless pose estimation.</p>
+<p>DeepLabCut-Live! also includes a benchmarking suite to test performance on multiple hardware and software platforms. Performance metrics are available for ten different GPUs, two integrated systems, and five CPUs across various operating systems. The benchmarking suite is openly shared at <a class="github reference external" href="https://github.com/DeepLabCut/DeepLabCut-live">DeepLabCut/DeepLabCut-live</a>, allowing users to look up expected inference speeds and run the benchmark on their systems.</p>
+<p>In summary, <strong>DeepLabCut-Live!</strong> is a powerful package that enables low-latency, real-time pose estimation using DeepLabCut. With its forward-prediction module, dynamic cropping mode, and integration options, it provides an excellent tool for experimental neuroscientists and researchers in various fields.</p>
+</section>
+<section id="physics-based-human-motion-estimation-and-synthesis-from-videos">
+<h2>Physics-based Human Motion Estimation and Synthesis from Videos<a class="headerlink" href="#physics-based-human-motion-estimation-and-synthesis-from-videos" title="Permalink to this heading">#</a></h2>
+<p>by <span id="id7"></span></p>
+<blockquote>
+<div><p><a class="reference external" href="https://arxiv.org/pdf/2109.09913.pdf">[Paper]</a> | <a class="reference external" href="https://nv-tlabs.github.io/physics-pose-estimation-project-page/">[Project Page]</a></p>
+</div></blockquote>
+<p><strong>Generating Motion Capture Animation Without Hardware or Motion Data</strong></p>
+<div class="video_wrapper" style="padding-bottom: 56.250000%; padding-top: 30px; position: relative; width: 100%">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/bPw3qdmG4QU" style="border: 0; height: 100%; left: 0; position: absolute; top: 0; width: 100%">
+</iframe></div><div class="video_wrapper" style="padding-bottom: 56.250000%; padding-top: 30px; position: relative; width: 100%">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/MrKlPvWvQ2Q" style="border: 0; height: 100%; left: 0; position: absolute; top: 0; width: 100%">
+</iframe></div><p>The paper ‘<strong>Physics-based Human Motion Estimation and Synthesis from Videos</strong>’ proposes a framework for training generative models of physically plausible human motion directly from monocular RGB videos, eliminating the need for costly and time-consuming motion capture data. This approach opens up possibilities for large-scale, realistic, and diverse motion synthesis, with applications in graphics, gaming, and simulation environments for robotics.</p>
+<p>The core of the method is a <strong>novel optimization formulation</strong> that corrects imperfect image-based pose estimations by enforcing physics constraints and reasoning about contacts in a differentiable way. This optimization yields corrected 3D poses and motions, as well as their corresponding contact forces.</p>
+<p>The framework has two main contributions:</p>
+<ol class="arabic simple">
+<li><p>A <strong>smooth contact loss function</strong> is introduced to perform physics-based refinement of pose estimates, avoiding the need for separately trained contact detectors or nonlinear programming solvers.</p></li>
+<li><p>The authors demonstrate that when visual pose estimation is combined with their physics-based optimization, it is sufficient to train motion synthesis models that approach the quality of motion capture prediction models, even without access to motion capture datasets.</p></li>
+</ol>
+<p>The method is validated on the <strong>Human3.6m dataset</strong>, and the results show both qualitatively and quantitatively improved motion estimation, synthesis quality, and physical plausibility compared to prior work on learning-based motion prediction models, such as PhysCap, HMR, HMMR, and VIBE. By enabling learning of motion synthesis from video, this method paves the way for large-scale, realistic, and diverse motion synthesis.</p>
+</section>
+<section id="motiondiffuse-text-driven-human-motion-generation-with-diffusion-model">
+<h2>MotionDiffuse: Text-Driven Human Motion Generation with Diffusion Model<a class="headerlink" href="#motiondiffuse-text-driven-human-motion-generation-with-diffusion-model" title="Permalink to this heading">#</a></h2>
+<p>by <span id="id8"></span></p>
+<blockquote>
+<div><p><a class="reference external" href="https://mingyuan-zhang.github.io/projects/MotionDiffuse.html">[Project Page]</a> | <a class="reference external" href="https://colab.research.google.com/drive/1Dp6VsZp2ozKuu9ccMmsDjyij_vXfCYb3?usp=sharing">[Colab]</a></p>
+</div></blockquote>
+<div class="video_wrapper" style="padding-bottom: 56.250000%; padding-top: 30px; position: relative; width: 100%">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/U5PTnw490SA" style="border: 0; height: 100%; left: 0; position: absolute; top: 0; width: 100%">
+</iframe></div><p>The paper ‘<strong>MotionDiffuse: Text-Driven Human Motion Generation with Diffusion Model</strong>’ presents a novel framework for generating diverse and fine-grained human motions conditioned on natural language inputs, aiming to remove skill barriers for laymen in modern graphics applications.</p>
+<p>The proposed method, <strong>MotionDiffuse</strong>, is the first diffusion model-based text-driven motion generation framework, offering several advantages over existing approaches:</p>
+<ol class="arabic simple">
+<li><p><strong>Probabilistic Mapping</strong>: Instead of a deterministic language-motion mapping, MotionDiffuse generates motions through a series of denoising steps, injecting variations at each step to create diverse and realistic motion sequences.</p></li>
+<li><p><strong>Realistic Synthesis</strong>: MotionDiffuse excels at modeling complicated data distributions, generating vivid and natural-looking motion sequences that align with the input text.</p></li>
+<li><p><strong>Multi-Level Manipulation</strong>: The framework can respond to fine-grained instructions on individual body parts and supports arbitrary-length motion synthesis with time-varied text prompts, allowing for comprehensive motion generation and control.</p></li>
+</ol>
+<p>The experiments conducted in the paper show that MotionDiffuse outperforms existing state-of-the-art (SoTA) methods in text-driven motion generation and action-conditioned motion generation. A qualitative analysis further highlights the framework’s controllability and ability to generate diverse and realistic human motions based on natural language inputs.</p>
+<p><img alt="" src="https://mingyuan-zhang.github.io/static/images/MotionDiffuse/pipeline.png" /></p>
+</section>
+<section id="mdm-human-motion-diffusion-model">
+<h2>MDM: Human Motion Diffusion Model<a class="headerlink" href="#mdm-human-motion-diffusion-model" title="Permalink to this heading">#</a></h2>
+<p>by <span id="id9"></span></p>
+<blockquote>
+<div><p><a class="reference external" href="https://arxiv.org/pdf/2209.14916.pdf">[Paper]</a> | <a class="reference external" href="https://guytevet.github.io/mdm-page/">[Project Page]</a> | <a class="reference external" href="https://replicate.com/daanelson/motion_diffusion_model">[Demo]</a></p>
+</div></blockquote>
+<div class="video_wrapper" style="padding-bottom: 56.250000%; padding-top: 30px; position: relative; width: 100%">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/rVkIDj5wgjs" style="border: 0; height: 100%; left: 0; position: absolute; top: 0; width: 100%">
+</iframe></div><p>The paper ‘<strong>MDM: Human Motion Diffusion Model</strong>’ presents a new generative model for creating natural and expressive human motion in computer animation. Generating high-quality and diverse human motion is a challenging task due to the complexity of motion, human perceptual sensitivity, and difficulties in accurately describing motion. Existing generative solutions often suffer from low quality or limited expressiveness.</p>
+<p>The authors introduce <strong>Motion Diffusion Model (MDM)</strong>, a classifier-free diffusion-based generative model for the human motion domain that is carefully adapted and transformer-based, combining insights from motion generation literature. MDM has several notable features:</p>
+<ol class="arabic simple">
+<li><p><strong>Prediction of the sample</strong>: Unlike traditional diffusion models that predict noise in each diffusion step, MDM predicts the sample itself. This allows for the use of established geometric losses on the locations and velocities of the motion, such as the foot contact loss.</p></li>
+<li><p><strong>Generic approach</strong>: MDM enables different modes of conditioning and various generation tasks, making it highly versatile and adaptable.</p></li>
+<li><p><strong>Lightweight resources</strong>: The model can be trained with relatively low computational resources while still achieving state-of-the-art results on leading benchmarks for text-to-motion and action-to-motion tasks.</p></li>
+</ol>
+<p><img alt="" src="https://guytevet.github.io/mdm-page/static/figures/mdm_arch.png" /></p>
+</section>
+<section id="generating-diverse-and-natural-3d-human-motions-from-text">
+<h2>Generating Diverse and Natural 3D Human Motions from Text<a class="headerlink" href="#generating-diverse-and-natural-3d-human-motions-from-text" title="Permalink to this heading">#</a></h2>
+<p>by <span id="id10"></span></p>
+<blockquote>
+<div><p><a class="reference external" href="https://ericguo5513.github.io/text-to-motion/">[Project Page]</a> | <a class="reference external" href="https://arxiv.org/pdf/2109.09913.pdf">[Paper]</a> | <a class="reference external" href="https://github.com/EricGuo5513/text-to-motion">[Code]</a></p>
+</div></blockquote>
+<div class="video_wrapper" style="padding-bottom: 56.250000%; padding-top: 30px; position: relative; width: 100%">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/085mBtMeZpg" style="border: 0; height: 100%; left: 0; position: absolute; top: 0; width: 100%">
+</iframe></div><p>The paper ‘<strong>Generating Diverse and Natural 3D Human Motions from Text</strong>’ addresses the challenge of automatically generating 3D human motions based on textual descriptions. The goal is to create diverse and accurate motions that reflect the content of the input text. The authors propose a two-stage approach: <strong>text2length sampling</strong> and <strong>text2motion generation</strong>.</p>
+<ol class="arabic simple">
+<li><p><strong>Text2length sampling</strong>: This stage involves sampling from the learned distribution function of motion lengths conditioned on the input text. It provides an appropriate length for the generated motion based on the textual description.</p></li>
+<li><p><strong>Text2motion generation</strong>: This stage uses a <strong>temporal variational autoencoder</strong> to synthesize a diverse set of human motions with the sampled lengths. The authors introduce a new internal motion representation called <strong>motion snippet code</strong>, which captures local semantic motion contexts and facilitates the generation of plausible motions that accurately reflect the input text.</p></li>
+</ol>
+<p>To evaluate their approach, the authors create a large-scale dataset of scripted 3D human motions called <strong>HumanML3D</strong>. This dataset consists of 14,616 motion clips and 44,970 text descriptions, offering a rich resource for training and evaluating motion generation models.</p>
+<p><img alt="" src="https://ericguo5513.github.io/text-to-motion/model.png" /></p>
+</section>
+<section id="flame-free-form-language-based-motion-synthesis-editing">
+<h2>FLAME: Free-form Language-based Motion Synthesis &amp; Editing<a class="headerlink" href="#flame-free-form-language-based-motion-synthesis-editing" title="Permalink to this heading">#</a></h2>
+<p>by <span id="id11"></span></p>
+<blockquote>
+<div><p><a class="reference external" href="https://kakaobrain.github.io/flame/">[Project Page]</a> | <a class="reference external" href="https://arxiv.org/abs/2209.00349">[Paper]</a></p>
+</div></blockquote>
+<div class="video_wrapper" style="padding-bottom: 56.250000%; padding-top: 30px; position: relative; width: 100%">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/LbPNGv0zrto" style="border: 0; height: 100%; left: 0; position: absolute; top: 0; width: 100%">
+</iframe></div><p>The paper ‘<strong>FLAME: Free-form Language-based Motion Synthesis &amp; Editing</strong>’ presents a novel approach for text-based motion generation, which is gaining increasing attention due to its potential in automating the motion-making process in industries such as gaming, animation, and robotics. The authors propose a diffusion-based motion synthesis and editing model called FLAME, inspired by the recent success of diffusion models in other domains.</p>
+<p>FLAME integrates <strong>diffusion-based generative models</strong> into the motion domain, allowing it to generate high-fidelity motions that are well-aligned with the given text. Additionally, FLAME can edit parts of the motion, both frame-wise and joint-wise, without any fine-tuning, making it versatile and adaptable.</p>
+<p>The authors introduce a new <strong>transformer-based architecture</strong> specifically designed to handle motion data. This architecture proves crucial in managing variable-length motions and effectively attending to free-form text.</p>
+<p>FLAME is evaluated on three text-motion datasets: <strong>HumanML3D, BABEL, and KIT</strong>. The experiments demonstrate that FLAME achieves state-of-the-art generation performance on these datasets. Furthermore, the editing capability of FLAME can be extended to other tasks, such as motion prediction and motion in-betweening, which have previously been addressed by dedicated models.</p>
+<p><img alt="" src="https://kakaobrain.github.io/flame/assets/architecture.png" /></p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<span class="target" id="id12"></span></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/lecture",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lectures/nlp_advances/motion-capture-and-synthesis"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../sam/index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Segment Everything</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../aiart/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">AI Art (Generative AI)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-functioned-neural-networks-for-character-control">Phase-Functioned Neural Networks for Character Control</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#audio-to-body-dynamics">Audio to Body Dynamics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#everybody-dance-now">Everybody Dance Now</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sfv-reinforcement-learning-of-physical-skills-from-videos">SFV: Reinforcement Learning of Physical Skills from Videos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deeplabcut">DeepLabCut</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-deeplabcut">Why use DeepLabCut?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deeplabcut-live">DeepLabCut-Live!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physics-based-human-motion-estimation-and-synthesis-from-videos">Physics-based Human Motion Estimation and Synthesis from Videos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motiondiffuse-text-driven-human-motion-generation-with-diffusion-model">MotionDiffuse: Text-Driven Human Motion Generation with Diffusion Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mdm-human-motion-diffusion-model">MDM: Human Motion Diffusion Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-diverse-and-natural-3d-human-motions-from-text">Generating Diverse and Natural 3D Human Motions from Text</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flame-free-form-language-based-motion-synthesis-editing">FLAME: Free-form Language-based Motion Synthesis &amp; Editing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
