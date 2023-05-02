@@ -1,6 +1,6 @@
 # mC4 Dataset
 
-by {cite}`xue2020mt5`
+by {cite:t}`xue2020mt5`
 
 The **mC4 dataset** is a multilingual colossal, cleaned version of Common Crawl's web crawl corpus, which is based on the Common Crawl dataset. The dataset includes 108 languages and is specifically designed to pretrain language models and word representations. This dataset is an extension of the C4 dataset, which was designed to be English-only.
 
@@ -72,6 +72,117 @@ The dataset includes the following fields:
 ### Supported Languages
 
 The mC4 dataset supports 108 languages, including languages written in the Latin script (denoted by "-Latn").
+
+| language code | language name        |
+| :------------ | :------------------- |
+| af            | Afrikaans            |
+| am            | Amharic              |
+| ar            | Arabic               |
+| az            | Azerbaijani          |
+| be            | Belarusian           |
+| bg            | Bulgarian            |
+| bg-Latn       | Bulgarian (Latin)    |
+| bn            | Bangla               |
+| ca            | Catalan              |
+| ceb           | Cebuano              |
+| co            | Corsican             |
+| cs            | Czech                |
+| cy            | Welsh                |
+| da            | Danish               |
+| de            | German               |
+| el            | Greek                |
+| el-Latn       | Greek (Latin)        |
+| en            | English              |
+| eo            | Esperanto            |
+| es            | Spanish              |
+| et            | Estonian             |
+| eu            | Basque               |
+| fa            | Persian              |
+| fi            | Finnish              |
+| fil           | Filipino             |
+| fr            | French               |
+| fy            | Western Frisian      |
+| ga            | Irish                |
+| gd            | Scottish Gaelic      |
+| gl            | Galician             |
+| gu            | Gujarati             |
+| ha            | Hausa                |
+| haw           | Hawaiian             |
+| hi            | Hindi                |
+| hi-Latn       | Hindi (Latin script) |
+| hmn           | Hmong, Mong          |
+| ht            | Haitian              |
+| hu            | Hungarian            |
+| hy            | Armenian             |
+| id            | Indonesian           |
+| ig            | Igbo                 |
+| is            | Icelandic            |
+| it            | Italian              |
+| iw            | former Hebrew        |
+| ja            | Japanese             |
+| ja-Latn       | Japanese (Latin)     |
+| jv            | Javanese             |
+| ka            | Georgian             |
+| kk            | Kazakh               |
+| km            | Khmer                |
+| kn            | Kannada              |
+| ko            | Korean               |
+| ku            | Kurdish              |
+| ky            | Kyrgyz               |
+| la            | Latin                |
+| lb            | Luxembourgish        |
+| lo            | Lao                  |
+| lt            | Lithuanian           |
+| lv            | Latvian              |
+| mg            | Malagasy             |
+| mi            | Maori                |
+| mk            | Macedonian           |
+| ml            | Malayalam            |
+| mn            | Mongolian            |
+| mr            | Marathi              |
+| ms            | Malay                |
+| mt            | Maltese              |
+| my            | Burmese              |
+| ne            | Nepali               |
+| nl            | Dutch                |
+| no            | Norwegian            |
+| ny            | Nyanja               |
+| pa            | Punjabi              |
+| pl            | Polish               |
+| ps            | Pashto               |
+| pt            | Portuguese           |
+| ro            | Romanian             |
+| ru            | Russian              |
+| ru-Latn       | Russian (Latin)      |
+| sd            | Sindhi               |
+| si            | Sinhala              |
+| sk            | Slovak               |
+| sl            | Slovenian            |
+| sm            | Samoan               |
+| sn            | Shona                |
+| so            | Somali               |
+| sq            | Albanian             |
+| sr            | Serbian              |
+| st            | Southern Sotho       |
+| su            | Sundanese            |
+| sv            | Swedish              |
+| sw            | Swahili              |
+| ta            | Tamil                |
+| te            | Telugu               |
+| tg            | Tajik                |
+| th            | Thai                 |
+| tr            | Turkish              |
+| uk            | Ukrainian            |
+| und           | Unknown language     |
+| ur            | Urdu                 |
+| uz            | Uzbek                |
+| vi            | Vietnamese           |
+| xh            | Xhosa                |
+| yi            | Yiddish              |
+| yo            | Yoruba               |
+| zh            | Chinese              |
+| zh-Latn       | Chinese (Latin)      |
+| zu            | Zulu                 |
 
 ## Using mC4 Dataset with Hugging Face Datasets Library
 
