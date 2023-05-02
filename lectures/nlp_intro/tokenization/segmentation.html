@@ -193,8 +193,8 @@ const thebe_selector_output = ".output, .cell_output"
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Introduction to NLP</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../intro.html">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../research.html">Research Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../research/index.html">Research Applications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../lm/index.html">Language Models</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../datasets/corpus.html">Corpus and Text Data Collection</a></li>
@@ -546,7 +546,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="word-segmentation-and-association">
 <h1>Word Segmentation and Association<a class="headerlink" href="#word-segmentation-and-association" title="Permalink to this heading">#</a></h1>
-<p><img alt="" src="lectures/nlp_intro/figs/intro_nlp/words/entelecheia_associaltion_vs_segmentation.png" /></p>
+<p><img alt="" src="../../../_images/entelecheia_associaltion_vs_segmentation.png" /></p>
 <section id="word-segmentation">
 <h2>Word Segmentation<a class="headerlink" href="#word-segmentation" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
@@ -600,6 +600,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+
 
 <span class="k">def</span> <span class="nf">segment_naive</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">string</span><span class="p">:</span>
@@ -660,7 +661,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;아버지가방에들어가신다&quot;</span> <span class="c1"># Father goes into the bag or Father enters the room</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;아버지가방에들어가신다&quot;</span>  <span class="c1"># Father goes into the bag or Father enters the room</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">segment_naive</span><span class="p">(</span><span class="n">text</span><span class="p">)))</span>
 </pre></div>
 </div>
@@ -731,8 +732,8 @@ document.write(`
 <li><p>Word probabilities can be estimated from a corpus:</p>
 <div class="math notranslate nohighlight">
 \[
-    P(w_i) = \frac{c(w_i)}{N}
-    \]</div>
+  P(w_i) = \frac{c(w_i)}{N}
+  \]</div>
 <p>where <span class="math notranslate nohighlight">\(c(w_i)\)</span> is the count of word <span class="math notranslate nohighlight">\(w_i\)</span> and <span class="math notranslate nohighlight">\(N\)</span> is the total number of words in the corpus.</p>
 </li>
 <li><p>However, for unkonwn words, we have to use other criteria to evaluate the composition.</p></li>
@@ -750,7 +751,7 @@ document.write(`
 <li><p>Both criteria share a similar assumption as in the fundamental work by Harris, 1970, that the uncertainty of successive tokens increases at word boundaries.</p></li>
 <li><p>The latter is the countinous version of the former.</p></li>
 </ul>
-<p><img alt="" src="lectures/nlp_intro/figs/intro_nlp/words/branching_entropy_uncertainty.png" /></p>
+<p><img alt="" src="../../../_images/branching_entropy_uncertainty.png" /></p>
 <section id="accessor-variety">
 <h3>Accessor Variety<a class="headerlink" href="#accessor-variety" title="Permalink to this heading">#</a></h3>
 <ul>
@@ -784,22 +785,22 @@ document.write(`
 <li><p>Given a set of elements <span class="math notranslate nohighlight">\(X\)</span> and a set of n-gram sequences <span class="math notranslate nohighlight">\(X_n\)</span>, the conditional entropy of an element occuring after an n-gram sequence <span class="math notranslate nohighlight">\(X_n\)</span> is defined as:</p>
 <div class="math notranslate nohighlight">
 \[
-    H(X|X_n) = -\sum_{x_n \in X_n} P(x_n) \sum_{x \in X} P(x|x_n) \log P(x|x_n)
-    \]</div>
+  H(X|X_n) = -\sum_{x_n \in X_n} P(x_n) \sum_{x \in X} P(x|x_n) \log P(x|x_n)
+  \]</div>
 <p>where <span class="math notranslate nohighlight">\(P(x) = P(X=x)\)</span>, <span class="math notranslate nohighlight">\(P(x|x_n) = P(X=x|X_n=x_n)\)</span>, and <span class="math notranslate nohighlight">\(P(X=x)\)</span> indicates the probability of an element <span class="math notranslate nohighlight">\(x\)</span> occuring in <span class="math notranslate nohighlight">\(X\)</span>.</p>
 </li>
 <li><p><span class="math notranslate nohighlight">\(H(X|X_n)\)</span> decreases as <span class="math notranslate nohighlight">\(n\)</span> increases, meaning that <span class="math notranslate nohighlight">\(X\)</span> will become more predictable as <span class="math notranslate nohighlight">\(X_n\)</span> becomes longer.</p></li>
 <li><p>The latter half of the equation, the entropy of <span class="math notranslate nohighlight">\(X\)</span> given <span class="math notranslate nohighlight">\(X_n\)</span>, indicates the average information of branching out from a specific n-gram sequence <span class="math notranslate nohighlight">\(X_n\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
-    H(X|X_n=x_n) = -\sum_{x \in X} P(x|x_n) \log P(x|x_n)
-    \]</div>
+  H(X|X_n=x_n) = -\sum_{x \in X} P(x|x_n) \log P(x|x_n)
+  \]</div>
 </li>
 <li><p>This local entropy is the branching entropy of <span class="math notranslate nohighlight">\(X\)</span> given <span class="math notranslate nohighlight">\(X_n\)</span>, and denoted as <span class="math notranslate nohighlight">\(h(x_n)\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
-    h(x_n) = -\sum_{x \in X} P(x|x_n) \log P(x|x_n)
-    \]</div>
+  h(x_n) = -\sum_{x \in X} P(x|x_n) \log P(x|x_n)
+  \]</div>
 </li>
 </ul>
 <p><strong>Assumption 2</strong>: If the entropy of successive tokens is high or increasing, the location is a word boundary.</p>
@@ -807,14 +808,14 @@ document.write(`
 <li><p>Generally, as the length of the n-gram sequence increases, the entropy of the n-gram sequence decreases.</p>
 <div class="math notranslate nohighlight">
 \[
-    h(x_n) \geq h(x_{n-1})
-    \]</div>
+  h(x_n) \geq h(x_{n-1})
+  \]</div>
 </li>
 <li><p>If <span class="math notranslate nohighlight">\(x_n\)</span> is the prefix of <span class="math notranslate nohighlight">\(x_{n+1}\)</span>, the branching entropy of <span class="math notranslate nohighlight">\(x_n\)</span> will likely be smaller than that of <span class="math notranslate nohighlight">\(x_{n+1}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
-    h(x_n) &lt; h(x_{n+1})
-    \]</div>
+  h(x_n) &lt; h(x_{n+1})
+  \]</div>
 </li>
 <li><p>There are three boundary conditions to decide whether <span class="math notranslate nohighlight">\(x_n\)</span> is a word boundary:</p>
 <ol class="arabic simple">
@@ -824,7 +825,7 @@ document.write(`
 </ol>
 </li>
 </ul>
-<p><img alt="" src="lectures/nlp_intro/figs/intro_nlp/words/branching_entropy.png" /></p>
+<p><img alt="" src="../../../_images/branching_entropy.png" /></p>
 </section>
 </section>
 <section id="word-segmentation-in-practice">
@@ -1210,7 +1211,9 @@ Top 10 subwords: [(&#39;▁&#39;, 26177132), (&#39;e&#39;, 7246161), (&#39;t&#39
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ekorpkit.tokenizers.branching</span> <span class="kn">import</span> <span class="n">BranchingEntropyTokenizer</span>
 
-<span class="n">bet</span> <span class="o">=</span> <span class="n">BranchingEntropyTokenizer</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;../data/tokenizers/&quot;</span><span class="p">,</span> <span class="s2">&quot;branching&quot;</span><span class="p">,</span> <span class="n">branching_threshold</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">bet</span> <span class="o">=</span> <span class="n">BranchingEntropyTokenizer</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
+    <span class="s2">&quot;../data/tokenizers/&quot;</span><span class="p">,</span> <span class="s2">&quot;branching&quot;</span><span class="p">,</span> <span class="n">branching_threshold</span><span class="o">=</span><span class="mf">0.2</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>

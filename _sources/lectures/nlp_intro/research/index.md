@@ -1,6 +1,6 @@
 # Research Applications
 
-![research](../figs/aiart/entelecheia_economic_research.png)
+![research](figs/entelecheia_economic_research.png)
 
 ## Textual analysis
 
@@ -48,7 +48,7 @@ Therefore, the advice for researchers interested in textual analysis is to keep 
 
 - The formula applies the "$tf \times idf$" method to calculate the weight of the bigrams in measuring political risk.
 
-```{figure} ../figs/intro_nlp/research/2.png
+```{figure} figs/2.png
 ---
 width: 80%
 name: fig-synonyms
@@ -76,7 +76,7 @@ Synonyms for “risk” or “uncertainty”
 - The bigrams with the highest scores are intuitively linked to politics, such as "the constitution," "public opinion," "interest groups," and "the FAA."
 - The transcripts with the highest $PRisk_{it}$ values are typically centered around discussions about ballot initiatives, legislation, regulation, government expenditure, and other politically relevant topics.
 
-```{figure} ../figs/intro_nlp/research/4.png
+```{figure} figs/4.png
 ---
 width: 80%
 name: fig-highest-prisk
@@ -86,7 +86,7 @@ Transcripts with the highest $PRisk_{it}$
 
 **Example: Duke Energy Corporation**
 
-```{figure} ../figs/intro_nlp/research/5.png
+```{figure} figs/5.png
 ---
 width: 500px
 name: fig-duke-energy
@@ -137,7 +137,7 @@ For each of 56 countries assemble a training library, $\mathbb{T}^{C}$
 - $CountrySentiment_{i,c,t}$ : tf × idf weighted sum of tone words toward country c (Loughran & McDonald 2011) (Proxy for positive/negative news about country c)
 - $FirmRisk_{i,t}$ : Unweighted count of risk words. (Proxy for overall risk faced by the firm)
 
-```{figure} ../figs/intro_nlp/research/7.png
+```{figure} figs/7.png
 ---
 width: 80%
 name: fig-country-risk-greece
@@ -145,7 +145,7 @@ name: fig-country-risk-greece
 Financial and non-financial risk: Greece
 ```
 
-```{figure} ../figs/intro_nlp/research/8.png
+```{figure} figs/8.png
 ---
 width: 80%
 name: fig-country-risk-thailand
@@ -153,7 +153,7 @@ name: fig-country-risk-thailand
 Financial and non-financial risk: Thailand
 ```
 
-```{figure} ../figs/intro_nlp/research/9.png
+```{figure} figs/9.png
 ---
 width: 80%
 name: fig-country-risk-global
@@ -186,7 +186,7 @@ Financial and non-financial risk: Global
 - This approach can be used to form industry definitions and track who is competing with whom.
 - One drawback of using 10-K's is that they are only available for US firms, limiting the generalizability of the findings.
 
-```{figure} ../figs/intro_nlp/research/10.png
+```{figure} figs/10.png
 ---
 width: 600px
 name: fig-product-similarity
@@ -198,7 +198,7 @@ Industry clusters based on product similarity
 
 {cite:t}`baker2016measuring`
 
-```{figure} ../figs/intro_nlp/research/11.png
+```{figure} figs/11.png
 ---
 width: 80%
 name: fig-epu
@@ -244,7 +244,7 @@ Economic Policy Uncertainty
 
 10 undergraduates read ≈ 10,000 newspaper articles to date using a 63-page audit guide to code articles if they discuss “economic uncertainty” and “economic policy uncertainty”
 
-```{figure} ../figs/intro_nlp/research/12.png
+```{figure} figs/12.png
 ---
 width: 80%
 name: fig-epu-human-audit
@@ -254,7 +254,7 @@ Human audit of newspaper articles
 
 **US News-based economic policy uncertainty index**
 
-```{figure} ../figs/intro_nlp/research/13.png
+```{figure} figs/13.png
 ---
 width: 80%
 name: fig-epu-us
@@ -264,7 +264,7 @@ US News-based economic policy uncertainty index
 
 **Twitter text uncertainty measures**
 
-```{figure} ../figs/intro_nlp/research/14.png
+```{figure} figs/14.png
 ---
 width: 80%
 name: fig-epu-twitter
@@ -274,7 +274,7 @@ Twitter text uncertainty measures
 
 **“world uncertainty index” covering 143 countries from Economist Intelligence Unit text**
 
-```{figure} ../figs/intro_nlp/research/15.png
+```{figure} figs/15.png
 ---
 width: 80%
 name: fig-epu-world
@@ -284,7 +284,7 @@ World uncertainty index
 
 **Global average of all 143 countries**
 
-```{figure} ../figs/intro_nlp/research/16.png
+```{figure} figs/16.png
 ---
 width: 80%
 name: fig-epu-global
@@ -336,7 +336,7 @@ Use the list of 35,063 technical bigrams associated with influential inventions 
 
 **Top Bigrams in Patents**
 
-```{figure} ../figs/intro_nlp/research/17.png
+```{figure} figs/17.png
 ---
 width: 80%
 name: fig-patents-top-bigrams
@@ -348,7 +348,7 @@ Top Bigrams in Patents
 
 Identify technical bigrams that are discussed in earnings calls with increasing frequency, while keeping those that are below 10% of the maximum frequency in the first year. This results in a total of 305 technical bigrams.
 
-```{figure} ../figs/intro_nlp/research/18.png
+```{figure} figs/18.png
 ---
 width: 80%
 name: fig-ec-top-bigrams
@@ -360,7 +360,7 @@ Technical bigrams in earnings calls
 
 Non-technical bigrams refer to bigrams that appear in earnings calls but not in patents.
 
-```{figure} ../figs/intro_nlp/research/19.png
+```{figure} figs/19.png
 ---
 width: 80%
 name: fig-technical-non-technical
@@ -386,7 +386,7 @@ Here, $D_{i,t}$ refers to the set of bigrams present in a job posting or earning
 
 **Example Jobs Exposed to Smart Devices**
 
-```{figure} ../figs/intro_nlp/research/21.png
+```{figure} figs/21.png
 ---
 width: 80%
 name: fig-example-jobs
@@ -403,7 +403,7 @@ To define an emergence year for each technology, the following steps are taken:
 1. The share of earnings calls mentioning a technology is measured.
 2. The year when the time series first reaches at least 10% of its maximum is defined as the "technology year of emergence".
 
-```{figure} ../figs/intro_nlp/research/22.png
+```{figure} figs/22.png
 ---
 width: 80%
 name: fig-emergence-year
@@ -413,7 +413,7 @@ Technology Emergence Years
 
 **Share Exposed Firms and Job Postings – Corr. 80%**
 
-```{figure} ../figs/intro_nlp/research/23.png
+```{figure} figs/23.png
 ---
 width: 80%
 name: fig-share-exposed-firms
@@ -425,7 +425,7 @@ Share Exposed Firms and Job Postings – Corr. 80%
 
 The pioneer locations are identified as the geographical locations that account for 50% of the technology patents 10 years prior to the year of emergence.
 
-```{figure} ../figs/intro_nlp/research/24.png
+```{figure} figs/24.png
 ---
 width: 80%
 name: fig-pioneer-locations
@@ -435,7 +435,7 @@ Pioneer Locations
 
 **Broadening over Time and Pioneer Locations**
 
-```{figure} ../figs/intro_nlp/research/25.png
+```{figure} figs/25.png
 ---
 width: 80%
 name: fig-broadening-over-time
@@ -468,7 +468,7 @@ Loan requests written by defaulting borrowers tend to include words related to f
 
 **Loan Application Words Predicting Repayment**
 
-```{figure} ../figs/intro_nlp/research/26.png
+```{figure} figs/26.png
 ---
 width: 80%
 name: fig-predicting-repayment
@@ -476,7 +476,7 @@ name: fig-predicting-repayment
 Words Predicting Repayment
 ```
 
-```{figure} ../figs/intro_nlp/research/27.png
+```{figure} figs/27.png
 ---
 width: 80%
 name: fig-predicting-default
@@ -502,7 +502,7 @@ Words Predicting Default
 - Both ALEC and ALICE have thousands of model bills covering various topics such as labor rights, voting regulations, environmental issues, and economic issues.
 - The main goal of these associations is to provide a database of model legislation for politicians and activists to implement in state legislatures.
 
-```{figure} ../figs/intro_nlp/research/28.png
+```{figure} figs/28.png
 ---
 width: 80%
 name: fig-alec-alice
@@ -510,7 +510,7 @@ name: fig-alec-alice
 ALEC and ALICE
 ```
 
-```{figure} ../figs/intro_nlp/research/29.png
+```{figure} figs/29.png
 ---
 width: 80%
 name: fig-alec-alice
@@ -528,7 +528,7 @@ Match between Scott Walker's bill and a bill from Louisiana
 - This change is not explained by the entry of new candidates or other variables that could increase discussion of national security.
 - Opposition candidates relied on programmatic goods under both electoral systems, consistent with the theory.
 
-```{figure} ../figs/intro_nlp/research/31.png
+```{figure} figs/31.png
 ---
 width: 50%
 name: fig-pork-to-policy
@@ -547,7 +547,7 @@ From Pork to Policy
 - A difference-in-differences approach is used to identify evidence for both effects.
 - An influence measure is constructed, suggesting that the discipline effect dominates.
 
-```{figure} ../figs/intro_nlp/research/32.png
+```{figure} figs/32.png
 ---
 width: 80%
 name: fig-topic-distributions
@@ -557,7 +557,7 @@ Topic distributions
 
 **Pro-Cyclical Topics**
 
-```{figure} ../figs/intro_nlp/research/33.png
+```{figure} figs/33.png
 ---
 width: 80%
 name: fig-pro-cyclical-topics
@@ -567,7 +567,7 @@ Pro-Cyclical Topics
 
 **Counter-Cyclical Topics**
 
-```{figure} ../figs/intro_nlp/research/34.png
+```{figure} figs/34.png
 ---
 width: 80%
 name: fig-counter-cyclical-topics
@@ -583,7 +583,7 @@ Counter-Cyclical Topics
   - Higher conformity, which is likely costly.
 - These findings highlight the tradeoffs that come with transparency in bureaucratic organizations.
 
-```{figure} ../figs/intro_nlp/research/35.png
+```{figure} figs/35.png
 ---
 width: 80%
 name: fig-transparency
@@ -607,7 +607,7 @@ Effect of Transparency
 - Utilized a modified version of propensity score matching to identify nearly identical posts, some of which were censored and some of which were not.
 - Measured the censorability of subsequent posts using their text and analyzed whether censorship had a deterrence or backlash effect.
 
-```{figure} ../figs/intro_nlp/research/36.png
+```{figure} figs/36.png
 ---
 width: 80%
 name: fig-censorship-backlash
@@ -627,7 +627,7 @@ Censorship has a backlash effect
 - The text-based indicators outperform English-based textual classifications, media-based measure of economic policy uncertainty, and databased measure of macroeconomic uncertainty.
 - The study highlights the importance of using a field-specific dictionary and the original Korean text in the analysis.
 
-```{figure} ../figs/intro_nlp/research/mp_procedure.png
+```{figure} figs/mp_procedure.png
 ---
 width: 80%
 name: fig-mp-procedure
@@ -635,7 +635,7 @@ name: fig-mp-procedure
 Procedure of the study
 ```
 
-```{figure} ../figs/intro_nlp/research/mp_tones.png
+```{figure} figs/mp_tones.png
 ---
 width: 80%
 name: fig-mp-tones

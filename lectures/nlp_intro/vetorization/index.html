@@ -191,8 +191,8 @@ const thebe_selector_output = ".output, .cell_output"
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">Introduction to NLP</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../intro.html">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../research.html">Research Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../research/index.html">Research Applications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../lm/index.html">Language Models</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../datasets/corpus.html">Corpus and Text Data Collection</a></li>
@@ -563,7 +563,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="vector-semantics-and-representation">
 <h1>Vector Semantics and Representation<a class="headerlink" href="#vector-semantics-and-representation" title="Permalink to this heading">#</a></h1>
-<p><img alt="" src="lectures/nlp_intro/figs/intro_nlp/vector/entelecheia_alphabet_letters.png" /></p>
+<p><img alt="" src="../../../_images/entelecheia_alphabet_letters.png" /></p>
 <section id="vector-semantics-and-word-embeddings">
 <h2>Vector Semantics and Word Embeddings<a class="headerlink" href="#vector-semantics-and-word-embeddings" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
@@ -790,14 +790,14 @@ document.write(`
 </section>
 <section id="term-document-matrix">
 <h2>Term-Document Matrix<a class="headerlink" href="#term-document-matrix" title="Permalink to this heading">#</a></h2>
-<p><img alt="" src="lectures/nlp_intro/figs/intro_nlp/vector/2.png" /></p>
+<p><img alt="" src="../../../_images/215.png" /></p>
 <p>A term-document matrix is a 2D matrix:</p>
 <ul class="simple">
 <li><p>each row represents a <code class="docutils literal notranslate"><span class="pre">term</span></code> in the vocabulary</p></li>
 <li><p>each column represents a <code class="docutils literal notranslate"><span class="pre">document</span></code></p></li>
 <li><p>each element is the <code class="docutils literal notranslate"><span class="pre">frequency</span></code> of the term in the document</p></li>
 </ul>
-<p><img alt="" src="lectures/nlp_intro/figs/intro_nlp/vector/3.png" /></p>
+<p><img alt="" src="../../../_images/39.png" /></p>
 <ul class="simple">
 <li><p>Each <code class="docutils literal notranslate"><span class="pre">column</span> <span class="pre">vector</span></code> = a <code class="docutils literal notranslate"><span class="pre">document</span></code></p>
 <ul>
@@ -865,13 +865,13 @@ document.write(`
 </section>
 <section id="word-word-matrix">
 <h3>Word-Word Matrix<a class="headerlink" href="#word-word-matrix" title="Permalink to this heading">#</a></h3>
-<p><img alt="" src="lectures/nlp_intro/figs/intro_nlp/vector/4.png" /></p>
+<p><img alt="" src="../../../_images/45.png" /></p>
 <p>Resulting word-word matrix:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(f(w, c)\)</span> = how often does word w appear in context <span class="math notranslate nohighlight">\(c\)</span>:</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">information</span></code> appeared six times in the context of <code class="docutils literal notranslate"><span class="pre">data</span></code></p></li>
 </ul>
-<p><img alt="" src="lectures/nlp_intro/figs/intro_nlp/vector/5.png" /></p>
+<p><img alt="" src="../../../_images/53.png" /></p>
 </section>
 <section id="defining-co-occurrences">
 <h3>Defining co-occurrences:<a class="headerlink" href="#defining-co-occurrences" title="Permalink to this heading">#</a></h3>
@@ -895,12 +895,12 @@ document.write(`
 <ul class="simple">
 <li><p>Does word <span class="math notranslate nohighlight">\(w\)</span> ever appear in the context <span class="math notranslate nohighlight">\(c\)</span>? (1 = yes/0 = no)</p></li>
 </ul>
-<p><img alt="" src="lectures/nlp_intro/figs/intro_nlp/vector/6.png" /></p>
+<p><img alt="" src="../../../_images/62.png" /></p>
 <p>Co-occurrence as a frequency count:</p>
 <ul class="simple">
 <li><p>How often does word <span class="math notranslate nohighlight">\(w\)</span> appear in the context <span class="math notranslate nohighlight">\(c\)</span>? (0,1,2,… times)</p></li>
 </ul>
-<p><img alt="" src="lectures/nlp_intro/figs/intro_nlp/vector/7.png" /></p>
+<p><img alt="" src="../../../_images/72.png" /></p>
 </section>
 <section id="counts-vs-pmi">
 <h3>Counts vs PMI<a class="headerlink" href="#counts-vs-pmi" title="Permalink to this heading">#</a></h3>
@@ -912,7 +912,7 @@ document.write(`
 <p>We can use pointwise mutual information (PMI) values instead of raw frequency counts:</p>
 <div class="math notranslate nohighlight">
 \[ PMI(w,c) = \log \frac{p(w,c)}{p(w)p(c)} \]</div>
-<p><img alt="" src="lectures/nlp_intro/figs/intro_nlp/vector/8.png" /></p>
+<p><img alt="" src="../../../_images/83.png" /></p>
 </section>
 <section id="computing-pmi-of-w-and-c">
 <h3>Computing PMI of <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(c\)</span>:<a class="headerlink" href="#computing-pmi-of-w-and-c" title="Permalink to this heading">#</a></h3>
@@ -994,7 +994,7 @@ sim_{cos}(\vec{x},\vec{y})=\frac{\sum_{i=1}^{N} x_i \times y_i}{\sqrt{\sum_{i=1}
 </div></blockquote>
 <section id="visualizing-cosines">
 <h3>Visualizing cosines<a class="headerlink" href="#visualizing-cosines" title="Permalink to this heading">#</a></h3>
-<p><img alt="" src="lectures/nlp_intro/figs/intro_nlp/vector/cosine-viz.png" /></p>
+<p><img alt="" src="../../../_images/cosine-viz.png" /></p>
 </section>
 </section>
 </section>

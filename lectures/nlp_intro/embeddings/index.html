@@ -193,8 +193,8 @@ const thebe_selector_output = ".output, .cell_output"
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Introduction to NLP</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../intro.html">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../research.html">Research Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../research/index.html">Research Applications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../lm/index.html">Language Models</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../datasets/corpus.html">Corpus and Text Data Collection</a></li>
@@ -599,7 +599,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="word-embeddings">
 <h1>Word Embeddings<a class="headerlink" href="#word-embeddings" title="Permalink to this heading">#</a></h1>
-<p><img alt="" src="lectures/nlp_intro/figs/intro_nlp/embeddings/embeddings.png" /></p>
+<p><img alt="" src="../../../_images/embeddings.png" /></p>
 <section id="what-are-word-embeddings">
 <h2>What are word embeddings?<a class="headerlink" href="#what-are-word-embeddings" title="Permalink to this heading">#</a></h2>
 <p>Word embeddings are a way of representing words as vectors. The vectors are learned from text data and are able to capture some of the semantic and systactic information of the words.</p>
@@ -608,7 +608,7 @@ document.write(`
 <p>“The doc was lying on the floor and the cat was eating”</p>
 <p>In a mathematical sense, a word embedding is a parameterized function of the word:</p>
 <div class="math notranslate nohighlight">
-\[ f_{\theta}(w) = \theta \]</div>
+\[ f\_{\theta}(w) = \theta \]</div>
 <p>where <span class="math notranslate nohighlight">\(\theta\)</span> is a vector of real numbers. The vector <span class="math notranslate nohighlight">\(\theta\)</span> is the embedding of the word <span class="math notranslate nohighlight">\(w\)</span>.</p>
 <p>In a broad sense, <code class="docutils literal notranslate"><span class="pre">embedding</span></code> refers to a lower-dimensional dense vector representation of a higher-dimensional object.</p>
 <ul class="simple">
@@ -636,7 +636,7 @@ document.write(`
 </section>
 <section id="categorical-embeddings">
 <h2>Categorical Embeddings<a class="headerlink" href="#categorical-embeddings" title="Permalink to this heading">#</a></h2>
-<p><img alt="" src="lectures/nlp_intro/figs/intro_nlp/embeddings/1.png" /></p>
+<p><img alt="" src="../../../_images/11.png" /></p>
 <p>Categorical embeddings are a way of representing categorical variables as vectors.</p>
 <p>For a binary classification problem with outcome <span class="math notranslate nohighlight">\(Y\)</span>:</p>
 <ul class="simple">
@@ -653,7 +653,7 @@ document.write(`
 <h3>An embedding layer is matrix multiplication:<a class="headerlink" href="#an-embedding-layer-is-matrix-multiplication" title="Permalink to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
-\underbrace{h_1}_{n_E \times 1} = \underbrace{\omega_E}_{n_E \times n_W} \cdot \underbrace{x}_{n_x \times 1} 
+\underbrace{h_1}_{n_E \times 1} = \underbrace{\omega_E}_{n_E \times n_W} \cdot \underbrace{x}_{n_x \times 1}
 \]</div>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(x\)</span> = a categorical variable (e.g., representing a word)</p>
@@ -708,7 +708,7 @@ document.write(`
 \]</div>
 <p><span class="math notranslate nohighlight">\(\mathbf{E}\)</span> a matrix of word vectors. The column associated with the word at <span class="math notranslate nohighlight">\(j\)</span> is selected by the dot-product with one-hot vector <span class="math notranslate nohighlight">\(w_j\)</span>.</p>
 <p><span class="math notranslate nohighlight">\(\mathbf{X}\)</span> is flattened into an <span class="math notranslate nohighlight">\(L * n_E\)</span> vector for input to the next layer.</p>
-<p><img alt="" src="lectures/nlp_intro/figs/intro_nlp/embeddings/4.png" /></p>
+<p><img alt="" src="../../../_images/41.png" /></p>
 <section id="why-do-we-need-neural-networks-for-word-embeddings">
 <h3>Why do we need neural networks for word embeddings?<a class="headerlink" href="#why-do-we-need-neural-networks-for-word-embeddings" title="Permalink to this heading">#</a></h3>
 <p>There are a lot of shallow algorithms that work well for clustering.</p>
@@ -731,7 +731,7 @@ document.write(`
 <h2>Neural Language Models<a class="headerlink" href="#neural-language-models" title="Permalink to this heading">#</a></h2>
 <p>Word embeddings were proposed by <span id="id2">[<a class="reference internal" href="../../../about/index.html#id23" title="Yoshua Bengio, Réjean Ducharme, Pascal Vincent, and Christian Jauvin. A neural probabilistic language model. Journal of Machine Learning Research, 3:1137–1155, 2003. URL: https://jmlr.org/papers/volume3/bengio03a/bengio03a.pdf.">Bengio <em>et al.</em>, 2003</a>]</span> as a way to represent words as vectors.</p>
 <p>Bengio’s method could train a neural network such that each training sentence could inform the model about a number of semantically available neighboring words, which was known as <code class="docutils literal notranslate"><span class="pre">distributed</span> <span class="pre">representation</span> <span class="pre">of</span> <span class="pre">words</span></code>. The nueural network preserved relationships between words in terms of their contexts (semantic and syntactic).</p>
-<p><img alt="" src="lectures/nlp_intro/figs/intro_nlp/embeddings/bengio.png" /></p>
+<p><img alt="" src="../../../_images/bengio.png" /></p>
 <p>This introduced a neural network architecture approach that laid the foundation for many current approaches.</p>
 <p>This neural network has three components:</p>
 <ul class="simple">
@@ -853,7 +853,6 @@ document.write(`
         <span class="nb">input</span> <span class="o">=</span> <span class="p">[</span><span class="n">word_to_id</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">word</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
         <span class="n">target</span> <span class="o">=</span> <span class="n">word_to_id</span><span class="p">[</span><span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
 
-
         <span class="n">input_batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
         <span class="n">target_batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
 
@@ -921,7 +920,7 @@ Epoch: 5000 cost = 0.462459
 <li><p>Essentially, the embedding layer is the first layer of a neural network.</p></li>
 <li><p>They try to preserve the semantic and syntactic relationships between words.</p></li>
 </ul>
-<p><img alt="" src="lectures/nlp_intro/figs/intro_nlp/embeddings/w2v.png" /></p>
+<p><img alt="" src="../../../_images/w2v.png" /></p>
 </section>
 </section>
 <section id="word2vec">
@@ -955,7 +954,7 @@ Epoch: 5000 cost = 0.462459
 <li><p><strong>Continuous Bag of Words (CBOW)</strong>: predicts the target word from the context words.</p></li>
 <li><p><strong>Skip-gram</strong>: predicts the context words from the target word.</p></li>
 </ul>
-<p><img alt="" src="lectures/nlp_intro/figs/intro_nlp/embeddings/cbow_skip-gram.png" /></p>
+<p><img alt="" src="../../../_images/cbow_skip-gram.png" /></p>
 </section>
 <section id="when-to-use-the-skip-gram-model-and-when-to-use-cbow">
 <h3>When to use the skip-gram model and when to use CBOW?<a class="headerlink" href="#when-to-use-the-skip-gram-model-and-when-to-use-cbow" title="Permalink to this heading">#</a></h3>
@@ -986,7 +985,7 @@ Epoch: 5000 cost = 0.462459
 <li><p>The opimized weights of the hidden layer are the word embeddings.</p></li>
 <li><p>The dimensions of the hidden layer are <span class="math notranslate nohighlight">\(d \times V\)</span>, where <span class="math notranslate nohighlight">\(V\)</span> is the size of the vocabulary.</p></li>
 </ul>
-<p><img alt="" src="lectures/nlp_intro/figs/intro_nlp/embeddings/skip-gram.png" /></p>
+<p><img alt="" src="../../../_images/skip-gram.png" /></p>
 </section>
 <section id="step-0-prepare-the-data">
 <h3>Step 0: Prepare the data<a class="headerlink" href="#step-0-prepare-the-data" title="Permalink to this heading">#</a></h3>
@@ -1289,10 +1288,10 @@ Epoch: 150000 cost = 2.791655
 <h2>Continuous Bag of Words (CBOW)<a class="headerlink" href="#continuous-bag-of-words-cbow" title="Permalink to this heading">#</a></h2>
 <p>The CBOW model predicts the target word from the context words.</p>
 <p>This model reduces the complexity of calculating the probability distribution for all the words in the vocabulary to the <span class="math notranslate nohighlight">\(\log_2(V)\)</span> complexity of calculating the probability distribution for the target word.</p>
-<p><img alt="" src="lectures/nlp_intro/figs/intro_nlp/embeddings/cbow_skip-gram.png" /></p>
+<p><img alt="" src="../../../_images/cbow_skip-gram.png" /></p>
 <section id="architecture">
 <h3>Architecture<a class="headerlink" href="#architecture" title="Permalink to this heading">#</a></h3>
-<a class="bg-primary mb-1 reference internal image-reference" href="lectures/nlp_intro/figs/intro_nlp/embeddings/cbow.png"><img alt="cbow" class="bg-primary mb-1 align-center" src="lectures/nlp_intro/figs/intro_nlp/embeddings/cbow.png" style="width: 350px;" /></a>
+<a class="bg-primary mb-1 reference internal image-reference" href="../../../_images/cbow.png"><img alt="cbow" class="bg-primary mb-1 align-center" src="../../../_images/cbow.png" style="width: 350px;" /></a>
 <ul class="simple">
 <li><p>The input layer is the context words.</p></li>
 <li><p>The input is <span class="math notranslate nohighlight">\(C\)</span> context words, each represented as a one-hot vector of size <span class="math notranslate nohighlight">\(V\)</span>, where <span class="math notranslate nohighlight">\(V\)</span> is the size of the vocabulary, yielding a <span class="math notranslate nohighlight">\(C \times V\)</span> matrix.</p></li>
@@ -1617,7 +1616,7 @@ Prediction: micron
 <p><strong>Document 1:</strong> “All that glitters is not gold.”</p>
 <p><strong>Document 2:</strong> ” All is well that ends well.”</p>
 <p>Then, with a window size of 1, the co-occurrence matrix of the words in the corpus is:</p>
-<a class="bg-primary mb-1 reference internal image-reference" href="lectures/nlp_intro/figs/intro_nlp/embeddings/co-occurrence_matrix.png"><img alt="co-occurrence_matrix" class="bg-primary mb-1 align-center" src="lectures/nlp_intro/figs/intro_nlp/embeddings/co-occurrence_matrix.png" style="width: 500px;" /></a>
+<a class="bg-primary mb-1 reference internal image-reference" href="../../../_images/co-occurrence_matrix.png"><img alt="co-occurrence_matrix" class="bg-primary mb-1 align-center" src="../../../_images/co-occurrence_matrix.png" style="width: 500px;" /></a>
 <ul class="simple">
 <li><p>The rows and columns represent the words in the corpus.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&lt;START&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;END&gt;</span></code> are special tokens that represent the start and end of a sentence.</p></li>
@@ -1663,7 +1662,7 @@ Prediction: micron
 <li><p>Less data is required to train the model, since the model is trained on character n-grams instead of words. A word can be its own context, yielding more information from the same amount of data.</p></li>
 </ul>
 <p>For example, the word <code class="docutils literal notranslate"><span class="pre">reading</span></code> generates the following character n-grams:</p>
-<a class="bg-primary mb-1 reference internal image-reference" href="lectures/nlp_intro/figs/intro_nlp/embeddings/character_ngrams.png"><img alt="character_ngrams" class="bg-primary mb-1 align-center" src="lectures/nlp_intro/figs/intro_nlp/embeddings/character_ngrams.png" style="width: 300px;" /></a>
+<a class="bg-primary mb-1 reference internal image-reference" href="../../../_images/character_ngrams.png"><img alt="character_ngrams" class="bg-primary mb-1 align-center" src="../../../_images/character_ngrams.png" style="width: 300px;" /></a>
 <ul class="simple">
 <li><p>Angular brackets represent the start and end of a word.</p></li>
 <li><p>Instead of using each unique n-gram as a feature, FastText uses the hash value of the n-gram as a feature. This reduces the number of features and makes the model more efficient.</p></li>
