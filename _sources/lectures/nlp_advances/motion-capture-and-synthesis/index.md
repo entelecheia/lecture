@@ -242,7 +242,7 @@ The experiments conducted in the paper show that MotionDiffuse outperforms exist
 
 ## MDM: Human Motion Diffusion Model
 
-by {cite:t}`Tevet:2023`
+by {cite:t}`Tevet:2022`
 
 > [[Paper]](https://arxiv.org/pdf/2209.14916.pdf) | [[Project Page]](https://guytevet.github.io/mdm-page/) | [[Demo]](https://replicate.com/daanelson/motion_diffusion_model)
 

@@ -51,10 +51,6 @@ Aristotle's concept of entelecheia can provide valuable guidance for AI, underli
 [version-image]: https://img.shields.io/github/v/release/entelecheia/entelecheia-lecture-bot?sort=semver
 [release-date-image]: https://img.shields.io/github/release-date/entelecheia/entelecheia-lecture-bot
 [release-url]: https://github.com/entelecheia/entelecheia-lecture-bot/releases
-[repo-url]: https://github.com/entelecheia/entelecheia-lecture-bot
-[docs-url]: https://lecture-bot.entelecheia.ai
-[changelog]: https://github.com/entelecheia/entelecheia-lecture-bot/blob/main/docs/CHANGELOG.md
-[contributing guidelines]: https://github.com/entelecheia/entelecheia-lecture-bot/blob/main/CONTRIBUTING.md
 
 <!-- Links: -->
 
@@ -67,21 +63,3 @@ Aristotle's concept of entelecheia can provide valuable guidance for AI, underli
 ```{tableofcontents}
 
 ```
-
-<!-- Links: -->
-
-[hyperfast python template]: https://github.com/entelecheia/hyperfast-python-template
-[license-image]: https://img.shields.io/github/license/entelecheia/lecture
-[license-url]: https://github.com/entelecheia/lecture/blob/main/LICENSE
-[version-image]: https://img.shields.io/github/v/release/entelecheia/lecture?sort=semver
-[release-date-image]: https://img.shields.io/github/release-date/entelecheia/lecture
-[release-url]: https://github.com/entelecheia/lecture/releases
-[conventional-commits-image]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white
-[jupyter-book-image]: https://jupyterbook.org/en/stable/_images/badge.svg
-[repo-url]: https://github.com/entelecheia/lecture
-[pypi-url]: https://pypi.org/project/lecture
-[docs-url]: https://lecture.entelecheia.ai
-[changelog]: https://github.com/entelecheia/lecture/blob/main/CHANGELOG.md
-[contributing guidelines]: https://github.com/entelecheia/lecture/blob/main/CONTRIBUTING.md
-
-<!-- Links: -->
