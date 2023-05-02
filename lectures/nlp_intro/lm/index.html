@@ -203,7 +203,6 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../topic/index.html">Topic Modeling</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../topic/coherence.html">Topic Coherence Measures</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../topic/coherence-practice.html">Topic Coherence in Practice</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../topic/tomotopy.html">Tomotopy</a></li>
 </ul>
 </li>
@@ -547,7 +546,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unknown-words">Unknown Words</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#smoothing">Smoothing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#huge-language-models-and-stupid-backoff">Huge Language Models and Stupid Backoff</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perplexity-s-relation-to-entropy">Perplexity’s Relation to Entropy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perplexitys-relation-to-entropy">Perplexity’s Relation to Entropy</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
@@ -780,7 +779,7 @@ P(\text{The, cat, sat, on, the, mat}) ≈ P(\text{The})P(\text{cat}|\text{The})P
 </div>
 </div>
 </div>
-<p>In this example, we have a sequence of 20 coin tosses, where 1 represents heads, and 0 represents tails. To estimate the probability of getting heads (p) using MLE, we simply calculate the mean of the observed data, which is the ratio of the number of heads to the total number of tosses.</p>
+<p>In this example, we have a sequence of 20 coin tosses, where 1 represents heads, and 0 represents tails. To estimate the probability of getting heads § using MLE, we simply calculate the mean of the observed data, which is the ratio of the number of heads to the total number of tosses.</p>
 <p>Here’s another example, this time estimating the mean (mu) and standard deviation (sigma) of a Gaussian distribution given some observed data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1184,8 +1183,8 @@ Trigram model sentence: Indications as late as the views of another one .
 <p>Here, k is the number of steps we had to back off (e.g., k = 0 for 4-grams, k = 1 for trigrams, etc.).</p>
 <p>In summary, Stupid Backoff is a computationally efficient strategy to handle large n-gram models by backing off to lower-order n-grams when higher-order n-grams are not observed in the training data. While it doesn’t guarantee proper probability distributions, it works well in practice for tasks like language modeling and machine translation.</p>
 </section>
-<section id="perplexity-s-relation-to-entropy">
-<h2>Perplexity’s Relation to Entropy<a class="headerlink" href="#perplexity-s-relation-to-entropy" title="Permalink to this heading">#</a></h2>
+<section id="perplexitys-relation-to-entropy">
+<h2>Perplexity’s Relation to Entropy<a class="headerlink" href="#perplexitys-relation-to-entropy" title="Permalink to this heading">#</a></h2>
 <p>Perplexity is closely related to entropy, a concept from information theory. Entropy is a measure of the average amount of information (in bits) needed to represent the outcome of a random process, such as the choice of a word in a sentence. Lower entropy indicates that the outcomes are more predictable, while higher entropy implies more uncertainty.</p>
 <p>For a language model, the entropy is defined as the average negative log probability of the words in the test set, normalized by the number of words. Mathematically, the entropy <span class="math notranslate nohighlight">\(H(W)\)</span> can be represented as:</p>
 <div class="math notranslate nohighlight">
@@ -1324,7 +1323,7 @@ PP(W) = 2^H(W)
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unknown-words">Unknown Words</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#smoothing">Smoothing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#huge-language-models-and-stupid-backoff">Huge Language Models and Stupid Backoff</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perplexity-s-relation-to-entropy">Perplexity’s Relation to Entropy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perplexitys-relation-to-entropy">Perplexity’s Relation to Entropy</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>

@@ -203,7 +203,6 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/topic/index.html">Topic Modeling</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/coherence.html">Topic Coherence Measures</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/coherence-practice.html">Topic Coherence in Practice</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/tomotopy.html">Tomotopy</a></li>
 </ul>
 </li>
@@ -663,7 +662,7 @@ document.write(`
 <p>The creators of GLIDE first trained a 3.5 billion-parameter diffusion model that utilizes a text encoder to condition image generation based on natural language descriptions. They then compared two techniques for guiding diffusion models towards text prompts: CLIP guidance and classifier-free guidance.</p>
 <p>Classifier guidance enables diffusion models to condition on a classifier’s labels, using gradients from the classifier to guide the image generation towards a specific label. On the other hand, classifier-free guidance doesn’t require a separate classifier model to be trained. This approach interpolates between predictions from a diffusion model with and without labels.</p>
 <p>Classifier-free guidance offers two benefits. First, it allows a single model to use its own knowledge during guidance, instead of depending on a separate (and sometimes smaller) classification model. Second, it simplifies guidance when working with information that is challenging to predict with a classifier, such as text.</p>
-<p>In CLIP guidance, the classifier is replaced by a CLIP model. This method uses the gradient of the dot product between image and text encodings with respect to the image. The text-conditioned diffusion model is an augmented ADM model architecture that predicts an image for the next diffusion step based on a noised image (xₜ) and the corresponding text caption (c).</p>
+<p>In CLIP guidance, the classifier is replaced by a CLIP model. This method uses the gradient of the dot product between image and text encodings with respect to the image. The text-conditioned diffusion model is an augmented ADM model architecture that predicts an image for the next diffusion step based on a noised image (xₜ) and the corresponding text caption ©.</p>
 <p><strong>GLIDE technical details: visual part</strong></p>
 <p>The visual component of the GLIDE model is based on a modified U-Net architecture. The U-Net model comprises a stack of residual layers with down-sampling convolutions, followed by another stack of residual layers with up-sampling convolutions. Skip connections are used to link layers with the same spatial dimensions. Various modifications have been made to the original U-Net architecture in terms of width, depth, and other aspects.</p>
 <p>Global attention layers, featuring multiple attention heads, have been added at the 8x8, 16x16, and 32x32 resolutions. Additionally, a projection of the timestep embedding is incorporated into each residual block.</p>
