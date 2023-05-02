@@ -465,6 +465,14 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-construction">Dataset Construction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-dataset">Building the Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-to-related-models">Comparison to Related Models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mbert">mBERT</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xlm">XLM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xlm-r">XLM-R</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mbart">mBART</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#marge">MARGE</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-description">Data Description</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supported-languages">Supported Languages</a></li>
 </ul>
@@ -507,6 +515,36 @@ document.write(`
 <li><p>Group the remaining pages by language and include in the corpus all languages with 10,000 or more pages.</p></li>
 </ol>
 <p>After completing these steps, you’ll have the mC4 dataset, which contains text in 107 languages as defined by cld3.</p>
+</section>
+<section id="comparison-to-related-models">
+<h2>Comparison to Related Models<a class="headerlink" href="#comparison-to-related-models" title="Permalink to this heading">#</a></h2>
+<p>Most related models use Wikipedia as their primary source for multilingual data. However, some models, such as XLM-R and mBART, also leverage data from Common Crawl to expand their training dataset. The mC4 dataset, in contrast, focuses on using data from Common Crawl with a more extensive filtering and cleaning process.</p>
+<section id="mbert">
+<h3>mBERT<a class="headerlink" href="#mbert" title="Permalink to this heading">#</a></h3>
+<p>mBERT (Devlin, 2018) is a multilingual version of BERT (Devlin et al., 2019). The primary difference between mBERT and BERT is the training set. While BERT is trained on English Wikipedia and the Toronto Books Corpus, mBERT is trained on up to 104 languages from Wikipedia.</p>
+</section>
+<section id="xlm">
+<h3>XLM<a class="headerlink" href="#xlm" title="Permalink to this heading">#</a></h3>
+<p>XLM (Conneau and Lample, 2019) is based on BERT but applies improved methods for pre-training multilingual language models, including explicitly cross-lingual pre-training objectives. The most massively-multilingual variant of XLM was trained on 100 languages from Wikipedia.</p>
+</section>
+<section id="xlm-r">
+<h3>XLM-R<a class="headerlink" href="#xlm-r" title="Permalink to this heading">#</a></h3>
+<p>XLM-R (Conneau et al., 2020) is an improved version of XLM based on the RoBERTa model (Liu et al., 2019). XLM-R is trained with a cross-lingual masked language modeling objective on data in 100 languages from Common Crawl. To improve the pre-training data quality, pages from Common Crawl were filtered by an n-gram language model trained on Wikipedia (Wenzek et al., 2020).</p>
+</section>
+<section id="mbart">
+<h3>mBART<a class="headerlink" href="#mbart" title="Permalink to this heading">#</a></h3>
+<p>mBART (Liu et al., 2020a) is a multilingual encoder-decoder model based on BART (Lewis et al., 2020b). mBART is trained with a combination of span masking and sentence shuffling objectives on a subset of 25 languages from the same data as XLM-R.</p>
+</section>
+<section id="marge">
+<h3>MARGE<a class="headerlink" href="#marge" title="Permalink to this heading">#</a></h3>
+<p>MARGE (Lewis et al., 2020a) is a multilingual encoder-decoder model trained to reconstruct a document in one language by retrieving documents in other languages. It uses data in 26 languages from Wikipedia and CC-News (Liu et al., 2019).</p>
+<figure class="align-default" id="fig-mc4-comparison">
+<a class="reference internal image-reference" href="../../../_images/mc4-comparison.png"><img alt="../../../_images/mc4-comparison.png" src="../../../_images/mc4-comparison.png" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 98 </span><span class="caption-text">Comparison of mC4 and other datasets</span><a class="headerlink" href="#fig-mc4-comparison" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
 </section>
 <section id="data-description">
 <h2>Data Description<a class="headerlink" href="#data-description" title="Permalink to this heading">#</a></h2>
@@ -607,6 +645,14 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-construction">Dataset Construction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-dataset">Building the Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-to-related-models">Comparison to Related Models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mbert">mBERT</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xlm">XLM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xlm-r">XLM-R</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mbart">mBART</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#marge">MARGE</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-description">Data Description</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supported-languages">Supported Languages</a></li>
 </ul>
