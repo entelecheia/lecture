@@ -1,4 +1,4 @@
-# Datasets for NLP
+# Datasets
 
 ```{image} figs/ekorpkit-corpus.png
 :alt: ekorpkit-corpus
