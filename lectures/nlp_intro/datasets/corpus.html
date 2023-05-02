@@ -1,0 +1,780 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Corpus and Text Data Collection &#8212; ἐντελέχεια.άι</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/js/hoverxref.js"></script>
+    <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/chatgpt.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_intro/datasets/corpus';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_intro/datasets/corpus.html" />
+    <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Topic Modeling" href="../topic/index.html" />
+    <link rel="prev" title="Datasets for NLP" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+
+  <div class="bd-header-announcement container-fluid bd-header-announcement">
+    <div class="bd-header-announcement__content"><p>
+  <strong>Announcement:</strong>
+  You can install the accompanying AI tutor <a href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd" target="_blank">here</a>.
+  <a class="reference external" href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd" target="_blank"><img alt="chrome-web-store-image" src="https://img.shields.io/chrome-web-store/v/lfgfgbomindbccgidgalhhndggddpagd" /></a>
+</p>
+</div>
+  </div>
+
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">ἐντελέχεια.άι</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../index.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Introduction to NLP</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../research.html">Research Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../language_models.html">Language Models</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Datasets for NLP</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Corpus and Text Data Collection</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../topic/index.html">Topic Modeling</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../topic/coherence.html">Topic Coherence Measures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../topic/coherence-practice.html">Topic Coherence in Practice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../topic/tomotopy.html">Topic Modeling Tools - Tomotopy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../sentiments.html">Sentiment Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tokenization.html">Tokenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../word_segmentation.html">Word Segmentation and Association</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vectorization.html">Vector Semantics and Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../word_embeddings.html">Word Embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ekorpkit.html">Getting started with ekorpkit</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_deep/index.html">Deep Learning for NLP</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/intro.html">Introduction</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/llms/index.html">Large Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/zeroshot.html">Zero Shot and Prompt Engineering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/decoding.html">Decoding and Search Strategies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/plms.html">Pretrained Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/transformers/index.html">Transformers</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/bert.html">BERT: Bidirectional Encoder Representations from Transformers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/bertviz.html">BERT: Visualizing Attention</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/t5.html">T5: Text-To-Text Transfer Transformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/datasets/index.html">Datasets for NLP</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/sentencepiece.html">SentencePiece Tokenizer</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/rlhf.html">Reinforcement Learning with Human Feedback (RLHF)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/detectGPT.html">How to Spot Machine-Written Texts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/ekorpkit.html">Getting started with ekorpkit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/lab1-corpus.html">Lab 1: Preparing Wikipedia Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/lab3-train-tokenizers.html">Lab 3: Training Tokenizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_deep/lab4-pretraining-lms.html">Lab 4: Pretraining Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_advances/index.html">Advances in AI and NLP</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/thesis.html">Writing a Thesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/detectGPT.html">DetectGPT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/gpt4.html">GPT-4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/camelids.html">Meet the Camelids: A Family of LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/sam/index.html">Segment Everything</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../aiart/index.html">AI Art (Generative AI)</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/aiart.html">Art and Music in Light of AI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/dalle1.html">DALL·E 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/dalle2.html">DALL·E 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/imagen.html">Imagen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/textual-inversion.html">Textual Inversion (Dreambooth)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/whisper.html">Automatic Speech Recognition (Whisper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/text2music.html">Text to Music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/image2music.html">Image to Music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/robot_drawings.html">Robot Drawing Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/project-themes.html">Project Themes - A Brave New World</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../mlops/index.html">Machine Learning Systems Design</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/intro.html">Introduction to MLOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/project.html">MLOps Project</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/devops/index.html">DevOps</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/gitops.html">GitOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/devsecops.html">DevSecOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/llmops.html">LLMOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/dotfiles/index.html">Dotfiles</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai">Dotfiles Repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/dotfiles/dotdrop.html">Dotdrop</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dotdrop/">Dotdrop Setup Script</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/github/">GitHub Setup Scripts</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/ssh-gpg-age/">SSH, GPG, and Age Setup Scripts</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/pass/">Pass and Passage Scripts</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/doppler/">Doppler Usage</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dockerfiles/">Dockerfiles Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/security/index.html">Security Management</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/auth-enc-sign.html">Authentication, Encryption, and Signing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/age-gpg-ssh.html">SSH, GPG, and AGE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/pass.html">Unix Password Managers</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/github/index.html">Github’s Fork &amp; Pull Workflow</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/github/template.html">Project Templating Tools</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://hyperfast-python.entelecheia.ai/">Hyperfast Python Template</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://hyperfast-template.entelecheia.ai/">Hyperfast Template</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/containerization/index.html">Containerization</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/containerization/docker.html">Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/containerization/containerd.html"><code class="docutils literal notranslate"><span class="pre">containerd</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/simple-pipeline/index.html">Simple MLOps Pipeline</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ds/index.html">Data Science for Economics and Finance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../about/lecture-bot.html">LectureBot for ἐντελέχεια.άι</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://course.entelecheia.ai">course.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://research.entelecheia.ai">research.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/lectures/nlp_intro/datasets/corpus.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Corpus and Text Data Collection</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corpora-sources">Corpora Sources</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#national-institute-of-korean-language-s-everyone-s-corpus">National Institute of Korean Language’s Everyone’s Corpus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aihub">AIHub</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-ekorpkit-corpus">The eKorpkit Corpus</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-data-collection-overview">Text Data Collection Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-data-collection-types">Text Data Collection Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#offline-data">Offline Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#internal-system-data">Internal System Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-crawling">Web Crawling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api-calls">API Calls</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-dumps">Data Dumps</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-crawl">Common Crawl</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Web Crawling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#static-vs-dynamic-web-pages">Static vs. Dynamic Web Pages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-crawling-vs-web-scraping">Web Crawling vs. Web Scraping</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#legal-issues-in-web-crawling">Legal Issues in Web Crawling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#static-and-dynamic-data-collection">Static and Dynamic Data Collection</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="corpus-and-text-data-collection">
+<h1>Corpus and Text Data Collection<a class="headerlink" href="#corpus-and-text-data-collection" title="Permalink to this heading">#</a></h1>
+<p>In natural language processing and computational linguistics, the foundation of any language model is the <strong>corpus</strong>. A corpus, or corpora in plural, is a collection of language samples, gathered for specific research purposes. The development of computers has made it easier to analyze corpora, and for improved accuracy, it is common to perform morphological analysis on the natural language samples. The use of probabilistic and statistical techniques, combined with a chronological approach, allows for a comprehensive understanding of the corpus. It serves as essential material for modern linguistic research and can be considered a successful application of scientific methodology in humanities.</p>
+<section id="corpora-sources">
+<h2>Corpora Sources<a class="headerlink" href="#corpora-sources" title="Permalink to this heading">#</a></h2>
+<p>Several sources provide access to different types of corpora. Some of the popular sources include:</p>
+<section id="national-institute-of-korean-language-s-everyone-s-corpus">
+<h3><a class="reference external" href="https://corpus.korean.go.kr">National Institute of Korean Language’s Everyone’s Corpus</a><a class="headerlink" href="#national-institute-of-korean-language-s-everyone-s-corpus" title="Permalink to this heading">#</a></h3>
+<p>This source provides a systematic collection of various analysis corpora (such as morphological and syntactic analysis corpora), corpora from different domains (written, newspapers, spoken, web), and corpora for natural language inference (similar sentences). Users need to log in, verify their email, and provide information about their research project and the duration of the agreement to access and download the data.</p>
+<figure class="align-default" id="fig-corpus-1">
+<a class="reference internal image-reference" href="../../../_images/1.png"><img alt="../../../_images/1.png" src="../../../_images/1.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 34 </span><span class="caption-text">National Institute of Korean Language’s Everyone’s Corpus</span><a class="headerlink" href="#fig-corpus-1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="aihub">
+<h3><a class="reference external" href="http://aihub.or.kr/">AIHub</a><a class="headerlink" href="#aihub" title="Permalink to this heading">#</a></h3>
+<p>AIHub offers a wide range of data, from text to speech and multimodal data. Users can access the data by logging in, specifying the purpose and duration of use, and submitting an application. Once the request is approved, users receive an email granting access to the data.</p>
+<figure class="align-default" id="fig-corpus-2">
+<a class="reference internal image-reference" href="../../../_images/2.png"><img alt="../../../_images/2.png" src="../../../_images/2.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 35 </span><span class="caption-text">AIHub</span><a class="headerlink" href="#fig-corpus-2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="the-ekorpkit-corpus">
+<h3><a class="reference external" href="https://github.com/entelecheia/ekorpkit">The eKorpkit Corpus</a><a class="headerlink" href="#the-ekorpkit-corpus" title="Permalink to this heading">#</a></h3>
+<p>The eKorpkit Corpus is a large, diverse, and multilingual (Korean and English) dataset for language modeling. The total size of the dataset is 448.87 GiB, with 258.83 GiB in English and 190.04 GiB in Korean.</p>
+<figure class="align-default" id="fig-corpus-3">
+<a class="reference internal image-reference" href="../../../_images/3.png"><img alt="../../../_images/3.png" src="../../../_images/3.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 36 </span><span class="caption-text">The eKorpkit Corpus</span><a class="headerlink" href="#fig-corpus-3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="text-data-collection-overview">
+<h2>Text Data Collection Overview<a class="headerlink" href="#text-data-collection-overview" title="Permalink to this heading">#</a></h2>
+<p>Text data can be collected from various sources such as web pages, social media platforms, comments, audio, video, and any other source that can be converted into a text format. The data can be stored in various formats, including plain text, PDF, tables, XML, and JSON. Collection methods include web crawling, API calls, database queries, and online surveys.</p>
+<figure class="align-default" id="fig-corpus-4">
+<a class="reference internal image-reference" href="../../../_images/4.png"><img alt="../../../_images/4.png" src="../../../_images/4.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 37 </span><span class="caption-text">Text Data Collection</span><a class="headerlink" href="#fig-corpus-4" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="text-data-collection-types">
+<h2>Text Data Collection Types<a class="headerlink" href="#text-data-collection-types" title="Permalink to this heading">#</a></h2>
+<section id="offline-data">
+<h3>Offline Data<a class="headerlink" href="#offline-data" title="Permalink to this heading">#</a></h3>
+<p>Offline data can be collected through on-site or offline surveys, audio recordings, or video recordings. This method allows for targeted data collection but requires manual effort and is subject to temporal and spatial constraints.</p>
+</section>
+<section id="internal-system-data">
+<h3>Internal System Data<a class="headerlink" href="#internal-system-data" title="Permalink to this heading">#</a></h3>
+<p>Data can also be collected from internal systems such as company databases, internal message boards, user comments, business reports, and internal documents. This method allows for quick access to existing data but may be restricted to affiliated organizations or services and carries a risk of information leakage.</p>
+</section>
+<section id="web-crawling">
+<h3>Web Crawling<a class="headerlink" href="#web-crawling" title="Permalink to this heading">#</a></h3>
+<p>Web crawling involves using programming languages to repeatedly collect large amounts of information from web pages. This method enables rapid and large-scale data collection and can also help in creating a normalized dataset. However, it requires proficiency in programming languages and may be susceptible to privacy issues.</p>
+</section>
+<section id="api-calls">
+<h3>API Calls<a class="headerlink" href="#api-calls" title="Permalink to this heading">#</a></h3>
+<p>API calls can be used to collect data officially provided by a service. Examples of APIs include Naver API, Kakao API, Reddit API, News API, and social media platforms like Twitter, Facebook, and Instagram. This method allows access to high-quality data, but the available sources may be limited, and programming language skills are necessary.</p>
+</section>
+<section id="data-dumps">
+<h3>Data Dumps<a class="headerlink" href="#data-dumps" title="Permalink to this heading">#</a></h3>
+<p>Some websites offer data dumps, which are downloadable files containing a snapshot of the website’s database. Examples include:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://namu.wiki/w/%EB%82%98%EB%AC%B4%EC%9C%84%ED%82%A4:%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4%20%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4%20%EB%8D%A4%ED%94%84">Namoo Wiki</a>: Namoo Wiki provides database dump files to prevent server overload from web crawling. These files are intended for big data analysis, mirror creation, or personal collection purposes.</p></li>
+<li><p><a class="reference external" href="https://ko.wikipedia.org/wiki/%EC%9C%84%ED%82%A4%EB%B0%B1%EA%B3%BC:%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C">Wikipedia</a>: Wikipedia regularly releases bundled archives of all its articles for users with various purposes, such as data analysis or offline access.</p></li>
+<li><p><a class="reference external" href="https://www.ncbi.nlm.nih.gov/home/download/">NCBI</a>: The majority of NCBI data are available for download, either directly from the NCBI FTP site or by using software tools to download custom datasets.</p></li>
+</ul>
+</section>
+<section id="common-crawl">
+<h3>Common Crawl<a class="headerlink" href="#common-crawl" title="Permalink to this heading">#</a></h3>
+<p>Common Crawl is a non-profit organization that crawls the web and freely provides archives and datasets to the public. The Common Crawl web archive consists of petabytes of data collected since 2011, with new data added every month. Founded by Gil Elbaz, the organization’s crawler adheres to nofollow and robots.txt policies, and open-source code for processing the Common Crawl datasets is publicly available. In 2012, Amazon Web Services began hosting the Common Crawl archive through its Public Dataset Program. The organization releases .arc files, metadata files, and the crawler’s text output. Common Crawl data has been used to train OpenAI’s GPT-3 language model.</p>
+</section>
+</section>
+<section id="id1">
+<h2>Web Crawling<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<p>Web crawling is the process of extracting information from web pages. It involves navigating through the internet by following hyperlinks and downloading web pages to obtain the necessary data. Web crawling is an essential technique for collecting data from websites and is widely used in various applications, such as search engines, data analysis, and content aggregation.</p>
+<section id="static-vs-dynamic-web-pages">
+<h3>Static vs. Dynamic Web Pages<a class="headerlink" href="#static-vs-dynamic-web-pages" title="Permalink to this heading">#</a></h3>
+<p>There are two types of web pages: <strong>static</strong> and <strong>dynamic</strong>.</p>
+<p><strong>Static web pages</strong> are those that display the same content to every user without any variation. These pages are pre-built and stored on the server as HTML and CSS files. When a user requests a static page, the server sends the corresponding HTML and CSS files to the user’s browser. Static web pages are fast and put less strain on the server but can be difficult to update or modify.</p>
+<p><strong>Dynamic web pages</strong>, on the other hand, can display different content based on various factors, such as user input or time. These pages are generated on-the-fly by the server using server-side scripting languages like PHP or JavaScript. Dynamic web pages offer more flexibility and customization but can be more complex to manage and may be less secure.</p>
+</section>
+<section id="web-crawling-vs-web-scraping">
+<h3>Web Crawling vs. Web Scraping<a class="headerlink" href="#web-crawling-vs-web-scraping" title="Permalink to this heading">#</a></h3>
+<p>While the terms web crawling and web scraping are often used interchangeably, they refer to distinct processes:</p>
+<ul class="simple">
+<li><p><strong>Web Crawling</strong>: Involves downloading web pages by following hyperlinks and extracting data from them. Web crawling is typically performed by automated bots or spiders that systematically traverse the internet.</p></li>
+<li><p><strong>Web Scraping</strong>: Refers to the process of extracting specific information from a downloaded web page. Web scraping can be thought of as a more targeted approach to data extraction, focusing on specific elements within a web page.</p></li>
+</ul>
+<figure class="align-default" id="fig-corpus-8">
+<a class="reference internal image-reference" href="../../../_images/8.png"><img alt="../../../_images/8.png" src="../../../_images/8.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 38 </span><span class="caption-text">Web Crawling vs. Web Scraping</span><a class="headerlink" href="#fig-corpus-8" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="legal-issues-in-web-crawling">
+<h3>Legal Issues in Web Crawling<a class="headerlink" href="#legal-issues-in-web-crawling" title="Permalink to this heading">#</a></h3>
+<p>Web crawling may raise legal concerns, particularly when it comes to unauthorized data collection and copyright infringement. To mitigate these risks, crawlers should adhere to the guidelines specified in the <strong>robots.txt</strong> file, which is a text file placed on a website to inform crawlers about which parts of the site can be accessed and scraped. It is essential to obtain permission from the website owner if the robots.txt file is not available or if it does not explicitly allow data collection.</p>
+</section>
+<section id="static-and-dynamic-data-collection">
+<h3>Static and Dynamic Data Collection<a class="headerlink" href="#static-and-dynamic-data-collection" title="Permalink to this heading">#</a></h3>
+<p>Different Python packages are used for collecting data from static and dynamic web pages.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-left head"><p></p></th>
+<th class="text-left head"><p>Static Data Collection</p></th>
+<th class="text-left head"><p>Dynamic Data Collection</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Python Packages</p></td>
+<td class="text-left"><p>requests / urllib</p></td>
+<td class="text-left"><p>selenium</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Coverage</p></td>
+<td class="text-left"><p>Static web pages</p></td>
+<td class="text-left"><p>Static and dynamic web pages</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Speed</p></td>
+<td class="text-left"><p>Fast (no page manipulation)</p></td>
+<td class="text-left"><p>Relatively slow</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Parsing Package</p></td>
+<td class="text-left"><p>BeautifulSoup</p></td>
+<td class="text-left"><p>BeautifulSoup / selenium</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Static data collection</strong> involves downloading the HTML content of static web pages using the <code class="docutils literal notranslate"><span class="pre">requests</span></code> or <code class="docutils literal notranslate"><span class="pre">urllib</span></code> Python packages. The HTML content is then parsed using <code class="docutils literal notranslate"><span class="pre">BeautifulSoup</span></code> to extract the desired information. This method is fast as it directly fetches the URL’s HTML content. However, it may not be suitable for all types of web pages.</p>
+<p><strong>Dynamic data collection</strong> involves interacting with dynamic web pages using the <code class="docutils literal notranslate"><span class="pre">selenium</span></code> Python package to control a web browser, such as ChromeDriver. This method allows for more complex interactions, such as logging in, clicking buttons, or navigating to specific pages. Dynamic data collection is more versatile than static data collection but can be slower as it involves browser manipulation and waiting for the browser to load content.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/lecture",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lectures/nlp_intro/datasets"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Datasets for NLP</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../topic/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Topic Modeling</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corpora-sources">Corpora Sources</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#national-institute-of-korean-language-s-everyone-s-corpus">National Institute of Korean Language’s Everyone’s Corpus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aihub">AIHub</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-ekorpkit-corpus">The eKorpkit Corpus</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-data-collection-overview">Text Data Collection Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-data-collection-types">Text Data Collection Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#offline-data">Offline Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#internal-system-data">Internal System Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-crawling">Web Crawling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api-calls">API Calls</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-dumps">Data Dumps</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-crawl">Common Crawl</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Web Crawling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#static-vs-dynamic-web-pages">Static vs. Dynamic Web Pages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-crawling-vs-web-scraping">Web Crawling vs. Web Scraping</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#legal-issues-in-web-crawling">Legal Issues in Web Crawling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#static-and-dynamic-data-collection">Static and Dynamic Data Collection</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
