@@ -9,7 +9,7 @@
 
 The DALL·E 1 paper proposes a simple approach for text-to-image generation using a transformer model that autoregressively models text and image tokens as a single stream of data. Unlike traditional approaches that require complex architectures and auxiliary losses, DALL·E 1's approach relies on data and scale to be competitive with previous domain-specific models in zero-shot evaluations. This approach eliminates the need for training on a fixed dataset and enables generating images from previously unseen text descriptions.
 
-```{figure} ../figs/aiart/dalle1/aiart_1_dalle1.png
+```{figure} figs/dalle1/aiart_1_dalle1.png
 ---
 width: 70%
 name: fig-dalle1
@@ -32,7 +32,7 @@ DALL·E 1
 - During training, the model learns to associate textual input with specific visual attributes.
 - The conditioning mechanism enables the model to generalize to new attribute combinations not present in the training data.
 
-```{figure} ../figs/aiart/dalle1/aiart_1_dalle1_attributes.png
+```{figure} figs/dalle1/aiart_1_dalle1_attributes.png
 ---
 width: 70%
 name: fig-dalle1-attributes
@@ -49,7 +49,7 @@ Controlling Attributes
 - As more objects are introduced, DALL·E's success rate sharply decreases.
 - DALL·E is found to be brittle with respect to rephrasing the caption, and alternative captions often yield no correct interpretations.
 
-```{figure} ../figs/aiart/dalle1/aiart_1_dalle1_objects.png
+```{figure} figs/dalle1/aiart_1_dalle1_objects.png
 ---
 width: 70%
 name: fig-dalle1-objects
@@ -65,7 +65,7 @@ Drawing Multiple Objects
 - DALL·E can apply some types of optical distortions to scenes, as seen with the options "fisheye lens view" and "a spherical panorama."
 - DALL·E's ability to generate reflections is explored.
 
-```{figure} ../figs/aiart/dalle1/aiart_1_dalle1_perspective.png
+```{figure} figs/dalle1/aiart_1_dalle1_perspective.png
 ---
 width: 70%
 name: fig-dalle1-perspective
@@ -79,7 +79,7 @@ Visualizing Perspective and Three-Dimensionality
 - The samples from the "extreme close-up view" and "x-ray" style led to further exploration of DALL·E's capabilities in rendering internal and external structures.
 - The cross-sectional views and macro photographs highlight DALL·E's ability to generate images with fine details and textures.
 
-```{figure} ../figs/aiart/dalle1/aiart_1_dalle1_structure.png
+```{figure} figs/dalle1/aiart_1_dalle1_structure.png
 ---
 width: 70%
 name: fig-dalle1-structure
@@ -94,7 +94,7 @@ Visualizing Internal and External Structure
 - DALL·E provides access to a subset of 3D rendering engine capabilities through natural language, controlling attributes of a small number of objects, their arrangement, and the location and angle of the scene.
 - DALL·E can "fill in the blanks" and generate certain details not explicitly stated in the caption, unlike a 3D rendering engine that requires unambiguous and detailed inputs.
 
-```{figure} ../figs/aiart/dalle1/aiart_1_dalle1_context.png
+```{figure} figs/dalle1/aiart_1_dalle1_context.png
 ---
 width: 70%
 name: fig-dalle1-context
@@ -113,7 +113,7 @@ Inferring Contextual Details
 
 VQ-VAE is a type of machine learning model that can be used to learn compressed representations of images or other types of data. It works by first encoding the input data into a set of discrete codes, which are then used to reconstruct the original data. Unlike other types of machine learning models, which use continuous values for their internal representations, VQ-VAE uses discrete values, which can make it more efficient and easier to work with in certain situations.
 
-```{figure} ../figs/aiart/dalle1/aiart_1_dalle1_vqvae.png
+```{figure} figs/dalle1/aiart_1_dalle1_vqvae.png
 ---
 width: 70%
 name: fig-dalle1-vqvae
@@ -135,7 +135,7 @@ VQ-VAE
 
 A latent space is obtained by encoding the input image into the nearest codebook entry. This process is called vector quantization and results in a discrete latent space.
 
-```{figure} ../figs/aiart/dalle1/aiart_1_dalle1_latent.png
+```{figure} figs/dalle1/aiart_1_dalle1_latent.png
 ---
 width: 70%
 name: fig-dalle1-latent
@@ -152,7 +152,7 @@ A latent space
 
 Autoencoder is a type of neural network that learns how to represent input data in a more compact way. It works by trying to predict its own input, so it learns to compress the input data into a smaller set of values that can later be used to reconstruct the original data.
 
-```{figure} ../figs/aiart/dalle1/aiart_1_dalle1_autoencoder.png
+```{figure} figs/dalle1/aiart_1_dalle1_autoencoder.png
 ---
 width: 70%
 name: fig-dalle1-autoencoder
@@ -175,7 +175,7 @@ Autoencoders
 
 Variational Autoencoders (VAE) are a type of machine learning model that can be used to learn compressed representations of data. Unlike regular autoencoders, VAEs use a continuous latent space. The objective function of a VAE encourages the model to learn a latent space that captures the underlying structure of the data while also matching the prior distribution over latent variables. This makes it easier to work with and analyze the data. VAEs are particularly useful for generating new data that is similar to the input data, such as images or text.
 
-```{figure} ../figs/aiart/dalle1/aiart_1_dalle1_vae.png
+```{figure} figs/dalle1/aiart_1_dalle1_vae.png
 ---
 width: 70%
 name: fig-dalle1-vae
@@ -196,7 +196,7 @@ Variational Autoencoders (VAE)
 
 Discrete spaces are a type of space that is more efficient to work with than continuous spaces. This is because a discrete space can be represented with a finite number of bits, while a continuous space requires an infinite number of bits. Discrete spaces are also easier to manipulate and reason about than continuous spaces. This is why VQ-VAE, which uses a discrete latent space, is more efficient than VAE at learning compressed representations of data. By using a finite set of discrete codes, VQ-VAE can learn compressed representations of data that are easier to work with and require less memory than VAE's continuous representations.
 
-```{figure} ../figs/aiart/dalle1/aiart_1_dalle1_discrete.png
+```{figure} figs/dalle1/aiart_1_dalle1_discrete.png
 ---
 width: 70%
 name: fig-dalle1-discrete
@@ -213,7 +213,7 @@ Discrete Spaces
 
 Uncertainty in the posterior arises due to soft-sampling codebook vectors from the Gumbel-Softmax distribution. This soft-sampling process creates a continuous approximation of the discrete latent space, which introduces some level of uncertainty or imprecision in the model's predictions or estimated parameters.
 
-```{figure} ../figs/aiart/dalle1/aiart_1_dalle1_uncetainty1.png
+```{figure} figs/dalle1/aiart_1_dalle1_uncetainty1.png
 ---
 width: 70%
 name: fig-dalle1-uncetainty1
@@ -221,7 +221,7 @@ name: fig-dalle1-uncetainty1
 Uncertainty in the Posterior
 ```
 
-```{figure} ../figs/aiart/dalle1/aiart_1_dalle1_uncetainty2.png
+```{figure} figs/dalle1/aiart_1_dalle1_uncetainty2.png
 ---
 width: 70%
 name: fig-dalle1-uncetainty2
@@ -251,7 +251,7 @@ Now, let's talk about the Gumbel-Softmax distribution and soft-sampling codebook
 
 This is useful for training models with discrete latent spaces, such as VQ-VAE.
 
-```{figure} ../figs/aiart/dalle1/aiart_1_dalle1_dvae.png
+```{figure} figs/dalle1/aiart_1_dalle1_dvae.png
 ---
 width: 70%
 name: fig-dalle1-dvae
@@ -263,7 +263,7 @@ Comparison of original images (top) and reconstructions from the dVAE (bottom)
 
 DALL-E's decoder is a GPT-3-like transformer that takes a sequence of text tokens and optional image tokens as input, understands their relationships, and generates a visual representation of the input text by producing a continuation or completion of the image.
 
-```{figure} ../figs/aiart/dalle1/aiart_1_dalle1_decoder.png
+```{figure} figs/dalle1/aiart_1_dalle1_decoder.png
 ---
 width: 70%
 name: fig-dalle1-decoder
@@ -293,7 +293,7 @@ In the example you provided, the decoder is given a sequence with text tokens an
 
 Sampling from a trained DALL-E involves preparing an input text description, encoding it, and feeding it to the decoder. The decoder generates a sequence of image tokens based on the input, which are then converted back into an image that represents the desired text description. The sampling process can be controlled using various strategies to influence the randomness and diversity of the generated images.
 
-```{figure} ../figs/aiart/dalle1/aiart_1_dalle1_sampling.png
+```{figure} figs/dalle1/aiart_1_dalle1_sampling.png
 ---
 width: 70%
 name: fig-dalle1-sampling
@@ -301,7 +301,7 @@ name: fig-dalle1-sampling
 Sampling From a Trained DALL-E
 ```
 
-```{figure} ../figs/aiart/dalle1/aiart_1_dalle1_sampling2.png
+```{figure} figs/dalle1/aiart_1_dalle1_sampling2.png
 ---
 width: 70%
 name: fig-dalle1-sampling2
@@ -323,7 +323,7 @@ Sampling from a trained DALL-E is the process of generating new images based on 
 
 ## DALL·E 1 Results
 
-```{figure} ../figs/aiart/dalle1/aiart_1_dalle1_examples.png
+```{figure} figs/dalle1/aiart_1_dalle1_examples.png
 ---
 width: 70%
 name: fig-dalle1-examples
@@ -333,7 +333,7 @@ Several image generation examples from the original paper
 
 The trained model generated several samples (up to 512!) based on the text provided, then all these samples were ranked by a special model called CLIP, and the top-ranked one was chosen as the result of the model.
 
-```{figure} ../figs/aiart/dalle1/aiart_1_dalle1_eval.png
+```{figure} figs/dalle1/aiart_1_dalle1_eval.png
 ---
 width: 70%
 name: fig-dalle1-eval

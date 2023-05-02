@@ -1,6 +1,6 @@
 # DALL·E 2
 
-```{figure} ../figs/aiart/dalle2/dalle2.png
+```{figure} figs/dalle2/dalle2.png
 ---
 width: 70%
 name: fig-dalle2
@@ -29,7 +29,7 @@ The goal of the model is to maximize the similarity score for image-text pairs t
 
 ### Contrastive pre-training
 
-```{figure} ../figs/aiart/dalle2/contrastive.png
+```{figure} figs/dalle2/contrastive.png
 ---
 width: 70%
 name: fig-contrastive
@@ -63,7 +63,7 @@ Another interesting application of CLIP is zero-shot classification, which allow
 
 ### Zero-shot classification with CLIP
 
-```{figure} ../figs/aiart/dalle2/clip-zeroshot.png
+```{figure} figs/dalle2/clip-zeroshot.png
 ---
 width: 70%
 name: fig-clip-zeroshot
@@ -84,7 +84,7 @@ The zero-shot classification capability of CLIP makes it a flexible and versatil
 - https://colab.research.google.com/github/kvfrans/clipdraw/blob/main/clipdraw.ipynb
 - https://colab.research.google.com/github/pschaldenbrand/StyleCLIPDraw/blob/master/Style_ClipDraw.ipynb
 
-```{figure} ../figs/aiart/dalle2/clipdraw.png
+```{figure} figs/dalle2/clipdraw.png
 ---
 width: 70%
 name: fig-clipdraw
@@ -96,7 +96,7 @@ CLIP prompt engineering with CLIPDraw is a technique that allows you to generate
 
 **CLIPDraw generation procedure**
 
-```{figure} ../figs/aiart/dalle2/clipdraw-procedure.png
+```{figure} figs/dalle2/clipdraw-procedure.png
 ---
 width: 70%
 name: fig-clipdraw-procedure
@@ -109,7 +109,7 @@ CLIPDraw generation procedure
 - https://github.com/nerdyrodent/VQGAN-CLIP
 - https://colab.research.google.com/github/justinjohn0306/VQGAN-CLIP/blob/main/VQGAN%2BCLIP(Updated).ipynb
 
-```{figure} ../figs/aiart/dalle2/vqgan-clip.png
+```{figure} figs/dalle2/vqgan-clip.png
 ---
 width: 70%
 name: fig-vqgan-clip
@@ -127,7 +127,7 @@ As the VQGAN generates images, the CLIP model assesses their similarity to the t
 
 **VQGAN-CLIP generation procedure**
 
-```{figure} ../figs/aiart/dalle2/vqgan-clip-procedure.png
+```{figure} figs/dalle2/vqgan-clip-procedure.png
 ---
 width: 70%
 name: fig-vqgan-clip-procedure
@@ -148,7 +148,7 @@ Although the GLIDE model has 3.5 billion parameters, the correct number appears 
 
 Moreover, GLIDE models can be fine-tuned for image inpainting tasks, enabling powerful text-driven image editing capabilities. Overall, GLIDE offers an advanced and versatile approach to generating and editing images using textual descriptions.
 
-```{figure} ../figs/aiart/dalle2/glide-examples.png
+```{figure} figs/dalle2/glide-examples.png
 ---
 width: 70%
 name: fig-glide-examples
@@ -156,7 +156,7 @@ name: fig-glide-examples
 GLIDE examples
 ```
 
-```{figure} ../figs/aiart/dalle2/glide-inpainting.png
+```{figure} figs/dalle2/glide-inpainting.png
 ---
 width: 70%
 name: fig-glide-inpainting
@@ -166,7 +166,7 @@ Text-conditional image inpainting
 
 ### Diffusion model
 
-```{figure} ../figs/aiart/dalle2/diffusion-model.png
+```{figure} figs/dalle2/diffusion-model.png
 ---
 width: 70%
 name: fig-diffusion-model
@@ -176,7 +176,7 @@ Diffusion model
 
 GLIDE is similar to a type of model known as a diffusion model. In diffusion models, random noise is introduced to input data through a series of diffusion steps. The model then learns to reverse this process, effectively reconstructing images from the noise. This approach allows diffusion models, like GLIDE, to generate images by gradually refining and removing the random noise introduced earlier in the process.
 
-```{figure} ../figs/aiart/dalle2/diffusion-compare.png
+```{figure} figs/dalle2/diffusion-compare.png
 ---
 width: 70%
 name: fig-diffusion-compare
@@ -204,7 +204,7 @@ For classifier guidance, the classifier architecture is based on the down-sampli
 
 **The original U-Net architecture**
 
-```{figure} ../figs/aiart/dalle2/u-net.png
+```{figure} figs/dalle2/u-net.png
 ---
 width: 70%
 name: fig-u-net
@@ -225,7 +225,7 @@ In addition to the 3.5 billion-parameter text-conditional diffusion model, the a
 
 For CLIP guidance, a noised 64x64 ViT-L CLIP model was also trained. GLIDE was trained on the same dataset as DALL·E, and the total training compute is roughly equal to that used for DALL·E.
 
-```{figure} ../figs/aiart/dalle2/glide-eval.png
+```{figure} figs/dalle2/glide-eval.png
 ---
 width: 70%
 name: fig-glide-eval
@@ -241,7 +241,7 @@ Furthermore, GLIDE was explicitly fine-tuned for inpainting tasks. During this p
 
 GLIDE can be used iteratively to create complex scenes by first generating an image using a zero-shot approach and then applying a series of inpainting edits. For example, an image could be generated with the prompt "a cozy living room." Inpainting masks are then applied, along with follow-up text prompts, to add a painting to the wall, a coffee table, a vase of flowers on the coffee table, and finally to move the wall up to the couch. This iterative process allows GLIDE to produce detailed and customized images based on user input.
 
-```{figure} ../figs/aiart/dalle2/glide-inpainting2.png
+```{figure} figs/dalle2/glide-inpainting2.png
 ---
 width: 70%
 name: fig-glide-inpainting2
@@ -257,7 +257,7 @@ GLIDE inpainting
 - Models: Not available
 - Code (unofficial): https://github.com/lucidrains/DALLE2-pytorch
 
-```{figure} ../figs/aiart/dalle2/dalle1-vs-dalle2.png
+```{figure} figs/dalle2/dalle1-vs-dalle2.png
 ---
 width: 70%
 name: fig-dalle1-vs-dalle2
@@ -269,7 +269,7 @@ OpenAI unveiled the DALL·E 2 system on April 6th, 2022, which offers significan
 
 The model powering DALL·E 2 is called unCLIP. Although humans slightly favor GLIDE over unCLIP in terms of photorealism, the difference is minimal. However, unCLIP is highly preferred over GLIDE in terms of image diversity, which is one of its key advantages. This updated model offers both high-resolution image generation and a diverse range of creative outputs.
 
-```{figure} ../figs/aiart/dalle2/dalle2-combine.png
+```{figure} figs/dalle2/dalle2-combine.png
 ---
 width: 70%
 name: fig-dalle2-combine
@@ -277,7 +277,7 @@ name: fig-dalle2-combine
 DALL·E 2 can combine concepts, attributes, and styles
 ```
 
-```{figure} ../figs/aiart/dalle2/dalle2-editing.png
+```{figure} figs/dalle2/dalle2-editing.png
 ---
 width: 70%
 name: fig-dalle2-editing
@@ -285,7 +285,7 @@ name: fig-dalle2-editing
 Image editing based on text guidance
 ```
 
-```{figure} ../figs/aiart/dalle2/dalle2-variations.png
+```{figure} figs/dalle2/dalle2-variations.png
 ---
 width: 70%
 name: fig-dalle2-variations
@@ -293,7 +293,7 @@ name: fig-dalle2-variations
 Generating variations of an image
 ```
 
-```{figure} ../figs/aiart/dalle2/dalle2-problems.png
+```{figure} figs/dalle2/dalle2-problems.png
 ---
 width: 70%
 name: fig-dalle2-problems
@@ -301,7 +301,7 @@ name: fig-dalle2-problems
 Some problems with DALL·E 2
 ```
 
-```{figure} ../figs/aiart/dalle2/dalle2-text.png
+```{figure} figs/dalle2/dalle2-text.png
 ---
 width: 70%
 name: fig-dalle2-text
@@ -309,7 +309,7 @@ name: fig-dalle2-text
 unCLIP also struggles at producing coherent text
 ```
 
-```{figure} ../figs/aiart/dalle2/dalle2-details.png
+```{figure} figs/dalle2/dalle2-details.png
 ---
 width: 70%
 name: fig-dalle2-details
@@ -325,7 +325,7 @@ First, the CLIP model is trained separately. Next, the CLIP text encoder creates
 
 The decoder's primary function is to convert image embeddings back into images, effectively linking the text prompt to the final visual output.
 
-```{figure} ../figs/aiart/dalle2/dalle2-overview.png
+```{figure} figs/dalle2/dalle2-overview.png
 ---
 width: 70%
 name: fig-dalle2-overview
@@ -351,7 +351,7 @@ For the AR prior, the CLIP image embedding's dimensionality is reduced using Pri
 
 For the Diffusion prior, a decoder-only Transformer with a causal attention mask is trained on a sequence that includes the encoded text, CLIP text embedding, diffusion timestep, noised CLIP image embedding, and a final embedding used to predict the unnoised CLIP image embedding. Unlike the AR prior, a dot product is not used for conditioning. Instead, two samples of an image embedding are generated during sampling, and the one with a higher dot product with the text embedding is selected. The Diffusion prior outperforms the AR prior in terms of model size, reduced training compute, and pairwise comparisons against GLIDE.
 
-```{figure} ../figs/aiart/dalle2/dalle2-ar-diffusion.png
+```{figure} figs/dalle2/dalle2-ar-diffusion.png
 ---
 width: 70%
 name: fig-dalle2-ar-diffusion
@@ -359,7 +359,7 @@ name: fig-dalle2-ar-diffusion
 AR vs Diffusion prior
 ```
 
-```{figure} ../figs/aiart/dalle2/dalle2-conditioning.png
+```{figure} figs/dalle2/dalle2-conditioning.png
 ---
 width: 70%
 name: fig-dalle2-conditioning
@@ -373,7 +373,7 @@ During the training process, the authors used different datasets for the encoder
 
 The total model size appears to be approximately 6.5 billion parameters, which includes: 632 million parameters for the CLIP ViT-H/16 image encoder, 340 million parameters for the CLIP text encoder, 1 billion parameters for the Diffusion prior, 3.5 billion parameters for the diffusion decoder, and 1 billion parameters for the two diffusion upsamplers.
 
-```{figure} ../figs/aiart/dalle2/dalle2-applications.png
+```{figure} figs/dalle2/dalle2-applications.png
 ---
 width: 70%
 name: fig-dalle2-applications
@@ -396,7 +396,7 @@ Three interesting kinds of manipulations can be performed:
 
 Examples of manipulations in "concept space" for text include "woman" + "king" - "man". Arithmetic can also be performed using both text and images, such as (image of Victorian house) + "a modern house" - "a Victorian house".
 
-```{figure} ../figs/aiart/dalle2/dalle2-variation.png
+```{figure} figs/dalle2/dalle2-variation.png
 ---
 width: 70%
 name: fig-dalle2-variation
@@ -404,7 +404,7 @@ name: fig-dalle2-variation
 Creating image variations
 ```
 
-```{figure} ../figs/aiart/dalle2/dalle2-interpolation.png
+```{figure} figs/dalle2/dalle2-interpolation.png
 ---
 width: 70%
 name: fig-dalle2-interpolation
@@ -412,7 +412,7 @@ name: fig-dalle2-interpolation
 Interpolating between images
 ```
 
-```{figure} ../figs/aiart/dalle2/dalle2-text-diffs.png
+```{figure} figs/dalle2/dalle2-text-diffs.png
 ---
 width: 70%
 name: fig-dalle2-text-diffs
@@ -420,7 +420,7 @@ name: fig-dalle2-text-diffs
 Exploring text diffs
 ```
 
-```{figure} ../figs/aiart/dalle2/dalle2-typographic-attacks.png
+```{figure} figs/dalle2/dalle2-typographic-attacks.png
 ---
 width: 70%
 name: fig-dalle2-typographic-attacks
@@ -438,7 +438,7 @@ UnCLIP faces several challenges, including attribute binding, text generation, a
 
 3. Low details problem: This problem could be due to the decoder hierarchy, which generates an image at a base resolution of 64x64 pixels and then upsamples it. Increasing the base resolution may resolve this issue but would come at the cost of additional training and inference computation.
 
-```{figure} ../figs/aiart/dalle2/dalle2-difficult-binding.png
+```{figure} figs/dalle2/dalle2-difficult-binding.png
 ---
 width: 70%
 name: fig-dalle2-difficult-binding
