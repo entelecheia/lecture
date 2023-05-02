@@ -1,6 +1,6 @@
 # Introduction
 
-![painter](../figs/aiart/entelecheia_robot_painter.png)
+![painter](figs/entelecheia_robot_painter.png)
 
 Artificial Intelligence (AI) has been used to create art for several years now, and this intersection of technology and creativity has given rise to a new field of art called AI art. AI art is created using algorithms and computer programs that enable machines to create artwork that imitates or even surpasses human creativity. Generative AI, a subfield of AI, plays a crucial role in creating AI art by generating new and unique outputs based on input data.
 
@@ -10,7 +10,7 @@ AI art has been gaining popularity in recent years, with many artists exploring 
 
 ## Timeline of ML Art
 
-![timeline](../figs/aiart/intro/aiart_1_timeline.jpg)
+![timeline](figs/aiart_1_timeline.jpg)
 
 The history of Machine Learning (ML) art dates back to the 18th century, when Pierre Jaquet-Droz created three machines that generated art. However, it wasn't until Augusta Lovelace, a mathematician and poet, recognized the potential use of algorithms outside of mathematics.
 
@@ -32,7 +32,7 @@ Today, ML art is becoming increasingly popular, with many artists and designers 
 
 - 040502 is a 2004 painting of pigment on paper by the robotic, artificially intelligent painter AARON
 
-![araron](../figs/aiart/intro/aiart_1_040502.jpg)
+![araron](figs/aiart_1_040502.jpg)
 
 ## Image GPT
 
@@ -42,11 +42,11 @@ iGPT uses a transformer architecture, similar to GPT, which is trained on a larg
 
 One of the key advantages of iGPT is its ability to generate high-quality images without the need for additional supervision or training data. This makes it an attractive option for a range of applications, from generating realistic images for video games to assisting with medical imaging.
 
-![imagegpt](../figs/aiart/intro/ImageGPT.png)
+![imagegpt](figs/ImageGPT.png)
 
 ## DALL·E 2
 
-![dalle2](../figs/aiart/intro/aiart_1_dalle2.png)
+![dalle2](figs/aiart_1_dalle2.png)
 
 ```{youtube} qTgPSKKjfVg
 :width: 100%
