@@ -38,7 +38,7 @@ GPT-4 is accessible through ChatGPT Plus and an API, allowing developers to buil
 - Goal: improve natural language understanding and generation
 - Performance: excels in various exams, outperforms previous models and state-of-the-art systems
 
-```{figure} ../figs/nlp_advances/gpt4/exam.png
+```{figure} figs/exam.png
 ---
 width: 60%
 name: fig-gpt4-exam
@@ -48,7 +48,7 @@ GPT performance on academic and professional exams
 
 - MMLU benchmark: surpasses English state-of-the-art in 24 of 26 languages
 
-```{figure} ../figs/nlp_advances/gpt4/mmlu.png
+```{figure} figs/mmlu.png
 ---
 width: 60%
 name: fig-gpt4-mnlu
@@ -62,7 +62,7 @@ MMLU.
 - Safety challenges: bias, disinformation, over-reliance, privacy, cybersecurity, proliferation
 - Interventions: adversarial testing, domain expert input, model-assisted safety pipeline
 
-```{figure} ../figs/nlp_advances/gpt4/factuality.png
+```{figure} figs/factuality.png
 ---
 width: 60%
 name: fig-gpt4-factuality
@@ -70,7 +70,7 @@ name: fig-gpt4-factuality
 Performance of GPT-4 on nine internal adversarially-designed factuality evaluations.
 ```
 
-```{figure} ../figs/nlp_advances/gpt4/truthfulqa.png
+```{figure} figs/truthfulqa.png
 ---
 width: 60%
 name: fig-gpt4-truthfulqa

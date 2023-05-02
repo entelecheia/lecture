@@ -6,7 +6,7 @@
 
 Camelids are a remarkable family of mammals that thrive in some of the most inhospitable environments on Earth. While the camel may be the most famous of the group, lesser-known members like the llama, alpaca, vicuña, and guanaco also possess unique characteristics and adaptations that make them equally fascinating.
 
-```{image} ../figs/nlp_advances/camelids/camelids.png
+```{image} figs/camelids.png
 :alt: Camelids
 :class: bg-primary mb-1
 :width: 50%
