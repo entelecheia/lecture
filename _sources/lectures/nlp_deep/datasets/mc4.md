@@ -201,3 +201,53 @@ from datasets import load_dataset
 
 mc4_subset_with_five_languages = load_dataset("mc4", languages=["en", "fr", "es", "de", "zh"])
 ```
+
+## mC4 Dataset and Perplexity Sampling
+
+by {cite:t}`de2022bertin`
+
+The mC4 dataset, derived from web-crawled data, presents a massive amount of multilingual text, making training language models in constrained environments challenging. To address this issue, we explore sampling methods for creating subsets of the mC4 dataset that enable the training of language models with a reduced data size while maintaining adequate training effectiveness.
+
+A technique called perplexity sampling is employed to construct these subsets. Originating from the construction of CCNet and their high-quality monolingual datasets from web-crawled data, perplexity sampling leverages fast language models trained on high-quality data sources, such as Wikipedia, to filter out texts that deviate significantly from the correct expressions of a language.
+
+Perplexity is calculated for each document in a random subset of the mC4 dataset, extracting their distribution and quartiles. Two functions are then created to oversample the central quarters of the perplexity distribution, aiming to bias against documents with either too small or too large perplexity values. These functions are compared to random sampling to evaluate their effectiveness.
+
+The first function, called the Stepwise function, oversamples the central quarters while subsampling the rest of the distribution. The second function uses a Gaussian-like distribution to weight the perplexity values, smoothing out the sharp boundaries of the Stepwise function and providing a better approximation to the desired underlying distribution.
+
+Parameters of both functions are adjusted to extract a reduced-size subset of documents from the original mC4 dataset, significantly decreasing the raw data size. To ensure proper validation, a separate set of documents is extracted from the training dataset at each evaluation step, excluding those documents from training to avoid validating on previously seen data.
+
+An analysis using t-SNE plots reveals that the distribution is uniform across different topics and clusters of documents. This is crucial because introducing a perplexity-based sampling method could potentially introduce undesired biases if perplexity correlates with some other aspect of the data, such as length. Overall, the perplexity sampling approach allows for the efficient use of resources in training language models without compromising the quality and representation of the dataset.
+
+## [mC4 Sampling](https://huggingface.co/datasets/bertin-project/mc4-sampling/blob/main/README.md)
+
+The mC4 dataset and perplexity sampling can be used to pretrain language models or word representations for various natural language processing tasks. By leveraging these techniques, you can reduce the amount of data required for training, making it more efficient and resource-friendly.
+
+### Perplexity Sampling
+
+To use perplexity sampling for creating subsets of the mC4 dataset, you can refer to the examples provided in the Dataset Summary section for each of the three sampling methods: Random, Gaussian, and Stepwise.
+
+For instance, to use the Gaussian sampling method, you would need to install the [KenLM](https://kheafield.com/code/kenlm/) library, download the Kneser-Ney language model for your desired language, and then use the following code:
+
+```python
+from datasets import load_dataset
+
+mc4gaussian = load_dataset(
+    "bertin-project/mc4-sampling",
+    "es",
+    split="train",
+    streaming=True,
+    sampling_method="gaussian",
+    perplexity_model="./es.arpa.bin",
+    boundaries=[536394.99320948, 662247.50212365, 919250.87225178],
+    factor=0.78,
+    width=9/2,
+)
+
+for sample in mc4gaussian:
+    print(sample)
+    break
+```
+
+Remember to replace the language code, perplexity model path, and boundaries specific to your language.
+
+By utilizing the mC4 dataset and perplexity sampling techniques, you can effectively train language models on a reduced dataset size while maintaining the quality and representation of the data. This approach allows you to make the most of available resources without compromising the performance of your models.

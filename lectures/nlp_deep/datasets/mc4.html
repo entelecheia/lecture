@@ -478,6 +478,11 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-mc4-dataset-with-hugging-face-datasets-library">Using mC4 Dataset with Hugging Face Datasets Library</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mc4-dataset-and-perplexity-sampling">mC4 Dataset and Perplexity Sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mc4-sampling">mC4 Sampling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perplexity-sampling">Perplexity Sampling</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -907,6 +912,46 @@ document.write(`
 </pre></div>
 </div>
 </section>
+<section id="mc4-dataset-and-perplexity-sampling">
+<h2>mC4 Dataset and Perplexity Sampling<a class="headerlink" href="#mc4-dataset-and-perplexity-sampling" title="Permalink to this heading">#</a></h2>
+<p>by <span id="id2">De la Rosa <em>et al.</em> [<a class="reference internal" href="../../../about/index.html#id69" title="Javier De la Rosa, Eduardo G Ponferrada, Paulo Villegas, Pablo Gonzalez de Prado Salas, Manu Romero, and Marıa Grandury. Bertin: efficient pre-training of a spanish language model using perplexity sampling. arXiv preprint arXiv:2207.06814, 2022.">2022</a>]</span></p>
+<p>The mC4 dataset, derived from web-crawled data, presents a massive amount of multilingual text, making training language models in constrained environments challenging. To address this issue, we explore sampling methods for creating subsets of the mC4 dataset that enable the training of language models with a reduced data size while maintaining adequate training effectiveness.</p>
+<p>A technique called perplexity sampling is employed to construct these subsets. Originating from the construction of CCNet and their high-quality monolingual datasets from web-crawled data, perplexity sampling leverages fast language models trained on high-quality data sources, such as Wikipedia, to filter out texts that deviate significantly from the correct expressions of a language.</p>
+<p>Perplexity is calculated for each document in a random subset of the mC4 dataset, extracting their distribution and quartiles. Two functions are then created to oversample the central quarters of the perplexity distribution, aiming to bias against documents with either too small or too large perplexity values. These functions are compared to random sampling to evaluate their effectiveness.</p>
+<p>The first function, called the Stepwise function, oversamples the central quarters while subsampling the rest of the distribution. The second function uses a Gaussian-like distribution to weight the perplexity values, smoothing out the sharp boundaries of the Stepwise function and providing a better approximation to the desired underlying distribution.</p>
+<p>Parameters of both functions are adjusted to extract a reduced-size subset of documents from the original mC4 dataset, significantly decreasing the raw data size. To ensure proper validation, a separate set of documents is extracted from the training dataset at each evaluation step, excluding those documents from training to avoid validating on previously seen data.</p>
+<p>An analysis using t-SNE plots reveals that the distribution is uniform across different topics and clusters of documents. This is crucial because introducing a perplexity-based sampling method could potentially introduce undesired biases if perplexity correlates with some other aspect of the data, such as length. Overall, the perplexity sampling approach allows for the efficient use of resources in training language models without compromising the quality and representation of the dataset.</p>
+</section>
+<section id="mc4-sampling">
+<h2><a class="reference external" href="https://huggingface.co/datasets/bertin-project/mc4-sampling/blob/main/README.md">mC4 Sampling</a><a class="headerlink" href="#mc4-sampling" title="Permalink to this heading">#</a></h2>
+<p>The mC4 dataset and perplexity sampling can be used to pretrain language models or word representations for various natural language processing tasks. By leveraging these techniques, you can reduce the amount of data required for training, making it more efficient and resource-friendly.</p>
+<section id="perplexity-sampling">
+<h3>Perplexity Sampling<a class="headerlink" href="#perplexity-sampling" title="Permalink to this heading">#</a></h3>
+<p>To use perplexity sampling for creating subsets of the mC4 dataset, you can refer to the examples provided in the Dataset Summary section for each of the three sampling methods: Random, Gaussian, and Stepwise.</p>
+<p>For instance, to use the Gaussian sampling method, you would need to install the <a class="reference external" href="https://kheafield.com/code/kenlm/">KenLM</a> library, download the Kneser-Ney language model for your desired language, and then use the following code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+
+<span class="n">mc4gaussian</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span>
+    <span class="s2">&quot;bertin-project/mc4-sampling&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;es&quot;</span><span class="p">,</span>
+    <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span>
+    <span class="n">streaming</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">sampling_method</span><span class="o">=</span><span class="s2">&quot;gaussian&quot;</span><span class="p">,</span>
+    <span class="n">perplexity_model</span><span class="o">=</span><span class="s2">&quot;./es.arpa.bin&quot;</span><span class="p">,</span>
+    <span class="n">boundaries</span><span class="o">=</span><span class="p">[</span><span class="mf">536394.99320948</span><span class="p">,</span> <span class="mf">662247.50212365</span><span class="p">,</span> <span class="mf">919250.87225178</span><span class="p">],</span>
+    <span class="n">factor</span><span class="o">=</span><span class="mf">0.78</span><span class="p">,</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">9</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">mc4gaussian</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+    <span class="k">break</span>
+</pre></div>
+</div>
+<p>Remember to replace the language code, perplexity model path, and boundaries specific to your language.</p>
+<p>By utilizing the mC4 dataset and perplexity sampling techniques, you can effectively train language models on a reduced dataset size while maintaining the quality and representation of the data. This approach allows you to make the most of available resources without compromising the performance of your models.</p>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -991,6 +1036,11 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-mc4-dataset-with-hugging-face-datasets-library">Using mC4 Dataset with Hugging Face Datasets Library</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mc4-dataset-and-perplexity-sampling">mC4 Dataset and Perplexity Sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mc4-sampling">mC4 Sampling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perplexity-sampling">Perplexity Sampling</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
