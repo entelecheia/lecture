@@ -540,10 +540,10 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="zero-shot-and-prompt-engineering">
 <h1>Zero Shot and Prompt Engineering<a class="headerlink" href="#zero-shot-and-prompt-engineering" title="Permalink to this heading">#</a></h1>
-<a class="bg-primary mb-1 reference internal image-reference" href="lectures/nlp_deep/figs/aiart/entelecheia_Zero_Shot.png"><img alt="Zero Shot, Prompt, and Search Strategies" class="bg-primary mb-1 align-center" src="lectures/nlp_deep/figs/aiart/entelecheia_Zero_Shot.png" style="width: 50%;" /></a>
+<a class="bg-primary mb-1 reference internal image-reference" href="../../../_images/entelecheia_Zero_Shot.png"><img alt="Zero Shot, Prompt, and Search Strategies" class="bg-primary mb-1 align-center" src="../../../_images/entelecheia_Zero_Shot.png" style="width: 50%;" /></a>
 <section id="zero-shot-and-few-shot-learners">
 <h2>Zero Shot and Few Shot Learners<a class="headerlink" href="#zero-shot-and-few-shot-learners" title="Permalink to this heading">#</a></h2>
-<a class="bg-primary mb-1 reference internal image-reference" href="lectures/nlp_deep/figs/aiart/entelecheia_a_robot.png"><img alt="Zero Shot and Few Shot Learners" class="bg-primary mb-1 align-center" src="lectures/nlp_deep/figs/aiart/entelecheia_a_robot.png" style="width: 90%;" /></a>
+<a class="bg-primary mb-1 reference internal image-reference" href="../../../_images/entelecheia_a_robot.png"><img alt="Zero Shot and Few Shot Learners" class="bg-primary mb-1 align-center" src="../../../_images/entelecheia_a_robot.png" style="width: 90%;" /></a>
 <p>Zero-shot and few-shot learners are machine learning techniques that allow models to generalize and adapt to new tasks with little or no training data. These approaches are particularly useful in situations where obtaining labeled data is difficult or expensive. They are inspired by the human ability to learn new concepts and skills quickly, even from a few examples.</p>
 <p>Zero-shot learning (ZSL) refers to the ability of a model to perform a task without having seen any examples from that specific task during training. It relies on the model’s capacity to generalize from related tasks or to leverage auxiliary information such as relationships between classes, attributes, or semantic information. For example, a zero-shot image classification model might recognize a never-seen-before object by leveraging its understanding of similar objects or associated attributes.</p>
 <p>Few-shot learning (FSL), on the other hand, involves training a model to perform a task with only a small number of examples (typically less than 10) from the target task. This is in contrast to traditional machine learning methods that often require large amounts of labeled data. Few-shot learning aims to quickly adapt to new tasks by leveraging prior knowledge and transfer learning. Meta-learning and memory-augmented neural networks are common approaches to few-shot learning, focusing on learning a model that can adapt rapidly to new tasks based on limited data.</p>
@@ -750,10 +750,14 @@ Example 5: &quot;The cat was a cat.&quot; -&gt; &quot;The cat was a cat
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">TFGPT2LMHeadModel</span><span class="p">,</span> <span class="n">GPT2Tokenizer</span>
 
+
 <span class="k">def</span> <span class="nf">generate_chain_of_thought</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
     <span class="n">input_ids</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;tf&quot;</span><span class="p">)</span>
-    <span class="n">generated_text</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">input_ids</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="n">max_length</span><span class="p">,</span> <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">generated_text</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span>
+        <span class="n">input_ids</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="n">max_length</span><span class="p">,</span> <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">1</span>
+    <span class="p">)</span>
     <span class="k">return</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">generated_text</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
 
 <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">GPT2Tokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;gpt2&quot;</span><span class="p">)</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">TFGPT2LMHeadModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;gpt2&quot;</span><span class="p">,</span> <span class="n">pad_token_id</span><span class="o">=</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">eos_token_id</span><span class="p">)</span>
@@ -791,6 +795,7 @@ If your task is similar to the task the model of the checkpoint was trained on, 
 
 <span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;API_KEY&quot;</span>
 
+
 <span class="k">def</span> <span class="nf">generate_chain_of_thought</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">model_engine</span><span class="o">=</span><span class="s2">&quot;text-davinci-003&quot;</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
         <span class="n">engine</span><span class="o">=</span><span class="n">model_engine</span><span class="p">,</span>
@@ -802,6 +807,7 @@ If your task is similar to the task the model of the checkpoint was trained on, 
     <span class="p">)</span>
     <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
 
+
 <span class="c1"># Example problem</span>
 <span class="n">problem</span> <span class="o">=</span> <span class="s2">&quot;Jane has 7 books on her shelf. She borrowed 4 books from the library. How many books does she have now?&quot;</span>
 
@@ -810,7 +816,9 @@ If your task is similar to the task the model of the checkpoint was trained on, 
 
 <span class="c1"># Generate the answer</span>
 <span class="n">answer_text</span> <span class="o">=</span> <span class="n">generate_chain_of_thought</span><span class="p">(</span><span class="n">cot_prompt</span><span class="p">)</span>
-<span class="n">answer</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\d+&quot;</span><span class="p">,</span> <span class="n">answer_text</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\d+&quot;</span><span class="p">,</span> <span class="n">answer_text</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;unknown&quot;</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\d+&quot;</span><span class="p">,</span> <span class="n">answer_text</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\d+&quot;</span><span class="p">,</span> <span class="n">answer_text</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;unknown&quot;</span>
+<span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
 </pre></div>
 </div>
