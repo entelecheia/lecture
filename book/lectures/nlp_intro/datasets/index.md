@@ -119,3 +119,9 @@ When existing datasets don't meet your requirements, you can consider building y
 ## Conclusion
 
 Acquiring high-quality datasets for training LLMs is a critical aspect of developing effective NLP applications. By exploring public datasets, specialized domain data, multilingual resources, proprietary datasets, and even creating your own dataset through web crawling, you can ensure that your LLM is trained on the most relevant and high-quality data available. Prioritizing rich metadata, filtering options, and frequent updates will lead to improved performance and more accurate NLP applications.
+
+## Next
+
+```{tableofcontents}
+
+```
