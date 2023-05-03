@@ -1,6 +1,11 @@
 # Sentiment Analysis
 
-![](figs/entelecheia_smile.png)
+```{image} figs/entelecheia_smile.png
+:alt: Sentiment Analysis
+:class: bg-primary mb-1
+:width: 80%
+:align: center
+```
 
 ## Introduction
 
