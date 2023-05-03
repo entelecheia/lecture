@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Sentiment Analysis &#8212; ἐντελέχεια.άι</title>
+    <title>Lab: Lexicon-Based Sentiment Analysis &#8212; ἐντελέχεια.άι</title>
   
   
   
@@ -88,13 +88,13 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_intro/sentiments/index';</script>
-    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_intro/sentiments/index.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_intro/sentiments/lab-lexicon';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_intro/sentiments/lab-lexicon.html" />
     <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Lexicon-Based Methods" href="lexicon.html" />
-    <link rel="prev" title="Lab: Tomotopy" href="../topic/tomotopy.html" />
+    <link rel="next" title="Tokenization" href="../tokenization/index.html" />
+    <link rel="prev" title="Machine Learning-Based Methods" href="ml.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -206,10 +206,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="../topic/tomotopy.html">Lab: Tomotopy</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">Sentiment Analysis</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Sentiment Analysis</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="lexicon.html">Lexicon-Based Methods</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ml.html">Machine Learning-Based Methods</a></li>
-<li class="toctree-l3"><a class="reference internal" href="lab-lexicon.html">Lab: Lexicon-Based Sentiment Analysis</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Lab: Lexicon-Based Sentiment Analysis</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -374,6 +374,55 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/nlp_intro/sentiments/lab-lexicon.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -382,7 +431,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../../_sources/lectures/nlp_intro/sentiments/index.md" target="_blank"
+      <li><a href="../../../_sources/lectures/nlp_intro/sentiments/lab-lexicon.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -392,7 +441,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -464,7 +513,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Sentiment Analysis</h1>
+    <h1>Lab: Lexicon-Based Sentiment Analysis</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -474,14 +523,20 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-sentiment-analysis">Types of Sentiment Analysis</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#techniques-for-sentiment-analysis">Techniques for Sentiment Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#textblob">TextBlob</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-sentiment-analysis-using-textblob">Performing sentiment analysis using TextBlob</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenges-in-sentiment-analysis">Challenges in Sentiment Analysis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications-of-sentiment-analysis">Applications of Sentiment Analysis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next">Next</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#afinn">AFINN</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-sentiment-analysis-using-afinn">Performing sentiment analysis using AFINN</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vader">VADER</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-sentiment-analysis-using-vader">Performing sentiment analysis using VADER</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 </ul>
             </nav>
         </div>
@@ -493,64 +548,294 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="sentiment-analysis">
-<h1>Sentiment Analysis<a class="headerlink" href="#sentiment-analysis" title="Permalink to this heading">#</a></h1>
-<a class="bg-primary mb-1 reference internal image-reference" href="../../../_images/entelecheia_smile.png"><img alt="Sentiment Analysis" class="bg-primary mb-1 align-center" src="../../../_images/entelecheia_smile.png" style="width: 80%;" /></a>
-<section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
-<p>Sentiment analysis, also known as opinion mining or emotion AI, is the process of determining the sentiment or emotional tone behind a piece of text, whether it be a sentence, a paragraph, or a whole document. This technique is widely used in natural language processing (NLP) and machine learning to analyze and categorize opinions expressed in text, ultimately helping organizations understand the sentiment of their customers, users, or audience.</p>
-<p>Sentiment analysis can be applied to various sources of textual data such as social media, product reviews, customer feedback, news articles, and more. It allows businesses and organizations to gain insights into public opinions, market trends, customer satisfaction, and potential areas for improvement.</p>
-</section>
-<section id="types-of-sentiment-analysis">
-<h2>Types of Sentiment Analysis<a class="headerlink" href="#types-of-sentiment-analysis" title="Permalink to this heading">#</a></h2>
-<p>There are several approaches to sentiment analysis, each with its own set of challenges and advantages:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-lexicon-based-sentiment-analysis">
+<h1>Lab: Lexicon-Based Sentiment Analysis<a class="headerlink" href="#lab-lexicon-based-sentiment-analysis" title="Permalink to this heading">#</a></h1>
+<p>In this lab session, we will explore various lexicon-based methods for sentiment analysis. Lexicon-based methods rely on a predefined list of words with associated sentiment scores to determine the overall sentiment of a text. We will use the following lexicon-based methods:</p>
 <ol class="arabic simple">
-<li><p><strong>Polarity-based sentiment analysis</strong>: This is the most basic form of sentiment analysis, where the goal is to classify the sentiment of a given text as positive, negative, or neutral. This approach usually involves assigning a sentiment score to words or phrases, and then aggregating these scores to produce an overall sentiment for the text.</p></li>
-<li><p><strong>Emotion-based sentiment analysis</strong>: Instead of focusing solely on polarity, this approach attempts to identify specific emotions expressed in the text, such as happiness, sadness, anger, fear, etc. This type of sentiment analysis often relies on predefined emotion lexicons or machine learning models trained on labeled data.</p></li>
-<li><p><strong>Aspect-based sentiment analysis</strong>: In this approach, the focus is on identifying different aspects or attributes of a subject mentioned in the text and determining the sentiment associated with each aspect. For example, in a product review, aspect-based sentiment analysis might identify opinions about the product’s price, quality, and usability, and then classify the sentiment for each aspect.</p></li>
+<li><p>TextBlob</p></li>
+<li><p>AFINN</p></li>
+<li><p>VADER</p></li>
 </ol>
-<section id="techniques-for-sentiment-analysis">
-<h3>Techniques for Sentiment Analysis<a class="headerlink" href="#techniques-for-sentiment-analysis" title="Permalink to this heading">#</a></h3>
-<p>Sentiment analysis can be performed using various techniques, including rule-based methods, machine learning, and deep learning.</p>
-<ol class="arabic simple">
-<li><p><strong>Rule-based methods</strong>: These approaches rely on sets of predefined rules, heuristics, and sentiment lexicons (lists of words or phrases with associated sentiment scores) to determine the sentiment of a text. Rule-based methods can be straightforward to implement, but they might lack the ability to capture complex language patterns or adapt to new contexts and domains.</p></li>
-<li><p><strong>Machine learning</strong>: Machine learning techniques, such as logistic regression, support vector machines, or Naive Bayes classifiers, can be used to build sentiment analysis models. These methods require a labeled dataset for training, where each text sample is associated with a sentiment label. Machine learning models can capture more complex patterns in the text but might require a substantial amount of labeled data for training.</p></li>
-<li><p><strong>Deep learning</strong>: Deep learning techniques, such as recurrent neural networks (RNNs), long short-term memory (LSTM) networks, and transformers, have become increasingly popular for sentiment analysis tasks. These methods can automatically learn features and representations from the text, often achieving state-of-the-art performance on sentiment analysis benchmarks. However, deep learning models can be computationally expensive to train and require large amounts of labeled data.</p></li>
-</ol>
-</section>
-</section>
-<section id="challenges-in-sentiment-analysis">
-<h2>Challenges in Sentiment Analysis<a class="headerlink" href="#challenges-in-sentiment-analysis" title="Permalink to this heading">#</a></h2>
-<p>Sentiment analysis faces several challenges due to the inherent complexity of human language:</p>
-<ul class="simple">
-<li><p><strong>Sarcasm and irony</strong>: Detecting sarcasm and irony can be difficult, as they often involve expressing a sentiment that is opposite to the literal meaning of the words used. This can lead to incorrect sentiment classification.</p></li>
-<li><p><strong>Negations and double negatives</strong>: Negations can reverse the sentiment of a phrase, while double negatives can make the sentiment ambiguous. Handling negations accurately is crucial for sentiment analysis.</p></li>
-<li><p><strong>Domain-specific language</strong>: Sentiments can be expressed differently in various domains, and a sentiment analysis model trained on one domain might not perform well on another domain. For example, a model trained on movie reviews might struggle with accurately analyzing sentiments in financial news articles.</p></li>
-<li><p><strong>Context and world knowledge</strong>: Sentiment analysis might require understanding the broader context or background knowledge to accurately interpret the sentiment of a text. For instance, cultural references, historical events, or domain-specific knowledge might be necessary to fully grasp the sentiment of a statement.</p></li>
-<li><p><strong>Ambiguity and multiple sentiments</strong>: A single piece of text might contain multiple sentiments, target different aspects or entities, or have ambiguous meanings. Identifying and disentangling these sentiments can be challenging.</p></li>
-</ul>
-</section>
-<section id="applications-of-sentiment-analysis">
-<h2>Applications of Sentiment Analysis<a class="headerlink" href="#applications-of-sentiment-analysis" title="Permalink to this heading">#</a></h2>
-<p>Sentiment analysis has numerous real-world applications across various industries:</p>
-<ul class="simple">
-<li><p><strong>Social media monitoring</strong>: Companies can use sentiment analysis to monitor social media platforms, such as Twitter, Facebook, and Instagram, to track public opinion about their products, services, or brand.</p></li>
-<li><p><strong>Customer feedback analysis</strong>: Sentiment analysis can be used to automatically analyze customer feedback, such as reviews or support tickets, to identify areas for improvement and enhance customer satisfaction.</p></li>
-<li><p><strong>Market research and analysis</strong>: Businesses can apply sentiment analysis to news articles, blog posts, or online forums to identify market trends, potential opportunities, or threats.</p></li>
-<li><p><strong>Political analysis</strong>: Sentiment analysis can help analyze public opinion regarding political candidates, parties, or policies, providing insights into voter sentiment and preferences.</p></li>
-<li><p><strong>Voice of the employee</strong>: Companies can use sentiment analysis to analyze employee feedback, such as survey responses or open-ended comments, to understand employee sentiment and identify potential issues or areas for improvement.</p></li>
-</ul>
-<p>In conclusion, sentiment analysis is an essential technique in NLP, helping organizations understand the emotions and opinions behind textual data. By overcoming the challenges associated with human language, sentiment analysis can provide valuable insights for businesses and researchers across various domains.</p>
-</section>
-<section id="next">
-<h2>Next<a class="headerlink" href="#next" title="Permalink to this heading">#</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="lexicon.html">Lexicon-Based Methods</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml.html">Machine Learning-Based Methods</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lab-lexicon.html">Lab: Lexicon-Based Sentiment Analysis</a></li>
-</ul>
+<p>We will perform sentiment analysis on the <code class="docutils literal notranslate"><span class="pre">movie_reviews</span></code> dataset from the NLTK package.</p>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this heading">#</a></h2>
+<p>First, let’s import the required packages and load the dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">movie_reviews</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">accuracy_score</span><span class="p">,</span>
+    <span class="n">precision_score</span><span class="p">,</span>
+    <span class="n">recall_score</span><span class="p">,</span>
+    <span class="n">f1_score</span><span class="p">,</span>
+    <span class="n">classification_report</span><span class="p">,</span>
+    <span class="n">confusion_matrix</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">&quot;movie_reviews&quot;</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">&quot;vader_lexicon&quot;</span><span class="p">)</span>
+</pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package movie_reviews to
+[nltk_data]     /home/yjlee/nltk_data...
+[nltk_data]   Unzipping corpora/movie_reviews.zip.
+[nltk_data] Downloading package vader_lexicon to
+[nltk_data]     /home/yjlee/nltk_data...
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we’ll extract the reviews and their categories (positive or negative).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fileids</span> <span class="o">=</span> <span class="n">movie_reviews</span><span class="o">.</span><span class="n">fileids</span><span class="p">()</span>
+<span class="n">reviews</span> <span class="o">=</span> <span class="p">[</span><span class="n">movie_reviews</span><span class="o">.</span><span class="n">raw</span><span class="p">(</span><span class="n">fileid</span><span class="p">)</span> <span class="k">for</span> <span class="n">fileid</span> <span class="ow">in</span> <span class="n">fileids</span><span class="p">]</span>
+<span class="n">categories</span> <span class="o">=</span> <span class="p">[</span><span class="n">movie_reviews</span><span class="o">.</span><span class="n">categories</span><span class="p">(</span><span class="n">fileid</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">fileid</span> <span class="ow">in</span> <span class="n">fileids</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we’ll define a function to evaluate the classification performance of each lexicon-based method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evaluate_classification_performance</span><span class="p">(</span><span class="n">true_labels</span><span class="p">,</span> <span class="n">predicted_labels</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy: &quot;</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">true_labels</span><span class="p">,</span> <span class="n">predicted_labels</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="s2">&quot;Precision: &quot;</span><span class="p">,</span>
+        <span class="n">precision_score</span><span class="p">(</span><span class="n">true_labels</span><span class="p">,</span> <span class="n">predicted_labels</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&quot;weighted&quot;</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Recall: &quot;</span><span class="p">,</span> <span class="n">recall_score</span><span class="p">(</span><span class="n">true_labels</span><span class="p">,</span> <span class="n">predicted_labels</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&quot;weighted&quot;</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;F1 Score: &quot;</span><span class="p">,</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">true_labels</span><span class="p">,</span> <span class="n">predicted_labels</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&quot;weighted&quot;</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model Report: </span><span class="se">\n</span><span class="s2">___________________________________________________&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">true_labels</span><span class="p">,</span> <span class="n">predicted_labels</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="textblob">
+<h2>TextBlob<a class="headerlink" href="#textblob" title="Permalink to this heading">#</a></h2>
+<p>TextBlob is a simple Python library for processing textual data. It provides a simple API for diving into common natural language processing (NLP) tasks such as part-of-speech tagging, noun phrase extraction, sentiment analysis, classification, translation, and more.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://textblob.readthedocs.io/en/dev/quickstart.html">https://textblob.readthedocs.io/en/dev/quickstart.html</a></p></li>
+</ul>
+<section id="performing-sentiment-analysis-using-textblob">
+<h3>Performing sentiment analysis using TextBlob<a class="headerlink" href="#performing-sentiment-analysis-using-textblob" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install textblob
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://pypi.ngc.nvidia.com
+Collecting textblob
+  Downloading textblob-0.17.1-py2.py3-none-any.whl (636 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">636.8/636.8 kB</span> <span class=" -Color -Color-Red">17.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>a <span class=" -Color -Color-Cyan">0:00:01</span>
+?25hRequirement already satisfied: nltk&gt;=3.1 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from textblob) (3.8.1)
+Requirement already satisfied: joblib in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from nltk&gt;=3.1-&gt;textblob) (1.2.0)
+Requirement already satisfied: regex&gt;=2021.8.3 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from nltk&gt;=3.1-&gt;textblob) (2023.3.23)
+Requirement already satisfied: click in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from nltk&gt;=3.1-&gt;textblob) (8.1.3)
+Requirement already satisfied: tqdm in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from nltk&gt;=3.1-&gt;textblob) (4.65.0)
+Installing collected packages: textblob
+Successfully installed textblob-0.17.1
+
+<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip is available: <span class=" -Color -Color-Red">23.0</span> -&gt; <span class=" -Color -Color-Green">23.1.2</span>
+<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> To update, run: <span class=" -Color -Color-Green">pip install --upgrade pip</span>
+Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">textblob</span> <span class="kn">import</span> <span class="n">TextBlob</span>
+
+
+<span class="k">def</span> <span class="nf">sentiment_TextBlob</span><span class="p">(</span><span class="n">docs</span><span class="p">):</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">docs</span><span class="p">:</span>
+        <span class="n">testimonial</span> <span class="o">=</span> <span class="n">TextBlob</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">testimonial</span><span class="o">.</span><span class="n">sentiment</span><span class="o">.</span><span class="n">polarity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;pos&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;neg&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">results</span>
+
+
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">sentiment_TextBlob</span><span class="p">(</span><span class="n">reviews</span><span class="p">)</span>
+<span class="n">evaluate_classification_performance</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy:  0.6
+Precision:  0.7225010902553423
+Recall:  0.6
+F1 Score:  0.5361560556566348
+Model Report: 
+___________________________________________________
+              precision    recall  f1-score   support
+
+         neg       0.89      0.23      0.36      1000
+         pos       0.56      0.97      0.71      1000
+
+    accuracy                           0.60      2000
+   macro avg       0.72      0.60      0.54      2000
+weighted avg       0.72      0.60      0.54      2000
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="afinn">
+<h2>AFINN<a class="headerlink" href="#afinn" title="Permalink to this heading">#</a></h2>
+<p>AFINN is a list of English words rated for valence with an integer between minus five (negative) and plus five (positive). The words have been manually labeled by Finn Årup Nielsen in 2009-2011. The file is tab-separated. There are two versions:</p>
+<ul class="simple">
+<li><p>AFINN-111: Newest version with 2477 words and phrases.</p></li>
+<li><p>AFINN-96: 1468 unique words and phrases on 1480 lines. Note that there are 1480 lines, as some words are listed twice. The word list in AFINN-96 is the same as AFINN-111, but with 1009 fewer words and phrases.</p></li>
+</ul>
+<ul class="simple">
+<li><p><a class="github reference external" href="https://github.com/fnielsen/afinn">fnielsen/afinn</a></p></li>
+<li><p><a class="reference external" href="http://corpustext.com/reference/sentiment_afinn.html">http://corpustext.com/reference/sentiment_afinn.html</a></p></li>
+</ul>
+<section id="performing-sentiment-analysis-using-afinn">
+<h3>Performing sentiment analysis using AFINN<a class="headerlink" href="#performing-sentiment-analysis-using-afinn" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install afinn
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://pypi.ngc.nvidia.com
+Collecting afinn
+  Downloading afinn-0.1.tar.gz (52 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">52.6/52.6 kB</span> <span class=" -Color -Color-Red">4.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h  Preparing metadata (setup.py) ... ?25ldone
+?25hBuilding wheels for collected packages: afinn
+  Building wheel for afinn (setup.py) ... ?25ldone
+?25h  Created wheel for afinn: filename=afinn-0.1-py3-none-any.whl size=53430 sha256=3a6e16220649c10b4cd5b3ca2aa3ac50b9e5b24f322be56bbed0737c3feefaaa
+  Stored in directory: /tmp/pip-ephem-wheel-cache-b1osgjx9/wheels/f6/6f/c3/b305c5107a17618f2938a067d5ffcbb556909d82398762089e
+Successfully built afinn
+Installing collected packages: afinn
+Successfully installed afinn-0.1
+
+<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip is available: <span class=" -Color -Color-Red">23.0</span> -&gt; <span class=" -Color -Color-Green">23.1.2</span>
+<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> To update, run: <span class=" -Color -Color-Green">pip install --upgrade pip</span>
+Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">afinn</span> <span class="kn">import</span> <span class="n">Afinn</span>
+
+
+<span class="k">def</span> <span class="nf">sentiment_Afinn</span><span class="p">(</span><span class="n">docs</span><span class="p">):</span>
+    <span class="n">afn</span> <span class="o">=</span> <span class="n">Afinn</span><span class="p">(</span><span class="n">emoticons</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">docs</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">afn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;pos&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;neg&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">results</span>
+
+
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">sentiment_Afinn</span><span class="p">(</span><span class="n">reviews</span><span class="p">)</span>
+<span class="n">evaluate_classification_performance</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy:  0.664
+Precision:  0.6783880680137142
+Recall:  0.664
+F1 Score:  0.6570854714462421
+Model Report: 
+___________________________________________________
+              precision    recall  f1-score   support
+
+         neg       0.73      0.52      0.61      1000
+         pos       0.63      0.81      0.71      1000
+
+    accuracy                           0.66      2000
+   macro avg       0.68      0.66      0.66      2000
+weighted avg       0.68      0.66      0.66      2000
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="vader">
+<h2>VADER<a class="headerlink" href="#vader" title="Permalink to this heading">#</a></h2>
+<p>VADER (Valence Aware Dictionary and sEntiment Reasoner) is a lexicon## Lexicon-based Methods in Practice and rule-based sentiment analysis tool that is specifically attuned to sentiments expressed in social media. VADER uses a combination of a sentiment lexicon, a set of linguistic rules, and grammatical heuristics to predict the sentiment of a given text.</p>
+<ul class="simple">
+<li><p><a class="github reference external" href="https://github.com/cjhutto/vaderSentiment">cjhutto/vaderSentiment</a></p></li>
+</ul>
+<section id="performing-sentiment-analysis-using-vader">
+<h3>Performing sentiment analysis using VADER<a class="headerlink" href="#performing-sentiment-analysis-using-vader" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nltk.sentiment.vader</span> <span class="kn">import</span> <span class="n">SentimentIntensityAnalyzer</span>
+
+
+<span class="k">def</span> <span class="nf">sentiment_vader</span><span class="p">(</span><span class="n">docs</span><span class="p">):</span>
+    <span class="n">analyser</span> <span class="o">=</span> <span class="n">SentimentIntensityAnalyzer</span><span class="p">()</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">docs</span><span class="p">:</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="n">analyser</span><span class="o">.</span><span class="n">polarity_scores</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">score</span><span class="p">[</span><span class="s2">&quot;compound&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;pos&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;neg&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">results</span>
+
+
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">sentiment_vader</span><span class="p">(</span><span class="n">reviews</span><span class="p">)</span>
+<span class="n">evaluate_classification_performance</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy:  0.635
+Precision:  0.6580655585685583
+Recall:  0.635
+F1 Score:  0.6211802777111816
+Model Report: 
+___________________________________________________
+              precision    recall  f1-score   support
+
+         neg       0.72      0.44      0.55      1000
+         pos       0.60      0.83      0.69      1000
+
+    accuracy                           0.64      2000
+   macro avg       0.66      0.64      0.62      2000
+weighted avg       0.66      0.64      0.62      2000
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
+<p>In this lab session, we explored various lexicon-based sentiment analysis methods, including TextBlob, AFINN, and VADER. We applied these methods to the <code class="docutils literal notranslate"><span class="pre">movie_reviews</span></code> dataset and evaluated their classification performance using accuracy, precision, recall, and F1 score metrics.</p>
+<p>It is important to note that lexicon-based methods have limitations, such as sensitivity to the context in which words are used and the inability to capture complex semantic relationships between words. However, they can still provide valuable insights for sentiment analysis tasks, especially when combined with other approaches like machine learning-based techniques.</p>
 </section>
 </section>
 
@@ -586,20 +871,20 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../topic/tomotopy.html"
+       href="ml.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Lab: Tomotopy</p>
+        <p class="prev-next-title">Machine Learning-Based Methods</p>
       </div>
     </a>
     <a class="right-next"
-       href="lexicon.html"
+       href="../tokenization/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lexicon-Based Methods</p>
+        <p class="prev-next-title">Tokenization</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -621,14 +906,20 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-sentiment-analysis">Types of Sentiment Analysis</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#techniques-for-sentiment-analysis">Techniques for Sentiment Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#textblob">TextBlob</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-sentiment-analysis-using-textblob">Performing sentiment analysis using TextBlob</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenges-in-sentiment-analysis">Challenges in Sentiment Analysis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications-of-sentiment-analysis">Applications of Sentiment Analysis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next">Next</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#afinn">AFINN</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-sentiment-analysis-using-afinn">Performing sentiment analysis using AFINN</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vader">VADER</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-sentiment-analysis-using-vader">Performing sentiment analysis using VADER</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 </ul>
   </nav></div>
 
