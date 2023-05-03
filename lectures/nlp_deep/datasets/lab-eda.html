@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Training Language Models &#8212; ἐντελέχεια.άι</title>
+    <title>Lab: Exploratory Data Analysis (EDA) &#8212; ἐντελέχεια.άι</title>
   
   
   
@@ -88,13 +88,13 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_deep/training/index';</script>
-    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_deep/training/index.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_deep/datasets/lab-eda';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_deep/datasets/lab-eda.html" />
     <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Lab: Pretraining Language Models" href="lab-pretraining.html" />
-    <link rel="prev" title="Lab: Training Tokenizers" href="../tokenization/lab-train-tokenizers.html" />
+    <link rel="next" title="Tokenization" href="../tokenization/index.html" />
+    <link rel="prev" title="mC4 Dataset" href="mc4.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -228,9 +228,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="../transformers/byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../datasets/mc4.html">mC4 Dataset</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../datasets/lab-eda.html">Lab: Exploratory Data Analysis (EDA)</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Datasets</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="mc4.html">mC4 Dataset</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Lab: Exploratory Data Analysis (EDA)</a></li>
 
 </ul>
 </li>
@@ -239,8 +239,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="../tokenization/lab-train-tokenizers.html">Lab: Training Tokenizers</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">Training Language Models</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="lab-pretraining.html">Lab: Pretraining Language Models</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../training/index.html">Training Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../training/lab-pretraining.html">Lab: Pretraining Language Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../chatbots/index.html">Conversational AI and Chatbots</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -370,6 +370,55 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/nlp_deep/datasets/lab-eda.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -378,7 +427,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../../_sources/lectures/nlp_deep/training/index.md" target="_blank"
+      <li><a href="../../../_sources/lectures/nlp_deep/datasets/lab-eda.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -388,7 +437,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -460,7 +509,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Training Language Models</h1>
+    <h1>Lab: Exploratory Data Analysis (EDA)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -470,13 +519,23 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pretraining">Pretraining</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finetuning">Finetuning</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benefits-of-pretraining-and-finetuning">Benefits of Pretraining and Finetuning</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenges-and-limitations">Challenges and Limitations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contents">Contents</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Lab: Exploratory Data Analysis (EDA)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-environment">Setting up the environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-mc4-dataset">Load the mC4 dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyzing-the-dataset">Analyzing the dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-instances">Data Instances</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-statistics">Basic statistics</a></li>
 </ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#text-length-distribution">Text length distribution</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#timestamp-distribution">Timestamp distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -487,63 +546,174 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="training-language-models">
-<h1>Training Language Models<a class="headerlink" href="#training-language-models" title="Permalink to this heading">#</a></h1>
-<section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
-<p>Pretraining and finetuning are powerful techniques for training language models that have led to significant advancements in NLP. By leveraging transfer learning and adapting pretrained models to specific tasks, researchers and practitioners can develop high-performing NLP applications with relatively small amounts of labeled data. However, it is essential to be aware of the challenges and limitations of these techniques and consider their ethical implications when developing and deploying language models.</p>
-<p>The process of training a language model can be divided into two main stages: pretraining and finetuning.</p>
-</section>
-<section id="pretraining">
-<h2>Pretraining<a class="headerlink" href="#pretraining" title="Permalink to this heading">#</a></h2>
-<p>Pretraining is the first stage in training a language model, where the model is trained on a large, diverse text corpus to learn general language understanding. This process allows the model to capture syntactic, semantic, and other linguistic properties of the text. Pretraining is often performed on datasets such as mC4, BookCorpus, or Wikipedia. The primary objective of pretraining is to learn meaningful word embeddings and contextual representations.</p>
-<p>There are two common pretraining methods:</p>
-<ol class="arabic simple">
-<li><p><strong>Autoregressive Language Modeling (LM):</strong> In this approach, the model is trained to predict the next word in a sentence, given the context of previous words. This is commonly known as “masked language modeling” or “causal language modeling.” Examples of autoregressive language models include GPT, GPT-2, and GPT-3.</p></li>
-<li><p><strong>Masked Language Modeling (MLM):</strong> In this approach, the model is trained to predict masked words in a sentence. A percentage of words in the input text are randomly masked, and the model learns to predict those masked words based on the surrounding context. Examples of masked language models include BERT, RoBERTa, and ALBERT.</p></li>
-</ol>
-</section>
-<section id="finetuning">
-<h2>Finetuning<a class="headerlink" href="#finetuning" title="Permalink to this heading">#</a></h2>
-<p>After pretraining, the language model is fine-tuned on a specific task or domain using task-specific data. This process helps the model specialize its understanding and adapt to the nuances of the target domain. Finetuning requires smaller amounts of data compared to pretraining and can be done relatively quickly. The model’s pretrained weights are used as the starting point for finetuning, leveraging the transfer learning concept.</p>
-<p>To finetune a language model, follow these steps:</p>
-<ol class="arabic simple">
-<li><p><strong>Choose a downstream task:</strong> Select the specific NLP task for which you want to adapt the language model, such as sentiment analysis, text classification, or question-answering.</p></li>
-<li><p><strong>Prepare task-specific data:</strong> Collect and preprocess labeled data for the chosen task. This data should be representative of the target domain and task.</p></li>
-<li><p><strong>Modify the model architecture:</strong> If necessary, adjust the pretrained model architecture to suit the specific task. For example, adding a classification head to a BERT model for a text classification task.</p></li>
-<li><p><strong>Train the model on task-specific data:</strong> Finetune the model using the task-specific data, updating the pretrained weights with gradient-based optimization techniques such as Adam, RMSprop, or SGD.</p></li>
-<li><p><strong>Evaluate the model:</strong> Evaluate the model on a held-out test set to measure its performance on the specific task. Use appropriate evaluation metrics such as accuracy, F1 score, or BLEU score, depending on the task.</p></li>
-</ol>
-</section>
-<section id="benefits-of-pretraining-and-finetuning">
-<h2>Benefits of Pretraining and Finetuning<a class="headerlink" href="#benefits-of-pretraining-and-finetuning" title="Permalink to this heading">#</a></h2>
-<p>The combination of pretraining and finetuning offers several advantages:</p>
-<ol class="arabic simple">
-<li><p><strong>Transfer learning:</strong> Pretrained models can be finetuned on a wide range of tasks with relatively small amounts of task-specific data, leveraging the knowledge gained during pretraining.</p></li>
-<li><p><strong>Lower computational cost:</strong> Finetuning requires less computational power and time compared to training a model from scratch, as the model’s initial weights are already pretrained.</p></li>
-<li><p><strong>Improved performance:</strong> Finetuning a pretrained model often results in better performance on downstream tasks compared to training a model from scratch, as the pretrained model has already learned general language understanding.</p></li>
-<li><p><strong>Few-shot learning:</strong> Pretrained language models, particularly large-scale models like GPT-3, have shown the ability to perform few-shot learning. This means they can generalize to new tasks with just a few examples of the target task, further reducing the need for large amounts of labeled data.</p></li>
-<li><p><strong>Cross-lingual transfer:</strong> Multilingual language models pretrained on data from multiple languages can be fine-tuned on tasks in different languages, enabling cross-lingual transfer learning. This allows for the development of NLP applications in low-resource languages without the need for extensive labeled data.</p></li>
-<li><p><strong>Domain adaptation:</strong> Pretrained language models can be fine-tuned on domain-specific data, allowing them to adapt to the nuances and jargon of a particular domain, such as legal, medical, or financial text.</p></li>
-</ol>
-</section>
-<section id="challenges-and-limitations">
-<h2>Challenges and Limitations<a class="headerlink" href="#challenges-and-limitations" title="Permalink to this heading">#</a></h2>
-<p>Despite the advantages of pretraining and finetuning, there are some challenges and limitations to consider:</p>
-<ol class="arabic simple">
-<li><p><strong>Computational resources:</strong> Pretraining large-scale language models requires significant computational resources, making it difficult for researchers and organizations with limited resources to develop state-of-the-art models.</p></li>
-<li><p><strong>Data quality:</strong> The quality of the pretraining data and task-specific data can have a significant impact on the model’s performance. Biases, noise, and other issues in the data can propagate through the model and affect its performance on downstream tasks.</p></li>
-<li><p><strong>Model interpretability:</strong> Pretrained and fine-tuned models can be challenging to interpret and understand, making it difficult to explain their predictions or diagnose errors.</p></li>
-<li><p><strong>Ethical considerations:</strong> The use of large-scale language models raises ethical concerns related to data privacy, fairness, and the potential amplification of biases present in the training data.</p></li>
-</ol>
-</section>
-<section id="contents">
-<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this heading">#</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="lab-pretraining.html">Lab: Pretraining Language Models</a></li>
-</ul>
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-exploratory-data-analysis-eda">
+<h1>Lab: Exploratory Data Analysis (EDA)<a class="headerlink" href="#lab-exploratory-data-analysis-eda" title="Permalink to this heading">#</a></h1>
+<p><img alt="" src="../../../_images/eda.png" /></p>
+<p>In this lab session, we will explore the mC4 dataset and perform an Exploratory Data Analysis (EDA) to better understand the data’s properties, distribution, and potential applications. We’ll be using Python, and the Hugging Face <code class="docutils literal notranslate"><span class="pre">datasets</span></code> library.</p>
+<section id="setting-up-the-environment">
+<h2>Setting up the environment<a class="headerlink" href="#setting-up-the-environment" title="Permalink to this heading">#</a></h2>
+<p>First, make sure to install the required packages:</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install datasets matplotlib seaborn pandas
+</pre></div>
 </div>
+</div>
+</div>
+</section>
+<section id="load-the-mc4-dataset">
+<h2>Load the mC4 dataset<a class="headerlink" href="#load-the-mc4-dataset" title="Permalink to this heading">#</a></h2>
+<p>To start, let’s load the mC4 dataset for a specific language, say Korean:</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+
+<span class="n">ko_mc4</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;mc4&quot;</span><span class="p">,</span> <span class="s2">&quot;ko&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found cached dataset mc4 (/home/yjlee/.cache/huggingface/datasets/mc4/ko/0.0.0/99acea4a740b4cc36e4a93a238c7de11b0ce341d65b7d37168b3b90fd64721d2)
+
+ 50%|█████     | 1/2 [6:54:23&lt;6:54:23, 24863.55s/it]
+
+100%|██████████| 2/2 [00:00&lt;00:00,  5.57it/s]
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="analyzing-the-dataset">
+<h2>Analyzing the dataset<a class="headerlink" href="#analyzing-the-dataset" title="Permalink to this heading">#</a></h2>
+<p>Now that we have loaded the dataset, let’s analyze its structure and content:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ko_mc4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DatasetDict({
+    train: Dataset({
+        features: [&#39;text&#39;, &#39;timestamp&#39;, &#39;url&#39;],
+        num_rows: 15602947
+    })
+    validation: Dataset({
+        features: [&#39;text&#39;, &#39;timestamp&#39;, &#39;url&#39;],
+        num_rows: 15771
+    })
+})
+</pre></div>
+</div>
+</div>
+</div>
+<p>This will provide you with information about the dataset splits (train, validation, and test).</p>
+<section id="data-instances">
+<h3>Data Instances<a class="headerlink" href="#data-instances" title="Permalink to this heading">#</a></h3>
+<p>Let’s examine some instances of the dataset:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample</span> <span class="o">=</span> <span class="n">ko_mc4</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">][</span><span class="mi">100</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;text&#39;: &#39;포르쉐코리아, 순수 전기 스포츠카 ‘포르쉐 타이칸(Porsche Taycan)’ 국내 최초 공개 : 다나와 DPG는 내맘을 디피지\n2019.11.08 15:49:13\nhttp://dpg.danawa.com/news/view?boardSeq=60&amp;listSeq=4061099&amp;companySeq=33 복사\n1 내가 먹고 싶어서 쓴 투썸플레이스 ...&#39;, &#39;timestamp&#39;: &#39;2019-11-17T09:25:51Z&#39;, &#39;url&#39;: &#39;http://dpg.danawa.com/news/view?boardSeq=60&amp;listSeq=4061099&amp;companySeq=33&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Observe the structure of the data instance, which contains the <code class="docutils literal notranslate"><span class="pre">url</span></code>, <code class="docutils literal notranslate"><span class="pre">text</span></code>, and <code class="docutils literal notranslate"><span class="pre">timestamp</span></code>.</p>
+</section>
+<section id="basic-statistics">
+<h3>Basic statistics<a class="headerlink" href="#basic-statistics" title="Permalink to this heading">#</a></h3>
+<p>Now let’s compute some basic statistics, such as the number of instances in each split:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of instances:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">split</span> <span class="ow">in</span> <span class="n">ko_mc4</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">split</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ko_mc4</span><span class="p">[</span><span class="n">split</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of instances:
+train: 15602947
+validation: 15771
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="text-length-distribution">
+<h1>Text length distribution<a class="headerlink" href="#text-length-distribution" title="Permalink to this heading">#</a></h1>
+<p>To understand the text length distribution, we’ll create a histogram using <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and <code class="docutils literal notranslate"><span class="pre">seaborn</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Load a sample of the dataset</span>
+<span class="n">sample_size</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">sample_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">ko_mc4</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;text&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sample_size</span><span class="p">)]</span>
+
+<span class="c1"># Calculate the length of each text instance</span>
+<span class="n">text_lengths</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">sample_data</span><span class="p">]</span>
+
+<span class="c1"># Create a histogram</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">text_lengths</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Text Length Distribution&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Text Length&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequency&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/a72d12e822e8b4033e5464e7f219f14d35ef7fb074511eaaaed701736b546e94.png" src="../../../_images/a72d12e822e8b4033e5464e7f219f14d35ef7fb074511eaaaed701736b546e94.png" />
+</div>
+</div>
+<p>This plot will show the distribution of text lengths in the dataset, which can be useful for understanding the variety of content lengths and setting appropriate sequence lengths for language models.</p>
+<section id="timestamp-distribution">
+<h2>Timestamp distribution<a class="headerlink" href="#timestamp-distribution" title="Permalink to this heading">#</a></h2>
+<p>To analyze the timestamp distribution, we’ll create a time series plot:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load a sample of the dataset</span>
+<span class="n">timestamps</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">ko_mc4</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;timestamp&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sample_size</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="c1"># Create a time series plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">timestamps</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Timestamp Distribution&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Timestamp&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequency&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/c4cd8c03f9dfabdf5c03b34613643f7ac290bd08fd0ec58d076ddecfa595b80c.png" src="../../../_images/c4cd8c03f9dfabdf5c03b34613643f7ac290bd08fd0ec58d076ddecfa595b80c.png" />
+</div>
+</div>
+<p>This plot provides insights into the distribution of timestamps in the dataset, which can be useful for understanding the temporal coverage of the data.</p>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+<p>In this lab session, we’ve performed an Exploratory Data Analysis (EDA) on the mC4 dataset to better understand its properties, distribution, and potential applications. By analyzing the dataset’s structure, content, text length distribution, and timestamp distribution, we can make informed decisions about how to preprocess and use the data for various natural language processing tasks.</p>
 </section>
 </section>
 
@@ -560,7 +730,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./lectures/nlp_deep/training"
+            path: "./lectures/nlp_deep/datasets"
         },
         predefinedOutput: true
     }
@@ -579,20 +749,20 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../tokenization/lab-train-tokenizers.html"
+       href="mc4.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Lab: Training Tokenizers</p>
+        <p class="prev-next-title">mC4 Dataset</p>
       </div>
     </a>
     <a class="right-next"
-       href="lab-pretraining.html"
+       href="../tokenization/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lab: Pretraining Language Models</p>
+        <p class="prev-next-title">Tokenization</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -614,13 +784,23 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pretraining">Pretraining</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finetuning">Finetuning</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benefits-of-pretraining-and-finetuning">Benefits of Pretraining and Finetuning</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenges-and-limitations">Challenges and Limitations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contents">Contents</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Lab: Exploratory Data Analysis (EDA)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-environment">Setting up the environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-mc4-dataset">Load the mC4 dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyzing-the-dataset">Analyzing the dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-instances">Data Instances</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-statistics">Basic statistics</a></li>
 </ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#text-length-distribution">Text length distribution</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#timestamp-distribution">Timestamp distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
