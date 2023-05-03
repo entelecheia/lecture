@@ -1,7 +1,7 @@
 # Datasets
 
-```{image} figs/ekorpkit-corpus.png
-:alt: ekorpkit-corpus
+```{image} figs/corpus.png
+:alt: corpus
 :class: bg-primary mb-1
 :width: 70%
 :align: center
