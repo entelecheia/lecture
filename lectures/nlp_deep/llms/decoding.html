@@ -231,7 +231,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2 has-children"><a class="reference internal" href="../datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../datasets/mc4.html">mC4 Dataset</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../datasets/lab-eda.html">Lab: Exploratory Data Analysis (EDA)</a></li>
-
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -519,8 +518,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#greedy-search">Greedy Search</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beam-search">Beam search</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#greedy-search">Greedy Search</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beam-search">Beam search</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling">Sampling</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#top-k-sampling">Top-K Sampling</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#top-p-nucleus-sampling">Top-p (nucleus) sampling</a></li>
@@ -634,9 +635,8 @@ I&#39;m not sure how to apply it to real-world applications. I&#39;m not sure ho
 </ul>
 </li>
 </ul>
-</section>
 <section id="beam-search">
-<h2>Beam search<a class="headerlink" href="#beam-search" title="Permalink to this heading">#</a></h2>
+<h3>Beam search<a class="headerlink" href="#beam-search" title="Permalink to this heading">#</a></h3>
 <a class="bg-primary mb-1 reference internal image-reference" href="../../../_images/entelecheia_beam_search.png"><img alt="Beam Search" class="bg-primary mb-1 align-center" src="../../../_images/entelecheia_beam_search.png" style="width: 50%;" /></a>
 <p>Beam search is a decoding strategy used in language generation tasks to generate more diverse and coherent text compared to greedy search. It is a type of breadth-first search algorithm that maintains a fixed number of candidate sequences, called “beams,” at each step of the generation process.</p>
 <p>The main idea behind beam search is to explore multiple word options at each step, rather than choosing only the word with the highest probability, as in greedy search. The algorithm starts by selecting the top k words with the highest probabilities, where k is the beam size. It then extends each of these words with the top k words, given the context. This results in k * k new candidate sequences. The algorithm keeps only the top k sequences with the highest overall probabilities and discards the rest.</p>
@@ -777,6 +777,7 @@ In this post, I&#39;ll show you how you can use Deep Learning to build a neural 
 <p><span class="caption-number">Fig. 61 </span><span class="caption-text">Beam Search vs Human</span><a class="headerlink" href="#fig-beam-search-vs-human" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
+</section>
 </section>
 <section id="sampling">
 <h2>Sampling<a class="headerlink" href="#sampling" title="Permalink to this heading">#</a></h2>
@@ -1126,8 +1127,10 @@ Another way to learn Deep Learning is by coding. For example, I often code to so
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#greedy-search">Greedy Search</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beam-search">Beam search</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#greedy-search">Greedy Search</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beam-search">Beam search</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling">Sampling</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#top-k-sampling">Top-K Sampling</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#top-p-nucleus-sampling">Top-p (nucleus) sampling</a></li>
