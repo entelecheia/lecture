@@ -1,4 +1,4 @@
-# Corpus and Text Data Collection
+# Text Data Collection
 
 In natural language processing and computational linguistics, the foundation of any language model is the **corpus**. A corpus, or corpora in plural, is a collection of language samples, gathered for specific research purposes. The development of computers has made it easier to analyze corpora, and for improved accuracy, it is common to perform morphological analysis on the natural language samples. The use of probabilistic and statistical techniques, combined with a chronological approach, allows for a comprehensive understanding of the corpus. It serves as essential material for modern linguistic research and can be considered a successful application of scientific methodology in humanities.
 
