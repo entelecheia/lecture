@@ -133,7 +133,7 @@ Visualizing SentiWordNet
 
 A lexicon that categorizes words into various semantic categories, including positive and negative sentiment.
 
-```{figure} figs/havard.png
+```{figure} figs/harvard.png
 ---
 width: 80%
 name: fig-sa-harvard
