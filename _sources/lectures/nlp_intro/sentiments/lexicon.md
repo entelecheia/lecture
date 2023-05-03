@@ -165,39 +165,6 @@ name: fig-sa-disagreement
 Disagreement among Lexicons
 ```
 
-## Bias in Lexicons
-
-Lexicons can contain biases that may affect the results of sentiment analysis. These biases can stem from cultural, political, or social factors that influence the way words are perceived and used.
-
-```{figure} figs/5.png
----
-width: 50%
-name: fig-sa-bias
----
-Bias in Lexicons
-```
-
-## NLP “Bias” is statistical bias
-
-In the context of NLP, the term "bias" often refers to statistical bias, which occurs when a model systematically misrepresents the true underlying sentiment of the data. This can happen when a lexicon-based method is unable to capture the nuances of language or relies too heavily on the presence of specific words.
-
-```{figure} figs/6.png
----
-width: 50%
-name: fig-sa-bias-nlp
----
-NLP “Bias” is statistical bias
-```
-
-## Building Your Own Lexicons
-
-In some cases, it may be necessary to build a custom lexicon tailored to the specific domain or task. This can be achieved by:
-
-1. Collecting a set of domain-specific texts (e.g., movie reviews, financial news articles, or social media posts).
-2. Annotating the texts with sentiment labels (positive, negative, or neutral).
-3. Identifying the most frequent and discriminative words for each sentiment category.
-4. Assigning sentiment scores or polarities to the selected words based on their association with the sentiment categories.
-
 ## Sentiment Ambiguity and Context
 
 One limitation of lexicon-based methods is that they often fail to capture the context in which words appear. Sentiment can be ambiguous, and the meaning of a word can change depending on the surrounding words or the overall context of the text.
@@ -232,4 +199,35 @@ Lexicon-based methods can be combined with machine learning algorithms, such as 
 
 By using features derived from lexicon-based methods (e.g., sentiment scores, presence of positive/negative words) as input to machine learning models, you can create a more robust and accurate sentiment analysis system.
 
-In summary, lexicon-based methods are a valuable approach to sentiment analysis, but their effectiveness can be limited by the choice of lexicon, potential biases, and the inability to capture context. By addressing these challenges and incorporating additional information, such as syntax, semantics, and machine learning techniques, you can create a more accurate and robust sentiment analysis system.
+## Bias in Lexicons
+
+Lexicons can contain biases that may affect the results of sentiment analysis. These biases can stem from cultural, political, or social factors that influence the way words are perceived and used.
+
+```{figure} figs/5.png
+---
+width: 50%
+name: fig-sa-bias
+---
+Bias in Lexicons
+```
+
+## NLP “Bias” is statistical bias
+
+In the context of NLP, the term "bias" often refers to statistical bias, which occurs when a model systematically misrepresents the true underlying sentiment of the data. This can happen when a lexicon-based method is unable to capture the nuances of language or relies too heavily on the presence of specific words.
+
+```{figure} figs/6.png
+---
+width: 50%
+name: fig-sa-bias-nlp
+---
+NLP “Bias” is statistical bias
+```
+
+## Building Your Own Lexicons
+
+In some cases, it may be necessary to build a custom lexicon tailored to the specific domain or task. This can be achieved by:
+
+1. Collecting a set of domain-specific texts (e.g., movie reviews, financial news articles, or social media posts).
+2. Annotating the texts with sentiment labels (positive, negative, or neutral).
+3. Identifying the most frequent and discriminative words for each sentiment category.
+4. Assigning sentiment scores or polarities to the selected words based on their association with the sentiment categories.

@@ -487,13 +487,13 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disagreement-among-lexicons">Disagreement among Lexicons</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bias-in-lexicons">Bias in Lexicons</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nlp-bias-is-statistical-bias">NLP “Bias” is statistical bias</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-your-own-lexicons">Building Your Own Lexicons</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sentiment-ambiguity-and-context">Sentiment Ambiguity and Context</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-negations-and-modifiers">Handling Negations and Modifiers</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#incorporating-syntax-and-semantics">Incorporating Syntax and Semantics</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-lexicon-based-methods-with-machine-learning">Combining Lexicon-Based Methods with Machine Learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bias-in-lexicons">Bias in Lexicons</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nlp-bias-is-statistical-bias">NLP “Bias” is statistical bias</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-your-own-lexicons">Building Your Own Lexicons</a></li>
 </ul>
             </nav>
         </div>
@@ -645,6 +645,35 @@ document.write(`
 </figcaption>
 </figure>
 </section>
+<section id="sentiment-ambiguity-and-context">
+<h2>Sentiment Ambiguity and Context<a class="headerlink" href="#sentiment-ambiguity-and-context" title="Permalink to this heading">#</a></h2>
+<p>One limitation of lexicon-based methods is that they often fail to capture the context in which words appear. Sentiment can be ambiguous, and the meaning of a word can change depending on the surrounding words or the overall context of the text.</p>
+<p><strong>Example:</strong></p>
+<ul class="simple">
+<li><p>“I am not happy with the product.” vs. “I am happy with the product.”</p></li>
+</ul>
+<p>In the first sentence, the negation “not” reverses the sentiment of the word “happy.” However, lexicon-based methods might not be able to account for this negation, leading to an incorrect sentiment assessment.</p>
+</section>
+<section id="handling-negations-and-modifiers">
+<h2>Handling Negations and Modifiers<a class="headerlink" href="#handling-negations-and-modifiers" title="Permalink to this heading">#</a></h2>
+<p>To address the issue of sentiment ambiguity and context, it is essential to consider linguistic constructs such as negations and modifiers. Negations can reverse the sentiment polarity of a word, while modifiers can either intensify or weaken the sentiment.</p>
+<p><strong>Example of a modifier:</strong></p>
+<ul class="simple">
+<li><p>“The movie was good.” vs. “The movie was incredibly good.”</p></li>
+</ul>
+<p>In the second sentence, the modifier “incredibly” intensifies the sentiment of the word “good.”</p>
+<p>To handle negations and modifiers in lexicon-based methods, you can employ rules or heuristics to adjust sentiment scores based on the presence of these constructs.</p>
+</section>
+<section id="incorporating-syntax-and-semantics">
+<h2>Incorporating Syntax and Semantics<a class="headerlink" href="#incorporating-syntax-and-semantics" title="Permalink to this heading">#</a></h2>
+<p>Another way to improve lexicon-based methods is to incorporate syntactic and semantic information from the text. By analyzing the grammatical structure and the relationships between words, you can better capture the sentiment of a text.</p>
+<p>For example, dependency parsing can help identify negations, modifiers, and their respective targets, allowing you to adjust the sentiment scores accordingly.</p>
+</section>
+<section id="combining-lexicon-based-methods-with-machine-learning">
+<h2>Combining Lexicon-Based Methods with Machine Learning<a class="headerlink" href="#combining-lexicon-based-methods-with-machine-learning" title="Permalink to this heading">#</a></h2>
+<p>Lexicon-based methods can be combined with machine learning algorithms, such as Naive Bayes, Support Vector Machines, or Deep Learning models, to improve sentiment analysis performance. Machine learning algorithms can learn from labeled data and capture complex patterns in the text that are difficult to model using lexicons alone.</p>
+<p>By using features derived from lexicon-based methods (e.g., sentiment scores, presence of positive/negative words) as input to machine learning models, you can create a more robust and accurate sentiment analysis system.</p>
+</section>
 <section id="bias-in-lexicons">
 <h2>Bias in Lexicons<a class="headerlink" href="#bias-in-lexicons" title="Permalink to this heading">#</a></h2>
 <p>Lexicons can contain biases that may affect the results of sentiment analysis. These biases can stem from cultural, political, or social factors that influence the way words are perceived and used.</p>
@@ -674,36 +703,6 @@ document.write(`
 <li><p>Identifying the most frequent and discriminative words for each sentiment category.</p></li>
 <li><p>Assigning sentiment scores or polarities to the selected words based on their association with the sentiment categories.</p></li>
 </ol>
-</section>
-<section id="sentiment-ambiguity-and-context">
-<h2>Sentiment Ambiguity and Context<a class="headerlink" href="#sentiment-ambiguity-and-context" title="Permalink to this heading">#</a></h2>
-<p>One limitation of lexicon-based methods is that they often fail to capture the context in which words appear. Sentiment can be ambiguous, and the meaning of a word can change depending on the surrounding words or the overall context of the text.</p>
-<p><strong>Example:</strong></p>
-<ul class="simple">
-<li><p>“I am not happy with the product.” vs. “I am happy with the product.”</p></li>
-</ul>
-<p>In the first sentence, the negation “not” reverses the sentiment of the word “happy.” However, lexicon-based methods might not be able to account for this negation, leading to an incorrect sentiment assessment.</p>
-</section>
-<section id="handling-negations-and-modifiers">
-<h2>Handling Negations and Modifiers<a class="headerlink" href="#handling-negations-and-modifiers" title="Permalink to this heading">#</a></h2>
-<p>To address the issue of sentiment ambiguity and context, it is essential to consider linguistic constructs such as negations and modifiers. Negations can reverse the sentiment polarity of a word, while modifiers can either intensify or weaken the sentiment.</p>
-<p><strong>Example of a modifier:</strong></p>
-<ul class="simple">
-<li><p>“The movie was good.” vs. “The movie was incredibly good.”</p></li>
-</ul>
-<p>In the second sentence, the modifier “incredibly” intensifies the sentiment of the word “good.”</p>
-<p>To handle negations and modifiers in lexicon-based methods, you can employ rules or heuristics to adjust sentiment scores based on the presence of these constructs.</p>
-</section>
-<section id="incorporating-syntax-and-semantics">
-<h2>Incorporating Syntax and Semantics<a class="headerlink" href="#incorporating-syntax-and-semantics" title="Permalink to this heading">#</a></h2>
-<p>Another way to improve lexicon-based methods is to incorporate syntactic and semantic information from the text. By analyzing the grammatical structure and the relationships between words, you can better capture the sentiment of a text.</p>
-<p>For example, dependency parsing can help identify negations, modifiers, and their respective targets, allowing you to adjust the sentiment scores accordingly.</p>
-</section>
-<section id="combining-lexicon-based-methods-with-machine-learning">
-<h2>Combining Lexicon-Based Methods with Machine Learning<a class="headerlink" href="#combining-lexicon-based-methods-with-machine-learning" title="Permalink to this heading">#</a></h2>
-<p>Lexicon-based methods can be combined with machine learning algorithms, such as Naive Bayes, Support Vector Machines, or Deep Learning models, to improve sentiment analysis performance. Machine learning algorithms can learn from labeled data and capture complex patterns in the text that are difficult to model using lexicons alone.</p>
-<p>By using features derived from lexicon-based methods (e.g., sentiment scores, presence of positive/negative words) as input to machine learning models, you can create a more robust and accurate sentiment analysis system.</p>
-<p>In summary, lexicon-based methods are a valuable approach to sentiment analysis, but their effectiveness can be limited by the choice of lexicon, potential biases, and the inability to capture context. By addressing these challenges and incorporating additional information, such as syntax, semantics, and machine learning techniques, you can create a more accurate and robust sentiment analysis system.</p>
 </section>
 </section>
 
@@ -789,13 +788,13 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disagreement-among-lexicons">Disagreement among Lexicons</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bias-in-lexicons">Bias in Lexicons</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nlp-bias-is-statistical-bias">NLP “Bias” is statistical bias</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-your-own-lexicons">Building Your Own Lexicons</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sentiment-ambiguity-and-context">Sentiment Ambiguity and Context</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-negations-and-modifiers">Handling Negations and Modifiers</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#incorporating-syntax-and-semantics">Incorporating Syntax and Semantics</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-lexicon-based-methods-with-machine-learning">Combining Lexicon-Based Methods with Machine Learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bias-in-lexicons">Bias in Lexicons</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nlp-bias-is-statistical-bias">NLP “Bias” is statistical bias</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-your-own-lexicons">Building Your Own Lexicons</a></li>
 </ul>
   </nav></div>
 
