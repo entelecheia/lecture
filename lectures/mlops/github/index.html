@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Github’s Fork &amp; Pull Workflow &#8212; ἐντελέχεια.άι</title>
+    <title>GitHub Workflow &#8212; ἐντελέχεια.άι</title>
   
   
   
@@ -93,7 +93,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Project Templating Tools" href="template.html" />
+    <link rel="next" title="Github’s Fork &amp; Pull Workflow" href="fork-pull.html" />
     <link rel="prev" title="Unix Password Managers" href="../security/pass.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -305,7 +305,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="../security/pass.html">Unix Password Managers</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">Github’s Fork &amp; Pull Workflow</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">GitHub Workflow</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="fork-pull.html">Github’s Fork &amp; Pull Workflow</a></li>
 <li class="toctree-l3"><a class="reference internal" href="template.html">Project Templating Tools</a></li>
 <li class="toctree-l3"><a class="reference external" href="https://hyperfast-python.entelecheia.ai/">Hyperfast Python Template</a></li>
 <li class="toctree-l3"><a class="reference external" href="https://hyperfast-template.entelecheia.ai/">Hyperfast Template</a></li>
@@ -464,7 +465,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Github’s Fork & Pull Workflow</h1>
+    <h1>GitHub Workflow</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -474,18 +475,16 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-fork-pull-workflow">1. Understanding Fork &amp; Pull Workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-github-workflow">1. Introduction to GitHub Workflow</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forking-a-repository">2. Forking a Repository</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cloning-the-forked-repository">3. Cloning the Forked Repository</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cloning-a-repository">3. Cloning a Repository</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-new-branch">4. Creating a New Branch</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-changes-and-committing">5. Making Changes and Committing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pushing-changes-to-your-fork">6. Pushing Changes to Your Fork</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pushing-changes-to-github">6. Pushing Changes to GitHub</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-pull-request">7. Creating a Pull Request</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collaborating-and-merging">8. Collaborating and Merging</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next">Next</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-a-pull-request">8. Merging a Pull Request</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#syncing-your-fork">9. Syncing Your Fork</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-usage">10. Example Usage</a></li>
 </ul>
             </nav>
         </div>
@@ -497,95 +496,137 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="githubs-fork-pull-workflow">
-<h1>Github’s Fork &amp; Pull Workflow<a class="headerlink" href="#githubs-fork-pull-workflow" title="Permalink to this heading">#</a></h1>
-<section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
-<p>We will explore the Fork &amp; Pull workflow, which is a popular collaboration model for open-source projects on Github. By the end of this lecture, you will understand the basic concepts of the Fork &amp; Pull workflow and learn how to contribute to open-source projects using this approach.</p>
-</section>
-<section id="understanding-fork-pull-workflow">
-<h2>1. Understanding Fork &amp; Pull Workflow<a class="headerlink" href="#understanding-fork-pull-workflow" title="Permalink to this heading">#</a></h2>
-<p>The Fork &amp; Pull workflow involves two primary steps: forking a repository and creating a pull request. Forking is the process of creating a personal copy of another user’s repository. You can make changes to your forked repository without affecting the original project. Once you have made your changes, you can submit a pull request to the original repository, requesting that the project maintainer merge your changes.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="github-workflow">
+<h1>GitHub Workflow<a class="headerlink" href="#github-workflow" title="Permalink to this heading">#</a></h1>
+<p>This lecture note provides an in-depth look at the GitHub workflow, with example usages to help you understand how to effectively manage projects on GitHub. By the end of this lecture, you should have a clear understanding of the GitHub workflow and be able to implement it in your own projects.</p>
+<section id="introduction-to-github-workflow">
+<h2>1. Introduction to GitHub Workflow<a class="headerlink" href="#introduction-to-github-workflow" title="Permalink to this heading">#</a></h2>
+<p>GitHub Workflow is a set of best practices that allows developers to collaborate on projects effectively. The core components of the workflow are:</p>
+<ul class="simple">
+<li><p>Forking a repository</p></li>
+<li><p>Cloning the repository to your local machine</p></li>
+<li><p>Creating branches for new features or bug fixes</p></li>
+<li><p>Committing changes</p></li>
+<li><p>Pushing changes to GitHub</p></li>
+<li><p>Creating pull requests</p></li>
+<li><p>Merging pull requests</p></li>
+<li><p>Syncing your fork with the upstream repository</p></li>
+</ul>
 </section>
 <section id="forking-a-repository">
 <h2>2. Forking a Repository<a class="headerlink" href="#forking-a-repository" title="Permalink to this heading">#</a></h2>
-<p>To fork a repository, follow these steps:</p>
-<ul class="simple">
-<li><p>a) Go to the Github repository you wish to contribute to.</p></li>
-<li><p>b) Click on the “Fork” button located in the top right corner of the page.</p></li>
-<li><p>c) Select your account as the destination for the forked repository.</p></li>
-<li><p>d) Wait for Github to create your fork. Once completed, you will have a personal copy of the repository under your Github account.</p></li>
-</ul>
-<p>Example: Let’s assume you want to contribute to the “example-project” repository. After forking, you will have a copy of “example-project” in your account, like “your_username/example-project”.</p>
+<p>Forking a repository creates a copy of the project under your GitHub account. This allows you to make changes without affecting the original project.</p>
+<p>To fork a repository:</p>
+<ol class="arabic simple">
+<li><p>Navigate to the repository you want to fork.</p></li>
+<li><p>Click the “Fork” button in the upper-right corner.</p></li>
+</ol>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Original</span> <span class="n">Repository</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">owner</span><span class="o">/</span><span class="n">project</span><span class="o">.</span><span class="n">git</span>
+<span class="n">Forked</span> <span class="n">Repository</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">yourusername</span><span class="o">/</span><span class="n">project</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
 </section>
-<section id="cloning-the-forked-repository">
-<h2>3. Cloning the Forked Repository<a class="headerlink" href="#cloning-the-forked-repository" title="Permalink to this heading">#</a></h2>
-<p>Now, you need to clone the forked repository to your local machine:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/your_username/example-project.git
+<section id="cloning-a-repository">
+<h2>3. Cloning a Repository<a class="headerlink" href="#cloning-a-repository" title="Permalink to this heading">#</a></h2>
+<p>After forking a repository, you need to clone it to your local machine to start working on it.</p>
+<p>To clone a repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/yourusername/project.git
+<span class="nb">cd</span><span class="w"> </span>project
 </pre></div>
 </div>
 </section>
 <section id="creating-a-new-branch">
 <h2>4. Creating a New Branch<a class="headerlink" href="#creating-a-new-branch" title="Permalink to this heading">#</a></h2>
-<p>It’s a good practice to create a new branch for your changes, so you can keep your master branch in sync with the original repository:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>new-feature
+<p>Create a new branch to work on a specific feature or bug fix without affecting the main branch.</p>
+<p>To create a new branch and switch to it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>my-feature
 </pre></div>
 </div>
 </section>
 <section id="making-changes-and-committing">
 <h2>5. Making Changes and Committing<a class="headerlink" href="#making-changes-and-committing" title="Permalink to this heading">#</a></h2>
-<p>Make your changes in the new branch, and then commit them:</p>
+<p>Make changes to the code and commit them. It’s recommended to make small, focused commits with clear messages.</p>
+<p>To commit changes:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.
-git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add new feature&quot;</span>
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add a meaningful message describing the changes&quot;</span>
 </pre></div>
 </div>
 </section>
-<section id="pushing-changes-to-your-fork">
-<h2>6. Pushing Changes to Your Fork<a class="headerlink" href="#pushing-changes-to-your-fork" title="Permalink to this heading">#</a></h2>
-<p>Now, push your changes to your forked repository on Github:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>new-feature
+<section id="pushing-changes-to-github">
+<h2>6. Pushing Changes to GitHub<a class="headerlink" href="#pushing-changes-to-github" title="Permalink to this heading">#</a></h2>
+<p>Push your changes to the remote repository on GitHub.</p>
+<p>To push your branch:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>my-feature
 </pre></div>
 </div>
 </section>
 <section id="creating-a-pull-request">
 <h2>7. Creating a Pull Request<a class="headerlink" href="#creating-a-pull-request" title="Permalink to this heading">#</a></h2>
-<p>To create a pull request, follow these steps:</p>
-<ul class="simple">
-<li><p>a) Go to your forked repository on Github.</p></li>
-<li><p>b) Switch to the branch containing your changes (in this case, “new-feature”).</p></li>
-<li><p>c) Click on the “New Pull Request” button.</p></li>
-<li><p>d) Ensure that the base repository is the original repository and the base branch is the branch you want your changes to be merged into (usually “master” or “main”).</p></li>
-<li><p>e) Confirm that the head repository is your forked repository and the compare branch is the branch containing your changes.</p></li>
-<li><p>f) Add a descriptive title and a detailed explanation of your changes in the pull request description.</p></li>
-<li><p>g) Click “Create Pull Request”.</p></li>
-</ul>
+<p>To merge your changes into the original repository, you need to create a pull request.</p>
+<ol class="arabic simple">
+<li><p>Navigate to your forked repository on GitHub.</p></li>
+<li><p>Click the “New pull request” button.</p></li>
+<li><p>Choose the original repository as the base and your fork as the head.</p></li>
+<li><p>Click “Create pull request”.</p></li>
+<li><p>Add a descriptive title and explain the changes in the description.</p></li>
+</ol>
 </section>
-<section id="collaborating-and-merging">
-<h2>8. Collaborating and Merging<a class="headerlink" href="#collaborating-and-merging" title="Permalink to this heading">#</a></h2>
-<p>The project maintainer will review your pull request and may request changes or clarifications. Collaborate with the maintainer by addressing their comments and pushing new commits to your branch. Once your changes are approved, the maintainer will merge your pull request into the original repository.</p>
+<section id="merging-a-pull-request">
+<h2>8. Merging a Pull Request<a class="headerlink" href="#merging-a-pull-request" title="Permalink to this heading">#</a></h2>
+<p>Once the pull request is reviewed and approved, it can be merged into the original repository.</p>
+<ol class="arabic simple">
+<li><p>Navigate to the pull request in the original repository.</p></li>
+<li><p>If there are no conflicts, click “Merge pull request”.</p></li>
+<li><p>Click “Confirm merge” to finalize the merge.</p></li>
+</ol>
+<p><strong>Note</strong>: Only users with write access to the original repository can merge pull requests.</p>
 </section>
-<section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
-<p>In this lecture, we have learned about Github’s Fork &amp; Pull workflow and how it facilitates collaboration on open-source projects. By understanding this workflow and following the steps outlined above, you can start contributing to open-source projects and enhance your Git skills.</p>
-</section>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://gist.github.com/Chaser324/ce0505fbed06b947d962#file-github-forking-md">GitHub Standard Fork &amp; Pull Request Workflow</a></p></li>
-<li><p><a class="reference external" href="https://github.blog/2017-07-06-introducing-code-owners/">Introducing code owners</a></p></li>
-<li><p><a class="reference external" href="https://dev.to/opensauced/how-to-create-a-good-pull-request-template-and-why-you-should-add-gifs-4i0l">How to Create a Good Pull Request Template</a></p></li>
-</ul>
-</section>
-<section id="next">
-<h2>Next<a class="headerlink" href="#next" title="Permalink to this heading">#</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="template.html">Project Templating Tools</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://hyperfast-python.entelecheia.ai/">Hyperfast Python Template</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://hyperfast-template.entelecheia.ai/">Hyperfast Template</a></li>
-</ul>
+<section id="syncing-your-fork">
+<h2>9. Syncing Your Fork<a class="headerlink" href="#syncing-your-fork" title="Permalink to this heading">#</a></h2>
+<p>After the pull request is merged, you need to sync your fork with the upstream repository to keep it up-to-date.</p>
+<p>To sync your fork:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add the upstream repository as a remote</span>
+git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>https://github.com/owner/project.git
+
+<span class="c1"># Fetch changes from the upstream repository</span>
+git<span class="w"> </span>fetch<span class="w"> </span>upstream
+
+<span class="c1"># Switch to the main branch</span>
+git<span class="w"> </span>checkout<span class="w"> </span>main
+
+<span class="c1"># Merge changes from upstream/main into your local main branch</span>
+git<span class="w"> </span>merge<span class="w"> </span>upstream/main
+
+<span class="c1"># Push the updated main branch to your fork on GitHub</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</pre></div>
 </div>
 </section>
+<section id="example-usage">
+<h2>10. Example Usage<a class="headerlink" href="#example-usage" title="Permalink to this heading">#</a></h2>
+<p>Here’s an example of how to use the GitHub Workflow for contributing to a project:</p>
+<ol class="arabic">
+<li><p>Fork the repository: <a class="github reference external" href="https://github.com/owner/project.git">owner/project.git</a></p></li>
+<li><p>Clone the forked repository: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/yourusername/project.git</span></code></p></li>
+<li><p>Create a new branch: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">my-feature</span></code></p></li>
+<li><p>Make changes and commit: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span> <span class="pre">&amp;&amp;</span> <span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;Add</span> <span class="pre">new</span> <span class="pre">feature&quot;</span></code></p></li>
+<li><p>Push the changes to GitHub: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">my-feature</span></code></p></li>
+<li><p>Create a pull request on GitHub.</p></li>
+<li><p>After the pull request is merged, sync your fork:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">upstream</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">owner</span><span class="o">/</span><span class="n">project</span><span class="o">.</span><span class="n">git</span>
+<span class="n">git</span> <span class="n">fetch</span> <span class="n">upstream</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">main</span>
+<span class="n">git</span> <span class="n">merge</span> <span class="n">upstream</span><span class="o">/</span><span class="n">main</span>
+<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">main</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>By following the GitHub Workflow, you can effectively contribute to open-source projects or collaborate with other developers in a structured and organized manner.</p>
+</section>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -629,11 +670,11 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
       </div>
     </a>
     <a class="right-next"
-       href="template.html"
+       href="fork-pull.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Project Templating Tools</p>
+        <p class="prev-next-title">Github’s Fork &amp; Pull Workflow</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -655,18 +696,16 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-fork-pull-workflow">1. Understanding Fork &amp; Pull Workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-github-workflow">1. Introduction to GitHub Workflow</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forking-a-repository">2. Forking a Repository</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cloning-the-forked-repository">3. Cloning the Forked Repository</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cloning-a-repository">3. Cloning a Repository</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-new-branch">4. Creating a New Branch</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-changes-and-committing">5. Making Changes and Committing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pushing-changes-to-your-fork">6. Pushing Changes to Your Fork</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pushing-changes-to-github">6. Pushing Changes to GitHub</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-pull-request">7. Creating a Pull Request</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collaborating-and-merging">8. Collaborating and Merging</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next">Next</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-a-pull-request">8. Merging a Pull Request</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#syncing-your-fork">9. Syncing Your Fork</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-usage">10. Example Usage</a></li>
 </ul>
   </nav></div>
 
