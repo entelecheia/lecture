@@ -136,3 +136,9 @@ Here's an example of how to use the GitHub Workflow for contributing to a projec
    ```
 
 By following the GitHub Workflow, you can effectively contribute to open-source projects or collaborate with other developers in a structured and organized manner.
+
+## Next
+
+```{tableofcontents}
+
+```
