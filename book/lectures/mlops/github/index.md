@@ -1,86 +1,138 @@
-# Github's Fork & Pull Workflow
+# GitHub Workflow
 
-## Introduction
+This lecture note provides an in-depth look at the GitHub workflow, with example usages to help you understand how to effectively manage projects on GitHub. By the end of this lecture, you should have a clear understanding of the GitHub workflow and be able to implement it in your own projects.
 
-We will explore the Fork & Pull workflow, which is a popular collaboration model for open-source projects on Github. By the end of this lecture, you will understand the basic concepts of the Fork & Pull workflow and learn how to contribute to open-source projects using this approach.
+## 1. Introduction to GitHub Workflow
 
-## 1. Understanding Fork & Pull Workflow
+GitHub Workflow is a set of best practices that allows developers to collaborate on projects effectively. The core components of the workflow are:
 
-The Fork & Pull workflow involves two primary steps: forking a repository and creating a pull request. Forking is the process of creating a personal copy of another user's repository. You can make changes to your forked repository without affecting the original project. Once you have made your changes, you can submit a pull request to the original repository, requesting that the project maintainer merge your changes.
+- Forking a repository
+- Cloning the repository to your local machine
+- Creating branches for new features or bug fixes
+- Committing changes
+- Pushing changes to GitHub
+- Creating pull requests
+- Merging pull requests
+- Syncing your fork with the upstream repository
 
 ## 2. Forking a Repository
 
-To fork a repository, follow these steps:
+Forking a repository creates a copy of the project under your GitHub account. This allows you to make changes without affecting the original project.
 
-- a) Go to the Github repository you wish to contribute to.
-- b) Click on the "Fork" button located in the top right corner of the page.
-- c) Select your account as the destination for the forked repository.
-- d) Wait for Github to create your fork. Once completed, you will have a personal copy of the repository under your Github account.
+To fork a repository:
 
-Example: Let's assume you want to contribute to the "example-project" repository. After forking, you will have a copy of "example-project" in your account, like "your_username/example-project".
+1. Navigate to the repository you want to fork.
+2. Click the "Fork" button in the upper-right corner.
 
-## 3. Cloning the Forked Repository
+Example:
 
-Now, you need to clone the forked repository to your local machine:
+```
+Original Repository: https://github.com/owner/project.git
+Forked Repository: https://github.com/yourusername/project.git
+```
+
+## 3. Cloning a Repository
+
+After forking a repository, you need to clone it to your local machine to start working on it.
+
+To clone a repository:
 
 ```bash
-git clone https://github.com/your_username/example-project.git
+git clone https://github.com/yourusername/project.git
+cd project
 ```
 
 ## 4. Creating a New Branch
 
-It's a good practice to create a new branch for your changes, so you can keep your master branch in sync with the original repository:
+Create a new branch to work on a specific feature or bug fix without affecting the main branch.
+
+To create a new branch and switch to it:
 
 ```bash
-git checkout -b new-feature
+git checkout -b my-feature
 ```
 
 ## 5. Making Changes and Committing
 
-Make your changes in the new branch, and then commit them:
+Make changes to the code and commit them. It's recommended to make small, focused commits with clear messages.
+
+To commit changes:
 
 ```bash
 git add .
-git commit -m "Add new feature"
-
+git commit -m "Add a meaningful message describing the changes"
 ```
 
-## 6. Pushing Changes to Your Fork
+## 6. Pushing Changes to GitHub
 
-Now, push your changes to your forked repository on Github:
+Push your changes to the remote repository on GitHub.
+
+To push your branch:
 
 ```bash
-git push origin new-feature
+git push origin my-feature
 ```
 
 ## 7. Creating a Pull Request
 
-To create a pull request, follow these steps:
+To merge your changes into the original repository, you need to create a pull request.
 
-- a) Go to your forked repository on Github.
-- b) Switch to the branch containing your changes (in this case, "new-feature").
-- c) Click on the "New Pull Request" button.
-- d) Ensure that the base repository is the original repository and the base branch is the branch you want your changes to be merged into (usually "master" or "main").
-- e) Confirm that the head repository is your forked repository and the compare branch is the branch containing your changes.
-- f) Add a descriptive title and a detailed explanation of your changes in the pull request description.
-- g) Click "Create Pull Request".
+1. Navigate to your forked repository on GitHub.
+2. Click the "New pull request" button.
+3. Choose the original repository as the base and your fork as the head.
+4. Click "Create pull request".
+5. Add a descriptive title and explain the changes in the description.
 
-## 8. Collaborating and Merging
+## 8. Merging a Pull Request
 
-The project maintainer will review your pull request and may request changes or clarifications. Collaborate with the maintainer by addressing their comments and pushing new commits to your branch. Once your changes are approved, the maintainer will merge your pull request into the original repository.
+Once the pull request is reviewed and approved, it can be merged into the original repository.
 
-## Conclusion
+1. Navigate to the pull request in the original repository.
+2. If there are no conflicts, click "Merge pull request".
+3. Click "Confirm merge" to finalize the merge.
 
-In this lecture, we have learned about Github's Fork & Pull workflow and how it facilitates collaboration on open-source projects. By understanding this workflow and following the steps outlined above, you can start contributing to open-source projects and enhance your Git skills.
+**Note**: Only users with write access to the original repository can merge pull requests.
 
-## References
+## 9. Syncing Your Fork
 
-- [GitHub Standard Fork & Pull Request Workflow](https://gist.github.com/Chaser324/ce0505fbed06b947d962#file-github-forking-md)
-- [Introducing code owners](https://github.blog/2017-07-06-introducing-code-owners/)
-- [How to Create a Good Pull Request Template](https://dev.to/opensauced/how-to-create-a-good-pull-request-template-and-why-you-should-add-gifs-4i0l)
+After the pull request is merged, you need to sync your fork with the upstream repository to keep it up-to-date.
 
-## Next
+To sync your fork:
 
-```{tableofcontents}
+```bash
+# Add the upstream repository as a remote
+git remote add upstream https://github.com/owner/project.git
 
+# Fetch changes from the upstream repository
+git fetch upstream
+
+# Switch to the main branch
+git checkout main
+
+# Merge changes from upstream/main into your local main branch
+git merge upstream/main
+
+# Push the updated main branch to your fork on GitHub
+git push origin main
 ```
+
+## 10. Example Usage
+
+Here's an example of how to use the GitHub Workflow for contributing to a project:
+
+1. Fork the repository: https://github.com/owner/project.git
+2. Clone the forked repository: `git clone https://github.com/yourusername/project.git`
+3. Create a new branch: `git checkout -b my-feature`
+4. Make changes and commit: `git add . && git commit -m "Add new feature"`
+5. Push the changes to GitHub: `git push origin my-feature`
+6. Create a pull request on GitHub.
+7. After the pull request is merged, sync your fork:
+   ```
+   git remote add upstream https://github.com/owner/project.git
+   git fetch upstream
+   git checkout main
+   git merge upstream/main
+   git push origin main
+   ```
+
+By following the GitHub Workflow, you can effectively contribute to open-source projects or collaborate with other developers in a structured and organized manner.
