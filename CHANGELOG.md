@@ -1,5 +1,9 @@
 <!--next-version-placeholder-->
 
+## v0.3.4 (2023-05-05)
+### Fix
+* **build:** Configure default build command ([`910eb88`](https://github.com/entelecheia/lecture/commit/910eb8840889dd147068cb70cbea384fdfca9553))
+
 ## v0.3.3 (2023-05-05)
 ### Fix
 * **build:** Disable build command in pyproject.toml ([`8f7d577`](https://github.com/entelecheia/lecture/commit/8f7d57702970335a1d311796c112b56184eeb020))
