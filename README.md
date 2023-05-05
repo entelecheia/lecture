@@ -1,5 +1,6 @@
 # ἐντελέχεια.άι
 
+
 [![version-image]][release-url]
 [![release-date-image]][release-url]
 [![license-image]][license-url]
@@ -25,6 +26,7 @@ Artificial Intelligence | Lecture Notes
 
 - Documentation: [https://lecture.entelecheia.ai][docs-url]
 - GitHub: [https://github.com/entelecheia/lecture][repo-url]
+
 
 Lecture notes for artifical intelligence courses taught at Cheju Halla University
 
