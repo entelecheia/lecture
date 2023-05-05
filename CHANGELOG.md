@@ -1,5 +1,9 @@
 <!--next-version-placeholder-->
 
+## v0.3.2 (2023-05-05)
+### Fix
+* **dependencies:** Upgrade build-system to use poetry-core>=1.0.0 ([`c790181`](https://github.com/entelecheia/lecture/commit/c790181c40579b44bad19ef661a9473e3453a9a1))
+
 ## v0.3.1 (2023-05-05)
 ### Fix
 * **release:** Upgrade semantic-release configuration ([`7d9a237`](https://github.com/entelecheia/lecture/commit/7d9a2374982ffa52cddc47f004f44ab70d93922d))
