@@ -1,5 +1,9 @@
 <!--next-version-placeholder-->
 
+## v0.3.7 (2023-05-05)
+### Fix
+* **config:** Update upload settings and build command ([`29226c2`](https://github.com/entelecheia/lecture/commit/29226c2dd180c1becab898f2c90506c132f289c8))
+
 ## v0.3.6 (2023-05-05)
 ### Fix
 * **pyproject:** Disable repository upload and enable release upload ([`b225f7f`](https://github.com/entelecheia/lecture/commit/b225f7f2fa0ea8ebd411017a8e6f3d310d691c82))
