@@ -1,5 +1,9 @@
 <!--next-version-placeholder-->
 
+## v0.3.8 (2023-05-05)
+### Fix
+* **dependencies:** Update copier version and change release build command ([`13380c0`](https://github.com/entelecheia/lecture/commit/13380c0fb52a44b4dfa0f1ef8a9efade1b0fabe1))
+
 ## v0.3.7 (2023-05-05)
 ### Fix
 * **config:** Update upload settings and build command ([`29226c2`](https://github.com/entelecheia/lecture/commit/29226c2dd180c1becab898f2c90506c132f289c8))
