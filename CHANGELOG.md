@@ -1,5 +1,9 @@
 <!--next-version-placeholder-->
 
+## v0.3.3 (2023-05-05)
+### Fix
+* **build:** Disable build command in pyproject.toml ([`8f7d577`](https://github.com/entelecheia/lecture/commit/8f7d57702970335a1d311796c112b56184eeb020))
+
 ## v0.3.2 (2023-05-05)
 ### Fix
 * **dependencies:** Upgrade build-system to use poetry-core>=1.0.0 ([`c790181`](https://github.com/entelecheia/lecture/commit/c790181c40579b44bad19ef661a9473e3453a9a1))
