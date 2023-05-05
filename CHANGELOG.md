@@ -1,5 +1,9 @@
 <!--next-version-placeholder-->
 
+## v0.3.5 (2023-05-05)
+### Fix
+* **release:** Add repository credentials and update build command ([`04e5052`](https://github.com/entelecheia/lecture/commit/04e5052ca96a6565f4032e7312dba133a9dabc1f))
+
 ## v0.3.4 (2023-05-05)
 ### Fix
 * **build:** Configure default build command ([`910eb88`](https://github.com/entelecheia/lecture/commit/910eb8840889dd147068cb70cbea384fdfca9553))
