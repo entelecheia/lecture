@@ -25,8 +25,8 @@ and "help wanted" is open to whoever wants to implement it.
 
 ## Write Documentation
 
-Artificial Intelligence Courses Lecture Notes could always use more documentation, whether as part of the
-official Artificial Intelligence Courses Lecture Notes docs, in docstrings, or even on the web in blog posts,
+ἐντελέχεια.άι could always use more documentation, whether as part of the
+official ἐντελέχεια.άι docs, in docstrings, or even on the web in blog posts,
 articles, and such.
 
 ## Submit Feedback
@@ -42,7 +42,7 @@ If you are proposing a feature:
 
 ## Get Started
 
-Ready to contribute? Here's how to set up `Artificial Intelligence Courses Lecture Notes` for local development.
+Ready to contribute? Here's how to set up `ἐντελέχεια.άι` for local development.
 
 1. Fork the repo on GitHub.
 2. Clone your fork locally.
@@ -52,4 +52,4 @@ Ready to contribute? Here's how to set up `Artificial Intelligence Courses Lectu
 
 ## Code of Conduct
 
-Please note that the Artificial Intelligence Courses Lecture Notes project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project you agree to abide by its terms.
+Please note that the ἐντελέχεια.άι project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project you agree to abide by its terms.

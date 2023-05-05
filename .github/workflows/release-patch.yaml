@@ -1,16 +1,16 @@
 ---
-name: semantic-release
+name: semantic-release-patch
 
 on:
   workflow_call:
   workflow_dispatch:
   push:
     branches:
-      - main
+      - patch*
+      - hotfix*
     paths:
       - 'src/**'
       - 'pyproject.toml'
-      - '.copier-template/**'
 
 permissions:
   contents: write
@@ -20,7 +20,7 @@ permissions:
 jobs:
   build:
     # Name the Job
-    name: semantic-release
+    name: semantic-release-patch
     # Set the agent to run on
     runs-on: ${{ matrix.os }}
     strategy:
@@ -28,7 +28,6 @@ jobs:
         os: [ubuntu-latest]
         python-version: [3.8]
 
-    # Load all steps #
     steps:
       # Checkout the code base #
       - name: Checkout Code
@@ -40,20 +39,13 @@ jobs:
       - name: Set env variable
         run: echo "BRANCH=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
 
-      # install poetry
-      - name: Install poetry
-        run: pipx install poetry>=1.3.2
-
-      # install dependencies
-      - name: Install dependencies
-        run: poetry install --with dev
-
+      # semantic release
       - name: Python Semantic Release to PyPI
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          poetry run semantic-release publish --verbosity=DEBUG --define=branch=${{ env.BRANCH }}
+        uses: relekang/python-semantic-release@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          repository_username: __token__
+          repository_password: ${{ secrets.PYPI_API_TOKEN }}
+          additional_options: --patch --verbosity=DEBUG --define=branch=${{ env.BRANCH }}
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPOSITORY_USERNAME: __token__
-          REPOSITORY_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+          REPOSITORY_URL: https://test.pypi.org/legacy/
