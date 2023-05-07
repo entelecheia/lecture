@@ -1,5 +1,9 @@
 <!--next-version-placeholder-->
 
+## v0.3.9 (2023-05-07)
+### Fix
+* **config:** Update .copier-config.yaml and pyproject.toml files ([`df790f4`](https://github.com/entelecheia/lecture/commit/df790f46f8c7e9cafd87c6ab6cf145f02034e2e1))
+
 ## v0.3.8 (2023-05-05)
 ### Fix
 * **dependencies:** Update copier version and change release build command ([`13380c0`](https://github.com/entelecheia/lecture/commit/13380c0fb52a44b4dfa0f1ef8a9efade1b0fabe1))
