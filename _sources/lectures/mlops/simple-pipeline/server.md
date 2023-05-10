@@ -86,4 +86,4 @@ With the server set up, your team can now use it for various tasks:
 
 ## Conclusion
 
-In this tutorial, you learned how to connect to, manage, and use a server for your simple MLOps pipeline project. This server setup allows your team to collaborate efficiently, manage resources, and maintain the pipeline.
+In this section, you learned how to connect to, manage, and use a server for your simple MLOps pipeline project. This server setup allows your team to collaborate efficiently, manage resources, and maintain the pipeline.

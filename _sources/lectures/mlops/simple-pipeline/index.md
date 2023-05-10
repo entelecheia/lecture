@@ -21,12 +21,6 @@ While not all of these prerequisites are mandatory, a solid grasp of the topics 
 
 ## Implementing a Simple MLOps Pipeline
 
-**Prerequisites:**
-
-- Basic knowledge of Git, GitHub, and SSH
-- A server with root access
-- A GitHub account
-
 ### 1. Install containerd
 
 First, let's install containerd, a lightweight container runtime, on your server. Open your terminal and run the following commands:
@@ -181,7 +175,7 @@ microk8s kubectl apply -f configs/
 
 ## Conclusion
 
-In this tutorial, you learned how to set up a simple MLOps pipeline on a server for a small team using containerd, MicroK8s, and other open-source tools. You also learned how to manage the pipeline using Git and a GitHub repository.
+In this lecture, you learned how to set up a simple MLOps pipeline on a server for a small team using containerd, MicroK8s, and other open-source tools. You also learned how to manage the pipeline using Git and a GitHub repository.
 
 ## Next
 
