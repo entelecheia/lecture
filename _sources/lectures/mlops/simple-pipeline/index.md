@@ -18,3 +18,173 @@ To make the most of this lecture and ensure a smooth learning experience, it is 
 8. `Introductory knowledge of DevOps principles`: Get acquainted with the core principles of DevOps, such as continuous integration, continuous delivery, and infrastructure as code, which will help you understand and appreciate the MLOps pipeline's underlying concepts.
 
 While not all of these prerequisites are mandatory, a solid grasp of the topics mentioned above will enable you to better understand the intricacies of a simple MLOps pipeline and facilitate a more efficient learning experience.
+
+## Implementing a Simple MLOps Pipeline
+
+**Prerequisites:**
+
+- Basic knowledge of Git, GitHub, and SSH
+- A server with root access
+- A GitHub account
+
+### 1. Install containerd
+
+First, let's install containerd, a lightweight container runtime, on your server. Open your terminal and run the following commands:
+
+```bash
+# Update the system packages
+sudo apt-get update
+
+# Install containerd
+sudo apt-get install -y containerd
+```
+
+### 2. Configure containerd
+
+Create a default configuration file for containerd:
+
+```bash
+sudo mkdir -p /etc/containerd
+sudo containerd config default | sudo tee /etc/containerd/config.toml
+```
+
+Then, enable and start the containerd service:
+
+```bash
+sudo systemctl enable containerd
+sudo systemctl start containerd
+```
+
+### 3. Install MicroK8s
+
+MicroK8s is a lightweight Kubernetes distribution. Install it using the following commands:
+
+```bash
+# Add the MicroK8s repository
+sudo sh -c 'echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list'
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+
+# Update the system packages
+sudo apt-get update
+
+# Install MicroK8s
+sudo apt-get install -y microk8s
+```
+
+### 4. Configure MicroK8s
+
+Enable the necessary MicroK8s add-ons:
+
+```bash
+microk8s enable dns storage ingress
+```
+
+Allow your user to access MicroK8s commands without sudo:
+
+```bash
+sudo usermod -a -G microk8s $USER
+sudo chown -f -R $USER ~/.kube
+```
+
+Log out and log back in for these changes to take effect.
+
+### 5. Set up SSH access for the team
+
+For each team member, create a user account and set up SSH access. Replace `USERNAME` with the appropriate username.
+
+```bash
+# Create a user account
+sudo adduser USERNAME
+
+# Add the user to the sudo group
+sudo usermod -aG sudo USERNAME
+
+# Set up SSH access
+sudo mkdir /home/USERNAME/.ssh
+sudo nano /home/USERNAME/.ssh/authorized_keys
+```
+
+Paste the team member's public SSH key into the `authorized_keys` file. Save the file and set the proper permissions:
+
+```bash
+sudo chown -R USERNAME:USERNAME /home/USERNAME/.ssh
+sudo chmod 700 /home/USERNAME/.ssh
+sudo chmod 600 /home/USERNAME/.ssh/authorized_keys
+```
+
+### 6. Set up the GitHub repository
+
+Create a new GitHub repository for your project. Then, clone the repository on the local server and set up the necessary directories:
+
+```bash
+git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+cd YOUR_REPO_NAME
+mkdir -p configs scripts
+```
+
+### 7. Create a simple MLOps pipeline
+
+Create the necessary configuration files, scripts, and YAML files for your pipeline. Save these files in the `configs` and `scripts` directories of your GitHub repository.
+
+For example, you can create a simple pipeline with the following components:
+
+- Data preprocessing
+- Model training
+- Model evaluation
+- Model deployment
+
+You can create separate scripts for each component and use Kubernetes resources like ConfigMaps, Secrets, Deployments, and Services to manage them. For instance, create a `preprocess.py` script for data preprocessing, a `train.py` script for model training, a `evaluate.py` script for model evaluation, and a `deploy.py` script for model deployment.
+
+### 8. Configure Kubernetes resources
+
+Create the appropriate YAML files for your Kubernetes resources in the `configs` directory. For example:
+
+- `preprocess-configmap.yaml`: A ConfigMap for the data preprocessing configuration.
+- `train-configmap.yaml`: A ConfigMap for the model training configuration.
+- `evaluate-configmap.yaml`: A ConfigMap for the model evaluation configuration.
+- `deploy-configmap.yaml`: A ConfigMap for the model deployment configuration.
+
+- `preprocess-deployment.yaml`: A Deployment for running the data preprocessing script.
+- `train-deployment.yaml`: A Deployment for running the model training script.
+- `evaluate-deployment.yaml`: A Deployment for running the model evaluation script.
+- `deploy-deployment.yaml`: A Deployment for running the model deployment script.
+
+- `preprocess-service.yaml`: A Service for exposing the data preprocessing component.
+- `train-service.yaml`: A Service for exposing the model training component.
+- `evaluate-service.yaml`: A Service for exposing the model evaluation component.
+- `deploy-service.yaml`: A Service for exposing the model deployment component.
+
+### 9. Apply the Kubernetes configurations
+
+Apply the configurations to your MicroK8s cluster using the following command:
+
+```bash
+microk8s kubectl apply -f configs/
+```
+
+### 10. Monitor the pipeline
+
+Use the following command to monitor the status of your pipeline components:
+
+```bash
+microk8s kubectl get all
+```
+
+### 11. Update the pipeline
+
+Whenever you make changes to the pipeline, commit and push them to the GitHub repository. Then, update the pipeline components on the server by pulling the latest changes and re-applying the configurations:
+
+```bash
+git pull
+microk8s kubectl apply -f configs/
+```
+
+## Conclusion
+
+In this tutorial, you learned how to set up a simple MLOps pipeline on a server for a small team using containerd, MicroK8s, and other open-source tools. You also learned how to manage the pipeline using Git and a GitHub repository.
+
+## Next
+
+```{tableofcontents}
+
+```

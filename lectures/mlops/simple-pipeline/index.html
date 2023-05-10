@@ -93,7 +93,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Data Science for Economics and Finance" href="../../ds/index.html" />
+    <link rel="next" title="Server Setup &amp; Usage" href="server.html" />
     <link rel="prev" title="containerd" href="../containerization/containerd.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -294,7 +294,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dotdrop/">Dotdrop Setup Script</a></li>
 <li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/github/">GitHub Setup Scripts</a></li>
 <li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/ssh-gpg-age/">SSH, GPG, and Age Setup Scripts</a></li>
-<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/pass/">Pass and Passage Scripts</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/sops/">Pass and Passage Scripts</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/pass/">SOPS: Secrets OPerationS</a></li>
 <li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/doppler/">Doppler Usage</a></li>
 <li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dockerfiles/">Dockerfiles Scripts</a></li>
 </ul>
@@ -317,7 +318,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="../containerization/containerd.html"><code class="docutils literal notranslate"><span class="pre">containerd</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Simple MLOps Pipeline</a></li>
+<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">Simple MLOps Pipeline</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="server.html">Server Setup &amp; Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vpn.html">VPN Connectivity</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../ds/index.html">Data Science for Economics and Finance</a></li>
@@ -476,6 +481,22 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites-before-diving-into-simple-mlops-pipeline">Prerequisites: Before Diving into Simple MLOps Pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-a-simple-mlops-pipeline">Implementing a Simple MLOps Pipeline</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-containerd">1. Install containerd</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-containerd">2. Configure containerd</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-microk8s">3. Install MicroK8s</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-microk8s">4. Configure MicroK8s</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-ssh-access-for-the-team">5. Set up SSH access for the team</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-the-github-repository">6. Set up the GitHub repository</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-simple-mlops-pipeline">7. Create a simple MLOps pipeline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-kubernetes-resources">8. Configure Kubernetes resources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-the-kubernetes-configurations">9. Apply the Kubernetes configurations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monitor-the-pipeline">10. Monitor the pipeline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-the-pipeline">11. Update the pipeline</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next">Next</a></li>
 </ul>
             </nav>
         </div>
@@ -505,6 +526,162 @@ document.write(`
 <li><p><code class="docutils literal notranslate"><span class="pre">Introductory</span> <span class="pre">knowledge</span> <span class="pre">of</span> <span class="pre">DevOps</span> <span class="pre">principles</span></code>: Get acquainted with the core principles of DevOps, such as continuous integration, continuous delivery, and infrastructure as code, which will help you understand and appreciate the MLOps pipeline’s underlying concepts.</p></li>
 </ol>
 <p>While not all of these prerequisites are mandatory, a solid grasp of the topics mentioned above will enable you to better understand the intricacies of a simple MLOps pipeline and facilitate a more efficient learning experience.</p>
+</section>
+<section id="implementing-a-simple-mlops-pipeline">
+<h2>Implementing a Simple MLOps Pipeline<a class="headerlink" href="#implementing-a-simple-mlops-pipeline" title="Permalink to this heading">#</a></h2>
+<p><strong>Prerequisites:</strong></p>
+<ul class="simple">
+<li><p>Basic knowledge of Git, GitHub, and SSH</p></li>
+<li><p>A server with root access</p></li>
+<li><p>A GitHub account</p></li>
+</ul>
+<section id="install-containerd">
+<h3>1. Install containerd<a class="headerlink" href="#install-containerd" title="Permalink to this heading">#</a></h3>
+<p>First, let’s install containerd, a lightweight container runtime, on your server. Open your terminal and run the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Update the system packages</span>
+sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+
+<span class="c1"># Install containerd</span>
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>containerd
+</pre></div>
+</div>
+</section>
+<section id="configure-containerd">
+<h3>2. Configure containerd<a class="headerlink" href="#configure-containerd" title="Permalink to this heading">#</a></h3>
+<p>Create a default configuration file for containerd:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/containerd
+sudo<span class="w"> </span>containerd<span class="w"> </span>config<span class="w"> </span>default<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/containerd/config.toml
+</pre></div>
+</div>
+<p>Then, enable and start the containerd service:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>containerd
+sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>containerd
+</pre></div>
+</div>
+</section>
+<section id="install-microk8s">
+<h3>3. Install MicroK8s<a class="headerlink" href="#install-microk8s" title="Permalink to this heading">#</a></h3>
+<p>MicroK8s is a lightweight Kubernetes distribution. Install it using the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add the MicroK8s repository</span>
+sudo<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;echo &quot;deb http://apt.kubernetes.io/ kubernetes-xenial main&quot; &gt; /etc/apt/sources.list.d/kubernetes.list&#39;</span>
+curl<span class="w"> </span>-s<span class="w"> </span>https://packages.cloud.google.com/apt/doc/apt-key.gpg<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>apt-key<span class="w"> </span>add<span class="w"> </span>-
+
+<span class="c1"># Update the system packages</span>
+sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+
+<span class="c1"># Install MicroK8s</span>
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>microk8s
+</pre></div>
+</div>
+</section>
+<section id="configure-microk8s">
+<h3>4. Configure MicroK8s<a class="headerlink" href="#configure-microk8s" title="Permalink to this heading">#</a></h3>
+<p>Enable the necessary MicroK8s add-ons:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>microk8s<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>dns<span class="w"> </span>storage<span class="w"> </span>ingress
+</pre></div>
+</div>
+<p>Allow your user to access MicroK8s commands without sudo:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>usermod<span class="w"> </span>-a<span class="w"> </span>-G<span class="w"> </span>microk8s<span class="w"> </span><span class="nv">$USER</span>
+sudo<span class="w"> </span>chown<span class="w"> </span>-f<span class="w"> </span>-R<span class="w"> </span><span class="nv">$USER</span><span class="w"> </span>~/.kube
+</pre></div>
+</div>
+<p>Log out and log back in for these changes to take effect.</p>
+</section>
+<section id="set-up-ssh-access-for-the-team">
+<h3>5. Set up SSH access for the team<a class="headerlink" href="#set-up-ssh-access-for-the-team" title="Permalink to this heading">#</a></h3>
+<p>For each team member, create a user account and set up SSH access. Replace <code class="docutils literal notranslate"><span class="pre">USERNAME</span></code> with the appropriate username.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a user account</span>
+sudo<span class="w"> </span>adduser<span class="w"> </span>USERNAME
+
+<span class="c1"># Add the user to the sudo group</span>
+sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>sudo<span class="w"> </span>USERNAME
+
+<span class="c1"># Set up SSH access</span>
+sudo<span class="w"> </span>mkdir<span class="w"> </span>/home/USERNAME/.ssh
+sudo<span class="w"> </span>nano<span class="w"> </span>/home/USERNAME/.ssh/authorized_keys
+</pre></div>
+</div>
+<p>Paste the team member’s public SSH key into the <code class="docutils literal notranslate"><span class="pre">authorized_keys</span></code> file. Save the file and set the proper permissions:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>USERNAME:USERNAME<span class="w"> </span>/home/USERNAME/.ssh
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">700</span><span class="w"> </span>/home/USERNAME/.ssh
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>/home/USERNAME/.ssh/authorized_keys
+</pre></div>
+</div>
+</section>
+<section id="set-up-the-github-repository">
+<h3>6. Set up the GitHub repository<a class="headerlink" href="#set-up-the-github-repository" title="Permalink to this heading">#</a></h3>
+<p>Create a new GitHub repository for your project. Then, clone the repository on the local server and set up the necessary directories:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+<span class="nb">cd</span><span class="w"> </span>YOUR_REPO_NAME
+mkdir<span class="w"> </span>-p<span class="w"> </span>configs<span class="w"> </span>scripts
+</pre></div>
+</div>
+</section>
+<section id="create-a-simple-mlops-pipeline">
+<h3>7. Create a simple MLOps pipeline<a class="headerlink" href="#create-a-simple-mlops-pipeline" title="Permalink to this heading">#</a></h3>
+<p>Create the necessary configuration files, scripts, and YAML files for your pipeline. Save these files in the <code class="docutils literal notranslate"><span class="pre">configs</span></code> and <code class="docutils literal notranslate"><span class="pre">scripts</span></code> directories of your GitHub repository.</p>
+<p>For example, you can create a simple pipeline with the following components:</p>
+<ul class="simple">
+<li><p>Data preprocessing</p></li>
+<li><p>Model training</p></li>
+<li><p>Model evaluation</p></li>
+<li><p>Model deployment</p></li>
+</ul>
+<p>You can create separate scripts for each component and use Kubernetes resources like ConfigMaps, Secrets, Deployments, and Services to manage them. For instance, create a <code class="docutils literal notranslate"><span class="pre">preprocess.py</span></code> script for data preprocessing, a <code class="docutils literal notranslate"><span class="pre">train.py</span></code> script for model training, a <code class="docutils literal notranslate"><span class="pre">evaluate.py</span></code> script for model evaluation, and a <code class="docutils literal notranslate"><span class="pre">deploy.py</span></code> script for model deployment.</p>
+</section>
+<section id="configure-kubernetes-resources">
+<h3>8. Configure Kubernetes resources<a class="headerlink" href="#configure-kubernetes-resources" title="Permalink to this heading">#</a></h3>
+<p>Create the appropriate YAML files for your Kubernetes resources in the <code class="docutils literal notranslate"><span class="pre">configs</span></code> directory. For example:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">preprocess-configmap.yaml</span></code>: A ConfigMap for the data preprocessing configuration.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">train-configmap.yaml</span></code>: A ConfigMap for the model training configuration.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">evaluate-configmap.yaml</span></code>: A ConfigMap for the model evaluation configuration.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">deploy-configmap.yaml</span></code>: A ConfigMap for the model deployment configuration.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">preprocess-deployment.yaml</span></code>: A Deployment for running the data preprocessing script.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">train-deployment.yaml</span></code>: A Deployment for running the model training script.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">evaluate-deployment.yaml</span></code>: A Deployment for running the model evaluation script.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">deploy-deployment.yaml</span></code>: A Deployment for running the model deployment script.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">preprocess-service.yaml</span></code>: A Service for exposing the data preprocessing component.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">train-service.yaml</span></code>: A Service for exposing the model training component.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">evaluate-service.yaml</span></code>: A Service for exposing the model evaluation component.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">deploy-service.yaml</span></code>: A Service for exposing the model deployment component.</p></li>
+</ul>
+</section>
+<section id="apply-the-kubernetes-configurations">
+<h3>9. Apply the Kubernetes configurations<a class="headerlink" href="#apply-the-kubernetes-configurations" title="Permalink to this heading">#</a></h3>
+<p>Apply the configurations to your MicroK8s cluster using the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>microk8s<span class="w"> </span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>configs/
+</pre></div>
+</div>
+</section>
+<section id="monitor-the-pipeline">
+<h3>10. Monitor the pipeline<a class="headerlink" href="#monitor-the-pipeline" title="Permalink to this heading">#</a></h3>
+<p>Use the following command to monitor the status of your pipeline components:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>microk8s<span class="w"> </span>kubectl<span class="w"> </span>get<span class="w"> </span>all
+</pre></div>
+</div>
+</section>
+<section id="update-the-pipeline">
+<h3>11. Update the pipeline<a class="headerlink" href="#update-the-pipeline" title="Permalink to this heading">#</a></h3>
+<p>Whenever you make changes to the pipeline, commit and push them to the GitHub repository. Then, update the pipeline components on the server by pulling the latest changes and re-applying the configurations:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>pull
+microk8s<span class="w"> </span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>configs/
+</pre></div>
+</div>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+<p>In this tutorial, you learned how to set up a simple MLOps pipeline on a server for a small team using containerd, MicroK8s, and other open-source tools. You also learned how to manage the pipeline using Git and a GitHub repository.</p>
+</section>
+<section id="next">
+<h2>Next<a class="headerlink" href="#next" title="Permalink to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="server.html">Server Setup &amp; Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vpn.html">VPN Connectivity</a></li>
+</ul>
+</div>
 </section>
 </section>
 
@@ -549,11 +726,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="../../ds/index.html"
+       href="server.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Data Science for Economics and Finance</p>
+        <p class="prev-next-title">Server Setup &amp; Usage</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -576,6 +753,22 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites-before-diving-into-simple-mlops-pipeline">Prerequisites: Before Diving into Simple MLOps Pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-a-simple-mlops-pipeline">Implementing a Simple MLOps Pipeline</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-containerd">1. Install containerd</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-containerd">2. Configure containerd</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-microk8s">3. Install MicroK8s</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-microk8s">4. Configure MicroK8s</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-ssh-access-for-the-team">5. Set up SSH access for the team</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-the-github-repository">6. Set up the GitHub repository</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-simple-mlops-pipeline">7. Create a simple MLOps pipeline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-kubernetes-resources">8. Configure Kubernetes resources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-the-kubernetes-configurations">9. Apply the Kubernetes configurations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monitor-the-pipeline">10. Monitor the pipeline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-the-pipeline">11. Update the pipeline</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next">Next</a></li>
 </ul>
   </nav></div>
 
