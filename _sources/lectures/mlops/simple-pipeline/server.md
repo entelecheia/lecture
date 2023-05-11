@@ -10,7 +10,71 @@ In this tutorial, we will guide you through the process of connecting to, managi
 - Basic knowledge of Git, GitHub, and SSH
 - Familiarity with the command-line interface (CLI)
 
-## Workflow
+## Basic User Management for an Ubuntu Server
+
+In this section, we will guide you through the process of basic user management on an Ubuntu server. User management is essential for controlling access to server resources, setting permissions, and ensuring the security of your server. We will cover creating new users, adding users to the sudoers group, and removing users.
+
+### 1. Create a new user
+
+To create a new user on the Ubuntu server, use the `adduser` command followed by the desired username:
+
+```bash
+sudo adduser new_username
+```
+
+You will be prompted to enter a password for the new user and provide optional user information, such as full name, room number, work phone, etc. You can leave these fields blank by pressing Enter.
+
+### 2. Add a user to the sudoers group
+
+By default, a new user does not have administrative privileges on the server. To grant a user sudo privileges, add them to the sudoers group:
+
+```bash
+sudo usermod -aG sudo new_username
+```
+
+The user will now have the ability to execute commands with superuser privileges by prefixing the command with `sudo`.
+
+### 3. Remove a user
+
+To remove a user from the Ubuntu server, use the `deluser` command:
+
+```bash
+sudo deluser --remove-home username_to_remove
+```
+
+This command will delete the user and their home directory. If you only want to remove the user without deleting the home directory, omit the `--remove-home` option.
+
+### 4. Switch between users
+
+To switch to another user account, use the `su` command followed by the target username:
+
+```bash
+su target_username
+```
+
+You will be prompted to enter the target user's password. To return to your previous user session, type `exit` and press Enter.
+
+### 5. List users on the server
+
+To list all users on the server, you can use the `getent` command:
+
+```bash
+getent passwd
+```
+
+This command displays the content of the `/etc/passwd` file, which contains user account information. Each line represents a user account and includes the username, user ID (UID), group ID (GID), home directory, and default shell.
+
+### 6. Change a user's password
+
+To change a user's password, use the `passwd` command:
+
+```bash
+sudo passwd target_username
+```
+
+You will be prompted to enter a new password for the target user.
+
+## Workflow for a Simple MLOps Pipeline Project
 
 ### 1. Set up the server
 

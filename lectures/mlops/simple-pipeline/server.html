@@ -510,7 +510,16 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow">Workflow</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-user-management-for-an-ubuntu-server">Basic User Management for an Ubuntu Server</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-new-user">1. Create a new user</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-user-to-the-sudoers-group">2. Add a user to the sudoers group</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-a-user">3. Remove a user</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#switch-between-users">4. Switch between users</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-users-on-the-server">5. List users on the server</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#change-a-users-password">6. Change a user’s password</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-for-a-simple-mlops-pipeline-project">Workflow for a Simple MLOps Pipeline Project</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-the-server">1. Set up the server</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-the-server">2. Update the server</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-the-necessary-software">3. Install the necessary software</a></li>
@@ -548,8 +557,60 @@ document.write(`
 <li><p>Familiarity with the command-line interface (CLI)</p></li>
 </ul>
 </section>
-<section id="workflow">
-<h2>Workflow<a class="headerlink" href="#workflow" title="Permalink to this heading">#</a></h2>
+<section id="basic-user-management-for-an-ubuntu-server">
+<h2>Basic User Management for an Ubuntu Server<a class="headerlink" href="#basic-user-management-for-an-ubuntu-server" title="Permalink to this heading">#</a></h2>
+<p>In this section, we will guide you through the process of basic user management on an Ubuntu server. User management is essential for controlling access to server resources, setting permissions, and ensuring the security of your server. We will cover creating new users, adding users to the sudoers group, and removing users.</p>
+<section id="create-a-new-user">
+<h3>1. Create a new user<a class="headerlink" href="#create-a-new-user" title="Permalink to this heading">#</a></h3>
+<p>To create a new user on the Ubuntu server, use the <code class="docutils literal notranslate"><span class="pre">adduser</span></code> command followed by the desired username:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>adduser<span class="w"> </span>new_username
+</pre></div>
+</div>
+<p>You will be prompted to enter a password for the new user and provide optional user information, such as full name, room number, work phone, etc. You can leave these fields blank by pressing Enter.</p>
+</section>
+<section id="add-a-user-to-the-sudoers-group">
+<h3>2. Add a user to the sudoers group<a class="headerlink" href="#add-a-user-to-the-sudoers-group" title="Permalink to this heading">#</a></h3>
+<p>By default, a new user does not have administrative privileges on the server. To grant a user sudo privileges, add them to the sudoers group:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>sudo<span class="w"> </span>new_username
+</pre></div>
+</div>
+<p>The user will now have the ability to execute commands with superuser privileges by prefixing the command with <code class="docutils literal notranslate"><span class="pre">sudo</span></code>.</p>
+</section>
+<section id="remove-a-user">
+<h3>3. Remove a user<a class="headerlink" href="#remove-a-user" title="Permalink to this heading">#</a></h3>
+<p>To remove a user from the Ubuntu server, use the <code class="docutils literal notranslate"><span class="pre">deluser</span></code> command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>deluser<span class="w"> </span>--remove-home<span class="w"> </span>username_to_remove
+</pre></div>
+</div>
+<p>This command will delete the user and their home directory. If you only want to remove the user without deleting the home directory, omit the <code class="docutils literal notranslate"><span class="pre">--remove-home</span></code> option.</p>
+</section>
+<section id="switch-between-users">
+<h3>4. Switch between users<a class="headerlink" href="#switch-between-users" title="Permalink to this heading">#</a></h3>
+<p>To switch to another user account, use the <code class="docutils literal notranslate"><span class="pre">su</span></code> command followed by the target username:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>su<span class="w"> </span>target_username
+</pre></div>
+</div>
+<p>You will be prompted to enter the target user’s password. To return to your previous user session, type <code class="docutils literal notranslate"><span class="pre">exit</span></code> and press Enter.</p>
+</section>
+<section id="list-users-on-the-server">
+<h3>5. List users on the server<a class="headerlink" href="#list-users-on-the-server" title="Permalink to this heading">#</a></h3>
+<p>To list all users on the server, you can use the <code class="docutils literal notranslate"><span class="pre">getent</span></code> command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>getent<span class="w"> </span>passwd
+</pre></div>
+</div>
+<p>This command displays the content of the <code class="docutils literal notranslate"><span class="pre">/etc/passwd</span></code> file, which contains user account information. Each line represents a user account and includes the username, user ID (UID), group ID (GID), home directory, and default shell.</p>
+</section>
+<section id="change-a-users-password">
+<h3>6. Change a user’s password<a class="headerlink" href="#change-a-users-password" title="Permalink to this heading">#</a></h3>
+<p>To change a user’s password, use the <code class="docutils literal notranslate"><span class="pre">passwd</span></code> command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>passwd<span class="w"> </span>target_username
+</pre></div>
+</div>
+<p>You will be prompted to enter a new password for the target user.</p>
+</section>
+</section>
+<section id="workflow-for-a-simple-mlops-pipeline-project">
+<h2>Workflow for a Simple MLOps Pipeline Project<a class="headerlink" href="#workflow-for-a-simple-mlops-pipeline-project" title="Permalink to this heading">#</a></h2>
 <section id="set-up-the-server">
 <h3>1. Set up the server<a class="headerlink" href="#set-up-the-server" title="Permalink to this heading">#</a></h3>
 <p>If you are using a local server, make sure it is powered on and connected to the network. If you are using a remote server, such as a cloud-based virtual machine, ensure that you have root access and the necessary credentials. In either case, the server should have a Linux-based operating system, such as Ubuntu or CentOS, installed.</p>
@@ -690,7 +751,16 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow">Workflow</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-user-management-for-an-ubuntu-server">Basic User Management for an Ubuntu Server</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-new-user">1. Create a new user</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-user-to-the-sudoers-group">2. Add a user to the sudoers group</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-a-user">3. Remove a user</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#switch-between-users">4. Switch between users</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-users-on-the-server">5. List users on the server</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#change-a-users-password">6. Change a user’s password</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-for-a-simple-mlops-pipeline-project">Workflow for a Simple MLOps Pipeline Project</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-the-server">1. Set up the server</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-the-server">2. Update the server</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-the-necessary-software">3. Install the necessary software</a></li>
