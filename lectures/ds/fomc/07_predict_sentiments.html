@@ -1,0 +1,3804 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Predicting Sentiments of FOMC Corpus &#8212; ἐντελέχεια.άι</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/js/hoverxref.js"></script>
+    <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/chatgpt.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/ds/fomc/07_predict_sentiments';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/ds/fomc/07_predict_sentiments.html" />
+    <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="EDA on Sentiments: Correlation" href="08_EDA_sentiments1.html" />
+    <link rel="prev" title="Checking Baseline with AutoML" href="06_AutoML.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+
+  <div class="bd-header-announcement container-fluid bd-header-announcement">
+    <div class="bd-header-announcement__content"><p>
+  <strong>Announcement:</strong>
+  You can install the accompanying AI tutor <a href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd" target="_blank">here</a>.
+  <a class="reference external" href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd" target="_blank"><img alt="chrome-web-store-image" src="https://img.shields.io/chrome-web-store/v/lfgfgbomindbccgidgalhhndggddpagd" /></a>
+</p>
+</div>
+  </div>
+
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">ἐντελέχεια.άι</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../index.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_intro/index.html">Introduction to NLP</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/intro/index.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/research/index.html">Research Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/lm/index.html">Language Models</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/datasets/corpus.html">Text Data Collection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/datasets/lab-dart.html">Lab: Crawling DART Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/topic/index.html">Topic Modeling</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/coherence.html">Topic Coherence Measures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/tomotopy.html">Lab: Tomotopy</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/sentiments/index.html">Sentiment Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lexicon.html">Lexicon-Based Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/ml.html">Machine Learning-Based Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lab-lexicon.html">Lab: Lexicon-Based Sentiment Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/segmentation.html">Word Segmentation and Association</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/embeddings/index.html">Word Embeddings</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_deep/index.html">Deep Learning for NLP</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/llms/index.html">Large Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/zeroshot.html">Zero Shot and Prompt Engineering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/decoding.html">Decoding and Search Strategies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/plms.html">Pretrained Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/transformers/index.html">Transformers</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/bert.html">BERT: Bidirectional Encoder Representations from Transformers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/bertviz.html">BERT: Visualizing Attention</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/t5.html">T5: Text-To-Text Transfer Transformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/datasets/mc4.html">mC4 Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/datasets/lab-eda.html">Lab: Exploratory Data Analysis (EDA)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/sentencepiece.html">SentencePiece Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/lab-train-tokenizers.html">Lab: Training Tokenizers</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/training/index.html">Training Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/training/lab-pretraining.html">Lab: Pretraining Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/chatbots/index.html">Conversational AI and Chatbots</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/chatbots/rlhf.html">Reinforcement Learning with Human Feedback (RLHF)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/chatbots/detectGPT.html">How to Spot Machine-Written Texts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_advances/index.html">Advances in AI and NLP</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/thesis.html">Writing a Thesis</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_advances/gpt/index.html">Generative Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/detectGPT.html">DetectGPT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/gpt4.html">GPT-4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/camelids.html">Meet the Camelids: A Family of LLMs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/sam/index.html">Segment Everything</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../aiart/index.html">AI Art (Generative AI)</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/intro/index.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/brave/index.html">A Brave New World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/aiart/index.html">Art and Music in Light of AI</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../aiart/text-to-image/index.html">Text-to-Image Models</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/dalle1.html">DALL·E 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/dalle2.html">DALL·E 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/imagen.html">Imagen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/motion-capture-and-synthesis/index.html">Motion Capture and Motion Synthesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/robot/index.html">Robot Drawing System</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../mlops/index.html">Machine Learning Systems Design</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/intro.html">Introduction to MLOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/project.html">MLOps Project</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/devops/index.html">DevOps</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/gitops.html">GitOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/devsecops.html">DevSecOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/llmops.html">LLMOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/dotfiles/index.html">Dotfiles</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai">Dotfiles Repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/dotfiles/dotdrop.html">Dotdrop</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dotdrop/">Dotdrop Setup Script</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/github/">GitHub Setup Scripts</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/ssh-gpg-age/">SSH, GPG, and Age Setup Scripts</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/sops/">Pass and Passage Scripts</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/pass/">SOPS: Secrets OPerationS</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/doppler/">Doppler Usage</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dockerfiles/">Dockerfiles Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/security/index.html">Security Management</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/auth-enc-sign.html">Authentication, Encryption, and Signing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/age-gpg-ssh.html">SSH, GPG, and AGE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/pass.html">Unix Password Managers</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/github/index.html">GitHub Workflow</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/github/fork-pull.html">Github’s Fork &amp; Pull Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/github/template.html">Project Templating Tools</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://hyperfast-python.entelecheia.ai/">Hyperfast Python Template</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://hyperfast-template.entelecheia.ai/">Hyperfast Template</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/containerization/index.html">Containerization</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/containerization/docker.html">Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/containerization/containerd.html"><code class="docutils literal notranslate"><span class="pre">containerd</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/simple-pipeline/index.html">Simple MLOps Pipeline</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/simple-pipeline/server.html">Server Setup &amp; Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/simple-pipeline/vpn.html">VPN Connectivity</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Data Science for Economics and Finance</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-24"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Textual Analysis of FOMC contents</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-25"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="01_numerical_data.html">Preparing Numerical Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_textual_data.html">Preparing Textual Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03_EDA_numericals1.html">EDA on Numerical Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03_EDA_numericals2.html">EDA on Numerical Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="04_training_datasets.html">Create Training Datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05_features.html">Visualizing Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="06_AutoML.html">Checking Baseline with AutoML</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Predicting Sentiments of FOMC Corpus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="08_EDA_sentiments1.html">EDA on Sentiments: Correlation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="08_EDA_sentiments2.html">EDA on Sentiment Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="09_visualize_features.html">Visualize Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="10_monetary_shocks.html">Monetary Policy Shocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="11_AutoML_with_tones.html">Predicting the next decisions with tones</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../about/lecture-bot.html">LectureBot for ἐντελέχεια.άι</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://course.entelecheia.ai">course.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://research.entelecheia.ai">research.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/ds/fomc/07_predict_sentiments.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/lectures/ds/fomc/07_predict_sentiments.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Predicting Sentiments of FOMC Corpus</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predict-sentiments-with-the-lm-sentiment-analyser">Predict sentiments with the LM sentiment analyser</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-fomc-corpus">Load FOMC Corpus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predict-sentiments-of-sentences">Predict sentiments of sentences</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregate-sentiment-scores">Aggregate sentiment scores</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predict-sentiments-and-aggregate-scores-with-a-pipeline">Predict sentiments and aggregate scores with a pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predict-sentiments-with-the-finbert">Predict sentiments with the finbert</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predict-sentiments-with-the-t5">Predict sentiments with the T5</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="predicting-sentiments-of-fomc-corpus">
+<h1>Predicting Sentiments of FOMC Corpus<a class="headerlink" href="#predicting-sentiments-of-fomc-corpus" title="Permalink to this heading">#</a></h1>
+<p>Analyse statement by Loughran and McDonald dictionary, finbert, and T5 model</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;retina&#39;
+<span class="kn">from</span> <span class="nn">ekorpkit</span> <span class="kn">import</span> <span class="n">eKonf</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;version:&quot;</span><span class="p">,</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;is notebook?&quot;</span><span class="p">,</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">is_notebook</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;is colab?&quot;</span><span class="p">,</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">is_colab</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;evironment varialbles:&quot;</span><span class="p">)</span>
+<span class="n">eKonf</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">eKonf</span><span class="o">.</span><span class="n">env</span><span class="p">()</span><span class="o">.</span><span class="n">dict</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>version: 0.1.33+28.g90d1dea
+is notebook? True
+is colab? False
+evironment varialbles:
+{&#39;EKORPKIT_CONFIG_DIR&#39;: &#39;/workspace/projects/ekorpkit-book/config&#39;,
+ &#39;EKORPKIT_DATA_DIR&#39;: None,
+ &#39;EKORPKIT_PROJECT&#39;: &#39;ekorpkit-book&#39;,
+ &#39;EKORPKIT_WORKSPACE_ROOT&#39;: &#39;/workspace&#39;,
+ &#39;NUM_WORKERS&#39;: 230}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start_year</span> <span class="o">=</span> <span class="mi">2000</span>
+<span class="n">data_dir</span> <span class="o">=</span> <span class="s2">&quot;../data/fomc&quot;</span>
+<span class="n">eKonf</span><span class="o">.</span><span class="n">env</span><span class="p">()</span><span class="o">.</span><span class="n">FRED_API_KEY</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pydantic.types.SecretStr
+</pre></div>
+</div>
+</div>
+</div>
+<section id="predict-sentiments-with-the-lm-sentiment-analyser">
+<h2>Predict sentiments with the LM sentiment analyser<a class="headerlink" href="#predict-sentiments-with-the-lm-sentiment-analyser" title="Permalink to this heading">#</a></h2>
+<section id="load-fomc-corpus">
+<h3>Load FOMC Corpus<a class="headerlink" href="#load-fomc-corpus" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fomc_sents</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s2">&quot;fomc_sents.parquet&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+<span class="n">fomc_sents</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>text</th>
+      <th>split</th>
+      <th>timestamp</th>
+      <th>content_type</th>
+      <th>date</th>
+      <th>speaker</th>
+      <th>title</th>
+      <th>decision</th>
+      <th>rate</th>
+      <th>recent_meeting</th>
+      <th>recent_decision</th>
+      <th>recent_rate</th>
+      <th>next_meeting</th>
+      <th>next_decision</th>
+      <th>next_rate</th>
+      <th>text_num_words</th>
+      <th>section_id</th>
+      <th>sent_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>653463</th>
+      <td>2854</td>
+      <td>It will not have the word “somewhat” on line 3.</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>MR. LUECKE</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>10</td>
+      <td>287</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>653464</th>
+      <td>2854</td>
+      <td>Chair Yellen      Yes Vice Chairman Dudley    ...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>MR. LUECKE</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>31</td>
+      <td>287</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>653465</th>
+      <td>2854</td>
+      <td>And let me confirm that the next meeting will ...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>CHAIR YELLEN</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>19</td>
+      <td>288</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>653466</th>
+      <td>2854</td>
+      <td>I believe box lunches are now available for pe...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>CHAIR YELLEN</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>33</td>
+      <td>288</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>653467</th>
+      <td>2854</td>
+      <td>I will do my best, and I will consider at the ...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>CHAIR YELLEN</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>18</td>
+      <td>288</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="predict-sentiments-of-sentences">
+<h3>Predict sentiments of sentences<a class="headerlink" href="#predict-sentiments-of-sentences" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s1">&#39;model/sentiment=lm&#39;</span><span class="p">)</span>
+<span class="n">model_cfg</span><span class="o">.</span><span class="n">num_workers</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">lmsa</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">model_cfg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">article</span> <span class="o">=</span> <span class="n">fomc_sents</span><span class="o">.</span><span class="n">text</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">lmsa</span><span class="o">.</span><span class="n">predict_sentence</span><span class="p">(</span><span class="n">article</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;num_tokens&#39;: 156,
+ &#39;polarity&#39;: -0.9999990000010001,
+ &#39;polarity_label&#39;: &#39;negative&#39;,
+ &#39;uncertainty&#39;: 1e-06}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fomc_sent_sentiments</span> <span class="o">=</span> <span class="n">lmsa</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">fomc_sents</span><span class="p">)</span>
+<span class="n">eKonf</span><span class="o">.</span><span class="n">save_data</span><span class="p">(</span><span class="n">fomc_sent_sentiments</span><span class="p">,</span> <span class="s2">&quot;fomc_sent_sentiments.parquet&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.models.sentiment.lbsa:Predicting sentiments of the column [text] using predict_sentence
+INFO:ekorpkit.base:Using batcher with minibatch size: 1000
+INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 100  input_split: False  merge_output: True  len(data): 653468 len(args): 5
+Predicting [text]: 100%|██████████| 654/654 [02:50&lt;00:00,  3.83it/s]
+INFO:ekorpkit.models.sentiment.lbsa: &gt;&gt; elapsed time to predict: 0:02:51.902053
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>text</th>
+      <th>split</th>
+      <th>timestamp</th>
+      <th>content_type</th>
+      <th>date</th>
+      <th>speaker</th>
+      <th>title</th>
+      <th>decision</th>
+      <th>rate</th>
+      <th>...</th>
+      <th>next_meeting</th>
+      <th>next_decision</th>
+      <th>next_rate</th>
+      <th>text_num_words</th>
+      <th>section_id</th>
+      <th>sent_id</th>
+      <th>num_tokens</th>
+      <th>polarity</th>
+      <th>polarity_label</th>
+      <th>uncertainty</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>The Secretary reported that advices of the ele...</td>
+      <td>train</td>
+      <td>1993-02-03</td>
+      <td>fomc_minutes</td>
+      <td>1993-02-03</td>
+      <td>Alan Greenspan</td>
+      <td>FOMC Meeting Minutes</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>...</td>
+      <td>1993-02-18</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>47</td>
+      <td>29</td>
+      <td>0</td>
+      <td>52</td>
+      <td>0.000000</td>
+      <td>neutral</td>
+      <td>0.000001</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>By unanimous vote, the Committee elected the f...</td>
+      <td>train</td>
+      <td>1993-02-03</td>
+      <td>fomc_minutes</td>
+      <td>1993-02-03</td>
+      <td>Alan Greenspan</td>
+      <td>FOMC Meeting Minutes</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>...</td>
+      <td>1993-02-18</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>73</td>
+      <td>35</td>
+      <td>0</td>
+      <td>78</td>
+      <td>-1.000000</td>
+      <td>negative</td>
+      <td>0.000001</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>By unanimous vote, William J. McDonough, Marga...</td>
+      <td>train</td>
+      <td>1993-02-03</td>
+      <td>fomc_minutes</td>
+      <td>1993-02-03</td>
+      <td>Alan Greenspan</td>
+      <td>FOMC Meeting Minutes</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>...</td>
+      <td>1993-02-18</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>74</td>
+      <td>37</td>
+      <td>0</td>
+      <td>83</td>
+      <td>1.000000</td>
+      <td>positive</td>
+      <td>0.000001</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>On January 15, 1993, the continuing rules, reg...</td>
+      <td>train</td>
+      <td>1993-02-03</td>
+      <td>fomc_minutes</td>
+      <td>1993-02-03</td>
+      <td>Alan Greenspan</td>
+      <td>FOMC Meeting Minutes</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>...</td>
+      <td>1993-02-18</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>59</td>
+      <td>39</td>
+      <td>0</td>
+      <td>68</td>
+      <td>-0.333333</td>
+      <td>negative</td>
+      <td>0.014707</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>Members were asked to indicate if they wished ...</td>
+      <td>train</td>
+      <td>1993-02-03</td>
+      <td>fomc_minutes</td>
+      <td>1993-02-03</td>
+      <td>Alan Greenspan</td>
+      <td>FOMC Meeting Minutes</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>...</td>
+      <td>1993-02-18</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>25</td>
+      <td>39</td>
+      <td>1</td>
+      <td>26</td>
+      <td>-0.999999</td>
+      <td>negative</td>
+      <td>0.000001</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>653463</th>
+      <td>2854</td>
+      <td>It will not have the word “somewhat” on line 3.</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>MR. LUECKE</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>...</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>10</td>
+      <td>287</td>
+      <td>2</td>
+      <td>13</td>
+      <td>0.000000</td>
+      <td>neutral</td>
+      <td>0.076924</td>
+    </tr>
+    <tr>
+      <th>653464</th>
+      <td>2854</td>
+      <td>Chair Yellen      Yes Vice Chairman Dudley    ...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>MR. LUECKE</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>...</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>31</td>
+      <td>287</td>
+      <td>4</td>
+      <td>31</td>
+      <td>0.000000</td>
+      <td>neutral</td>
+      <td>0.000001</td>
+    </tr>
+    <tr>
+      <th>653465</th>
+      <td>2854</td>
+      <td>And let me confirm that the next meeting will ...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>CHAIR YELLEN</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>...</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>19</td>
+      <td>288</td>
+      <td>3</td>
+      <td>21</td>
+      <td>0.000000</td>
+      <td>neutral</td>
+      <td>0.000001</td>
+    </tr>
+    <tr>
+      <th>653466</th>
+      <td>2854</td>
+      <td>I believe box lunches are now available for pe...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>CHAIR YELLEN</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>...</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>33</td>
+      <td>288</td>
+      <td>4</td>
+      <td>39</td>
+      <td>0.000000</td>
+      <td>neutral</td>
+      <td>0.025642</td>
+    </tr>
+    <tr>
+      <th>653467</th>
+      <td>2854</td>
+      <td>I will do my best, and I will consider at the ...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>CHAIR YELLEN</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>...</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>18</td>
+      <td>288</td>
+      <td>5</td>
+      <td>22</td>
+      <td>0.000000</td>
+      <td>neutral</td>
+      <td>0.000001</td>
+    </tr>
+  </tbody>
+</table>
+<p>653468 rows × 23 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fomc_sent_sentiments</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s2">&quot;fomc_sent_sentiments.parquet&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+<span class="n">fomc_sent_sentiments</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>text</th>
+      <th>split</th>
+      <th>timestamp</th>
+      <th>content_type</th>
+      <th>date</th>
+      <th>speaker</th>
+      <th>title</th>
+      <th>decision</th>
+      <th>rate</th>
+      <th>...</th>
+      <th>next_meeting</th>
+      <th>next_decision</th>
+      <th>next_rate</th>
+      <th>text_num_words</th>
+      <th>section_id</th>
+      <th>sent_id</th>
+      <th>num_tokens</th>
+      <th>polarity</th>
+      <th>polarity_label</th>
+      <th>uncertainty</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>The Secretary reported that advices of the ele...</td>
+      <td>train</td>
+      <td>1993-02-03</td>
+      <td>fomc_minutes</td>
+      <td>1993-02-03</td>
+      <td>Alan Greenspan</td>
+      <td>FOMC Meeting Minutes</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>...</td>
+      <td>1993-02-18</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>47</td>
+      <td>29</td>
+      <td>0</td>
+      <td>52</td>
+      <td>0.000000</td>
+      <td>neutral</td>
+      <td>0.000001</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>By unanimous vote, the Committee elected the f...</td>
+      <td>train</td>
+      <td>1993-02-03</td>
+      <td>fomc_minutes</td>
+      <td>1993-02-03</td>
+      <td>Alan Greenspan</td>
+      <td>FOMC Meeting Minutes</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>...</td>
+      <td>1993-02-18</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>73</td>
+      <td>35</td>
+      <td>0</td>
+      <td>78</td>
+      <td>-1.000000</td>
+      <td>negative</td>
+      <td>0.000001</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>By unanimous vote, William J. McDonough, Marga...</td>
+      <td>train</td>
+      <td>1993-02-03</td>
+      <td>fomc_minutes</td>
+      <td>1993-02-03</td>
+      <td>Alan Greenspan</td>
+      <td>FOMC Meeting Minutes</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>...</td>
+      <td>1993-02-18</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>74</td>
+      <td>37</td>
+      <td>0</td>
+      <td>83</td>
+      <td>1.000000</td>
+      <td>positive</td>
+      <td>0.000001</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>On January 15, 1993, the continuing rules, reg...</td>
+      <td>train</td>
+      <td>1993-02-03</td>
+      <td>fomc_minutes</td>
+      <td>1993-02-03</td>
+      <td>Alan Greenspan</td>
+      <td>FOMC Meeting Minutes</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>...</td>
+      <td>1993-02-18</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>59</td>
+      <td>39</td>
+      <td>0</td>
+      <td>68</td>
+      <td>-0.333333</td>
+      <td>negative</td>
+      <td>0.014707</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>Members were asked to indicate if they wished ...</td>
+      <td>train</td>
+      <td>1993-02-03</td>
+      <td>fomc_minutes</td>
+      <td>1993-02-03</td>
+      <td>Alan Greenspan</td>
+      <td>FOMC Meeting Minutes</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>...</td>
+      <td>1993-02-18</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>25</td>
+      <td>39</td>
+      <td>1</td>
+      <td>26</td>
+      <td>-0.999999</td>
+      <td>negative</td>
+      <td>0.000001</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>653463</th>
+      <td>2854</td>
+      <td>It will not have the word “somewhat” on line 3.</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>MR. LUECKE</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>...</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>10</td>
+      <td>287</td>
+      <td>2</td>
+      <td>13</td>
+      <td>0.000000</td>
+      <td>neutral</td>
+      <td>0.076924</td>
+    </tr>
+    <tr>
+      <th>653464</th>
+      <td>2854</td>
+      <td>Chair Yellen      Yes Vice Chairman Dudley    ...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>MR. LUECKE</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>...</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>31</td>
+      <td>287</td>
+      <td>4</td>
+      <td>31</td>
+      <td>0.000000</td>
+      <td>neutral</td>
+      <td>0.000001</td>
+    </tr>
+    <tr>
+      <th>653465</th>
+      <td>2854</td>
+      <td>And let me confirm that the next meeting will ...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>CHAIR YELLEN</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>...</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>19</td>
+      <td>288</td>
+      <td>3</td>
+      <td>21</td>
+      <td>0.000000</td>
+      <td>neutral</td>
+      <td>0.000001</td>
+    </tr>
+    <tr>
+      <th>653466</th>
+      <td>2854</td>
+      <td>I believe box lunches are now available for pe...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>CHAIR YELLEN</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>...</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>33</td>
+      <td>288</td>
+      <td>4</td>
+      <td>39</td>
+      <td>0.000000</td>
+      <td>neutral</td>
+      <td>0.025642</td>
+    </tr>
+    <tr>
+      <th>653467</th>
+      <td>2854</td>
+      <td>I will do my best, and I will consider at the ...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>CHAIR YELLEN</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>...</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>18</td>
+      <td>288</td>
+      <td>5</td>
+      <td>22</td>
+      <td>0.000000</td>
+      <td>neutral</td>
+      <td>0.000001</td>
+    </tr>
+  </tbody>
+</table>
+<p>653468 rows × 23 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="aggregate-sentiment-scores">
+<h3>Aggregate sentiment scores<a class="headerlink" href="#aggregate-sentiment-scores" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fomc_tones_lm</span> <span class="o">=</span> <span class="n">lmsa</span><span class="o">.</span><span class="n">aggregate_scores</span><span class="p">(</span><span class="n">fomc_sent_sentiments</span><span class="p">,</span> <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;content_type&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">])</span>
+<span class="n">fomc_tones_lm</span><span class="o">.</span><span class="n">content_type</span> <span class="o">=</span> <span class="n">fomc_tones_lm</span><span class="o">.</span><span class="n">content_type</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;fomc_&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">eKonf</span><span class="o">.</span><span class="n">save_data</span><span class="p">(</span><span class="n">fomc_tones_lm</span><span class="p">,</span> <span class="s1">&#39;fomc_tones_lm.parquet&#39;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fomc_tones_lm</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;fomc_tones_lm.parquet&#39;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+<span class="n">fomc_tones_lm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>content_type</th>
+      <th>date</th>
+      <th>polarity_mean</th>
+      <th>polarity_diffusion</th>
+      <th>positive</th>
+      <th>negative</th>
+      <th>num_tokens_sum</th>
+      <th>num_tokens_mean</th>
+      <th>num_tokens_median</th>
+      <th>num_examples</th>
+      <th>polarity_mean_label</th>
+      <th>polarity_diffusion_label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>beigebook</td>
+      <td>2021-01-13</td>
+      <td>-0.068247</td>
+      <td>-0.071053</td>
+      <td>3972</td>
+      <td>5229</td>
+      <td>397855</td>
+      <td>22.489119</td>
+      <td>21.0</td>
+      <td>17691</td>
+      <td>neutral</td>
+      <td>neutral</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>beigebook</td>
+      <td>2021-03-03</td>
+      <td>-0.032683</td>
+      <td>-0.037384</td>
+      <td>3887</td>
+      <td>4518</td>
+      <td>381300</td>
+      <td>22.590201</td>
+      <td>21.0</td>
+      <td>16879</td>
+      <td>neutral</td>
+      <td>neutral</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>beigebook</td>
+      <td>2021-04-14</td>
+      <td>-0.030535</td>
+      <td>-0.035085</td>
+      <td>3568</td>
+      <td>4100</td>
+      <td>340121</td>
+      <td>22.430983</td>
+      <td>21.0</td>
+      <td>15163</td>
+      <td>neutral</td>
+      <td>neutral</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>beigebook</td>
+      <td>2021-06-02</td>
+      <td>-0.039873</td>
+      <td>-0.044760</td>
+      <td>3837</td>
+      <td>4561</td>
+      <td>357745</td>
+      <td>22.117156</td>
+      <td>21.0</td>
+      <td>16175</td>
+      <td>neutral</td>
+      <td>neutral</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>beigebook</td>
+      <td>2021-07-14</td>
+      <td>0.011743</td>
+      <td>0.012195</td>
+      <td>191</td>
+      <td>182</td>
+      <td>15803</td>
+      <td>21.413279</td>
+      <td>21.0</td>
+      <td>738</td>
+      <td>neutral</td>
+      <td>neutral</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2390</th>
+      <td>testimony</td>
+      <td>2021-05-19</td>
+      <td>-0.171642</td>
+      <td>-0.164179</td>
+      <td>15</td>
+      <td>26</td>
+      <td>2590</td>
+      <td>38.656716</td>
+      <td>29.0</td>
+      <td>67</td>
+      <td>negative</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2391</th>
+      <td>testimony</td>
+      <td>2021-06-22</td>
+      <td>0.220126</td>
+      <td>0.207547</td>
+      <td>20</td>
+      <td>9</td>
+      <td>1456</td>
+      <td>27.471698</td>
+      <td>24.0</td>
+      <td>53</td>
+      <td>positive</td>
+      <td>positive</td>
+    </tr>
+    <tr>
+      <th>2392</th>
+      <td>testimony</td>
+      <td>2021-07-14</td>
+      <td>0.259259</td>
+      <td>0.305556</td>
+      <td>14</td>
+      <td>3</td>
+      <td>1066</td>
+      <td>29.611111</td>
+      <td>27.0</td>
+      <td>36</td>
+      <td>positive</td>
+      <td>positive</td>
+    </tr>
+    <tr>
+      <th>2393</th>
+      <td>testimony</td>
+      <td>2021-09-28</td>
+      <td>0.031746</td>
+      <td>0.000000</td>
+      <td>9</td>
+      <td>9</td>
+      <td>1026</td>
+      <td>24.428571</td>
+      <td>22.0</td>
+      <td>42</td>
+      <td>neutral</td>
+      <td>neutral</td>
+    </tr>
+    <tr>
+      <th>2394</th>
+      <td>testimony</td>
+      <td>2021-11-30</td>
+      <td>-0.120000</td>
+      <td>-0.200000</td>
+      <td>3</td>
+      <td>7</td>
+      <td>556</td>
+      <td>27.800000</td>
+      <td>26.0</td>
+      <td>20</td>
+      <td>neutral</td>
+      <td>negative</td>
+    </tr>
+  </tbody>
+</table>
+<p>2395 rows × 12 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s1">&#39;pipeline/pivot&#39;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="s1">&#39;date&#39;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="s1">&#39;content_type&#39;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;polarity_mean&#39;</span><span class="p">,</span> <span class="s1">&#39;polarity_diffusion&#39;</span><span class="p">,</span> <span class="s1">&#39;num_examples&#39;</span><span class="p">,</span> <span class="s1">&#39;num_tokens_sum&#39;</span><span class="p">,</span> <span class="s1">&#39;num_tokens_mean&#39;</span><span class="p">]</span>
+<span class="n">tone_data_lm</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">fomc_tones_lm</span><span class="p">,</span> <span class="n">cfg</span><span class="p">)</span>
+<span class="n">tone_data_lm</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">tone_data_lm</span><span class="p">,</span> <span class="n">_columns</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>
+<span class="n">tone_data_lm</span> <span class="o">=</span> <span class="n">tone_data_lm</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>
+<span class="n">eKonf</span><span class="o">.</span><span class="n">save_data</span><span class="p">(</span><span class="n">tone_data_lm</span><span class="p">,</span> <span class="s1">&#39;fomc_tone_data_lm.parquet&#39;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tone_data_lm</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;fomc_tone_data_lm.parquet&#39;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+<span class="n">tone_data_lm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>polarity_mean_beigebook</th>
+      <th>polarity_mean_meeting_script</th>
+      <th>polarity_mean_minutes</th>
+      <th>polarity_mean_press_conf</th>
+      <th>polarity_mean_speech</th>
+      <th>polarity_mean_statement</th>
+      <th>polarity_mean_testimony</th>
+      <th>polarity_diffusion_beigebook</th>
+      <th>polarity_diffusion_meeting_script</th>
+      <th>polarity_diffusion_minutes</th>
+      <th>...</th>
+      <th>num_tokens_sum_speech</th>
+      <th>num_tokens_sum_statement</th>
+      <th>num_tokens_sum_testimony</th>
+      <th>num_tokens_mean_beigebook</th>
+      <th>num_tokens_mean_meeting_script</th>
+      <th>num_tokens_mean_minutes</th>
+      <th>num_tokens_mean_press_conf</th>
+      <th>num_tokens_mean_speech</th>
+      <th>num_tokens_mean_statement</th>
+      <th>num_tokens_mean_testimony</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1990-02-07</th>
+      <td>NaN</td>
+      <td>-0.087583</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0.095663</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>30.213010</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1990-03-27</th>
+      <td>NaN</td>
+      <td>-0.171992</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0.179702</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>29.846369</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1990-05-15</th>
+      <td>NaN</td>
+      <td>-0.116052</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0.125461</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>29.749077</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1990-07-03</th>
+      <td>NaN</td>
+      <td>-0.114829</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0.117794</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>29.667920</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1990-08-21</th>
+      <td>NaN</td>
+      <td>-0.209552</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0.219403</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>31.032836</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2021-11-30</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0.167014</td>
+      <td>NaN</td>
+      <td>-0.12</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>3066.0</td>
+      <td>NaN</td>
+      <td>556.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>31.937500</td>
+      <td>NaN</td>
+      <td>27.8</td>
+    </tr>
+    <tr>
+      <th>2021-12-01</th>
+      <td>-0.046022</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0.048109</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>22.539497</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2021-12-02</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0.077381</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>6514.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>36.188889</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2021-12-15</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0.043929</td>
+      <td>-0.075441</td>
+      <td>NaN</td>
+      <td>0.166667</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0.064286</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>489.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>30.521429</td>
+      <td>37.587413</td>
+      <td>NaN</td>
+      <td>27.166667</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2021-12-17</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0.356613</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>3694.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>29.317460</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>1876 rows × 35 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="predict-sentiments-and-aggregate-scores-with-a-pipeline">
+<h2>Predict sentiments and aggregate scores with a pipeline<a class="headerlink" href="#predict-sentiments-and-aggregate-scores-with-a-pipeline" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s1">&#39;model/sentiment=lm&#39;</span><span class="p">)</span>
+
+<span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s1">&#39;pipeline&#39;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">_pipeline_</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;predict&#39;</span><span class="p">,</span> <span class="s1">&#39;aggregate_scores&#39;</span><span class="p">,</span> <span class="s1">&#39;replace&#39;</span><span class="p">,</span> <span class="s1">&#39;pivot&#39;</span><span class="p">,</span> <span class="s1">&#39;save_dataframe&#39;</span><span class="p">]</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">num_workers</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">data_file</span> <span class="o">=</span> <span class="s2">&quot;fomc_sents.parquet&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">predict</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model_cfg</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">predict</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">base_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">predict</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;fomc_sent_sentiments.parquet&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">aggregate_scores</span><span class="o">.</span><span class="n">groupby</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;content_type&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">]</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">replace</span><span class="o">.</span><span class="n">apply_to</span> <span class="o">=</span> <span class="s1">&#39;content_type&#39;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">replace</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">to_replace</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fomc_&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">}</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">replace</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">regex</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">pivot</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="s1">&#39;date&#39;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">pivot</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="s1">&#39;content_type&#39;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">pivot</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;polarity_mean&#39;</span><span class="p">,</span> <span class="s1">&#39;polarity_diffusion&#39;</span><span class="p">,</span> <span class="s1">&#39;num_examples&#39;</span><span class="p">,</span> <span class="s1">&#39;num_tokens_sum&#39;</span><span class="p">,</span> <span class="s1">&#39;num_tokens_mean&#39;</span><span class="p">]</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">save_dataframe</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">save_dataframe</span><span class="o">.</span><span class="n">output_file</span> <span class="o">=</span> <span class="s1">&#39;fomc_tone_data_lm.parquet&#39;</span>
+<span class="n">tone_data_lm</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+<span class="n">tone_data_lm</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">tone_data_lm</span><span class="p">,</span> <span class="n">_columns</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>
+<span class="n">tone_data_lm</span> <span class="o">=</span> <span class="n">tone_data_lm</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>
+<span class="n">eKonf</span><span class="o">.</span><span class="n">save_data</span><span class="p">(</span><span class="n">tone_data_lm</span><span class="p">,</span> <span class="s1">&#39;fomc_tone_data_lm.parquet&#39;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.io.file:Processing [1] files from [&#39;fomc_sents.parquet&#39;]
+INFO:ekorpkit.io.file:Loading 1 dataframes from [&#39;../data/fomc/fomc_sents.parquet&#39;]
+INFO:ekorpkit.io.file:Loading data from ../data/fomc/fomc_sents.parquet
+INFO:ekorpkit.pipelines.pipe:Applying pipeline: OrderedDict([(&#39;predict&#39;, &#39;predict&#39;), (&#39;aggregate_scores&#39;, &#39;aggregate_scores&#39;), (&#39;replace&#39;, &#39;replace&#39;), (&#39;pivot&#39;, &#39;pivot&#39;), (&#39;save_dataframe&#39;, &#39;save_dataframe&#39;)])
+INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function predict at 0x7f0abf86c820&gt;)
+INFO:ekorpkit.preprocessors.tokenizer:instantiating ekorpkit.preprocessors.stopwords.Stopwords...
+INFO:ekorpkit.base:Calling load_candidates
+INFO:ekorpkit.io.file:Processing [1] files from [&#39;/workspace/projects/ekorpkit/ekorpkit/resources/lexicons/LM.parquet&#39;]
+INFO:ekorpkit.io.file:Loading 1 dataframes from [&#39;/workspace/projects/ekorpkit/ekorpkit/resources/lexicons/LM.parquet&#39;]
+INFO:ekorpkit.io.file:Loading data from /workspace/projects/ekorpkit/ekorpkit/resources/lexicons/LM.parquet
+INFO:ekorpkit.models.ngram.ngram:loaded 58142 candidates
+INFO:ekorpkit.models.sentiment.lbsa:Predicting sentiments of the column [text] using predict_sentence
+INFO:ekorpkit.base:Using batcher with minibatch size: 1000
+INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 100  input_split: False  merge_output: True  len(data): 653468 len(args): 5
+Predicting [text]: 100%|██████████| 654/654 [03:06&lt;00:00,  3.51it/s]
+INFO:ekorpkit.models.sentiment.lbsa: &gt;&gt; elapsed time to predict: 0:03:07.279688
+INFO:ekorpkit.pipelines.pipe:Saving data to: {&#39;file&#39;: None, &#39;filename&#39;: &#39;fomc_sent_sentiments.parquet&#39;, &#39;base_dir&#39;: &#39;../data/fomc&#39;, &#39;filetype&#39;: &#39;&#39;, &#39;columns&#39;: None, &#39;suffix&#39;: None, &#39;filepath&#39;: &#39;../data/fomc/fomc_sent_sentiments.parquet&#39;}
+INFO:ekorpkit.io.file:Saving dataframe to ../data/fomc/fomc_sent_sentiments.parquet
+INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function aggregate_scores at 0x7f0abf86c8b0&gt;)
+INFO:ekorpkit.base:instantiating ekorpkit.models.sentiment.base.BaseSentimentAnalyser...
+INFO:ekorpkit.pipelines.pipe:filename not specified
+INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function general_function at 0x7f0abf86cc10&gt;)
+INFO:ekorpkit.pipelines.pipe:processing column: content_type
+INFO:ekorpkit.pipelines.pipe: &gt;&gt; elapsed time to replace: 0:00:00.003644
+INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function pivot at 0x7f0abf86c1f0&gt;)
+INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function save_dataframe at 0x7f0abf7043a0&gt;)
+INFO:ekorpkit.io.file:Saving dataframe to ../data/fomc/fomc_sentiment_data.parquet
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>polarity_mean_beigebook</th>
+      <th>polarity_mean_meeting_script</th>
+      <th>polarity_mean_minutes</th>
+      <th>polarity_mean_press_conf</th>
+      <th>polarity_mean_speech</th>
+      <th>polarity_mean_statement</th>
+      <th>polarity_mean_testimony</th>
+      <th>polarity_diffusion_beigebook</th>
+      <th>polarity_diffusion_meeting_script</th>
+      <th>polarity_diffusion_minutes</th>
+      <th>...</th>
+      <th>num_tokens_sum_speech</th>
+      <th>num_tokens_sum_statement</th>
+      <th>num_tokens_sum_testimony</th>
+      <th>num_tokens_mean_beigebook</th>
+      <th>num_tokens_mean_meeting_script</th>
+      <th>num_tokens_mean_minutes</th>
+      <th>num_tokens_mean_press_conf</th>
+      <th>num_tokens_mean_speech</th>
+      <th>num_tokens_mean_statement</th>
+      <th>num_tokens_mean_testimony</th>
+    </tr>
+    <tr>
+      <th>recent_meeting</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1990-02-07</th>
+      <td>NaN</td>
+      <td>-0.087583</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0.095663</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>30.213010</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1990-03-27</th>
+      <td>NaN</td>
+      <td>-0.171992</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0.179702</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>29.846369</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1990-05-15</th>
+      <td>NaN</td>
+      <td>-0.116052</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0.125461</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>29.749077</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1990-07-03</th>
+      <td>NaN</td>
+      <td>-0.114829</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0.117794</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>29.667920</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1990-08-21</th>
+      <td>NaN</td>
+      <td>-0.209552</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0.219403</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>31.032836</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2021-06-16</th>
+      <td>0.011743</td>
+      <td>NaN</td>
+      <td>0.041638</td>
+      <td>-0.017544</td>
+      <td>-0.031786</td>
+      <td>0.435897</td>
+      <td>0.235955</td>
+      <td>0.012195</td>
+      <td>NaN</td>
+      <td>0.031142</td>
+      <td>...</td>
+      <td>6894.0</td>
+      <td>384.0</td>
+      <td>2522.0</td>
+      <td>21.413279</td>
+      <td>NaN</td>
+      <td>30.615917</td>
+      <td>27.100000</td>
+      <td>29.088608</td>
+      <td>29.538462</td>
+      <td>28.337079</td>
+    </tr>
+    <tr>
+      <th>2021-07-28</th>
+      <td>-0.120547</td>
+      <td>NaN</td>
+      <td>-0.043969</td>
+      <td>0.021318</td>
+      <td>-0.042941</td>
+      <td>0.461538</td>
+      <td>NaN</td>
+      <td>-0.134921</td>
+      <td>NaN</td>
+      <td>-0.069079</td>
+      <td>...</td>
+      <td>13170.0</td>
+      <td>399.0</td>
+      <td>NaN</td>
+      <td>20.980159</td>
+      <td>NaN</td>
+      <td>32.888158</td>
+      <td>27.261628</td>
+      <td>29.072848</td>
+      <td>30.692308</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2021-09-22</th>
+      <td>-0.074328</td>
+      <td>NaN</td>
+      <td>-0.079199</td>
+      <td>-0.087292</td>
+      <td>-0.133837</td>
+      <td>0.476190</td>
+      <td>0.031746</td>
+      <td>-0.075712</td>
+      <td>NaN</td>
+      <td>-0.112403</td>
+      <td>...</td>
+      <td>31138.0</td>
+      <td>419.0</td>
+      <td>1026.0</td>
+      <td>22.957808</td>
+      <td>NaN</td>
+      <td>31.348837</td>
+      <td>25.809384</td>
+      <td>29.431002</td>
+      <td>29.928571</td>
+      <td>24.428571</td>
+    </tr>
+    <tr>
+      <th>2021-11-03</th>
+      <td>-0.046022</td>
+      <td>NaN</td>
+      <td>-0.064255</td>
+      <td>-0.089881</td>
+      <td>-0.030345</td>
+      <td>0.215686</td>
+      <td>-0.120000</td>
+      <td>-0.048109</td>
+      <td>NaN</td>
+      <td>-0.080851</td>
+      <td>...</td>
+      <td>26096.0</td>
+      <td>538.0</td>
+      <td>556.0</td>
+      <td>22.539497</td>
+      <td>NaN</td>
+      <td>31.880851</td>
+      <td>27.720238</td>
+      <td>31.980392</td>
+      <td>31.647059</td>
+      <td>27.800000</td>
+    </tr>
+    <tr>
+      <th>2021-12-15</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0.043929</td>
+      <td>-0.075441</td>
+      <td>-0.356613</td>
+      <td>0.166667</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0.064286</td>
+      <td>...</td>
+      <td>3694.0</td>
+      <td>489.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>30.521429</td>
+      <td>37.587413</td>
+      <td>29.317460</td>
+      <td>27.166667</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>286 rows × 35 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s1">&#39;pipeline&#39;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">_pipeline_</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;aggregate_scores&#39;</span><span class="p">,</span> <span class="s1">&#39;replace&#39;</span><span class="p">,</span> <span class="s1">&#39;pivot&#39;</span><span class="p">,</span> <span class="s1">&#39;save_dataframe&#39;</span><span class="p">]</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">num_workers</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">data_file</span> <span class="o">=</span> <span class="s2">&quot;fomc_sent_sentiments.parquet&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">aggregate_scores</span><span class="o">.</span><span class="n">groupby</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;content_type&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">]</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">replace</span><span class="o">.</span><span class="n">apply_to</span> <span class="o">=</span> <span class="s1">&#39;content_type&#39;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">replace</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">to_replace</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fomc_&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">}</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">replace</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">regex</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">pivot</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="s1">&#39;date&#39;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">pivot</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="s1">&#39;content_type&#39;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">pivot</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;polarity_mean&#39;</span><span class="p">,</span> <span class="s1">&#39;polarity_diffusion&#39;</span><span class="p">,</span> <span class="s1">&#39;num_examples&#39;</span><span class="p">,</span> <span class="s1">&#39;num_tokens_sum&#39;</span><span class="p">,</span> <span class="s1">&#39;num_tokens_mean&#39;</span><span class="p">]</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">save_dataframe</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">save_dataframe</span><span class="o">.</span><span class="n">output_file</span> <span class="o">=</span> <span class="s1">&#39;fomc_tone_data_lm.parquet&#39;</span>
+<span class="n">tone_data_lm</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+<span class="n">tone_data_lm</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">tone_data_lm</span><span class="p">,</span> <span class="n">_columns</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>
+<span class="n">tone_data_lm</span> <span class="o">=</span> <span class="n">tone_data_lm</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>
+<span class="n">eKonf</span><span class="o">.</span><span class="n">save_data</span><span class="p">(</span><span class="n">tone_data_lm</span><span class="p">,</span> <span class="s1">&#39;fomc_tone_data_lm.parquet&#39;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="predict-sentiments-with-the-finbert">
+<h2>Predict sentiments with the finbert<a class="headerlink" href="#predict-sentiments-with-the-finbert" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds_cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s1">&#39;dataset&#39;</span><span class="p">)</span>
+<span class="n">ds_cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;financial_phrasebank&#39;</span>
+<span class="n">ds_cfg</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">uri</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/entelecheia/ekorpkit-book/raw/main/assets/data/financial_phrasebank.zip&#39;</span>
+<span class="n">ds_cfg</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">ds_cfg</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">cached_path</span>
+<span class="n">ds_cfg</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">overrides</span><span class="o">=</span><span class="p">[</span>
+    <span class="s1">&#39;+model/transformer=classification&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;+model/transformer/pretrained=finbert&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">model_cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s1">&#39;model/transformer=classification&#39;</span><span class="p">,</span> <span class="n">overrides</span><span class="p">)</span>
+<span class="n">model_cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;fomc_finbert&#39;</span>
+<span class="n">model_cfg</span><span class="o">.</span><span class="n">dataset</span> <span class="o">=</span> <span class="n">ds_cfg</span>
+<span class="n">model_cfg</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">model_cfg</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">num_train_epochs</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">model_cfg</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">max_seq_length</span> <span class="o">=</span> <span class="mi">256</span>
+<span class="n">model_cfg</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">train_batch_size</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="n">model_cfg</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">eval_batch_size</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="n">model_cfg</span><span class="o">.</span><span class="n">_method_</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;eval&#39;</span><span class="p">]</span>
+<span class="c1"># model_cfg._method_ = [&#39;train&#39;, &#39;eval&#39;]</span>
+<span class="n">finbert_model</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">model_cfg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "3e7f3be465f449c7a3387b3a8411c554", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "064c4e197d7447cb949938bbaefa3e85", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy:  0.8960176991150443
+Precison:  0.8957698961367982
+Recall:  0.8960176991150443
+F1 Score:  0.8958088377661515
+Model Report: 
+___________________________________________________
+              precision    recall  f1-score   support
+
+    negative       0.81      0.77      0.79        61
+     neutral       0.96      0.96      0.96       277
+    positive       0.79      0.81      0.80       114
+
+    accuracy                           0.90       452
+   macro avg       0.85      0.85      0.85       452
+weighted avg       0.90      0.90      0.90       452
+</pre></div>
+</div>
+<img alt="../../../_images/b2e9a96506f9e457c17cf16198c49396b93e29bbc2fd153bdd62aa9c587f3a2e.png" src="../../../_images/b2e9a96506f9e457c17cf16198c49396b93e29bbc2fd153bdd62aa9c587f3a2e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_cfg</span><span class="o">.</span><span class="n">_method_</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">config_group</span><span class="o">=</span><span class="s1">&#39;pipeline&#39;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;fomc_sent_sentiments&#39;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data_file</span> <span class="o">=</span> <span class="s2">&quot;fomc_sents.parquet&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">_pipeline_</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;predict&#39;</span><span class="p">]</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">predict</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model_cfg</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">predict</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">predict</span><span class="o">.</span><span class="n">output_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">cfg</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">_finbert.parquet&#39;</span>
+<span class="n">fomc_sent_sentiments_finbert</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+<span class="n">fomc_sent_sentiments_finbert</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "1dd484982db14ccfb46faac97c75c2ed", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "75ff9369bab94e20871f62aeeb8ead1d", "version_major": 2, "version_minor": 0}</script><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>text</th>
+      <th>split</th>
+      <th>timestamp</th>
+      <th>content_type</th>
+      <th>date</th>
+      <th>speaker</th>
+      <th>title</th>
+      <th>decision</th>
+      <th>rate</th>
+      <th>...</th>
+      <th>recent_rate</th>
+      <th>next_meeting</th>
+      <th>next_decision</th>
+      <th>next_rate</th>
+      <th>text_num_words</th>
+      <th>section_id</th>
+      <th>sent_id</th>
+      <th>pred_labels</th>
+      <th>raw_preds</th>
+      <th>pred_probs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>The Secretary reported that advices of the ele...</td>
+      <td>train</td>
+      <td>1993-02-03</td>
+      <td>fomc_minutes</td>
+      <td>1993-02-03</td>
+      <td>Alan Greenspan</td>
+      <td>FOMC Meeting Minutes</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>...</td>
+      <td>3.0</td>
+      <td>1993-02-18</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>47</td>
+      <td>29</td>
+      <td>0</td>
+      <td>neutral</td>
+      <td>[2.2915966510772705, -0.9586986899375916, -2.4...</td>
+      <td>0.955035</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>By unanimous vote, the Committee elected the f...</td>
+      <td>train</td>
+      <td>1993-02-03</td>
+      <td>fomc_minutes</td>
+      <td>1993-02-03</td>
+      <td>Alan Greenspan</td>
+      <td>FOMC Meeting Minutes</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>...</td>
+      <td>3.0</td>
+      <td>1993-02-18</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>73</td>
+      <td>35</td>
+      <td>0</td>
+      <td>neutral</td>
+      <td>[1.692587971687317, -0.2049560397863388, -2.53...</td>
+      <td>0.858684</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>By unanimous vote, William J. McDonough, Marga...</td>
+      <td>train</td>
+      <td>1993-02-03</td>
+      <td>fomc_minutes</td>
+      <td>1993-02-03</td>
+      <td>Alan Greenspan</td>
+      <td>FOMC Meeting Minutes</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>...</td>
+      <td>3.0</td>
+      <td>1993-02-18</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>74</td>
+      <td>37</td>
+      <td>0</td>
+      <td>neutral</td>
+      <td>[1.8892569541931152, -0.3972317576408386, -2.6...</td>
+      <td>0.898655</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>On January 15, 1993, the continuing rules, reg...</td>
+      <td>train</td>
+      <td>1993-02-03</td>
+      <td>fomc_minutes</td>
+      <td>1993-02-03</td>
+      <td>Alan Greenspan</td>
+      <td>FOMC Meeting Minutes</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>...</td>
+      <td>3.0</td>
+      <td>1993-02-18</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>59</td>
+      <td>39</td>
+      <td>0</td>
+      <td>neutral</td>
+      <td>[2.335063934326172, -1.0927255153656006, -2.45...</td>
+      <td>0.960805</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>Members were asked to indicate if they wished ...</td>
+      <td>train</td>
+      <td>1993-02-03</td>
+      <td>fomc_minutes</td>
+      <td>1993-02-03</td>
+      <td>Alan Greenspan</td>
+      <td>FOMC Meeting Minutes</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>...</td>
+      <td>3.0</td>
+      <td>1993-02-18</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>25</td>
+      <td>39</td>
+      <td>1</td>
+      <td>neutral</td>
+      <td>[2.3842966556549072, -1.327033519744873, -2.36...</td>
+      <td>0.967973</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 22 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fomc_sent_sentiments_finbert</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;fomc_sent_sentiments_finbert.parquet&#39;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+<span class="n">fomc_sent_sentiments_finbert</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>text</th>
+      <th>split</th>
+      <th>timestamp</th>
+      <th>content_type</th>
+      <th>date</th>
+      <th>speaker</th>
+      <th>title</th>
+      <th>decision</th>
+      <th>rate</th>
+      <th>...</th>
+      <th>recent_rate</th>
+      <th>next_meeting</th>
+      <th>next_decision</th>
+      <th>next_rate</th>
+      <th>text_num_words</th>
+      <th>section_id</th>
+      <th>sent_id</th>
+      <th>pred_labels</th>
+      <th>raw_preds</th>
+      <th>pred_probs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>The Secretary reported that advices of the ele...</td>
+      <td>train</td>
+      <td>1993-02-03</td>
+      <td>fomc_minutes</td>
+      <td>1993-02-03</td>
+      <td>Alan Greenspan</td>
+      <td>FOMC Meeting Minutes</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>...</td>
+      <td>3.00</td>
+      <td>1993-02-18</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>47</td>
+      <td>29</td>
+      <td>0</td>
+      <td>neutral</td>
+      <td>[2.2915966510772705, -0.9586986899375916, -2.4...</td>
+      <td>0.955035</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>By unanimous vote, the Committee elected the f...</td>
+      <td>train</td>
+      <td>1993-02-03</td>
+      <td>fomc_minutes</td>
+      <td>1993-02-03</td>
+      <td>Alan Greenspan</td>
+      <td>FOMC Meeting Minutes</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>...</td>
+      <td>3.00</td>
+      <td>1993-02-18</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>73</td>
+      <td>35</td>
+      <td>0</td>
+      <td>neutral</td>
+      <td>[1.692587971687317, -0.2049560397863388, -2.53...</td>
+      <td>0.858684</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>By unanimous vote, William J. McDonough, Marga...</td>
+      <td>train</td>
+      <td>1993-02-03</td>
+      <td>fomc_minutes</td>
+      <td>1993-02-03</td>
+      <td>Alan Greenspan</td>
+      <td>FOMC Meeting Minutes</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>...</td>
+      <td>3.00</td>
+      <td>1993-02-18</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>74</td>
+      <td>37</td>
+      <td>0</td>
+      <td>neutral</td>
+      <td>[1.8892569541931152, -0.3972317576408386, -2.6...</td>
+      <td>0.898655</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>On January 15, 1993, the continuing rules, reg...</td>
+      <td>train</td>
+      <td>1993-02-03</td>
+      <td>fomc_minutes</td>
+      <td>1993-02-03</td>
+      <td>Alan Greenspan</td>
+      <td>FOMC Meeting Minutes</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>...</td>
+      <td>3.00</td>
+      <td>1993-02-18</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>59</td>
+      <td>39</td>
+      <td>0</td>
+      <td>neutral</td>
+      <td>[2.335063934326172, -1.0927255153656006, -2.45...</td>
+      <td>0.960805</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>Members were asked to indicate if they wished ...</td>
+      <td>train</td>
+      <td>1993-02-03</td>
+      <td>fomc_minutes</td>
+      <td>1993-02-03</td>
+      <td>Alan Greenspan</td>
+      <td>FOMC Meeting Minutes</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>...</td>
+      <td>3.00</td>
+      <td>1993-02-18</td>
+      <td>0.0</td>
+      <td>3.00</td>
+      <td>25</td>
+      <td>39</td>
+      <td>1</td>
+      <td>neutral</td>
+      <td>[2.3842966556549072, -1.327033519744873, -2.36...</td>
+      <td>0.967973</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>653463</th>
+      <td>2854</td>
+      <td>It will not have the word “somewhat” on line 3.</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>MR. LUECKE</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>...</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>10</td>
+      <td>287</td>
+      <td>2</td>
+      <td>neutral</td>
+      <td>[2.3733553886413574, -1.3893874883651733, -2.2...</td>
+      <td>0.967620</td>
+    </tr>
+    <tr>
+      <th>653464</th>
+      <td>2854</td>
+      <td>Chair Yellen      Yes Vice Chairman Dudley    ...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>MR. LUECKE</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>...</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>31</td>
+      <td>287</td>
+      <td>4</td>
+      <td>neutral</td>
+      <td>[2.224238872528076, -0.893900990486145, -2.421...</td>
+      <td>0.948905</td>
+    </tr>
+    <tr>
+      <th>653465</th>
+      <td>2854</td>
+      <td>And let me confirm that the next meeting will ...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>CHAIR YELLEN</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>...</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>19</td>
+      <td>288</td>
+      <td>3</td>
+      <td>neutral</td>
+      <td>[2.349479913711548, -1.391977071762085, -2.298...</td>
+      <td>0.967770</td>
+    </tr>
+    <tr>
+      <th>653466</th>
+      <td>2854</td>
+      <td>I believe box lunches are now available for pe...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>CHAIR YELLEN</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>...</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>33</td>
+      <td>288</td>
+      <td>4</td>
+      <td>neutral</td>
+      <td>[2.311434030532837, -1.1415460109710693, -2.37...</td>
+      <td>0.960746</td>
+    </tr>
+    <tr>
+      <th>653467</th>
+      <td>2854</td>
+      <td>I will do my best, and I will consider at the ...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>CHAIR YELLEN</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>...</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>18</td>
+      <td>288</td>
+      <td>5</td>
+      <td>neutral</td>
+      <td>[2.3932976722717285, -1.2607381343841553, -2.4...</td>
+      <td>0.967106</td>
+    </tr>
+  </tbody>
+</table>
+<p>653468 rows × 22 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s1">&#39;pipeline&#39;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">_pipeline_</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;aggregate_scores&#39;</span><span class="p">,</span> <span class="s1">&#39;replace&#39;</span><span class="p">,</span> <span class="s1">&#39;pivot&#39;</span><span class="p">,</span> <span class="s1">&#39;save_dataframe&#39;</span><span class="p">]</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">num_workers</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">data_file</span> <span class="o">=</span> <span class="s2">&quot;fomc_sent_sentiments_finbert.parquet&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">aggregate_scores</span><span class="o">.</span><span class="n">groupby</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;content_type&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">]</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">aggregate_scores</span><span class="o">.</span><span class="n">_method_</span> <span class="o">=</span> <span class="s1">&#39;classification&#39;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">replace</span><span class="o">.</span><span class="n">apply_to</span> <span class="o">=</span> <span class="s1">&#39;content_type&#39;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">replace</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">to_replace</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fomc_&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">}</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">replace</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">regex</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">pivot</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="s1">&#39;date&#39;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">pivot</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="s1">&#39;content_type&#39;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">pivot</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;polarity_mean&#39;</span><span class="p">,</span> <span class="s1">&#39;polarity_diffusion&#39;</span><span class="p">,</span> <span class="s1">&#39;num_examples&#39;</span><span class="p">]</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">save_dataframe</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">save_dataframe</span><span class="o">.</span><span class="n">output_file</span> <span class="o">=</span> <span class="s1">&#39;fomc_sentiment_finbert_next.parquet&#39;</span>
+<span class="n">tone_data_finbert</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+<span class="n">tone_data_finbert</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">tone_data_finbert</span><span class="p">,</span> <span class="n">_columns</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>
+<span class="n">tone_data_finbert</span> <span class="o">=</span> <span class="n">tone_data_finbert</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>
+<span class="n">eKonf</span><span class="o">.</span><span class="n">save_data</span><span class="p">(</span><span class="n">tone_data_finbert</span><span class="p">,</span> <span class="s1">&#39;fomc_tone_data_finbert.parquet&#39;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tone_data_finbert</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;fomc_tone_data_finbert.parquet&#39;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;polarity_mean_minutes&#39;</span><span class="p">,</span> <span class="s1">&#39;polarity_mean_press_conf&#39;</span><span class="p">,</span> <span class="s1">&#39;polarity_mean_speech&#39;</span><span class="p">,</span> <span class="s1">&#39;polarity_mean_statement&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;polarity_diffusion_minutes&#39;</span><span class="p">,</span> <span class="s1">&#39;polarity_diffusion_press_conf&#39;</span><span class="p">,</span> <span class="s1">&#39;polarity_diffusion_speech&#39;</span><span class="p">,</span> <span class="s1">&#39;polarity_diffusion_statement&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">tone_data_finbert</span> <span class="o">=</span>  <span class="n">tone_data_finbert</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">tone_data_finbert</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">tone_data_finbert</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;polarity&#39;</span><span class="p">,</span> <span class="s1">&#39;finbert&#39;</span><span class="p">)</span>
+<span class="n">tone_data_finbert</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>finbert_mean_minutes</th>
+      <th>finbert_mean_press_conf</th>
+      <th>finbert_mean_speech</th>
+      <th>finbert_mean_statement</th>
+      <th>finbert_diffusion_minutes</th>
+      <th>finbert_diffusion_press_conf</th>
+      <th>finbert_diffusion_speech</th>
+      <th>finbert_diffusion_statement</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1990-02-07</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1990-03-27</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1990-05-15</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1990-07-03</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1990-08-21</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2021-11-30</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.182338</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.239583</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2021-12-01</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2021-12-02</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.262141</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.338889</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2021-12-15</th>
+      <td>0.509806</td>
+      <td>0.280516</td>
+      <td>NaN</td>
+      <td>0.412947</td>
+      <td>0.675</td>
+      <td>0.377622</td>
+      <td>NaN</td>
+      <td>0.555556</td>
+    </tr>
+    <tr>
+      <th>2021-12-17</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.408242</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.547619</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>1876 rows × 8 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="predict-sentiments-with-the-t5">
+<h2>Predict sentiments with the T5<a class="headerlink" href="#predict-sentiments-with-the-t5" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds_cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s1">&#39;dataset&#39;</span><span class="p">)</span>
+<span class="n">ds_cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;financial_phrasebank&#39;</span>
+<span class="n">ds_cfg</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">uri</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/entelecheia/ekorpkit-book/raw/main/assets/data/financial_phrasebank.zip&#39;</span>
+<span class="n">ds_cfg</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">ds_cfg</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">cached_path</span>
+<span class="n">ds_cfg</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">overrides</span><span class="o">=</span><span class="p">[</span>
+    <span class="s1">&#39;+model/transformer=t5_classification_with_simple&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;+model/transformer/pretrained=t5-base&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">model_cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s1">&#39;model/transformer=t5_classification_with_simple&#39;</span><span class="p">,</span> <span class="n">overrides</span><span class="p">)</span>
+<span class="n">model_cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;fomc_t5&#39;</span>
+<span class="n">model_cfg</span><span class="o">.</span><span class="n">dataset</span> <span class="o">=</span> <span class="n">ds_cfg</span>
+<span class="n">model_cfg</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">model_cfg</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">num_train_epochs</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">model_cfg</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">max_seq_length</span> <span class="o">=</span> <span class="mi">256</span>
+<span class="n">model_cfg</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">train_batch_size</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">model_cfg</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">eval_batch_size</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">model_cfg</span><span class="o">.</span><span class="n">_method_</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;eval&#39;</span><span class="p">]</span>
+<span class="c1"># model_cfg._method_ = [&#39;eval&#39;]</span>
+<span class="n">t5_model</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">model_cfg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/conda/lib/python3.8/site-packages/transformers/models/t5/tokenization_t5.py:164: FutureWarning: This tokenizer was incorrectly instantiated with a model max length of 512 which will be corrected in Transformers v5.
+For now, this behavior is kept to avoid breaking backwards compatibility when padding/encoding with `truncation is True`.
+- Be aware that you SHOULD NOT rely on t5-base automatically truncating your input to 512 when padding/encoding.
+- If you want to encode/pad to sequences longer than 512 you can either instantiate this tokenizer with `model_max_length` or pass `max_length` when encoding/padding.
+- To avoid this warning, please instantiate this tokenizer with `model_max_length` set to your preferred value.
+  warnings.warn(
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "424c711520fb441eb0aee942cdeaaf77", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/conda/lib/python3.8/site-packages/transformers/tokenization_utils_base.py:3557: FutureWarning: 
+`prepare_seq2seq_batch` is deprecated and will be removed in version 5 of HuggingFace Transformers. Use the regular
+`__call__` method to prepare your inputs and the tokenizer under the `as_target_tokenizer` context manager to prepare
+your targets.
+
+Here is a short example:
+
+model_inputs = tokenizer(src_texts, ...)
+with tokenizer.as_target_tokenizer():
+    labels = tokenizer(tgt_texts, ...)
+model_inputs[&quot;labels&quot;] = labels[&quot;input_ids&quot;]
+
+See the documentation of your specific tokenizer for more details on the specific arguments to the tokenizer of choice.
+For a more complete example, see the implementation of `prepare_seq2seq_batch`.
+
+  warnings.warn(formatted_warning, FutureWarning)
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "065857e5d009483e924682ecfb50fe13", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Blue">wandb</span>: Currently logged in as: <span class=" -Color -Color-Yellow">entelecheia</span>. Use <span class=" -Color -Color-Bold">`wandb login --relogin`</span> to force relogin
+</pre></div>
+</div>
+<div class="output text_html">wandb version 0.12.20 is available!  To upgrade, please run:
+ $ pip install wandb --upgrade</div><div class="output text_html">Tracking run with wandb version 0.12.19</div><div class="output text_html">Run data is saved locally in <code>/workspace/projects/ekorpkit-book/outputs/fomc_t5/t5-base/wandb/run-20220701_020155-3fyvrvgf</code></div><div class="output text_html">Syncing run <strong><a href="https://wandb.ai/entelecheia/ekorpkit-book-fomc_t5/runs/3fyvrvgf" target="_blank">wandering-moon-1</a></strong> to <a href="https://wandb.ai/entelecheia/ekorpkit-book-fomc_t5" target="_blank">Weights & Biases</a> (<a href="https://wandb.me/run" target="_blank">docs</a>)<br/></div><script type="application/vnd.jupyter.widget-view+json">{"model_id": "4c7725f3f17c4bd8ab5ae5ca28621841", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "264e5fe84d3d4991825552e2b2c3b212", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/conda/lib/python3.8/site-packages/transformers/tokenization_utils_base.py:3557: FutureWarning: 
+`prepare_seq2seq_batch` is deprecated and will be removed in version 5 of HuggingFace Transformers. Use the regular
+`__call__` method to prepare your inputs and the tokenizer under the `as_target_tokenizer` context manager to prepare
+your targets.
+
+Here is a short example:
+
+model_inputs = tokenizer(src_texts, ...)
+with tokenizer.as_target_tokenizer():
+    labels = tokenizer(tgt_texts, ...)
+model_inputs[&quot;labels&quot;] = labels[&quot;input_ids&quot;]
+
+See the documentation of your specific tokenizer for more details on the specific arguments to the tokenizer of choice.
+For a more complete example, see the implementation of `prepare_seq2seq_batch`.
+
+  warnings.warn(formatted_warning, FutureWarning)
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "50fc145a70a04c049e5ccd6f4e6cf0b0", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "6b03561dc95c44b5bc6d915fe10b767b", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "2109ab3dbcb24cbc9d5101bb5304a189", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "41667c41eb044ff1b90bcb48518bf984", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;eval_loss&#39;: 0.06258307859733529}
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "eb7386edda1f4544bb80d8f55a42d45c", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy:  0.9491150442477876
+Precison:  0.9495910765330818
+Recall:  0.9491150442477876
+F1 Score:  0.9474806981643329
+Model Report: 
+___________________________________________________
+              precision    recall  f1-score   support
+
+    negative       0.96      0.75      0.84        61
+     neutral       0.97      1.00      0.98       277
+    positive       0.90      0.94      0.92       114
+
+    accuracy                           0.95       452
+   macro avg       0.94      0.90      0.91       452
+weighted avg       0.95      0.95      0.95       452
+</pre></div>
+</div>
+<img alt="../../../_images/51d1f0d6180c5d2dcea5cfea86ea9f6030487a17f3441977eb0c59ff3412f185.png" src="../../../_images/51d1f0d6180c5d2dcea5cfea86ea9f6030487a17f3441977eb0c59ff3412f185.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_cfg</span><span class="o">.</span><span class="n">_method_</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">config_group</span><span class="o">=</span><span class="s1">&#39;pipeline&#39;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;fomc_sent_sentiments&#39;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data_file</span> <span class="o">=</span> <span class="s2">&quot;fomc_sents.parquet&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">_pipeline_</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;predict&#39;</span><span class="p">]</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">predict</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model_cfg</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">predict</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">predict</span><span class="o">.</span><span class="n">output_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">cfg</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">_t5.parquet&#39;</span>
+<span class="n">fomc_sent_sentiments_t5</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+<span class="n">fomc_sent_sentiments_t5</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "8e778d63986e4e3f97ac43b2cd397a55", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/conda/lib/python3.8/site-packages/transformers/tokenization_utils_base.py:3557: FutureWarning: 
+`prepare_seq2seq_batch` is deprecated and will be removed in version 5 of HuggingFace Transformers. Use the regular
+`__call__` method to prepare your inputs and the tokenizer under the `as_target_tokenizer` context manager to prepare
+your targets.
+
+Here is a short example:
+
+model_inputs = tokenizer(src_texts, ...)
+with tokenizer.as_target_tokenizer():
+    labels = tokenizer(tgt_texts, ...)
+model_inputs[&quot;labels&quot;] = labels[&quot;input_ids&quot;]
+
+See the documentation of your specific tokenizer for more details on the specific arguments to the tokenizer of choice.
+For a more complete example, see the implementation of `prepare_seq2seq_batch`.
+
+  warnings.warn(formatted_warning, FutureWarning)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>text</th>
+      <th>split</th>
+      <th>timestamp</th>
+      <th>content_type</th>
+      <th>date</th>
+      <th>speaker</th>
+      <th>title</th>
+      <th>decision</th>
+      <th>rate</th>
+      <th>...</th>
+      <th>recent_decision</th>
+      <th>recent_rate</th>
+      <th>next_meeting</th>
+      <th>next_decision</th>
+      <th>next_rate</th>
+      <th>text_num_words</th>
+      <th>section_id</th>
+      <th>sent_id</th>
+      <th>prefix</th>
+      <th>pred_labels</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>The Secretary reported that advices of the ele...</td>
+      <td>train</td>
+      <td>1993-02-03</td>
+      <td>fomc_minutes</td>
+      <td>1993-02-03</td>
+      <td>Alan Greenspan</td>
+      <td>FOMC Meeting Minutes</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>1993-02-18</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>47</td>
+      <td>29</td>
+      <td>0</td>
+      <td>classification</td>
+      <td>neutral</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>By unanimous vote, the Committee elected the f...</td>
+      <td>train</td>
+      <td>1993-02-03</td>
+      <td>fomc_minutes</td>
+      <td>1993-02-03</td>
+      <td>Alan Greenspan</td>
+      <td>FOMC Meeting Minutes</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>1993-02-18</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>73</td>
+      <td>35</td>
+      <td>0</td>
+      <td>classification</td>
+      <td>neutral</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>By unanimous vote, William J. McDonough, Marga...</td>
+      <td>train</td>
+      <td>1993-02-03</td>
+      <td>fomc_minutes</td>
+      <td>1993-02-03</td>
+      <td>Alan Greenspan</td>
+      <td>FOMC Meeting Minutes</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>1993-02-18</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>74</td>
+      <td>37</td>
+      <td>0</td>
+      <td>classification</td>
+      <td>neutral</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>On January 15, 1993, the continuing rules, reg...</td>
+      <td>train</td>
+      <td>1993-02-03</td>
+      <td>fomc_minutes</td>
+      <td>1993-02-03</td>
+      <td>Alan Greenspan</td>
+      <td>FOMC Meeting Minutes</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>1993-02-18</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>59</td>
+      <td>39</td>
+      <td>0</td>
+      <td>classification</td>
+      <td>neutral</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>Members were asked to indicate if they wished ...</td>
+      <td>train</td>
+      <td>1993-02-03</td>
+      <td>fomc_minutes</td>
+      <td>1993-02-03</td>
+      <td>Alan Greenspan</td>
+      <td>FOMC Meeting Minutes</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>1993-02-18</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>25</td>
+      <td>39</td>
+      <td>1</td>
+      <td>classification</td>
+      <td>neutral</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 21 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s1">&#39;pipeline&#39;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">_pipeline_</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;aggregate_scores&#39;</span><span class="p">,</span> <span class="s1">&#39;replace&#39;</span><span class="p">,</span> <span class="s1">&#39;pivot&#39;</span><span class="p">,</span> <span class="s1">&#39;save_dataframe&#39;</span><span class="p">]</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">num_workers</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">data_file</span> <span class="o">=</span> <span class="s2">&quot;fomc_sent_sentiments_t5.parquet&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">aggregate_scores</span><span class="o">.</span><span class="n">groupby</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;content_type&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">]</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">aggregate_scores</span><span class="o">.</span><span class="n">_method_</span> <span class="o">=</span> <span class="s1">&#39;classification_t5&#39;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">replace</span><span class="o">.</span><span class="n">apply_to</span> <span class="o">=</span> <span class="s1">&#39;content_type&#39;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">replace</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">to_replace</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fomc_&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">}</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">replace</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">regex</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">pivot</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="s1">&#39;date&#39;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">pivot</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="s1">&#39;content_type&#39;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">pivot</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;polarity_diffusion&#39;</span><span class="p">,</span> <span class="s1">&#39;num_examples&#39;</span><span class="p">]</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">save_dataframe</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">save_dataframe</span><span class="o">.</span><span class="n">output_file</span> <span class="o">=</span> <span class="s1">&#39;fomc_sentiment_t5_next.parquet&#39;</span>
+<span class="n">tone_data_t5</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+<span class="n">tone_data_t5</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">tone_data_t5</span><span class="p">,</span> <span class="n">_columns</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>
+<span class="n">tone_data_t5</span> <span class="o">=</span> <span class="n">tone_data_t5</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>
+<span class="n">eKonf</span><span class="o">.</span><span class="n">save_data</span><span class="p">(</span><span class="n">tone_data_t5</span><span class="p">,</span> <span class="s1">&#39;fomc_tone_data_t5.parquet&#39;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tone_data_t5</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;fomc_tone_data_t5.parquet&#39;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;polarity_diffusion_minutes&#39;</span><span class="p">,</span> <span class="s1">&#39;polarity_diffusion_press_conf&#39;</span><span class="p">,</span> <span class="s1">&#39;polarity_diffusion_speech&#39;</span><span class="p">,</span> <span class="s1">&#39;polarity_diffusion_statement&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">tone_data_t5</span> <span class="o">=</span>  <span class="n">tone_data_t5</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">tone_data_t5</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">tone_data_t5</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;polarity&#39;</span><span class="p">,</span> <span class="s1">&#39;t5&#39;</span><span class="p">)</span>
+<span class="n">tone_data_t5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>t5_diffusion_minutes</th>
+      <th>t5_diffusion_press_conf</th>
+      <th>t5_diffusion_speech</th>
+      <th>t5_diffusion_statement</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1990-02-07</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1990-03-27</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1990-05-15</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1990-07-03</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1990-08-21</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2021-11-30</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.239583</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2021-12-01</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2021-12-02</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.250000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2021-12-15</th>
+      <td>0.403571</td>
+      <td>0.216783</td>
+      <td>NaN</td>
+      <td>0.444444</td>
+    </tr>
+    <tr>
+      <th>2021-12-17</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.174603</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>1876 rows × 4 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/lecture",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lectures/ds/fomc"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="06_AutoML.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Checking Baseline with AutoML</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="08_EDA_sentiments1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">EDA on Sentiments: Correlation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predict-sentiments-with-the-lm-sentiment-analyser">Predict sentiments with the LM sentiment analyser</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-fomc-corpus">Load FOMC Corpus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predict-sentiments-of-sentences">Predict sentiments of sentences</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregate-sentiment-scores">Aggregate sentiment scores</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predict-sentiments-and-aggregate-scores-with-a-pipeline">Predict sentiments and aggregate scores with a pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predict-sentiments-with-the-finbert">Predict sentiments with the finbert</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predict-sentiments-with-the-t5">Predict sentiments with the T5</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

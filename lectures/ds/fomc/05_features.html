@@ -1,0 +1,1705 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Visualizing Features &#8212; ἐντελέχεια.άι</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/js/hoverxref.js"></script>
+    <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/chatgpt.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/ds/fomc/05_features';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/ds/fomc/05_features.html" />
+    <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Checking Baseline with AutoML" href="06_AutoML.html" />
+    <link rel="prev" title="Create Training Datasets" href="04_training_datasets.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+
+  <div class="bd-header-announcement container-fluid bd-header-announcement">
+    <div class="bd-header-announcement__content"><p>
+  <strong>Announcement:</strong>
+  You can install the accompanying AI tutor <a href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd" target="_blank">here</a>.
+  <a class="reference external" href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd" target="_blank"><img alt="chrome-web-store-image" src="https://img.shields.io/chrome-web-store/v/lfgfgbomindbccgidgalhhndggddpagd" /></a>
+</p>
+</div>
+  </div>
+
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">ἐντελέχεια.άι</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../index.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_intro/index.html">Introduction to NLP</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/intro/index.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/research/index.html">Research Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/lm/index.html">Language Models</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/datasets/corpus.html">Text Data Collection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/datasets/lab-dart.html">Lab: Crawling DART Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/topic/index.html">Topic Modeling</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/coherence.html">Topic Coherence Measures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/tomotopy.html">Lab: Tomotopy</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/sentiments/index.html">Sentiment Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lexicon.html">Lexicon-Based Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/ml.html">Machine Learning-Based Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lab-lexicon.html">Lab: Lexicon-Based Sentiment Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/segmentation.html">Word Segmentation and Association</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/embeddings/index.html">Word Embeddings</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_deep/index.html">Deep Learning for NLP</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/llms/index.html">Large Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/zeroshot.html">Zero Shot and Prompt Engineering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/decoding.html">Decoding and Search Strategies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/plms.html">Pretrained Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/transformers/index.html">Transformers</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/bert.html">BERT: Bidirectional Encoder Representations from Transformers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/bertviz.html">BERT: Visualizing Attention</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/t5.html">T5: Text-To-Text Transfer Transformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/datasets/mc4.html">mC4 Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/datasets/lab-eda.html">Lab: Exploratory Data Analysis (EDA)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/sentencepiece.html">SentencePiece Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/lab-train-tokenizers.html">Lab: Training Tokenizers</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/training/index.html">Training Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/training/lab-pretraining.html">Lab: Pretraining Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/chatbots/index.html">Conversational AI and Chatbots</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/chatbots/rlhf.html">Reinforcement Learning with Human Feedback (RLHF)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/chatbots/detectGPT.html">How to Spot Machine-Written Texts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_advances/index.html">Advances in AI and NLP</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/thesis.html">Writing a Thesis</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_advances/gpt/index.html">Generative Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/detectGPT.html">DetectGPT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/gpt4.html">GPT-4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/camelids.html">Meet the Camelids: A Family of LLMs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/sam/index.html">Segment Everything</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../aiart/index.html">AI Art (Generative AI)</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/intro/index.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/brave/index.html">A Brave New World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/aiart/index.html">Art and Music in Light of AI</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../aiart/text-to-image/index.html">Text-to-Image Models</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/dalle1.html">DALL·E 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/dalle2.html">DALL·E 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/imagen.html">Imagen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/motion-capture-and-synthesis/index.html">Motion Capture and Motion Synthesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/robot/index.html">Robot Drawing System</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../mlops/index.html">Machine Learning Systems Design</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/intro.html">Introduction to MLOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/project.html">MLOps Project</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/devops/index.html">DevOps</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/gitops.html">GitOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/devsecops.html">DevSecOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/llmops.html">LLMOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/dotfiles/index.html">Dotfiles</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai">Dotfiles Repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/dotfiles/dotdrop.html">Dotdrop</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dotdrop/">Dotdrop Setup Script</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/github/">GitHub Setup Scripts</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/ssh-gpg-age/">SSH, GPG, and Age Setup Scripts</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/sops/">Pass and Passage Scripts</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/pass/">SOPS: Secrets OPerationS</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/doppler/">Doppler Usage</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dockerfiles/">Dockerfiles Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/security/index.html">Security Management</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/auth-enc-sign.html">Authentication, Encryption, and Signing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/age-gpg-ssh.html">SSH, GPG, and AGE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/pass.html">Unix Password Managers</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/github/index.html">GitHub Workflow</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/github/fork-pull.html">Github’s Fork &amp; Pull Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/github/template.html">Project Templating Tools</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://hyperfast-python.entelecheia.ai/">Hyperfast Python Template</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://hyperfast-template.entelecheia.ai/">Hyperfast Template</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/containerization/index.html">Containerization</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/containerization/docker.html">Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/containerization/containerd.html"><code class="docutils literal notranslate"><span class="pre">containerd</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/simple-pipeline/index.html">Simple MLOps Pipeline</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/simple-pipeline/server.html">Server Setup &amp; Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/simple-pipeline/vpn.html">VPN Connectivity</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Data Science for Economics and Finance</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-24"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Textual Analysis of FOMC contents</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-25"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="01_numerical_data.html">Preparing Numerical Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_textual_data.html">Preparing Textual Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03_EDA_numericals1.html">EDA on Numerical Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03_EDA_numericals2.html">EDA on Numerical Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="04_training_datasets.html">Create Training Datasets</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Visualizing Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="06_AutoML.html">Checking Baseline with AutoML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="07_predict_sentiments.html">Predicting Sentiments of FOMC Corpus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="08_EDA_sentiments1.html">EDA on Sentiments: Correlation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="08_EDA_sentiments2.html">EDA on Sentiment Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="09_visualize_features.html">Visualize Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="10_monetary_shocks.html">Monetary Policy Shocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="11_AutoML_with_tones.html">Predicting the next decisions with tones</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../about/lecture-bot.html">LectureBot for ἐντελέχεια.άι</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://course.entelecheia.ai">course.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://research.entelecheia.ai">research.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/ds/fomc/05_features.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/lectures/ds/fomc/05_features.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Visualizing Features</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-and-load-a-feature-set">Build and load a feature set</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-features">Visualize Features</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="visualizing-features">
+<h1>Visualizing Features<a class="headerlink" href="#visualizing-features" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;retina&#39;
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">ekorpkit</span> <span class="kn">import</span> <span class="n">eKonf</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eKonf</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.1.32+22.g1490fd9.dirty
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_dir</span> <span class="o">=</span> <span class="s2">&quot;../data/fomc&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="build-and-load-a-feature-set">
+<h2>Build and load a feature set<a class="headerlink" href="#build-and-load-a-feature-set" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;dataset=feature_build&quot;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;fomc_features_small&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data_file</span> <span class="o">=</span> <span class="s2">&quot;econ_train_small.parquet&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">force</span><span class="o">.</span><span class="n">build</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">split_sampling</span><span class="o">.</span><span class="n">stratify_on</span> <span class="o">=</span> <span class="s2">&quot;target&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">split_sampling</span><span class="o">.</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">123</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">split_sampling</span><span class="o">.</span><span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.25</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">reset_index</span><span class="o">.</span><span class="n">index_column_name</span> <span class="o">=</span> <span class="s2">&quot;date&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">column_info</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="s2">&quot;index&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">column_info</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;date&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">column_info</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;prev_decision&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GDP_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PMI&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;EMP_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;RSALES_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;UNEMP_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HSALES_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Inertia_diff&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Balanced_diff&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">column_info</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;target&quot;</span>
+<span class="n">f_small</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+<span class="n">f_small</span><span class="o">.</span><span class="n">persist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.pipelines.pipe:Applying pipeline: OrderedDict([(&#39;load_dataframe&#39;, &#39;load_dataframe&#39;), (&#39;reset_index&#39;, &#39;reset_index&#39;), (&#39;split_sampling&#39;, &#39;split_sampling&#39;)])
+INFO:ekorpkit.ekonf:Applying pipe: functools.partial(&lt;function load_dataframe at 0x7fd4706e8310&gt;)
+INFO:ekorpkit.io.file:Processing [1] files from [&#39;econ_train_small.parquet&#39;]
+INFO:ekorpkit.io.file:Loading 1 dataframes from [&#39;../data/fomc/econ_train_small.parquet&#39;]
+INFO:ekorpkit.io.file:Loading data from ../data/fomc/econ_train_small.parquet
+INFO:ekorpkit.ekonf:Applying pipe: functools.partial(&lt;function reset_index at 0x7fd4706e7670&gt;)
+INFO:ekorpkit.ekonf:Applying pipe: functools.partial(&lt;function split_sampling at 0x7fd4706e7280&gt;)
+INFO:ekorpkit.io.file:Saving dataframe to ../data/fomc/fomc_features_small/fomc_features_small-train.parquet
+INFO:ekorpkit.io.file:Saving dataframe to ../data/fomc/fomc_features_small/fomc_features_small-test.parquet
+INFO:ekorpkit.datasets.feature:Dataset fomc_features_small built with 415 rows
+INFO:ekorpkit.io.file:Processing [1] files from [&#39;fomc_features_small-train.parquet&#39;]
+INFO:ekorpkit.io.file:Loading 1 dataframes from [&#39;../data/fomc/fomc_features_small/fomc_features_small-train.parquet&#39;]
+INFO:ekorpkit.io.file:Loading data from ../data/fomc/fomc_features_small/fomc_features_small-train.parquet
+INFO:ekorpkit.info.column:index: index, index of data: None, columns: [&#39;date&#39;, &#39;target&#39;, &#39;prev_decision&#39;, &#39;GDP_diff_prev&#39;, &#39;PMI&#39;, &#39;EMP_diff_prev&#39;, &#39;RSALES_diff_year&#39;, &#39;UNEMP_diff_prev&#39;, &#39;HSALES_diff_year&#39;, &#39;Inertia_diff&#39;, &#39;Balanced_diff&#39;], id: [&#39;date&#39;]
+INFO:ekorpkit.info.column:Adding id [split] to [&#39;date&#39;]
+INFO:ekorpkit.info.column:Added id [split], now [&#39;date&#39;, &#39;split&#39;]
+INFO:ekorpkit.info.column:Added a column [split] with value [train]
+WARNING:ekorpkit.datasets.base:File fomc_features_small-dev.parquet not found.
+INFO:ekorpkit.io.file:Processing [1] files from [&#39;fomc_features_small-test.parquet&#39;]
+INFO:ekorpkit.io.file:Loading 1 dataframes from [&#39;../data/fomc/fomc_features_small/fomc_features_small-test.parquet&#39;]
+INFO:ekorpkit.io.file:Loading data from ../data/fomc/fomc_features_small/fomc_features_small-test.parquet
+INFO:ekorpkit.info.column:Added a column [split] with value [test]
+INFO:ekorpkit.info.stat: &gt;&gt; elapsed time to calculate statistics: 0:00:00.004594
+INFO:ekorpkit.info.stat: &gt;&gt; elapsed time to calculate statistics: 0:00:00.003903
+INFO:ekorpkit.io.file:Saving dataframe to ../data/fomc/fomc_features_small/fomc_features_small-train.parquet
+INFO:ekorpkit.io.file:Saving dataframe to ../data/fomc/fomc_features_small/fomc_features_small-test.parquet
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f_small</span><span class="o">.</span><span class="n">train_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>target</th>
+      <th>prev_decision</th>
+      <th>GDP_diff_prev</th>
+      <th>PMI</th>
+      <th>EMP_diff_prev</th>
+      <th>RSALES_diff_year</th>
+      <th>UNEMP_diff_prev</th>
+      <th>HSALES_diff_year</th>
+      <th>Inertia_diff</th>
+      <th>Balanced_diff</th>
+      <th>split</th>
+    </tr>
+    <tr>
+      <th>index</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2002-09-24</td>
+      <td>Hold</td>
+      <td>0.0</td>
+      <td>0.615502</td>
+      <td>50.3</td>
+      <td>-0.002297</td>
+      <td>2.206995</td>
+      <td>-1.724138</td>
+      <td>17.090069</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>train</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1997-03-25</td>
+      <td>Hike</td>
+      <td>0.0</td>
+      <td>1.038398</td>
+      <td>53.1</td>
+      <td>0.257080</td>
+      <td>3.197859</td>
+      <td>-1.886792</td>
+      <td>4.161248</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>train</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2011-04-27</td>
+      <td>Hold</td>
+      <td>0.0</td>
+      <td>0.519595</td>
+      <td>59.1</td>
+      <td>0.179317</td>
+      <td>4.107119</td>
+      <td>0.000000</td>
+      <td>-21.259843</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>train</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1989-02-08</td>
+      <td>Hike</td>
+      <td>1.0</td>
+      <td>1.332501</td>
+      <td>54.7</td>
+      <td>0.246029</td>
+      <td>2.094256</td>
+      <td>1.886792</td>
+      <td>22.905983</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>train</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2008-09-16</td>
+      <td>Hold</td>
+      <td>0.0</td>
+      <td>0.572295</td>
+      <td>49.2</td>
+      <td>-0.202195</td>
+      <td>-4.803606</td>
+      <td>5.172414</td>
+      <td>-37.768240</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>train</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>306</th>
+      <td>1998-08-18</td>
+      <td>Hold</td>
+      <td>0.0</td>
+      <td>0.925821</td>
+      <td>49.2</td>
+      <td>0.102319</td>
+      <td>2.026188</td>
+      <td>0.000000</td>
+      <td>8.819876</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>train</td>
+    </tr>
+    <tr>
+      <th>307</th>
+      <td>2021-04-28</td>
+      <td>Hold</td>
+      <td>0.0</td>
+      <td>1.115277</td>
+      <td>63.7</td>
+      <td>0.489818</td>
+      <td>26.945039</td>
+      <td>-3.225806</td>
+      <td>44.426230</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>train</td>
+    </tr>
+    <tr>
+      <th>308</th>
+      <td>2004-01-28</td>
+      <td>Hold</td>
+      <td>0.0</td>
+      <td>1.666896</td>
+      <td>60.1</td>
+      <td>0.087374</td>
+      <td>2.493088</td>
+      <td>-1.724138</td>
+      <td>7.729008</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>train</td>
+    </tr>
+    <tr>
+      <th>309</th>
+      <td>2015-06-17</td>
+      <td>Hold</td>
+      <td>0.0</td>
+      <td>0.813314</td>
+      <td>52.8</td>
+      <td>0.234429</td>
+      <td>2.662704</td>
+      <td>3.703704</td>
+      <td>11.308204</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>train</td>
+    </tr>
+    <tr>
+      <th>310</th>
+      <td>2007-08-16</td>
+      <td>Hold</td>
+      <td>0.0</td>
+      <td>0.638435</td>
+      <td>52.4</td>
+      <td>-0.022453</td>
+      <td>0.622821</td>
+      <td>2.173913</td>
+      <td>-19.378238</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>train</td>
+    </tr>
+  </tbody>
+</table>
+<p>311 rows × 12 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">config_group</span><span class="o">=</span><span class="s2">&quot;dataset=feature&quot;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;fomc_features_small&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+<span class="n">f_small</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f_small</span><span class="o">.</span><span class="n">INFO</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;splits&#39;: {&#39;train&#39;: {&#39;data_file&#39;: &#39;fomc_features_small-train.parquet&#39;,
+   &#39;name&#39;: &#39;train&#39;,
+   &#39;num_examples&#39;: 311,
+   &#39;num_bytes&#39;: 63207,
+   &#39;human_bytes&#39;: &#39;61.73 KiB&#39;},
+  &#39;test&#39;: {&#39;data_file&#39;: &#39;fomc_features_small-test.parquet&#39;,
+   &#39;name&#39;: &#39;test&#39;,
+   &#39;num_examples&#39;: 104,
+   &#39;num_bytes&#39;: 21118,
+   &#39;human_bytes&#39;: &#39;20.62 KiB&#39;}},
+ &#39;num_examples&#39;: 415,
+ &#39;size_in_bytes&#39;: 84325,
+ &#39;size_in_human_bytes&#39;: &#39;82.35 KiB&#39;,
+ &#39;data_files&#39;: {&#39;train&#39;: &#39;fomc_features_small-train.parquet&#39;,
+  &#39;test&#39;: &#39;fomc_features_small-test.parquet&#39;},
+ &#39;meta_files&#39;: {},
+ &#39;data_files_modified&#39;: &#39;2022-06-14 10:23:24&#39;,
+ &#39;info_updated&#39;: &#39;2022-06-14 10:23:24&#39;,
+ &#39;column_info&#39;: {&#39;_keys_&#39;: {&#39;index&#39;: &#39;index&#39;,
+   &#39;id&#39;: &#39;id&#39;,
+   &#39;x&#39;: &#39;x&#39;,
+   &#39;y&#39;: &#39;y&#39;,
+   &#39;split&#39;: &#39;split&#39;,
+   &#39;dataset&#39;: &#39;dataset&#39;},
+  &#39;columns&#39;: {&#39;index&#39;: &#39;date&#39;,
+   &#39;id&#39;: [&#39;date&#39;, &#39;split&#39;],
+   &#39;x&#39;: [&#39;prev_decision&#39;,
+    &#39;GDP_diff_prev&#39;,
+    &#39;PMI&#39;,
+    &#39;EMP_diff_prev&#39;,
+    &#39;RSALES_diff_year&#39;,
+    &#39;UNEMP_diff_prev&#39;,
+    &#39;HSALES_diff_year&#39;,
+    &#39;Inertia_diff&#39;,
+    &#39;Balanced_diff&#39;],
+   &#39;y&#39;: &#39;target&#39;},
+  &#39;datetime&#39;: {&#39;columns&#39;: None,
+   &#39;format&#39;: None,
+   &#39;rcParams&#39;: None,
+   &#39;_parms_&#39;: None},
+  &#39;data&#39;: {&#39;date&#39;: &#39;datetime64[ns]&#39;,
+   &#39;target&#39;: &#39;object&#39;,
+   &#39;prev_decision&#39;: &#39;float64&#39;,
+   &#39;GDP_diff_prev&#39;: &#39;float64&#39;,
+   &#39;PMI&#39;: &#39;float64&#39;,
+   &#39;EMP_diff_prev&#39;: &#39;float64&#39;,
+   &#39;RSALES_diff_year&#39;: &#39;float64&#39;,
+   &#39;UNEMP_diff_prev&#39;: &#39;float64&#39;,
+   &#39;HSALES_diff_year&#39;: &#39;float64&#39;,
+   &#39;Inertia_diff&#39;: &#39;float64&#39;,
+   &#39;Balanced_diff&#39;: &#39;float64&#39;,
+   &#39;split&#39;: &#39;str&#39;},
+  &#39;keys&#39;: {&#39;index&#39;: &#39;date&#39;, &#39;id&#39;: &#39;id&#39;, &#39;x&#39;: &#39;x&#39;, &#39;y&#39;: &#39;y&#39;, &#39;split&#39;: &#39;split&#39;}}}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_train</span> <span class="o">=</span> <span class="n">f_small</span><span class="o">.</span><span class="n">y_train</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f_small</span><span class="o">.</span><span class="n">COLUMN</span><span class="o">.</span><span class="n">Y</span><span class="p">)</span>
+<span class="n">y_train</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>target
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>date
+0    Hold
+1    Hold
+2    Hold
+3     Cut
+4     Cut
+Name: target, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="n">f_small</span><span class="o">.</span><span class="n">X_train</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f_small</span><span class="o">.</span><span class="n">COLUMN</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;prev_decision&#39;, &#39;GDP_diff_prev&#39;, &#39;PMI&#39;, &#39;EMP_diff_prev&#39;, &#39;RSALES_diff_year&#39;, &#39;UNEMP_diff_prev&#39;, &#39;HSALES_diff_year&#39;, &#39;Inertia_diff&#39;, &#39;Balanced_diff&#39;]
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>prev_decision</th>
+      <th>GDP_diff_prev</th>
+      <th>PMI</th>
+      <th>EMP_diff_prev</th>
+      <th>RSALES_diff_year</th>
+      <th>UNEMP_diff_prev</th>
+      <th>HSALES_diff_year</th>
+      <th>Inertia_diff</th>
+      <th>Balanced_diff</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>7.547535</td>
+      <td>57.7</td>
+      <td>0.234047</td>
+      <td>3.055276</td>
+      <td>-2.898551</td>
+      <td>22.622478</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>0.843712</td>
+      <td>51.9</td>
+      <td>0.058919</td>
+      <td>0.196754</td>
+      <td>-2.173913</td>
+      <td>-21.960415</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.0</td>
+      <td>0.364447</td>
+      <td>54.7</td>
+      <td>0.221891</td>
+      <td>4.213922</td>
+      <td>-5.000000</td>
+      <td>-8.387800</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-1.0</td>
+      <td>0.743327</td>
+      <td>51.2</td>
+      <td>0.124735</td>
+      <td>2.094256</td>
+      <td>-4.285714</td>
+      <td>13.643411</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.0</td>
+      <td>1.284129</td>
+      <td>56.1</td>
+      <td>0.221892</td>
+      <td>3.239959</td>
+      <td>-3.278689</td>
+      <td>16.625310</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;dataset=feature_build&quot;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;fomc_features_large&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data_file</span> <span class="o">=</span> <span class="s2">&quot;econ_train_large.parquet&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">force</span><span class="o">.</span><span class="n">rebuild</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">split_sampling</span><span class="o">.</span><span class="n">stratify_on</span> <span class="o">=</span> <span class="s2">&quot;target&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">split_sampling</span><span class="o">.</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">123</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">split_sampling</span><span class="o">.</span><span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.25</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">reset_index</span><span class="o">.</span><span class="n">index_column_name</span> <span class="o">=</span> <span class="s2">&quot;date&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">column_info</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="s2">&quot;date&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">column_info</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;index&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">column_info</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;prev_decision&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GDP_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GDP_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GDPPOT_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GDPPOT_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PCE_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PCE_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CPI_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CPI_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;UNEMP&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;UNEMP_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;UNEMP_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;EMP&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;EMP_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;EMP_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PMI&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PMI_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PMI_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;RSALES_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;RSALES_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HSALES_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HSALES_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Taylor-Rate&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Balanced-Rate&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Inertia-Rate&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Taylor_diff&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Balanced_diff&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Inertia_diff&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">column_info</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;target&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">f_large</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+<span class="n">f_large</span><span class="o">.</span><span class="n">persist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualize-features">
+<h2>Visualize Features<a class="headerlink" href="#visualize-features" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">config_group</span><span class="o">=</span><span class="s2">&quot;dataset=feature&quot;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;fomc_features_small&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+<span class="n">f_small</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+<span class="n">f_small</span><span class="o">.</span><span class="n">train_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>target</th>
+      <th>prev_decision</th>
+      <th>GDP_diff_prev</th>
+      <th>PMI</th>
+      <th>EMP_diff_prev</th>
+      <th>RSALES_diff_year</th>
+      <th>UNEMP_diff_prev</th>
+      <th>HSALES_diff_year</th>
+      <th>Inertia_diff</th>
+      <th>Balanced_diff</th>
+      <th>split</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2002-09-24</td>
+      <td>Hold</td>
+      <td>0.0</td>
+      <td>0.615502</td>
+      <td>50.3</td>
+      <td>-0.002297</td>
+      <td>2.206995</td>
+      <td>-1.724138</td>
+      <td>17.090069</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>train</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1997-03-25</td>
+      <td>Hike</td>
+      <td>0.0</td>
+      <td>1.038398</td>
+      <td>53.1</td>
+      <td>0.257080</td>
+      <td>3.197859</td>
+      <td>-1.886792</td>
+      <td>4.161248</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>train</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2011-04-27</td>
+      <td>Hold</td>
+      <td>0.0</td>
+      <td>0.519595</td>
+      <td>59.1</td>
+      <td>0.179317</td>
+      <td>4.107119</td>
+      <td>0.000000</td>
+      <td>-21.259843</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>train</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1989-02-08</td>
+      <td>Hike</td>
+      <td>1.0</td>
+      <td>1.332501</td>
+      <td>54.7</td>
+      <td>0.246029</td>
+      <td>2.094256</td>
+      <td>1.886792</td>
+      <td>22.905983</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>train</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2008-09-16</td>
+      <td>Hold</td>
+      <td>0.0</td>
+      <td>0.572295</td>
+      <td>49.2</td>
+      <td>-0.202195</td>
+      <td>-4.803606</td>
+      <td>5.172414</td>
+      <td>-37.768240</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>train</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f_small</span><span class="o">.</span><span class="n">y_train</span> <span class="o">=</span> <span class="n">f_small</span><span class="o">.</span><span class="n">transform_labels</span><span class="p">(</span><span class="n">f_small</span><span class="o">.</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">f_small</span><span class="o">.</span><span class="n">y_dev</span> <span class="o">=</span> <span class="n">f_small</span><span class="o">.</span><span class="n">transform_labels</span><span class="p">(</span><span class="n">f_small</span><span class="o">.</span><span class="n">y_dev</span><span class="p">)</span>
+<span class="n">f_small</span><span class="o">.</span><span class="n">y_test</span> <span class="o">=</span> <span class="n">f_small</span><span class="o">.</span><span class="n">transform_labels</span><span class="p">(</span><span class="n">f_small</span><span class="o">.</span><span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_cols</span> <span class="o">=</span> <span class="n">f_small</span><span class="o">.</span><span class="n">COLUMN</span><span class="o">.</span><span class="n">X</span>
+<span class="n">y_col</span> <span class="o">=</span> <span class="n">f_small</span><span class="o">.</span><span class="n">COLUMN</span><span class="o">.</span><span class="n">Y</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f_small</span><span class="o">.</span><span class="n">classes</span><span class="p">,</span> <span class="n">X_cols</span><span class="p">,</span> <span class="n">y_col</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Cut&#39;, &#39;Hike&#39;, &#39;Hold&#39;] [&#39;prev_decision&#39;, &#39;GDP_diff_prev&#39;, &#39;PMI&#39;, &#39;EMP_diff_prev&#39;, &#39;RSALES_diff_year&#39;, &#39;UNEMP_diff_prev&#39;, &#39;HSALES_diff_year&#39;, &#39;Inertia_diff&#39;, &#39;Balanced_diff&#39;] target
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f_small</span><span class="o">.</span><span class="n">train_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>target</th>
+      <th>prev_decision</th>
+      <th>GDP_diff_prev</th>
+      <th>PMI</th>
+      <th>EMP_diff_prev</th>
+      <th>RSALES_diff_year</th>
+      <th>UNEMP_diff_prev</th>
+      <th>HSALES_diff_year</th>
+      <th>Inertia_diff</th>
+      <th>Balanced_diff</th>
+      <th>split</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2002-09-24</td>
+      <td>2</td>
+      <td>0.0</td>
+      <td>0.615502</td>
+      <td>50.3</td>
+      <td>-0.002297</td>
+      <td>2.206995</td>
+      <td>-1.724138</td>
+      <td>17.090069</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>train</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1997-03-25</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>1.038398</td>
+      <td>53.1</td>
+      <td>0.257080</td>
+      <td>3.197859</td>
+      <td>-1.886792</td>
+      <td>4.161248</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>train</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2011-04-27</td>
+      <td>2</td>
+      <td>0.0</td>
+      <td>0.519595</td>
+      <td>59.1</td>
+      <td>0.179317</td>
+      <td>4.107119</td>
+      <td>0.000000</td>
+      <td>-21.259843</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>train</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1989-02-08</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>1.332501</td>
+      <td>54.7</td>
+      <td>0.246029</td>
+      <td>2.094256</td>
+      <td>1.886792</td>
+      <td>22.905983</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>train</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2008-09-16</td>
+      <td>2</td>
+      <td>0.0</td>
+      <td>0.572295</td>
+      <td>49.2</td>
+      <td>-0.202195</td>
+      <td>-4.803606</td>
+      <td>5.172414</td>
+      <td>-37.768240</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>train</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cfg = eKonf.compose(config_group=&quot;visualize/plot=radviz&quot;)</span>
+<span class="c1"># cfg.plots[0].x = X_cols</span>
+<span class="c1"># cfg.plots[0].y = y_col</span>
+<span class="c1"># cfg.plots[0].classes = f_small.classes</span>
+<span class="c1"># cfg.figure.figsize = (10, 6)</span>
+<span class="c1"># cfg.figure.fontsize = 14</span>
+<span class="c1"># eKonf.instantiate(cfg, data=f_small.data)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">config_group</span><span class="o">=</span><span class="s2">&quot;visualize/plot=jointplot&quot;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">X_cols</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y_col</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;PMI&quot;</span><span class="p">,</span> <span class="s2">&quot;GDP_diff_prev&quot;</span><span class="p">]</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span>
+<span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">f_small</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:matplotlib.font_manager:findfont: Font family [&#39;sans-serif&#39;] not found. Falling back to DejaVu Sans.
+WARNING:matplotlib.font_manager:findfont: Generic family &#39;sans-serif&#39; not found because none of the following families were found: Arial, Liberation Sans, Bitstream Vera Sans, sans-serif
+</pre></div>
+</div>
+<img alt="../../../_images/debe9a721383540d21e38abbe0ef3a77bc427158b7573e15ad146c44eb0f42b8.png" src="../../../_images/debe9a721383540d21e38abbe0ef3a77bc427158b7573e15ad146c44eb0f42b8.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">config_group</span><span class="o">=</span><span class="s2">&quot;visualize/plot=rank1d&quot;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">X_cols</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y_col</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">classes</span> <span class="o">=</span> <span class="n">f_small</span><span class="o">.</span><span class="n">classes</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span>
+<span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">f_small</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/3d9ecd3dcad7ebeeb441b88bd779c80df0e0bf1f39eed86c37d453bd122f8051.png" src="../../../_images/3d9ecd3dcad7ebeeb441b88bd779c80df0e0bf1f39eed86c37d453bd122f8051.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">config_group</span><span class="o">=</span><span class="s2">&quot;visualize/plot=rank2d&quot;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">X_cols</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y_col</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span>
+<span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">f_small</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/d873b7f32a8bdbd479e8b233f92a0ff37b800f1181d7e3a926febc8081c30b2e.png" src="../../../_images/d873b7f32a8bdbd479e8b233f92a0ff37b800f1181d7e3a926febc8081c30b2e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;visualize/plot=pcoords&quot;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">X_cols</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y_col</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">classes</span> <span class="o">=</span> <span class="n">f_small</span><span class="o">.</span><span class="n">classes</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sample</span> <span class="o">=</span> <span class="mf">0.8</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shuffle</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">f_small</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/5708725f30e38a1307c756bbdf6ecad39627977487f89afd2f7bf01b4740de96.png" src="../../../_images/5708725f30e38a1307c756bbdf6ecad39627977487f89afd2f7bf01b4740de96.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">config_group</span><span class="o">=</span><span class="s2">&quot;visualize/plot=pca&quot;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">X_cols</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y_col</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">classes</span> <span class="o">=</span> <span class="n">f_small</span><span class="o">.</span><span class="n">classes</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span>
+<span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">f_small</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/018579615cac78923113dce292e386324385ec8268ed8c6f45c79b468af9afd7.png" src="../../../_images/018579615cac78923113dce292e386324385ec8268ed8c6f45c79b468af9afd7.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">config_group</span><span class="o">=</span><span class="s2">&quot;visualize/plot=manifold&quot;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">X_cols</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y_col</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">classes</span> <span class="o">=</span> <span class="n">f_small</span><span class="o">.</span><span class="n">classes</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">manifold</span><span class="o">=</span><span class="s2">&quot;isomap&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span>
+<span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">f_small</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/889299642535480566b19a819b1231734cc2bd6cdabad05c428280f6ee06d0a5.png" src="../../../_images/889299642535480566b19a819b1231734cc2bd6cdabad05c428280f6ee06d0a5.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">config_group</span><span class="o">=</span><span class="s2">&quot;visualize/plot=manifold&quot;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">X_cols</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y_col</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">classes</span> <span class="o">=</span> <span class="n">f_small</span><span class="o">.</span><span class="n">classes</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">manifold</span> <span class="o">=</span> <span class="s2">&quot;tsne&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span>
+<span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">f_small</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/conda/lib/python3.8/site-packages/sklearn/manifold/_t_sne.py:805: FutureWarning: The default learning rate in TSNE will change from 200.0 to &#39;auto&#39; in 1.2.
+  warnings.warn(
+/opt/conda/lib/python3.8/site-packages/sklearn/manifold/_t_sne.py:991: FutureWarning: The PCA initialization in TSNE will change to have the standard deviation of PC1 equal to 1e-4 in 1.2. This will ensure better convergence.
+  warnings.warn(
+</pre></div>
+</div>
+<img alt="../../../_images/93c771ad58b411a89813fad2416ac289b111303a1cbc53f5ed901320e8ccde23.png" src="../../../_images/93c771ad58b411a89813fad2416ac289b111303a1cbc53f5ed901320e8ccde23.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/lecture",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lectures/ds/fomc"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04_training_datasets.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Create Training Datasets</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="06_AutoML.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Checking Baseline with AutoML</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-and-load-a-feature-set">Build and load a feature set</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-features">Visualize Features</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

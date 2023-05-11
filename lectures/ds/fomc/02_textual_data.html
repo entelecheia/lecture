@@ -1,0 +1,2881 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Preparing Textual Data &#8212; ἐντελέχεια.άι</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/js/hoverxref.js"></script>
+    <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/chatgpt.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/ds/fomc/02_textual_data';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/ds/fomc/02_textual_data.html" />
+    <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="EDA on Numerical Data" href="03_EDA_numericals1.html" />
+    <link rel="prev" title="Preparing Numerical Data" href="01_numerical_data.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+
+  <div class="bd-header-announcement container-fluid bd-header-announcement">
+    <div class="bd-header-announcement__content"><p>
+  <strong>Announcement:</strong>
+  You can install the accompanying AI tutor <a href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd" target="_blank">here</a>.
+  <a class="reference external" href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd" target="_blank"><img alt="chrome-web-store-image" src="https://img.shields.io/chrome-web-store/v/lfgfgbomindbccgidgalhhndggddpagd" /></a>
+</p>
+</div>
+  </div>
+
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">ἐντελέχεια.άι</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../index.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_intro/index.html">Introduction to NLP</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/intro/index.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/research/index.html">Research Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/lm/index.html">Language Models</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/datasets/corpus.html">Text Data Collection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/datasets/lab-dart.html">Lab: Crawling DART Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/topic/index.html">Topic Modeling</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/coherence.html">Topic Coherence Measures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/tomotopy.html">Lab: Tomotopy</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/sentiments/index.html">Sentiment Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lexicon.html">Lexicon-Based Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/ml.html">Machine Learning-Based Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lab-lexicon.html">Lab: Lexicon-Based Sentiment Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/segmentation.html">Word Segmentation and Association</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/embeddings/index.html">Word Embeddings</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_deep/index.html">Deep Learning for NLP</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/llms/index.html">Large Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/zeroshot.html">Zero Shot and Prompt Engineering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/decoding.html">Decoding and Search Strategies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/plms.html">Pretrained Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/transformers/index.html">Transformers</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/bert.html">BERT: Bidirectional Encoder Representations from Transformers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/bertviz.html">BERT: Visualizing Attention</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/t5.html">T5: Text-To-Text Transfer Transformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/datasets/mc4.html">mC4 Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/datasets/lab-eda.html">Lab: Exploratory Data Analysis (EDA)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/sentencepiece.html">SentencePiece Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/lab-train-tokenizers.html">Lab: Training Tokenizers</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/training/index.html">Training Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/training/lab-pretraining.html">Lab: Pretraining Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/chatbots/index.html">Conversational AI and Chatbots</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/chatbots/rlhf.html">Reinforcement Learning with Human Feedback (RLHF)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/chatbots/detectGPT.html">How to Spot Machine-Written Texts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_advances/index.html">Advances in AI and NLP</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/thesis.html">Writing a Thesis</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_advances/gpt/index.html">Generative Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/detectGPT.html">DetectGPT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/gpt4.html">GPT-4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/camelids.html">Meet the Camelids: A Family of LLMs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/sam/index.html">Segment Everything</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../aiart/index.html">AI Art (Generative AI)</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/intro/index.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/brave/index.html">A Brave New World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/aiart/index.html">Art and Music in Light of AI</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../aiart/text-to-image/index.html">Text-to-Image Models</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/dalle1.html">DALL·E 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/dalle2.html">DALL·E 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/imagen.html">Imagen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/motion-capture-and-synthesis/index.html">Motion Capture and Motion Synthesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/robot/index.html">Robot Drawing System</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../mlops/index.html">Machine Learning Systems Design</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/intro.html">Introduction to MLOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/project.html">MLOps Project</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/devops/index.html">DevOps</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/gitops.html">GitOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/devsecops.html">DevSecOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/llmops.html">LLMOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/dotfiles/index.html">Dotfiles</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai">Dotfiles Repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/dotfiles/dotdrop.html">Dotdrop</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dotdrop/">Dotdrop Setup Script</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/github/">GitHub Setup Scripts</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/ssh-gpg-age/">SSH, GPG, and Age Setup Scripts</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/sops/">Pass and Passage Scripts</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/pass/">SOPS: Secrets OPerationS</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/doppler/">Doppler Usage</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dockerfiles/">Dockerfiles Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/security/index.html">Security Management</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/auth-enc-sign.html">Authentication, Encryption, and Signing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/age-gpg-ssh.html">SSH, GPG, and AGE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/pass.html">Unix Password Managers</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/github/index.html">GitHub Workflow</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/github/fork-pull.html">Github’s Fork &amp; Pull Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/github/template.html">Project Templating Tools</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://hyperfast-python.entelecheia.ai/">Hyperfast Python Template</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://hyperfast-template.entelecheia.ai/">Hyperfast Template</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/containerization/index.html">Containerization</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/containerization/docker.html">Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/containerization/containerd.html"><code class="docutils literal notranslate"><span class="pre">containerd</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/simple-pipeline/index.html">Simple MLOps Pipeline</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/simple-pipeline/server.html">Server Setup &amp; Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/simple-pipeline/vpn.html">VPN Connectivity</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Data Science for Economics and Finance</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-24"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Textual Analysis of FOMC contents</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-25"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="01_numerical_data.html">Preparing Numerical Data</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Preparing Textual Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03_EDA_numericals1.html">EDA on Numerical Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03_EDA_numericals2.html">EDA on Numerical Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="04_training_datasets.html">Create Training Datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05_features.html">Visualizing Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="06_AutoML.html">Checking Baseline with AutoML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="07_predict_sentiments.html">Predicting Sentiments of FOMC Corpus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="08_EDA_sentiments1.html">EDA on Sentiments: Correlation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="08_EDA_sentiments2.html">EDA on Sentiment Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="09_visualize_features.html">Visualize Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="10_monetary_shocks.html">Monetary Policy Shocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="11_AutoML_with_tones.html">Predicting the next decisions with tones</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../about/lecture-bot.html">LectureBot for ἐντελέχεια.άι</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://course.entelecheia.ai">course.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://research.entelecheia.ai">research.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/ds/fomc/02_textual_data.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/lectures/ds/fomc/02_textual_data.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Preparing Textual Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-fomc-corpus">Load FOMC corpus</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-fomc-class">Load FOMC class</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postprocess-metadata">Postprocess metadata</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postprocess-fomc-corpus">Postprocess FOMC corpus</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution-of-corpus">Distribution of corpus</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#split-corpus-into-sections">Split corpus into sections</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution-of-sectons">Distribution of sectons</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#split-sections-into-sentences">Split sections into sentences</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution-of-sentences">Distribution of sentences</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#split-sections-into-chunks">Split sections into chunks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution-of-chunks">Distribution of chunks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-number-of-records">Compare number of records</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="preparing-textual-data">
+<h1>Preparing Textual Data<a class="headerlink" href="#preparing-textual-data" title="Permalink to this heading">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Install ekorpkit package first.
+Set logging level to Warning, if you don’t want to see verbose logging,</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;retina&#39;
+<span class="kn">from</span> <span class="nn">ekorpkit</span> <span class="kn">import</span> <span class="n">eKonf</span>
+
+<span class="n">eKonf</span><span class="o">.</span><span class="n">setLogger</span><span class="p">(</span><span class="s2">&quot;WARNING&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;version:&quot;</span><span class="p">,</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;is notebook?&quot;</span><span class="p">,</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">is_notebook</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;is colab?&quot;</span><span class="p">,</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">is_colab</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;evironment varialbles:&quot;</span><span class="p">)</span>
+<span class="n">eKonf</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">eKonf</span><span class="o">.</span><span class="n">env</span><span class="p">()</span><span class="o">.</span><span class="n">dict</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:IPython version: (6, 9, 0), client: jupyter_client
+INFO:ekorpkit.base:Google Colab not detected.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>version: 0.1.35+0.g69734d6.dirty
+is notebook? True
+is colab? False
+evironment varialbles:
+{&#39;CUDA_DEVICE_ORDER&#39;: None,
+ &#39;CUDA_VISIBLE_DEVICES&#39;: None,
+ &#39;EKORPKIT_CONFIG_DIR&#39;: &#39;/workspace/projects/ekorpkit-book/config&#39;,
+ &#39;EKORPKIT_DATA_DIR&#39;: None,
+ &#39;EKORPKIT_LOG_LEVEL&#39;: &#39;WARNING&#39;,
+ &#39;EKORPKIT_PROJECT&#39;: &#39;ekorpkit-book&#39;,
+ &#39;EKORPKIT_WORKSPACE_ROOT&#39;: &#39;/workspace&#39;,
+ &#39;KMP_DUPLICATE_LIB_OK&#39;: &#39;TRUE&#39;,
+ &#39;NUM_WORKERS&#39;: 230}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_dir</span> <span class="o">=</span> <span class="s2">&quot;../data/fomc&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="load-fomc-corpus">
+<h2>Load FOMC corpus<a class="headerlink" href="#load-fomc-corpus" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s1">&#39;corpus&#39;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;fomc&#39;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">uri</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/entelecheia/ekorpkit-book/raw/main/assets/data/fomc.zip&#39;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">cached_path</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">auto</span><span class="o">.</span><span class="n">merge</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">fomc_corpus</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fomc_corpus</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:IPython version: (6, 9, 0), client: jupyter_client
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Corpus : fomc
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="load-fomc-class">
+<h2>Load FOMC class<a class="headerlink" href="#load-fomc-class" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;io/fetcher/fomc&quot;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+<span class="n">fomc</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fomc</span><span class="o">.</span><span class="n">load_calendar</span><span class="p">(</span><span class="n">from_year</span><span class="o">=</span><span class="mi">1982</span><span class="p">,</span> <span class="n">force_download</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>unscheduled</th>
+      <th>forecast</th>
+      <th>confcall</th>
+      <th>speaker</th>
+      <th>rate</th>
+      <th>rate_change</th>
+      <th>rate_decision</th>
+      <th>rate_changed</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1982-10-05</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>Paul Volcker</td>
+      <td>9.50</td>
+      <td>-0.50</td>
+      <td>-1.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1982-11-16</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>Paul Volcker</td>
+      <td>9.00</td>
+      <td>-0.50</td>
+      <td>-1.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1982-12-21</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>Paul Volcker</td>
+      <td>8.50</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1983-01-14</th>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>Paul Volcker</td>
+      <td>8.50</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1983-01-21</th>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>Paul Volcker</td>
+      <td>8.50</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2021-11-03</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>Jerome Powell</td>
+      <td>0.25</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2021-12-15</th>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>Jerome Powell</td>
+      <td>0.25</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2022-01-26</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>Jerome Powell</td>
+      <td>0.25</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2022-03-16</th>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>Jerome Powell</td>
+      <td>0.50</td>
+      <td>0.25</td>
+      <td>1.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2022-05-04</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>Jerome Powell</td>
+      <td>1.00</td>
+      <td>0.50</td>
+      <td>1.0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>415 rows × 8 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="postprocess-metadata">
+<h2>Postprocess metadata<a class="headerlink" href="#postprocess-metadata" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Postprocessing</span>
+<span class="n">fomc_data</span> <span class="o">=</span> <span class="n">fomc</span><span class="o">.</span><span class="n">postprocess_metadata</span><span class="p">(</span><span class="n">fomc_corpus</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="n">fomc_data</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>text</th>
+      <th>split</th>
+      <th>timestamp</th>
+      <th>content_type</th>
+      <th>date</th>
+      <th>speaker</th>
+      <th>title</th>
+      <th>decision</th>
+      <th>rate</th>
+      <th>recent_meeting</th>
+      <th>recent_decision</th>
+      <th>recent_rate</th>
+      <th>next_meeting</th>
+      <th>next_decision</th>
+      <th>next_rate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2817</th>
+      <td>2850</td>
+      <td>CHAIR  YELLEN.  I’d like to begin by welcoming...</td>
+      <td>train</td>
+      <td>2014-06-18</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-06-18</td>
+      <td>Janet Yellen</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-06-18</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-07-30</td>
+      <td>0.0</td>
+      <td>0.25</td>
+    </tr>
+    <tr>
+      <th>2818</th>
+      <td>2851</td>
+      <td>CHAIR YELLEN.  Good morning, everybody.  I wou...</td>
+      <td>train</td>
+      <td>2014-07-30</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-07-30</td>
+      <td>Janet Yellen</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-07-30</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-09-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+    </tr>
+    <tr>
+      <th>2819</th>
+      <td>2852</td>
+      <td>CHAIR YELLEN.  Good morning, everybody. Our fi...</td>
+      <td>train</td>
+      <td>2014-09-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-09-17</td>
+      <td>Janet Yellen</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-09-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-10-29</td>
+      <td>2.0</td>
+      <td>0.25</td>
+    </tr>
+    <tr>
+      <th>2820</th>
+      <td>2853</td>
+      <td>CHAIR YELLEN.  I’d like to call this meeting t...</td>
+      <td>train</td>
+      <td>2014-10-29</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-10-29</td>
+      <td>Janet Yellen</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>2.0</td>
+      <td>0.25</td>
+      <td>2014-10-29</td>
+      <td>2.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+    </tr>
+    <tr>
+      <th>2821</th>
+      <td>2854</td>
+      <td>CHAIR YELLEN.  Good afternoon, everyone.  I th...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>Janet Yellen</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="postprocess-fomc-corpus">
+<h2>Postprocess FOMC corpus<a class="headerlink" href="#postprocess-fomc-corpus" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Remove sections having less than 50 words because those are unlikely to contain meaningful sentences.</span>
+<span class="n">overrides</span><span class="o">=</span><span class="p">[</span>
+    <span class="s1">&#39;+pipeline=default&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;pipeline/filter_length=words&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;pipeline&quot;</span><span class="p">,</span> <span class="n">overrides</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">_pipeline_</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;filter_length&quot;</span><span class="p">,</span> <span class="s2">&quot;save_dataframe&quot;</span><span class="p">]</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">num_workers</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">filter_length</span><span class="o">.</span><span class="n">min_length</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">save_dataframe</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">save_dataframe</span><span class="o">.</span><span class="n">output_file</span> <span class="o">=</span> <span class="s2">&quot;fomc_corpus.parquet&quot;</span>
+<span class="n">fomc_data</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">fomc_data</span><span class="p">)</span>
+<span class="n">fomc_data</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.pipelines.pipe:Applying pipeline: OrderedDict([(&#39;filter_length&#39;, &#39;filter_length&#39;), (&#39;save_dataframe&#39;, &#39;save_dataframe&#39;)])
+INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function filter_length at 0x7fc2a666cf70&gt;, len_bytes={&#39;_partial_&#39;: True, &#39;_target_&#39;: &#39;ekorpkit.utils.func.len_bytes&#39;}, len_words={&#39;_partial_&#39;: True, &#39;_target_&#39;: &#39;ekorpkit.utils.func.len_words&#39;})
+INFO:ekorpkit.base:Using batcher with minibatch size: 13
+INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 13  procs: 230  input_split: False  merge_output: True  len(data): 2802 len(args): 5
+Calculating length: 100%|██████████| 216/216 [00:04&lt;00:00, 53.65it/s] 
+INFO:ekorpkit.pipelines.pipe:removed 0 of 2802 documents with length &lt; 50
+INFO:ekorpkit.pipelines.pipe: &gt;&gt; elapsed time to filter length: 0:00:04.039304
+INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function save_dataframe at 0x7fc2a666d550&gt;)
+INFO:ekorpkit.io.file:Saving dataframe to ../data/fomc/fomc_corpus.parquet
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>text</th>
+      <th>split</th>
+      <th>timestamp</th>
+      <th>content_type</th>
+      <th>date</th>
+      <th>speaker</th>
+      <th>title</th>
+      <th>decision</th>
+      <th>rate</th>
+      <th>recent_meeting</th>
+      <th>recent_decision</th>
+      <th>recent_rate</th>
+      <th>next_meeting</th>
+      <th>next_decision</th>
+      <th>next_rate</th>
+      <th>text_num_words</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2817</th>
+      <td>2850</td>
+      <td>CHAIR  YELLEN.  I’d like to begin by welcoming...</td>
+      <td>train</td>
+      <td>2014-06-18</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-06-18</td>
+      <td>Janet Yellen</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-06-18</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-07-30</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>86489</td>
+    </tr>
+    <tr>
+      <th>2818</th>
+      <td>2851</td>
+      <td>CHAIR YELLEN.  Good morning, everybody.  I wou...</td>
+      <td>train</td>
+      <td>2014-07-30</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-07-30</td>
+      <td>Janet Yellen</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-07-30</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-09-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>88197</td>
+    </tr>
+    <tr>
+      <th>2819</th>
+      <td>2852</td>
+      <td>CHAIR YELLEN.  Good morning, everybody. Our fi...</td>
+      <td>train</td>
+      <td>2014-09-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-09-17</td>
+      <td>Janet Yellen</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-09-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-10-29</td>
+      <td>2.0</td>
+      <td>0.25</td>
+      <td>61211</td>
+    </tr>
+    <tr>
+      <th>2820</th>
+      <td>2853</td>
+      <td>CHAIR YELLEN.  I’d like to call this meeting t...</td>
+      <td>train</td>
+      <td>2014-10-29</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-10-29</td>
+      <td>Janet Yellen</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>2.0</td>
+      <td>0.25</td>
+      <td>2014-10-29</td>
+      <td>2.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>72240</td>
+    </tr>
+    <tr>
+      <th>2821</th>
+      <td>2854</td>
+      <td>CHAIR YELLEN.  Good afternoon, everyone.  I th...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>Janet Yellen</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>58709</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fomc_data</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s2">&quot;fomc_corpus.parquet&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+<span class="n">fomc_data</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.io.file:Processing [1] files from [&#39;fomc_corpus.parquet&#39;]
+INFO:ekorpkit.io.file:Loading 1 dataframes from [&#39;../data/fomc/fomc_corpus.parquet&#39;]
+INFO:ekorpkit.io.file:Loading data from ../data/fomc/fomc_corpus.parquet
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>text</th>
+      <th>split</th>
+      <th>timestamp</th>
+      <th>content_type</th>
+      <th>date</th>
+      <th>speaker</th>
+      <th>title</th>
+      <th>decision</th>
+      <th>rate</th>
+      <th>recent_meeting</th>
+      <th>recent_decision</th>
+      <th>recent_rate</th>
+      <th>next_meeting</th>
+      <th>next_decision</th>
+      <th>next_rate</th>
+      <th>text_num_words</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2817</th>
+      <td>2850</td>
+      <td>CHAIR  YELLEN.  I’d like to begin by welcoming...</td>
+      <td>train</td>
+      <td>2014-06-18</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-06-18</td>
+      <td>Janet Yellen</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-06-18</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-07-30</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>86489</td>
+    </tr>
+    <tr>
+      <th>2818</th>
+      <td>2851</td>
+      <td>CHAIR YELLEN.  Good morning, everybody.  I wou...</td>
+      <td>train</td>
+      <td>2014-07-30</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-07-30</td>
+      <td>Janet Yellen</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-07-30</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-09-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>88197</td>
+    </tr>
+    <tr>
+      <th>2819</th>
+      <td>2852</td>
+      <td>CHAIR YELLEN.  Good morning, everybody. Our fi...</td>
+      <td>train</td>
+      <td>2014-09-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-09-17</td>
+      <td>Janet Yellen</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-09-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-10-29</td>
+      <td>2.0</td>
+      <td>0.25</td>
+      <td>61211</td>
+    </tr>
+    <tr>
+      <th>2820</th>
+      <td>2853</td>
+      <td>CHAIR YELLEN.  I’d like to call this meeting t...</td>
+      <td>train</td>
+      <td>2014-10-29</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-10-29</td>
+      <td>Janet Yellen</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>2.0</td>
+      <td>0.25</td>
+      <td>2014-10-29</td>
+      <td>2.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>72240</td>
+    </tr>
+    <tr>
+      <th>2821</th>
+      <td>2854</td>
+      <td>CHAIR YELLEN.  Good afternoon, everyone.  I th...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>Janet Yellen</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>58709</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;visualize/plot=countplot&quot;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">countplot</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;content_type&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Number of documents per content type&quot;</span>
+<span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">fomc_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.visualize.plot:Plotting countplot with {&#39;x&#39;: &#39;content_type&#39;, &#39;hue&#39;: None}
+INFO:ekorpkit.visualize.base:Saved figure to /workspace/projects/ekorpkit-book/outputs/figs/CountPlot.png
+</pre></div>
+</div>
+<img alt="../../../_images/14a0eadce3ca1572152470daccec08fdaccb4c881dd4e78ee3b58b4e3956f413.png" src="../../../_images/14a0eadce3ca1572152470daccec08fdaccb4c881dd4e78ee3b58b4e3956f413.png" />
+</div>
+</div>
+<section id="distribution-of-corpus">
+<h3>Distribution of corpus<a class="headerlink" href="#distribution-of-corpus" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">content_types</span> <span class="o">=</span> <span class="n">fomc_data</span><span class="o">.</span><span class="n">content_type</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;visualize/plot=histplot&quot;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">subplots</span><span class="o">.</span><span class="n">ncols</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">subplots</span><span class="o">.</span><span class="n">nrows</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">histplot</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">histplot</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">histplot</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;text_num_words&quot;</span>
+<span class="n">histplot</span><span class="o">.</span><span class="n">bins</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">histplot</span><span class="o">.</span><span class="n">kde</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span> <span class="o">=</span> <span class="p">[</span><span class="n">histplot</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">content_types</span><span class="p">))]</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">axes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ax</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">content_types</span><span class="p">))]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ctype</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">content_types</span><span class="p">):</span>
+    <span class="n">plot</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;content_type == &#39;</span><span class="si">{</span><span class="n">ctype</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">axno</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span>  <span class="sa">f</span><span class="s2">&quot;Distribution of number of words in [</span><span class="si">{</span><span class="n">ctype</span><span class="si">}</span><span class="s2">]&quot;</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axno</span> <span class="o">=</span> <span class="n">i</span>
+
+<span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">fomc_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.visualize.plot:Plotting histplot with {&#39;x&#39;: &#39;text_num_words&#39;, &#39;bins&#39;: 50, &#39;kde&#39;: True}
+INFO:ekorpkit.visualize.plot:Plotting histplot with {&#39;x&#39;: &#39;text_num_words&#39;, &#39;bins&#39;: 50, &#39;kde&#39;: True}
+INFO:ekorpkit.visualize.plot:Plotting histplot with {&#39;x&#39;: &#39;text_num_words&#39;, &#39;bins&#39;: 50, &#39;kde&#39;: True}
+INFO:ekorpkit.visualize.plot:Plotting histplot with {&#39;x&#39;: &#39;text_num_words&#39;, &#39;bins&#39;: 50, &#39;kde&#39;: True}
+INFO:ekorpkit.visualize.plot:Plotting histplot with {&#39;x&#39;: &#39;text_num_words&#39;, &#39;bins&#39;: 50, &#39;kde&#39;: True}
+INFO:ekorpkit.visualize.plot:Plotting histplot with {&#39;x&#39;: &#39;text_num_words&#39;, &#39;bins&#39;: 50, &#39;kde&#39;: True}
+INFO:ekorpkit.visualize.plot:Plotting histplot with {&#39;x&#39;: &#39;text_num_words&#39;, &#39;bins&#39;: 50, &#39;kde&#39;: True}
+INFO:ekorpkit.visualize.base:Saved figure to /workspace/projects/ekorpkit-book/outputs/figs/HistPlot.png
+</pre></div>
+</div>
+<img alt="../../../_images/8696c977110bb55a3821516affba66a0fc5d4b1ccc747d3e52ea1f58ceee2644.png" src="../../../_images/8696c977110bb55a3821516affba66a0fc5d4b1ccc747d3e52ea1f58ceee2644.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="split-corpus-into-sections">
+<h2>Split corpus into sections<a class="headerlink" href="#split-corpus-into-sections" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;pipeline&quot;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">_pipeline_</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;explode_splits&quot;</span><span class="p">,</span> <span class="s2">&quot;filter_length&quot;</span><span class="p">,</span> <span class="s2">&quot;reset_index&quot;</span><span class="p">,</span> <span class="s2">&quot;save_dataframe&quot;</span><span class="p">]</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">num_workers</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">explode_splits</span><span class="o">.</span><span class="n">id_key</span> <span class="o">=</span> <span class="s2">&quot;id&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">explode_splits</span><span class="o">.</span><span class="n">split_key</span> <span class="o">=</span> <span class="s2">&quot;section_id&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">explode_splits</span><span class="o">.</span><span class="n">separator</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">filter_length</span><span class="o">.</span><span class="n">min_length</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">filter_length</span><span class="o">.</span><span class="n">len_func</span> <span class="o">=</span> <span class="s2">&quot;len_words&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">filter_length</span><span class="o">.</span><span class="n">len_column</span> <span class="o">=</span> <span class="s2">&quot;num_words&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">reset_index</span><span class="o">.</span><span class="n">drop_index</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">save_dataframe</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">save_dataframe</span><span class="o">.</span><span class="n">output_file</span> <span class="o">=</span> <span class="s2">&quot;fomc_sections.parquet&quot;</span>
+<span class="n">fomc_sections</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">fomc_data</span><span class="p">)</span>
+<span class="n">fomc_sections</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.pipelines.pipe:Applying pipeline: OrderedDict([(&#39;explode_splits&#39;, &#39;explode_splits&#39;), (&#39;filter_length&#39;, &#39;filter_length&#39;), (&#39;reset_index&#39;, &#39;reset_index&#39;), (&#39;save_dataframe&#39;, &#39;save_dataframe&#39;)])
+INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function explode_splits at 0x7fc2a666c820&gt;)
+INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function filter_length at 0x7fc2a666cf70&gt;, len_bytes={&#39;_partial_&#39;: True, &#39;_target_&#39;: &#39;ekorpkit.utils.func.len_bytes&#39;}, len_words={&#39;_partial_&#39;: True, &#39;_target_&#39;: &#39;ekorpkit.utils.func.len_words&#39;})
+INFO:ekorpkit.base:Using batcher with minibatch size: 923
+INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 923  procs: 230  input_split: False  merge_output: True  len(data): 212170 len(args): 5
+Calculating length: 100%|██████████| 230/230 [00:00&lt;00:00, 431.45it/s]
+INFO:ekorpkit.pipelines.pipe:removed 120119 of 212170 documents with length &lt; 50
+INFO:ekorpkit.pipelines.pipe: &gt;&gt; elapsed time to filter length: 0:00:00.560365
+INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function reset_index at 0x7fc2a666c940&gt;)
+INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function save_dataframe at 0x7fc2a666d550&gt;)
+INFO:ekorpkit.io.file:Saving dataframe to ../data/fomc/fomc_sections.parquet
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>text</th>
+      <th>split</th>
+      <th>timestamp</th>
+      <th>content_type</th>
+      <th>date</th>
+      <th>speaker</th>
+      <th>title</th>
+      <th>decision</th>
+      <th>rate</th>
+      <th>recent_meeting</th>
+      <th>recent_decision</th>
+      <th>recent_rate</th>
+      <th>next_meeting</th>
+      <th>next_decision</th>
+      <th>next_rate</th>
+      <th>text_num_words</th>
+      <th>section_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>92046</th>
+      <td>2854</td>
+      <td>MS. BRAINARD.  Thank you.  Since we last met, ...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>Janet Yellen</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>506</td>
+      <td>281</td>
+    </tr>
+    <tr>
+      <th>92047</th>
+      <td>2854</td>
+      <td>VICE CHAIRMAN DUDLEY.  No worries.  It happene...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>Janet Yellen</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>1446</td>
+      <td>285</td>
+    </tr>
+    <tr>
+      <th>92048</th>
+      <td>2854</td>
+      <td>CHAIR YELLEN.  Thank you.  Okay.  I think the ...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>Janet Yellen</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>83</td>
+      <td>286</td>
+    </tr>
+    <tr>
+      <th>92049</th>
+      <td>2854</td>
+      <td>MR. LUECKE.  This vote, as Chair Yellen indica...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>Janet Yellen</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>73</td>
+      <td>287</td>
+    </tr>
+    <tr>
+      <th>92050</th>
+      <td>2854</td>
+      <td>CHAIR YELLEN.  Okay.  Thank you very much.  An...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>Janet Yellen</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>77</td>
+      <td>288</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fomc_sections</span> <span class="o">=</span> <span class="n">fomc</span><span class="o">.</span><span class="n">find_speaker_of_sections</span><span class="p">(</span><span class="n">fomc_sections</span><span class="p">)</span>
+<span class="n">eKonf</span><span class="o">.</span><span class="n">save_data</span><span class="p">(</span><span class="n">fomc_sections</span><span class="p">,</span> <span class="s2">&quot;fomc_sections.parquet&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.io.file:Saving dataframe to ../data/fomc/fomc_sections.parquet
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fomc_sections</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s2">&quot;fomc_sections.parquet&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+<span class="n">fomc_sections</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.io.file:Processing [1] files from [&#39;fomc_sections.parquet&#39;]
+INFO:ekorpkit.io.file:Loading 1 dataframes from [&#39;../data/fomc/fomc_sections.parquet&#39;]
+INFO:ekorpkit.io.file:Loading data from ../data/fomc/fomc_sections.parquet
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>text</th>
+      <th>split</th>
+      <th>timestamp</th>
+      <th>content_type</th>
+      <th>date</th>
+      <th>speaker</th>
+      <th>title</th>
+      <th>decision</th>
+      <th>rate</th>
+      <th>recent_meeting</th>
+      <th>recent_decision</th>
+      <th>recent_rate</th>
+      <th>next_meeting</th>
+      <th>next_decision</th>
+      <th>next_rate</th>
+      <th>text_num_words</th>
+      <th>section_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>92046</th>
+      <td>2854</td>
+      <td>MS. BRAINARD.  Thank you.  Since we last met, ...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>MS. BRAINARD</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>506</td>
+      <td>281</td>
+    </tr>
+    <tr>
+      <th>92047</th>
+      <td>2854</td>
+      <td>VICE CHAIRMAN DUDLEY.  No worries.  It happene...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>VICE CHAIRMAN DUDLEY</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>1446</td>
+      <td>285</td>
+    </tr>
+    <tr>
+      <th>92048</th>
+      <td>2854</td>
+      <td>CHAIR YELLEN.  Thank you.  Okay.  I think the ...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>CHAIR YELLEN</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>83</td>
+      <td>286</td>
+    </tr>
+    <tr>
+      <th>92049</th>
+      <td>2854</td>
+      <td>MR. LUECKE.  This vote, as Chair Yellen indica...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>MR. LUECKE</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>73</td>
+      <td>287</td>
+    </tr>
+    <tr>
+      <th>92050</th>
+      <td>2854</td>
+      <td>CHAIR YELLEN.  Okay.  Thank you very much.  An...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>CHAIR YELLEN</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>77</td>
+      <td>288</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;visualize/plot=countplot&quot;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">countplot</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;content_type&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Number of sections per content type&quot;</span>
+<span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">fomc_sections</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.visualize.plot:Plotting countplot with {&#39;x&#39;: &#39;content_type&#39;, &#39;hue&#39;: None}
+INFO:ekorpkit.visualize.base:Saved figure to /workspace/projects/ekorpkit-book/outputs/figs/CountPlot.png
+</pre></div>
+</div>
+<img alt="../../../_images/5528afa9986c85eea7a34eddb1601246786173b055a70042ec1995362f93cc05.png" src="../../../_images/5528afa9986c85eea7a34eddb1601246786173b055a70042ec1995362f93cc05.png" />
+</div>
+</div>
+<section id="distribution-of-sectons">
+<h3>Distribution of sectons<a class="headerlink" href="#distribution-of-sectons" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;visualize/plot=histplot&quot;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">subplots</span><span class="o">.</span><span class="n">ncols</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">subplots</span><span class="o">.</span><span class="n">nrows</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">histplot</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">histplot</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">histplot</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;text_num_words&quot;</span>
+<span class="n">histplot</span><span class="o">.</span><span class="n">bins</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">histplot</span><span class="o">.</span><span class="n">kde</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span> <span class="o">=</span> <span class="p">[</span><span class="n">histplot</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">content_types</span><span class="p">))]</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">axes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ax</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">content_types</span><span class="p">))]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ctype</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">content_types</span><span class="p">):</span>
+    <span class="n">plot</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;content_type == &#39;</span><span class="si">{</span><span class="n">ctype</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">axno</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span>  <span class="sa">f</span><span class="s2">&quot;Distribution of number of words in [</span><span class="si">{</span><span class="n">ctype</span><span class="si">}</span><span class="s2">]&quot;</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axno</span> <span class="o">=</span> <span class="n">i</span>
+
+<span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">fomc_sections</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.visualize.plot:Plotting histplot with {&#39;x&#39;: &#39;text_num_words&#39;, &#39;bins&#39;: 50, &#39;kde&#39;: True}
+INFO:ekorpkit.visualize.plot:Plotting histplot with {&#39;x&#39;: &#39;text_num_words&#39;, &#39;bins&#39;: 50, &#39;kde&#39;: True}
+INFO:ekorpkit.visualize.plot:Plotting histplot with {&#39;x&#39;: &#39;text_num_words&#39;, &#39;bins&#39;: 50, &#39;kde&#39;: True}
+INFO:ekorpkit.visualize.plot:Plotting histplot with {&#39;x&#39;: &#39;text_num_words&#39;, &#39;bins&#39;: 50, &#39;kde&#39;: True}
+INFO:ekorpkit.visualize.plot:Plotting histplot with {&#39;x&#39;: &#39;text_num_words&#39;, &#39;bins&#39;: 50, &#39;kde&#39;: True}
+INFO:ekorpkit.visualize.plot:Plotting histplot with {&#39;x&#39;: &#39;text_num_words&#39;, &#39;bins&#39;: 50, &#39;kde&#39;: True}
+INFO:ekorpkit.visualize.plot:Plotting histplot with {&#39;x&#39;: &#39;text_num_words&#39;, &#39;bins&#39;: 50, &#39;kde&#39;: True}
+INFO:ekorpkit.visualize.base:Saved figure to /workspace/projects/ekorpkit-book/outputs/figs/HistPlot.png
+</pre></div>
+</div>
+<img alt="../../../_images/ac55445cc38c167b5c5382a3c893e02684ad8c40c952bda8e01b07873464123f.png" src="../../../_images/ac55445cc38c167b5c5382a3c893e02684ad8c40c952bda8e01b07873464123f.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="split-sections-into-sentences">
+<h2>Split sections into sentences<a class="headerlink" href="#split-sections-into-sentences" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seg_cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;preprocessor/segmenter=pysbd&quot;</span><span class="p">)</span>
+
+<span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;pipeline&quot;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data_file</span> <span class="o">=</span> <span class="s2">&quot;fomc_sections.parquet&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">_pipeline_</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;segment&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;explode_splits&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;filter_length&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;reset_index&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;save_dataframe&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">segment</span><span class="o">.</span><span class="n">preprocessor</span><span class="o">.</span><span class="n">segmenter</span> <span class="o">=</span> <span class="n">seg_cfg</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">num_workers</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">explode_splits</span><span class="o">.</span><span class="n">id_key</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;section_id&quot;</span><span class="p">]</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">explode_splits</span><span class="o">.</span><span class="n">split_key</span> <span class="o">=</span> <span class="s2">&quot;sent_id&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">explode_splits</span><span class="o">.</span><span class="n">separator</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">filter_length</span><span class="o">.</span><span class="n">min_length</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">filter_length</span><span class="o">.</span><span class="n">max_length</span> <span class="o">=</span> <span class="mi">350</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">filter_length</span><span class="o">.</span><span class="n">len_func</span> <span class="o">=</span> <span class="s2">&quot;len_words&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">filter_length</span><span class="o">.</span><span class="n">len_column</span> <span class="o">=</span> <span class="s2">&quot;num_words&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">reset_index</span><span class="o">.</span><span class="n">drop_index</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">save_dataframe</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">=</span> <span class="s2">&quot;../data/fomc&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">save_dataframe</span><span class="o">.</span><span class="n">output_file</span> <span class="o">=</span> <span class="s2">&quot;fomc_sents.parquet&quot;</span>
+<span class="n">fomc_sents</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+<span class="n">fomc_sents</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.io.file:Processing [1] files from [&#39;fomc_sections.parquet&#39;]
+INFO:ekorpkit.io.file:Loading 1 dataframes from [&#39;../data/fomc/fomc_sections.parquet&#39;]
+INFO:ekorpkit.io.file:Loading data from ../data/fomc/fomc_sections.parquet
+INFO:ekorpkit.pipelines.pipe:Applying pipeline: OrderedDict([(&#39;segment&#39;, &#39;segment&#39;), (&#39;explode_splits&#39;, &#39;explode_splits&#39;), (&#39;filter_length&#39;, &#39;filter_length&#39;), (&#39;reset_index&#39;, &#39;reset_index&#39;), (&#39;save_dataframe&#39;, &#39;save_dataframe&#39;)])
+INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function segment at 0x7fc2a666cb80&gt;)
+INFO:ekorpkit.pipelines.pipe:instantiating segmenter
+INFO:ekorpkit.base:instantiating ekorpkit.preprocessors.segmenter.PySBDSegmenter...
+INFO:ekorpkit.base:Using batcher with minibatch size: 921
+INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 921  procs: 100  input_split: False  merge_output: True  len(data): 92051 len(args): 5
+Splitting column: text: 100%|██████████| 100/100 [00:56&lt;00:00,  1.76it/s]
+INFO:ekorpkit.pipelines.pipe: &gt;&gt; elapsed time to segment: 0:00:56.907007
+INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function explode_splits at 0x7fc2a666c820&gt;)
+INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function filter_length at 0x7fc2a666cf70&gt;, len_bytes={&#39;_partial_&#39;: True, &#39;_target_&#39;: &#39;ekorpkit.utils.func.len_bytes&#39;}, len_words={&#39;_partial_&#39;: True, &#39;_target_&#39;: &#39;ekorpkit.utils.func.len_words&#39;})
+INFO:ekorpkit.base:Using batcher with minibatch size: 1000
+INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 100  input_split: False  merge_output: True  len(data): 757506 len(args): 5
+Calculating length: 100%|██████████| 758/758 [00:01&lt;00:00, 727.49it/s]
+INFO:ekorpkit.pipelines.pipe:removed 104004 of 757506 documents with length &lt; 10
+INFO:ekorpkit.pipelines.pipe:removed 34 of 653502 documents with length &gt; 350
+INFO:ekorpkit.pipelines.pipe: &gt;&gt; elapsed time to filter length: 0:00:01.235069
+INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function reset_index at 0x7fc2a666c940&gt;)
+INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function save_dataframe at 0x7fc2a666d550&gt;)
+INFO:ekorpkit.io.file:Saving dataframe to ../data/fomc/fomc_sents.parquet
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>text</th>
+      <th>split</th>
+      <th>timestamp</th>
+      <th>content_type</th>
+      <th>date</th>
+      <th>speaker</th>
+      <th>title</th>
+      <th>decision</th>
+      <th>rate</th>
+      <th>recent_meeting</th>
+      <th>recent_decision</th>
+      <th>recent_rate</th>
+      <th>next_meeting</th>
+      <th>next_decision</th>
+      <th>next_rate</th>
+      <th>text_num_words</th>
+      <th>section_id</th>
+      <th>sent_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>653463</th>
+      <td>2854</td>
+      <td>It will not have the word “somewhat” on line 3.</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>MR. LUECKE</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>10</td>
+      <td>287</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>653464</th>
+      <td>2854</td>
+      <td>Chair Yellen      Yes Vice Chairman Dudley    ...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>MR. LUECKE</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>31</td>
+      <td>287</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>653465</th>
+      <td>2854</td>
+      <td>And let me confirm that the next meeting will ...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>CHAIR YELLEN</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>19</td>
+      <td>288</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>653466</th>
+      <td>2854</td>
+      <td>I believe box lunches are now available for pe...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>CHAIR YELLEN</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>33</td>
+      <td>288</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>653467</th>
+      <td>2854</td>
+      <td>I will do my best, and I will consider at the ...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>CHAIR YELLEN</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>18</td>
+      <td>288</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fomc_sents</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s2">&quot;fomc_sents.parquet&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+<span class="n">fomc_sents</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.io.file:Processing [1] files from [&#39;fomc_sents.parquet&#39;]
+INFO:ekorpkit.io.file:Loading 1 dataframes from [&#39;../data/fomc/fomc_sents.parquet&#39;]
+INFO:ekorpkit.io.file:Loading data from ../data/fomc/fomc_sents.parquet
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>text</th>
+      <th>split</th>
+      <th>timestamp</th>
+      <th>content_type</th>
+      <th>date</th>
+      <th>speaker</th>
+      <th>title</th>
+      <th>decision</th>
+      <th>rate</th>
+      <th>recent_meeting</th>
+      <th>recent_decision</th>
+      <th>recent_rate</th>
+      <th>next_meeting</th>
+      <th>next_decision</th>
+      <th>next_rate</th>
+      <th>text_num_words</th>
+      <th>section_id</th>
+      <th>sent_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>653463</th>
+      <td>2854</td>
+      <td>It will not have the word “somewhat” on line 3.</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>MR. LUECKE</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>10</td>
+      <td>287</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>653464</th>
+      <td>2854</td>
+      <td>Chair Yellen      Yes Vice Chairman Dudley    ...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>MR. LUECKE</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>31</td>
+      <td>287</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>653465</th>
+      <td>2854</td>
+      <td>And let me confirm that the next meeting will ...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>CHAIR YELLEN</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>19</td>
+      <td>288</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>653466</th>
+      <td>2854</td>
+      <td>I believe box lunches are now available for pe...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>CHAIR YELLEN</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>33</td>
+      <td>288</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>653467</th>
+      <td>2854</td>
+      <td>I will do my best, and I will consider at the ...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>CHAIR YELLEN</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>18</td>
+      <td>288</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;visualize/plot=countplot&quot;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">countplot</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;content_type&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Number of sentences per content type&quot;</span>
+<span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">fomc_sents</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.visualize.plot:Plotting countplot with {&#39;x&#39;: &#39;content_type&#39;, &#39;hue&#39;: None}
+INFO:ekorpkit.visualize.base:Saved figure to /workspace/projects/ekorpkit-book/outputs/figs/CountPlot.png
+</pre></div>
+</div>
+<img alt="../../../_images/90e35c725d087982b710893a0b8840f384f30e9db8edfb2c8dd4e155f29323bf.png" src="../../../_images/90e35c725d087982b710893a0b8840f384f30e9db8edfb2c8dd4e155f29323bf.png" />
+</div>
+</div>
+<section id="distribution-of-sentences">
+<h3>Distribution of sentences<a class="headerlink" href="#distribution-of-sentences" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">content_types</span> <span class="o">=</span> <span class="n">fomc_sents</span><span class="o">.</span><span class="n">content_type</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;visualize/plot=histplot&quot;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">subplots</span><span class="o">.</span><span class="n">ncols</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">subplots</span><span class="o">.</span><span class="n">nrows</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">histplot</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">histplot</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">histplot</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;text_num_words&quot;</span>
+<span class="n">histplot</span><span class="o">.</span><span class="n">bins</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">histplot</span><span class="o">.</span><span class="n">kde</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span> <span class="o">=</span> <span class="p">[</span><span class="n">histplot</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">content_types</span><span class="p">))]</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">axes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ax</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">content_types</span><span class="p">))]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ctype</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">content_types</span><span class="p">):</span>
+    <span class="n">plot</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;content_type == &#39;</span><span class="si">{</span><span class="n">ctype</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">axno</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span>  <span class="sa">f</span><span class="s2">&quot;Distribution of number of words in [</span><span class="si">{</span><span class="n">ctype</span><span class="si">}</span><span class="s2">]&quot;</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axno</span> <span class="o">=</span> <span class="n">i</span>
+
+<span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">fomc_sents</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.visualize.plot:Plotting histplot with {&#39;x&#39;: &#39;text_num_words&#39;, &#39;bins&#39;: 50, &#39;kde&#39;: True}
+INFO:ekorpkit.visualize.plot:Plotting histplot with {&#39;x&#39;: &#39;text_num_words&#39;, &#39;bins&#39;: 50, &#39;kde&#39;: True}
+INFO:ekorpkit.visualize.plot:Plotting histplot with {&#39;x&#39;: &#39;text_num_words&#39;, &#39;bins&#39;: 50, &#39;kde&#39;: True}
+INFO:ekorpkit.visualize.plot:Plotting histplot with {&#39;x&#39;: &#39;text_num_words&#39;, &#39;bins&#39;: 50, &#39;kde&#39;: True}
+INFO:ekorpkit.visualize.plot:Plotting histplot with {&#39;x&#39;: &#39;text_num_words&#39;, &#39;bins&#39;: 50, &#39;kde&#39;: True}
+INFO:ekorpkit.visualize.plot:Plotting histplot with {&#39;x&#39;: &#39;text_num_words&#39;, &#39;bins&#39;: 50, &#39;kde&#39;: True}
+INFO:ekorpkit.visualize.plot:Plotting histplot with {&#39;x&#39;: &#39;text_num_words&#39;, &#39;bins&#39;: 50, &#39;kde&#39;: True}
+INFO:ekorpkit.visualize.base:Saved figure to /workspace/projects/ekorpkit-book/outputs/figs/HistPlot.png
+</pre></div>
+</div>
+<img alt="../../../_images/1f558cc17fd04808555bb71736f447659f53f4866fb89333dcd1ebae92a56073.png" src="../../../_images/1f558cc17fd04808555bb71736f447659f53f4866fb89333dcd1ebae92a56073.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="split-sections-into-chunks">
+<h2>Split sections into chunks<a class="headerlink" href="#split-sections-into-chunks" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seg_cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;preprocessor/segmenter=pysbd&quot;</span><span class="p">)</span>
+
+<span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;pipeline&quot;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data_file</span> <span class="o">=</span> <span class="s2">&quot;fomc_sections.parquet&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">_pipeline_</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;segment&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;chunk&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;explode_splits&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;filter_length&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;reset_index&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;save_dataframe&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">segment</span><span class="o">.</span><span class="n">preprocessor</span><span class="o">.</span><span class="n">segmenter</span> <span class="o">=</span> <span class="n">seg_cfg</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">num_workers</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">chunk</span><span class="o">.</span><span class="n">chunk_size</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">chunk</span><span class="o">.</span><span class="n">len_func</span> <span class="o">=</span> <span class="s2">&quot;len_words&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">explode_splits</span><span class="o">.</span><span class="n">id_key</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;section_id&quot;</span><span class="p">]</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">explode_splits</span><span class="o">.</span><span class="n">split_key</span> <span class="o">=</span> <span class="s2">&quot;chunk_id&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">explode_splits</span><span class="o">.</span><span class="n">separator</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">filter_length</span><span class="o">.</span><span class="n">min_length</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">filter_length</span><span class="o">.</span><span class="n">max_length</span> <span class="o">=</span> <span class="mi">350</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">filter_length</span><span class="o">.</span><span class="n">len_func</span> <span class="o">=</span> <span class="s2">&quot;len_words&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">filter_length</span><span class="o">.</span><span class="n">len_column</span> <span class="o">=</span> <span class="s2">&quot;num_words&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">reset_index</span><span class="o">.</span><span class="n">drop_index</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">save_dataframe</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">=</span> <span class="s2">&quot;../data/fomc&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">save_dataframe</span><span class="o">.</span><span class="n">output_file</span> <span class="o">=</span> <span class="s2">&quot;fomc_chunks.parquet&quot;</span>
+<span class="n">fomc_chunks</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+<span class="n">fomc_chunks</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.io.file:Processing [1] files from [&#39;fomc_sections.parquet&#39;]
+INFO:ekorpkit.io.file:Loading 1 dataframes from [&#39;../data/fomc/fomc_sections.parquet&#39;]
+INFO:ekorpkit.io.file:Loading data from ../data/fomc/fomc_sections.parquet
+INFO:ekorpkit.pipelines.pipe:Applying pipeline: OrderedDict([(&#39;segment&#39;, &#39;segment&#39;), (&#39;chunk&#39;, &#39;chunk&#39;), (&#39;explode_splits&#39;, &#39;explode_splits&#39;), (&#39;filter_length&#39;, &#39;filter_length&#39;), (&#39;reset_index&#39;, &#39;reset_index&#39;), (&#39;save_dataframe&#39;, &#39;save_dataframe&#39;)])
+INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function segment at 0x7fc2a666cb80&gt;)
+INFO:ekorpkit.pipelines.pipe:instantiating segmenter
+INFO:ekorpkit.base:instantiating ekorpkit.preprocessors.segmenter.PySBDSegmenter...
+INFO:ekorpkit.base:Using batcher with minibatch size: 921
+INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 921  procs: 100  input_split: False  merge_output: True  len(data): 92051 len(args): 5
+Splitting column: text: 100%|██████████| 100/100 [00:43&lt;00:00,  2.29it/s]
+INFO:ekorpkit.pipelines.pipe: &gt;&gt; elapsed time to segment: 0:00:43.723911
+INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function chunk at 0x7fc2a666cd30&gt;)
+INFO:ekorpkit.pipelines.pipe:instantiating segmenter
+INFO:ekorpkit.base:Using batcher with minibatch size: 921
+INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 921  procs: 100  input_split: False  merge_output: True  len(data): 92051 len(args): 5
+Chunking column: text: 100%|██████████| 100/100 [00:00&lt;00:00, 182.49it/s]
+INFO:ekorpkit.pipelines.pipe: &gt;&gt; elapsed time to segment: 0:00:00.574704
+INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function explode_splits at 0x7fc2a666c820&gt;)
+INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function filter_length at 0x7fc2a666cf70&gt;, len_bytes={&#39;_partial_&#39;: True, &#39;_target_&#39;: &#39;ekorpkit.utils.func.len_bytes&#39;}, len_words={&#39;_partial_&#39;: True, &#39;_target_&#39;: &#39;ekorpkit.utils.func.len_words&#39;})
+INFO:ekorpkit.base:Using batcher with minibatch size: 1000
+INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 1000  procs: 100  input_split: False  merge_output: True  len(data): 133938 len(args): 5
+Calculating length: 100%|██████████| 134/134 [00:00&lt;00:00, 341.18it/s]
+INFO:ekorpkit.pipelines.pipe:removed 4798 of 133938 documents with length &lt; 50
+INFO:ekorpkit.pipelines.pipe:removed 34 of 129140 documents with length &gt; 350
+INFO:ekorpkit.pipelines.pipe: &gt;&gt; elapsed time to filter length: 0:00:00.432632
+INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function reset_index at 0x7fc2a666c940&gt;)
+INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function save_dataframe at 0x7fc2a666d550&gt;)
+INFO:ekorpkit.io.file:Saving dataframe to ../data/fomc/fomc_chunks.parquet
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>text</th>
+      <th>split</th>
+      <th>timestamp</th>
+      <th>content_type</th>
+      <th>date</th>
+      <th>speaker</th>
+      <th>title</th>
+      <th>decision</th>
+      <th>rate</th>
+      <th>recent_meeting</th>
+      <th>recent_decision</th>
+      <th>recent_rate</th>
+      <th>next_meeting</th>
+      <th>next_decision</th>
+      <th>next_rate</th>
+      <th>text_num_words</th>
+      <th>section_id</th>
+      <th>chunk_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>129101</th>
+      <td>2854</td>
+      <td>It also might help minimize the risks of the t...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>VICE CHAIRMAN DUDLEY</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>172</td>
+      <td>285</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>129102</th>
+      <td>2854</td>
+      <td>Getting the right message on inflation is very...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>VICE CHAIRMAN DUDLEY</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>158</td>
+      <td>285</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>129103</th>
+      <td>2854</td>
+      <td>CHAIR YELLEN.  \nThank you.  \nOkay.  \nI thin...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>CHAIR YELLEN</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>83</td>
+      <td>286</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>129104</th>
+      <td>2854</td>
+      <td>MR. LUECKE.  \nThis vote, as Chair Yellen indi...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>MR. LUECKE</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>73</td>
+      <td>287</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>129105</th>
+      <td>2854</td>
+      <td>CHAIR YELLEN.  \nOkay.  \nThank you very much....</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>CHAIR YELLEN</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>77</td>
+      <td>288</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fomc_chunks</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s2">&quot;fomc_chunks.parquet&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+<span class="n">fomc_chunks</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.io.file:Processing [1] files from [&#39;fomc_chunks.parquet&#39;]
+INFO:ekorpkit.io.file:Loading 1 dataframes from [&#39;../data/fomc/fomc_chunks.parquet&#39;]
+INFO:ekorpkit.io.file:Loading data from ../data/fomc/fomc_chunks.parquet
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>text</th>
+      <th>split</th>
+      <th>timestamp</th>
+      <th>content_type</th>
+      <th>date</th>
+      <th>speaker</th>
+      <th>title</th>
+      <th>decision</th>
+      <th>rate</th>
+      <th>recent_meeting</th>
+      <th>recent_decision</th>
+      <th>recent_rate</th>
+      <th>next_meeting</th>
+      <th>next_decision</th>
+      <th>next_rate</th>
+      <th>text_num_words</th>
+      <th>section_id</th>
+      <th>chunk_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>129101</th>
+      <td>2854</td>
+      <td>It also might help minimize the risks of the t...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>VICE CHAIRMAN DUDLEY</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>172</td>
+      <td>285</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>129102</th>
+      <td>2854</td>
+      <td>Getting the right message on inflation is very...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>VICE CHAIRMAN DUDLEY</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>158</td>
+      <td>285</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>129103</th>
+      <td>2854</td>
+      <td>CHAIR YELLEN.  \nThank you.  \nOkay.  \nI thin...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>CHAIR YELLEN</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>83</td>
+      <td>286</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>129104</th>
+      <td>2854</td>
+      <td>MR. LUECKE.  \nThis vote, as Chair Yellen indi...</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>MR. LUECKE</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>73</td>
+      <td>287</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>129105</th>
+      <td>2854</td>
+      <td>CHAIR YELLEN.  \nOkay.  \nThank you very much....</td>
+      <td>train</td>
+      <td>2014-12-17</td>
+      <td>fomc_meeting_script</td>
+      <td>2014-12-17</td>
+      <td>CHAIR YELLEN</td>
+      <td>FOMC Meeting Transcript</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2014-12-17</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>2015-01-28</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>77</td>
+      <td>288</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;visualize/plot=countplot&quot;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">countplot</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;content_type&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Number of chunks per content type&quot;</span>
+<span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">fomc_chunks</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.visualize.plot:Plotting countplot with {&#39;x&#39;: &#39;content_type&#39;, &#39;hue&#39;: None}
+INFO:ekorpkit.visualize.base:Saved figure to /workspace/projects/ekorpkit-book/outputs/figs/CountPlot.png
+</pre></div>
+</div>
+<img alt="../../../_images/acf4641fb20db2a4dd53c25872bc20653bf2d46fcdd6683a19a9fa1a15aed2ab.png" src="../../../_images/acf4641fb20db2a4dd53c25872bc20653bf2d46fcdd6683a19a9fa1a15aed2ab.png" />
+</div>
+</div>
+<section id="distribution-of-chunks">
+<h3>Distribution of chunks<a class="headerlink" href="#distribution-of-chunks" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">content_types</span> <span class="o">=</span> <span class="n">fomc_chunks</span><span class="o">.</span><span class="n">content_type</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;visualize/plot=histplot&quot;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">subplots</span><span class="o">.</span><span class="n">ncols</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">subplots</span><span class="o">.</span><span class="n">nrows</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">histplot</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">histplot</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">histplot</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;text_num_words&quot;</span>
+<span class="n">histplot</span><span class="o">.</span><span class="n">bins</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">histplot</span><span class="o">.</span><span class="n">kde</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span> <span class="o">=</span> <span class="p">[</span><span class="n">histplot</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">content_types</span><span class="p">))]</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">axes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ax</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">content_types</span><span class="p">))]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ctype</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">content_types</span><span class="p">):</span>
+    <span class="n">plot</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;content_type == &#39;</span><span class="si">{</span><span class="n">ctype</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">axno</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span>  <span class="sa">f</span><span class="s2">&quot;Distribution of number of words in [</span><span class="si">{</span><span class="n">ctype</span><span class="si">}</span><span class="s2">]&quot;</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axno</span> <span class="o">=</span> <span class="n">i</span>
+
+<span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">fomc_chunks</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.visualize.plot:Plotting histplot with {&#39;x&#39;: &#39;text_num_words&#39;, &#39;bins&#39;: 50, &#39;kde&#39;: True}
+INFO:ekorpkit.visualize.plot:Plotting histplot with {&#39;x&#39;: &#39;text_num_words&#39;, &#39;bins&#39;: 50, &#39;kde&#39;: True}
+INFO:ekorpkit.visualize.plot:Plotting histplot with {&#39;x&#39;: &#39;text_num_words&#39;, &#39;bins&#39;: 50, &#39;kde&#39;: True}
+INFO:ekorpkit.visualize.plot:Plotting histplot with {&#39;x&#39;: &#39;text_num_words&#39;, &#39;bins&#39;: 50, &#39;kde&#39;: True}
+INFO:ekorpkit.visualize.plot:Plotting histplot with {&#39;x&#39;: &#39;text_num_words&#39;, &#39;bins&#39;: 50, &#39;kde&#39;: True}
+INFO:ekorpkit.visualize.plot:Plotting histplot with {&#39;x&#39;: &#39;text_num_words&#39;, &#39;bins&#39;: 50, &#39;kde&#39;: True}
+INFO:ekorpkit.visualize.plot:Plotting histplot with {&#39;x&#39;: &#39;text_num_words&#39;, &#39;bins&#39;: 50, &#39;kde&#39;: True}
+INFO:ekorpkit.visualize.base:Saved figure to /workspace/projects/ekorpkit-book/outputs/figs/HistPlot.png
+</pre></div>
+</div>
+<img alt="../../../_images/709f9293a606e4c571c933f1ce49a3775b8e99495a6ddb2a4b8336545bc96a3e.png" src="../../../_images/709f9293a606e4c571c933f1ce49a3775b8e99495a6ddb2a4b8336545bc96a3e.png" />
+</div>
+</div>
+</section>
+<section id="compare-number-of-records">
+<h3>Compare number of records<a class="headerlink" href="#compare-number-of-records" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;FOMC Corpus&#39;</span><span class="p">,</span> <span class="s1">&#39;FOMC Sections&#39;</span><span class="p">,</span> <span class="s1">&#39;FOMC Sentences&#39;</span><span class="p">,</span> <span class="s1">&#39;FOMC Chunks&#39;</span><span class="p">]</span>
+<span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;visualize/plot=countplot&quot;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">subplots</span><span class="o">.</span><span class="n">ncols</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">subplots</span><span class="o">.</span><span class="n">nrows</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">plot</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">plot</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;content_type&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span> <span class="o">=</span> <span class="p">[</span><span class="n">plot</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">axes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ax</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">plot</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">axno</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">datano</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span>  <span class="n">titles</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xtick_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">labelrotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axno</span> <span class="o">=</span> <span class="n">i</span>
+
+<span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">fomc_data</span><span class="p">,</span> <span class="n">fomc_sections</span><span class="p">,</span> <span class="n">fomc_sents</span><span class="p">,</span> <span class="n">fomc_chunks</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.visualize.plot:Plotting countplot with {&#39;x&#39;: &#39;content_type&#39;, &#39;hue&#39;: None}
+INFO:ekorpkit.visualize.plot:Plotting countplot with {&#39;x&#39;: &#39;content_type&#39;, &#39;hue&#39;: None}
+INFO:ekorpkit.visualize.plot:Plotting countplot with {&#39;x&#39;: &#39;content_type&#39;, &#39;hue&#39;: None}
+INFO:ekorpkit.visualize.plot:Plotting countplot with {&#39;x&#39;: &#39;content_type&#39;, &#39;hue&#39;: None}
+INFO:ekorpkit.visualize.base:Saved figure to /workspace/projects/ekorpkit-book/outputs/figs/CountPlot.png
+</pre></div>
+</div>
+<img alt="../../../_images/5983cef5b73adf070028d4790eba5a087a961a897487d7d40d2faa979357a718.png" src="../../../_images/5983cef5b73adf070028d4790eba5a087a961a897487d7d40d2faa979357a718.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/lecture",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lectures/ds/fomc"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01_numerical_data.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Preparing Numerical Data</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03_EDA_numericals1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">EDA on Numerical Data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-fomc-corpus">Load FOMC corpus</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-fomc-class">Load FOMC class</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postprocess-metadata">Postprocess metadata</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postprocess-fomc-corpus">Postprocess FOMC corpus</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution-of-corpus">Distribution of corpus</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#split-corpus-into-sections">Split corpus into sections</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution-of-sectons">Distribution of sectons</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#split-sections-into-sentences">Split sections into sentences</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution-of-sentences">Distribution of sentences</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#split-sections-into-chunks">Split sections into chunks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution-of-chunks">Distribution of chunks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-number-of-records">Compare number of records</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

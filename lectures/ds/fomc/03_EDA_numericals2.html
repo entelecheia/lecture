@@ -1,0 +1,1446 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>EDA on Numerical Data &#8212; ἐντελέχεια.άι</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/js/hoverxref.js"></script>
+    <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/chatgpt.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/ds/fomc/03_EDA_numericals2';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/ds/fomc/03_EDA_numericals2.html" />
+    <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Create Training Datasets" href="04_training_datasets.html" />
+    <link rel="prev" title="EDA on Numerical Data" href="03_EDA_numericals1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+
+  <div class="bd-header-announcement container-fluid bd-header-announcement">
+    <div class="bd-header-announcement__content"><p>
+  <strong>Announcement:</strong>
+  You can install the accompanying AI tutor <a href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd" target="_blank">here</a>.
+  <a class="reference external" href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd" target="_blank"><img alt="chrome-web-store-image" src="https://img.shields.io/chrome-web-store/v/lfgfgbomindbccgidgalhhndggddpagd" /></a>
+</p>
+</div>
+  </div>
+
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">ἐντελέχεια.άι</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../index.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_intro/index.html">Introduction to NLP</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/intro/index.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/research/index.html">Research Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/lm/index.html">Language Models</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/datasets/corpus.html">Text Data Collection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/datasets/lab-dart.html">Lab: Crawling DART Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/topic/index.html">Topic Modeling</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/coherence.html">Topic Coherence Measures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/tomotopy.html">Lab: Tomotopy</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/sentiments/index.html">Sentiment Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lexicon.html">Lexicon-Based Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/ml.html">Machine Learning-Based Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lab-lexicon.html">Lab: Lexicon-Based Sentiment Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/segmentation.html">Word Segmentation and Association</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/embeddings/index.html">Word Embeddings</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_deep/index.html">Deep Learning for NLP</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/llms/index.html">Large Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/zeroshot.html">Zero Shot and Prompt Engineering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/decoding.html">Decoding and Search Strategies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/plms.html">Pretrained Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/transformers/index.html">Transformers</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/bert.html">BERT: Bidirectional Encoder Representations from Transformers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/bertviz.html">BERT: Visualizing Attention</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/t5.html">T5: Text-To-Text Transfer Transformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/datasets/mc4.html">mC4 Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/datasets/lab-eda.html">Lab: Exploratory Data Analysis (EDA)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/sentencepiece.html">SentencePiece Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/lab-train-tokenizers.html">Lab: Training Tokenizers</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/training/index.html">Training Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/training/lab-pretraining.html">Lab: Pretraining Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/chatbots/index.html">Conversational AI and Chatbots</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/chatbots/rlhf.html">Reinforcement Learning with Human Feedback (RLHF)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/chatbots/detectGPT.html">How to Spot Machine-Written Texts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_advances/index.html">Advances in AI and NLP</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/thesis.html">Writing a Thesis</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_advances/gpt/index.html">Generative Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/detectGPT.html">DetectGPT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/gpt4.html">GPT-4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/camelids.html">Meet the Camelids: A Family of LLMs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/sam/index.html">Segment Everything</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../aiart/index.html">AI Art (Generative AI)</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/intro/index.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/brave/index.html">A Brave New World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/aiart/index.html">Art and Music in Light of AI</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../aiart/text-to-image/index.html">Text-to-Image Models</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/dalle1.html">DALL·E 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/dalle2.html">DALL·E 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/imagen.html">Imagen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/motion-capture-and-synthesis/index.html">Motion Capture and Motion Synthesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/robot/index.html">Robot Drawing System</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../mlops/index.html">Machine Learning Systems Design</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/intro.html">Introduction to MLOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/project.html">MLOps Project</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/devops/index.html">DevOps</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/gitops.html">GitOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/devsecops.html">DevSecOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/llmops.html">LLMOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/dotfiles/index.html">Dotfiles</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai">Dotfiles Repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/dotfiles/dotdrop.html">Dotdrop</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dotdrop/">Dotdrop Setup Script</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/github/">GitHub Setup Scripts</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/ssh-gpg-age/">SSH, GPG, and Age Setup Scripts</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/sops/">Pass and Passage Scripts</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/pass/">SOPS: Secrets OPerationS</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/doppler/">Doppler Usage</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dockerfiles/">Dockerfiles Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/security/index.html">Security Management</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/auth-enc-sign.html">Authentication, Encryption, and Signing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/age-gpg-ssh.html">SSH, GPG, and AGE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/pass.html">Unix Password Managers</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/github/index.html">GitHub Workflow</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/github/fork-pull.html">Github’s Fork &amp; Pull Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/github/template.html">Project Templating Tools</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://hyperfast-python.entelecheia.ai/">Hyperfast Python Template</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://hyperfast-template.entelecheia.ai/">Hyperfast Template</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/containerization/index.html">Containerization</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/containerization/docker.html">Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/containerization/containerd.html"><code class="docutils literal notranslate"><span class="pre">containerd</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/simple-pipeline/index.html">Simple MLOps Pipeline</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/simple-pipeline/server.html">Server Setup &amp; Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/simple-pipeline/vpn.html">VPN Connectivity</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Data Science for Economics and Finance</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-24"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Textual Analysis of FOMC contents</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-25"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="01_numerical_data.html">Preparing Numerical Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_textual_data.html">Preparing Textual Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03_EDA_numericals1.html">EDA on Numerical Data</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">EDA on Numerical Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="04_training_datasets.html">Create Training Datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05_features.html">Visualizing Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="06_AutoML.html">Checking Baseline with AutoML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="07_predict_sentiments.html">Predicting Sentiments of FOMC Corpus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="08_EDA_sentiments1.html">EDA on Sentiments: Correlation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="08_EDA_sentiments2.html">EDA on Sentiment Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="09_visualize_features.html">Visualize Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="10_monetary_shocks.html">Monetary Policy Shocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="11_AutoML_with_tones.html">Predicting the next decisions with tones</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../about/lecture-bot.html">LectureBot for ἐντελέχεια.άι</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://course.entelecheia.ai">course.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://research.entelecheia.ai">research.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/ds/fomc/03_EDA_numericals2.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/lectures/ds/fomc/03_EDA_numericals2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>EDA on Numerical Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-preprocessed-data">Load preprocessed data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">EDA on numerical data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-distributions-by-rate-decisions">Compare distributions by rate decisions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-training-data-set">Create Training Data Set</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-values">Missing Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-data">Save Data</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="eda-on-numerical-data">
+<h1>EDA on Numerical Data<a class="headerlink" href="#eda-on-numerical-data" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;retina&#39;
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">ekorpkit</span> <span class="kn">import</span> <span class="n">eKonf</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;version:&quot;</span><span class="p">,</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;is notebook?&quot;</span><span class="p">,</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">is_notebook</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;is colab?&quot;</span><span class="p">,</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">is_colab</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;evironment varialbles:&quot;</span><span class="p">)</span>
+<span class="n">eKonf</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">eKonf</span><span class="o">.</span><span class="n">env</span><span class="p">()</span><span class="o">.</span><span class="n">dict</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>version: 0.1.33+20.g8433774.dirty
+is notebook? True
+is colab? False
+evironment varialbles:
+{&#39;EKORPKIT_CONFIG_DIR&#39;: &#39;/workspace/projects/ekorpkit-book/config&#39;,
+ &#39;EKORPKIT_DATA_DIR&#39;: None,
+ &#39;EKORPKIT_PROJECT&#39;: &#39;ekorpkit-book&#39;,
+ &#39;EKORPKIT_WORKSPACE_ROOT&#39;: &#39;/workspace&#39;,
+ &#39;NUM_WORKERS&#39;: 230}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_dir</span> <span class="o">=</span> <span class="s2">&quot;../data/fomc&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="load-preprocessed-data">
+<h2>Load preprocessed data<a class="headerlink" href="#load-preprocessed-data" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">econ_data</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s2">&quot;econ_data2.parquet&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+<span class="n">econ_data</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>unscheduled</th>
+      <th>forecast</th>
+      <th>confcall</th>
+      <th>speaker</th>
+      <th>rate</th>
+      <th>rate_change</th>
+      <th>rate_decision</th>
+      <th>rate_changed</th>
+      <th>GDP</th>
+      <th>GDP_diff_prev</th>
+      <th>...</th>
+      <th>Rate</th>
+      <th>Taylor</th>
+      <th>Balanced</th>
+      <th>Inertia</th>
+      <th>Taylor-Rate</th>
+      <th>Balanced-Rate</th>
+      <th>Inertia-Rate</th>
+      <th>Taylor_diff</th>
+      <th>Balanced_diff</th>
+      <th>Inertia_diff</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2021-11-03</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>Jerome Powell</td>
+      <td>0.25</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>19478.893</td>
+      <td>0.570948</td>
+      <td>...</td>
+      <td>0.25</td>
+      <td>5.747177</td>
+      <td>4.940210</td>
+      <td>-0.528532</td>
+      <td>5.497177</td>
+      <td>4.690210</td>
+      <td>-0.778532</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2021-12-15</th>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>Jerome Powell</td>
+      <td>0.25</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>19478.893</td>
+      <td>0.570948</td>
+      <td>...</td>
+      <td>0.25</td>
+      <td>6.472329</td>
+      <td>5.665362</td>
+      <td>-0.637304</td>
+      <td>6.222329</td>
+      <td>5.415362</td>
+      <td>-0.887304</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2022-01-26</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>Jerome Powell</td>
+      <td>0.25</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>19478.893</td>
+      <td>0.570948</td>
+      <td>...</td>
+      <td>0.25</td>
+      <td>7.222928</td>
+      <td>6.415961</td>
+      <td>-0.749894</td>
+      <td>6.972928</td>
+      <td>6.165961</td>
+      <td>-0.999894</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2022-03-16</th>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>Jerome Powell</td>
+      <td>0.50</td>
+      <td>0.25</td>
+      <td>1.0</td>
+      <td>1</td>
+      <td>19806.290</td>
+      <td>1.680778</td>
+      <td>...</td>
+      <td>0.25</td>
+      <td>8.499377</td>
+      <td>8.267766</td>
+      <td>-1.027665</td>
+      <td>8.249377</td>
+      <td>8.017766</td>
+      <td>-1.277665</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2022-05-04</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>Jerome Powell</td>
+      <td>1.00</td>
+      <td>0.50</td>
+      <td>1.0</td>
+      <td>1</td>
+      <td>19735.895</td>
+      <td>-0.355417</td>
+      <td>...</td>
+      <td>0.50</td>
+      <td>8.094924</td>
+      <td>7.420939</td>
+      <td>-0.688141</td>
+      <td>7.594924</td>
+      <td>6.920939</td>
+      <td>-1.188141</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 58 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="id1">
+<h2>EDA on numerical data<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add previous rate decision to see inertia effect</span>
+<span class="n">econ_data</span><span class="p">[</span><span class="s2">&quot;Rate Decision&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">econ_data</span><span class="p">[</span><span class="s2">&quot;rate_decision&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">&quot;Cut&quot;</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">1</span> <span class="k">else</span> <span class="s2">&quot;Hike&quot;</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="k">else</span> <span class="s2">&quot;Hold&quot;</span>
+<span class="p">)</span>
+<span class="n">econ_data</span><span class="p">[</span><span class="s2">&quot;rate_decision&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">econ_data</span><span class="p">[</span><span class="s2">&quot;rate_decision&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">1</span> <span class="k">else</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">0</span>
+<span class="p">)</span>
+<span class="n">econ_data</span><span class="p">[</span><span class="s2">&quot;prev_decision&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">econ_data</span><span class="p">[</span><span class="s2">&quot;rate_decision&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">econ_data</span><span class="p">[</span><span class="s2">&quot;next_decision&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">econ_data</span><span class="p">[</span><span class="s2">&quot;rate_decision&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">econ_data</span><span class="p">[[</span><span class="s2">&quot;Rate Decision&quot;</span><span class="p">,</span> <span class="s2">&quot;rate_decision&quot;</span><span class="p">,</span> <span class="s2">&quot;prev_decision&quot;</span><span class="p">,</span> <span class="s2">&quot;next_decision&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Rate Decision</th>
+      <th>rate_decision</th>
+      <th>prev_decision</th>
+      <th>next_decision</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1982-10-05</th>
+      <td>Cut</td>
+      <td>-1</td>
+      <td>NaN</td>
+      <td>-1.0</td>
+    </tr>
+    <tr>
+      <th>1982-11-16</th>
+      <td>Cut</td>
+      <td>-1</td>
+      <td>-1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1982-12-21</th>
+      <td>Hold</td>
+      <td>0</td>
+      <td>-1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1983-01-14</th>
+      <td>Hold</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1983-01-21</th>
+      <td>Hold</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="compare-distributions-by-rate-decisions">
+<h2>Compare distributions by rate decisions<a class="headerlink" href="#compare-distributions-by-rate-decisions" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_distribution</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
+        <span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;visualize/plot=kdeplot&quot;</span><span class="p">)</span>
+        <span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+        <span class="n">cfg</span><span class="o">.</span><span class="n">kdeplot</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">col</span>
+        <span class="n">cfg</span><span class="o">.</span><span class="n">kdeplot</span><span class="o">.</span><span class="n">hue</span> <span class="o">=</span> <span class="s2">&quot;Rate Decision&quot;</span>
+        <span class="n">cfg</span><span class="o">.</span><span class="n">kdeplot</span><span class="o">.</span><span class="n">palette</span> <span class="o">=</span> <span class="s2">&quot;tab10&quot;</span>
+        <span class="n">cfg</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">legend</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Hike&quot;</span><span class="p">,</span> <span class="s2">&quot;Hold&quot;</span><span class="p">,</span> <span class="s2">&quot;Cut&quot;</span><span class="p">]</span>
+        <span class="n">cfg</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">grid</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">cfg</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Distribution of </span><span class="si">{</span><span class="n">cfg</span><span class="o">.</span><span class="n">kdeplot</span><span class="o">.</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">cfg</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">ylabel</span> <span class="o">=</span> <span class="s2">&quot;Frequency&quot;</span>
+        <span class="n">cfg</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">xlabel</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">kdeplot</span><span class="o">.</span><span class="n">x</span>
+        <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">config_group</span><span class="o">=</span><span class="s2">&quot;visualize/plot=facetgrid&quot;</span><span class="p">)</span>
+        <span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="n">cfg</span><span class="o">.</span><span class="n">theme</span><span class="o">.</span><span class="n">palette</span> <span class="o">=</span> <span class="s2">&quot;pastel&quot;</span>
+        <span class="n">cfg</span><span class="o">.</span><span class="n">facetgrid</span><span class="o">.</span><span class="n">col</span> <span class="o">=</span> <span class="s2">&quot;Rate Decision&quot;</span>
+        <span class="n">cfg</span><span class="o">.</span><span class="n">facetgrid</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="n">cfg</span><span class="o">.</span><span class="n">facetgrid</span><span class="o">.</span><span class="n">map_dataframe</span><span class="o">.</span><span class="n">_func_</span> <span class="o">=</span> <span class="s2">&quot;histplot&quot;</span>
+        <span class="n">cfg</span><span class="o">.</span><span class="n">facetgrid</span><span class="o">.</span><span class="n">map_dataframe</span><span class="o">.</span><span class="n">rcParams</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_distribution</span><span class="p">(</span>
+    <span class="n">econ_data</span><span class="p">,</span>
+    <span class="p">[</span><span class="s2">&quot;GDP_diff_prev&quot;</span><span class="p">,</span> <span class="s2">&quot;GDP_diff_year&quot;</span><span class="p">,</span> <span class="s2">&quot;GDPPOT_diff_prev&quot;</span><span class="p">,</span> <span class="s2">&quot;GDPPOT_diff_year&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/6e557488007513482e39ef0f762e46236d79dbc448914cbeb5d3db2225cd70c5.png" src="../../../_images/6e557488007513482e39ef0f762e46236d79dbc448914cbeb5d3db2225cd70c5.png" />
+<img alt="../../../_images/a850f4e13def559fd45d738ed560890d48b12aafb324a2917e1a926a61a344c0.png" src="../../../_images/a850f4e13def559fd45d738ed560890d48b12aafb324a2917e1a926a61a344c0.png" />
+<img alt="../../../_images/56d117cfcc23c91bc57fa485ee611c16f88c737acb7228a7bd39e103e6e5e60a.png" src="../../../_images/56d117cfcc23c91bc57fa485ee611c16f88c737acb7228a7bd39e103e6e5e60a.png" />
+<img alt="../../../_images/02a89aaa91dcab028cf77a3ee6c59a1d366ca41463e4dded6ab12a60b6f7e82a.png" src="../../../_images/02a89aaa91dcab028cf77a3ee6c59a1d366ca41463e4dded6ab12a60b6f7e82a.png" />
+<img alt="../../../_images/2a9ea3762cd1456e19ff825f6ceaafce7bccfd768d5cae20d0753bfc89b328f7.png" src="../../../_images/2a9ea3762cd1456e19ff825f6ceaafce7bccfd768d5cae20d0753bfc89b328f7.png" />
+<img alt="../../../_images/d7ed4af7924977d88a4420395ae3f42ad25026376a062ad315435d83b8b4edc7.png" src="../../../_images/d7ed4af7924977d88a4420395ae3f42ad25026376a062ad315435d83b8b4edc7.png" />
+<img alt="../../../_images/0468447e3768363fccbd674deb5f468a64111bb24cca38f868e64f558c9e47e2.png" src="../../../_images/0468447e3768363fccbd674deb5f468a64111bb24cca38f868e64f558c9e47e2.png" />
+<img alt="../../../_images/8ef43d2eb7a6ad259c5cd89fde7f6dddc9ed676b3060ac027e06538c390d85ca.png" src="../../../_images/8ef43d2eb7a6ad259c5cd89fde7f6dddc9ed676b3060ac027e06538c390d85ca.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_distribution</span><span class="p">(</span>
+    <span class="n">econ_data</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;PCE_diff_prev&quot;</span><span class="p">,</span> <span class="s2">&quot;PCE_diff_year&quot;</span><span class="p">,</span> <span class="s2">&quot;CPI_diff_prev&quot;</span><span class="p">,</span> <span class="s2">&quot;CPI_diff_year&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/61934b6d91af7e5cd78c0f80578a2c97f10be507d89a82420a817bae9c5bfae2.png" src="../../../_images/61934b6d91af7e5cd78c0f80578a2c97f10be507d89a82420a817bae9c5bfae2.png" />
+<img alt="../../../_images/f36b2161030635c538a53fd763029ce45437977315c935a4f247c591753ed9b7.png" src="../../../_images/f36b2161030635c538a53fd763029ce45437977315c935a4f247c591753ed9b7.png" />
+<img alt="../../../_images/7e44522989d7784471fe5c0ac58a96bcd678c2e6072d6bd4e3cc0f272f8cabc5.png" src="../../../_images/7e44522989d7784471fe5c0ac58a96bcd678c2e6072d6bd4e3cc0f272f8cabc5.png" />
+<img alt="../../../_images/40d611156747214372d7749b1bdca21024ff827943f2d68d6ad71ae95af10601.png" src="../../../_images/40d611156747214372d7749b1bdca21024ff827943f2d68d6ad71ae95af10601.png" />
+<img alt="../../../_images/07515dfe4bfd16174866fda4d3dc3a4f252be66b7a586032200f6ef214ae2dc2.png" src="../../../_images/07515dfe4bfd16174866fda4d3dc3a4f252be66b7a586032200f6ef214ae2dc2.png" />
+<img alt="../../../_images/6bade0e6c3398c1ecbaed40a37a87db075e254dbd0aaef5775b5063f426c8e52.png" src="../../../_images/6bade0e6c3398c1ecbaed40a37a87db075e254dbd0aaef5775b5063f426c8e52.png" />
+<img alt="../../../_images/3e03f697372dda9b1556d14bf80fd3a3e782de3d034064c365e11276eacd6af6.png" src="../../../_images/3e03f697372dda9b1556d14bf80fd3a3e782de3d034064c365e11276eacd6af6.png" />
+<img alt="../../../_images/fbc121d1afa6401838eefce8a327ffb05435b054f29022c1e2ad4c5498c41944.png" src="../../../_images/fbc121d1afa6401838eefce8a327ffb05435b054f29022c1e2ad4c5498c41944.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_distribution</span><span class="p">(</span>
+    <span class="n">econ_data</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="s2">&quot;UNEMP&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;UNEMP_diff_prev&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;UNEMP_diff_year&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;EMP&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;EMP_diff_prev&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;EMP_diff_year&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/ccbd7678c5196dc785d97ae858c41e55d49ffd50787464ce71c826fea1768f56.png" src="../../../_images/ccbd7678c5196dc785d97ae858c41e55d49ffd50787464ce71c826fea1768f56.png" />
+<img alt="../../../_images/f92101f6dee0367af5d7321592c12ce826c992037db9bfa11503e65f2cd33402.png" src="../../../_images/f92101f6dee0367af5d7321592c12ce826c992037db9bfa11503e65f2cd33402.png" />
+<img alt="../../../_images/980c9815af2579793819c6d6d3358ed3ad08317b2fb0a93d3a4e37b3dc2885d2.png" src="../../../_images/980c9815af2579793819c6d6d3358ed3ad08317b2fb0a93d3a4e37b3dc2885d2.png" />
+<img alt="../../../_images/0db12bad1456410c1f617ccc3439918c03fad2e1e9cebbad7b82c6bd1437cad7.png" src="../../../_images/0db12bad1456410c1f617ccc3439918c03fad2e1e9cebbad7b82c6bd1437cad7.png" />
+<img alt="../../../_images/8a6d81af14956a517ec6a0450b7fff8198c23d819d52fac2b525fad7cf507b25.png" src="../../../_images/8a6d81af14956a517ec6a0450b7fff8198c23d819d52fac2b525fad7cf507b25.png" />
+<img alt="../../../_images/333bb59b093994270be3f80382a04ed5cd86f9eaacf5f0658b3ec6261e82e65a.png" src="../../../_images/333bb59b093994270be3f80382a04ed5cd86f9eaacf5f0658b3ec6261e82e65a.png" />
+<img alt="../../../_images/ff45679ff2a7b02ec9027398536bd9809f936da27a859f3af578f3892e969e93.png" src="../../../_images/ff45679ff2a7b02ec9027398536bd9809f936da27a859f3af578f3892e969e93.png" />
+<img alt="../../../_images/720034136997d7c3f371540ade5842c43d3c54766334e34fc6d9dac26a65a2bf.png" src="../../../_images/720034136997d7c3f371540ade5842c43d3c54766334e34fc6d9dac26a65a2bf.png" />
+<img alt="../../../_images/1a1c91296544c36757127bdd68d134b430c7cf4967fc459e6f37275ca899ab8d.png" src="../../../_images/1a1c91296544c36757127bdd68d134b430c7cf4967fc459e6f37275ca899ab8d.png" />
+<img alt="../../../_images/3f6c60b6560c74fa3109d87d5fbfe2951ccbecbe561ee74eab1e57520983bcbe.png" src="../../../_images/3f6c60b6560c74fa3109d87d5fbfe2951ccbecbe561ee74eab1e57520983bcbe.png" />
+<img alt="../../../_images/484dffef03eda05d1eca054e7ceb3c8ec0775dfd29e141a6f5b829cb1c1da354.png" src="../../../_images/484dffef03eda05d1eca054e7ceb3c8ec0775dfd29e141a6f5b829cb1c1da354.png" />
+<img alt="../../../_images/3cf99fe0fc7d26c0d5cabd5620151975fb851349479b08787878d57bfa338b69.png" src="../../../_images/3cf99fe0fc7d26c0d5cabd5620151975fb851349479b08787878d57bfa338b69.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_distribution</span><span class="p">(</span><span class="n">econ_data</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;PMI&quot;</span><span class="p">,</span> <span class="s2">&quot;PMI_diff_prev&quot;</span><span class="p">,</span> <span class="s2">&quot;PMI_diff_year&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/ca97c4d36f5d408127583689e57fb2b1abaa51dbbc440492c62bdfc678e053cc.png" src="../../../_images/ca97c4d36f5d408127583689e57fb2b1abaa51dbbc440492c62bdfc678e053cc.png" />
+<img alt="../../../_images/c128c24cd6d437de8ed5b79fe306b79f5281e95aa07067d4bb40de77906616b7.png" src="../../../_images/c128c24cd6d437de8ed5b79fe306b79f5281e95aa07067d4bb40de77906616b7.png" />
+<img alt="../../../_images/30efe9cbba4ada5bf718a68883b98694f21a698f8fc7e772e2586bef467a0384.png" src="../../../_images/30efe9cbba4ada5bf718a68883b98694f21a698f8fc7e772e2586bef467a0384.png" />
+<img alt="../../../_images/7ac8930dcab345c97a3465b5f03b7ef0878ec8bbe955a371b070e27c795951d5.png" src="../../../_images/7ac8930dcab345c97a3465b5f03b7ef0878ec8bbe955a371b070e27c795951d5.png" />
+<img alt="../../../_images/daea4c4829368f93253ed6bf33f48dc61c1b2531acae747cda568de4997b187f.png" src="../../../_images/daea4c4829368f93253ed6bf33f48dc61c1b2531acae747cda568de4997b187f.png" />
+<img alt="../../../_images/b8235482eb5aabf6df419214a42dc6bb8885d491b9e877a9bf5ff5a032a44f6c.png" src="../../../_images/b8235482eb5aabf6df419214a42dc6bb8885d491b9e877a9bf5ff5a032a44f6c.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_distribution</span><span class="p">(</span>
+    <span class="n">econ_data</span><span class="p">,</span>
+    <span class="p">[</span><span class="s2">&quot;RSALES_diff_prev&quot;</span><span class="p">,</span> <span class="s2">&quot;RSALES_diff_year&quot;</span><span class="p">,</span> <span class="s2">&quot;HSALES_diff_prev&quot;</span><span class="p">,</span> <span class="s2">&quot;HSALES_diff_year&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/6690167d643d7697d39875d8601cc9d372f2c872fc9d43bc9353d8a4f5189420.png" src="../../../_images/6690167d643d7697d39875d8601cc9d372f2c872fc9d43bc9353d8a4f5189420.png" />
+<img alt="../../../_images/7d7dbaf4f93f41a03c902e5adb11114ea9931806622c88d15ccde7fd24a0822b.png" src="../../../_images/7d7dbaf4f93f41a03c902e5adb11114ea9931806622c88d15ccde7fd24a0822b.png" />
+<img alt="../../../_images/3009b838a9a4da06aa255f09f0fb050968abb2a862e1aa24e5924bf6d0878163.png" src="../../../_images/3009b838a9a4da06aa255f09f0fb050968abb2a862e1aa24e5924bf6d0878163.png" />
+<img alt="../../../_images/d48985fafc103649092edb92d840e7cb3b81ba9d6b7669adf6037dc9f42b2907.png" src="../../../_images/d48985fafc103649092edb92d840e7cb3b81ba9d6b7669adf6037dc9f42b2907.png" />
+<img alt="../../../_images/30fdf33aafbecd34a1f080468804a0c6d937f9e16cee8a7b4cb430708d172f8e.png" src="../../../_images/30fdf33aafbecd34a1f080468804a0c6d937f9e16cee8a7b4cb430708d172f8e.png" />
+<img alt="../../../_images/198656bb58c8b6f255673ad72f75476cf8f613257dd3c17c7bc7ffa21a0cf867.png" src="../../../_images/198656bb58c8b6f255673ad72f75476cf8f613257dd3c17c7bc7ffa21a0cf867.png" />
+<img alt="../../../_images/844e4aa34c01537b92b43dd39856f4c963493db0523ebbcc8f3fed0586515eb5.png" src="../../../_images/844e4aa34c01537b92b43dd39856f4c963493db0523ebbcc8f3fed0586515eb5.png" />
+<img alt="../../../_images/0bf1e4e9795ee1b601ac11f1aa863f876466b2ff304f630d9151a5bbafc32697.png" src="../../../_images/0bf1e4e9795ee1b601ac11f1aa863f876466b2ff304f630d9151a5bbafc32697.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_distribution</span><span class="p">(</span><span class="n">econ_data</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Taylor_diff&quot;</span><span class="p">,</span> <span class="s2">&quot;Balanced_diff&quot;</span><span class="p">,</span> <span class="s2">&quot;Inertia_diff&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/2d16155071fb8618da119c68cf5aac2aeaffa094f5a85ce717fdc749d9e67a64.png" src="../../../_images/2d16155071fb8618da119c68cf5aac2aeaffa094f5a85ce717fdc749d9e67a64.png" />
+<img alt="../../../_images/ddce65197b4296ee287f1aab0fde79e99e2b06bd0568ea32bb38a88dabb55a6b.png" src="../../../_images/ddce65197b4296ee287f1aab0fde79e99e2b06bd0568ea32bb38a88dabb55a6b.png" />
+<img alt="../../../_images/a9e9d368976f83bc6e47e4d4d68721cf0184d2d97f87544d5ad90d7b07700e6e.png" src="../../../_images/a9e9d368976f83bc6e47e4d4d68721cf0184d2d97f87544d5ad90d7b07700e6e.png" />
+<img alt="../../../_images/d8d9c48213ec268834fd95455ae94586ca375d945ef5f414fcc6b76d0d348bda.png" src="../../../_images/d8d9c48213ec268834fd95455ae94586ca375d945ef5f414fcc6b76d0d348bda.png" />
+<img alt="../../../_images/d4fbf8e3545dcfcf49d8bde67921aa2487be428a5b723f1513475bdaf418d1c3.png" src="../../../_images/d4fbf8e3545dcfcf49d8bde67921aa2487be428a5b723f1513475bdaf418d1c3.png" />
+<img alt="../../../_images/1d202c3e6f01de131c3237b231840be779ba733e8cb559375b6c5bfb5df43ce5.png" src="../../../_images/1d202c3e6f01de131c3237b231840be779ba733e8cb559375b6c5bfb5df43ce5.png" />
+</div>
+</div>
+</section>
+<section id="create-training-data-set">
+<h2>Create Training Data Set<a class="headerlink" href="#create-training-data-set" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Rate Decision&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;prev_decision&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GDP_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PMI&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;EMP_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;RSALES_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;UNEMP_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HSALES_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Inertia_diff&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Balanced_diff&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">econ_train_small</span> <span class="o">=</span> <span class="n">econ_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()[</span><span class="n">columns</span><span class="p">]</span>
+<span class="n">econ_train_small</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Rate Decision&quot;</span><span class="p">:</span> <span class="s2">&quot;target&quot;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">econ_train_small</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">econ_train_small</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(415, 10)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>target</th>
+      <th>prev_decision</th>
+      <th>GDP_diff_prev</th>
+      <th>PMI</th>
+      <th>EMP_diff_prev</th>
+      <th>RSALES_diff_year</th>
+      <th>UNEMP_diff_prev</th>
+      <th>HSALES_diff_year</th>
+      <th>Inertia_diff</th>
+      <th>Balanced_diff</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2021-11-03</th>
+      <td>Hold</td>
+      <td>0.0</td>
+      <td>0.570948</td>
+      <td>60.5</td>
+      <td>0.288624</td>
+      <td>8.474656</td>
+      <td>-9.615385</td>
+      <td>-26.135217</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2021-12-15</th>
+      <td>Hold</td>
+      <td>0.0</td>
+      <td>0.570948</td>
+      <td>60.6</td>
+      <td>0.437147</td>
+      <td>10.977142</td>
+      <td>-8.695652</td>
+      <td>-11.163337</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2022-01-26</th>
+      <td>Hold</td>
+      <td>0.0</td>
+      <td>0.570948</td>
+      <td>58.8</td>
+      <td>0.395555</td>
+      <td>9.101289</td>
+      <td>-7.142857</td>
+      <td>-3.673938</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2022-03-16</th>
+      <td>Hike</td>
+      <td>0.0</td>
+      <td>1.680778</td>
+      <td>58.6</td>
+      <td>0.476814</td>
+      <td>9.076698</td>
+      <td>-5.000000</td>
+      <td>3.125000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2022-05-04</th>
+      <td>Hike</td>
+      <td>1.0</td>
+      <td>-0.355417</td>
+      <td>57.1</td>
+      <td>0.283658</td>
+      <td>-0.034915</td>
+      <td>0.000000</td>
+      <td>-26.946848</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Large dataset</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Rate Decision&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;prev_decision&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GDP_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GDP_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GDPPOT_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GDPPOT_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PCE_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PCE_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CPI_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CPI_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;UNEMP&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;UNEMP_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;UNEMP_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;EMP&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;EMP_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;EMP_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PMI&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PMI_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PMI_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;RSALES_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;RSALES_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HSALES_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HSALES_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Taylor-Rate&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Balanced-Rate&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Inertia-Rate&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Taylor_diff&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Balanced_diff&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Inertia_diff&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+
+<span class="n">econ_train_large</span> <span class="o">=</span> <span class="n">econ_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()[</span><span class="n">columns</span><span class="p">]</span>
+<span class="n">econ_train_large</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Rate Decision&quot;</span><span class="p">:</span> <span class="s2">&quot;target&quot;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">econ_train_large</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(415, 29)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="missing-values">
+<h3>Missing Values<a class="headerlink" href="#missing-values" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># As most likely the decision is 0 (hold), fill prev_decision of the first row</span>
+<span class="n">econ_train_small</span><span class="p">[</span><span class="s2">&quot;prev_decision&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">econ_train_large</span><span class="p">[</span><span class="s2">&quot;prev_decision&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ax.set_xlim(0, 400)</span>
+<span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;visualize/plot=lineplot&quot;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">lineplot</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;date&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">lineplot</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;HSALES_diff_year&quot;</span>
+
+<span class="n">lineplot</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">lineplot</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">lineplot</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;date&quot;</span>
+<span class="n">lineplot</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;RSALES_diff_year&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lineplot</span><span class="p">)</span>
+
+<span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">econ_train_small</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/c163d2564de6c56e08959789b76ea1b9f31687f2735c54365a2ddc080ff6fe8d.png" src="../../../_images/c163d2564de6c56e08959789b76ea1b9f31687f2735c54365a2ddc080ff6fe8d.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Retail sales growth ratio is difficult to estimate. Though it is not ideal, simply use the average</span>
+<span class="n">econ_train_small</span><span class="p">[</span><span class="s2">&quot;RSALES_diff_year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span>
+    <span class="n">econ_train_small</span><span class="p">[</span><span class="s2">&quot;RSALES_diff_year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">econ_train_large</span><span class="p">[</span><span class="s2">&quot;RSALES_diff_prev&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span>
+    <span class="n">econ_train_large</span><span class="p">[</span><span class="s2">&quot;RSALES_diff_prev&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">econ_train_large</span><span class="p">[</span><span class="s2">&quot;RSALES_diff_year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span>
+    <span class="n">econ_train_large</span><span class="p">[</span><span class="s2">&quot;RSALES_diff_year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">econ_train_small</span><span class="p">[</span><span class="s2">&quot;Inertia_diff&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span>
+    <span class="n">econ_train_small</span><span class="p">[</span><span class="s2">&quot;Inertia_diff&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">econ_train_small</span><span class="p">[</span><span class="s2">&quot;Balanced_diff&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span>
+    <span class="n">econ_train_small</span><span class="p">[</span><span class="s2">&quot;Balanced_diff&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">econ_train_large</span><span class="p">[</span><span class="s2">&quot;Inertia_diff&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span>
+    <span class="n">econ_train_large</span><span class="p">[</span><span class="s2">&quot;Inertia_diff&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">econ_train_large</span><span class="p">[</span><span class="s2">&quot;Balanced_diff&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span>
+    <span class="n">econ_train_large</span><span class="p">[</span><span class="s2">&quot;Balanced_diff&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">econ_train_large</span><span class="p">[</span><span class="s2">&quot;Taylor_diff&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span>
+    <span class="n">econ_train_large</span><span class="p">[</span><span class="s2">&quot;Taylor_diff&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="save-data">
+<h3>Save Data<a class="headerlink" href="#save-data" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eKonf</span><span class="o">.</span><span class="n">save_data</span><span class="p">(</span><span class="n">econ_train_small</span><span class="p">,</span> <span class="s2">&quot;econ_train_small.parquet&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+<span class="n">eKonf</span><span class="o">.</span><span class="n">save_data</span><span class="p">(</span><span class="n">econ_train_large</span><span class="p">,</span> <span class="s2">&quot;econ_train_large.parquet&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/lecture",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lectures/ds/fomc"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03_EDA_numericals1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">EDA on Numerical Data</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="04_training_datasets.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Create Training Datasets</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-preprocessed-data">Load preprocessed data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">EDA on numerical data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-distributions-by-rate-decisions">Compare distributions by rate decisions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-training-data-set">Create Training Data Set</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-values">Missing Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-data">Save Data</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
