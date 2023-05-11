@@ -117,3 +117,9 @@ Students enrolling in this course should have:
 
 - Network analysis in economics and finance
 - Firm ownership application
+
+## 🗓️ Table of Contents
+
+```{tableofcontents}
+
+```
