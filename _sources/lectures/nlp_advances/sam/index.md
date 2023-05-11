@@ -1,7 +1,7 @@
-# Segment Everything
+# Segment Anything
 
-```{image} figs/segment-everything.jpeg
-:alt: Segment Everything
+```{image} figs/segment-anything.jpeg
+:alt: Segment Anything
 :class: bg-primary mb-1
 :width: 70%
 :align: center
