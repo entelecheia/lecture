@@ -46,7 +46,7 @@ Students enrolling in this course should have:
 - Assignments: 50%
 - Final Project: 50%
 
-## Course Content
+<!-- ## Course Content
 
 ### Week 1: Introduction to Data Science Technologies in Economics and Finance
 
@@ -116,7 +116,7 @@ Students enrolling in this course should have:
 ### Week 14: Network Analysis for Economics and Finance: An Application to Firm Ownership
 
 - Network analysis in economics and finance
-- Firm ownership application
+- Firm ownership application -->
 
 ## 🗓️ Table of Contents
 

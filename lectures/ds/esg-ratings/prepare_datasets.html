@@ -1,0 +1,1573 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Preparing training datasets &#8212; ἐντελέχεια.άι</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/js/hoverxref.js"></script>
+    <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/chatgpt.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="application/vnd.jupyter.widget-state+json">{"state": {"00a060c5fe6146de9354bc94b26a78d1": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "05a20c14c6b8478ab89e443518304ef5": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "09d71c94e2f34c55814f4bb269371e1e": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_5e58ddac8c2f47e0a78ae559e0835d12", "style": "IPY_MODEL_ba14042ab3de4bf6aceb29359568ff0a", "value": " 227/227 [00:00&lt;00:00, 930.21it/s]"}}, "0bb26117a19f46fbbe952878c2f963c2": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "0c04e4b0522144c483cc0a4fb07c1c82": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_ccb49b049a5a4f238fec143e958ffe00", "style": "IPY_MODEL_ce38faea895a41f1a79a0b6b644075af", "value": " 230/230 [00:00&lt;00:00, 923.04it/s]"}}, "0e4ae05ead6e41e5b23b0c22e5dcde25": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "108109c4947248e08fe655995d9c3a6c": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "167f6f1f2f5b47cfafa8423c8d7b5609": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "17dc65438c224acd8eddd045c64a0620": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_68e100834656476a9d114ad859cf7410", "style": "IPY_MODEL_967d43472ce14308a131dd03b49e3144", "value": " 227/227 [00:01&lt;00:00, 788.67it/s]"}}, "19757b016b244f43ae19e0b9ae1667c8": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "1b12c1acb6154d29be45407400e5cf51": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatProgressModel", "state": {"bar_style": "success", "layout": "IPY_MODEL_b5caf6b1dc8d453c985b9fc4047bc494", "max": 227, "style": "IPY_MODEL_264e00d8f14044d09415c3f38fec96fe", "value": 227}}, "1b1985d0a20f40a2bbd6bdad2cfb8229": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatProgressModel", "state": {"bar_style": "success", "layout": "IPY_MODEL_35071c6714a342b7b4fe31d1c3bc2124", "max": 227, "style": "IPY_MODEL_b4c2eccee86f47b8b8c2a63ca416d20d", "value": 227}}, "1bd08d2933984effa8d0497ca6f3f995": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "1da5ac26b6d8464999c08fe4d6f6b292": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "1eaabd793c1843628253a893e6ef1c9e": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_96fed84e19cd46c3a4108084d2f264fa", "style": "IPY_MODEL_6e9150db819847818085d18439643b69", "value": " 218/218 [00:00&lt;00:00, 952.90it/s]"}}, "1f41984c90d144a39c58f0ffe3c34fd3": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HBoxModel", "state": {"children": ["IPY_MODEL_67ea04ed1a824b61bffd40b068973b6c", "IPY_MODEL_d534079f61c643ee8c8876dffb947fff", "IPY_MODEL_09d71c94e2f34c55814f4bb269371e1e"], "layout": "IPY_MODEL_1da5ac26b6d8464999c08fe4d6f6b292"}}, "21108c9174084c2c931691cd735543b8": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "247d944161c04250ae419f3f3e3e77bc": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "24cf2abb5f774849ba077c6c2efe259c": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "264e00d8f14044d09415c3f38fec96fe": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ProgressStyleModel", "state": {"description_width": ""}}, "28c698f9045a4b95ac452a57c8fb8b92": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "2924098d88424ae69811c822d37942ee": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "2a9a1cf245214f7a994c721340284f49": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatProgressModel", "state": {"bar_style": "success", "layout": "IPY_MODEL_df3901a2705f428ea1b5119d43bd2a2c", "max": 227, "style": "IPY_MODEL_dbd798ae664d4774ae217c7d6f700b08", "value": 227}}, "2bd472c9fe9446f2ad989ad4f313d3c4": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ProgressStyleModel", "state": {"description_width": ""}}, "2c8624de880a4139b3bd824d778971b5": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_108109c4947248e08fe655995d9c3a6c", "style": "IPY_MODEL_992b43b1c275453f92460b6031dda400", "value": "apply len_bytes to num_bytes: 100%"}}, "30725a5c92454b0eab96a308a7df6034": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "32e28d44b1a944418ff2b41dcf6544eb": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_824bdef02e174b078f4815c247fe3755", "style": "IPY_MODEL_167f6f1f2f5b47cfafa8423c8d7b5609", "value": "apply len_bytes to num_bytes: 100%"}}, "335249fda7564a7e9cca6452448fa267": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HBoxModel", "state": {"children": ["IPY_MODEL_5f4737c88cd34c7a90a38ba6f2c198ba", "IPY_MODEL_d3aeef69cc4c4293a35e8cddbcfa068c", "IPY_MODEL_0c04e4b0522144c483cc0a4fb07c1c82"], "layout": "IPY_MODEL_e14485869ee4468eb37cc1c343fa7fed"}}, "35071c6714a342b7b4fe31d1c3bc2124": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "35f07f8397114e39a6c1b57605345e4d": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "3aa97f397b3d432db6773310ba871b7a": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "3ee2b841a3364d86a884a0f0b7c39edb": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_58c8c386d3074741a0ec0cf601bcb536", "style": "IPY_MODEL_30725a5c92454b0eab96a308a7df6034", "value": "apply len_bytes to num_bytes: 100%"}}, "3fa50da172cd428fbe089788fc52e8b0": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatProgressModel", "state": {"bar_style": "success", "layout": "IPY_MODEL_b919678a7fca4f55b4d0a42799ae4ca0", "max": 227, "style": "IPY_MODEL_fbdeed28da5b4df584e2a3ac3e86007b", "value": 227}}, "44c04fb32eb04e979ff8a7a57f1985c1": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "48a5ed14694b415997b2ad645af2d076": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "4c61ca2de49a409ca16309f1754d2ee5": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "4cd1321c74ed4ec0b35a69b6c1e136b3": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "4ed0a8434b6f47a4ab1d99bbadf0b5cb": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "4f7d20b531634c2b9b0e74162d81adba": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HBoxModel", "state": {"children": ["IPY_MODEL_f16b842679574e4b853f4bf4d433412f", "IPY_MODEL_2a9a1cf245214f7a994c721340284f49", "IPY_MODEL_798d16d2fda649e89eb84d6bcdbd2ca2"], "layout": "IPY_MODEL_f0f93505b1324962ae1fd4371b4e9644"}}, "5261ef5ba4924becaaa36b3f43289259": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "540983805a0746b4a1aee109d0cc2a29": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "58c8c386d3074741a0ec0cf601bcb536": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "592e4fd1582d48489fca96722a7df822": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "5c79fc579a974026a49797914618d07a": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HBoxModel", "state": {"children": ["IPY_MODEL_b971ff25f9354eb49c26460a4dfa34da", "IPY_MODEL_1b12c1acb6154d29be45407400e5cf51", "IPY_MODEL_c145f4fc6c074d8b9d45912eb9ccbbe9"], "layout": "IPY_MODEL_ce6ff6d5a8304cb5a0949f7597754b38"}}, "5e58ddac8c2f47e0a78ae559e0835d12": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "5f4737c88cd34c7a90a38ba6f2c198ba": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_35f07f8397114e39a6c1b57605345e4d", "style": "IPY_MODEL_21108c9174084c2c931691cd735543b8", "value": "apply len_bytes to num_bytes: 100%"}}, "67ea04ed1a824b61bffd40b068973b6c": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_05a20c14c6b8478ab89e443518304ef5", "style": "IPY_MODEL_592e4fd1582d48489fca96722a7df822", "value": "apply len_bytes to num_bytes: 100%"}}, "68e100834656476a9d114ad859cf7410": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "6e3ccb7d83be4d7aaad4e759e4784f04": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatProgressModel", "state": {"bar_style": "success", "layout": "IPY_MODEL_4cd1321c74ed4ec0b35a69b6c1e136b3", "max": 227, "style": "IPY_MODEL_e7212cc1842b4d5cba8b8fd48523a632", "value": 227}}, "6e9150db819847818085d18439643b69": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "70f98184088d49e2acb93e654111059d": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "7114e2fe188e4f039aba3c8ecd7fa256": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ProgressStyleModel", "state": {"description_width": ""}}, "776ea55ae16a4d68bf7ce8939f8c119b": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "798d16d2fda649e89eb84d6bcdbd2ca2": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_2924098d88424ae69811c822d37942ee", "style": "IPY_MODEL_24cf2abb5f774849ba077c6c2efe259c", "value": " 227/227 [00:00&lt;00:00, 997.50it/s]"}}, "7e46ae14112d477e9f9037afaa482175": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_19757b016b244f43ae19e0b9ae1667c8", "style": "IPY_MODEL_fe3731d27bd44879b3d57ea7540a2cc8", "value": " 227/227 [00:00&lt;00:00, 485.24it/s]"}}, "81d9733fea6944debb40db2bd88d33ac": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_70f98184088d49e2acb93e654111059d", "style": "IPY_MODEL_9ffcfb7c627f4dda9ea28e0a61bcb858", "value": " 227/227 [00:11&lt;00:00, 139.87it/s]"}}, "82279914885e43409811754691738e03": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HBoxModel", "state": {"children": ["IPY_MODEL_e39fc4b747fb4a63b5652453f6d30712", "IPY_MODEL_1b1985d0a20f40a2bbd6bdad2cfb8229", "IPY_MODEL_17dc65438c224acd8eddd045c64a0620"], "layout": "IPY_MODEL_5261ef5ba4924becaaa36b3f43289259"}}, "824bdef02e174b078f4815c247fe3755": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "8bcc1a8d1e51442abac5460678d416e0": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ProgressStyleModel", "state": {"description_width": ""}}, "8f0facb32cee44f3b4828bc70a0d7073": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_f854288b71854cf0bba197230ea93fb4", "style": "IPY_MODEL_94e5087d91bb4b4b8ca518c1e80420c3", "value": "apply len_bytes to num_bytes: 100%"}}, "8fdef9e7080f419496b0e54403b9ec07": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "94e5087d91bb4b4b8ca518c1e80420c3": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "967d43472ce14308a131dd03b49e3144": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "96fed84e19cd46c3a4108084d2f264fa": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "992b43b1c275453f92460b6031dda400": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "994f5f22e429466999bc45089f5d6e6c": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "9ffcfb7c627f4dda9ea28e0a61bcb858": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "a15eed4e9aa84d10aabf07831c48e526": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatProgressModel", "state": {"bar_style": "success", "layout": "IPY_MODEL_cefd58848d8e459db61ae40c961b1673", "max": 218, "style": "IPY_MODEL_d47641bef66d490db4d967f714a0515d", "value": 218}}, "a4fffae6d2364a0e912609d6297d5211": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "acb37e2ec3af4ea5b0ecfd2f9b0633f6": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HBoxModel", "state": {"children": ["IPY_MODEL_8f0facb32cee44f3b4828bc70a0d7073", "IPY_MODEL_c4403ea1f52a4f73b41a30d591e980ac", "IPY_MODEL_81d9733fea6944debb40db2bd88d33ac"], "layout": "IPY_MODEL_44c04fb32eb04e979ff8a7a57f1985c1"}}, "b46dcd83eb604b0d822164003b691b48": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_48a5ed14694b415997b2ad645af2d076", "style": "IPY_MODEL_247d944161c04250ae419f3f3e3e77bc", "value": " 227/227 [00:00&lt;00:00, 855.15it/s]"}}, "b4c2eccee86f47b8b8c2a63ca416d20d": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ProgressStyleModel", "state": {"description_width": ""}}, "b5caf6b1dc8d453c985b9fc4047bc494": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "b919678a7fca4f55b4d0a42799ae4ca0": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "b971ff25f9354eb49c26460a4dfa34da": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_540983805a0746b4a1aee109d0cc2a29", "style": "IPY_MODEL_3aa97f397b3d432db6773310ba871b7a", "value": "apply len_bytes to num_bytes: 100%"}}, "ba14042ab3de4bf6aceb29359568ff0a": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "c145f4fc6c074d8b9d45912eb9ccbbe9": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_28c698f9045a4b95ac452a57c8fb8b92", "style": "IPY_MODEL_0e4ae05ead6e41e5b23b0c22e5dcde25", "value": " 227/227 [00:00&lt;00:00, 998.55it/s]"}}, "c4403ea1f52a4f73b41a30d591e980ac": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatProgressModel", "state": {"bar_style": "success", "layout": "IPY_MODEL_0bb26117a19f46fbbe952878c2f963c2", "max": 227, "style": "IPY_MODEL_7114e2fe188e4f039aba3c8ecd7fa256", "value": 227}}, "c619a9ab6e49433a9550ed2aee815aa1": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HBoxModel", "state": {"children": ["IPY_MODEL_2c8624de880a4139b3bd824d778971b5", "IPY_MODEL_6e3ccb7d83be4d7aaad4e759e4784f04", "IPY_MODEL_7e46ae14112d477e9f9037afaa482175"], "layout": "IPY_MODEL_e6c5b97083774ce18aeee9c142452177"}}, "ccb49b049a5a4f238fec143e958ffe00": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "ce38faea895a41f1a79a0b6b644075af": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "ce6ff6d5a8304cb5a0949f7597754b38": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "cefd58848d8e459db61ae40c961b1673": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "d3aeef69cc4c4293a35e8cddbcfa068c": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatProgressModel", "state": {"bar_style": "success", "layout": "IPY_MODEL_00a060c5fe6146de9354bc94b26a78d1", "max": 230, "style": "IPY_MODEL_8bcc1a8d1e51442abac5460678d416e0", "value": 230}}, "d47641bef66d490db4d967f714a0515d": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ProgressStyleModel", "state": {"description_width": ""}}, "d534079f61c643ee8c8876dffb947fff": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatProgressModel", "state": {"bar_style": "success", "layout": "IPY_MODEL_4ed0a8434b6f47a4ab1d99bbadf0b5cb", "max": 227, "style": "IPY_MODEL_2bd472c9fe9446f2ad989ad4f313d3c4", "value": 227}}, "dbd798ae664d4774ae217c7d6f700b08": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ProgressStyleModel", "state": {"description_width": ""}}, "df3901a2705f428ea1b5119d43bd2a2c": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "e14485869ee4468eb37cc1c343fa7fed": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "e39fc4b747fb4a63b5652453f6d30712": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_a4fffae6d2364a0e912609d6297d5211", "style": "IPY_MODEL_1bd08d2933984effa8d0497ca6f3f995", "value": "apply len_bytes to num_bytes: 100%"}}, "e473ff6e5be34d769676053eb77e604e": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HBoxModel", "state": {"children": ["IPY_MODEL_32e28d44b1a944418ff2b41dcf6544eb", "IPY_MODEL_a15eed4e9aa84d10aabf07831c48e526", "IPY_MODEL_1eaabd793c1843628253a893e6ef1c9e"], "layout": "IPY_MODEL_994f5f22e429466999bc45089f5d6e6c"}}, "e6c5b97083774ce18aeee9c142452177": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "e7212cc1842b4d5cba8b8fd48523a632": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ProgressStyleModel", "state": {"description_width": ""}}, "f0f93505b1324962ae1fd4371b4e9644": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "f16b842679574e4b853f4bf4d433412f": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_776ea55ae16a4d68bf7ce8939f8c119b", "style": "IPY_MODEL_4c61ca2de49a409ca16309f1754d2ee5", "value": "apply len_bytes to num_bytes: 100%"}}, "f854288b71854cf0bba197230ea93fb4": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "fbdeed28da5b4df584e2a3ac3e86007b": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ProgressStyleModel", "state": {"description_width": ""}}, "fd1cfe9ea63441319c98b69a27d0f94c": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HBoxModel", "state": {"children": ["IPY_MODEL_3ee2b841a3364d86a884a0f0b7c39edb", "IPY_MODEL_3fa50da172cd428fbe089788fc52e8b0", "IPY_MODEL_b46dcd83eb604b0d822164003b691b48"], "layout": "IPY_MODEL_8fdef9e7080f419496b0e54403b9ec07"}}, "fe3731d27bd44879b3d57ea7540a2cc8": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}}, "version_major": 2, "version_minor": 0}</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script crossorigin="anonymous" data-jupyter-widgets-cdn="https://cdn.jsdelivr.net/npm/" src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.6/dist/embed-amd.js"></script>
+    <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/ds/esg-ratings/prepare_datasets';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/ds/esg-ratings/prepare_datasets.html" />
+    <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Improving classification datasets" href="improve_datasets.html" />
+    <link rel="prev" title="ESG Ratings" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+
+  <div class="bd-header-announcement container-fluid bd-header-announcement">
+    <div class="bd-header-announcement__content"><p>
+  <strong>Announcement:</strong>
+  You can install the accompanying AI tutor <a href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd" target="_blank">here</a>.
+  <a class="reference external" href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd" target="_blank"><img alt="chrome-web-store-image" src="https://img.shields.io/chrome-web-store/v/lfgfgbomindbccgidgalhhndggddpagd" /></a>
+</p>
+</div>
+  </div>
+
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">ἐντελέχεια.άι</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../index.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_intro/index.html">Introduction to NLP</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/intro/index.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/research/index.html">Research Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/lm/index.html">Language Models</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/datasets/corpus.html">Text Data Collection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/datasets/lab-dart.html">Lab: Crawling DART Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/topic/index.html">Topic Modeling</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/coherence.html">Topic Coherence Measures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/tomotopy.html">Lab: Tomotopy</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/sentiments/index.html">Sentiment Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lexicon.html">Lexicon-Based Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/ml.html">Machine Learning-Based Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lab-lexicon.html">Lab: Lexicon-Based Sentiment Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/segmentation.html">Word Segmentation and Association</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/embeddings/index.html">Word Embeddings</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_deep/index.html">Deep Learning for NLP</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/llms/index.html">Large Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/zeroshot.html">Zero Shot and Prompt Engineering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/decoding.html">Decoding and Search Strategies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/plms.html">Pretrained Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/transformers/index.html">Transformers</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/bert.html">BERT: Bidirectional Encoder Representations from Transformers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/bertviz.html">BERT: Visualizing Attention</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/t5.html">T5: Text-To-Text Transfer Transformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/datasets/mc4.html">mC4 Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/datasets/lab-eda.html">Lab: Exploratory Data Analysis (EDA)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/sentencepiece.html">SentencePiece Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/lab-train-tokenizers.html">Lab: Training Tokenizers</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/training/index.html">Training Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/training/lab-pretraining.html">Lab: Pretraining Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/chatbots/index.html">Conversational AI and Chatbots</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/chatbots/rlhf.html">Reinforcement Learning with Human Feedback (RLHF)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/chatbots/detectGPT.html">How to Spot Machine-Written Texts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_advances/index.html">Advances in AI and NLP</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/thesis.html">Writing a Thesis</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_advances/gpt/index.html">Generative Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/detectGPT.html">DetectGPT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/gpt4.html">GPT-4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/camelids.html">Meet the Camelids: A Family of LLMs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/sam/index.html">Segment Everything</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../aiart/index.html">AI Art (Generative AI)</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/intro/index.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/brave/index.html">A Brave New World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/aiart/index.html">Art and Music in Light of AI</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../aiart/text-to-image/index.html">Text-to-Image Models</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/dalle1.html">DALL·E 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/dalle2.html">DALL·E 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/imagen.html">Imagen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/motion-capture-and-synthesis/index.html">Motion Capture and Motion Synthesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/robot/index.html">Robot Drawing System</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../mlops/index.html">Machine Learning Systems Design</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/intro.html">Introduction to MLOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/project.html">MLOps Project</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/devops/index.html">DevOps</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/gitops.html">GitOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/devsecops.html">DevSecOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/llmops.html">LLMOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/dotfiles/index.html">Dotfiles</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai">Dotfiles Repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/dotfiles/dotdrop.html">Dotdrop</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dotdrop/">Dotdrop Setup Script</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/github/">GitHub Setup Scripts</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/ssh-gpg-age/">SSH, GPG, and Age Setup Scripts</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/sops/">Pass and Passage Scripts</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/pass/">SOPS: Secrets OPerationS</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/doppler/">Doppler Usage</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dockerfiles/">Dockerfiles Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/security/index.html">Security Management</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/auth-enc-sign.html">Authentication, Encryption, and Signing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/age-gpg-ssh.html">SSH, GPG, and AGE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/pass.html">Unix Password Managers</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/github/index.html">GitHub Workflow</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/github/fork-pull.html">Github’s Fork &amp; Pull Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/github/template.html">Project Templating Tools</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://hyperfast-python.entelecheia.ai/">Hyperfast Python Template</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://hyperfast-template.entelecheia.ai/">Hyperfast Template</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/containerization/index.html">Containerization</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/containerization/docker.html">Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/containerization/containerd.html"><code class="docutils literal notranslate"><span class="pre">containerd</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/simple-pipeline/index.html">Simple MLOps Pipeline</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/simple-pipeline/server.html">Server Setup &amp; Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/simple-pipeline/vpn.html">VPN Connectivity</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Data Science for Economics and Finance</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-24"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../fomc/index.html">Textual Analysis of FOMC contents</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-25"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../fomc/01_numerical_data.html">Preparing Numerical Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fomc/02_textual_data.html">Preparing Textual Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fomc/03_EDA_numericals1.html">EDA on Numerical Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fomc/03_EDA_numericals2.html">EDA on Numerical Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fomc/04_training_datasets.html">Create Training Datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fomc/05_features.html">Visualizing Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fomc/06_AutoML.html">Checking Baseline with AutoML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fomc/07_predict_sentiments.html">Predicting Sentiments of FOMC Corpus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fomc/08_EDA_sentiments1.html">EDA on Sentiments: Correlation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fomc/08_EDA_sentiments2.html">EDA on Sentiment Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fomc/09_visualize_features.html">Visualize Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fomc/10_monetary_shocks.html">Monetary Policy Shocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fomc/11_AutoML_with_tones.html">Predicting the next decisions with tones</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">ESG Ratings</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-26"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Preparing training datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="improve_datasets.html">Improving classification datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="train_classifiers.html">Training Classifiers for ESG Ratings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="build_news_corpus.html">Building <code class="docutils literal notranslate"><span class="pre">econ_news_kr</span></code> corpus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="predict_esg_classes.html">Predicting ESG Categories and Polarities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cross_validate_datasets.html">Cross validating datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prepare_datasets_for_labeling.html">Preparing active learning data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="all_in_one_pipeline.html">Putting them together in a pipeline</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../about/lecture-bot.html">LectureBot for ἐντελέχεια.άι</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://course.entelecheia.ai">course.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://research.entelecheia.ai">research.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/ds/esg-ratings/prepare_datasets.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/lectures/ds/esg-ratings/prepare_datasets.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Preparing training datasets</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fetch-the-labeled-dataset-from-the-labelstudio-server">Fetch the labeled dataset from the labelstudio server</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#snorkel-labelmodel">Snorkel LabelModel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-labeling-functions">Writing Labeling Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crowdworker-labeling-functions">Crowdworker labeling functions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-labelmodel-and-generate-probabilistic-labels">Train LabelModel And Generate Probabilistic Labels</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-a-dataset-using-the-data-generated-by-the-label-model">Build a dataset using the data generated by the label model</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="preparing-training-datasets">
+<h1>Preparing training datasets<a class="headerlink" href="#preparing-training-datasets" title="Permalink to this heading">#</a></h1>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ekorpkit</span> <span class="kn">import</span> <span class="n">eKonf</span>
+
+<span class="k">if</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">is_colab</span><span class="p">():</span>
+    <span class="n">eKonf</span><span class="o">.</span><span class="n">mount_google_drive</span><span class="p">()</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">set_workspace</span><span class="p">(</span>
+    <span class="n">workspace</span><span class="o">=</span><span class="s2">&quot;/workspace&quot;</span><span class="p">,</span> 
+    <span class="n">project</span><span class="o">=</span><span class="s2">&quot;ekorpkit-book/exmaples&quot;</span><span class="p">,</span> 
+    <span class="n">task</span><span class="o">=</span><span class="s2">&quot;esg&quot;</span><span class="p">,</span> 
+    <span class="n">log_level</span><span class="o">=</span><span class="s2">&quot;INFO&quot;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;version:&quot;</span><span class="p">,</span> <span class="n">ws</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;project_dir:&quot;</span><span class="p">,</span> <span class="n">ws</span><span class="o">.</span><span class="n">project_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Set environment variable EKORPKIT_DATA_ROOT=/workspace/data
+INFO:ekorpkit.base:Set environment variable CACHED_PATH_CACHE_ROOT=/workspace/.cache/cached_path
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>version: 0.1.40.post0.dev57
+project_dir: /workspace/projects/ekorpkit-book/exmaples
+time: 955 ms (started: 2022-12-16 04:03:41 +00:00)
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section id="fetch-the-labeled-dataset-from-the-labelstudio-server">
+<h2>Fetch the labeled dataset from the labelstudio server<a class="headerlink" href="#fetch-the-labeled-dataset-from-the-labelstudio-server" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ekorpkit.io.fetch.labelstudio</span> <span class="kn">import</span> <span class="n">LabelStudio</span>
+
+<span class="n">ls</span> <span class="o">=</span> <span class="n">LabelStudio</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 644 ms (started: 2022-12-16 04:04:13 +00:00)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">project_list</span> <span class="o">=</span> <span class="n">ls</span><span class="o">.</span><span class="n">list_projects</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13: ESG Topic Classification (Sep 2022)
+12: ESG Polarity Classification (Sep 2022)
+3: ESG Topic Classification
+2: ESG Polarity Classification
+time: 1.12 s (started: 2022-12-16 04:04:20 +00:00)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;esg_polarity_labels&quot;</span>
+<span class="n">esg_polarity_data</span> <span class="o">=</span> <span class="n">ls</span><span class="o">.</span><span class="n">export_annotations</span><span class="p">(</span><span class="n">project_id</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">esg_polarity_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">esg_polarity_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.io.fetch.labelstudio:fetching http://ekorpkit-labelstudio:8080/api/projects/12/export with {&#39;exportType&#39;: &#39;JSON&#39;} to /workspace/projects/ekorpkit-book/exmaples/esg/outputs/esg_polarity_labels/esg_polarity_labels(2)_annotations.json
+INFO:ekorpkit.io.fetch.labelstudio:/workspace/projects/ekorpkit-book/exmaples/esg/outputs/esg_polarity_labels/esg_polarity_labels(2)_annotations.json is downloaded
+INFO:ekorpkit.io.file:Saving dataframe to /workspace/projects/ekorpkit-book/exmaples/esg/outputs/esg_polarity_labels/esg_polarity_labels(2)_export.parquet
+INFO:ekorpkit.config:Saving config to /workspace/projects/ekorpkit-book/exmaples/esg/outputs/esg_polarity_labels/configs/esg_polarity_labels(2)_config.yaml
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1158, 6)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>text</th>
+      <th>annot_id</th>
+      <th>annotator</th>
+      <th>origin</th>
+      <th>labels</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>97756</td>
+      <td>세계 백신 생산의 60%를 담당한 인도가 자국 코로나19 확산 탓에 기능을 못하는 ...</td>
+      <td>20328</td>
+      <td>3</td>
+      <td>prediction</td>
+      <td>Neutral</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>97667</td>
+      <td>美서 한미 백신기업 파트너십 행사 개최 22일(현지시간) 미국 워싱턴 DC에서 열...</td>
+      <td>20327</td>
+      <td>3</td>
+      <td>prediction</td>
+      <td>Neutral</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>97650</td>
+      <td>[머니투데이 워싱턴=공동취재단 , 서울=이소은 기자] 삼성바이오로직스가 22일(이...</td>
+      <td>20326</td>
+      <td>3</td>
+      <td>prediction</td>
+      <td>Neutral</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>97627</td>
+      <td>영국표준협회 ISO22301 취득 2018년 1·2공장 국내 첫 인증후 최근 3공...</td>
+      <td>20325</td>
+      <td>3</td>
+      <td>prediction</td>
+      <td>Neutral</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>97593</td>
+      <td>경구용 치료제 2만 명분 이미 확보 식품의약품안전처가 경구용 코로나19 치료제(먹...</td>
+      <td>20324</td>
+      <td>3</td>
+      <td>prediction</td>
+      <td>Neutral</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 6.1 s (started: 2022-12-16 04:04:22 +00:00)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;esg_topic_labels&quot;</span>
+<span class="n">esg_topic_data</span> <span class="o">=</span> <span class="n">ls</span><span class="o">.</span><span class="n">export_annotations</span><span class="p">(</span><span class="n">project_id</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">esg_topic_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">esg_topic_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.io.fetch.labelstudio:fetching http://ekorpkit-labelstudio:8080/api/projects/13/export with {&#39;exportType&#39;: &#39;JSON&#39;} to /workspace/projects/ekorpkit-book/exmaples/esg/outputs/esg_topic_labels/esg_topic_labels(2)_annotations.json
+INFO:ekorpkit.io.fetch.labelstudio:/workspace/projects/ekorpkit-book/exmaples/esg/outputs/esg_topic_labels/esg_topic_labels(2)_annotations.json is downloaded
+INFO:ekorpkit.io.file:Saving dataframe to /workspace/projects/ekorpkit-book/exmaples/esg/outputs/esg_topic_labels/esg_topic_labels(2)_export.parquet
+INFO:ekorpkit.config:Saving config to /workspace/projects/ekorpkit-book/exmaples/esg/outputs/esg_topic_labels/configs/esg_topic_labels(2)_config.yaml
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(576, 6)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>text</th>
+      <th>annot_id</th>
+      <th>annotator</th>
+      <th>origin</th>
+      <th>labels</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>201831</td>
+      <td>지역&gt;충남 | 경제&gt;금융_재테크 | 지역&gt;울산 [머니투데이 구경민 기자] 미래에셋...</td>
+      <td>20337</td>
+      <td>1</td>
+      <td>prediction</td>
+      <td>S-사회공헌</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>201600</td>
+      <td>패밀리 오피스 분야 전락적 MOU 이창헌(앞줄 오른쪽) 한국M&amp;A거래소 회장과 류...</td>
+      <td>20336</td>
+      <td>1</td>
+      <td>prediction</td>
+      <td>UNKNOWN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>201319</td>
+      <td>01%)를 미래에셋증권과 이음프라이빗에쿼티(PE) 컨소시엄에 4500억원에 매각하기...</td>
+      <td>20335</td>
+      <td>1</td>
+      <td>prediction</td>
+      <td>UNKNOWN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>200829</td>
+      <td>다이렉트 IRP 운용·자산관리 수수료 전부 면제를 통한 비용부담 해소 은행 및 보...</td>
+      <td>20334</td>
+      <td>1</td>
+      <td>prediction</td>
+      <td>UNKNOWN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>199893</td>
+      <td>1999년 12월 자본금 500억원에 설립된 미래에셋증권은 약 20년 만에 200배...</td>
+      <td>20333</td>
+      <td>1</td>
+      <td>prediction</td>
+      <td>G-지배구조</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 3.42 s (started: 2022-12-16 04:04:28 +00:00)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="snorkel-labelmodel">
+<h2>Snorkel LabelModel<a class="headerlink" href="#snorkel-labelmodel" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ekorpkit.tasks.label.snorkel</span> <span class="kn">import</span> <span class="n">BaseSnorkel</span>
+
+<span class="n">snorkel</span> <span class="o">=</span> <span class="n">BaseSnorkel</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;esg_polarity_snorkel&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.config:Init batch - Batch name: esg_polarity_snorkel, Batch num: 2
+INFO:ekorpkit.config:Init batch - Batch name: esg_polarity_snorkel, Batch num: 2
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 640 ms (started: 2022-12-14 11:40:17 +00:00)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_file</span> <span class="o">=</span> <span class="s2">&quot;/workspace/projects/ekorpkit-book/exmaples/esg/data/outputs/esg_polarity_labels/esg_polarity_labels(1)_export.parquet&quot;</span>
+
+<span class="n">snorkel</span><span class="o">.</span><span class="n">load_datasets</span><span class="p">(</span><span class="n">data_files</span><span class="o">=</span><span class="n">data_file</span><span class="p">,</span> <span class="n">test_split_ratio</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">12345</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.io.file:Processing [1] files from [&#39;/workspace/projects/ekorpkit-book/exmaples/esg/data/outputs/esg_polarity_labels/esg_polarity_labels(1)_export.parquet&#39;]
+INFO:ekorpkit.io.file:Loading 1 dataframes from [&#39;/workspace/projects/ekorpkit-book/exmaples/esg/data/outputs/esg_polarity_labels/esg_polarity_labels(1)_export.parquet&#39;]
+INFO:ekorpkit.io.file:Loading data from /workspace/projects/ekorpkit-book/exmaples/esg/data/outputs/esg_polarity_labels/esg_polarity_labels(1)_export.parquet
+INFO:ekorpkit.datasets.config:Splitting the dataframe into train and test with ratio 0.2
+INFO:ekorpkit.datasets.config:Train data: (926, 7), Test data: (232, 7)
+INFO:ekorpkit.datasets.config:Shuffling the dataframe with seed 12345
+INFO:ekorpkit.datasets.config:Train data: (926, 7)
+INFO:ekorpkit.datasets.config:Test data: (232, 7)
+INFO:ekorpkit.io.file:Concatenating 2 dataframes
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 23.6 ms (started: 2022-12-14 11:40:18 +00:00)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="writing-labeling-functions">
+<h2>Writing Labeling Functions<a class="headerlink" href="#writing-labeling-functions" title="Permalink to this heading">#</a></h2>
+<p>Each crowdworker can be thought of as a single labeling function, as each worker labels a subset of data points, and may have errors or conflicting labels with other workers / labeling functions. Labeling fucntions will simply return the label the worker submitted for a given text, and abstain if they didn’t submit a label for it.</p>
+<section id="crowdworker-labeling-functions">
+<h3>Crowdworker labeling functions<a class="headerlink" href="#crowdworker-labeling-functions" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eKonf</span><span class="o">.</span><span class="n">viewsource</span><span class="p">(</span><span class="n">snorkel</span><span class="o">.</span><span class="n">compose_worker_lfs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    def compose_worker_lfs(self):
+        labels_by_annotator = self.data.groupby(self.columns.annotator)
+        worker_dicts = {}
+        for worker_id in labels_by_annotator.groups:
+            worker_df = labels_by_annotator.get_group(worker_id)
+            worker_dicts[worker_id] = dict(zip(worker_df.id, worker_df.classes))
+
+        log.info(f&quot;Number of workers: {len(worker_dicts)}&quot;)
+
+        def worker_lf(x, worker_dict):
+            return worker_dict.get(x.id, self.ABSTAIN)
+
+        def make_worker_lf(worker_id):
+            worker_dict = worker_dicts[worker_id]
+            name = f&quot;worker_{worker_id}&quot;
+            return LabelingFunction(
+                name, f=worker_lf, resources={&quot;worker_dict&quot;: worker_dict}
+            )
+
+        worker_lfs = [make_worker_lf(worker_id) for worker_id in worker_dicts]
+        self.__worker_lfs__ = worker_lfs
+        return worker_lfs
+
+time: 1.34 ms (started: 2022-12-13 10:56:35 +00:00)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">snorkel</span><span class="o">.</span><span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.io.file:Concatenating 2 dataframes
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>text</th>
+      <th>annot_id</th>
+      <th>annotator</th>
+      <th>origin</th>
+      <th>labels</th>
+      <th>classes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>99621</td>
+      <td>31일 김동관 한화솔루션 전략부문 대표는 P4G 기본세션 에너지부문 '더 푸르른 지...</td>
+      <td>19868</td>
+      <td>3</td>
+      <td>prediction</td>
+      <td>Neutral</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>90918</td>
+      <td>김 변호사는 2001년 LG화학이 화학분야 중간지주회사인 LG CI를 인적 분할할 ...</td>
+      <td>18929</td>
+      <td>2</td>
+      <td>prediction</td>
+      <td>Neutral</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>108056</td>
+      <td>[머니투데이 김성은 기자] 한화솔루션의 그린에너지 사업부문인 한화큐셀이 글로벌 기...</td>
+      <td>19926</td>
+      <td>3</td>
+      <td>prediction</td>
+      <td>Positive</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>90740</td>
+      <td>2차전지 분야에서도 LG화학(현재는 LG에너지솔루션으로 분사)의 법인세 부담률은 ...</td>
+      <td>18927</td>
+      <td>2</td>
+      <td>prediction</td>
+      <td>Neutral</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>93872</td>
+      <td>김동관, P4G 정상회의 기조연설에서 기업 역할 강조 [아시아경제 황윤주 기자] ...</td>
+      <td>19823</td>
+      <td>3</td>
+      <td>prediction</td>
+      <td>Positive</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1153</th>
+      <td>102985</td>
+      <td>MIT 등 주요 10여개 대학 석·박사 및 학부생 대상 신학철 LG화학(05191...</td>
+      <td>19106</td>
+      <td>2</td>
+      <td>prediction</td>
+      <td>Neutral</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1154</th>
+      <td>108198</td>
+      <td>18일 금융투자 업계에 따르면 LG화학은 17일 오후 4시 주주와 투자자를 대상으로...</td>
+      <td>19198</td>
+      <td>2</td>
+      <td>prediction</td>
+      <td>Neutral</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1155</th>
+      <td>89454</td>
+      <td>LG화학은 오는 16일까지 중국 선전(深圳)에서 열리는 '차이나플라스 2021'에...</td>
+      <td>18904</td>
+      <td>2</td>
+      <td>prediction</td>
+      <td>Positive</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1156</th>
+      <td>128683</td>
+      <td>[아시아경제 황윤주 기자] LG화학의 유럽 폴란드 공장이 지속가능경영의 모범사례로...</td>
+      <td>19628</td>
+      <td>2</td>
+      <td>prediction</td>
+      <td>Positive</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1157</th>
+      <td>109789</td>
+      <td>한화솔루션은 오는 7월부터 2년 간 총 48t(톤)의 수소를 공급한다  또 이후 충...</td>
+      <td>19939</td>
+      <td>3</td>
+      <td>prediction</td>
+      <td>Positive</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+<p>1158 rows × 7 columns</p>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 8.95 ms (started: 2022-12-14 11:41:05 +00:00)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">worker_lfs</span> <span class="o">=</span> <span class="n">snorkel</span><span class="o">.</span><span class="n">compose_worker_lfs</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.tasks.label.snorkel:Number of workers: 3
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 3.54 ms (started: 2022-12-13 10:56:38 +00:00)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">snorkel</span><span class="o">.</span><span class="n">apply_worker_lfs</span><span class="p">(</span><span class="n">worker_lfs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.tasks.label.snorkel:Applying worker lfs to train data
+100%|██████████| 926/926 [00:00&lt;00:00, 34148.60it/s]
+INFO:ekorpkit.tasks.label.snorkel:Applying worker lfs to test data
+100%|██████████| 232/232 [00:00&lt;00:00, 33436.83it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 40.2 ms (started: 2022-12-13 10:56:39 +00:00)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary</span> <span class="o">=</span> <span class="n">snorkel</span><span class="o">.</span><span class="n">lf_summary</span><span class="p">()</span>
+<span class="n">summary</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.tasks.label.snorkel:Training set coverage:  100.0%
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>j</th>
+      <th>Polarity</th>
+      <th>Coverage</th>
+      <th>Overlaps</th>
+      <th>Conflicts</th>
+      <th>Correct</th>
+      <th>Incorrect</th>
+      <th>Emp. Acc.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>worker_1</th>
+      <td>0</td>
+      <td>[0, 1, 2]</td>
+      <td>0.012959</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>12</td>
+      <td>0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>worker_2</th>
+      <td>1</td>
+      <td>[0, 1, 2]</td>
+      <td>0.588553</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>545</td>
+      <td>0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>worker_3</th>
+      <td>2</td>
+      <td>[0, 1, 2]</td>
+      <td>0.398488</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>369</td>
+      <td>0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 13.8 ms (started: 2022-12-13 10:56:40 +00:00)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="train-labelmodel-and-generate-probabilistic-labels">
+<h2>Train LabelModel And Generate Probabilistic Labels<a class="headerlink" href="#train-labelmodel-and-generate-probabilistic-labels" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">snorkel</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 100/100 [00:01&lt;00:00, 86.08epoch/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 1.19 s (started: 2022-12-13 10:56:43 +00:00)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">snorkel</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LabelModel Accuracy for train: 1.000
+LabelModel Accuracy for test: 1.000
+time: 5.52 ms (started: 2022-12-13 10:56:45 +00:00)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preds</span> <span class="o">=</span> <span class="n">snorkel</span><span class="o">.</span><span class="n">predict</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 1158/1158 [00:00&lt;00:00, 37554.83it/s]
+INFO:ekorpkit.io.file:Saving dataframe to /workspace/projects/ekorpkit-book/exmaples/esg/data/outputs/esg_polarity_snorkel/esg_polarity_snorkel(1)_preds.parquet
+INFO:ekorpkit.config:Saving config to /workspace/projects/ekorpkit-book/exmaples/esg/data/outputs/esg_polarity_snorkel/configs/esg_polarity_snorkel(1)_config.yaml
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 581 ms (started: 2022-12-13 10:56:48 +00:00)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">snorkel</span><span class="o">.</span><span class="n">save_preds</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="s2">&quot;labels&quot;</span><span class="p">])</span>
+<span class="n">eKonf</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s2">&quot;esg_polarity_snorkel(0)_preds.parquet&quot;</span><span class="p">,</span> <span class="n">snorkel</span><span class="o">.</span><span class="n">batch_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.io.file:Saving dataframe to /workspace/projects/ekorpkit-book/exmaples/esg/data/outputs/esg_polarity_snorkel/esg_polarity_snorkel(1)_preds.parquet
+INFO:ekorpkit.io.file:Processing [1] files from [&#39;esg_polarity_snorkel(0)_preds.parquet&#39;]
+INFO:ekorpkit.io.file:Loading 1 dataframes from [&#39;/workspace/projects/ekorpkit-book/exmaples/esg/data/outputs/esg_polarity_snorkel/esg_polarity_snorkel(0)_preds.parquet&#39;]
+INFO:ekorpkit.io.file:Loading data from /workspace/projects/ekorpkit-book/exmaples/esg/data/outputs/esg_polarity_snorkel/esg_polarity_snorkel(0)_preds.parquet
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>text</th>
+      <th>labels</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>97756</td>
+      <td>세계 백신 생산의 60%를 담당한 인도가 자국 코로나19 확산 탓에 기능을 못하는 ...</td>
+      <td>Neutral</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>97667</td>
+      <td>美서 한미 백신기업 파트너십 행사 개최 22일(현지시간) 미국 워싱턴 DC에서 열...</td>
+      <td>Neutral</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>97650</td>
+      <td>[머니투데이 워싱턴=공동취재단 , 서울=이소은 기자] 삼성바이오로직스가 22일(이...</td>
+      <td>Neutral</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>97627</td>
+      <td>영국표준협회 ISO22301 취득 2018년 1·2공장 국내 첫 인증후 최근 3공...</td>
+      <td>Neutral</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>97593</td>
+      <td>경구용 치료제 2만 명분 이미 확보 식품의약품안전처가 경구용 코로나19 치료제(먹...</td>
+      <td>Neutral</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1153</th>
+      <td>88550</td>
+      <td>산업통상자원부는 현대글로비스와 LG화학의 전기차 택시에 대한 배터리 대여사업을 승인...</td>
+      <td>Neutral</td>
+    </tr>
+    <tr>
+      <th>1154</th>
+      <td>88439</td>
+      <td>[헤럴드경제 정세희 기자]신학철 LG화학 부회장은 “동시대를 앞서나가는 디지털 전...</td>
+      <td>Positive</td>
+    </tr>
+    <tr>
+      <th>1155</th>
+      <td>88413</td>
+      <td>갈등의 골이 깊어지면서 '시계제로' 상태에 빠진 아시아나항공 인수전이 무산될 가능성...</td>
+      <td>Negative</td>
+    </tr>
+    <tr>
+      <th>1156</th>
+      <td>88407</td>
+      <td>그간 경남도와 창원시는 주력산업인 제조업의 성장이 둔화하면서 어려운 시기를 겪었으나...</td>
+      <td>Positive</td>
+    </tr>
+    <tr>
+      <th>1157</th>
+      <td>88382</td>
+      <td>이와 함께 지난 7일 한샘은 삼성전자와 전략적 사업협력 업무협약(MOU)을 체결한...</td>
+      <td>Neutral</td>
+    </tr>
+  </tbody>
+</table>
+<p>1158 rows × 3 columns</p>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 140 ms (started: 2022-12-13 10:56:54 +00:00)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="build-a-dataset-using-the-data-generated-by-the-label-model">
+<h2>Build a dataset using the data generated by the label model<a class="headerlink" href="#build-a-dataset-using-the-data-generated-by-the-label-model" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;dataset=dataset_build&quot;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;esg_polarity_kr&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data_file</span> <span class="o">=</span> <span class="s2">&quot;esg_polarity_snorkel_data.parquet&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">force</span><span class="o">.</span><span class="n">build</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">split_sampling</span><span class="o">.</span><span class="n">stratify_on</span> <span class="o">=</span> <span class="s2">&quot;labels&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">split_sampling</span><span class="o">.</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">123</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">split_sampling</span><span class="o">.</span><span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">split_sampling</span><span class="o">.</span><span class="n">dev_size</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">reset_index</span><span class="o">.</span><span class="n">drop_index</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">esg_polarity_ds</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+<span class="n">esg_polarity_ds</span><span class="o">.</span><span class="n">persist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.pipelines.pipe:Applying pipeline: OrderedDict([(&#39;load_dataframe&#39;, &#39;load_dataframe&#39;), (&#39;reset_index&#39;, &#39;reset_index&#39;), (&#39;split_sampling&#39;, &#39;split_sampling&#39;)])
+INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function load_dataframe at 0x7f553803bf70&gt;)
+INFO:ekorpkit.io.file:Processing [1] files from [&#39;esg_polarity_snorkel_data.parquet&#39;]
+INFO:ekorpkit.io.file:Loading 1 dataframes from [&#39;../data/esg/esg_polarity_snorkel_data.parquet&#39;]
+INFO:ekorpkit.io.file:Loading data from ../data/esg/esg_polarity_snorkel_data.parquet
+INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function reset_index at 0x7f553803b1f0&gt;)
+INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function split_sampling at 0x7f5538032dc0&gt;)
+INFO:ekorpkit.io.file:Saving dataframe to ../data/esg/esg_polarity_kr/esg_polarity_kr-train.parquet
+INFO:ekorpkit.io.file:Saving dataframe to ../data/esg/esg_polarity_kr/esg_polarity_kr-test.parquet
+INFO:ekorpkit.io.file:Saving dataframe to ../data/esg/esg_polarity_kr/esg_polarity_kr-dev.parquet
+INFO:ekorpkit.datasets.base:Dataset esg_polarity_kr built with 13616 rows
+INFO:ekorpkit.io.file:Processing [1] files from [&#39;esg_polarity_kr-train.parquet&#39;]
+INFO:ekorpkit.io.file:Loading 1 dataframes from [&#39;../data/esg/esg_polarity_kr/esg_polarity_kr-train.parquet&#39;]
+INFO:ekorpkit.io.file:Loading data from ../data/esg/esg_polarity_kr/esg_polarity_kr-train.parquet
+INFO:ekorpkit.info.column:index: index, index of data: None, columns: [&#39;id&#39;, &#39;text&#39;, &#39;labels&#39;], id: [&#39;id&#39;]
+INFO:ekorpkit.info.column:Adding id [split] to [&#39;id&#39;]
+INFO:ekorpkit.info.column:Added id [split], now [&#39;id&#39;, &#39;split&#39;]
+INFO:ekorpkit.info.column:Added a column [split] with value [train]
+INFO:ekorpkit.io.file:Processing [1] files from [&#39;esg_polarity_kr-dev.parquet&#39;]
+INFO:ekorpkit.io.file:Loading 1 dataframes from [&#39;../data/esg/esg_polarity_kr/esg_polarity_kr-dev.parquet&#39;]
+INFO:ekorpkit.io.file:Loading data from ../data/esg/esg_polarity_kr/esg_polarity_kr-dev.parquet
+INFO:ekorpkit.info.column:Added a column [split] with value [dev]
+INFO:ekorpkit.io.file:Processing [1] files from [&#39;esg_polarity_kr-test.parquet&#39;]
+INFO:ekorpkit.io.file:Loading 1 dataframes from [&#39;../data/esg/esg_polarity_kr/esg_polarity_kr-test.parquet&#39;]
+INFO:ekorpkit.io.file:Loading data from ../data/esg/esg_polarity_kr/esg_polarity_kr-test.parquet
+INFO:ekorpkit.info.column:Added a column [split] with value [test]
+INFO:ekorpkit.base:Using batcher with minibatch size: 38
+INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 38  procs: 230  input_split: False  merge_output: True  len(data): 8713 len(args): 5
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "335249fda7564a7e9cca6452448fa267", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.info.stat: &gt;&gt; elapsed time to calculate statistics: 0:00:00.276040
+INFO:ekorpkit.base:Using batcher with minibatch size: 10
+INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 10  procs: 230  input_split: False  merge_output: True  len(data): 2179 len(args): 5
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "e473ff6e5be34d769676053eb77e604e", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.info.stat: &gt;&gt; elapsed time to calculate statistics: 0:00:00.250046
+INFO:ekorpkit.base:Using batcher with minibatch size: 12
+INFO:ekorpkit.utils.batch.batcher: backend: joblib  minibatch_size: 12  procs: 230  input_split: False  merge_output: True  len(data): 2724 len(args): 5
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "1f41984c90d144a39c58f0ffe3c34fd3", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.info.stat: &gt;&gt; elapsed time to calculate statistics: 0:00:00.253649
+INFO:ekorpkit.io.file:Saving dataframe to ../data/esg/esg_polarity_kr/esg_polarity_kr-train.parquet
+INFO:ekorpkit.io.file:Saving dataframe to ../data/esg/esg_polarity_kr/esg_polarity_kr-dev.parquet
+INFO:ekorpkit.io.file:Saving dataframe to ../data/esg/esg_polarity_kr/esg_polarity_kr-test.parquet
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/lecture",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lectures/ds/esg-ratings"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">ESG Ratings</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="improve_datasets.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Improving classification datasets</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fetch-the-labeled-dataset-from-the-labelstudio-server">Fetch the labeled dataset from the labelstudio server</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#snorkel-labelmodel">Snorkel LabelModel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-labeling-functions">Writing Labeling Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crowdworker-labeling-functions">Crowdworker labeling functions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-labelmodel-and-generate-probabilistic-labels">Train LabelModel And Generate Probabilistic Labels</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-a-dataset-using-the-data-generated-by-the-label-model">Build a dataset using the data generated by the label model</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
