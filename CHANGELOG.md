@@ -1,5 +1,17 @@
 <!--next-version-placeholder-->
 
+## v0.4.0 (2023-05-11)
+### Feature
+* **ds:** Add esg ratings ([`3f309bd`](https://github.com/entelecheia/lecture/commit/3f309bda8e396e4c6fcf494a9a29010d5af33bf2))
+* **ds:** Add fomc ([`e978ec3`](https://github.com/entelecheia/lecture/commit/e978ec37b908c41128e8e3b6f530145283baf637))
+
+### Fix
+* **toc:** Rearrange links in _toc.yml file ([`68a8f6e`](https://github.com/entelecheia/lecture/commit/68a8f6e79dd0ab452a7f875440188573485e9979))
+
+### Documentation
+* **toc:** Add sections to mlops/simple-pipeline ([`f0d6b1f`](https://github.com/entelecheia/lecture/commit/f0d6b1f3c7588b3bf65abb8b714a6189590edf39))
+* **mlops:** Add server, vpn tutorial ([`225e7f5`](https://github.com/entelecheia/lecture/commit/225e7f50fc808ad2e652201ae27477bc84159531))
+
 ## v0.3.9 (2023-05-07)
 ### Fix
 * **config:** Update .copier-config.yaml and pyproject.toml files ([`df790f4`](https://github.com/entelecheia/lecture/commit/df790f46f8c7e9cafd87c6ab6cf145f02034e2e1))
