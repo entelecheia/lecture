@@ -1,5 +1,12 @@
 # Tokenization
 
+```{image} figs/entelecheia_puzzle_pieces.png
+:alt: tokenization
+:class: bg-primary mb-1
+:width: 80%
+:align: center
+```
+
 Tokenization is a crucial first step in the NLP pipeline. It determines how the input text is represented to the model, which can significantly impact the model's performance. Understanding the different methods of tokenization and their strengths and weaknesses can help in choosing the right approach for a given task. Whether it's word, character, or subword tokenization, the goal is to transform the text into a format that can be effectively processed by machine learning algorithms.
 
 ## Introduction
