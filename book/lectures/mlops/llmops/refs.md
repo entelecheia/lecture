@@ -1,0 +1,12 @@
+- https://huyenchip.com/2023/04/11/llm-engineering.html
+- https://wandb.ai/iamleonie/Articles/reports/Understanding-LLMOps-Large-Language-Model-Operations--Vmlldzo0MDgyMDc2
+- https://clear.ml/blog/use-ai-to-train-ai-prompt-learning-using-openai-api-and-clearml/
+- https://systemsdigest.com/videos/llmops-setting-active-learning-langchain-and-clearml
+- https://github.com/thepycoder/full_clearml_overview
+- https://cyces.co/blog/llmops-explained
+- https://github.com/KennethanCeyer/awesome-llmops
+- https://github.com/tensorchord/Awesome-LLMOps
+- https://hackernoon.com/embracing-llm-ops-the-next-stage-of-devops-for-large-language-models
+- https://blog.zenml.io/langchain-slackbot/
+- https://www.databricks.com/blog/2023/04/18/introducing-mlflow-23-enhanced-native-llm-support-and-new-features.html
+- https://www.analyticsvidhya.com/blog/2023/05/deploying-large-language-models-in-production-llmops-with-mlflow/
