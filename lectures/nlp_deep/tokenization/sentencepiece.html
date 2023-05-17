@@ -413,55 +413,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/nlp_deep/tokenization/sentencepiece.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch onColab"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img src="../../../_static/images/logo_colab.png">
-  </span>
-<span class="btn__text-container">Colab</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="initThebeSBT()"
-  class="btn btn-sm btn-launch-thebe dropdown-item"
-  title="Launch Thebe"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="btn__text-container">Live Code</span>
-</button>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -470,7 +421,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../../_sources/lectures/nlp_deep/tokenization/sentencepiece.ipynb" target="_blank"
+      <li><a href="../../../_sources/lectures/nlp_deep/tokenization/sentencepiece.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -480,7 +431,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -563,18 +514,16 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-sentencepiece">What is SentencePiece?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-highlights">Technical highlights</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparisons-with-other-implementations">Comparisons with other implementations</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-highlights">Technical highlights</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#high-level-differences-between-sentencepiece-and-other-tokenizers">High level differences between SentencePiece and other tokenizers</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-number-of-unique-tokens-is-predetermined">The number of unique tokens is predetermined</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trains-from-raw-sentences">Trains from raw sentences</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#whitespace-is-treated-as-a-basic-symbol">Whitespace is treated as a basic symbol</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predetermined-number-of-unique-tokens">Predetermined Number of Unique Tokens</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-from-raw-sentences">Training from Raw Sentences</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#whitespace-as-a-basic-symbol">Whitespace as a Basic Symbol</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subword-regularization-and-bpe-dropout">Subword regularization and BPE-dropout</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subword-regularization">Subword Regularization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subword-regularization-in-nmt">Subword Regularization in NMT</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a></li>
 </ul>
             </nav>
         </div>
@@ -591,34 +540,27 @@ document.write(`
 <a class="bg-primary mb-1 reference internal image-reference" href="../../../_images/entelecheia_alphabets.png"><img alt="alphabets" class="bg-primary mb-1 align-center" src="../../../_images/entelecheia_alphabets.png" style="width: 80%;" /></a>
 <section id="what-is-sentencepiece">
 <h2>What is SentencePiece?<a class="headerlink" href="#what-is-sentencepiece" title="Permalink to this heading">#</a></h2>
+<p>SentencePiece is a unique approach towards tokenization, which is a crucial preprocessing step in Natural Language Processing (NLP). Unlike traditional tokenizers that primarily focus on space-based or syntax-based token splitting, SentencePiece takes an unsupervised approach, which means it doesn’t rely on pre-specified rules. It’s mainly used in the realm of Neural Network-based text generation, where it’s necessary to predefine the vocabulary size before training the model.</p>
+<p>The core concept behind SentencePiece is the implementation of “subword units.” This concept is a cornerstone in the tokenization strategies like Byte-Pair-Encoding (BPE) <span id="id1">[<a class="reference internal" href="../../../about/index.html#id17" title="Rico Sennrich, Barry Haddow, and Alexandra Birch. Neural machine translation of rare words with subword units. In Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), 1715–1725. Berlin, Germany, August 2016. Association for Computational Linguistics. URL: https://aclanthology.org/P16-1162, doi:10.18653/v1/P16-1162.">Sennrich <em>et al.</em>, 2016</a>]</span> and the Unigram Language Model <span id="id2">[<a class="reference internal" href="../../../about/index.html#id70" title="Taku Kudo. Subword regularization: improving neural network translation models with multiple subword candidates. arXiv preprint arXiv:1804.10959, 2018.">Kudo, 2018</a>]</span>.</p>
 <ul class="simple">
-<li><p>SentencePiece is an unsupervised text tokenizer and detokenizer mainly for Neural Network-based text generation systems where the vocabulary size is predetermined prior to the neural model training.</p></li>
-<li><p>SentencePiece implements <strong>subword units</strong> (e.g., <strong>byte-pair-encoding (BPE)</strong> [<a class="reference external" href="https://www.aclweb.org/anthology/P16-1162">Sennrich et al.</a>]) and <strong>unigram language model</strong> [<a class="reference external" href="https://arxiv.org/abs/1804.10959">Kudo.</a>])
-with the extension of direct training from raw sentences.</p></li>
-<li><p>SentencePiece is a pure end-to-end system that does not depend on language-specific pre/postprocessing.</p></li>
-<li><p>SentencePiece is a general-purpose tokenizer that can be used for any language.</p></li>
+<li><p>BPE is a subword tokenization method that iteratively merges frequent pairs of characters. By splitting words into subwords, BPE allows the sharing of common parts among words, e.g., ‘apple’ can be split into ‘ap-’ and ‘-ple’, where ‘-ple’ could be a common subword in words like ‘example’, ‘simple’, etc. This reduces the vocabulary size and allows the model to handle unknown words better.</p></li>
+<li><p>The Unigram Language Model is another subword tokenization method that uses a probabilistic model to select the best subword. It proposes several segmentations of the input sentence and chooses the most probable one.</p></li>
 </ul>
-<p>To be surprised, SentencePiece is not a tokenizer itself, but a tool to train a tokenizer.</p>
-<ul class="simple">
-<li><p>It is a method to select the best subword units from the corpus optimizing the tokenization process.</p></li>
-<li><p>It implements the Subword Regularization algorithm.</p></li>
-</ul>
+<p>SentencePiece uniquely combines these two strategies and provides an extended method for training these models directly from raw sentences. This is a significant shift from other tokenizers that often require language-specific preprocessing.</p>
+<p>In a nutshell, SentencePiece can be considered not as a tokenizer, but as a tool to train the tokenizer itself. It aims to optimize the selection of the most beneficial subword units from the corpus. Additionally, SentencePiece implements the Subword Regularization algorithm, which introduces variability in the tokenization process to make the model more robust.</p>
+<p>Finally, SentencePiece is a general-purpose tokenizer, meaning it doesn’t have any specific language dependencies and can be used for any language, making it extremely versatile and valuable for multilingual NLP tasks.</p>
 </section>
 <section id="technical-highlights">
 <h2>Technical highlights<a class="headerlink" href="#technical-highlights" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p><strong>Purely data driven</strong>: SentencePiece trains tokenization and detokenization
-models from sentences. Pre-tokenization (<a class="reference external" href="https://github.com/moses-smt/mosesdecoder/blob/master/scripts/tokenizer/tokenizer.perl">Moses tokenizer</a>/<a class="reference external" href="http://taku910.github.io/mecab/">MeCab</a>/<a class="reference external" href="http://www.phontron.com/kytea/">KyTea</a>) is not always required.</p></li>
-<li><p><strong>Language independent</strong>: SentencePiece treats the sentences just as sequences of Unicode characters. There is no language-dependent logic.</p></li>
-<li><p><strong>Multiple subword algorithms</strong>: <strong>BPE</strong> [<a class="reference external" href="https://www.aclweb.org/anthology/P16-1162">Sennrich et al.</a>] and <strong>unigram language model</strong> [<a class="reference external" href="https://arxiv.org/abs/1804.10959">Kudo.</a>] are supported.</p></li>
-<li><p><strong>Subword regularization</strong>: SentencePiece implements subword sampling for <a class="reference external" href="https://arxiv.org/abs/1804.10959">subword regularization</a> and <a class="reference external" href="https://arxiv.org/abs/1910.13267">BPE-dropout</a> which help to improve the robustness and accuracy of NMT models.</p></li>
-<li><p><strong>Fast and lightweight</strong>: Segmentation speed is around 50k sentences/sec, and memory footprint is around 6MB.</p></li>
-<li><p><strong>Self-contained</strong>: The same tokenization/detokenization is obtained as long as the same model file is used.</p></li>
-<li><p><strong>Direct vocabulary id generation</strong>: SentencePiece manages vocabulary to id mapping and can directly generate vocabulary id sequences from raw sentences.</p></li>
-<li><p><strong>NFKC-based normalization</strong>: SentencePiece performs NFKC-based text normalization.</p></li>
-</ul>
-<section id="comparisons-with-other-implementations">
-<h3>Comparisons with other implementations<a class="headerlink" href="#comparisons-with-other-implementations" title="Permalink to this heading">#</a></h3>
+<p><strong>Purely Data-Driven</strong>: SentencePiece operates by training tokenization and detokenization models directly from the input sentences. This makes it an end-to-end system, which eliminates the need for pre-tokenization. Pre-tokenization typically involves the use of tools like the Moses tokenizer, MeCab, or KyTea. This data-driven approach simplifies the tokenization process and reduces the potential for errors associated with manual, rule-based tokenization.</p>
+<p><strong>Language Independent</strong>: SentencePiece does not incorporate any language-specific logic. It treats input sentences purely as sequences of Unicode characters. This feature makes SentencePiece a versatile tool for tokenization, as it can handle text data in any language.</p>
+<p><strong>Multiple Subword Algorithms</strong>: SentencePiece supports both Byte Pair Encoding (BPE) and unigram language model algorithms for subword tokenization. BPE is a popular method that merges the most frequent pair of characters iteratively. The unigram language model, on the other hand, is a probabilistic model that chooses the most probable segmentation of the input sentence.</p>
+<p><strong>Subword Regularization</strong>: SentencePiece incorporates subword sampling for subword regularization and BPE-dropout. Subword regularization is a technique that introduces randomness in the choice of subwords, which helps improve the robustness and accuracy of Neural Machine Translation (NMT) models. BPE-dropout is a variant of this, specifically designed for BPE.</p>
+<p><strong>Fast and Lightweight</strong>: SentencePiece is designed to be both efficient and light on resources. It can process around 50,000 sentences per second and only requires about 6MB of memory, making it a suitable choice for large-scale language processing tasks.</p>
+<p><strong>Self-Contained</strong>: SentencePiece provides a self-contained tokenization and detokenization system. This means that as long as the same model file is used, the system will consistently produce the same tokenization and detokenization output. This consistency is crucial in machine learning and NLP projects.</p>
+<p><strong>Direct Vocabulary ID Generation</strong>: In addition to tokenizing text, SentencePiece can also map vocabulary to specific IDs, generating sequences of these IDs directly from raw sentences. This built-in functionality can streamline the processing pipeline by eliminating the need for separate vocabulary-to-ID mapping steps.</p>
+<p><strong>NFKC-based Normalization</strong>: SentencePiece performs text normalization based on NFKC (Normalization Form KC: Compatibility Composition). NFKC is a Unicode normalization method that transforms different representations of equivalent text into a single, standardized form. This normalization is crucial for ensuring consistency and reducing complexity in text data.</p>
+<p><strong>Comparisons with other implementations</strong></p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="text-left head"><p>Feature</p></th>
@@ -658,10 +600,10 @@ models from sentences. Pre-tokenization (<a class="reference external" href="htt
 <td class="text-center"><p>Yes</p></td>
 <td class="text-center"><p>Yes</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>Customizable normalization (e.g., NFKC)[Yes</p></td>
+<tr class="row-even"><td class="text-left"><p>Customizable normalization (e.g., NFKC)</p></td>
+<td class="text-center"><p>Yes</p></td>
 <td class="text-center"><p>No</p></td>
 <td class="text-center"><p>N/A</p></td>
-<td class="text-center"><p></p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p>Direct id generation</p></td>
 <td class="text-center"><p>Yes</p></td>
@@ -672,32 +614,20 @@ models from sentences. Pre-tokenization (<a class="reference external" href="htt
 </table>
 <p>Note that BPE algorithm used in WordPiece is slightly different from the original BPE.</p>
 </section>
-</section>
 <section id="high-level-differences-between-sentencepiece-and-other-tokenizers">
 <h2>High level differences between SentencePiece and other tokenizers<a class="headerlink" href="#high-level-differences-between-sentencepiece-and-other-tokenizers" title="Permalink to this heading">#</a></h2>
-<section id="the-number-of-unique-tokens-is-predetermined">
-<h3>The number of unique tokens is predetermined<a class="headerlink" href="#the-number-of-unique-tokens-is-predetermined" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Neural Machine Translation models typically operate with a fixed vocabulary.</p></li>
-<li><p>Unlike most unsupervised word segmentation algorithms, which assume an infinite vocabulary, SentencePiece trains the segmentation model such that the final vocabulary size is fixed, e.g., 8k, 16k, or 32k.</p></li>
-</ul>
-<p>Note that SentencePiece specifies the final vocabulary size for training, which is different from
-<a class="reference external" href="https://github.com/rsennrich/subword-nmt">subword-nmt</a> that uses the number of merge operations.
-The number of merge operations is a BPE-specific parameter and not applicable to other segmentation algorithms, including unigram, word and character.</p>
+<section id="predetermined-number-of-unique-tokens">
+<h3>Predetermined Number of Unique Tokens<a class="headerlink" href="#predetermined-number-of-unique-tokens" title="Permalink to this heading">#</a></h3>
+<p>Unlike most unsupervised word segmentation algorithms, which assume an infinite vocabulary, SentencePiece operates with a predetermined, fixed vocabulary size. This characteristic aligns well with Neural Machine Translation (NMT) models that typically work with a fixed vocabulary. For instance, SentencePiece’s final vocabulary size might be 8k, 16k, or 32k, which is decided before training. It’s worth noting that SentencePiece’s approach differs from tools like subword-nmt, which use the number of merge operations, a parameter specific to BPE and not applicable to other segmentation algorithms like unigram, word, and character.</p>
 </section>
-<section id="trains-from-raw-sentences">
-<h3>Trains from raw sentences<a class="headerlink" href="#trains-from-raw-sentences" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Previous sub-word implementations assume that the input sentences are pre-tokenized.</p></li>
-<li><p>This constraint was required for efficient training, but makes the preprocessing complicated as we have to run language dependent tokenizers in advance.</p></li>
-<li><p>The implementation of SentencePiece is fast enough to train the model from raw sentences.</p></li>
-<li><p>This is useful for training the tokenizer and detokenizer for Chinese and Japanese where no explicit spaces exist between words.</p></li>
-</ul>
+<section id="training-from-raw-sentences">
+<h3>Training from Raw Sentences<a class="headerlink" href="#training-from-raw-sentences" title="Permalink to this heading">#</a></h3>
+<p>Unlike many previous subword implementations that require pre-tokenized input sentences for efficient training, SentencePiece can train directly from raw sentences. This capability simplifies the preprocessing stage, eliminating the need for running language-specific tokenizers beforehand. This feature is especially valuable for languages like Chinese and Japanese, where there are no explicit spaces between words.</p>
 </section>
-<section id="whitespace-is-treated-as-a-basic-symbol">
-<h3>Whitespace is treated as a basic symbol<a class="headerlink" href="#whitespace-is-treated-as-a-basic-symbol" title="Permalink to this heading">#</a></h3>
+<section id="whitespace-as-a-basic-symbol">
+<h3>Whitespace as a Basic Symbol<a class="headerlink" href="#whitespace-as-a-basic-symbol" title="Permalink to this heading">#</a></h3>
+<p>SentencePiece treats the input text as a sequence of Unicode characters, including whitespace as a normal symbol. This treatment is crucial for achieving a reversible conversion between the original input and tokenized sequence. To make this possible, SentencePiece first substitutes whitespace with a meta symbol “▁” (U+2581). After segmenting the text into smaller pieces, the whitespace can be restored, allowing for unambiguous detokenization. This feature makes SentencePiece language-agnostic in terms of detokenization.</p>
 <ul>
-<li><p>The first step of Natural Language processing is text tokenization.</p></li>
 <li><p>For example, a standard English tokenizer would segment the text “Hello world.” into the following three tokens.</p>
 <blockquote>
 <div><p>[Hello] [World] [.]</p>
@@ -706,8 +636,6 @@ The number of merge operations is a BPE-specific parameter and not applicable to
 <li><p>One observation is that the original input and tokenized sequence are <strong>NOT reversibly convertible</strong>.</p></li>
 <li><p>For instance, the information that is no space between “World” and “.” is dropped from the tokenized sequence, since e.g., <code class="docutils literal notranslate"><span class="pre">Tokenize(“World.”)</span> <span class="pre">==</span> <span class="pre">Tokenize(“World</span> <span class="pre">.”)</span></code></p></li>
 <li><p>SentencePiece treats the input text just as a sequence of Unicode characters. Whitespace is also handled as a normal symbol.</p></li>
-</ul>
-<ul>
 <li><p>To handle the whitespace as a basic token explicitly, SentencePiece first escapes the whitespace with a meta symbol “▁” (U+2581) as follows.</p>
 <blockquote>
 <div><p>Hello▁World.</p>
@@ -718,12 +646,11 @@ The number of merge operations is a BPE-specific parameter and not applicable to
 <div><p>[Hello] [▁Wor] [ld] [.]</p>
 </div></blockquote>
 </li>
-<li><p>Since the whitespace is preserved in the segmented text, we can detokenize the text without any ambiguities.</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">detokenized</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pieces</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;▁&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
+<li><p>Since the whitespace is preserved in the segmented text, we can detokenize the text without any ambiguities.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">detokenized</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pieces</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;▁&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<ul class="simple">
+</li>
 <li><p>This feature makes it possible to perform detokenization without relying on language-specific resources.</p></li>
 </ul>
 <p>Note that we cannot apply the same lossless conversions when splitting the sentence with standard word segmenters, since they treat the whitespace as a special symbol. Tokenized sequences do not preserve the necessary information to restore the original sentence.</p>
@@ -734,79 +661,112 @@ The number of merge operations is a BPE-specific parameter and not applicable to
 </section>
 <section id="subword-regularization-and-bpe-dropout">
 <h3>Subword regularization and BPE-dropout<a class="headerlink" href="#subword-regularization-and-bpe-dropout" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Subword regularization [<a class="reference external" href="https://arxiv.org/abs/1804.10959">Kudo.</a>] and BPE-dropout <a class="reference external" href="https://arxiv.org/abs/1910.13267">Provilkov et al</a> are simple regularization methods that virtually augment training data with on-the-fly subword sampling, which helps to improve the accuracy as well as robustness of NMT models.</p></li>
-<li><p>To enable subword regularization, you would like to integrate SentencePiece library (C++/Python) into the NMT system to sample one segmentation for each parameter update, which is different from the standard off-line data preparations.</p></li>
-<li><p>You can find that ‘New York’ is segmented differently on each <code class="docutils literal notranslate"><span class="pre">SampleEncode</span> <span class="pre">(C++)</span></code> or <code class="docutils literal notranslate"><span class="pre">encode</span> <span class="pre">with</span> <span class="pre">enable_sampling=True</span> <span class="pre">(Python)</span></code> calls.</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install sentencepiece
-<span class="o">%</span><span class="k">pip</span> install --pre ekorpkit
+<p>SentencePiece implements regularization methods like subword regularization and BPE-dropout. Subword regularization is an on-the-fly subword sampling technique that virtually augments training data, improving the accuracy and robustness of NMT models. BPE-dropout is a variant of this, specifically designed for BPE. To use subword regularization, the SentencePiece library needs to be integrated into the NMT system, allowing the sampling of one segmentation for each parameter update. This process differs from standard offline data preparations. For example, a term like ‘New York’ might be segmented differently on each encoding call when sampling is enabled.</p>
+</section>
+</section>
+<section id="subword-regularization-in-nmt">
+<h2>Subword Regularization in NMT<a class="headerlink" href="#subword-regularization-in-nmt" title="Permalink to this heading">#</a></h2>
+<p><strong>Subword Regularization</strong> refers to a technique used in neural machine translation (NMT) that can virtually augment training data and improve the accuracy and robustness of NMT models. It involves working with subword sequences and takes into account the multiple ways a word could be segmented into subwords.</p>
+<p>Let’s break down the concepts and the formulas given:</p>
+<ol class="arabic simple">
+<li><p><strong>Sequence Probability</strong>: If we have a sequence of unigrams (individual units of a language, which can be as small as a character or as large as a word) <span class="math notranslate nohighlight">\(X = (x_1, x_2, \cdots, x_n)\)</span>, the probability of sequence <span class="math notranslate nohighlight">\(X\)</span> is given by the product of the conditional probabilities of each unigram. This is derived from the Bayes chain rule:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+P(X) = p(x_1) p(x_2 | x_1) \cdots p(x_n | x_1, \cdots, x_{n-1}) = \prod_{i=1}^n p(x_i | x_1, \cdots, x_{i-1})
+\]</div>
+<p>This formula suggests that the probability of a sequence is the product of the probabilities of each token in the sequence, given all the tokens that came before it.</p>
+<ol class="arabic simple" start="2">
+<li><p><strong>Probability in Neural Machine Translation</strong>: In NMT, we are often interested in the probability of a target sequence <span class="math notranslate nohighlight">\(Y\)</span> given a source sequence <span class="math notranslate nohighlight">\(X\)</span>. This is given by the product of the conditional probabilities of each token in the target sequence, given the source sequence and all previous target tokens:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+P(Y|X;\theta) = \prod_{i=1}^n P(y_i | \mathbf{x}, y_{&lt;i}; \theta)
+\]</div>
+<p>Here, lowercase variables represent actual tokens, uppercase variables represent sequences of tokens, and <span class="math notranslate nohighlight">\(\theta\)</span> represents the model parameters.</p>
+<ol class="arabic simple" start="3">
+<li><p><strong>Subword Sequences</strong>: The formulas above oversimplify the problem, as they do not account for the fact that both <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> can be formed from an exponentially large number of possible subword sequences. For instance, the word <code class="docutils literal notranslate"><span class="pre">hello</span></code> could be segmented in numerous ways, including <code class="docutils literal notranslate"><span class="pre">h</span> <span class="pre">e</span> <span class="pre">l</span> <span class="pre">l</span> <span class="pre">o</span></code>, <code class="docutils literal notranslate"><span class="pre">he</span> <span class="pre">ll</span> <span class="pre">o</span></code>, <code class="docutils literal notranslate"><span class="pre">hel</span> <span class="pre">lo</span></code>, <code class="docutils literal notranslate"><span class="pre">hell</span> <span class="pre">o</span></code>, and <code class="docutils literal notranslate"><span class="pre">hello</span></code>. To account for this, we replace <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> with specific sequences of subwords, <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>.</p></li>
+<li><p><strong>Cost Function for NMT</strong>: The cost function, or loss function, for NMT is given by the negative sum of the expected log-likelihood of the target subword sequence <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> given the source subword sequence <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathcal{L}(\theta) = - \sum_{s=1}^{|D|} \mathbb{E}_{\substack{\mathbf{x} \sim P(\mathbf{x}|X^{(s)}) \\ \mathbf{y} \sim P(\mathbf{y}|Y^{(s)})}} \log P(\mathbf{y}|\mathbf{x};\theta)
+\end{split}\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(D\)</span> is the set of training examples, and the expectation is taken over all possible subword sequences <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> that can be formed from source <span class="math notranslate nohighlight">\(X^{(s)}\)</span> and target <span class="math notranslate nohighlight">\(Y^{(s)}\)</span> sentences, respectively. In practice, we can approximate this expected log-likelihood for a single training example <span class="math notranslate nohighlight">\((\mathbf{x}, \mathbf{y})\)</span>.</p>
+<p>Subword regularization essentially leverages the variability in subword segmentations to diversify the training data for NMT models, leading to more robust models that generalize better to unseen data.</p>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">#</a></h2>
+<p><strong>Installation</strong></p>
+<p>SentencePiece is a Python library, which can be installed via pip:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>sentencepiece
 </pre></div>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sentencepiece</span> <span class="k">as</span> <span class="nn">spm</span>
+<p><strong>Training a SentencePiece Model</strong></p>
+<p>The SentencePiece model is trained on a given text corpus. The training process identifies the most common subword units, which will then be used for tokenization. Here’s an example of training a SentencePiece model:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sentencepiece</span> <span class="k">as</span> <span class="nn">spm</span>
 
 <span class="n">spm</span><span class="o">.</span><span class="n">SentencePieceTrainer</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
     <span class="s2">&quot;--input=../data/sentencepiece/botchan.txt --model_prefix=m --vocab_size=2000&quot;</span>
 <span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sentencepiece_trainer.cc(177) LOG(INFO) Running command: --input=../data/sentencepiece/botchan.txt --model_prefix=m --vocab_size=2000
-sentencepiece_trainer.cc(77) LOG(INFO) Starts training with : 
+<p>Here’s what each parameter does:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--input</span></code>: This is the path to the file containing the training corpus. The model will be trained on this text.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--model_prefix</span></code>: This is the prefix of the output model file. In this case, the model file will be named “m.model”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--vocab_size</span></code>: This is the size of the vocabulary. The model will use the 2000 most common subword units.</p></li>
+</ul>
+<p>The training process also logs various information to the console about the training process, such as the size of the alphabet and the character coverage.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sentencepiece_trainer.cc(177) LOG(INFO) Running command: --input=../data/sentencepiece/botchan.txt --model_prefix=m --vocab_size=2000
+sentencepiece_trainer.cc(77) LOG(INFO) Starts training with :
 trainer_spec {
-  input: ../data/sentencepiece/botchan.txt
-  input_format: 
-  model_prefix: m
-  model_type: UNIGRAM
-  vocab_size: 2000
-  self_test_sample_size: 0
-  character_coverage: 0.9995
-  input_sentence_size: 0
-  shuffle_input_sentence: 1
-  seed_sentencepiece_size: 1000000
-  shrinking_factor: 0.75
-  max_sentence_length: 4192
-  num_threads: 16
-  num_sub_iterations: 2
-  max_sentencepiece_length: 16
-  split_by_unicode_script: 1
-  split_by_number: 1
-  split_by_whitespace: 1
-  split_digits: 0
-  treat_whitespace_as_suffix: 0
-  allow_whitespace_only_pieces: 0
-  required_chars: 
-  byte_fallback: 0
-  vocabulary_output_piece_score: 1
-  train_extremely_large_corpus: 0
-  hard_vocab_limit: 1
-  use_all_vocab: 0
-  unk_id: 0
-  bos_id: 1
-  eos_id: 2
-  pad_id: -1
-  unk_piece: &lt;unk&gt;
-  bos_piece: &lt;s&gt;
-  eos_piece: &lt;/s&gt;
-  pad_piece: &lt;pad&gt;
-  unk_surface:  ⁇ 
-  enable_differential_privacy: 0
-  differential_privacy_noise_level: 0
-  differential_privacy_clipping_threshold: 0
+input: ../data/sentencepiece/botchan.txt
+input_format:
+model_prefix: m
+model_type: UNIGRAM
+vocab_size: 2000
+self_test_sample_size: 0
+character_coverage: 0.9995
+input_sentence_size: 0
+shuffle_input_sentence: 1
+seed_sentencepiece_size: 1000000
+shrinking_factor: 0.75
+max_sentence_length: 4192
+num_threads: 16
+num_sub_iterations: 2
+max_sentencepiece_length: 16
+split_by_unicode_script: 1
+split_by_number: 1
+split_by_whitespace: 1
+split_digits: 0
+treat_whitespace_as_suffix: 0
+allow_whitespace_only_pieces: 0
+required_chars:
+byte_fallback: 0
+vocabulary_output_piece_score: 1
+train_extremely_large_corpus: 0
+hard_vocab_limit: 1
+use_all_vocab: 0
+unk_id: 0
+bos_id: 1
+eos_id: 2
+pad_id: -1
+unk_piece: &lt;unk&gt;
+bos_piece: &lt;s&gt;
+eos_piece: &lt;/s&gt;
+pad_piece: &lt;pad&gt;
+unk_surface: ⁇
+enable_differential_privacy: 0
+differential_privacy_noise_level: 0
+differential_privacy_clipping_threshold: 0
 }
 normalizer_spec {
-  name: nmt_nfkc
-  add_dummy_prefix: 1
-  remove_extra_whitespaces: 1
-  escape_whitespaces: 1
-  normalization_rule_tsv: 
+name: nmt_nfkc
+add_dummy_prefix: 1
+remove_extra_whitespaces: 1
+escape_whitespaces: 1
+normalization_rule_tsv:
 }
 denormalizer_spec {}
 trainer_interface.cc(350) LOG(INFO) SentenceIterator is not specified. Using MultiFileSentenceIterator.
@@ -841,11 +801,9 @@ trainer_interface.cc(685) LOG(INFO) Saving model: m.model
 trainer_interface.cc(697) LOG(INFO) Saving vocabs: m.vocab
 </pre></div>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">spm</span><span class="o">.</span><span class="n">SentencePieceProcessor</span><span class="p">()</span>
+<p><strong>Loading and Using the SentencePiece Model</strong></p>
+<p>Once the model is trained, it can be loaded and used to tokenize text:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">spm</span><span class="o">.</span><span class="n">SentencePieceProcessor</span><span class="p">()</span>
 <span class="n">s</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;m.model&quot;</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
@@ -856,49 +814,16 @@ trainer_interface.cc(697) LOG(INFO) Saving vocabs: m.vocab
     <span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;▁New&#39;, &#39;▁Y&#39;, &#39;or&#39;, &#39;k&#39;]
-[&#39;▁N&#39;, &#39;e&#39;, &#39;w&#39;, &#39;▁Y&#39;, &#39;o&#39;, &#39;r&#39;, &#39;k&#39;]
-[&#39;▁New&#39;, &#39;▁Y&#39;, &#39;o&#39;, &#39;r&#39;, &#39;k&#39;]
-[&#39;▁N&#39;, &#39;e&#39;, &#39;w&#39;, &#39;▁Y&#39;, &#39;o&#39;, &#39;r&#39;, &#39;k&#39;]
-[&#39;▁&#39;, &#39;N&#39;, &#39;e&#39;, &#39;w&#39;, &#39;▁Y&#39;, &#39;or&#39;, &#39;k&#39;]
+<p>In this example, “New York” is tokenized 5 times. The <code class="docutils literal notranslate"><span class="pre">enable_sampling=True</span></code> parameter allows SentencePiece to return multiple possible segmentations of the same text, and <code class="docutils literal notranslate"><span class="pre">alpha</span></code> and <code class="docutils literal notranslate"><span class="pre">nbest_size</span></code> parameters control the sampling algorithm.</p>
+<p>The output is a list of subword units for each tokenization:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;▁New&#39;</span><span class="p">,</span> <span class="s1">&#39;▁Y&#39;</span><span class="p">,</span> <span class="s1">&#39;or&#39;</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">]</span>
+<span class="p">[</span><span class="s1">&#39;▁N&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="s1">&#39;▁Y&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">]</span>
+<span class="p">[</span><span class="s1">&#39;▁New&#39;</span><span class="p">,</span> <span class="s1">&#39;▁Y&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">]</span>
+<span class="p">[</span><span class="s1">&#39;▁N&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="s1">&#39;▁Y&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">]</span>
+<span class="p">[</span><span class="s1">&#39;▁&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="s1">&#39;▁Y&#39;</span><span class="p">,</span> <span class="s1">&#39;or&#39;</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-</div>
-</div>
-</section>
-</section>
-<section id="subword-regularization">
-<h2>Subword Regularization<a class="headerlink" href="#subword-regularization" title="Permalink to this heading">#</a></h2>
-<ul>
-<li><p>Given a sequence of unigrams <span class="math notranslate nohighlight">\(X = (x_1, x_2, \cdots, x_n)\)</span>, the probability of the sequence <span class="math notranslate nohighlight">\(X\)</span> is given by the product of the unigram conditional probabilities by the Bayes chain rule:</p>
-<div class="math notranslate nohighlight">
-\[
-  P(X) = p(x_1) p(x_2 | x_1) \cdots p(x_n | x_1, \cdots, x_{n-1}) = \prod_{i=1}^n p(x_i | x_1, \cdots, x_{i-1})
-  \]</div>
-</li>
-<li><p>In the problem of Neural Machine Translation, the probability of <span class="math notranslate nohighlight">\(P(Y|X)\)</span> is given by the product of the conditional probabilities of the target sequence <span class="math notranslate nohighlight">\(Y\)</span> given the source sequence <span class="math notranslate nohighlight">\(X\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[
-  P(Y|X;\theta) = \prod_{i=1}^n P(y_i | \mathbf{x}, y_{&lt;i}; \theta)
-  \]</div>
-<p>where the lower case variables represent the actual tokens, and the upper case variables represent the sequence of tokens. <span class="math notranslate nohighlight">\(\theta\)</span> is the model parameter.</p>
-</li>
-</ul>
-<ul>
-<li><p>This formula is not actually correct, since <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> can be formed by an exponentailly large number of possible subword sequences.</p></li>
-<li><p>For example, the word <code class="docutils literal notranslate"><span class="pre">hello</span></code> can be segmented in a number of ways, e.g., <code class="docutils literal notranslate"><span class="pre">h</span> <span class="pre">e</span> <span class="pre">l</span> <span class="pre">l</span> <span class="pre">o</span></code>, <code class="docutils literal notranslate"><span class="pre">he</span> <span class="pre">ll</span> <span class="pre">o</span></code>, <code class="docutils literal notranslate"><span class="pre">hel</span> <span class="pre">lo</span></code>, <code class="docutils literal notranslate"><span class="pre">hell</span> <span class="pre">o</span></code>, <code class="docutils literal notranslate"><span class="pre">hello</span></code>.</p></li>
-<li><p>Therefore, we should replace <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> on the left with a specific sequence of subwords, <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>, respectively.</p></li>
-<li><p>The cost function for NMT is given by sum of the expected log-likelihood of the target sequence <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> given the source sequence <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-  \mathcal{L}(\theta) = - \sum_{s=1}^{|D|} \mathbb{E}_{\substack{\mathbf{x} \sim P(\mathbf{x}|X^{(s)}) \\ \mathbf{y} \sim P(\mathbf{y}|Y^{(s)})}} \log P(\mathbf{y}|\mathbf{x};\theta)
-  \end{split}\]</div>
-</li>
-<li><p>This formula looks intimidating, but it is actually quite simple.</p></li>
-<li><p>In practice, we can approximate the expected log-likelihood of a single training example <span class="math notranslate nohighlight">\((\mathbf{x}, \mathbf{y})\)</span>.</p></li>
-</ul>
+<p>Each list is a different way of segmenting “New York” into subword units. This shows the power of SentencePiece and subword regularization in handling various possible subword segmentations.</p>
 </section>
 </section>
 
@@ -970,18 +895,16 @@ trainer_interface.cc(697) LOG(INFO) Saving vocabs: m.vocab
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-sentencepiece">What is SentencePiece?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-highlights">Technical highlights</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparisons-with-other-implementations">Comparisons with other implementations</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-highlights">Technical highlights</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#high-level-differences-between-sentencepiece-and-other-tokenizers">High level differences between SentencePiece and other tokenizers</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-number-of-unique-tokens-is-predetermined">The number of unique tokens is predetermined</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trains-from-raw-sentences">Trains from raw sentences</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#whitespace-is-treated-as-a-basic-symbol">Whitespace is treated as a basic symbol</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predetermined-number-of-unique-tokens">Predetermined Number of Unique Tokens</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-from-raw-sentences">Training from Raw Sentences</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#whitespace-as-a-basic-symbol">Whitespace as a Basic Symbol</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subword-regularization-and-bpe-dropout">Subword regularization and BPE-dropout</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subword-regularization">Subword Regularization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subword-regularization-in-nmt">Subword Regularization in NMT</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a></li>
 </ul>
   </nav></div>
 
