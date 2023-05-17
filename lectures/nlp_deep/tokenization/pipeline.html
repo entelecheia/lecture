@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>BERT: Bidirectional Encoder Representations from Transformers &#8212; ἐντελέχεια.άι</title>
+    <title>Tokenization Pipeline &#8212; ἐντελέχεια.άι</title>
   
   
   
@@ -88,13 +88,13 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_deep/transformers/bert';</script>
-    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_deep/transformers/bert.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_deep/tokenization/pipeline';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_deep/tokenization/pipeline.html" />
     <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="BERT: Visualizing Attention" href="bertviz.html" />
-    <link rel="prev" title="Transformers" href="index.html" />
+    <link rel="next" title="SentencePiece Tokenizer" href="sentencepiece.html" />
+    <link rel="prev" title="Subword Tokenization" href="subword.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -226,11 +226,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="../llms/plms.html">Pretrained Language Models</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Transformers</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">BERT: Bidirectional Encoder Representations from Transformers</a></li>
-<li class="toctree-l3"><a class="reference internal" href="bertviz.html">BERT: Visualizing Attention</a></li>
-<li class="toctree-l3"><a class="reference internal" href="t5.html">T5: Text-To-Text Transfer Transformer</a></li>
-<li class="toctree-l3"><a class="reference internal" href="byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../transformers/index.html">Transformers</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../transformers/bert.html">BERT: Bidirectional Encoder Representations from Transformers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../transformers/bertviz.html">BERT: Visualizing Attention</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../transformers/t5.html">T5: Text-To-Text Transfer Transformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../transformers/byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -238,12 +238,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="../datasets/lab-eda.html">Lab: Exploratory Data Analysis (EDA)</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../tokenization/subword.html">Subword Tokenization</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../tokenization/pipeline.html">Tokenization Pipeline</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Tokenization</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="subword.html">Subword Tokenization</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Tokenization Pipeline</a></li>
 
-<li class="toctree-l3"><a class="reference internal" href="../tokenization/sentencepiece.html">SentencePiece Tokenizer</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../tokenization/lab-train-tokenizers.html">Lab: Training Tokenizers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sentencepiece.html">SentencePiece Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lab-train-tokenizers.html">Lab: Training Tokenizers</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../training/index.html">Training Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -419,7 +419,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/nlp_deep/transformers/bert.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/nlp_deep/tokenization/pipeline.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -468,7 +468,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../../_sources/lectures/nlp_deep/transformers/bert.ipynb" target="_blank"
+      <li><a href="../../../_sources/lectures/nlp_deep/tokenization/pipeline.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -550,7 +550,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>BERT: Bidirectional Encoder Representations from Transformers</h1>
+    <h1>Tokenization Pipeline</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -560,23 +560,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-architecture-of-bert">The Architecture of BERT</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-mechanism">Attention Mechanism</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attending-to-language">Attending to Language</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-in-bert-easy-version">Attention in BERT (Easy Version)</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deconstructing-attention">Deconstructing Attention</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-origin-of-query-and-key-vectors">The Origin of Query and Key Vectors</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-head-attention">Multi-head Attention</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-training-and-fine-tuning">Pre-training and Fine-tuning</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-training">Pre-training</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tuning">Fine-tuning</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tokenization Pipeline</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-tokenization-in-python">Implementing Tokenization in Python</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalization">Normalization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-tokenization">Pre-tokenization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model">Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#post-processing">Post-processing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postprocessing">Postprocessing</a></li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
+
             </nav>
         </div>
     </div>
@@ -587,176 +581,198 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="bert-bidirectional-encoder-representations-from-transformers">
-<h1>BERT: Bidirectional Encoder Representations from Transformers<a class="headerlink" href="#bert-bidirectional-encoder-representations-from-transformers" title="Permalink to this heading">#</a></h1>
-<a class="bg-primary mb-1 reference internal image-reference" href="../../../_images/entelecheia_bert.png"><img alt="bert" class="bg-primary mb-1 align-center" src="../../../_images/entelecheia_bert.png" style="width: 70%;" /></a>
-<p><strong>2018</strong> was a significant year for the field of <strong>Natural Language Processing (NLP)</strong>, as it witnessed a groundbreaking development with the introduction of <strong>BERT</strong>. The BERT paper <span id="id1">[<a class="reference internal" href="../../../about/index.html#id15" title="Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. Bert: pre-training of deep bidirectional transformers for language understanding. arXiv preprint arXiv:1810.04805, 2018. URL: https://arxiv.org/abs/1810.04805.">Devlin <em>et al.</em>, 2018</a>]</span> presented a novel language representation model that outperformed all previous models across a broad spectrum of NLP tasks.</p>
-<p><strong>BERT</strong> stands for <strong>Bidirectional Encoder Representations from Transformers</strong>. It is a deep bidirectional transformer model that is pre-trained on a vast corpus of unlabeled text. The model is designed to predict masked words within a sentence and to anticipate the subsequent sentence in a sequence of sentences. The pre-trained model can then be fine-tuned for various downstream NLP tasks, yielding state-of-the-art results.</p>
-<p>BERT builds upon two essential ideas:</p>
+  <section id="tokenization-pipeline">
+<h1>Tokenization Pipeline<a class="headerlink" href="#tokenization-pipeline" title="Permalink to this heading">#</a></h1>
+<figure class="align-default" id="fig-tokenization-pipeline">
+<a class="reference internal image-reference" href="../../../_images/tokenization_pipeline.png"><img alt="../../../_images/tokenization_pipeline.png" src="../../../_images/tokenization_pipeline.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 112 </span><span class="caption-text">Tokenization pipeline</span><a class="headerlink" href="#fig-tokenization-pipeline" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The tokenization process typically involves the following steps:</p>
 <ol class="arabic simple">
-<li><p><strong>The Transformer architecture</strong> <span id="id2">[<a class="reference internal" href="../../../about/index.html#id5" title="Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez, Łukasz Kaiser, and Illia Polosukhin. Attention is all you need. Advances in neural information processing systems, 2017.">Vaswani <em>et al.</em>, 2017</a>]</span></p></li>
-<li><p><strong>Unsupervised pre-training</strong></p></li>
+<li><p><strong>Normalization</strong>: This is the process of converting text into a standard format. This may involve converting all text to lowercase, removing punctuation or special characters, correcting spelling errors, and so on. The goal of normalization is to reduce the complexity of the text and to focus on the important features.</p></li>
+<li><p><strong>Pre-tokenization</strong>: This involves splitting the text into preliminary tokens. This could be as simple as splitting the text into words based on whitespace, or it could involve more complex processes like sentence segmentation.</p></li>
+<li><p><strong>Model</strong>: This is the core algorithm that determines how the pre-tokenized text is further broken down into tokens. There are various models available, including word-level, character-level, and subword-level tokenization models.</p></li>
+<li><p><strong>Post-processing</strong>: This involves any additional processing that needs to be done after tokenization. This could include removing stop words (common words like ‘is’, ‘the’, ‘and’, etc. that are often filtered out), stemming (reducing words to their root form), or lemmatization (reducing words to their base or dictionary form).</p></li>
 </ol>
-<p>During the <strong>pre-training</strong> phase, BERT is exposed to a massive corpus of unlabeled text. The model learns its weights by predicting masked words in a sentence and forecasting the next sentence in a sequence of sentences.</p>
-<p>As a <strong>deep bidirectional transformer model</strong>, BERT has a complex structure with multiple layers, attention heads, and millions of parameters. Specifically, it has 12 (or 24) layers, 12 (or 16) attention heads, and 110 million parameters. The model does not share weights across layers, which means the total number of distinct attention weights amounts to 144 (or 384) - calculated as 12 (or 24) x 12 (or 16).</p>
-<section id="the-architecture-of-bert">
-<h2>The Architecture of BERT<a class="headerlink" href="#the-architecture-of-bert" title="Permalink to this heading">#</a></h2>
-<p>The <strong>core component</strong> of BERT is the <strong>attention mechanism</strong>. Attention allows a model to assign weights to different parts of the input based on their importance for a specific task.</p>
-<p>For example, in the sentence <code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">dog</span> <span class="pre">from</span> <span class="pre">down</span> <span class="pre">the</span> <span class="pre">street</span> <span class="pre">ran</span> <span class="pre">up</span> <span class="pre">to</span> <span class="pre">me</span> <span class="pre">and</span> <span class="pre">___</span></code>, to complete the sentence, a model may give more attention to the word <code class="docutils literal notranslate"><span class="pre">dog</span></code> than to the word <code class="docutils literal notranslate"><span class="pre">street</span></code>. This is because knowing that the subject of the sentence is a dog is more important than knowing where the dog is from.</p>
-<section id="attention-mechanism">
-<h3>Attention Mechanism<a class="headerlink" href="#attention-mechanism" title="Permalink to this heading">#</a></h3>
-<p>The attention mechanism is relatively simple. It comprises a function that takes in two inputs: a <strong>query</strong> and a <strong>key</strong>. The query represents the part of the input that we want to focus on, while the key is the part of the input that we want to compare the query to. The output of the attention mechanism is a weighted sum of the <strong>values</strong> of the key. The weights are computed by a function of the query and the key.</p>
-<p>Suppose you have a sequence of words <span class="math notranslate nohighlight">\(X\)</span>, where each element <span class="math notranslate nohighlight">\(x_i\)</span> is a value of dimension <span class="math notranslate nohighlight">\(d\)</span> (referred to as the value).</p>
-<p>In the following example, <span class="math notranslate nohighlight">\(X\)</span> is a sequence of 3 words, each represented by a 4-dimensional vector.</p>
-<figure class="align-default" id="fig-sentence-vector">
-<a class="reference internal image-reference" href="../../../_images/sentence_vector.png"><img alt="../../../_images/sentence_vector.png" src="../../../_images/sentence_vector.png" style="width: 80%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 103 </span><span class="caption-text">Sentence vector</span><a class="headerlink" href="#fig-sentence-vector" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<p>Attention is essentially a function that takes <span class="math notranslate nohighlight">\(X\)</span> as input and returns another sequence <span class="math notranslate nohighlight">\(Y\)</span> of the same length as <span class="math notranslate nohighlight">\(X\)</span>, composed of vectors with the same dimension as the vectors in <span class="math notranslate nohighlight">\(X\)</span>.</p>
-<figure class="align-default" id="fig-sentence-input-output">
-<a class="reference internal image-reference" href="../../../_images/attention_input_output.png"><img alt="../../../_images/attention_input_output.png" src="../../../_images/attention_input_output.png" style="width: 80%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 104 </span><span class="caption-text">Sentence input and output</span><a class="headerlink" href="#fig-sentence-input-output" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<p>Each vector in <span class="math notranslate nohighlight">\(Y\)</span> is computed by taking a weighted average of the vectors in <span class="math notranslate nohighlight">\(X\)</span>. In other words, attention is just a weighted average of the values of the vectors in <span class="math notranslate nohighlight">\(X\)</span>. The weights indicate how much the model <strong>attends</strong> to each vector in <span class="math notranslate nohighlight">\(X\)</span> when computing the output vector.</p>
+<p>Let’s now look at how we can implement this pipeline using Python.</p>
 </section>
-<section id="attending-to-language">
-<h3>Attending to Language<a class="headerlink" href="#attending-to-language" title="Permalink to this heading">#</a></h3>
-<p>How does attention work in the context of language? To understand this, let’s consider a sentence, <code class="docutils literal notranslate"><span class="pre">the</span> <span class="pre">dog</span> <span class="pre">ran</span></code>. We can represent this sentence as a sequence of <strong>vectors</strong>, where each vector is a <strong>word embedding</strong>.</p>
-<figure class="align-default" id="fig-word-embedding">
-<a class="reference internal image-reference" href="../../../_images/word_embedding.png"><img alt="../../../_images/word_embedding.png" src="../../../_images/word_embedding.png" style="width: 80%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 105 </span><span class="caption-text">Word embedding</span><a class="headerlink" href="#fig-word-embedding" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<p>A word embedding is a vector representation of a word, consisting of real numbers. Each element of the vector represents a dimension of the word that captures some aspect of its meaning. These aspects can be semantic, syntactic, or even phonetic. For example, the first element of the vector may represent the semantic meaning of the word, the second element may represent the syntactic meaning, and the third element may represent the phonetic meaning of the word.</p>
-<p>In practice, word embeddings are not interpretable. We don’t know what each element of the vector represents. However, we can use them to compute the meaning of a sentence.</p>
-<p>For example, we can perform arithmetic operations on word embeddings. For instance, we can compute the vector representation of the word <code class="docutils literal notranslate"><span class="pre">cat</span></code> by adding the vectors of the words <code class="docutils literal notranslate"><span class="pre">kitten</span></code> and <code class="docutils literal notranslate"><span class="pre">dog</span></code>, and subtracting the vector of the word <code class="docutils literal notranslate"><span class="pre">puppy</span></code>.</p>
-<div class="math notranslate nohighlight">
-\[\text{cat} - \text{kitten} \approx \text{dog} - \text{puppy}\]</div>
-<p><strong>Attention</strong> is also a form of arithmetic operation. Therefore, you can apply attention to word embeddings to compute the meaning of a sentence.</p>
-<p>For example, the embedding of the word <code class="docutils literal notranslate"><span class="pre">dog</span></code> in <span class="math notranslate nohighlight">\(Y\)</span> is computed by taking a weighted average of the embeddings of the words <code class="docutils literal notranslate"><span class="pre">the</span></code>, <code class="docutils literal notranslate"><span class="pre">dog</span></code>, and <code class="docutils literal notranslate"><span class="pre">ran</span></code> in <span class="math notranslate nohighlight">\(X\)</span> with weights of 0.2, 0.7, and 0.1, respectively.</p>
-<p>How does this process help the model understand the meaning of a sentence?</p>
-<p>To fully comprehend the meaning of a sentence, we need to know the meaning of each word in the sentence. However, we can’t just examine each word in the sentence in isolation - we need to know the context of the word.</p>
-<p>The <strong>attention mechanism</strong> enables the model to focus on the words that are most important for the meaning of the sentence.</p>
+<section id="implementing-tokenization-in-python">
+<h1>Implementing Tokenization in Python<a class="headerlink" href="#implementing-tokenization-in-python" title="Permalink to this heading">#</a></h1>
+<p>We will be using the <code class="docutils literal notranslate"><span class="pre">transformers</span></code> library from Hugging Face, which provides a wide range of pre-trained models for NLP tasks. It also provides various tokenizers that we can use.</p>
+<p>First, let’s import the necessary libraries:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can use the <code class="docutils literal notranslate"><span class="pre">AutoTokenizer</span></code> class to automatically infer the correct tokenizer to use based on the pre-trained model we specify.</p>
+<section id="normalization">
+<h2>Normalization<a class="headerlink" href="#normalization" title="Permalink to this heading">#</a></h2>
+<p>Normalization is usually handled internally by the tokenizer. However, we can see the effect of normalization by directly calling the normalizer:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;bert-base-uncased&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">backend_tokenizer</span><span class="o">.</span><span class="n">normalizer</span><span class="o">.</span><span class="n">normalize_str</span><span class="p">(</span><span class="s2">&quot;Héllò hôw are ü?&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hello how are u?
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this example, we’re using the tokenizer for the <code class="docutils literal notranslate"><span class="pre">bert-base-uncased</span></code> model. The <code class="docutils literal notranslate"><span class="pre">normalize_str</span></code> method applies the normalizer to the input string, converting all characters to lowercase and removing any special characters.</p>
 </section>
-<section id="attention-in-bert-easy-version">
-<h3>Attention in BERT (Easy Version)<a class="headerlink" href="#attention-in-bert-easy-version" title="Permalink to this heading">#</a></h3>
-<p>The attention mechanism is a technique used by neural networks to focus on relevant parts of the input data when processing it. In the context of natural language processing, it helps the model pay more attention to important words in a sentence.</p>
-<p>Let’s illustrate the attention mechanism with a simple example:</p>
-<div align="center" class="mermaid align-center">
-            graph TD
-A[Input: the cat ran] --&gt; B[Attention Weights] --&gt; C[Output: cat]
-        </div>
-        <p>In this example, we have an input sentence “the cat ran”. The attention mechanism assigns weights to each word in the sentence based on their importance. These weights are represented by the “Attention Weights” node in the diagram.</p>
-<p>After calculating the attention weights, the model computes an output by combining the input words according to the weights. In this case, the model focuses more on the word “cat” and generates an output accordingly.</p>
-<p>Here is another diagram showing the attention mechanism with attention weights:</p>
-<div align="center" class="mermaid align-center">
-            graph LR
-A[Input: the cat ran] --&gt; B[Attention Weights: 0.1, 0.8, 0.1] --&gt; C[Output: cat]
-        </div>
-        <p>In this diagram, we have added attention weights for each word in the input sentence. The weights (0.1, 0.8, 0.1) indicate that the model focuses most of its attention on the word “cat” (0.8), while giving less importance to the words “the” and “ran” (0.1 each).</p>
-<p>To sum up, the attention mechanism allows a neural network to focus on the most relevant parts of the input data by assigning importance weights to the elements, making it easier for the model to process and understand the input.</p>
+<section id="pre-tokenization">
+<h2>Pre-tokenization<a class="headerlink" href="#pre-tokenization" title="Permalink to this heading">#</a></h2>
+<p>Next, we perform pre-tokenization. This involves splitting the text into preliminary tokens:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;bert-base-uncased&quot;</span><span class="p">)</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">backend_tokenizer</span><span class="o">.</span><span class="n">pre_tokenizer</span><span class="o">.</span><span class="n">pre_tokenize_str</span><span class="p">(</span><span class="s2">&quot;Hello, how are  you?&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Hello&#39;, (0, 5)),
+ (&#39;,&#39;, (5, 6)),
+ (&#39;how&#39;, (7, 10)),
+ (&#39;are&#39;, (11, 14)),
+ (&#39;you&#39;, (16, 19)),
+ (&#39;?&#39;, (19, 20))]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Different models may use different pre-tokenization methods. For example, the GPT-2 and T5 models use different pre-tokenizers:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;gpt2&quot;</span><span class="p">)</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">backend_tokenizer</span><span class="o">.</span><span class="n">pre_tokenizer</span><span class="o">.</span><span class="n">pre_tokenize_str</span><span class="p">(</span><span class="s2">&quot;Hello, how are  you?&quot;</span><span class="p">)</span>
+
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;t5-small&quot;</span><span class="p">)</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">backend_tokenizer</span><span class="o">.</span><span class="n">pre_tokenizer</span><span class="o">.</span><span class="n">pre_tokenize_str</span><span class="p">(</span><span class="s2">&quot;Hello, how are  you?&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;▁Hello,&#39;, (0, 6)),
+ (&#39;▁how&#39;, (7, 10)),
+ (&#39;▁are&#39;, (11, 14)),
+ (&#39;▁you?&#39;, (16, 20))]
+</pre></div>
+</div>
+</div>
+</div>
 </section>
+<section id="model">
+<h2>Model<a class="headerlink" href="#model" title="Permalink to this heading">#</a></h2>
+<p>The model is the core algorithm that determines how the pre-tokenized text is further broken down into tokens. This is usually handled internally by the tokenizer, so we won’t go into detail here.</p>
 </section>
-<section id="deconstructing-attention">
-<h2>Deconstructing Attention<a class="headerlink" href="#deconstructing-attention" title="Permalink to this heading">#</a></h2>
-<p>Let’s dive deeper into the attention mechanism and understand how it computes the weights for each word in the input.</p>
-<p>As we know, attention is a <strong>weighted average</strong> of the values of the vectors in X. The critical aspect here is determining how these weights are computed. To do so, attention relies on <strong>queries</strong> and <strong>keys</strong>.</p>
-<figure class="align-default" id="fig-attention-query-key">
-<a class="reference internal image-reference" href="../../../_images/attention_query_key.png"><img alt="../../../_images/attention_query_key.png" src="../../../_images/attention_query_key.png" style="width: 80%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 106 </span><span class="caption-text">Attention query and key</span><a class="headerlink" href="#fig-attention-query-key" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<p><strong>Queries</strong> and <strong>keys</strong> are similar to word embeddings, like the value vectors we saw earlier. However, they are specifically designed for determining the similarity between words in the input.</p>
-<p>The <strong>similarity</strong> between two words is calculated by taking the <strong>dot product</strong> of the query and key vectors of those words.</p>
-<figure class="align-default" id="fig-attention-query-key-dot-product">
-<a class="reference internal image-reference" href="../../../_images/attention_query_key_dot_product.png"><img alt="../../../_images/attention_query_key_dot_product.png" src="../../../_images/attention_query_key_dot_product.png" style="width: 80%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 107 </span><span class="caption-text">Attention query and key dot product</span><a class="headerlink" href="#fig-attention-query-key-dot-product" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<p>To transform the dot product into a <strong>probability</strong>, we apply a <strong>softmax function</strong> to the dot product. The softmax function normalizes the dot product so that it sums to 1, giving us a probability distribution.</p>
-<figure class="align-default" id="fig-attention-query-key-softmax">
-<a class="reference internal image-reference" href="../../../_images/attention_query_key_softmax.png"><img alt="../../../_images/attention_query_key_softmax.png" src="../../../_images/attention_query_key_softmax.png" style="width: 80%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 108 </span><span class="caption-text">Attention query and key softmax</span><a class="headerlink" href="#fig-attention-query-key-softmax" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<p>The softmax values on the right represent the final weights of the attention mechanism. These weights indicate the importance of each word in the input when computing the output vector.</p>
-<p>In summary, the attention mechanism calculates the importance of each word in the input by comparing their query and key vectors through the dot product. It then normalizes these dot products using the softmax function to obtain the final attention weights.</p>
-<section id="the-origin-of-query-and-key-vectors">
-<h3>The Origin of Query and Key Vectors<a class="headerlink" href="#the-origin-of-query-and-key-vectors" title="Permalink to this heading">#</a></h3>
-<p>We have seen that attention weights are computed using query and key vectors, but how are these vectors generated?</p>
-<p>The <strong>query and key vectors</strong> are derived from the value vectors. They are calculated by passing the value vectors through <strong>two different linear layers</strong>.</p>
-<p>We can visualize the process of computing attention weights from query and key vectors using the <strong>neuron view</strong>.</p>
-<figure class="align-default" id="fig-neuron-view">
-<a class="reference internal image-reference" href="../../../_images/neuron_view.png"><img alt="../../../_images/neuron_view.png" src="../../../_images/neuron_view.png" style="width: 80%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 109 </span><span class="caption-text">Neuron view</span><a class="headerlink" href="#fig-neuron-view" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<p>The neuron view demonstrates the computation of attention from the selected word on the left to the entire sequence of words on the right. Positive values are displayed in blue and negative values in orange, with the color intensity representing the magnitude.</p>
-<p>Let’s examine each column in the neuron view individually:</p>
-<p><strong>Query q</strong>: The query vector ‘q’ encodes the word on the left that is paying attention or “querying” the other words. In the example above, the query vector for “on” (the selected word) is highlighted.</p>
-<p><strong>Key k</strong>: The key vector ‘k’ encodes the word on the right to which attention is being directed. The query vector and key vector work together to determine a compatibility score between the two words.</p>
-<p><strong>q×k (elementwise)</strong>: This is the elementwise product between the query vector of the selected word and each of the key vectors. Although it is a precursor to the dot product (the sum of the elementwise product), it is included in the visualization to show how individual elements in the query and key vectors contribute to the dot product.</p>
-<p><strong>q·k</strong>: This is the scaled dot product of the selected query vector and each of the key vectors. It represents the unnormalized attention score.</p>
-<p><strong>Softmax</strong>: This column displays the softmax of the scaled dot product, which normalizes the attention scores to be positive and sum to one.</p>
-<p>In summary, the attention mechanism computes attention weights using query and key vectors, which are derived from value vectors by passing them through two distinct linear layers. The neuron view provides a visualization of this process, illustrating the calculation of attention scores and their normalization using softmax.</p>
+<section id="post-processing">
+<h2>Post-processing<a class="headerlink" href="#post-processing" title="Permalink to this heading">#</a></h2>
+<p>Finally, we perform post-processing. This involves any additional processing that needs to be done after tokenization. For example, we might want to convert our tokens into input IDs, which can be inputted into our</p>
+<p>model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;gpt2&quot;</span><span class="p">)</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">backend_tokenizer</span><span class="o">.</span><span class="n">pre_tokenizer</span><span class="o">.</span><span class="n">pre_tokenize_str</span><span class="p">(</span><span class="s2">&quot;Hello, how are  you?&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading (…)/main/tokenizer.json: 100%|██████████| 1.36M/1.36M [00:00&lt;00:00, 2.46MB/s]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Hello&#39;, (0, 5)),
+ (&#39;,&#39;, (5, 6)),
+ (&#39;Ġhow&#39;, (6, 10)),
+ (&#39;Ġare&#39;, (10, 14)),
+ (&#39;Ġ&#39;, (14, 15)),
+ (&#39;Ġyou&#39;, (15, 19)),
+ (&#39;?&#39;, (19, 20))]
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this example, we’re using the <code class="docutils literal notranslate"><span class="pre">pre_tokenize_str</span></code> method of the tokenizer’s model to tokenize the input string.</p>
 </section>
-<section id="multi-head-attention">
-<h3>Multi-head Attention<a class="headerlink" href="#multi-head-attention" title="Permalink to this heading">#</a></h3>
-<p>BERT incorporates multiple attention mechanisms, called <strong>heads</strong>, which operate simultaneously. Each head represents a distinct attention mechanism. The output of each head is concatenated and then fed into a feed-forward neural network.</p>
-<p><strong>Multi-head attention</strong> empowers the model to learn a wider variety of relationships between words in a sentence compared to a single attention mechanism.</p>
-<p>In addition, BERT stacks multiple layers of multi-head attention. Each layer of multi-head attention receives the output of the previous layer as input. The output of the last layer of multi-head attention is then fed into a feed-forward neural network.</p>
-<p>Through this architecture, BERT can learn highly sophisticated representations of language as it progresses through the deeper layers of the network.</p>
-<p>Since the attention heads do not share parameters, each head is capable of learning a different type of relationship between words in a sentence. This feature further enriches the model’s understanding of language and its ability to capture various linguistic patterns.</p>
-<div align="center" class="mermaid align-center">
-            graph TD
-    A[Input Embeddings] --&gt; B[Multi-head Attention 1]
-    B --&gt; C[Layer Normalization 1]
-    C --&gt; D[Feed-forward Neural Network 1]
-    D --&gt; E[Layer Normalization 2]
-    E --&gt; F[Multi-head Attention 2]
-    F --&gt; G[Layer Normalization 3]
-    G --&gt; H[Feed-forward Neural Network 2]
-    H --&gt; I[Layer Normalization 4]
-    I --&gt; J[Output]
-    B --&gt;|Head 1| K[Concatenate]
-    B --&gt;|Head 2| K
-    B --&gt;|Head 3| K
-    K --&gt; L[Feed-forward Neural Network 1']
-    L --&gt; C
-    F --&gt;|Head 1| M[Concatenate]
-    F --&gt;|Head 2| M
-    F --&gt;|Head 3| M
-    M --&gt; N[Feed-forward Neural Network 2']
-    N --&gt; G
-        </div>
-        </section>
-<section id="pre-training-and-fine-tuning">
-<h3>Pre-training and Fine-tuning<a class="headerlink" href="#pre-training-and-fine-tuning" title="Permalink to this heading">#</a></h3>
-<p>A key aspect of BERT that we haven’t discussed yet is its <strong>two-step training process</strong>: pre-training and fine-tuning. This process is essential for BERT to achieve state-of-the-art performance across a wide range of NLP tasks.</p>
-<section id="pre-training">
-<h4>Pre-training<a class="headerlink" href="#pre-training" title="Permalink to this heading">#</a></h4>
-<p>During the <strong>pre-training</strong> phase, BERT is trained on a large corpus of unlabeled text data using two unsupervised learning objectives: <strong>Masked Language Modeling (MLM)</strong> and <strong>Next Sentence Prediction (NSP)</strong>.</p>
-<ol class="arabic simple">
-<li><p><strong>Masked Language Modeling</strong>: In this task, some words in a sentence are randomly masked, and the model is trained to predict the masked words based on the surrounding context. This forces the model to learn contextual representations of words.</p></li>
-<li><p><strong>Next Sentence Prediction</strong>: In this task, the model is given two sentences and is trained to predict whether the second sentence follows the first one in the original text. This helps the model to learn relationships between sentences and capture long-range dependencies.</p></li>
-</ol>
-<p>By training on these unsupervised tasks, BERT learns a powerful language representation that can be fine-tuned for various downstream tasks.</p>
-</section>
-<section id="fine-tuning">
-<h4>Fine-tuning<a class="headerlink" href="#fine-tuning" title="Permalink to this heading">#</a></h4>
-<p>After the pre-training phase, BERT is <strong>fine-tuned</strong> on specific NLP tasks using labeled data. Fine-tuning involves training the model for a few additional epochs on the task-specific dataset with a task-specific architecture. During fine-tuning, the model’s pre-trained weights are updated to better capture the patterns in the task-specific dataset.</p>
-<p>This two-step training process allows BERT to leverage the vast amount of knowledge learned from the large pre-training corpus and adapt it to specific tasks with relatively small amounts of labeled data. As a result, BERT achieves state-of-the-art performance across a wide variety of NLP tasks, such as sentiment analysis, named entity recognition, and question answering.</p>
-</section>
-</section>
+<section id="postprocessing">
+<h2>Postprocessing<a class="headerlink" href="#postprocessing" title="Permalink to this heading">#</a></h2>
+<p>Postprocessing involves any additional processing that needs to be done after the text has been tokenized. This can include padding the tokenized text to a certain length, adding special tokens (like start and end tokens), or converting the tokenized text into a format that can be used by a machine learning model.</p>
+<p>Here’s an example of how you can perform postprocessing using the <code class="docutils literal notranslate"><span class="pre">transformers</span></code> library:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;bert-base-uncased&quot;</span><span class="p">)</span>
+<span class="n">tokens</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="s2">&quot;Hello, how are you?&quot;</span><span class="p">)</span>
+<span class="n">input_ids</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">convert_tokens_to_ids</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
+<span class="n">input_ids</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[7592, 1010, 2129, 2024, 2017, 1029]
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this example, the <code class="docutils literal notranslate"><span class="pre">convert_tokens_to_ids</span></code> method is used to convert each token into its corresponding input ID.</p>
+<p>Another common post-processing step is adding special tokens, such as <code class="docutils literal notranslate"><span class="pre">[CLS]</span></code> and <code class="docutils literal notranslate"><span class="pre">[SEP]</span></code>, which are used by models like BERT:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;bert-base-uncased&quot;</span><span class="p">)</span>
+<span class="n">tokens</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="s2">&quot;Hello, how are you?&quot;</span><span class="p">)</span>
+<span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;[CLS]&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">tokens</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;[SEP]&quot;</span><span class="p">]</span>
+<span class="n">tokens</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;[CLS]&#39;, &#39;hello&#39;, &#39;,&#39;, &#39;how&#39;, &#39;are&#39;, &#39;you&#39;, &#39;?&#39;, &#39;[SEP]&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this example, we manually add the <code class="docutils literal notranslate"><span class="pre">[CLS]</span></code> token at the beginning of our token list and the <code class="docutils literal notranslate"><span class="pre">[SEP]</span></code> token at the end.</p>
+<p>However, the <code class="docutils literal notranslate"><span class="pre">transformers</span></code> library provides a more convenient way to perform these post-processing steps:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;bert-base-uncased&quot;</span><span class="p">)</span>
+<span class="n">encoded_input</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="s2">&quot;Hello, how are you?&quot;</span><span class="p">,</span> <span class="n">add_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">encoded_input</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;input_ids&#39;: [101, 7592, 1010, 2129, 2024, 2017, 1029, 102], &#39;token_type_ids&#39;: [0, 0, 0, 0, 0, 0, 0, 0], &#39;attention_mask&#39;: [1, 1, 1, 1, 1, 1, 1, 1]}
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this example, the <code class="docutils literal notranslate"><span class="pre">tokenizer</span></code> method automatically tokenizes the input text, converts the tokens to input IDs, and adds the special tokens. The <code class="docutils literal notranslate"><span class="pre">add_special_tokens=True</span></code> argument specifies that we want to add the special tokens.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">tokenizer</span></code> method returns an <code class="docutils literal notranslate"><span class="pre">Encoding</span></code> object, which contains all the information we need:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">encoded_input</span><span class="o">.</span><span class="n">input_ids</span><span class="p">)</span>  <span class="c1"># The input IDs</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">encoded_input</span><span class="o">.</span><span class="n">token_type_ids</span><span class="p">)</span>  <span class="c1"># The token type IDs</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">encoded_input</span><span class="o">.</span><span class="n">attention_mask</span><span class="p">)</span>  <span class="c1"># The attention mask</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[101, 7592, 1010, 2129, 2024, 2017, 1029, 102]
+[0, 0, 0, 0, 0, 0, 0, 0]
+[1, 1, 1, 1, 1, 1, 1, 1]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">input_ids</span></code> attribute contains the input IDs, the <code class="docutils literal notranslate"><span class="pre">token_type_ids</span></code> attribute contains the token type IDs (used for models that have separate segments of input, like BERT), and the <code class="docutils literal notranslate"><span class="pre">attention_mask</span></code> attribute contains the attention mask (used for models that use attention, like BERT and GPT-2).</p>
 </section>
 </section>
 
@@ -773,7 +789,7 @@ A[Input: the cat ran] --&gt; B[Attention Weights: 0.1, 0.8, 0.1] --&gt; C[Output
         },
         kernelOptions: {
             name: "python3",
-            path: "./lectures/nlp_deep/transformers"
+            path: "./lectures/nlp_deep/tokenization"
         },
         predefinedOutput: true
     }
@@ -792,20 +808,20 @@ A[Input: the cat ran] --&gt; B[Attention Weights: 0.1, 0.8, 0.1] --&gt; C[Output
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="index.html"
+       href="subword.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Transformers</p>
+        <p class="prev-next-title">Subword Tokenization</p>
       </div>
     </a>
     <a class="right-next"
-       href="bertviz.html"
+       href="sentencepiece.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">BERT: Visualizing Attention</p>
+        <p class="prev-next-title">SentencePiece Tokenizer</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -827,23 +843,17 @@ A[Input: the cat ran] --&gt; B[Attention Weights: 0.1, 0.8, 0.1] --&gt; C[Output
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-architecture-of-bert">The Architecture of BERT</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-mechanism">Attention Mechanism</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attending-to-language">Attending to Language</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-in-bert-easy-version">Attention in BERT (Easy Version)</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deconstructing-attention">Deconstructing Attention</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-origin-of-query-and-key-vectors">The Origin of Query and Key Vectors</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-head-attention">Multi-head Attention</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-training-and-fine-tuning">Pre-training and Fine-tuning</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-training">Pre-training</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tuning">Fine-tuning</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tokenization Pipeline</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-tokenization-in-python">Implementing Tokenization in Python</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalization">Normalization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-tokenization">Pre-tokenization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model">Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#post-processing">Post-processing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postprocessing">Postprocessing</a></li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
+
   </nav></div>
 
 </div></div>

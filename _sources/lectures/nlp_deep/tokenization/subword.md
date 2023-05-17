@@ -1,6 +1,6 @@
 # Subword Tokenization
 
-Subword tokenization is a powerful tool in the NLP toolkit. It provides a flexible and efficient way to represent text, allowing models to handle a wide range of words and languages. By understanding and effectively implementing subword tokenization, we can build more robust and versatile NLP models. In the next lecture, we will explore the next step in the NLP pipeline - Embedding, where we map these subword tokens to vectors that can be processed by machine learning algorithms.
+Subword tokenization is a powerful tool in the NLP toolkit. It provides a flexible and efficient way to represent text, allowing models to handle a wide range of words and languages. By understanding and effectively implementing subword tokenization, we can build more robust and versatile NLP models.
 
 ## Introduction
 
