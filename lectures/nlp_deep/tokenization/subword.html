@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>T5: Text-To-Text Transfer Transformer &#8212; ἐντελέχεια.άι</title>
+    <title>Subword Tokenization &#8212; ἐντελέχεια.άι</title>
   
   
   
@@ -88,13 +88,13 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_deep/transformers/t5';</script>
-    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_deep/transformers/t5.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_deep/tokenization/subword';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_deep/tokenization/subword.html" />
     <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="ByT5: Towards a token-free future with pre-trained byte-to-byte models" href="byt5.html" />
-    <link rel="prev" title="BERT: Visualizing Attention" href="bertviz.html" />
+    <link rel="next" title="SentencePiece Tokenizer" href="sentencepiece.html" />
+    <link rel="prev" title="Tokenization" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -226,11 +226,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="../llms/plms.html">Pretrained Language Models</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Transformers</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="bert.html">BERT: Bidirectional Encoder Representations from Transformers</a></li>
-<li class="toctree-l3"><a class="reference internal" href="bertviz.html">BERT: Visualizing Attention</a></li>
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">T5: Text-To-Text Transfer Transformer</a></li>
-<li class="toctree-l3"><a class="reference internal" href="byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../transformers/index.html">Transformers</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../transformers/bert.html">BERT: Bidirectional Encoder Representations from Transformers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../transformers/bertviz.html">BERT: Visualizing Attention</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../transformers/t5.html">T5: Text-To-Text Transfer Transformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../transformers/byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -238,10 +238,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="../datasets/lab-eda.html">Lab: Exploratory Data Analysis (EDA)</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../tokenization/subword.html">Subword Tokenization</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../tokenization/sentencepiece.html">SentencePiece Tokenizer</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../tokenization/lab-train-tokenizers.html">Lab: Training Tokenizers</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Tokenization</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Subword Tokenization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sentencepiece.html">SentencePiece Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lab-train-tokenizers.html">Lab: Training Tokenizers</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../training/index.html">Training Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -409,55 +409,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/nlp_deep/transformers/t5.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch onColab"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img src="../../../_static/images/logo_colab.png">
-  </span>
-<span class="btn__text-container">Colab</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="initThebeSBT()"
-  class="btn btn-sm btn-launch-thebe dropdown-item"
-  title="Launch Thebe"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="btn__text-container">Live Code</span>
-</button>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -466,7 +417,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../../_sources/lectures/nlp_deep/transformers/t5.ipynb" target="_blank"
+      <li><a href="../../../_sources/lectures/nlp_deep/tokenization/subword.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -476,7 +427,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -548,7 +499,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>T5: Text-To-Text Transfer Transformer</h1>
+    <h1>Subword Tokenization</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -558,34 +509,30 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#t5-text-to-text-framework">T5: Text-to-Text Framework</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unified-input-output-format">Unified Input &amp; Output Format</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-subword-tokenization">What is Subword Tokenization?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-subword-tokenization">Why Subword Tokenization?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithms-for-subword-tokenization">Algorithms for Subword Tokenization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#byte-pair-encoding-bpe">Byte Pair Encoding (BPE)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#byte-pair-encoding-bpe-a-detailed-example">Byte Pair Encoding (BPE) - A Detailed Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#first-iteration">First Iteration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#second-iteration">Second Iteration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#third-iteration">Third Iteration</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c4-colossal-clean-crawled-corpus">C4: Colossal Clean Crawled Corpus</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-crawl">Common Crawl</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#colossal-clean-crawled-corpus">Colossal Clean Crawled Corpus</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-model">The Model</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoder-decoder-transformer-model">Encoder-Decoder Transformer Model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#baseline">Baseline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#byte-level-byte-pair-encoding-bbpe">Byte-level Byte Pair Encoding (BBPE)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wordpiece">WordPiece</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unigram-language-model">Unigram Language Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assumptions-and-probability-calculation">Assumptions and Probability Calculation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-subword-occurrence-probabilities">Estimating Subword Occurrence Probabilities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#obtaining-the-vocabulary">Obtaining the Vocabulary</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-systematic-study-of-transfer-learning-methodology">A Systematic Study of Transfer Learning Methodology</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#architectures">Architectures</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-objective">Unsupervised Objective</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corruption-rates">Corruption Rates</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corrupted-span-length">Corrupted Span Length</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unlabeled-datasets">Unlabeled Datasets</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unlabeled-dataset-sizes">Unlabeled Dataset Sizes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tuning-methods">Fine-Tuning Methods</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-task-learning">Multi-Task Learning</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling">Scaling</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sota-comparisons">SOTA Comparisons</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subword-sampling">Subword Sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bpe-dropout">BPE-Dropout</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 </ul>
             </nav>
         </div>
@@ -597,222 +544,137 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="t5-text-to-text-transfer-transformer">
-<h1>T5: Text-To-Text Transfer Transformer<a class="headerlink" href="#t5-text-to-text-transfer-transformer" title="Permalink to this heading">#</a></h1>
-<p><img alt="" src="../../../_images/t5.gif" /></p>
-<p>“Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer” <span id="id1">[<a class="reference internal" href="../../../about/index.html#id16" title="Colin Raffel, Noam Shazeer, Adam Roberts, Katherine Lee, Sharan Narang, Michael Matena, Yanqi Zhou, Wei Li, Peter J Liu, and others. Exploring the limits of transfer learning with a unified text-to-text transformer. J. Mach. Learn. Res., 21(140):1–67, 2020.">Raffel <em>et al.</em>, 2020</a>]</span></p>
-<ul class="simple">
-<li><p>A unified framework that converts all text-based language problems into a text-to-text format by framing them as conditional text generation tasks.</p></li>
-<li><p>Combining the pre-training objectives of BERT and GPT-2, T5 is trained on a very large number of tasks and is able to perform well on a wide range of tasks with minimal task-specific architecture modifications.</p></li>
-<li><p>C4 (Corpus of Cleaned Web Crawled Text) is used as the training corpus, which is a large-scale dataset of 3.3 billion web pages.</p></li>
-<li><p>Achieves state-of-the-art results on 11 out of 15 tasks in GLUE, SuperGLUE, and SQuAD v1.1.</p></li>
-</ul>
-<section id="t5-text-to-text-framework">
-<h2>T5: Text-to-Text Framework<a class="headerlink" href="#t5-text-to-text-framework" title="Permalink to this heading">#</a></h2>
-<p><img alt="" src="../../../_images/t5-training.png" /></p>
-<section id="unified-input-output-format">
-<h3>Unified Input &amp; Output Format<a class="headerlink" href="#unified-input-output-format" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>T5 means “<code class="docutils literal notranslate"><span class="pre">T</span></code>ext-<code class="docutils literal notranslate"><span class="pre">T</span></code>o-<code class="docutils literal notranslate"><span class="pre">T</span></code>ext <code class="docutils literal notranslate"><span class="pre">T</span></code>ransfer <code class="docutils literal notranslate"><span class="pre">T</span></code>ransformer”.</p></li>
-<li><p>Every task considered by T5 is framed as a conditional text generation task with a single input and output sequence.</p></li>
-<li><p>Translation: <code class="docutils literal notranslate"><span class="pre">translate</span> <span class="pre">English</span> <span class="pre">to</span> <span class="pre">German:</span> <span class="pre">How</span> <span class="pre">old</span> <span class="pre">are</span> <span class="pre">you?</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">Wie</span> <span class="pre">alt</span> <span class="pre">bist</span> <span class="pre">du?</span></code></p></li>
-<li><p>Text classification: <code class="docutils literal notranslate"><span class="pre">classify</span> <span class="pre">sentiment:</span> <span class="pre">This</span> <span class="pre">movie</span> <span class="pre">is</span> <span class="pre">so</span> <span class="pre">bad.</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">negative</span></code></p></li>
-<li><p>Text summarization: <code class="docutils literal notranslate"><span class="pre">summarize:</span> <span class="pre">The</span> <span class="pre">movie</span> <span class="pre">was</span> <span class="pre">not</span> <span class="pre">good.</span> <span class="pre">The</span> <span class="pre">animation</span> <span class="pre">and</span> <span class="pre">the</span> <span class="pre">graphics</span> <span class="pre">were</span> <span class="pre">good.</span> <span class="pre">This</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">good</span> <span class="pre">movie.</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">movie</span> <span class="pre">was</span> <span class="pre">not</span> <span class="pre">good.</span></code></p></li>
-<li><p>MNLI (entailment): <code class="docutils literal notranslate"><span class="pre">mnli:</span> <span class="pre">Premise:</span> <span class="pre">A</span> <span class="pre">person</span> <span class="pre">on</span> <span class="pre">a</span> <span class="pre">horse</span> <span class="pre">jumps</span> <span class="pre">over</span> <span class="pre">a</span> <span class="pre">broken</span> <span class="pre">down</span> <span class="pre">airplane.</span> <span class="pre">Hypothesis:</span> <span class="pre">The</span> <span class="pre">person</span> <span class="pre">is</span> <span class="pre">training</span> <span class="pre">his</span> <span class="pre">horse</span> <span class="pre">for</span> <span class="pre">a</span> <span class="pre">competition.</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">entailment</span></code></p></li>
-<li><p>MNLI (neutral): <code class="docutils literal notranslate"><span class="pre">mnli:</span> <span class="pre">Premise:</span> <span class="pre">A</span> <span class="pre">person</span> <span class="pre">on</span> <span class="pre">a</span> <span class="pre">horse</span> <span class="pre">jumps</span> <span class="pre">over</span> <span class="pre">a</span> <span class="pre">broken</span> <span class="pre">down</span> <span class="pre">airplane.</span> <span class="pre">Hypothesis:</span> <span class="pre">The</span> <span class="pre">person</span> <span class="pre">is</span> <span class="pre">at</span> <span class="pre">the</span> <span class="pre">zoo,</span> <span class="pre">riding</span> <span class="pre">a</span> <span class="pre">horse.</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">neutral</span></code></p></li>
-<li><p>Regression: <code class="docutils literal notranslate"><span class="pre">sts-b:</span> <span class="pre">The</span> <span class="pre">cat</span> <span class="pre">was</span> <span class="pre">playing</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">garden.</span> <span class="pre">The</span> <span class="pre">cat</span> <span class="pre">was</span> <span class="pre">playing</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">yard.</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">5.0</span></code></p></li>
-</ul>
+  <section class="tex2jax_ignore mathjax_ignore" id="subword-tokenization">
+<h1>Subword Tokenization<a class="headerlink" href="#subword-tokenization" title="Permalink to this heading">#</a></h1>
+<p>Subword tokenization is a powerful tool in the NLP toolkit. It provides a flexible and efficient way to represent text, allowing models to handle a wide range of words and languages. By understanding and effectively implementing subword tokenization, we can build more robust and versatile NLP models. In the next lecture, we will explore the next step in the NLP pipeline - Embedding, where we map these subword tokens to vectors that can be processed by machine learning algorithms.</p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>In our previous lecture, we discussed the concept of tokenization, a crucial first step in the Natural Language Processing (NLP) pipeline. We explored different methods of tokenization, including word-level and character-level tokenization. Today, we will delve deeper into a more nuanced method of tokenization known as subword tokenization.</p>
 </section>
+<section id="what-is-subword-tokenization">
+<h2>What is Subword Tokenization?<a class="headerlink" href="#what-is-subword-tokenization" title="Permalink to this heading">#</a></h2>
+<p>Subword tokenization is a method that breaks down words into smaller, meaningful units or subwords. For instance, the word “pineapples” can be tokenized into <code class="docutils literal notranslate"><span class="pre">[&quot;pine&quot;,</span> <span class="pre">&quot;##app&quot;,</span> <span class="pre">&quot;##les&quot;]</span></code>. This method allows the model to handle any word, even if it was not present in the training set, as long as its subwords were present.</p>
+<p>Subword tokenization aims to strike a balance between word and character tokenization. It retains the semantic features of words while avoiding the problem of out-of-vocabulary (OOV) words. This makes it particularly useful for handling rare and complex words, as well as languages that do not use spaces to separate words.</p>
 </section>
-<section id="c4-colossal-clean-crawled-corpus">
-<h2>C4: Colossal Clean Crawled Corpus<a class="headerlink" href="#c4-colossal-clean-crawled-corpus" title="Permalink to this heading">#</a></h2>
-<section id="common-crawl">
-<h3><a class="reference external" href="https://commoncrawl.org/">Common Crawl</a><a class="headerlink" href="#common-crawl" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Common Crawl is a web crawl data repository that contains petabytes of data collected from the public web.</p></li>
-<li><p>It is a non-profit organization that collects data from the public web and makes it freely available to the research community.</p></li>
-<li><p>It produces around 30TB of data per month.</p></li>
-<li><p>However, Common Crawl contains large amounts of noisy data, such as error messages, spam, and duplicate content.</p></li>
-<li><p>To address this problem, the authors of T5 use the C4 dataset, which is a cleaned version of Common Crawl.</p></li>
-</ul>
-</section>
-<section id="colossal-clean-crawled-corpus">
-<h3>Colossal Clean Crawled Corpus<a class="headerlink" href="#colossal-clean-crawled-corpus" title="Permalink to this heading">#</a></h3>
-<p>For C4, the authors took Common Crawl scrape from April 2019 and applied some cleansing filters on it:</p>
+<section id="why-subword-tokenization">
+<h2>Why Subword Tokenization?<a class="headerlink" href="#why-subword-tokenization" title="Permalink to this heading">#</a></h2>
+<p>Subword tokenization addresses some of the key challenges associated with word and character tokenization:</p>
 <ol class="arabic simple">
-<li><p>Only retained lines that ended in a terminal punctuation mark (i.e. a period, exclamation mark, question mark, or end quotation mark).</p></li>
-<li><p>Discarded any page with fewer than 5 sentences and only retained lines that contained at least 3 words.</p></li>
-<li><p>Removed any page that contained any word on the <code class="docutils literal notranslate"><span class="pre">List</span> <span class="pre">of</span> <span class="pre">Dirty,</span> <span class="pre">Naughty,</span> <span class="pre">Obscene</span> <span class="pre">or</span> <span class="pre">Otherwise</span> <span class="pre">Bad</span> <span class="pre">Words</span></code>.</p></li>
-<li><p>Removed any line with the word <code class="docutils literal notranslate"><span class="pre">Javascript</span></code>.</p></li>
-<li><p>Removed any page where the phrase <code class="docutils literal notranslate"><span class="pre">lorem</span> <span class="pre">ipsum</span></code> appeared.</p></li>
-<li><p>Removed any pages that contained a curly bracket.</p></li>
-<li><p>Deduplicate the data set, discarded all but one of any three-sentence span occurring more than once in the data set.</p></li>
-<li><p>Since most of the downstream tasks are focused on English-language text, langdetect is used to filter out any pages that were not classified as English with a probability of at least 0.99.</p></li>
+<li><p><strong>Out-of-vocabulary (OOV) Words</strong>: In word-level tokenization, if a word is not present in the training set, the model will not recognize it during testing. This is known as the OOV problem. Subword tokenization mitigates this issue by breaking down words into smaller units that are likely to be present in the training set.</p></li>
+<li><p><strong>Large Vocabulary Size</strong>: Word-level tokenization can lead to a large vocabulary size, especially for languages with rich morphology or for tasks with a large number of rare words. Subword tokenization helps control the vocabulary size by representing words as a sequence of subwords.</p></li>
+<li><p><strong>Semantic Understanding</strong>: Character-level tokenization often fails to capture the semantic meaning of words as it breaks down words into individual characters. Subword tokenization, on the other hand, retains the semantic features of words by breaking them down into meaningful units.</p></li>
 </ol>
-<ul class="simple">
-<li><p>The filtered dataset is larger than most data sets used for pre-training (about 750 GB).</p></li>
-<li><p>It also comprises reasonably clean and natural English text.</p></li>
-<li><p>This data set is called the “Colossal Clean Crawled Corpus” (or C4 for short) and released as part of TensorFlow Datasets.</p></li>
-</ul>
 </section>
-</section>
-<section id="the-model">
-<h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this heading">#</a></h2>
-<section id="encoder-decoder-transformer-model">
-<h3>Encoder-Decoder Transformer Model<a class="headerlink" href="#encoder-decoder-transformer-model" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>T5 uses the same encoder-decoder Transformer architecture as BERT.</p></li>
-<li><p>However, a simplified layer normalization is used the activations are only rescaled and no additive bias is applied.</p></li>
-<li><p>After layer normalization, a residual skip connection, originated from ResNet, adds each subcomponent’s input to its output.</p></li>
-<li><p>Also, instead of using a fixed positional encoding, T5 uses a relative positional encoding.</p></li>
-</ul>
-</section>
-<section id="baseline">
-<h3>Baseline<a class="headerlink" href="#baseline" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>The baseline model is designed so that the encoder and decoder are each similar in size and configuration to a BERT-base model.</p></li>
-<li><p>Specifically, the encoder and decoder each have 12 layers, with about 220 million parameters.</p></li>
-<li><p>The objective of the baseline model is to predict the dropped-out tokens in the input sequence.</p></li>
-</ul>
-<p><img alt="T5 Baseline" src="../../../_images/t5-baseline.png" /></p>
-</section>
-</section>
-<section id="a-systematic-study-of-transfer-learning-methodology">
-<h2>A Systematic Study of Transfer Learning Methodology<a class="headerlink" href="#a-systematic-study-of-transfer-learning-methodology" title="Permalink to this heading">#</a></h2>
-<p><img alt="" src="../../../_images/t5-strategies.png" /></p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">model</span> <span class="pre">architectures</span></code>, where we found that encoder-decoder models generally outperformed “decoder-only” language models;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pre-training</span> <span class="pre">objectives</span></code>, where we confirmed that fill-in-the-blank-style denoising objectives (where the model is trained to recover missing words in the input) worked best and that the most important factor was the computational cost;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">unlabeled</span> <span class="pre">datasets</span></code>, where we showed that training on in-domain data can be beneficial but that pre-training on smaller datasets can lead to detrimental overfitting;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">training</span> <span class="pre">strategies</span></code>, where we found that multitask learning could be close to competitive with a pre-train-then-fine-tune approach but requires carefully choosing how often the model is trained on each task;</p></li>
-<li><p>and <code class="docutils literal notranslate"><span class="pre">scale</span></code>, where we compare scaling up the model size, the training time, and the number of ensembled models to determine how to make the best use of fixed compute power.</p></li>
-</ul>
-<section id="architectures">
-<h3>Architectures<a class="headerlink" href="#architectures" title="Permalink to this heading">#</a></h3>
-<p><img alt="" src="../../../_images/t5-structure.png" /></p>
-<p>At an architectural level, there are several options in selecting the training approach:</p>
+<section id="algorithms-for-subword-tokenization">
+<h2>Algorithms for Subword Tokenization<a class="headerlink" href="#algorithms-for-subword-tokenization" title="Permalink to this heading">#</a></h2>
+<p>There are several algorithms that can be used to decide which subwords to use. These include:</p>
 <ol class="arabic simple">
-<li><p>Encoder-Decoder:</p>
-<ul class="simple">
-<li><p>This is the standard encoder-decoder Transformer architecture.</p></li>
-<li><p>Encoder is trained a BERT-style, fully visible language modeling objective. (i.e. every token contributes to the attention calculation of every other token)</p></li>
-<li><p>Decoder is trained in a GPT-style, causal language modeling objective. (i.e. every token contributes to the attention calculation of every token that appears before it)</p></li>
-</ul>
-</li>
-<li><p>Language Model: This is essentially the causal attention language modeling objective.</p></li>
-<li><p>Prefix Language Model: This is a combination of the BERT-style and language model approaches. For example, the taks of translating from English to German is framed as a prefix language model task, where the input <code class="docutils literal notranslate"><span class="pre">translate</span> <span class="pre">English</span> <span class="pre">to</span> <span class="pre">German:</span></code> attended in BERT-style, and the output <code class="docutils literal notranslate"><span class="pre">Wie</span> <span class="pre">alt</span> <span class="pre">bist</span> <span class="pre">du?</span></code> is attended autoregressively.</p></li>
+<li><p><strong>Byte Pair Encoding (BPE)</strong></p></li>
+<li><p><strong>Byte-level BPE</strong></p></li>
+<li><p><strong>WordPiece</strong></p></li>
+<li><p><strong>Unigram</strong></p></li>
+<li><p><strong>SentencePiece</strong></p></li>
+<li><p><strong>Subword Sampling</strong></p></li>
+<li><p><strong>BPE-dropout</strong></p></li>
 </ol>
-<p><img alt="" src="../../../_images/t5-mask-patterns.png" /></p>
-<p><img alt="" src="../../../_images/t5-architectures.png" /></p>
+<p>Let’s explore each of these in detail.</p>
 </section>
-<section id="unsupervised-objective">
-<h3>Unsupervised Objective<a class="headerlink" href="#unsupervised-objective" title="Permalink to this heading">#</a></h3>
-<p><img alt="" src="../../../_images/t5-unsupervised.png" /></p>
-<p>With respect to the pre-training objective, authors have tested the following:</p>
+<section id="byte-pair-encoding-bpe">
+<h2>Byte Pair Encoding (BPE)<a class="headerlink" href="#byte-pair-encoding-bpe" title="Permalink to this heading">#</a></h2>
+<p>Byte Pair Encoding (BPE) is a subword tokenization method proposed by <span id="id1">Sennrich <em>et al.</em> [<a class="reference internal" href="../../../about/index.html#id17" title="Rico Sennrich, Barry Haddow, and Alexandra Birch. Neural machine translation of rare words with subword units. In Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), 1715–1725. Berlin, Germany, August 2016. Association for Computational Linguistics. URL: https://aclanthology.org/P16-1162, doi:10.18653/v1/P16-1162.">2016</a>]</span>. Originally used for text compression, BPE splits words into sequences of characters and iteratively combines the most frequent character pairs. This results in a fixed-size vocabulary of subwords that can be used to tokenize any text.</p>
+<p>The BPE algorithm works as follows:</p>
 <ol class="arabic simple">
-<li><p>Language Modeling: This is the standard language modeling objective, where the model is trained to predict the next token in a sequence.</p></li>
-<li><p>Deshuffling: This is a variant of language modeling, where the model is trained to predict the original order of a shuffled sequence.</p></li>
-<li><p>Corrupting Spans: Masking a sequence of tokens and training the model to predict these masked tokens.</p></li>
+<li><p><strong>Extract the words from the given dataset along with their count</strong>: The first step in BPE is to extract all the unique words from the dataset along with their frequency of occurrence. This frequency information is crucial for the algorithm as it decides which character pairs to merge based on their frequency.</p></li>
+<li><p><strong>Define the vocabulary size</strong>: The next step is to define the size of the vocabulary. This is an important parameter as it determines the number of unique tokens in the final vocabulary.</p></li>
+<li><p><strong>Split the words into a character sequence</strong>: Each word in the dataset is then split into a sequence of characters. For example, the word “low” would be split into <code class="docutils literal notranslate"><span class="pre">[&quot;l&quot;,</span> <span class="pre">&quot;o&quot;,</span> <span class="pre">&quot;w&quot;]</span></code>.</p></li>
+<li><p><strong>Add all the unique characters in our character sequence to the vocabulary</strong>: All the unique characters resulting from the previous step are added to the vocabulary.</p></li>
+<li><p><strong>Select and merge the symbol pair that has a high frequency</strong>: The algorithm then identifies the pair of symbols that occur together most frequently in the dataset and merges them to form a new token. For example, if the pair of characters “e” and “s” is the most frequent, they would be merged to form a new token “es”.</p></li>
+<li><p><strong>Repeat step 5 until the vocabulary size is reached</strong>: Steps 5 and 6 are repeated until the vocabulary has reached the defined size. The result is a vocabulary that consists of single characters and frequently occurring character pairs.</p></li>
 </ol>
-<p><img alt="" src="../../../_images/t5-unsupervised-obj.png" /></p>
-<p>The BERT-style objective performs best, though the prefix language modeling objective attains similar performance on the translation tasks.</p>
-<p><img alt="" src="../../../_images/t5-unsupervised-obj-perf1.png" /></p>
-<p><img alt="" src="../../../_images/t5-unsupervised-obj-perf2.png" /></p>
+<p>An important aspect of BPE is the use of a special stop token <code class="docutils literal notranslate"><span class="pre">&lt;/w&gt;</span></code>. This token is appended at the end of each word. The presence of this token helps the model distinguish between different uses of the same token. For example, the token “st” could be part of the word “st ar” or “wide st”. With the stop token, if there is a token “st</w>”, the model immediately knows that it is the token for the word “wide st</w>” but not “st ar</w>”.</p>
+<p>In summary, BPE is a powerful subword tokenization method that can handle a wide range of words and languages. By understanding and effectively implementing BPE, we can build more robust and versatile NLP models.</p>
+<section id="byte-pair-encoding-bpe-a-detailed-example">
+<h3>Byte Pair Encoding (BPE) - A Detailed Example<a class="headerlink" href="#byte-pair-encoding-bpe-a-detailed-example" title="Permalink to this heading">#</a></h3>
+<p>Let’s take a closer look at how Byte Pair Encoding (BPE) works with a concrete example. Suppose we have the following frequency count of words in our dataset:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;l o w &lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;l o w e r &lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;n e w e s t &lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;w i d e s t &lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Each word is split into characters, and a special stop token <code class="docutils literal notranslate"><span class="pre">&lt;/w&gt;</span></code> is appended at the end of each word.</p>
+<section id="first-iteration">
+<h4>First Iteration<a class="headerlink" href="#first-iteration" title="Permalink to this heading">#</a></h4>
+<p>In the first iteration, we count the frequency of each consecutive byte pair. The pair <code class="docutils literal notranslate"><span class="pre">e</span></code> and <code class="docutils literal notranslate"><span class="pre">s</span></code> occur 6 + 3 = 9 times, which is the most frequent. So, we merge these into a new token <code class="docutils literal notranslate"><span class="pre">es</span></code>. The frequency count of words becomes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;l o w &lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;l o w e r &lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;n e w es t &lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;w i d es t &lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+</pre></div>
+</div>
 </section>
-<section id="corruption-rates">
-<h3>Corruption Rates<a class="headerlink" href="#corruption-rates" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Using a larger corruption rate results in longer targets, which can potentially slow down training.</p></li>
-<li><p>Based on the results and the historical precedent set by BERT, a corruption rate of 15% is used going forward.</p></li>
-</ul>
-<p><img alt="" src="../../../_images/t5-corruption-rates.png" /></p>
+<section id="second-iteration">
+<h4>Second Iteration<a class="headerlink" href="#second-iteration" title="Permalink to this heading">#</a></h4>
+<p>In the second iteration, we again count the frequency of each consecutive byte pair. This time, the pair <code class="docutils literal notranslate"><span class="pre">es</span></code> and <code class="docutils literal notranslate"><span class="pre">t</span></code> occur 6 + 3 = 9 times, which is the most frequent. We merge these into a new token <code class="docutils literal notranslate"><span class="pre">est</span></code>. The frequency count of words becomes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;l o w &lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;l o w e r &lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;n e w est &lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;w i d est &lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+</pre></div>
+</div>
 </section>
-<section id="corrupted-span-length">
-<h3>Corrupted Span Length<a class="headerlink" href="#corrupted-span-length" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>When multiple consecutive tokens have been corrupted, they are treated as a “span” and a single unique mask token is used to replace the entire span.</p></li>
-<li><p>A limited difference is found between these objectives, though the version with an average span length of 10 slightly underperforms the other values in some cases.</p></li>
-</ul>
-<p><img alt="" src="../../../_images/t5-corrupted-span-length.png" /></p>
+<section id="third-iteration">
+<h4>Third Iteration<a class="headerlink" href="#third-iteration" title="Permalink to this heading">#</a></h4>
+<p>In the third iteration, we find that the pair <code class="docutils literal notranslate"><span class="pre">est</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;/w&gt;</span></code> is the most frequent. We merge these into a new token <code class="docutils literal notranslate"><span class="pre">est&lt;/w&gt;</span></code>. The frequency count of words becomes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;l o w &lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;l o w e r &lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;n e w est&lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;w i d est&lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>We continue this process until we reach the desired number of tokens or the maximum number of iterations.</p>
+<p>This example illustrates how BPE iteratively merges the most frequent pairs of characters. This results in a fixed-size vocabulary of subwords that can be used to tokenize any text. The special stop token <code class="docutils literal notranslate"><span class="pre">&lt;/w&gt;</span></code> helps distinguish between different uses of the same token, making BPE a powerful tool for subword tokenization.</p>
 </section>
-<section id="unlabeled-datasets">
-<h3>Unlabeled Datasets<a class="headerlink" href="#unlabeled-datasets" title="Permalink to this heading">#</a></h3>
-<p>Different pretraining datasets are tried.</p>
-<ul class="simple">
-<li><p>C4: The one mentioned in Section 2 in this story article.</p></li>
-<li><p>C4, unfiltered: C4 but without filtering, to know the effect of the heuristic filtering</p></li>
-<li><p>RealNews-like: C4 but only include content from one of the domains used in the “RealNews” data set.</p></li>
-<li><p>WebText-like: Similarly, the WebText data set only uses content from webpages.</p></li>
-<li><p>Wikipedia: English Wikipedia text data from TensorFlow Datasets.</p></li>
-<li><p>Wikipedia+TBC: Toronto Books Corpus (TBC) contains text extracted from eBooks, combining with Wikipedia following BERT.</p></li>
-</ul>
-<p>Pre-training on in-domain unlabeled data can improve performance on downstream tasks. (e.g.: unlabled news data helps downstream news dataset.) But this is unsatisfying if the goal is to pre-train a model that can rapidly adapt to language tasks from arbitrary domains.</p>
-<p><img alt="" src="../../../_images/t5-unlabeled-datasets.png" /></p>
 </section>
-<section id="unlabeled-dataset-sizes">
-<h3>Unlabeled Dataset Sizes<a class="headerlink" href="#unlabeled-dataset-sizes" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>C4 has <span class="math notranslate nohighlight">\(2^{35}\)</span>= 34B tokens.</p></li>
-<li><p>Truncated variants of C4 consisting of <span class="math notranslate nohighlight">\(2^{29}\)</span>, <span class="math notranslate nohighlight">\(2^{27}\)</span>, <span class="math notranslate nohighlight">\(2^{25}\)</span> and <span class="math notranslate nohighlight">\(2^{23}\)</span> tokens.</p></li>
-<li><p>These sizes correspond to repeating the data set 64, 256, 1,024, and 4,096 times respectively over the course of pre-training.</p></li>
-<li><p>As expected, performance degrades as the data set size shrinks.</p></li>
-</ul>
-<p><img alt="" src="../../../_images/t5-unlabeled-dataset-sizes.png" /></p>
 </section>
-<section id="fine-tuning-methods">
-<h3>Fine-Tuning Methods<a class="headerlink" href="#fine-tuning-methods" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Fine-tuning all parameters.</p></li>
-<li><p>Adapter Layers: keeping most of the original model fixed while fine-tuning. Adapter layers are additional dense-ReLU-dense blocks that are added after each of the preexisting feed-forward networks in each block of the Transformer.</p></li>
-<li><p>Gradual Freezing: More and more of the model’s parameters are finetuned over time. At the start of fine-tuning, only the parameters of the final layer are updated, then after training for a certain number of updates the parameters of the second-to-last layer are also included, and so on until the entire network’s parameters are being fine-tuned.</p></li>
-</ul>
-<p>It is found that gradual unfreezing caused a minor degradation in performance across all tasks, though it did provide some speedup during fine-tuning.</p>
-<p><img alt="" src="../../../_images/t5-fine-tuning-methods.png" /></p>
+<section id="byte-level-byte-pair-encoding-bbpe">
+<h2>Byte-level Byte Pair Encoding (BBPE)<a class="headerlink" href="#byte-level-byte-pair-encoding-bbpe" title="Permalink to this heading">#</a></h2>
+<p>Byte-level BPE is a variant of BPE that splits words into sequences of bytes instead of characters. This allows for a more granular level of tokenization, which can be beneficial for certain tasks.</p>
 </section>
-<section id="multi-task-learning">
-<h3>Multi-Task Learning<a class="headerlink" href="#multi-task-learning" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Multi-task learning is to train the model on multiple tasks at a time.</p></li>
-<li><p>Multi-task learning underperforms pre-training followed by fine-tuning on most tasks.</p></li>
-</ul>
-<p><img alt="" src="../../../_images/t5-multi-task-learning.png" /></p>
+<section id="wordpiece">
+<h2>WordPiece<a class="headerlink" href="#wordpiece" title="Permalink to this heading">#</a></h2>
+<p>WordPiece is a subword tokenization algorithm proposed by Google. It works similarly to BPE, but it merges tokens based on likelihood instead of frequency. The likelihood is calculated using the formula <span class="math notranslate nohighlight">\(p(w_{i}, w_{j})/p(w_{i})p(w_{j})\)</span>. This approach allows WordPiece to better handle rare and complex words.</p>
 </section>
-<section id="scaling">
-<h3>Scaling<a class="headerlink" href="#scaling" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>There are a variety of possible ways to scale, including using a bigger model, training the model for more steps, and ensembling.</p></li>
-<li><p>There is no large difference between training a 2x bigger model for 2x as long and training a 4x bigger model on any of the tasks.</p></li>
-<li><p>This suggests that increasing the training time and increasing the model size can be complementary means of improving performance.</p></li>
-<li><p>The results also suggest that ensembling provides an orthogonal and effective means of improving performance through scale.</p></li>
-</ul>
-<p><img alt="" src="../../../_images/t5-scaling.png" /></p>
+<section id="unigram-language-model">
+<h2>Unigram Language Model<a class="headerlink" href="#unigram-language-model" title="Permalink to this heading">#</a></h2>
+<p>The Unigram Language Model for subword segmentation is a method proposed by <span id="id2">Kudo [<a class="reference internal" href="../../../about/index.html#id70" title="Taku Kudo. Subword regularization: improving neural network translation models with multiple subword candidates. arXiv preprint arXiv:1804.10959, 2018.">2018</a>]</span>. This model outputs multiple subword segmentations along with their probabilities, providing a probabilistic approach to subword tokenization.</p>
+<section id="assumptions-and-probability-calculation">
+<h3>Assumptions and Probability Calculation<a class="headerlink" href="#assumptions-and-probability-calculation" title="Permalink to this heading">#</a></h3>
+<p>The Unigram model operates under the assumption that each subword occurs independently. This means that the occurrence of one subword does not affect the occurrence of another. Given a subword sequence <span class="math notranslate nohighlight">\(x=(x_{1}, x_{2}, \cdots, x_{n})\)</span>, the probability of the sequence is calculated as the product of the probabilities of each subword: <span class="math notranslate nohighlight">\(p(x)=\prod_{i=1}^{n} p(x_{i})\)</span>.</p>
+<p>For a given sentence <span class="math notranslate nohighlight">\(X\)</span>, the most probable segmentation <span class="math notranslate nohighlight">\(x^*\)</span> is the one that maximizes the probability <span class="math notranslate nohighlight">\(P(x)\)</span> over all possible segmentations <span class="math notranslate nohighlight">\(S(X)\)</span>: <span class="math notranslate nohighlight">\(x^*=\underset{x \in S(X)}{\operatorname{argmax}} P(x)\)</span>.</p>
 </section>
-<section id="sota-comparisons">
-<h3>SOTA Comparisons<a class="headerlink" href="#sota-comparisons" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Small, Base, Large, 3B, and 11B refer to model configurations with 60 million, 220 million, 770 million, 3 billion, and 11 billion parameters, respectively. (by tuning different hyperparameters.)</p></li>
-<li><p>Overall, state-of-the-art performance is achieved on 18 out of the 24 tasks.</p></li>
-<li><p>T5–3B model variant did beat the previous state of the art in a few tasks, but scaling the model size to 11 billion parameters was the most important ingredient for achieving the best performance.</p></li>
-<li><p>For SQuAD, T5 outperformed the previous state-of-the-art ALBERT by over one point on the Exact Match score.</p></li>
-<li><p>For SuperGLUE, T5 improved upon the state-of-the-art RoBERTa by a large margin from an average score of 84.6 to 88.9.</p></li>
-</ul>
-<p><img alt="" src="../../../_images/t5-sota-comparisons.png" /></p>
-<p>Further experiment is performed on three configurations as above:</p>
+<section id="estimating-subword-occurrence-probabilities">
+<h3>Estimating Subword Occurrence Probabilities<a class="headerlink" href="#estimating-subword-occurrence-probabilities" title="Permalink to this heading">#</a></h3>
+<p>The probabilities of subword occurrence <span class="math notranslate nohighlight">\(x_{i}\)</span> are estimated using the Expectation Maximization (EM) algorithm. The EM algorithm is used to maximize the log-likelihood <span class="math notranslate nohighlight">\(L\)</span> of the training data <span class="math notranslate nohighlight">\(D\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+L=\sum_{s = 1}^{|D|} \log(P(X^{(s)})) = \sum_{s = 1}^{|D|} \log(\sum_{x \in S(X^{(S)})} P(x))
+\]</div>
+</section>
+<section id="obtaining-the-vocabulary">
+<h3>Obtaining the Vocabulary<a class="headerlink" href="#obtaining-the-vocabulary" title="Permalink to this heading">#</a></h3>
+<p>The procedure for obtaining the vocabulary <span class="math notranslate nohighlight">\(V\)</span> with a desired size is as follows:</p>
 <ol class="arabic simple">
-<li><p>The standard baseline model, which was pre-trained on 2²⁵=34B tokens.</p></li>
-<li><p>Baseline-1T: The baseline trained instead for about 1 trillion tokens (i.e. the same amount of pre-training used for T5).</p></li>
-<li><p>T5-Base.</p></li>
+<li><p><strong>Initialize a reasonably big seed vocabulary</strong>: The seed vocabulary should be large enough to capture a wide range of subwords in the corpus.</p></li>
+<li><p><strong>Define a desired vocabulary size</strong>: This is the target size for the final vocabulary.</p></li>
+<li><p><strong>Optimize the subword occurrence probabilities using the EM algorithm by fixing the vocabulary</strong>: The EM algorithm is used to adjust the subword occurrence probabilities to maximize the log-likelihood of the training data.</p></li>
+<li><p><strong>Compute the loss for each subword</strong>: The loss of a subword is the decrease in the log-likelihood <span class="math notranslate nohighlight">\(L\)</span> when that subword is removed from the vocabulary.</p></li>
+<li><p><strong>Sort the subwords by loss and keep the top n% of subwords</strong>: The subwords are ranked by their loss, and the top n% are kept. Subwords with a single character are always kept to avoid the out of vocabulary problem.</p></li>
+<li><p><strong>Repeat steps 3 to 5 until the desired vocabulary size is reached</strong>: This process is iterated until the vocabulary has been pruned down to the target size.</p></li>
 </ol>
-<p>T5-Base performs substantially better than Baseline-1T, suggesting that scale is not the only factor that contributes to T5’s success.</p>
-<p><img alt="" src="../../../_images/t5-sota-comparisons-2.png" /></p>
+<p>The most common way to prepare the seed vocabulary is to use the most frequent substrings and characters in the corpus. This ensures that the initial vocabulary is representative of the corpus. The resulting unigram language model based subword segmentation consists of characters, subwords, and words.</p>
+<p>In summary, the Unigram Language Model for subword segmentation provides a flexible and probabilistic approach to subword tokenization. By adjusting the desired vocabulary size and the percentage of subwords kept at each iteration, you can fine-tune the granularity of the subword segmentation to suit your specific needs.</p>
 </section>
 </section>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://ai.googleblog.com/2020/02/exploring-transfer-learning-with-t5.html">T5: Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer</a></p></li>
-<li><p><a class="reference external" href="https://huggingface.co/docs/transformers/model_doc/t5">T5 by huggingface</a></p></li>
-</ul>
+<section id="subword-sampling">
+<h2>Subword Sampling<a class="headerlink" href="#subword-sampling" title="Permalink to this heading">#</a></h2>
+<p>Subword Sampling is a method that trains models with multiple subword segmentations based on a unigram language model. These segmentations are probabilistically sampled during training. This approach exposes the models to various subword segmentations, giving them a better understanding of words and subwords.</p>
+</section>
+<section id="bpe-dropout">
+<h2>BPE-Dropout<a class="headerlink" href="#bpe-dropout" title="Permalink to this heading">#</a></h2>
+<p>BPE-dropout is a subword regularization method based on BPE. It keeps the BPE vocabulary and the merge table as original while changing the segmentation procedure. Some merges are randomly removed with a probability of <span class="math notranslate nohighlight">\(p\)</span> at each merge step, thus giving multiple segmentations for the same word. This method exposes the models to various subword segmentations, allowing them to have a better understanding of words and subwords.</p>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+<p>Choosing the right subword tokenization algorithm depends on the specific requirements of the task at hand. Each algorithm has its strengths and weaknesses, and understanding these can help in making an informed decision. Whether it’s BPE, WordPiece, Unigram, or any other method, the goal is to transform the text into a format that can be effectively processed by machine learning algorithms.</p>
 </section>
 </section>
 
@@ -829,7 +691,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./lectures/nlp_deep/transformers"
+            path: "./lectures/nlp_deep/tokenization"
         },
         predefinedOutput: true
     }
@@ -848,20 +710,20 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="bertviz.html"
+       href="index.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">BERT: Visualizing Attention</p>
+        <p class="prev-next-title">Tokenization</p>
       </div>
     </a>
     <a class="right-next"
-       href="byt5.html"
+       href="sentencepiece.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">ByT5: Towards a token-free future with pre-trained byte-to-byte models</p>
+        <p class="prev-next-title">SentencePiece Tokenizer</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -883,34 +745,30 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#t5-text-to-text-framework">T5: Text-to-Text Framework</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unified-input-output-format">Unified Input &amp; Output Format</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-subword-tokenization">What is Subword Tokenization?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-subword-tokenization">Why Subword Tokenization?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithms-for-subword-tokenization">Algorithms for Subword Tokenization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#byte-pair-encoding-bpe">Byte Pair Encoding (BPE)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#byte-pair-encoding-bpe-a-detailed-example">Byte Pair Encoding (BPE) - A Detailed Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#first-iteration">First Iteration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#second-iteration">Second Iteration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#third-iteration">Third Iteration</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c4-colossal-clean-crawled-corpus">C4: Colossal Clean Crawled Corpus</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-crawl">Common Crawl</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#colossal-clean-crawled-corpus">Colossal Clean Crawled Corpus</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-model">The Model</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoder-decoder-transformer-model">Encoder-Decoder Transformer Model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#baseline">Baseline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#byte-level-byte-pair-encoding-bbpe">Byte-level Byte Pair Encoding (BBPE)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wordpiece">WordPiece</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unigram-language-model">Unigram Language Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assumptions-and-probability-calculation">Assumptions and Probability Calculation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-subword-occurrence-probabilities">Estimating Subword Occurrence Probabilities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#obtaining-the-vocabulary">Obtaining the Vocabulary</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-systematic-study-of-transfer-learning-methodology">A Systematic Study of Transfer Learning Methodology</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#architectures">Architectures</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-objective">Unsupervised Objective</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corruption-rates">Corruption Rates</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corrupted-span-length">Corrupted Span Length</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unlabeled-datasets">Unlabeled Datasets</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unlabeled-dataset-sizes">Unlabeled Dataset Sizes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tuning-methods">Fine-Tuning Methods</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-task-learning">Multi-Task Learning</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling">Scaling</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sota-comparisons">SOTA Comparisons</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subword-sampling">Subword Sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bpe-dropout">BPE-Dropout</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 </ul>
   </nav></div>
 
