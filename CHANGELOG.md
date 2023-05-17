@@ -1,5 +1,9 @@
 <!--next-version-placeholder-->
 
+## v0.4.1 (2023-05-17)
+### Fix
+* **tokenization:** Add unigram tokenization lecture ([`ff67595`](https://github.com/entelecheia/lecture/commit/ff67595016598f14176d67766a7b5abed311d9cb))
+
 ## v0.4.0 (2023-05-11)
 ### Feature
 * **ds:** Add esg ratings ([`3f309bd`](https://github.com/entelecheia/lecture/commit/3f309bda8e396e4c6fcf494a9a29010d5af33bf2))
