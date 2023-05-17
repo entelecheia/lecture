@@ -40,7 +40,7 @@ Large Language Models (LLMs) use Reinforcement Learning (RL) in addition to Supe
 - Developers must pay attention to LLM alignment with human values, and take steps to mitigate potential risks associated with their capabilities.
 - This includes developing mechanisms for safety, transparency, and accountability, and engaging with stakeholders to ensure LLMs align with societal needs and concerns.
 
-```{figure} ../../tex/nlp_deep/rlhf/capability_vs_alignment.png
+```{figure} figs/capability_vs_alignment.png
 ---
 width: 600px
 name: capability_vs_alignment
