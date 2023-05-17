@@ -1,0 +1,1036 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>BPE Step-by-Step Implementation &#8212; ἐντελέχεια.άι</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/js/hoverxref.js"></script>
+    <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_deep/tokenization/bpe';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_deep/tokenization/bpe.html" />
+    <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="SentencePiece Tokenizer" href="sentencepiece.html" />
+    <link rel="prev" title="Tokenization Pipeline" href="pipeline.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+
+  <div class="bd-header-announcement container-fluid bd-header-announcement">
+    <div class="bd-header-announcement__content"><p>
+  <strong>Announcement:</strong>
+  You can install the accompanying AI tutor <a href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd" target="_blank">here</a>.
+  <a class="reference external" href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd" target="_blank"><img alt="chrome-web-store-image" src="https://img.shields.io/chrome-web-store/v/lfgfgbomindbccgidgalhhndggddpagd" /></a>
+</p>
+</div>
+  </div>
+
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">ἐντελέχεια.άι</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../index.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_intro/index.html">Introduction to NLP</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/intro/index.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/research/index.html">Research Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/lm/index.html">Language Models</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/datasets/corpus.html">Text Data Collection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/datasets/lab-dart.html">Lab: Crawling DART Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/topic/index.html">Topic Modeling</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/coherence.html">Topic Coherence Measures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/tomotopy.html">Lab: Tomotopy</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/sentiments/index.html">Sentiment Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lexicon.html">Lexicon-Based Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/ml.html">Machine Learning-Based Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lab-lexicon.html">Lab: Lexicon-Based Sentiment Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/segmentation.html">Word Segmentation and Association</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/embeddings/index.html">Word Embeddings</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Deep Learning for NLP</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../llms/index.html">Large Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../llms/zeroshot.html">Zero Shot and Prompt Engineering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../llms/decoding.html">Decoding and Search Strategies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../llms/plms.html">Pretrained Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../transformers/index.html">Transformers</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../transformers/bert.html">BERT: Bidirectional Encoder Representations from Transformers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../transformers/bertviz.html">BERT: Visualizing Attention</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../transformers/t5.html">T5: Text-To-Text Transfer Transformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../transformers/byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../datasets/mc4.html">mC4 Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datasets/lab-eda.html">Lab: Exploratory Data Analysis (EDA)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Tokenization</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="subword.html">Subword Tokenization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pipeline.html">Tokenization Pipeline</a></li>
+
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">BPE Step-by-Step Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sentencepiece.html">SentencePiece Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lab-train-tokenizers.html">Lab: Training Tokenizers</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../training/index.html">Training Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../training/lab-pretraining.html">Lab: Pretraining Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../chatbots/index.html">Conversational AI and Chatbots</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../chatbots/rlhf.html">Reinforcement Learning with Human Feedback (RLHF)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chatbots/detectGPT.html">How to Spot Machine-Written Texts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_advances/index.html">Advances in AI and NLP</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/thesis.html">Writing a Thesis</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_advances/gpt/index.html">Generative Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/detectGPT.html">DetectGPT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/gpt4.html">GPT-4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/camelids.html">Meet the Camelids: A Family of LLMs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/sam/index.html">Segment Anything</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../aiart/index.html">AI Art (Generative AI)</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/intro/index.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/brave/index.html">A Brave New World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/aiart/index.html">Art and Music in Light of AI</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../aiart/text-to-image/index.html">Text-to-Image Models</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/dalle1.html">DALL·E 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/dalle2.html">DALL·E 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/imagen.html">Imagen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/motion-capture-and-synthesis/index.html">Motion Capture and Motion Synthesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/robot/index.html">Robot Drawing System</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../mlops/index.html">Machine Learning Systems Design</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/intro.html">Introduction to MLOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/project.html">MLOps Project</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/devops/index.html">DevOps</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/gitops.html">GitOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/devsecops.html">DevSecOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/llmops.html">LLMOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/dotfiles/index.html">Dotfiles</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai">Dotfiles Project</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dotdrop/">Dotdrop Setup</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/github/">GitHub Setup</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/ssh-gpg-age/">SSH, GPG, and Age Setup</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/sops/">SOPS Usage</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/pass/">Pass and Passage Usage</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/doppler/">Doppler Usage</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dockerfiles/">Dockerfiles Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/security/index.html">Security Management</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/auth-enc-sign.html">Authentication, Encryption, and Signing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/age-gpg-ssh.html">SSH, GPG, and AGE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/pass.html">Unix Password Managers</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/github/index.html">GitHub Workflow</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/github/fork-pull.html">Github’s Fork &amp; Pull Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/github/template.html">Project Templating Tools</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://hyperfast-python.entelecheia.ai/">Hyperfast Python Template</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://hyperfast-template.entelecheia.ai/">Hyperfast Template</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/containerization/index.html">Containerization</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/containerization/docker.html">Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/containerization/containerd.html"><code class="docutils literal notranslate"><span class="pre">containerd</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/simple-pipeline/index.html">Simple MLOps Pipeline</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/simple-pipeline/server.html">Server Setup &amp; Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/simple-pipeline/vpn.html">VPN Connectivity</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../ds/index.html">Data Science for Economics and Finance</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-24"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../ds/fomc/index.html">Textual Analysis of FOMC contents</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-25"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/01_numerical_data.html">Preparing Numerical Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/02_textual_data.html">Preparing Textual Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/03_EDA_numericals1.html">EDA on Numerical Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/03_EDA_numericals2.html">EDA on Numerical Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/04_training_datasets.html">Create Training Datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/05_features.html">Visualizing Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/06_AutoML.html">Checking Baseline with AutoML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/07_predict_sentiments.html">Predicting Sentiments of FOMC Corpus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/08_EDA_sentiments1.html">EDA on Sentiments: Correlation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/08_EDA_sentiments2.html">EDA on Sentiment Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/09_visualize_features.html">Visualize Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/10_monetary_shocks.html">Monetary Policy Shocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/11_AutoML_with_tones.html">Predicting the next decisions with tones</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../ds/esg-ratings/index.html">ESG Ratings</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-26"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/esg-ratings/prepare_datasets.html">Preparing training datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/esg-ratings/improve_datasets.html">Improving classification datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/esg-ratings/train_classifiers.html">Training Classifiers for ESG Ratings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/esg-ratings/build_news_corpus.html">Building <code class="docutils literal notranslate"><span class="pre">econ_news_kr</span></code> corpus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/esg-ratings/predict_esg_classes.html">Predicting ESG Categories and Polarities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/esg-ratings/cross_validate_datasets.html">Cross validating datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/esg-ratings/prepare_datasets_for_labeling.html">Preparing active learning data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/esg-ratings/all_in_one_pipeline.html">Putting them together in a pipeline</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../about/lecture-bot.html">LectureBot for ἐντελέχεια.άι</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://course.entelecheia.ai">course.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://research.entelecheia.ai">research.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/nlp_deep/tokenization/bpe.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/lectures/nlp_deep/tokenization/bpe.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>BPE Step-by-Step Implementation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-preparation">Dataset Preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bpe-implementation">BPE Implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization">Initialization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#token-extraction">Token Extraction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bigram-counts">Bigram Counts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-operations">Merge Operations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-and-decoding">Encoding and Decoding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decoding">Decoding</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding">Encoding</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="bpe-step-by-step-implementation">
+<h1>BPE Step-by-Step Implementation<a class="headerlink" href="#bpe-step-by-step-implementation" title="Permalink to this heading">#</a></h1>
+<p>In this lecture, we will walk through the implementation of Byte Pair Encoding (BPE), a popular subword tokenization method. We will use a dataset of financial news headlines for this demonstration.</p>
+<section id="dataset-preparation">
+<h2>Dataset Preparation<a class="headerlink" href="#dataset-preparation" title="Permalink to this heading">#</a></h2>
+<p>First, we need to load our dataset. We will use the <code class="docutils literal notranslate"><span class="pre">ashraq/financial-news</span></code> dataset from the Hugging Face Hub. We will randomly sample 100 records from this dataset for our demonstration.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;ashraq/financial-news&quot;</span><span class="p">)</span>
+<span class="n">texts</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shuffle</span><span class="p">()</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">))[</span><span class="s2">&quot;headline&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found cached dataset parquet (/home/yjlee/.cache/huggingface/datasets/ashraq___parquet/ashraq--financial-news-89d6ac597a40e29e/0.0.0/2a3b91fbd88a2c90d1dbbb32b460cf621d31bd5b05b934492fdef7d8d6f236ec)
+100%|██████████| 1/1 [00:00&lt;00:00, 47.53it/s]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="bpe-implementation">
+<h2>BPE Implementation<a class="headerlink" href="#bpe-implementation" title="Permalink to this heading">#</a></h2>
+<p>Now, let’s dive into the implementation of BPE.</p>
+<section id="initialization">
+<h3>Initialization<a class="headerlink" href="#initialization" title="Permalink to this heading">#</a></h3>
+<p>We start by initializing our vocabulary. We will format each word by separating its characters with spaces and appending a special end-of-word token <code class="docutils literal notranslate"><span class="pre">&lt;/w&gt;</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span><span class="o">,</span> <span class="nn">collections</span>
+
+
+<span class="k">def</span> <span class="nf">format_word</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">space_token</span><span class="o">=</span><span class="s2">&quot;▁&quot;</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">text</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">space_token</span>
+
+
+<span class="k">def</span> <span class="nf">initialize_vocab</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">lowercase</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">vocab</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">texts</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">lowercase</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\s+&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+        <span class="n">all_words</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">all_words</span><span class="p">:</span>
+            <span class="n">word</span> <span class="o">=</span> <span class="n">format_word</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+            <span class="n">vocab</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="n">vocab</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">vocab</span>
+
+
+<span class="n">vocab</span> <span class="o">=</span> <span class="n">initialize_vocab</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of words: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">vocab</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of words: 3713
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="token-extraction">
+<h3>Token Extraction<a class="headerlink" href="#token-extraction" title="Permalink to this heading">#</a></h3>
+<p>Next, we extract all unique tokens from our vocabulary and count their frequencies.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_tokens_from_vocab</span><span class="p">(</span><span class="n">vocab</span><span class="p">):</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">vocab_tokenization</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">vocab</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">word_tokens</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">word_tokens</span><span class="p">:</span>
+            <span class="n">tokens</span><span class="p">[</span><span class="n">token</span><span class="p">]</span> <span class="o">+=</span> <span class="n">freq</span>
+        <span class="n">vocab_tokenization</span><span class="p">[</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">word_tokens</span><span class="p">)]</span> <span class="o">=</span> <span class="n">word_tokens</span>
+    <span class="k">return</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">vocab_tokenization</span>
+
+
+<span class="n">tokens</span><span class="p">,</span> <span class="n">vocab_tokenization</span> <span class="o">=</span> <span class="n">get_tokens_from_vocab</span><span class="p">(</span><span class="n">vocab</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of tokens: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of tokens: 61
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="bigram-counts">
+<h3>Bigram Counts<a class="headerlink" href="#bigram-counts" title="Permalink to this heading">#</a></h3>
+<p>We then count the frequency of each bigram (pair of consecutive tokens) in our vocabulary.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_bigram_counts</span><span class="p">(</span><span class="n">vocab</span><span class="p">):</span>
+    <span class="n">pairs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">vocab</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">symbols</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">symbols</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">pair</span> <span class="o">=</span> <span class="p">(</span><span class="n">symbols</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">symbols</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="n">pairs</span><span class="p">[</span><span class="n">pair</span><span class="p">]</span> <span class="o">=</span> <span class="n">pairs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pair</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">count</span>
+    <span class="k">return</span> <span class="n">pairs</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="merge-operations">
+<h3>Merge Operations<a class="headerlink" href="#merge-operations" title="Permalink to this heading">#</a></h3>
+<p>The core of BPE is a series of merge operations. In each operation, we find the most frequent bigram and merge it into a single token. We repeat this process for a specified number of iterations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">merge_vocab</span><span class="p">(</span><span class="n">pair</span><span class="p">,</span> <span class="n">vocab_in</span><span class="p">):</span>
+    <span class="n">vocab_out</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">bigram</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pair</span><span class="p">))</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?&lt;!\S)&quot;</span> <span class="o">+</span> <span class="n">bigram</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;(?!\S)&quot;</span><span class="p">)</span>
+    <span class="n">bytepair</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pair</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">vocab_in</span><span class="p">:</span>
+        <span class="n">w_out</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">bytepair</span><span class="p">,</span> <span class="n">word</span><span class="p">)</span>
+        <span class="n">vocab_out</span><span class="p">[</span><span class="n">w_out</span><span class="p">]</span> <span class="o">=</span> <span class="n">vocab_in</span><span class="p">[</span><span class="n">word</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">vocab_out</span><span class="p">,</span> <span class="p">(</span><span class="n">bigram</span><span class="p">,</span> <span class="n">bytepair</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">find_merges</span><span class="p">(</span><span class="n">vocab</span><span class="p">,</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">num_merges</span><span class="p">,</span> <span class="n">indices_to_print</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]):</span>
+    <span class="n">merges</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_merges</span><span class="p">):</span>
+        <span class="n">pairs</span> <span class="o">=</span> <span class="n">get_bigram_counts</span><span class="p">(</span><span class="n">vocab</span><span class="p">)</span>
+        <span class="n">best_pair</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">pairs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">pairs</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
+        <span class="n">best_count</span> <span class="o">=</span> <span class="n">pairs</span><span class="p">[</span><span class="n">best_pair</span><span class="p">]</span>
+
+        <span class="n">vocab</span><span class="p">,</span> <span class="p">(</span><span class="n">bigram</span><span class="p">,</span> <span class="n">bytepair</span><span class="p">)</span> <span class="o">=</span> <span class="n">merge_vocab</span><span class="p">(</span><span class="n">best_pair</span><span class="p">,</span> <span class="n">vocab</span><span class="p">)</span>
+        <span class="n">merges</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="sa">r</span><span class="s2">&quot;(?&lt;!\S)&quot;</span> <span class="o">+</span> <span class="n">bigram</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;(?!\S)&quot;</span><span class="p">,</span> <span class="n">bytepair</span><span class="p">))</span>
+        <span class="n">tokens</span><span class="p">,</span> <span class="n">vocab_tokenization</span> <span class="o">=</span> <span class="n">get_tokens_from_vocab</span><span class="p">(</span><span class="n">vocab</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indices_to_print</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Merge </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">best_pair</span><span class="si">}</span><span class="s2"> with count </span><span class="si">{</span><span class="n">best_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All tokens: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tokens</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of tokens: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tokens</span><span class="o">.</span><span class="n">keys</span><span class="p">())))</span>
+
+    <span class="k">return</span> <span class="n">vocab</span><span class="p">,</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">merges</span><span class="p">,</span> <span class="n">vocab_tokenization</span>
+
+
+<span class="n">num_merges</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">indices_to_print</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">num_merges</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="n">vocab</span><span class="p">,</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">merges</span><span class="p">,</span> <span class="n">vocab_tokenization</span> <span class="o">=</span> <span class="n">find_merges</span><span class="p">(</span>
+    <span class="n">vocab</span><span class="p">,</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">num_merges</span><span class="p">,</span> <span class="n">indices_to_print</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Merge 0: (&#39;s&#39;, &#39;▁&#39;) with count 1671
+All tokens: dict_keys([&#39;t&#39;, &#39;r&#39;, &#39;a&#39;, &#39;n&#39;, &#39;s&#39;, &#39;c&#39;, &#39;▁&#39;, &#39;e&#39;, &#39;h&#39;, &#39;b&#39;, &#39;s▁&#39;, &#39;y&#39;, &#39;$&#39;, &#39;0&#39;, &#39;.&#39;, &#39;7&#39;, &#39;,&#39;, &#39;o&#39;, &#39;v&#39;, &#39;u&#39;, &#39;l&#39;, &#39;x&#39;, &#39;f&#39;, &#39;i&#39;, &#39;g&#39;, &#39;d&#39;, &#39;p&#39;, &#39;(&#39;, &#39;)&#39;, &#39;m&#39;, &#39;w&#39;, &#39;8&#39;, &#39;9&#39;, &#39;-&#39;, &#39;2&#39;, &#39;k&#39;, &#39;q&#39;, &#39;1&#39;, &#39;5&#39;, &#39;j&#39;, &#39;3&#39;, &#39;4&#39;, &quot;&#39;&quot;, &#39;?&#39;, &#39;:&#39;, &#39;z&#39;, &#39;6&#39;, &#39;%&#39;, &#39;&amp;&#39;, &#39;;&#39;, &#39;/&#39;, &#39;#&#39;, &#39;—&#39;, &#39;…&#39;, &#39;–&#39;, &#39;|&#39;, &#39;~&#39;, &#39;â&#39;, &#39;+&#39;, &#39;!&#39;, &#39;€&#39;, &#39;&quot;&#39;])
+Number of tokens: 62
+Merge 1: (&#39;i&#39;, &#39;n&#39;) with count 1009
+All tokens: dict_keys([&#39;t&#39;, &#39;r&#39;, &#39;a&#39;, &#39;n&#39;, &#39;s&#39;, &#39;c&#39;, &#39;▁&#39;, &#39;e&#39;, &#39;h&#39;, &#39;b&#39;, &#39;s▁&#39;, &#39;y&#39;, &#39;$&#39;, &#39;0&#39;, &#39;.&#39;, &#39;7&#39;, &#39;,&#39;, &#39;o&#39;, &#39;v&#39;, &#39;u&#39;, &#39;l&#39;, &#39;x&#39;, &#39;f&#39;, &#39;i&#39;, &#39;g&#39;, &#39;d&#39;, &#39;p&#39;, &#39;in&#39;, &#39;(&#39;, &#39;)&#39;, &#39;m&#39;, &#39;w&#39;, &#39;8&#39;, &#39;9&#39;, &#39;-&#39;, &#39;2&#39;, &#39;k&#39;, &#39;q&#39;, &#39;1&#39;, &#39;5&#39;, &#39;j&#39;, &#39;3&#39;, &#39;4&#39;, &quot;&#39;&quot;, &#39;?&#39;, &#39;:&#39;, &#39;z&#39;, &#39;6&#39;, &#39;%&#39;, &#39;&amp;&#39;, &#39;;&#39;, &#39;/&#39;, &#39;#&#39;, &#39;—&#39;, &#39;…&#39;, &#39;–&#39;, &#39;|&#39;, &#39;~&#39;, &#39;â&#39;, &#39;+&#39;, &#39;!&#39;, &#39;€&#39;, &#39;&quot;&#39;])
+Number of tokens: 63
+Merge 2: (&#39;e&#39;, &#39;▁&#39;) with count 888
+All tokens: dict_keys([&#39;t&#39;, &#39;r&#39;, &#39;a&#39;, &#39;n&#39;, &#39;s&#39;, &#39;c&#39;, &#39;▁&#39;, &#39;e&#39;, &#39;h&#39;, &#39;b&#39;, &#39;s▁&#39;, &#39;y&#39;, &#39;$&#39;, &#39;0&#39;, &#39;.&#39;, &#39;7&#39;, &#39;,&#39;, &#39;o&#39;, &#39;v&#39;, &#39;u&#39;, &#39;e▁&#39;, &#39;l&#39;, &#39;x&#39;, &#39;f&#39;, &#39;i&#39;, &#39;g&#39;, &#39;d&#39;, &#39;p&#39;, &#39;in&#39;, &#39;(&#39;, &#39;)&#39;, &#39;m&#39;, &#39;w&#39;, &#39;8&#39;, &#39;9&#39;, &#39;-&#39;, &#39;2&#39;, &#39;k&#39;, &#39;q&#39;, &#39;1&#39;, &#39;5&#39;, &#39;j&#39;, &#39;3&#39;, &#39;4&#39;, &quot;&#39;&quot;, &#39;?&#39;, &#39;:&#39;, &#39;z&#39;, &#39;6&#39;, &#39;%&#39;, &#39;&amp;&#39;, &#39;;&#39;, &#39;/&#39;, &#39;#&#39;, &#39;—&#39;, &#39;…&#39;, &#39;–&#39;, &#39;|&#39;, &#39;~&#39;, &#39;â&#39;, &#39;+&#39;, &#39;!&#39;, &#39;€&#39;, &#39;&quot;&#39;])
+Number of tokens: 64
+Merge 999: (&#39;shor&#39;, &#39;t▁&#39;) with count 6
+All tokens: dict_keys([&#39;trans&#39;, &#39;ac&#39;, &#39;t▁&#39;, &#39;tech▁&#39;, &#39;beats▁&#39;, &#39;by▁&#39;, &#39;$0.0&#39;, &#39;7&#39;, &#39;,▁&#39;, &#39;on▁&#39;, &#39;revenue▁&#39;, &#39;col&#39;, &#39;la&#39;, &#39;br&#39;, &#39;x▁&#39;, &#39;f&#39;, &#39;ill&#39;, &#39;s▁&#39;, &#39;a▁&#39;, &#39;big▁&#39;, &#39;ne&#39;, &#39;ed&#39;, &#39;has▁&#39;, &#39;po&#39;, &#39;ten&#39;, &#39;tial▁&#39;, &#39;for▁&#39;, &#39;investors▁&#39;, &#39;(&#39;, &#39;dg&#39;, &#39;x,▁&#39;, &#39;ev&#39;, &#39;d&#39;, &#39;y,▁&#39;, &#39;cl&#39;, &#39;r&#39;, &#39;a&#39;, &#39;ff&#39;, &#39;x&#39;, &#39;)▁&#39;, &#39;etf▁&#39;, &#39;op&#39;, &#39;tions▁&#39;, &#39;g&#39;, &#39;al&#39;, &#39;or&#39;, &#39;e▁&#39;, &#39;commod&#39;, &#39;ities▁&#39;, &#39;en&#39;, &#39;sc&#39;, &#39;o▁&#39;, &#39;b&#39;, &#39;ags▁&#39;, &#39;new▁&#39;, &#39;8&#39;, &#39;9&#39;, &#39;-&#39;, &#39;day▁&#39;, &#39;con&#39;, &#39;trac&#39;, &#39;its▁&#39;, &#39;7▁&#39;, &#39;star&#39;, &#39;ting▁&#39;, &#39;fe&#39;, &#39;uary▁&#39;, &#39;2&#39;, &#39;8▁&#39;, &#39;c&#39;, &#39;tr&#39;, &#39;al▁&#39;, &#39;bank▁&#39;, &#39;ance▁&#39;, &#39;sh&#39;, &#39;e&#39;, &#39;et▁&#39;, &#39;expan&#39;, &#39;si&#39;, &#39;on,▁&#39;, &#39;go&#39;, &#39;ver&#39;, &#39;n&#39;, &#39;ment▁&#39;, &#39;de&#39;, &#39;ic&#39;, &#39;and▁&#39;, &#39;gold▁&#39;, &#39;an▁&#39;, &#39;update▁&#39;, &#39;p&#39;, &#39;ir&#39;, &#39;us▁&#39;, &#39;in▁&#39;, &#39;ligh&#39;, &#39;of▁&#39;, &#39;re&#39;, &#39;ent▁&#39;, &#39;ve&#39;, &#39;lo&#39;, &#39;ments▁&#39;, &#39;american▁&#39;, &#39;van&#39;, &#39;gu&#39;, &#39;ard▁&#39;, &#39;av&#39;, &#39;sur&#39;, &#39;pas&#39;, &#39;ses▁&#39;, &#39;q1▁&#39;, &#39;earnings▁&#39;, &#39;estimates▁&#39;, &#39;company▁&#39;, &#39;news▁&#39;, &#39;april▁&#39;, &#39;0&#39;, &#39;2,▁&#39;, &#39;2015▁&#39;, &#39;-▁&#39;, &#39;corpor&#39;, &#39;ate▁&#39;, &#39;sum&#39;, &#39;mar&#39;, &#39;y▁&#39;, &#39;prices▁&#39;, &#39;ste&#39;, &#39;ad&#39;, &#39;ahead▁&#39;, &#39;jo&#39;, &#39;bs▁&#39;, &#39;um&#39;, &#39;ber▁&#39;, &#39;st&#39;, &#39;an&#39;, &#39;ley▁&#39;, &#39;ck▁&#39;, &#39;to▁&#39;, &#39;buy▁&#39;, &#39;min&#39;, &#39;ity▁&#39;, &#39;ak&#39;, &#39;m&#39;, &#39;t&#39;, &#39;d▁&#39;, &#39;produc&#39;, &#39;ts▁&#39;, &#39;$&#39;, &#39;3&#39;, &#39;4&#39;, &#39;m▁&#39;, &#39;pro&#39;, &#39;as&#39;, &#39;li&#39;, &#39;ed▁&#39;, &#39;strong▁&#39;, &#39;analyst▁&#39;, &#39;blog▁&#39;, &#39;lin&#39;, &#39;k▁&#39;, &#39;mid&#39;, &#39;stre&#39;, &#39;am&#39;, &quot;&#39;s▁&quot;, &#39;l&#39;, &#39;c)▁&#39;, &#39;ceo▁&#39;, &#39;ar&#39;, &#39;ry▁&#39;, &#39;dav&#39;, &#39;is▁&#39;, &#39;q2▁&#39;, &#39;results▁&#39;, &#39;call▁&#39;, &#39;transcript▁&#39;, &#39;beat▁&#39;, &#39;stor&#39;, &#39;ex▁&#39;, &#39;v&#39;, &#39;this▁&#39;, &#39;se&#39;, &#39;on&#39;, &#39;?▁&#39;, &#39;da▁&#39;, &#39;es▁&#39;, &#39;vol&#39;, &#39;un&#39;, &#39;ary▁&#39;, &#39;vic&#39;, &#39;ction▁&#39;, &#39;port&#39;, &#39;ing▁&#39;, &quot;here&#39;s▁&quot;, &#39;why▁&#39;, &#39;you▁&#39;, &#39;should▁&#39;, &#39;o&#39;, &#39;id▁&#39;, &#39;bet&#39;, &#39;c▁&#39;, &#39;res&#39;, &#39;stock▁&#39;, &#39;now▁&#39;, &#39;k&#39;, &#39;s&#39;, &#39;as▁&#39;, &#39;sou&#39;, &#39;thern▁&#39;, &#39;hits▁&#39;, &#39;5&#39;, &#39;2-&#39;, &#39;week▁&#39;, &#39;high▁&#39;, &#39;u.&#39;, &#39;s.&#39;, &#39;ex&#39;, &#39;deal▁&#39;, &#39;natural▁&#39;, &#39;gas▁&#39;, &#39;age▁&#39;, &#39;fore&#39;, &#39;ca&#39;, &#39;st:▁&#39;, &#39;u&#39;, &#39;outloo&#39;, &#39;k,▁&#39;, &#39;but▁&#39;, &#39;inde&#39;, &#39;be&#39;, &#39;low▁&#39;, &#39;market▁&#39;, &#39;expect&#39;, &#39;ations▁&#39;, &quot;what&#39;s▁&quot;, &#39;the▁&#39;, &#39;car&#39;, &#39;ds▁&#39;, &#39;ger▁&#39;, &#39;sk&#39;, &#39;t)▁&#39;, &#39;z&#39;, &#39;el&#39;, &#39;le▁&#39;, &#39;ch&#39;, &#39;ks▁&#39;, &#39;up▁&#39;, &#39;1&#39;, &#39;6&#39;, &#39;pa&#39;, &#39;y&#39;, &#39;q3▁&#39;, &#39;co&#39;, &#39;corporation▁&#39;, &#39;over&#39;, &#39;oug&#39;, &#39;h&#39;, &#39;t,▁&#39;, &#39;tale▁&#39;, &#39;tape▁&#39;, &#39;will▁&#39;, &#39;ea&#39;, &#39;st▁&#39;, &#39;we&#39;, &#39;banc&#39;, &#39;p▁&#39;, &#39;w&#39;, &#39;aga&#39;, &#39;joh&#39;, &#39;ch▁&#39;, &#39;dividend▁&#39;, &#39;income▁&#39;, &#39;track&#39;, &#39;er▁&#39;, &#39;reti&#39;, &#39;coun&#39;, &#39;cy&#39;, &#39;le&#39;, &#39;s,▁&#39;, &#39;..&#39;, &#39;.&#39;, &#39;wh&#39;, &#39;er&#39;, &#39;.▁&#39;, &#39;some▁&#39;, &#39;the&#39;, &#39;en▁&#39;, &#39;gro&#39;, &#39;w▁&#39;, &#39;be▁&#39;, &#39;bu&#39;, &#39;bl&#39;, &#39;inc.▁&#39;, &#39;ben&#39;, &#39;fit▁&#39;, &#39;from▁&#39;, &#39;mo&#39;, &#39;ile▁&#39;, &#39;growth▁&#39;, &#39;he&#39;, &#39;ph&#39;, &#39;one▁&#39;, &#39;ag&#39;, &#39;il&#39;, &#39;a)▁&#39;, &#39;5.&#39;, &#39;%▁&#39;, &#39;sinc&#39;, &#39;tic&#39;, &#39;highlights▁&#39;, &#39;b▁&#39;, &#39;opport&#39;, &#39;unity▁&#39;, &#39;sh▁&#39;, &#39;dr&#39;, &#39;ug&#39;, &#39;top▁&#39;, &#39;yield▁&#39;, &#39;stocks▁&#39;, &#39;financial▁&#39;, &#39;industry▁&#39;, &#39;cr&#39;, &#39;ude▁&#39;, &#39;oil▁&#39;, &#39;ase▁&#39;, &#39;ud&#39;, &#39;dis&#39;, &#39;ci&#39;, &#39;pl&#39;, &#39;ine▁&#39;, &#39;risk▁&#39;, &#39;if&#39;, &#39;th▁&#39;, &#39;street▁&#39;, &#39;fin&#39;, &#39;ni&#39;, &#39;i▁&#39;, &#39;in&#39;, &#39;e,▁&#39;, &#39;gr&#39;, &#39;ill▁&#39;, &#39;reports▁&#39;, &#39;ating▁&#39;, &#39;10&#39;, &#39;q&#39;, &#39;systems▁&#39;, &#39;come▁&#39;, &#39;amid▁&#39;, &#39;challeng&#39;, &#39;per&#39;, &#39;io&#39;, &#39;pe&#39;, &#39;ak▁&#39;, &#39;energ&#39;, &#39;y:▁&#39;, &#39;game▁&#39;, &#39;wat&#39;, &#39;ers▁&#39;, &#39;&amp;▁&#39;, &#39;revenues▁&#39;, &#39;g▁&#39;, &#39;est&#39;, &#39;jan&#39;, &#39;ation▁&#39;, &#39;lead&#39;, &#39;cor&#39;, &#39;res▁&#39;, &#39;ti&#39;, &#39;ble▁&#39;, &#39;deb&#39;, &#39;ie&#39;, &#39;are▁&#39;, &#39;om&#39;, &#39;health▁&#39;, &#39;net▁&#39;, &#39;gains▁&#39;, &#39;5▁&#39;, &#39;th&#39;, &#39;ings▁&#39;, &#39;before▁&#39;, &#39;ens▁&#39;, &#39;pr&#39;, &#39;im&#39;, &#39;:▁&#39;, &#39;par&#39;, &#39;▁&#39;, &#39;up&#39;, &#39;cur&#39;, &#39;3▁&#39;, &#39;und&#39;, &#39;10▁&#39;, &#39;fu&#39;, &#39;tu&#39;, &#39;arro&#39;, &#39;ly▁&#39;, &#39;high&#39;, &#39;;▁&#39;, &#39;ou&#39;, &#39;se▁&#39;, &#39;holdings▁&#39;, &#39;so&#39;, &#39;ar▁&#39;, &#39;comm&#39;, &#39;upgrad&#39;, &#39;z▁&#39;, &#39;s.▁&#39;, &#39;sell&#39;, &#39;off&#39;, &#39;how▁&#39;, &#39;ates▁&#39;, &#39;can▁&#39;, &#39;value▁&#39;, &#39;core▁&#39;, &#39;portfolio&#39;, &#39;canad&#39;, &#39;ian▁&#39;, &#39;sol&#39;, &#39;wn▁&#39;, &#39;qu&#39;, &#39;2018▁&#39;, &#39;str&#39;, &#39;ct&#39;, &#39;ure▁&#39;, &#39;at&#39;, &#39;invest&#39;, &#39;s;▁&#39;, &#39;ck&#39;, &#39;sid&#39;, &#39;ge▁&#39;, &#39;is&#39;, &#39;i&#39;, &#39;pac&#39;, &#39;ic▁&#39;, &#39;bre&#39;, &#39;out▁&#39;, &#39;und▁&#39;, &#39;sal&#39;, &#39;es,▁&#39;, &#39;boo&#39;, &#39;miss▁&#39;, &#39;end▁&#39;, &#39;year▁&#39;, &#39;ear&#39;, &#39;fund▁&#39;, &#39;ke▁&#39;, &#39;earning&#39;, &#39;sales▁&#39;, &#39;j&#39;, &#39;cramer&#39;, &#39;pla&#39;, &#39;tain&#39;, &#39;ul&#39;, &#39;can&#39;, &#39;improv&#39;, &#39;ement▁&#39;, &#39;vie&#39;, &#39;ws▁&#39;, &#39;us&#39;, &#39;one&#39;, &#39;data▁&#39;, &#39;ter▁&#39;, &#39;it▁&#39;, &#39;portfolio▁&#39;, &#39;reta&#39;, &#39;il▁&#39;, &#39;properti&#39;, &#39;america▁&#39;, &#39;(r&#39;, &#39;sil&#39;, &#39;cre&#39;, &#39;(s&#39;, &#39;focus:▁&#39;, &#39;6%▁&#39;, &#39;ses&#39;, &#39;sion▁&#39;, &#39;ma&#39;, &#39;ta&#39;, &#39;ins▁&#39;, &#39;ors▁&#39;, &#39;asset▁&#39;, &#39;management,▁&#39;, &#39;buys▁&#39;, &#39;gre&#39;, &#39;inc,▁&#39;, &#39;bro&#39;, &#39;iel&#39;, &#39;...▁&#39;, &#39;tw&#39;, &#39;with▁&#39;, &#39;bullish▁&#39;, &#39;insid&#39;, &#39;buy&#39;, &#39;am▁&#39;, &#39;win&#39;, &#39;ps▁&#39;, &#39;l▁&#39;, &#39;do&#39;, &quot;&#39;&quot;, &#39;goo&#39;, &#39;fr&#39;, &#39;id&#39;, &quot;&#39;▁&quot;, &#39;tim&#39;, &#39;year&#39;, &#39;trade▁&#39;, &#39;pu&#39;, &#39;te▁&#39;, &#39;could▁&#39;, &#39;pres&#39;, &#39;emerg&#39;, &#39;ing&#39;, &#39;notable▁&#39;, &#39;after▁&#39;, &#39;es&#39;, &quot;day&#39;s▁&quot;, &#39;close▁&#39;, &#39;ust▁&#39;, &#39;first▁&#39;, &#39;u.s.▁&#39;, &#39;ation&#39;, &#39;lower▁&#39;, &#39;chin&#39;, &#39;ese▁&#39;, &#39;ch:▁&#39;, &#39;ig&#39;, &#39;ap&#39;, &#39;zacks.com▁&#39;, &#39;red▁&#39;, &#39;inc&#39;, &#39;lu&#39;, &#39;da&#39;, &#39;tur&#39;, &#39;turn&#39;, &#39;poin&#39;, &#39;app&#39;, &#39;ent&#39;, &#39;analy&#39;, &#39;arm&#39;, &#39;ho&#39;, &#39;2016▁&#39;, &#39;q4▁&#39;, &#39;sl&#39;, &#39;watch▁&#39;, &#39;ur&#39;, &#39;tion&#39;, &#39;ign&#39;, &#39;dom&#39;, &#39;s?▁&#39;, &#39;pi&#39;, &#39;ons▁&#39;, &#39;2019▁&#39;, &#39;mi&#39;, &#39;contin&#39;, &#39;te&#39;, &#39;china▁&#39;, &#39;weekly▁&#39;, &#39;report▁&#39;, &#39;/&#39;, &#39;/1&#39;, &#39;air&#39;, &#39;misses▁&#39;, &#39;rev&#39;, &#39;llc▁&#39;, &#39;bri&#39;, &#39;sto&#39;, &#39;ib&#39;, &#39;compan&#39;, &#39;ati&#39;, &#39;ther&#39;, &#39;eu&#39;, &#39;ics▁&#39;, &#39;corp&#39;, &#39;sof&#39;, &#39;up:▁&#39;, &#39;at▁&#39;, &#39;su&#39;, &#39;ess▁&#39;, &#39;mac&#39;, &#39;au&#39;, &#39;gam&#39;, &#39;down▁&#39;, &#39;may▁&#39;, &#39;fol&#39;, &#39;low&#39;, &#39;cu&#39;, &#39;announ&#39;, &#39;ce&#39;, &#39;di&#39;, &#39;fall&#39;, &#39;q▁&#39;, &#39;h▁&#39;, &#39;no&#39;, &#39;ive▁&#39;, &#39;#&#39;, &#39;prov&#39;, &#39;ial▁&#39;, &#39;met&#39;, &#39;als▁&#39;, &#39;pos&#39;, &#39;ition▁&#39;, &#39;sp&#39;, &#39;ite▁&#39;, &#39;to&#39;, &#39;line▁&#39;, &#39;ad▁&#39;, &#39;capital▁&#39;, &#39;markets▁&#39;, &#39;ann&#39;, &#39;investor▁&#39;, &#39;fer&#39;, &#39;ence▁&#39;, &#39;ide&#39;, &#39;show▁&#39;, &#39;el▁&#39;, &#39;yn&#39;, &#39;sees▁&#39;, &#39;higher▁&#39;, &#39;s:▁&#39;, &quot;s&#39;▁&quot;, &#39;downgrad&#39;, &#39;0▁&#39;, &#39;saf&#39;, &#39;nov&#39;, &#39;em&#39;, &#39;s&amp;p▁&#39;, &#39;500▁&#39;, &#39;illi&#39;, &#39;companies▁&#39;, &#39;demand▁&#39;, &#39;you&#39;, &#39;highlights:▁&#39;, &#39;jun&#39;, &#39;all&#39;, &#39;and&#39;, &#39;ele&#39;, &#39;ant▁&#39;, &#39;inter&#39;, &#39;national▁&#39;, &#39;wor&#39;, &#39;2%▁&#39;, &#39;her&#39;, &#39;trad&#39;, &#39;other▁&#39;, &#39;log&#39;, &#39;it&#39;, &#39;)&#39;, &#39;mic&#39;, &#39;du&#39;, &#39;or▁&#39;, &#39;euro&#39;, &#39;equ&#39;, &#39;act&#39;, &#39;valu&#39;, &#39;time▁&#39;, &#39;ab&#39;, &#39;b)▁&#39;, &#39;ant&#39;, &#39;daily▁&#39;, &#39;por&#39;, &#39;laun&#39;, &#39;ches▁&#39;, &#39;ng&#39;, &#39;mov&#39;, &#39;industri&#39;, &#39;nes&#39;, &#39;pre&#39;, &#39;shares▁&#39;, &#39;es:▁&#39;, &#39;money▁&#39;, &#39;ct▁&#39;, &#39;quarter▁&#39;, &#39;—…–&#39;, &#39;acqu&#39;, &#39;arge▁&#39;, &#39;um▁&#39;, &#39;global▁&#39;, &#39;—…—…▁&#39;, &#39;|&#39;, &#39;shar&#39;, &#39;rat&#39;, &#39;ren&#39;, &#39;home▁&#39;, &#39;2.&#39;, &#39;d,▁&#39;, &#39;what▁&#39;, &#39;clas&#39;, &#39;action▁&#39;, &#39;sin&#39;, &#39;ll&#39;, &#39;investment▁&#39;, &#39;rele&#39;, &#39;ases▁&#39;, &#39;mon&#39;, &#39;sy&#39;, &#39;me&#39;, &#39;rea&#39;, &#39;eric&#39;, &#39;itions▁&#39;, &#39;2018&#39;, &#39;key▁&#39;, &#39;nu&#39;, &#39;ment&#39;, &#39;price▁&#39;, &#39;arg&#39;, &#39;r▁&#39;, &#39;rating▁&#39;, &#39;jum&#39;, &#39;4▁&#39;, &#39;poised▁&#39;, &#39;ral&#39;, &quot;cramer&#39;s▁&quot;, &#39;mad▁&#39;, &#39;gener&#39;, &#39;cont&#39;, &#39;end&#39;, &#39;az&#39;, &#39;ies▁&#39;, &#39;bi&#39;, &#39;pol&#39;, &quot;y&#39;s▁&quot;, &#39;banks▁&#39;, &#39;co,▁&#39;, &#39;est▁&#39;, &#39;ishares▁&#39;, &#39;msci▁&#39;, &#39;marke&#39;, &#39;sells▁&#39;, &#39;set&#39;, &#39;%&#39;, &#39;los&#39;, &#39;man▁&#39;, &#39;ver▁&#39;, &#39;gainers▁&#39;, &#39;/▁&#39;, &#39;losers▁&#39;, &#39;/2018)▁&#39;, &#39;sup&#39;, &#39;8%▁&#39;, &#39;relative▁&#39;, &#39;strength&#39;, &#39;man&#39;, &#39;wall▁&#39;, &#39;et&#39;, &#39;john▁&#39;, &#39;king▁&#39;, &#39;open▁&#39;, &#39;positive▁&#39;, &#39;still▁&#39;, &#39;les▁&#39;, &#39;what&#39;, &#39;kes▁&#39;, &#39;econom&#39;, &#39;out&#39;, &#39;your▁&#39;, &#39;ip&#39;, &#39;(p&#39;, &#39;ris&#39;, &#39;beat&#39;, &#39;incre&#39;, &#39;eps▁&#39;, &#39;gen&#39;, &#39;f▁&#39;, &#39;cover&#39;, &#39;ge&#39;, &#39;that▁&#39;, &#39;ys▁&#39;, &#39;fi&#39;, &#39;er,▁&#39;, &#39;ory▁&#39;, &#39;holdings,▁&#39;, &#39;ro&#39;, &#39;healthcare▁&#39;, &#39;ter&#39;, &#39;partners▁&#39;, &#39;duc&#39;, &#39;cast▁&#39;, &#39;sector▁&#39;, &#39;nasda&#39;, &#39;n▁&#39;, &#39;ke&#39;, &#39;s)▁&#39;, &#39;3%▁&#39;, &#39;ran&#39;, &#39;stock&#39;, &#39;moving▁&#39;, &#39;average▁&#39;, &#39;ros&#39;, &#39;wednes&#39;, &#39;y)▁&#39;, &#39;9▁&#39;, &#39;sts▁&#39;, &#39;shor&#39;, &#39;rise▁&#39;, &#39;pharm&#39;, &#39;aceutic&#39;, &#39;jumps▁&#39;, &#39;review:▁&#39;, &#39;mun&#39;, &#39;bond▁&#39;, &#39;ish&#39;, &#39;ther▁&#39;, &#39;blo&#39;, &#39;prof&#39;, &#39;dat&#39;, &#39;a,▁&#39;, &#39;tion▁&#39;, &#39;tops▁&#39;, &#39;sign&#39;, &#39;wi&#39;, &#39;ack&#39;, &#39;fact&#39;, &#39;ra&#39;, &#39;ised▁&#39;, &#39;outlook▁&#39;, &#39;morgan▁&#39;, &#39;io▁&#39;, &#39;oc&#39;, &#39;ber&#39;, &#39;2▁&#39;, &#39;all▁&#39;, &#39;e?▁&#39;, &#39;yiel&#39;, &#39;iv&#39;, &#39;ol&#39;, &#39;ate&#39;, &#39;t:▁&#39;, &#39;consum&#39;, &#39;ll▁&#39;, &#39;—…&#39;, &#39;……&#39;, &#39;iden&#39;, &#39;mber▁&#39;, &#39;–&#39;, &#39;technolog&#39;, &#39;ues▁&#39;, &#39;oo&#39;, &#39;erger▁&#39;, &#39;ives▁&#39;, &#39;lat&#39;, &#39;cap&#39;, &#39;mat&#39;, &#39;form&#39;, &#39;servic&#39;, &#39;sho&#39;, &#39;services▁&#39;, &#39;etf&#39;, &#39;sch&#39;, &#39;wa&#39;, &#39;mod&#39;, &#39;6▁&#39;, &#39;$0.&#39;, &#39;sen&#39;, &#39;trust▁&#39;, &#39;-year▁&#39;, &#39;ix▁&#39;, &#39;ri&#39;, &#39;energy▁&#39;, &#39;sa&#39;, &#39;hol&#39;, &#39;ay▁&#39;, &#39;med&#39;, &#39;ical▁&#39;, &#39;1▁&#39;, &#39;gol&#39;, &#39;~&#39;, &#39;guidance▁&#39;, &#39;inc▁&#39;, &#39;tre&#39;, &#39;short▁&#39;, &#39;inv&#39;, &#39;zacks▁&#39;, &#39;tal&#39;, &#39;com▁&#39;, &#39;ould▁&#39;, &#39;mor&#39;, &#39;2017▁&#39;, &#39;group▁&#39;, &#39;oun&#39;, &#39;for&#39;, &#39;ia▁&#39;, &#39;declares▁&#39;, &#39;0.&#39;, &#39;focu&#39;, &#39;back&#39;, &#39;â&#39;, &#39;ty▁&#39;, &#39;bank&#39;, &#39;ing,▁&#39;, &#39;:&#39;, &#39;00▁&#39;, &#39;com&#39;, &#39;gain&#39;, &#39;co▁&#39;, &#39;business▁&#39;, &#39;back▁&#39;, &#39;1,▁&#39;, &#39;val&#39;, &#39;loo&#39;, &#39;6.&#39;, &#39;management▁&#39;, &#39;ue▁&#39;, &#39;estimat&#39;, &#39;picks▁&#39;, &#39;equity▁&#39;, &#39;ight▁&#39;, &#39;pric&#39;, &#39;div&#39;, &#39;hold&#39;, &#39;revie&#39;, &#39;break&#39;, &#39;fa&#39;, &#39;…&#39;, &#39;grow&#39;, &#39;add&#39;, &#39;bo&#39;, &#39;my▁&#39;, &#39;erg&#39;, &#39;(g&#39;, &#39;al,▁&#39;, &#39;among▁&#39;, &#39;son▁&#39;, &#39;20&#39;, &#39;iti&#39;, &#39;big&#39;, &quot;it&#39;s▁&quot;, &#39;ion▁&#39;, &#39;tn&#39;, &#39;round&#39;, &quot;e&#39;s▁&quot;, &#39;quar&#39;, &#39;pen&#39;, &#39;expe&#39;, &#39;expected▁&#39;, &#39;loss▁&#39;, &#39;etfs▁&#39;, &#39;war&#39;, &#39;research▁&#39;, &#39;ga&#39;, &#39;ce▁&#39;, &#39;201&#39;, &#39;clos&#39;, &#39;decl&#39;, &#39;off▁&#39;, &#39;ld▁&#39;, &#39;anc&#39;, &#39;mis&#39;, &#39;ces▁&#39;, &#39;financ&#39;, &#39;enter&#39;, &#39;rising▁&#39;, &#39;ff▁&#39;, &#39;fro&#39;, &#39;set▁&#39;, &#39;dividen&#39;, &#39;entertain&#39;, &#39;earn&#39;, &#39;streng&#39;, &#39;earnings:▁&#39;, &#39;itive▁&#39;, &#39;igh&#39;, &#39;tran&#39;, &#39;+&#39;, &#39;review&#39;, &#39;profit▁&#39;, &#39;resul&#39;, &#39;eutic&#39;, &#39;over▁&#39;, &#39;bio&#39;, &#39;—&#39;, &#39;&amp;&#39;, &#39;our&#39;, &#39;tap&#39;, &#39;,&#39;, &#39;!&#39;, &#39;ong▁&#39;, &#39;fo&#39;, &#39;€&#39;, &#39;ares▁&#39;, &#39;proper&#39;, &#39;bull&#39;, &#39;momentum▁&#39;, &#39;updat&#39;, &#39;atur&#39;, &#39;relat&#39;, &#39;transcrip&#39;, &#39;wed&#39;, &#39;resour&#39;, &#39;system&#39;, &#39;health&#39;, &#39;americ&#39;, &#39;pan&#39;, &#39;highlight&#39;, &#39;mone&#39;, &#39;ear▁&#39;, &#39;&quot;&#39;, &#39;week&#39;, &#39;s.com▁&#39;, &#39;capit&#39;, &#39;bon&#39;, &#39;sect&#39;, &#39;tech&#39;, &#39;af&#39;, &#39;men&#39;, &#39;ands▁&#39;, &#39;glob&#39;, &#39;manag&#39;, &#39;down&#39;, &#39;repor&#39;, &#39;highligh&#39;, &#39;resear&#39;, &#39;cks▁&#39;, &#39;ser&#39;, &#39;glo&#39;, &#39;dow&#39;, &#39;ily▁&#39;, &#39;table▁&#39;, &#39;eng&#39;, &#39;stem&#39;, &#39;ban&#39;, &#39;verage▁&#39;, &#39;ment,▁&#39;, &#39;estim&#39;, &#39;s&amp;&#39;, &#39;ings,▁&#39;, &#39;wee&#39;, &#39;indu&#39;, &#39;stri&#39;, &#39;fir&#39;, &#39;nation&#39;, &#39;amer&#39;, &#39;scrip&#39;])
+Number of tokens: 1029
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="encoding-and-decoding">
+<h2>Encoding and Decoding<a class="headerlink" href="#encoding-and-decoding" title="Permalink to this heading">#</a></h2>
+<section id="decoding">
+<h3>Decoding<a class="headerlink" href="#decoding" title="Permalink to this heading">#</a></h3>
+<p>Decoding is straightforward. We simply concatenate all the tokens together and remove the stop token <code class="docutils literal notranslate"><span class="pre">&lt;/w&gt;</span></code>. For example, if the encoded sequence is [<code class="docutils literal notranslate"><span class="pre">the&lt;/w&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">high</span></code>, <code class="docutils literal notranslate"><span class="pre">est&lt;/w&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">moun</span></code>, <code class="docutils literal notranslate"><span class="pre">tain&lt;/w&gt;</span></code>], the decoded sequence is <code class="docutils literal notranslate"><span class="pre">the</span> <span class="pre">highest</span> <span class="pre">mountain</span></code>.</p>
+</section>
+<section id="encoding">
+<h3>Encoding<a class="headerlink" href="#encoding" title="Permalink to this heading">#</a></h3>
+<p>Encoding is a bit more complex. For a given sentence, we need to find the longest token in our vocabulary that is a subword of each word in the sentence. If no such token exists, we replace the word with an unknown token <code class="docutils literal notranslate"><span class="pre">&lt;/u&gt;</span></code>. This process is computationally expensive.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">measure_token_length</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">space_token</span><span class="o">=</span><span class="s2">&quot;▁&quot;</span><span class="p">):</span>
+    <span class="n">space_token_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">space_token</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">token</span><span class="p">[</span><span class="o">-</span><span class="n">space_token_len</span><span class="p">:]</span> <span class="o">==</span> <span class="n">space_token</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">token</span><span class="p">)</span> <span class="o">-</span> <span class="n">space_token_len</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">encode_word</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">sorted_tokens</span><span class="p">,</span> <span class="n">unknown_token</span><span class="o">=</span><span class="s2">&quot;&lt;/u&gt;&quot;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">string</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="n">sorted_tokens</span> <span class="o">=</span> <span class="n">sorted_tokens</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">sorted_tokens</span> <span class="o">==</span> <span class="p">[]:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">unknown_token</span><span class="p">]</span>
+
+    <span class="n">string_tokens</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sorted_tokens</span><span class="p">)):</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">sorted_tokens</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">token_reg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">token</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;[.]&quot;</span><span class="p">))</span>
+
+        <span class="n">matched_positions</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">m</span><span class="o">.</span><span class="n">end</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">token_reg</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">matched_positions</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">substring_end_positions</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">matched_position</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">matched_position</span> <span class="ow">in</span> <span class="n">matched_positions</span>
+        <span class="p">]</span>
+
+        <span class="n">substring_start_position</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">substring_end_position</span> <span class="ow">in</span> <span class="n">substring_end_positions</span><span class="p">:</span>
+            <span class="n">substring</span> <span class="o">=</span> <span class="n">string</span><span class="p">[</span><span class="n">substring_start_position</span><span class="p">:</span><span class="n">substring_end_position</span><span class="p">]</span>
+            <span class="n">string_tokens</span> <span class="o">+=</span> <span class="n">encode_word</span><span class="p">(</span>
+                <span class="n">string</span><span class="o">=</span><span class="n">substring</span><span class="p">,</span>
+                <span class="n">sorted_tokens</span><span class="o">=</span><span class="n">sorted_tokens</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:],</span>
+                <span class="n">unknown_token</span><span class="o">=</span><span class="n">unknown_token</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">string_tokens</span> <span class="o">+=</span> <span class="p">[</span><span class="n">token</span><span class="p">]</span>
+            <span class="n">substring_start_position</span> <span class="o">=</span> <span class="n">substring_end_position</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+        <span class="n">remaining_substring</span> <span class="o">=</span> <span class="n">string</span><span class="p">[</span><span class="n">substring_start_position</span><span class="p">:]</span>
+        <span class="n">string_tokens</span> <span class="o">+=</span> <span class="n">encode_word</span><span class="p">(</span>
+            <span class="n">string</span><span class="o">=</span><span class="n">remaining_substring</span><span class="p">,</span>
+            <span class="n">sorted_tokens</span><span class="o">=</span><span class="n">sorted_tokens</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:],</span>
+            <span class="n">unknown_token</span><span class="o">=</span><span class="n">unknown_token</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">break</span>
+    <span class="k">return</span> <span class="n">string_tokens</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now use this function to encode a given word.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_tokenization</span><span class="p">(</span><span class="n">word_given</span><span class="p">,</span> <span class="n">sorted_tokens</span><span class="p">,</span> <span class="n">vocab_tokenization</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tokenizing word: </span><span class="si">{}</span><span class="s2">...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">word_given</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">word_given</span> <span class="ow">in</span> <span class="n">vocab_tokenization</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tokenization of the known word:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">vocab_tokenization</span><span class="p">[</span><span class="n">word_given</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tokenization treating the known word as unknown:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="n">encode_word</span><span class="p">(</span>
+                <span class="n">string</span><span class="o">=</span><span class="n">word_given</span><span class="p">,</span> <span class="n">sorted_tokens</span><span class="o">=</span><span class="n">sorted_tokens</span><span class="p">,</span> <span class="n">unknown_token</span><span class="o">=</span><span class="s2">&quot;&lt;/u&gt;&quot;</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tokenizating of the unknown word:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="n">encode_word</span><span class="p">(</span>
+                <span class="n">string</span><span class="o">=</span><span class="n">word_given</span><span class="p">,</span> <span class="n">sorted_tokens</span><span class="o">=</span><span class="n">sorted_tokens</span><span class="p">,</span> <span class="n">unknown_token</span><span class="o">=</span><span class="s2">&quot;&lt;/u&gt;&quot;</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sort tokens by length in descending order</span>
+<span class="n">sorted_tokens</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">tokens</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">word_given_known</span> <span class="o">=</span> <span class="s2">&quot;investors▁&quot;</span>
+
+<span class="n">print_tokenization</span><span class="p">(</span><span class="n">word_given_known</span><span class="p">,</span> <span class="n">sorted_tokens</span><span class="p">,</span> <span class="n">vocab_tokenization</span><span class="p">)</span>
+
+<span class="n">word_given_unknown</span> <span class="o">=</span> <span class="s2">&quot;dogecoin▁&quot;</span>
+
+<span class="n">print_tokenization</span><span class="p">(</span><span class="n">word_given_unknown</span><span class="p">,</span> <span class="n">sorted_tokens</span><span class="p">,</span> <span class="n">vocab_tokenization</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tokenizing word: investors▁...
+Tokenization of the known word:
+[&#39;investors▁&#39;]
+Tokenization treating the known word as unknown:
+[&#39;investors▁&#39;]
+Tokenizing word: dogecoin▁...
+Tokenizating of the unknown word:
+[&#39;do&#39;, &#39;ge&#39;, &#39;co&#39;, &#39;in▁&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we can use our encoding function to tokenize an entire sentence.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">space_token</span><span class="o">=</span><span class="s2">&quot;▁&quot;</span><span class="p">):</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;\s+&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="o">+</span> <span class="n">space_token</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)]</span>
+    <span class="n">encoded_words</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">encode_word</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">sorted_tokens</span><span class="p">,</span> <span class="n">unknown_token</span><span class="o">=</span><span class="s2">&quot;&lt;/u&gt;&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span>
+    <span class="p">]</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">encoded_words</span><span class="p">,</span> <span class="p">[])</span>
+
+
+<span class="n">tokenized_text</span> <span class="o">=</span> <span class="n">tokenize</span><span class="p">(</span><span class="s2">&quot;Investment opportunities in the company&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tokenized_text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;investment▁&#39;, &#39;opport&#39;, &#39;un&#39;, &#39;ities▁&#39;, &#39;in▁&#39;, &#39;the▁&#39;, &#39;company▁&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>That’s it! You have now implemented BPE from scratch. This should give you a good understanding of how subword tokenization works in practice.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/lecture",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lectures/nlp_deep/tokenization"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="pipeline.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Tokenization Pipeline</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="sentencepiece.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">SentencePiece Tokenizer</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-preparation">Dataset Preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bpe-implementation">BPE Implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization">Initialization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#token-extraction">Token Extraction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bigram-counts">Bigram Counts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-operations">Merge Operations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-and-decoding">Encoding and Decoding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decoding">Decoding</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding">Encoding</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
