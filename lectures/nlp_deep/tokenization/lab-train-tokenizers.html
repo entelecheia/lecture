@@ -565,46 +565,23 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-the-environment">Prepare the environment</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-saved-corpora">Load the saved corpora</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#covert-pandas-datafame-to-huggingface-dataset">Covert pandas datafame to huggingface dataset</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shuffle-the-dataset">Shuffle the dataset</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#split-the-dataset-into-sentences-for-training">Split the dataset into sentences for training</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-sentences-and-combine-them-into-a-single-file">Sample sentences and combine them into a single file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-install-necessary-libraries">Step 1: Install necessary libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-load-the-dataset">Step 2: Load the dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-prepare-the-text">Step 3: Prepare the text</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-train-the-tokenizers">Step 4: Train the tokenizers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#byte-pair-encoding-bpe">Byte Pair Encoding (BPE)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wordpiece">WordPiece</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unigram">Unigram</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sentencepiece">SentencePiece</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-tokenizers-with-hugging-face-tokenizers">Train tokenizers with Hugging Face Tokenizers</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-the-libraries-and-prepare-functions">Import the libraries and prepare functions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-bpe-tokenizer">Train BPE tokenizer</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-unigram-tokenizer">Train Unigram tokenizer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-compare-the-tokenizers">Step 5: Compare the tokenizers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-tokenizers-for-gpt-bert-and-t5">Training Tokenizers for GPT, BERT, and T5</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#byte-pair-encoding-bpe-gpt">Byte Pair Encoding (BPE) - GPT</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-tokenizers-with-google-sentencepiece-spm">Train tokenizers with Google SentencePiece (SPM)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-sentencepiece">Install SentencePiece</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-sentencepiece-models">Train SentencePiece models</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#train-unigram-model">Train Unigram model</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-trained-model">Load the trained model</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#train-bpe-model">Train BPE model</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Load the trained model</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-the-tokenizers">Compare the Tokenizers</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-tokenizers">Load the tokenizers</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analyze-the-output-of-the-tokenizers">Analyze the output of the tokenizers</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-the-tokens">Compare the Tokens</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage-of-tokenizer-trainer">Usage of Tokenizer Trainer</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bpe-model-by-hugging-face">BPE Model by Hugging Face</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unigram-model-by-hugging-face">Unigram Model by Hugging Face</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bpe-model-by-sentencepiece">BPE Model by SentencePiece</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unigram-model-by-sentencepiece">Unigram Model by SentencePiece</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Compare the Tokenizers</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Usage of Tokenizer Trainer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wordpiece-bert">WordPiece - BERT</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unigram-t5">Unigram - T5</a></li>
 </ul>
             </nav>
         </div>
@@ -618,2046 +595,252 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="lab-training-tokenizers">
 <h1>Lab: Training Tokenizers<a class="headerlink" href="#lab-training-tokenizers" title="Permalink to this heading">#</a></h1>
-<p><img alt="" src="../../../_images/entelecheia_alphabets.png" /></p>
-<section id="prepare-the-environment">
-<h2>Prepare the environment<a class="headerlink" href="#prepare-the-environment" title="Permalink to this heading">#</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">pre</span> <span class="n">ekorpkit</span><span class="p">[</span><span class="n">tokenize</span><span class="p">]</span>
-</pre></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ekorpkit</span> <span class="kn">import</span> <span class="n">eKonf</span>
-
-<span class="n">eKonf</span><span class="o">.</span><span class="n">setLogger</span><span class="p">(</span><span class="s2">&quot;INFO&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;version:&quot;</span><span class="p">,</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
-
-<span class="n">is_colab</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">is_colab</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;is colab?&quot;</span><span class="p">,</span> <span class="n">is_colab</span><span class="p">)</span>
-<span class="k">if</span> <span class="n">is_colab</span><span class="p">:</span>
-    <span class="n">eKonf</span><span class="o">.</span><span class="n">mount_google_drive</span><span class="p">()</span>
-<span class="n">workspace_dir</span> <span class="o">=</span> <span class="s2">&quot;/content/drive/MyDrive/workspace&quot;</span>
-<span class="n">project_name</span> <span class="o">=</span> <span class="s2">&quot;ekorpkit-book&quot;</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">set_workspace</span><span class="p">(</span><span class="n">workspace</span><span class="o">=</span><span class="n">workspace_dir</span><span class="p">,</span> <span class="n">project</span><span class="o">=</span><span class="n">project_name</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;project_dir:&quot;</span><span class="p">,</span> <span class="n">ws</span><span class="o">.</span><span class="n">project_dir</span><span class="p">)</span>
-<span class="n">ws</span><span class="o">.</span><span class="n">envs</span><span class="o">.</span><span class="n">dict</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.utils.notebook:Google Colab not detected.
-INFO:ekorpkit.base:Set environment variable EKORPKIT_WORKSPACE_ROOT=/content/drive/MyDrive/workspace
-INFO:ekorpkit.base:Set environment variable EKORPKIT_PROJECT_DIR=/content/drive/MyDrive/workspace/projects/ekorpkit-book
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>version: 0.1.40.post0.dev51
-is colab? False
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:root:compose config with overrides: [&#39;+project=default&#39;]
-INFO:ekorpkit.base:There are no arguments to initilize a config, using default config.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>project_dir: /content/drive/MyDrive/workspace/projects/ekorpkit-book
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;EKORPKIT_CONFIG_DIR&#39;: &#39;/workspace/projects/ekorpkit-book/config&#39;,
- &#39;EKORPKIT_WORKSPACE_ROOT&#39;: &#39;/content/drive/MyDrive/workspace&#39;,
- &#39;EKORPKIT_PROJECT&#39;: &#39;ekorpkit-book&#39;,
- &#39;EKORPKIT_PROJECT_DIR&#39;: &#39;/content/drive/MyDrive/workspace/projects/ekorpkit-book&#39;,
- &#39;EKORPKIT_DATA_DIR&#39;: None,
- &#39;EKORPKIT_LOG_LEVEL&#39;: &#39;INFO&#39;,
- &#39;NUM_WORKERS&#39;: 230,
- &#39;KMP_DUPLICATE_LIB_OK&#39;: &#39;TRUE&#39;,
- &#39;CUDA_DEVICE_ORDER&#39;: None,
- &#39;CUDA_VISIBLE_DEVICES&#39;: None,
- &#39;WANDB_PROJECT&#39;: None,
- &#39;WANDB_DISABLED&#39;: None,
- &#39;LABEL_STUDIO_SERVER&#39;: &#39;http://ekorpkit-labelstudio:8080&#39;,
- &#39;CACHED_PATH_CACHE_ROOT&#39;: None}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 936 ms (started: 2022-12-13 04:56:08 +00:00)
-</pre></div>
-</div>
-</div>
-</div>
-<section id="load-the-saved-corpora">
-<h3>Load the saved corpora<a class="headerlink" href="#load-the-saved-corpora" title="Permalink to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s2">&quot;enko_filtered.parquet&quot;</span><span class="p">,</span> <span class="n">ws</span><span class="o">.</span><span class="n">project_dir</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span><span class="p">)</span>
-<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.io.file:Processing [1] files from [&#39;enko_filtered.parquet&#39;]
-INFO:ekorpkit.io.file:Loading 1 dataframes from [&#39;/content/drive/MyDrive/workspace/projects/ekorpkit-book/data/enko_filtered.parquet&#39;]
-INFO:ekorpkit.io.file:Loading data from /content/drive/MyDrive/workspace/projects/ekorpkit-book/data/enko_filtered.parquet
-</pre></div>
-</div>
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>text</th>
-      <th>split</th>
-      <th>filename</th>
-      <th>corpus</th>
-      <th>num_chars</th>
-      <th>num_words</th>
-      <th>num_sents</th>
-      <th>avg_num_chars</th>
-      <th>avg_num_words</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>7644961</td>
-      <td>Anaissini is a tribe of click beetles in the f...</td>
-      <td>train</td>
-      <td>wiki_49</td>
-      <td>enwiki_sampled</td>
-      <td>63</td>
-      <td>11</td>
-      <td>1</td>
-      <td>5.727273</td>
-      <td>11.000000</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>6658552</td>
-      <td>The Vicky Metcalf Award for Literature for You...</td>
-      <td>train</td>
-      <td>wiki_24</td>
-      <td>enwiki_sampled</td>
-      <td>479</td>
-      <td>82</td>
-      <td>5</td>
-      <td>5.841463</td>
-      <td>16.400000</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>11081255</td>
-      <td>Eylex Films Pvt is a chain of multiplex and si...</td>
-      <td>train</td>
-      <td>wiki_94</td>
-      <td>enwiki_sampled</td>
-      <td>1161</td>
-      <td>181</td>
-      <td>12</td>
-      <td>6.414365</td>
-      <td>15.083333</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>4706486</td>
-      <td>Željko Zečević (; born 21 October 1963) is a S...</td>
-      <td>train</td>
-      <td>wiki_02</td>
-      <td>enwiki_sampled</td>
-      <td>1151</td>
-      <td>201</td>
-      <td>15</td>
-      <td>5.726368</td>
-      <td>13.400000</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>2170359</td>
-      <td>Gilberto Nascimento Silva (born 9 June 1956) i...</td>
-      <td>train</td>
-      <td>wiki_57</td>
-      <td>enwiki_sampled</td>
-      <td>685</td>
-      <td>105</td>
-      <td>9</td>
-      <td>6.523810</td>
-      <td>11.666667</td>
-    </tr>
-  </tbody>
-</table>
-</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 3.17 s (started: 2022-12-13 00:32:31 +00:00)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text_column</span> <span class="o">=</span> <span class="s2">&quot;text&quot;</span>
-
-<span class="n">text_en</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">corpus</span> <span class="o">==</span> <span class="s2">&quot;enwiki_sampled&quot;</span><span class="p">][</span><span class="n">text_column</span><span class="p">]</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="p">)</span>
-<span class="n">text_ko</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">corpus</span> <span class="o">==</span> <span class="s2">&quot;kowiki&quot;</span><span class="p">][</span><span class="n">text_column</span><span class="p">]</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">text_en</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">text_ko</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;The Rijeka Thermal Power Station (, TE Rijeka, also known as &quot;TE Urinj&quot;) is an oil-fired power station east of Rijeka at Kostrena, Croatia. It was built between 1974 and 1978 and it has one generation unit with capacity of 320\xa0MW. The height of the boiler house including its rooftop flue gas stack is .&#39;, &#39;Turbine for the power station was supplied by Ansaldo Energia. Ansaldo Energia was also awarded engineering, procurement and construction contract. Boilers were supplied by Waagner-Biro.&#39;, &#39;The power station is owned and operated by Hrvatska elektroprivreda. Its annual production varies, averaging 917 GWh, but only 141 GWh in 2011. It is expected to undergo decommissioning in 2020, but it is doubtful that it will remain operational until then because of its pollution problem. , Rijeka Thermal Power Station is offline, ready to resume generation within 160 hours of notice. On 18 October 2022, it was unofficially reported that HEP plans to restart the operation of the power plant in order to cover the losses incurred during the energy crisis.&#39;]
-[&#39;런던의 2012년 하계 올림픽 펜싱 여자 플뢰레 단체전은 8월 2일에 엑셀 박람회관에서 진행되었다.&#39;, &#39;토너먼트 형식.&#39;, &#39;9팀이 여자 플뢰레 단체전에 참가하였다. 본선에 출전하는 팀들은 FIE 랭킹에 따라 대진이 정해졌다. 영국은 개최국 자격으로 모든 종목을 선택 여부에 따라 참전할 수 있는 자격이 주어졌다. 영국은 이 토너먼트에 참가하여 첫경기에서 9번 시드의 이집트를 상대하여 승리하며 8강전에서 나머지 7개의 참가팀들과 만났다. 8강전에서 패한 팀들도 두 경기를 더 치러 5위에서 8위까지의 순위를 결정한다. 반대로, 8강전에서 승리한 팀들은 준결승전에서 서로와 맞붙는다. 준결승전에서 승리한 두 팀은 금메달 결정전으로, 패한 팀들은 동메달 결정전으로 이동한다.&#39;, &#39;단체전은 먼저 45투셰를 기록하거나, 정규시간이 지나고 더 많은 투셰를 기록한 팀이 승리한다.&#39;]
-time: 145 ms (started: 2022-11-14 02:09:16 +00:00)
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="covert-pandas-datafame-to-huggingface-dataset">
-<h3>Covert pandas datafame to huggingface dataset<a class="headerlink" href="#covert-pandas-datafame-to-huggingface-dataset" title="Permalink to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">Dataset</span>
-
-<span class="n">raw_dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">data</span><span class="p">[[</span><span class="n">text_column</span><span class="p">]])</span>
-<span class="n">raw_dataset</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset({
-    features: [&#39;text&#39;, &#39;__index_level_0__&#39;],
-    num_rows: 603719
-})
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 1.22 s (started: 2022-11-14 02:09:19 +00:00)
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="shuffle-the-dataset">
-<h3>Shuffle the dataset<a class="headerlink" href="#shuffle-the-dataset" title="Permalink to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># shuffle the dataset</span>
-
-<span class="n">raw_dataset</span> <span class="o">=</span> <span class="n">raw_dataset</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 116 ms (started: 2022-11-14 02:09:21 +00:00)
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="split-the-dataset-into-sentences-for-training">
-<h3>Split the dataset into sentences for training<a class="headerlink" href="#split-the-dataset-into-sentences-for-training" title="Permalink to this heading">#</a></h3>
-<p>The sentencepiece module comes with a python training API, which uses sentences in a file, one sentence per line. We will use the <code class="docutils literal notranslate"><span class="pre">sent_tokenize</span></code> function from the <code class="docutils literal notranslate"><span class="pre">nltk</span></code> package to split the text into sentences. The <code class="docutils literal notranslate"><span class="pre">sent_tokenize</span></code> function is a wrapper around the <code class="docutils literal notranslate"><span class="pre">punkt</span></code> tokenizer, which is a pre-trained sentence tokenizer. The <code class="docutils literal notranslate"><span class="pre">punkt</span></code> tokenizer is trained on the Penn Treebank corpus, which is a collection of Wall Street Journal articles. The <code class="docutils literal notranslate"><span class="pre">punkt</span></code> tokenizer is a good choice for plain English text, but it may not be the best choice for other languages.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
-<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">sent_tokenize</span>
-<span class="kn">from</span> <span class="nn">ekorpkit.tokenizers.trainers.spm</span> <span class="kn">import</span> <span class="n">export_sentence_chunk_files</span>
-
-<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">&quot;punkt&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package punkt to /root/nltk_data...
-[nltk_data]   Package punkt is already up-to-date!
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 1.13 s (started: 2022-11-14 02:09:23 +00:00)
-</pre></div>
-</div>
-</div>
-</div>
+<p>In this lab lecture, we will focus on training various tokenizers on a corpus of Korean text. The corpus we are using is the <code class="docutils literal notranslate"><span class="pre">wiki</span></code> dataset from the Hugging Face Hub. We will be training Byte Pair Encoding (BPE), WordPiece, and Unigram tokenizers, and then compare their performance. Additionally, we will also train a tokenizer using SentencePiece.</p>
+<section id="step-1-install-necessary-libraries">
+<h2>Step 1: Install necessary libraries<a class="headerlink" href="#step-1-install-necessary-libraries" title="Permalink to this heading">#</a></h2>
+<p>First, we need to install the necessary libraries. We’ll be using Hugging Face’s <code class="docutils literal notranslate"><span class="pre">tokenizers</span></code> library and the <code class="docutils literal notranslate"><span class="pre">datasets</span></code> library to load our corpus. We’ll also need the <code class="docutils literal notranslate"><span class="pre">sentencepiece</span></code> library. You can install them with:</p>
 <div class="cell tag_hide-output docutils container">
-<div class="cell_input above-output-prompt docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">output_dir</span> <span class="o">=</span> <span class="n">project_dir</span> <span class="o">+</span> <span class="s2">&quot;/data/tokenizers/enko_filtered_chunk&quot;</span>
-
-<span class="n">export_sentence_chunk_files</span><span class="p">(</span>
-    <span class="n">raw_dataset</span><span class="p">,</span>
-    <span class="n">output_dir</span><span class="o">=</span><span class="n">output_dir</span><span class="p">,</span>
-    <span class="n">chunk_size</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
-    <span class="n">text_column</span><span class="o">=</span><span class="n">text_column</span><span class="p">,</span>
-    <span class="n">sent_tokenize</span><span class="o">=</span><span class="n">sent_tokenize</span><span class="p">,</span>
-<span class="p">)</span>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install tokenizers datasets sentencepiece
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
-</summary>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.tokenizers.trainers.spm:Writing sentence chunks to /content/drive/MyDrive/workspace/projects/ekorpkit-book/data/tokenizers/enko_filtered_chunk
-</pre></div>
-</div>
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "97b44995833848fe87bdb05c71aa4982", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "6f89622bcb5d42c997d7f18784f53edc", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "2751c08c883544f58614deeb8981488e", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "b8a2969bd57f4b9a9c8599ffbbf4d022", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "9ec33a890f08425ba30724052f26de1a", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "6b38e47294924483b4ac920692e588ba", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "fb6227f9c3184a2db324955d71a07616", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "a4c4a37667194a72b55de14e354dbf28", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "59bd4a0cfd2440c9b2f2c21a466e8cfc", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "091c04d993de482c80c20a3ef56acf32", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "981ed78be2014c1495a25905371d3689", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "f5fa64680a504465b252c3e0b9929f9d", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "0297b8d4d18945daa7bfe8e0ecdd89b1", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "57c1839ea40442fa95c3effbf7c868fc", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "85a41e55653845a6964d9cea98c3e839", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "0fbdde2fae8a4e2cb08d66082b32977d", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "0bbfe8cb0b7940209c190327908cbd03", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "eb38b977ced140e7be6cef0bbf8f1434", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "ad97ef746aac49278d31ba1319d80390", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "53ce43fe84e74cd9a7d55984be05b94f", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "57f88240c9474c72ac4736025860ba59", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "6e21b3ec200a43b1a1bd91d671644440", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "fecdb4db9d50425dad4174c032c74483", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "c83581be051b450c8f7eeb122d1e25f1", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "38070781adee427ab59f75d010a11d65", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "3dda9f2a336b4cb09cff2a1925232c38", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "8421232b22fa4b31af5c2639f9925359", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "979f7962efe9492a87baf82b9384168f", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "2c75888b48404dd2bf4ad4470c68e2ea", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "27e949a8a1b7443eae7901f921a681be", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "93cee8281d3545cd89246d4592293a66", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "b754465d17ed4370878285e380a4deb7", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "2e4d07b4ccd54fabb422811a6df32e17", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "57934a1734844f7d9ed015b8cb6b1629", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "db83ae55bff5443c9d0730e464002aae", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "87c8c1f80a984061953cd8fa46c4530a", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "21649f1d0f014e13ac397293c0be8d2e", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "0c9116dc192a40a382d24863f1a8faa0", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "8522cfdf815f499c97d9c0f73912f852", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "16dcc30a100845f4b28cf760018e5e80", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "250b482be2f04fc89171fc9c2c1aff7f", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "fd8c51e420d5453b97188ddf14d444a6", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "eb1ae39fc0524855b3ce6439f9457aaf", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "53ffc1b28ed244adb84925ff5a2adfa1", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "819c075a76864e748c17125bac85b075", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "6485ed28a2e54e338ab39efe465554b7", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "7671adfd3f034ee7ac7dda6cb80b6fdc", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "3006952a87514194808b9a78d6397e94", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "6f8a089a1f024b6d8c98c3a5dd05aeb2", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "868682e31c354e819eb48cfdecdd86e4", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "60ca922be9064bdea90a2e1f738ce3ef", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "331cdf07bf7b4cf69fc91a9cc17b1dcf", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "9085bd2232204946bf060360225c5117", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "efe7236fc094485c8991a986c8fe1846", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "479b4fe1345d466191bf75d1188f5352", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "11dff1c0a24a4c7f883cee9eb72616df", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "38ee56c6ce024e49a778745f328e36eb", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "6bb1a2760b774b9fb2d7daecbc2f7965", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "d8530259c2bd4413afec3c6576d5dcf7", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "6670a5929d684a33bf2ab3394c8f5426", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "6a61dc7266db4160b8a37839f2026d65", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "1a78ecc5df534189a17198661a0df9e1", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 1min 29s (started: 2022-11-14 02:09:26 +00:00)
-</pre></div>
-</div>
-</div>
-</details>
 </div>
 </section>
-<section id="sample-sentences-and-combine-them-into-a-single-file">
-<h3>Sample sentences and combine them into a single file<a class="headerlink" href="#sample-sentences-and-combine-them-into-a-single-file" title="Permalink to this heading">#</a></h3>
-<p>If your dataset is too large, you can sample a subset of the sentence files for training. The <code class="docutils literal notranslate"><span class="pre">sample</span></code> function from the <code class="docutils literal notranslate"><span class="pre">random</span></code> module can be used to sample a subset of the files.</p>
-<p>You can use <code class="docutils literal notranslate"><span class="pre">sample_and_combine</span></code> function to sample a subset of sentence files and combine them into a single file.</p>
+<section id="step-2-load-the-dataset">
+<h2>Step 2: Load the dataset<a class="headerlink" href="#step-2-load-the-dataset" title="Permalink to this heading">#</a></h2>
+<p>We’ll be using the <code class="docutils literal notranslate"><span class="pre">wiki</span></code> dataset in Korean, which we can load using the <code class="docutils literal notranslate"><span class="pre">datasets</span></code> library.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ekorpkit.tokenizers.trainers.spm</span> <span class="kn">import</span> <span class="n">sample_and_combine</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
 
-<span class="n">input_dir</span> <span class="o">=</span> <span class="n">project_dir</span> <span class="o">+</span> <span class="s2">&quot;/data/tokenizers/enko_filtered_chunk&quot;</span>
-<span class="n">output_dir</span> <span class="o">=</span> <span class="n">project_dir</span> <span class="o">+</span> <span class="s2">&quot;/data/tokenizers/enko_filtered_samples&quot;</span>
-
-<span class="n">sampled_file</span> <span class="o">=</span> <span class="n">sample_and_combine</span><span class="p">(</span>
-    <span class="n">input_dir</span><span class="o">=</span><span class="n">input_dir</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">sample_size</span><span class="o">=</span><span class="mi">50</span>
-<span class="p">)</span>
+<span class="n">wiki</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;lcw99/wikipedia-korean-20221001&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.tokenizers.trainers.spm:sampled files: [&#39;sent_chunk_0009.txt&#39;, &#39;sent_chunk_0019.txt&#39;, &#39;sent_chunk_0060.txt&#39;, &#39;sent_chunk_0038.txt&#39;, &#39;sent_chunk_0000.txt&#39;, &#39;sent_chunk_0042.txt&#39;, &#39;sent_chunk_0025.txt&#39;, &#39;sent_chunk_0053.txt&#39;, &#39;sent_chunk_0035.txt&#39;, &#39;sent_chunk_0033.txt&#39;, &#39;sent_chunk_0008.txt&#39;, &#39;sent_chunk_0023.txt&#39;, &#39;sent_chunk_0004.txt&#39;, &#39;sent_chunk_0024.txt&#39;, &#39;sent_chunk_0013.txt&#39;, &#39;sent_chunk_0003.txt&#39;, &#39;sent_chunk_0017.txt&#39;, &#39;sent_chunk_0051.txt&#39;, &#39;sent_chunk_0027.txt&#39;, &#39;sent_chunk_0058.txt&#39;, &#39;sent_chunk_0012.txt&#39;, &#39;sent_chunk_0029.txt&#39;, &#39;sent_chunk_0015.txt&#39;, &#39;sent_chunk_0044.txt&#39;, &#39;sent_chunk_0057.txt&#39;, &#39;sent_chunk_0020.txt&#39;, &#39;sent_chunk_0052.txt&#39;, &#39;sent_chunk_0059.txt&#39;, &#39;sent_chunk_0005.txt&#39;, &#39;sent_chunk_0011.txt&#39;, &#39;sent_chunk_0031.txt&#39;, &#39;sent_chunk_0030.txt&#39;, &#39;sent_chunk_0001.txt&#39;, &#39;sent_chunk_0056.txt&#39;, &#39;sent_chunk_0047.txt&#39;, &#39;sent_chunk_0055.txt&#39;, &#39;sent_chunk_0007.txt&#39;, &#39;sent_chunk_0032.txt&#39;, &#39;sent_chunk_0018.txt&#39;, &#39;sent_chunk_0014.txt&#39;, &#39;sent_chunk_0016.txt&#39;, &#39;sent_chunk_0054.txt&#39;, &#39;sent_chunk_0028.txt&#39;, &#39;sent_chunk_0021.txt&#39;, &#39;sent_chunk_0006.txt&#39;, &#39;sent_chunk_0040.txt&#39;, &#39;sent_chunk_0049.txt&#39;, &#39;sent_chunk_0043.txt&#39;, &#39;sent_chunk_0037.txt&#39;, &#39;sent_chunk_0022.txt&#39;]
-INFO:ekorpkit.tokenizers.trainers.spm:number of lines sampled: 2,998,856
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading metadata: 100%|██████████| 1.34k/1.34k [00:00&lt;00:00, 984kB/s]
+Downloading readme: 100%|██████████| 22.0/22.0 [00:00&lt;00:00, 13.0kB/s]
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "6f5c0f36c9aa4016a4784563ae842cba", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.tokenizers.trainers.spm:saved sampled sentences to /content/drive/MyDrive/workspace/projects/ekorpkit-book/data/tokenizers/enko_filtered_samples/sampled_sentences.txt
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading and preparing dataset wikipedia/20221001.ko (download: 690.36 MiB, generated: 1.22 GiB, post-processed: Unknown size, total: 1.89 GiB) to /home/yjlee/.cache/huggingface/datasets/lcw99___parquet/lcw99--wikipedia-korean-20221001-91be346ce97972f5/0.0.0/2a3b91fbd88a2c90d1dbbb32b460cf621d31bd5b05b934492fdef7d8d6f236ec...
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 20.9 s (started: 2022-11-13 05:07:06 +00:00)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading data: 100%|██████████| 375M/375M [00:04&lt;00:00, 75.3MB/s]
+Downloading data: 100%|██████████| 188M/188M [00:02&lt;00:00, 78.5MB/s]
+Downloading data: 100%|██████████| 162M/162M [00:18&lt;00:00, 8.96MB/s]
+Downloading data files: 100%|██████████| 1/1 [01:04&lt;00:00, 64.52s/it]
+Extracting data files: 100%|██████████| 1/1 [00:00&lt;00:00, 515.65it/s]
+                                                                                          
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset parquet downloaded and prepared to /home/yjlee/.cache/huggingface/datasets/lcw99___parquet/lcw99--wikipedia-korean-20221001-91be346ce97972f5/0.0.0/2a3b91fbd88a2c90d1dbbb32b460cf621d31bd5b05b934492fdef7d8d6f236ec. Subsequent calls will reuse this data.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 1/1 [00:00&lt;00:00, 75.55it/s]
 </pre></div>
 </div>
 </div>
 </div>
 </section>
+<section id="step-3-prepare-the-text">
+<h2>Step 3: Prepare the text<a class="headerlink" href="#step-3-prepare-the-text" title="Permalink to this heading">#</a></h2>
+<p>We’ll need to extract the actual text from our dataset for training our tokenizers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># change this to your own path</span>
+<span class="n">wiki_filepath</span> <span class="o">=</span> <span class="s2">&quot;/tmp/wiki.txt&quot;</span>
+
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">article</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">article</span> <span class="ow">in</span> <span class="n">wiki</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">])</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">wiki_filepath</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
-<section id="train-tokenizers-with-hugging-face-tokenizers">
-<h2>Train tokenizers with Hugging Face Tokenizers<a class="headerlink" href="#train-tokenizers-with-hugging-face-tokenizers" title="Permalink to this heading">#</a></h2>
-<p><a class="reference external" href="https://huggingface.co/docs/tokenizers/quicktour">Hugging Face’s Tokenizers</a> provides a wide range of tokenizers, including BPE, WordPiece, Unigram, SentencePiece, and ByteLevel. We will use the BPE and Unigram tokenizers in this lab.</p>
-<section id="import-the-libraries-and-prepare-functions">
-<h3>Import the libraries and prepare functions<a class="headerlink" href="#import-the-libraries-and-prepare-functions" title="Permalink to this heading">#</a></h3>
+<section id="step-4-train-the-tokenizers">
+<h2>Step 4: Train the tokenizers<a class="headerlink" href="#step-4-train-the-tokenizers" title="Permalink to this heading">#</a></h2>
+<p>Now, we’ll train each of our tokenizers on our text.</p>
+<section id="byte-pair-encoding-bpe">
+<h3>Byte Pair Encoding (BPE)<a class="headerlink" href="#byte-pair-encoding-bpe" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tokenizers</span> <span class="kn">import</span> <span class="n">Tokenizer</span>
-<span class="kn">from</span> <span class="nn">tokenizers.models</span> <span class="kn">import</span> <span class="n">BPE</span><span class="p">,</span> <span class="n">Unigram</span><span class="p">,</span> <span class="n">WordLevel</span>
-<span class="kn">from</span> <span class="nn">tokenizers.trainers</span> <span class="kn">import</span> <span class="n">BpeTrainer</span><span class="p">,</span> <span class="n">UnigramTrainer</span><span class="p">,</span> <span class="n">WordLevelTrainer</span>
+<span class="kn">from</span> <span class="nn">tokenizers.models</span> <span class="kn">import</span> <span class="n">BPE</span>
+
+<span class="c1"># change this to your own path</span>
+<span class="n">bpe_tokenizer_path</span> <span class="o">=</span> <span class="s2">&quot;/tmp/bpe_tokenizer.json&quot;</span>
+
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">BPE</span><span class="p">())</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">train</span><span class="p">([</span><span class="n">wiki_filepath</span><span class="p">])</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">bpe_tokenizer_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="wordpiece">
+<h3>WordPiece<a class="headerlink" href="#wordpiece" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tokenizers.models</span> <span class="kn">import</span> <span class="n">WordPiece</span>
+
+<span class="c1"># change this to your own path</span>
+<span class="n">wordpiece_tokenizer_path</span> <span class="o">=</span> <span class="s2">&quot;/tmp/wordpiece_tokenizer.json&quot;</span>
+
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">WordPiece</span><span class="p">())</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">train</span><span class="p">([</span><span class="n">wiki_filepath</span><span class="p">])</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">wordpiece_tokenizer_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="unigram">
+<h3>Unigram<a class="headerlink" href="#unigram" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tokenizers.models</span> <span class="kn">import</span> <span class="n">Unigram</span>
+
+<span class="c1"># change this to your own path</span>
+<span class="n">unigram_tokenizer_path</span> <span class="o">=</span> <span class="s2">&quot;/tmp/unigram_tokenizer.json&quot;</span>
+
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">Unigram</span><span class="p">())</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">train</span><span class="p">([</span><span class="n">wiki_filepath</span><span class="p">])</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">unigram_tokenizer_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sentencepiece">
+<h3>SentencePiece<a class="headerlink" href="#sentencepiece" title="Permalink to this heading">#</a></h3>
+<p>For SentencePiece, we’ll use the SentencePiece library directly.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sentencepiece</span> <span class="k">as</span> <span class="nn">spm</span>
+
+<span class="n">spm</span><span class="o">.</span><span class="n">SentencePieceTrainer</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
+    <span class="s2">&quot;--input=wiki_ko.txt --model_prefix=sentencepiece --vocab_size=32000&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="step-5-compare-the-tokenizers">
+<h2>Step 5: Compare the tokenizers<a class="headerlink" href="#step-5-compare-the-tokenizers" title="Permalink to this heading">#</a></h2>
+<p>Now, let’s load each tokenizer and see how they tokenize a sample sentence.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_sentence</span> <span class="o">=</span> <span class="s2">&quot;안녕하세요. 이 문장은 토크나이저를 테스트하기 위한 샘플 문장입니다.&quot;</span>
+
+<span class="c1"># BPE</span>
+<span class="n">bpe</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s2">&quot;bpe_tokenizer.json&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;BPE:&quot;</span><span class="p">,</span> <span class="n">bpe</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">sample_sentence</span><span class="p">)</span><span class="o">.</span><span class="n">tokens</span><span class="p">)</span>
+
+<span class="c1"># WordPiece</span>
+<span class="n">wordpiece</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s2">&quot;wordpiece_tokenizer.json&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;WordPiece:&quot;</span><span class="p">,</span> <span class="n">wordpiece</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">sample_sentence</span><span class="p">)</span><span class="o">.</span><span class="n">tokens</span><span class="p">)</span>
+
+<span class="c1"># Unigram</span>
+<span class="n">unigram</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s2">&quot;unigram_tokenizer.json&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Unigram:&quot;</span><span class="p">,</span> <span class="n">unigram</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">sample_sentence</span><span class="p">)</span><span class="o">.</span><span class="n">tokens</span><span class="p">)</span>
+
+<span class="c1"># SentencePiece</span>
+<span class="n">spm</span> <span class="o">=</span> <span class="n">spm</span><span class="o">.</span><span class="n">SentencePieceProcessor</span><span class="p">()</span>
+<span class="n">spm</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;sentencepiece.model&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SentencePiece:&quot;</span><span class="p">,</span> <span class="n">spm</span><span class="o">.</span><span class="n">encode_as_pieces</span><span class="p">(</span><span class="n">sample_sentence</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You should see that each tokenizer breaks down the sentence differently. Some might keep “안녕하세요” as one token, while others might break it down further. This is the core difference between these tokenization strategies.</p>
+<p>Remember, there is no universally “best” tokenizer—it depends on the specific task and language. Try using these different</p>
+<p>tokenizers in your models and see which one works best for your task!</p>
+</section>
+<section id="training-tokenizers-for-gpt-bert-and-t5">
+<h2>Training Tokenizers for GPT, BERT, and T5<a class="headerlink" href="#training-tokenizers-for-gpt-bert-and-t5" title="Permalink to this heading">#</a></h2>
+<p>In this section, we will train tokenizers using the same specifications as the GPT, BERT, and T5 models. These tokenizers are Byte Pair Encoding (BPE) for GPT, WordPiece for BERT, and Unigram for T5.</p>
+<section id="byte-pair-encoding-bpe-gpt">
+<h3>Byte Pair Encoding (BPE) - GPT<a class="headerlink" href="#byte-pair-encoding-bpe-gpt" title="Permalink to this heading">#</a></h3>
+<p>GPT models use the Byte Pair Encoding (BPE) tokenizer with a vocabulary size of 50,000. BPE was initially designed for data compression, but it has been shown to work well for tokenizing text in neural language models.</p>
+<p>To train a BPE tokenizer with the same specifications as GPT:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tokenizers</span> <span class="kn">import</span> <span class="n">Tokenizer</span>
+<span class="kn">from</span> <span class="nn">tokenizers.models</span> <span class="kn">import</span> <span class="n">BPE</span>
 <span class="kn">from</span> <span class="nn">tokenizers.pre_tokenizers</span> <span class="kn">import</span> <span class="n">Whitespace</span>
-<span class="kn">from</span> <span class="nn">tokenizers</span> <span class="kn">import</span> <span class="n">normalizers</span>
-<span class="kn">from</span> <span class="nn">tokenizers.normalizers</span> <span class="kn">import</span> <span class="n">NFD</span><span class="p">,</span> <span class="n">StripAccents</span>
-<span class="kn">from</span> <span class="nn">ekorpkit.tokenizers.trainers.spm</span> <span class="kn">import</span> <span class="n">batch_chunks</span>
+<span class="kn">from</span> <span class="nn">tokenizers.trainers</span> <span class="kn">import</span> <span class="n">BpeTrainer</span>
 
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">BPE</span><span class="p">())</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">pre_tokenizer</span> <span class="o">=</span> <span class="n">Whitespace</span><span class="p">()</span>
 
-<span class="n">unk_token</span> <span class="o">=</span> <span class="s2">&quot;&lt;UNK&gt;&quot;</span>  <span class="c1"># token for unknown words</span>
-<span class="n">spl_tokens</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&lt;UNK&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;SEP&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;MASK&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;CLS&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;[MASK]&quot;</span><span class="p">]</span>  <span class="c1"># special tokens</span>
-
-
-<span class="k">def</span> <span class="nf">prepare_tokenizer_trainer</span><span class="p">(</span><span class="n">algo</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Prepares the tokenizer and trainer with unknown &amp; special tokens.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">algo</span> <span class="o">==</span> <span class="s2">&quot;BPE&quot;</span><span class="p">:</span>
-        <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">BPE</span><span class="p">(</span><span class="n">unk_token</span><span class="o">=</span><span class="n">unk_token</span><span class="p">))</span>
-        <span class="n">trainer</span> <span class="o">=</span> <span class="n">BpeTrainer</span><span class="p">(</span><span class="n">special_tokens</span><span class="o">=</span><span class="n">spl_tokens</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">algo</span> <span class="o">==</span> <span class="s2">&quot;UNI&quot;</span><span class="p">:</span>
-        <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">Unigram</span><span class="p">())</span>
-        <span class="n">trainer</span> <span class="o">=</span> <span class="n">UnigramTrainer</span><span class="p">(</span><span class="n">unk_token</span><span class="o">=</span><span class="n">unk_token</span><span class="p">,</span> <span class="n">special_tokens</span><span class="o">=</span><span class="n">spl_tokens</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">WordLevel</span><span class="p">(</span><span class="n">unk_token</span><span class="o">=</span><span class="n">unk_token</span><span class="p">))</span>
-        <span class="n">trainer</span> <span class="o">=</span> <span class="n">WordLevelTrainer</span><span class="p">(</span><span class="n">special_tokens</span><span class="o">=</span><span class="n">spl_tokens</span><span class="p">)</span>
-
-    <span class="n">normalizer</span> <span class="o">=</span> <span class="n">normalizers</span><span class="o">.</span><span class="n">Sequence</span><span class="p">([</span><span class="n">NFD</span><span class="p">(),</span> <span class="n">StripAccents</span><span class="p">()])</span>
-    <span class="n">tokenizer</span><span class="o">.</span><span class="n">normalizer</span> <span class="o">=</span> <span class="n">normalizer</span>
-    <span class="n">tokenizer</span><span class="o">.</span><span class="n">pre_tokenizer</span> <span class="o">=</span> <span class="n">Whitespace</span><span class="p">()</span>
-
-    <span class="k">return</span> <span class="n">tokenizer</span><span class="p">,</span> <span class="n">trainer</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 2.35 ms (started: 2022-11-12 06:51:08 +00:00)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">train_tokenizer</span><span class="p">(</span><span class="n">algo</span><span class="o">=</span><span class="s2">&quot;BPE&quot;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Takes the files and trains the tokenizer.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">save_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">project_dir</span><span class="si">}</span><span class="s2">/tokenizers/</span><span class="si">{</span><span class="n">algo</span><span class="si">}</span><span class="s2">_tokenizer.json&quot;</span>
-    <span class="n">tokenizer</span><span class="p">,</span> <span class="n">trainer</span> <span class="o">=</span> <span class="n">prepare_tokenizer_trainer</span><span class="p">(</span><span class="n">algo</span><span class="p">)</span>
-    <span class="n">tokenizer</span><span class="o">.</span><span class="n">train_from_iterator</span><span class="p">(</span>
-        <span class="n">batch_chunks</span><span class="p">(</span><span class="n">raw_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">text_column</span><span class="o">=</span><span class="n">text_column</span><span class="p">),</span>
-        <span class="n">trainer</span><span class="o">=</span><span class="n">trainer</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="n">tokenizer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">save_path</span><span class="p">)</span>
-    <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">save_path</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">tokenizer</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 20.2 ms (started: 2022-11-13 03:09:51 +00:00)
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">BpeTrainer</span><span class="p">(</span>
+    <span class="n">vocab_size</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span>
+    <span class="n">min_frequency</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">special_tokens</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&lt;s&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;pad&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;/s&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;unk&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;mask&gt;&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">train</span><span class="p">([</span><span class="s2">&quot;wiki_ko.txt&quot;</span><span class="p">],</span> <span class="n">trainer</span><span class="p">)</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;bpe_gpt_tokenizer.json&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="train-bpe-tokenizer">
-<h3>Train BPE tokenizer<a class="headerlink" href="#train-bpe-tokenizer" title="Permalink to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_path</span> <span class="o">=</span> <span class="n">train_tokenizer</span><span class="p">(</span><span class="s2">&quot;BPE&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<blockquote>
-<div><p>time: 15h 30min 58s (started: 2022-11-11 06:36:01 +00:00)</p>
-</div></blockquote>
-<p>To train a BPE tokenizer, it took 15 hours and 30 minutes for the 2,998,856 sentences. The tokenizer was saved in the <code class="docutils literal notranslate"><span class="pre">{project_dir}/tokenizers</span></code> directory.</p>
-<p>To train more efficiently with multiple processors, it is preferable to use CLI (command line interface) tools.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ekorpkit<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>project.name<span class="o">=</span>ekorpkit-book<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>dir.workspace<span class="o">=</span>/content/drive/MyDrive/workspace<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="nv">run</span><span class="o">=</span>tokenizer<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="nv">tokenizer</span><span class="o">=</span>trainer<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.name<span class="o">=</span>enkowiki<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.dataset.train_file<span class="o">=</span>enko_filtered.parquet<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.model.model_type<span class="o">=</span>bpe<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.model.vocab_size<span class="o">=</span><span class="m">30000</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.model.character_coverage<span class="o">=</span><span class="m">0</span>.9995<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.training.use_sample<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.auto<span class="o">=</span>train
-</pre></div>
-</div>
-<blockquote>
-<div><p>took 22m 36.6s</p>
-</div></blockquote>
-<p>With 256 processors, it took 22 minutes and 37 seconds to tokenize the 2,998,856 sentences.</p>
+</section>
+<section id="wordpiece-bert">
+<h2>WordPiece - BERT<a class="headerlink" href="#wordpiece-bert" title="Permalink to this heading">#</a></h2>
+<p>BERT models use the WordPiece tokenizer with a vocabulary size of 30,000. WordPiece is a data-driven tokenization strategy that allows for better handling of out-of-vocabulary (OOV) words.</p>
+<p>To train a WordPiece tokenizer with the same specifications as BERT:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tokenizers</span> <span class="kn">import</span> <span class="n">Tokenizer</span>
+<span class="kn">from</span> <span class="nn">tokenizers.models</span> <span class="kn">import</span> <span class="n">WordPiece</span>
+<span class="kn">from</span> <span class="nn">tokenizers.trainers</span> <span class="kn">import</span> <span class="n">WordPieceTrainer</span>
 
-<span class="n">tokenizer_path</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">project_dir</span><span class="si">}</span><span class="s2">/tokenizers/hf/enko_wiki/enko_wiki_bpe_huggingface_vocab_30000.json&quot;</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">WordPiece</span><span class="p">(</span><span class="n">unk_token</span><span class="o">=</span><span class="s2">&quot;[UNK]&quot;</span><span class="p">))</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">normalizer</span> <span class="o">=</span> <span class="n">BertNormalizer</span><span class="p">(</span><span class="n">lowercase</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">WordPieceTrainer</span><span class="p">(</span>
+    <span class="n">vocab_size</span><span class="o">=</span><span class="mi">30000</span><span class="p">,</span> <span class="n">special_tokens</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;[PAD]&quot;</span><span class="p">,</span> <span class="s2">&quot;[UNK]&quot;</span><span class="p">,</span> <span class="s2">&quot;[CLS]&quot;</span><span class="p">,</span> <span class="s2">&quot;[SEP]&quot;</span><span class="p">,</span> <span class="s2">&quot;[MASK]&quot;</span><span class="p">]</span>
 <span class="p">)</span>
-
-<span class="n">bpe_tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">tokenizer_path</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Vocab size: </span><span class="si">{</span><span class="n">bpe_tokenizer</span><span class="o">.</span><span class="n">get_vocab_size</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">bpe_tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text_en</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">tokens</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">bpe_tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text_ko</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">tokens</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Vocab size: 30000
-[&#39;This&#39;, &#39;article&#39;, &#39;describ&#39;, &#39;es&#39;, &#39;the&#39;, &#39;process&#39;, &#39;by&#39;, &#39;which&#39;, &#39;the&#39;, &#39;ter&#39;, &#39;rit&#39;, &#39;or&#39;, &#39;ial&#39;, &#39;ext&#39;, &#39;ent&#39;, &#39;of&#39;, &#39;Moroc&#39;, &#39;co&#39;, &#39;came&#39;, &#39;to&#39;, &#39;be&#39;, &#39;as&#39;, &#39;it&#39;, &#39;is&#39;, &#39;now&#39;, &#39;.&#39;]
-[&#39;크리&#39;, &#39;클&#39;, &#39;레이드&#39;, &#39;(&#39;, &#39;C&#39;, &#39;rick&#39;, &#39;l&#39;, &#39;ade&#39;, &#39;)&#39;, &#39;는&#39;, &#39;잉글랜드의&#39;, &#39;노스&#39;, &#39;윌&#39;, &#39;트&#39;, &#39;셔&#39;, &#39;에&#39;, &#39;위치한&#39;, &#39;템&#39;, &#39;스&#39;, &#39;강의&#39;, &#39;타운&#39;, &#39;이자&#39;, &#39;지방&#39;, &#39;행정&#39;, &#39;구이다&#39;, &#39;.&#39;, &#39;스&#39;, &#39;윈&#39;, &#39;던&#39;, &#39;과&#39;, &#39;시&#39;, &#39;런&#39;, &#39;세&#39;, &#39;스터&#39;, &#39;의&#39;, &#39;중간에&#39;, &#39;위치해&#39;, &#39;있다&#39;, &#39;.&#39;]
-time: 67.4 ms (started: 2022-11-13 08:47:47 +00:00)
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">train</span><span class="p">([</span><span class="s2">&quot;wiki_ko.txt&quot;</span><span class="p">],</span> <span class="n">trainer</span><span class="p">)</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;wordpiece_bert_tokenizer.json&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="train-unigram-tokenizer">
-<h3>Train Unigram tokenizer<a class="headerlink" href="#train-unigram-tokenizer" title="Permalink to this heading">#</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model_path</span> <span class="o">=</span> <span class="n">train_tokenizer</span><span class="p">(</span><span class="s2">&quot;UNI&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>For a very large corpus, it may take a long time to train a Unigram tokenizer. It is recommended to use the following CLI command to train a Unigram tokenizer.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ekorpkit<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>project.name<span class="o">=</span>ekorpkit-book<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>dir.workspace<span class="o">=</span>/content/drive/MyDrive/workspace<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="nv">run</span><span class="o">=</span>tokenizer<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="nv">tokenizer</span><span class="o">=</span>trainer<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.name<span class="o">=</span>enkowiki<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.dataset.train_file<span class="o">=</span>enko_filtered.parquet<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.model.model_type<span class="o">=</span>unigram<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.model.vocab_size<span class="o">=</span><span class="m">30000</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.training.use_sample<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.batch.num_workers<span class="o">=</span><span class="m">128</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.auto<span class="o">=</span>train
-</pre></div>
-</div>
-<blockquote>
-<div><p>took 10m 10.7s</p>
-</div></blockquote>
-<p>With 256 processors, it took 10 minutes and 11 seconds to tokenize the 2,998,856 sentences.</p>
+<section id="unigram-t5">
+<h2>Unigram - T5<a class="headerlink" href="#unigram-t5" title="Permalink to this heading">#</a></h2>
+<p>T5 models use the Unigram tokenizer with a vocabulary size of 32,000. The Unigram tokenizer is a subword regularization algorithm that learns a vocabulary based on the frequency of subwords in the training text.</p>
+<p>To train a Unigram tokenizer with the same specifications as T5:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tokenizers</span> <span class="kn">import</span> <span class="n">Tokenizer</span>
+<span class="kn">from</span> <span class="nn">tokenizers.models</span> <span class="kn">import</span> <span class="n">Unigram</span>
+<span class="kn">from</span> <span class="nn">tokenizers.trainers</span> <span class="kn">import</span> <span class="n">UnigramTrainer</span>
 
-<span class="n">tokenizer_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">project_dir</span><span class="si">}</span><span class="s2">/tokenizers/hf/enko_wiki/enko_wiki_unigram_huggingface_vocab_30000.json&quot;</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">Unigram</span><span class="p">())</span>
 
-<span class="n">unigram_tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">tokenizer_path</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Vocab size: </span><span class="si">{</span><span class="n">bpe_tokenizer</span><span class="o">.</span><span class="n">get_vocab_size</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">unigram_tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text_en</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">tokens</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">unigram_tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text_ko</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">tokens</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Vocab size: 30000
-[&#39;This&#39;, &#39;article&#39;, &#39;describe&#39;, &#39;s&#39;, &#39;the&#39;, &#39;process&#39;, &#39;by&#39;, &#39;which&#39;, &#39;the&#39;, &#39;territor&#39;, &#39;ial&#39;, &#39;ex&#39;, &#39;t&#39;, &#39;ent&#39;, &#39;of&#39;, &#39;Morocc&#39;, &#39;o&#39;, &#39;came&#39;, &#39;to&#39;, &#39;be&#39;, &#39;as&#39;, &#39;it&#39;, &#39;is&#39;, &#39;now&#39;, &#39;.&#39;]
-[&#39;크리&#39;, &#39;클레이&#39;, &#39;드&#39;, &#39;(&#39;, &#39;C&#39;, &#39;rick&#39;, &#39;la&#39;, &#39;de&#39;, &#39;)&#39;, &#39;는&#39;, &#39;잉글랜드의&#39;, &#39;노스&#39;, &#39;윌&#39;, &#39;트&#39;, &#39;셔&#39;, &#39;에&#39;, &#39;위치한&#39;, &#39;템&#39;, &#39;스&#39;, &#39;강의&#39;, &#39;타운&#39;, &#39;이자&#39;, &#39;지방&#39;, &#39;행정&#39;, &#39;구&#39;, &#39;이다&#39;, &#39;.&#39;, &#39;스&#39;, &#39;윈&#39;, &#39;던&#39;, &#39;과&#39;, &#39;시&#39;, &#39;런&#39;, &#39;세&#39;, &#39;스터&#39;, &#39;의&#39;, &#39;중간에&#39;, &#39;위치해&#39;, &#39;있다&#39;, &#39;.&#39;]
-time: 82 ms (started: 2022-11-13 08:47:51 +00:00)
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="train-tokenizers-with-google-sentencepiece-spm">
-<h2>Train tokenizers with Google SentencePiece (SPM)<a class="headerlink" href="#train-tokenizers-with-google-sentencepiece-spm" title="Permalink to this heading">#</a></h2>
-<section id="install-sentencepiece">
-<h3>Install SentencePiece<a class="headerlink" href="#install-sentencepiece" title="Permalink to this heading">#</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>sentencepiece
-</pre></div>
-</div>
-</section>
-<section id="train-sentencepiece-models">
-<h3>Train SentencePiece models<a class="headerlink" href="#train-sentencepiece-models" title="Permalink to this heading">#</a></h3>
-<p>You can use <code class="docutils literal notranslate"><span class="pre">train_spm</span></code> function to train a SentencePiece model. The <code class="docutils literal notranslate"><span class="pre">train_spm</span></code> function takes the following arguments:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">model_prefix</span></code>: The prefix of the model file. The model file will be saved as <code class="docutils literal notranslate"><span class="pre">{model_prefix}_{model_type}_vocab_{vocab_size}.model</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">input</span></code>: The input file for training.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">output_dir</span></code>: The directory to save the model file.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">vocab_size</span></code>: The vocabulary size.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">model_type</span></code>: The model type. It can be <code class="docutils literal notranslate"><span class="pre">unigram</span></code> (default), <code class="docutils literal notranslate"><span class="pre">bpe</span></code>, <code class="docutils literal notranslate"><span class="pre">char</span></code>, or <code class="docutils literal notranslate"><span class="pre">word</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">character_coverage</span></code>: The character coverage. It is only used for <code class="docutils literal notranslate"><span class="pre">unigram</span></code> and <code class="docutils literal notranslate"><span class="pre">bpe</span></code> model types. The default value is <code class="docutils literal notranslate"><span class="pre">1.0</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">num_threads</span></code>: The number of threads to use for training. The default value is <code class="docutils literal notranslate"><span class="pre">1</span></code>. The max value is <code class="docutils literal notranslate"><span class="pre">128</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">train_extremely_large_corpus</span></code>: Whether to train an extremely large corpus. The default value is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
-</ul>
-<section id="train-unigram-model">
-<h4>Train Unigram model<a class="headerlink" href="#train-unigram-model" title="Permalink to this heading">#</a></h4>
-<div class="cell tag_hide-output docutils container">
-<div class="cell_input above-output-prompt docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ekorpkit.tokenizers.trainers.spm</span> <span class="kn">import</span> <span class="n">train_spm</span>
-
-<span class="n">uni_model_path</span> <span class="o">=</span> <span class="n">train_spm</span><span class="p">(</span>
-    <span class="n">model_prefix</span><span class="o">=</span><span class="s2">&quot;enko_wiki&quot;</span><span class="p">,</span>
-    <span class="nb">input</span><span class="o">=</span><span class="n">sampled_file</span><span class="p">,</span>
-    <span class="n">output_dir</span><span class="o">=</span><span class="n">project_dir</span> <span class="o">+</span> <span class="s2">&quot;/tokenizers/spm&quot;</span><span class="p">,</span>
-    <span class="n">model_type</span><span class="o">=</span><span class="s2">&quot;unigram&quot;</span><span class="p">,</span>
-    <span class="n">vocab_size</span><span class="o">=</span><span class="mi">30000</span><span class="p">,</span>
-    <span class="n">character_coverage</span><span class="o">=</span><span class="mf">0.9995</span><span class="p">,</span>
-    <span class="n">num_threads</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span>
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">UnigramTrainer</span><span class="p">(</span>
+    <span class="n">vocab_size</span><span class="o">=</span><span class="mi">32000</span><span class="p">,</span> <span class="n">special_tokens</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&lt;pad&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;/s&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;unk&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;s&gt;&quot;</span><span class="p">]</span>
 <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<details class="hide below-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
-</summary>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 20.3 ms (started: 2022-11-25 02:01:41 +00:00)
-</pre></div>
-</div>
-</div>
-</details>
-</div>
-<blockquote>
-<div><p>time: 23min 6s (started: 2022-11-12 08:03:08 +00:00)</p>
-</div></blockquote>
-<p>It took 23 minutes to train a unigram model with a vocabulary size of 30,000. The model file was saved in the <code class="docutils literal notranslate"><span class="pre">{project_dir}/tokenizers</span></code> directory.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ekorpkit<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>project.name<span class="o">=</span>ekorpkit-book<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>dir.workspace<span class="o">=</span>/content/drive/MyDrive/workspace<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="nv">run</span><span class="o">=</span>tokenizer<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="nv">tokenizer</span><span class="o">=</span>trainer.spm<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.name<span class="o">=</span>enkowiki<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.dataset.train_file<span class="o">=</span>enko_filtered.parquet<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.model.model_type<span class="o">=</span>unigram<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.model.vocab_size<span class="o">=</span><span class="m">30000</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.model.character_coverage<span class="o">=</span><span class="m">0</span>.9995<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.training.use_sample<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.batch.num_workers<span class="o">=</span><span class="m">128</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.auto<span class="o">=</span>train
-</pre></div>
-</div>
-<blockquote>
-<div><p>took 4m 2.4s</p>
-</div></blockquote>
-<p>With 128 processors, it took 4 minutes and 2 seconds to tokenize the 2,998,856 sentences.</p>
-</section>
-<section id="load-the-trained-model">
-<h4>Load the trained model<a class="headerlink" href="#load-the-trained-model" title="Permalink to this heading">#</a></h4>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sentencepiece</span> <span class="k">as</span> <span class="nn">spm</span>
-
-<span class="n">model_file</span> <span class="o">=</span> <span class="s2">&quot;tokenizers/spm/enko_wiki_unigram_vocab_30000.model&quot;</span>
-<span class="n">model_file</span> <span class="o">=</span> <span class="n">project_dir</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">model_file</span>
-<span class="n">uni_spm</span> <span class="o">=</span> <span class="n">spm</span><span class="o">.</span><span class="n">SentencePieceProcessor</span><span class="p">(</span><span class="n">model_file</span><span class="o">=</span><span class="n">model_file</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Vocab size: </span><span class="si">{</span><span class="n">uni_spm</span><span class="o">.</span><span class="n">vocab_size</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">uni_spm</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text_en</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">out_type</span><span class="o">=</span><span class="nb">str</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">uni_spm</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text_ko</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">out_type</span><span class="o">=</span><span class="nb">str</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Vocab size: 30000
-[&#39;▁This&#39;, &#39;▁article&#39;, &#39;▁describes&#39;, &#39;▁the&#39;, &#39;▁process&#39;, &#39;▁by&#39;, &#39;▁which&#39;, &#39;▁the&#39;, &#39;▁&#39;, &#39;ter&#39;, &#39;ri&#39;, &#39;torial&#39;, &#39;▁ex&#39;, &#39;t&#39;, &#39;ent&#39;, &#39;▁of&#39;, &#39;▁Morocco&#39;, &#39;▁came&#39;, &#39;▁to&#39;, &#39;▁be&#39;, &#39;▁as&#39;, &#39;▁it&#39;, &#39;▁is&#39;, &#39;▁now&#39;, &#39;.&#39;]
-[&#39;▁크리&#39;, &#39;클&#39;, &#39;레이드&#39;, &#39;(&#39;, &#39;C&#39;, &#39;rick&#39;, &#39;lade&#39;, &#39;)&#39;, &#39;는&#39;, &#39;▁잉글랜드의&#39;, &#39;▁노스&#39;, &#39;▁윌&#39;, &#39;트&#39;, &#39;셔&#39;, &#39;에&#39;, &#39;▁위치한&#39;, &#39;▁&#39;, &#39;템&#39;, &#39;스&#39;, &#39;▁강의&#39;, &#39;▁타운&#39;, &#39;이자&#39;, &#39;▁지방&#39;, &#39;▁행정&#39;, &#39;구&#39;, &#39;이다&#39;, &#39;.&#39;, &#39;▁스&#39;, &#39;윈&#39;, &#39;던&#39;, &#39;과&#39;, &#39;▁시&#39;, &#39;런&#39;, &#39;세&#39;, &#39;스터&#39;, &#39;의&#39;, &#39;▁중간에&#39;, &#39;▁위치해&#39;, &#39;▁있다&#39;, &#39;.&#39;]
-time: 67.4 ms (started: 2022-11-13 08:48:00 +00:00)
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">train</span><span class="p">([</span><span class="s2">&quot;wiki_ko.txt&quot;</span><span class="p">],</span> <span class="n">trainer</span><span class="p">)</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;unigram_t5_tokenizer.json&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="train-bpe-model">
-<h4>Train BPE model<a class="headerlink" href="#train-bpe-model" title="Permalink to this heading">#</a></h4>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ekorpkit<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>project.name<span class="o">=</span>ekorpkit-book<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>dir.workspace<span class="o">=</span>/content/drive/MyDrive/workspace<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="nv">run</span><span class="o">=</span>tokenizer<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="nv">tokenizer</span><span class="o">=</span>trainer.spm<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.name<span class="o">=</span>enkowiki<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.dataset.train_file<span class="o">=</span>enko_filtered.parquet<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.model.model_type<span class="o">=</span>bpe<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.model.vocab_size<span class="o">=</span><span class="m">30000</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.model.character_coverage<span class="o">=</span><span class="m">0</span>.9995<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.training.use_sample<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.batch.num_workers<span class="o">=</span><span class="m">128</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.auto<span class="o">=</span>train
-</pre></div>
-</div>
-<blockquote>
-<div><p>took 8m 41.8s</p>
-</div></blockquote>
-<p>With 128 processors, it took 8 minutes and 42 seconds to tokenize the 2,998,856 sentences.</p>
-</section>
-<section id="id1">
-<h4>Load the trained model<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sentencepiece</span> <span class="k">as</span> <span class="nn">spm</span>
-
-<span class="n">model_file</span> <span class="o">=</span> <span class="s2">&quot;tokenizers/spm/enko_wiki_bpe_vocab_30000.model&quot;</span>
-<span class="n">model_file</span> <span class="o">=</span> <span class="n">project_dir</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">model_file</span>
-<span class="n">bpe_spm</span> <span class="o">=</span> <span class="n">spm</span><span class="o">.</span><span class="n">SentencePieceProcessor</span><span class="p">(</span><span class="n">model_file</span><span class="o">=</span><span class="n">model_file</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Vocab size: </span><span class="si">{</span><span class="n">uni_spm</span><span class="o">.</span><span class="n">vocab_size</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">bpe_spm</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text_en</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">out_type</span><span class="o">=</span><span class="nb">str</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">bpe_spm</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text_ko</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">out_type</span><span class="o">=</span><span class="nb">str</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Vocab size: 30000
-[&#39;▁This&#39;, &#39;▁article&#39;, &#39;▁describes&#39;, &#39;▁the&#39;, &#39;▁process&#39;, &#39;▁by&#39;, &#39;▁which&#39;, &#39;▁the&#39;, &#39;▁ter&#39;, &#39;rit&#39;, &#39;orial&#39;, &#39;▁ext&#39;, &#39;ent&#39;, &#39;▁of&#39;, &#39;▁Morocco&#39;, &#39;▁came&#39;, &#39;▁to&#39;, &#39;▁be&#39;, &#39;▁as&#39;, &#39;▁it&#39;, &#39;▁is&#39;, &#39;▁now&#39;, &#39;.&#39;]
-[&#39;▁크리&#39;, &#39;클&#39;, &#39;레이드&#39;, &#39;(&#39;, &#39;C&#39;, &#39;rick&#39;, &#39;l&#39;, &#39;ade&#39;, &#39;)&#39;, &#39;는&#39;, &#39;▁잉글랜드의&#39;, &#39;▁노스&#39;, &#39;▁윌&#39;, &#39;트&#39;, &#39;셔&#39;, &#39;에&#39;, &#39;▁위치한&#39;, &#39;▁템&#39;, &#39;스&#39;, &#39;▁강의&#39;, &#39;▁타운&#39;, &#39;이자&#39;, &#39;▁지방&#39;, &#39;▁행정&#39;, &#39;구이다&#39;, &#39;.&#39;, &#39;▁스&#39;, &#39;윈&#39;, &#39;던&#39;, &#39;과&#39;, &#39;▁시&#39;, &#39;런&#39;, &#39;세&#39;, &#39;스터&#39;, &#39;의&#39;, &#39;▁중간에&#39;, &#39;▁위치해&#39;, &#39;▁있다&#39;, &#39;.&#39;]
-time: 34.1 ms (started: 2022-11-13 08:48:11 +00:00)
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-</section>
-</section>
-<section id="compare-the-tokenizers">
-<h2>Compare the Tokenizers<a class="headerlink" href="#compare-the-tokenizers" title="Permalink to this heading">#</a></h2>
-<section id="load-the-tokenizers">
-<h3>Load the tokenizers<a class="headerlink" href="#load-the-tokenizers" title="Permalink to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokenizers</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;BPE&quot;</span><span class="p">:</span> <span class="n">bpe_tokenizer</span><span class="p">,</span>
-    <span class="s2">&quot;UNI&quot;</span><span class="p">:</span> <span class="n">unigram_tokenizer</span><span class="p">,</span>
-    <span class="s2">&quot;UNI_SPM&quot;</span><span class="p">:</span> <span class="n">uni_spm</span><span class="p">,</span>
-    <span class="s2">&quot;BPE_SPM&quot;</span><span class="p">:</span> <span class="n">bpe_spm</span><span class="p">,</span>
-<span class="p">}</span>
-
-
-<span class="k">def</span> <span class="nf">tokenize</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Tokenizes the text using the tokenizer.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">spm</span><span class="o">.</span><span class="n">SentencePieceProcessor</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">out_type</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">tokens</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 20.6 ms (started: 2022-11-13 08:48:24 +00:00)
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="analyze-the-output-of-the-tokenizers">
-<h3>Analyze the output of the tokenizers<a class="headerlink" href="#analyze-the-output-of-the-tokenizers" title="Permalink to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">texts</span> <span class="o">=</span> <span class="p">[</span><span class="n">text_en</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">text_ko</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
-<span class="n">tokens</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">tokenizers</span><span class="o">.</span><span class="n">keys</span><span class="p">()}</span>
-
-
-<span class="c1"># tokenize the texts with the tokenizers</span>
-<span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">texts</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">tokenizer</span> <span class="ow">in</span> <span class="n">tokenizers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tokenizer: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">tokens</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tokenize</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">text</span><span class="p">))</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">tokens</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tokenizer: BPE
-[&#39;This&#39;, &#39;article&#39;, &#39;describ&#39;, &#39;es&#39;, &#39;the&#39;, &#39;process&#39;, &#39;by&#39;, &#39;which&#39;, &#39;the&#39;, &#39;ter&#39;, &#39;rit&#39;, &#39;or&#39;, &#39;ial&#39;, &#39;ext&#39;, &#39;ent&#39;, &#39;of&#39;, &#39;Moroc&#39;, &#39;co&#39;, &#39;came&#39;, &#39;to&#39;, &#39;be&#39;, &#39;as&#39;, &#39;it&#39;, &#39;is&#39;, &#39;now&#39;, &#39;.&#39;]
---------------------------------------------------
-Tokenizer: UNI
-[&#39;This&#39;, &#39;article&#39;, &#39;describe&#39;, &#39;s&#39;, &#39;the&#39;, &#39;process&#39;, &#39;by&#39;, &#39;which&#39;, &#39;the&#39;, &#39;territor&#39;, &#39;ial&#39;, &#39;ex&#39;, &#39;t&#39;, &#39;ent&#39;, &#39;of&#39;, &#39;Morocc&#39;, &#39;o&#39;, &#39;came&#39;, &#39;to&#39;, &#39;be&#39;, &#39;as&#39;, &#39;it&#39;, &#39;is&#39;, &#39;now&#39;, &#39;.&#39;]
---------------------------------------------------
-Tokenizer: UNI_SPM
-[&#39;▁This&#39;, &#39;▁article&#39;, &#39;▁describes&#39;, &#39;▁the&#39;, &#39;▁process&#39;, &#39;▁by&#39;, &#39;▁which&#39;, &#39;▁the&#39;, &#39;▁&#39;, &#39;ter&#39;, &#39;ri&#39;, &#39;torial&#39;, &#39;▁ex&#39;, &#39;t&#39;, &#39;ent&#39;, &#39;▁of&#39;, &#39;▁Morocco&#39;, &#39;▁came&#39;, &#39;▁to&#39;, &#39;▁be&#39;, &#39;▁as&#39;, &#39;▁it&#39;, &#39;▁is&#39;, &#39;▁now&#39;, &#39;.&#39;]
---------------------------------------------------
-Tokenizer: BPE_SPM
-[&#39;▁This&#39;, &#39;▁article&#39;, &#39;▁describes&#39;, &#39;▁the&#39;, &#39;▁process&#39;, &#39;▁by&#39;, &#39;▁which&#39;, &#39;▁the&#39;, &#39;▁ter&#39;, &#39;rit&#39;, &#39;orial&#39;, &#39;▁ext&#39;, &#39;ent&#39;, &#39;▁of&#39;, &#39;▁Morocco&#39;, &#39;▁came&#39;, &#39;▁to&#39;, &#39;▁be&#39;, &#39;▁as&#39;, &#39;▁it&#39;, &#39;▁is&#39;, &#39;▁now&#39;, &#39;.&#39;]
---------------------------------------------------
-Tokenizer: BPE
-[&#39;크리&#39;, &#39;클&#39;, &#39;레이드&#39;, &#39;(&#39;, &#39;C&#39;, &#39;rick&#39;, &#39;l&#39;, &#39;ade&#39;, &#39;)&#39;, &#39;는&#39;, &#39;잉글랜드의&#39;, &#39;노스&#39;, &#39;윌&#39;, &#39;트&#39;, &#39;셔&#39;, &#39;에&#39;, &#39;위치한&#39;, &#39;템&#39;, &#39;스&#39;, &#39;강의&#39;, &#39;타운&#39;, &#39;이자&#39;, &#39;지방&#39;, &#39;행정&#39;, &#39;구이다&#39;, &#39;.&#39;, &#39;스&#39;, &#39;윈&#39;, &#39;던&#39;, &#39;과&#39;, &#39;시&#39;, &#39;런&#39;, &#39;세&#39;, &#39;스터&#39;, &#39;의&#39;, &#39;중간에&#39;, &#39;위치해&#39;, &#39;있다&#39;, &#39;.&#39;]
---------------------------------------------------
-Tokenizer: UNI
-[&#39;크리&#39;, &#39;클레이&#39;, &#39;드&#39;, &#39;(&#39;, &#39;C&#39;, &#39;rick&#39;, &#39;la&#39;, &#39;de&#39;, &#39;)&#39;, &#39;는&#39;, &#39;잉글랜드의&#39;, &#39;노스&#39;, &#39;윌&#39;, &#39;트&#39;, &#39;셔&#39;, &#39;에&#39;, &#39;위치한&#39;, &#39;템&#39;, &#39;스&#39;, &#39;강의&#39;, &#39;타운&#39;, &#39;이자&#39;, &#39;지방&#39;, &#39;행정&#39;, &#39;구&#39;, &#39;이다&#39;, &#39;.&#39;, &#39;스&#39;, &#39;윈&#39;, &#39;던&#39;, &#39;과&#39;, &#39;시&#39;, &#39;런&#39;, &#39;세&#39;, &#39;스터&#39;, &#39;의&#39;, &#39;중간에&#39;, &#39;위치해&#39;, &#39;있다&#39;, &#39;.&#39;]
---------------------------------------------------
-Tokenizer: UNI_SPM
-[&#39;▁크리&#39;, &#39;클&#39;, &#39;레이드&#39;, &#39;(&#39;, &#39;C&#39;, &#39;rick&#39;, &#39;lade&#39;, &#39;)&#39;, &#39;는&#39;, &#39;▁잉글랜드의&#39;, &#39;▁노스&#39;, &#39;▁윌&#39;, &#39;트&#39;, &#39;셔&#39;, &#39;에&#39;, &#39;▁위치한&#39;, &#39;▁&#39;, &#39;템&#39;, &#39;스&#39;, &#39;▁강의&#39;, &#39;▁타운&#39;, &#39;이자&#39;, &#39;▁지방&#39;, &#39;▁행정&#39;, &#39;구&#39;, &#39;이다&#39;, &#39;.&#39;, &#39;▁스&#39;, &#39;윈&#39;, &#39;던&#39;, &#39;과&#39;, &#39;▁시&#39;, &#39;런&#39;, &#39;세&#39;, &#39;스터&#39;, &#39;의&#39;, &#39;▁중간에&#39;, &#39;▁위치해&#39;, &#39;▁있다&#39;, &#39;.&#39;]
---------------------------------------------------
-Tokenizer: BPE_SPM
-[&#39;▁크리&#39;, &#39;클&#39;, &#39;레이드&#39;, &#39;(&#39;, &#39;C&#39;, &#39;rick&#39;, &#39;l&#39;, &#39;ade&#39;, &#39;)&#39;, &#39;는&#39;, &#39;▁잉글랜드의&#39;, &#39;▁노스&#39;, &#39;▁윌&#39;, &#39;트&#39;, &#39;셔&#39;, &#39;에&#39;, &#39;▁위치한&#39;, &#39;▁템&#39;, &#39;스&#39;, &#39;▁강의&#39;, &#39;▁타운&#39;, &#39;이자&#39;, &#39;▁지방&#39;, &#39;▁행정&#39;, &#39;구이다&#39;, &#39;.&#39;, &#39;▁스&#39;, &#39;윈&#39;, &#39;던&#39;, &#39;과&#39;, &#39;▁시&#39;, &#39;런&#39;, &#39;세&#39;, &#39;스터&#39;, &#39;의&#39;, &#39;▁중간에&#39;, &#39;▁위치해&#39;, &#39;▁있다&#39;, &#39;.&#39;]
---------------------------------------------------
-time: 20.8 ms (started: 2022-11-13 08:48:25 +00:00)
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="compare-the-tokens">
-<h3>Compare the Tokens<a class="headerlink" href="#compare-the-tokens" title="Permalink to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-
-<span class="k">def</span> <span class="nf">compare_tokens</span><span class="p">(</span><span class="n">tokenizers</span><span class="p">,</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">sample_num</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="n">max_len</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tokens</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="n">sample_num</span><span class="p">])</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">tokenizers</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-    <span class="n">diffs</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="n">name</span><span class="p">:</span> <span class="n">max_len</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">tokens</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="n">sample_num</span><span class="p">])</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">tokenizers</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-    <span class="p">}</span>
-
-    <span class="n">padded_tokens</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="n">name</span><span class="p">:</span> <span class="n">tokens</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="n">sample_num</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">diffs</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
-        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">tokenizers</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-    <span class="p">}</span>
-
-    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">padded_tokens</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">df</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 20.5 ms (started: 2022-11-13 08:48:30 +00:00)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compare_tokens</span><span class="p">(</span><span class="n">tokenizers</span><span class="p">,</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">sample_num</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>BPE</th>
-      <th>UNI</th>
-      <th>UNI_SPM</th>
-      <th>BPE_SPM</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>This</td>
-      <td>This</td>
-      <td>▁This</td>
-      <td>▁This</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>article</td>
-      <td>article</td>
-      <td>▁article</td>
-      <td>▁article</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>describ</td>
-      <td>describe</td>
-      <td>▁describes</td>
-      <td>▁describes</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>es</td>
-      <td>s</td>
-      <td>▁the</td>
-      <td>▁the</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>the</td>
-      <td>the</td>
-      <td>▁process</td>
-      <td>▁process</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>process</td>
-      <td>process</td>
-      <td>▁by</td>
-      <td>▁by</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>by</td>
-      <td>by</td>
-      <td>▁which</td>
-      <td>▁which</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>which</td>
-      <td>which</td>
-      <td>▁the</td>
-      <td>▁the</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>the</td>
-      <td>the</td>
-      <td>▁</td>
-      <td>▁ter</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>ter</td>
-      <td>territor</td>
-      <td>ter</td>
-      <td>rit</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>rit</td>
-      <td>ial</td>
-      <td>ri</td>
-      <td>orial</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>or</td>
-      <td>ex</td>
-      <td>torial</td>
-      <td>▁ext</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>ial</td>
-      <td>t</td>
-      <td>▁ex</td>
-      <td>ent</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>ext</td>
-      <td>ent</td>
-      <td>t</td>
-      <td>▁of</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>ent</td>
-      <td>of</td>
-      <td>ent</td>
-      <td>▁Morocco</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>of</td>
-      <td>Morocc</td>
-      <td>▁of</td>
-      <td>▁came</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>Moroc</td>
-      <td>o</td>
-      <td>▁Morocco</td>
-      <td>▁to</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>co</td>
-      <td>came</td>
-      <td>▁came</td>
-      <td>▁be</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>came</td>
-      <td>to</td>
-      <td>▁to</td>
-      <td>▁as</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>to</td>
-      <td>be</td>
-      <td>▁be</td>
-      <td>▁it</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>be</td>
-      <td>as</td>
-      <td>▁as</td>
-      <td>▁is</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>as</td>
-      <td>it</td>
-      <td>▁it</td>
-      <td>▁now</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>it</td>
-      <td>is</td>
-      <td>▁is</td>
-      <td>.</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>is</td>
-      <td>now</td>
-      <td>▁now</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>now</td>
-      <td>.</td>
-      <td>.</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>.</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
-</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 26.6 ms (started: 2022-11-13 08:48:31 +00:00)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compare_tokens</span><span class="p">(</span><span class="n">tokenizers</span><span class="p">,</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">sample_num</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>BPE</th>
-      <th>UNI</th>
-      <th>UNI_SPM</th>
-      <th>BPE_SPM</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>크리</td>
-      <td>크리</td>
-      <td>▁크리</td>
-      <td>▁크리</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>클</td>
-      <td>클레이</td>
-      <td>클</td>
-      <td>클</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>레이드</td>
-      <td>드</td>
-      <td>레이드</td>
-      <td>레이드</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>(</td>
-      <td>(</td>
-      <td>(</td>
-      <td>(</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>C</td>
-      <td>C</td>
-      <td>C</td>
-      <td>C</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>rick</td>
-      <td>rick</td>
-      <td>rick</td>
-      <td>rick</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>l</td>
-      <td>la</td>
-      <td>lade</td>
-      <td>l</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>ade</td>
-      <td>de</td>
-      <td>)</td>
-      <td>ade</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>)</td>
-      <td>)</td>
-      <td>는</td>
-      <td>)</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>는</td>
-      <td>는</td>
-      <td>▁잉글랜드의</td>
-      <td>는</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>잉글랜드의</td>
-      <td>잉글랜드의</td>
-      <td>▁노스</td>
-      <td>▁잉글랜드의</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>노스</td>
-      <td>노스</td>
-      <td>▁윌</td>
-      <td>▁노스</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>윌</td>
-      <td>윌</td>
-      <td>트</td>
-      <td>▁윌</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>트</td>
-      <td>트</td>
-      <td>셔</td>
-      <td>트</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>셔</td>
-      <td>셔</td>
-      <td>에</td>
-      <td>셔</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>에</td>
-      <td>에</td>
-      <td>▁위치한</td>
-      <td>에</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>위치한</td>
-      <td>위치한</td>
-      <td>▁</td>
-      <td>▁위치한</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>템</td>
-      <td>템</td>
-      <td>템</td>
-      <td>▁템</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>스</td>
-      <td>스</td>
-      <td>스</td>
-      <td>스</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>강의</td>
-      <td>강의</td>
-      <td>▁강의</td>
-      <td>▁강의</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>타운</td>
-      <td>타운</td>
-      <td>▁타운</td>
-      <td>▁타운</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>이자</td>
-      <td>이자</td>
-      <td>이자</td>
-      <td>이자</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>지방</td>
-      <td>지방</td>
-      <td>▁지방</td>
-      <td>▁지방</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>행정</td>
-      <td>행정</td>
-      <td>▁행정</td>
-      <td>▁행정</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>구이다</td>
-      <td>구</td>
-      <td>구</td>
-      <td>구이다</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>.</td>
-      <td>이다</td>
-      <td>이다</td>
-      <td>.</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>스</td>
-      <td>.</td>
-      <td>.</td>
-      <td>▁스</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>윈</td>
-      <td>스</td>
-      <td>▁스</td>
-      <td>윈</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>던</td>
-      <td>윈</td>
-      <td>윈</td>
-      <td>던</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>과</td>
-      <td>던</td>
-      <td>던</td>
-      <td>과</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>시</td>
-      <td>과</td>
-      <td>과</td>
-      <td>▁시</td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td>런</td>
-      <td>시</td>
-      <td>▁시</td>
-      <td>런</td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td>세</td>
-      <td>런</td>
-      <td>런</td>
-      <td>세</td>
-    </tr>
-    <tr>
-      <th>33</th>
-      <td>스터</td>
-      <td>세</td>
-      <td>세</td>
-      <td>스터</td>
-    </tr>
-    <tr>
-      <th>34</th>
-      <td>의</td>
-      <td>스터</td>
-      <td>스터</td>
-      <td>의</td>
-    </tr>
-    <tr>
-      <th>35</th>
-      <td>중간에</td>
-      <td>의</td>
-      <td>의</td>
-      <td>▁중간에</td>
-    </tr>
-    <tr>
-      <th>36</th>
-      <td>위치해</td>
-      <td>중간에</td>
-      <td>▁중간에</td>
-      <td>▁위치해</td>
-    </tr>
-    <tr>
-      <th>37</th>
-      <td>있다</td>
-      <td>위치해</td>
-      <td>▁위치해</td>
-      <td>▁있다</td>
-    </tr>
-    <tr>
-      <th>38</th>
-      <td>.</td>
-      <td>있다</td>
-      <td>▁있다</td>
-      <td>.</td>
-    </tr>
-    <tr>
-      <th>39</th>
-      <td></td>
-      <td>.</td>
-      <td>.</td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
-</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 26.1 ms (started: 2022-11-13 08:48:32 +00:00)
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="usage-of-tokenizer-trainer">
-<h2>Usage of Tokenizer Trainer<a class="headerlink" href="#usage-of-tokenizer-trainer" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s2">&quot;wiki_filtered.parquet&quot;</span><span class="p">,</span> <span class="n">project_dir</span> <span class="o">+</span> <span class="s2">&quot;/data&quot;</span><span class="p">)</span>
-<span class="n">bnwiki_filtered</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">corpus</span> <span class="o">==</span> <span class="s2">&quot;bnwiki&quot;</span><span class="p">]</span>
-
-<span class="n">data_file</span> <span class="o">=</span> <span class="s2">&quot;bnwiki_filtered.parquet&quot;</span>
-<span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;tokenizer=trainer&quot;</span><span class="p">)</span>
-<span class="n">cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;bnwiki&quot;</span>
-<span class="n">cfg</span><span class="o">.</span><span class="n">batch</span><span class="o">.</span><span class="n">num_workers</span> <span class="o">=</span> <span class="mi">128</span>
-<span class="n">cfg</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">train_file</span> <span class="o">=</span> <span class="n">data_file</span>
-<span class="n">cfg</span><span class="o">.</span><span class="n">training</span><span class="o">.</span><span class="n">use_sample</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="n">cfg</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">model_type</span> <span class="o">=</span> <span class="s2">&quot;bpe&quot;</span>
-<span class="n">cfg</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">vocab_size</span> <span class="o">=</span> <span class="mi">30000</span>
-<span class="n">cfg</span><span class="o">.</span><span class="n">auto</span> <span class="o">=</span> <span class="s2">&quot;train&quot;</span>
-
-<span class="n">eKonf</span><span class="o">.</span><span class="n">save_data</span><span class="p">(</span><span class="n">bnwiki_filtered</span><span class="p">,</span> <span class="n">data_file</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">data_dir</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.io.file:Processing [1] files from [&#39;wiki_filtered.parquet&#39;]
-INFO:ekorpkit.io.file:Loading 1 dataframes from [&#39;/content/drive/MyDrive/workspace/projects/ekorpkit-book/data/wiki_filtered.parquet&#39;]
-INFO:ekorpkit.io.file:Loading data from /content/drive/MyDrive/workspace/projects/ekorpkit-book/data/wiki_filtered.parquet
-INFO:root:compose config with overrides: [&#39;tokenizer=trainer&#39;]
-INFO:ekorpkit.io.file:Saving dataframe to /content/drive/MyDrive/workspace/projects/ekorpkit-book/language-modeling/data/bnwiki_filtered.parquet
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 16.5 s (started: 2022-11-25 02:14:06 +00:00)
-</pre></div>
-</div>
-</div>
-</div>
-<section id="bpe-model-by-hugging-face">
-<h3>BPE Model by Hugging Face<a class="headerlink" href="#bpe-model-by-hugging-face" title="Permalink to this heading">#</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ekorpkit<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="nv">project_name</span><span class="o">=</span>ekorpkit-book<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="nv">workspace_dir</span><span class="o">=</span>/content/drive/MyDrive/workspace<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="nv">run</span><span class="o">=</span>tokenizer<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="nv">tokenizer</span><span class="o">=</span>trainer<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.name<span class="o">=</span>bnwiki<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.dataset.train_file<span class="o">=</span>data/bnwiki_filtered.parquet<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.model.model_type<span class="o">=</span>bpe<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.model.vocab_size<span class="o">=</span><span class="m">30000</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.training.use_sample<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.batch.num_workers<span class="o">=</span><span class="m">128</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.auto<span class="o">=</span>train
-</pre></div>
-</div>
-</section>
-<section id="unigram-model-by-hugging-face">
-<h3>Unigram Model by Hugging Face<a class="headerlink" href="#unigram-model-by-hugging-face" title="Permalink to this heading">#</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ekorpkit<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="nv">project_name</span><span class="o">=</span>ekorpkit-book<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="nv">workspace_dir</span><span class="o">=</span>/content/drive/MyDrive/workspace<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="nv">run</span><span class="o">=</span>tokenizer<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="nv">tokenizer</span><span class="o">=</span>trainer<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.name<span class="o">=</span>bnwiki<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.dataset.train_file<span class="o">=</span>data/bnwiki_filtered.parquet<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.model.model_type<span class="o">=</span>unigram<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.model.vocab_size<span class="o">=</span><span class="m">30000</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.training.use_sample<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.batch.num_workers<span class="o">=</span><span class="m">128</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.auto<span class="o">=</span>train
-</pre></div>
-</div>
-</section>
-<section id="bpe-model-by-sentencepiece">
-<h3>BPE Model by SentencePiece<a class="headerlink" href="#bpe-model-by-sentencepiece" title="Permalink to this heading">#</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ekorpkit<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="nv">project_name</span><span class="o">=</span>ekorpkit-book<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="nv">workspace_dir</span><span class="o">=</span>/content/drive/MyDrive/workspace<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="nv">run</span><span class="o">=</span>tokenizer<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="nv">tokenizer</span><span class="o">=</span>trainer.spm<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.name<span class="o">=</span>bnwiki<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.dataset.train_file<span class="o">=</span>data/bnwiki_filtered.parquet<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.model.model_type<span class="o">=</span>bpe<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.model.vocab_size<span class="o">=</span><span class="m">30000</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.model.character_coverage<span class="o">=</span><span class="m">0</span>.9995<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.training.use_sample<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.batch.num_workers<span class="o">=</span><span class="m">128</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.auto<span class="o">=</span>train
-</pre></div>
-</div>
-</section>
-<section id="unigram-model-by-sentencepiece">
-<h3>Unigram Model by SentencePiece<a class="headerlink" href="#unigram-model-by-sentencepiece" title="Permalink to this heading">#</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ekorpkit<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="nv">project_name</span><span class="o">=</span>ekorpkit-book<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="nv">workspace_dir</span><span class="o">=</span>/content/drive/MyDrive/workspace<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="nv">run</span><span class="o">=</span>tokenizer<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="nv">tokenizer</span><span class="o">=</span>trainer.spm<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.name<span class="o">=</span>bnwiki<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.dataset.train_file<span class="o">=</span>data/bnwiki_filtered.parquet<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.model.model_type<span class="o">=</span>unigram<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.model.vocab_size<span class="o">=</span><span class="m">30000</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.model.character_coverage<span class="o">=</span><span class="m">0</span>.9995<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.training.use_sample<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.batch.num_workers<span class="o">=</span><span class="m">128</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.auto<span class="o">=</span>train
-</pre></div>
-</div>
-</section>
-<section id="id2">
-<h3>Compare the Tokenizers<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ekorpkit.tokenizers.trainer</span> <span class="kn">import</span> <span class="n">TokenizerTrainer</span><span class="p">,</span> <span class="n">compare_tokens</span>
-
-
-<span class="k">def</span> <span class="nf">load_tokenizer</span><span class="p">(</span><span class="n">trainer_type</span><span class="p">,</span> <span class="n">model_type</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;kowiki&quot;</span><span class="p">):</span>
-    <span class="n">cfg_group</span> <span class="o">=</span> <span class="s2">&quot;tokenizer=trainer&quot;</span>
-    <span class="k">if</span> <span class="n">trainer_type</span> <span class="o">==</span> <span class="s2">&quot;spm&quot;</span><span class="p">:</span>
-        <span class="n">cfg_group</span> <span class="o">+=</span> <span class="s2">&quot;.spm&quot;</span>
-    <span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">cfg_group</span><span class="p">)</span>
-    <span class="n">cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-    <span class="n">cfg</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">model_type</span> <span class="o">=</span> <span class="n">model_type</span>
-    <span class="n">trainer</span> <span class="o">=</span> <span class="n">TokenizerTrainer</span><span class="p">(</span><span class="o">**</span><span class="n">cfg</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">trainer</span><span class="o">.</span><span class="n">tokenizer_obj</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 16.2 ms (started: 2022-11-29 10:48:09 +00:00)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokenizers</span> <span class="o">=</span> <span class="p">{}</span>
-
-<span class="k">for</span> <span class="n">trainer_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;spm&quot;</span><span class="p">,</span> <span class="s2">&quot;huggingface&quot;</span><span class="p">]:</span>
-    <span class="k">for</span> <span class="n">model_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;bpe&quot;</span><span class="p">,</span> <span class="s2">&quot;unigram&quot;</span><span class="p">]:</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">model_type</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">trainer_type</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-        <span class="n">tokenizers</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">load_tokenizer</span><span class="p">(</span><span class="n">trainer_type</span><span class="p">,</span> <span class="n">model_type</span><span class="p">,</span> <span class="s2">&quot;bnwiki&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:root:compose config with overrides: [&#39;tokenizer=trainer.spm&#39;]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bpe_spm
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:No method defined to call
-INFO:root:compose config with overrides: [&#39;tokenizer=trainer.spm&#39;]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>unigram_spm
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:No method defined to call
-INFO:root:compose config with overrides: [&#39;tokenizer=trainer&#39;]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bpe_huggingface
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:No method defined to call
-INFO:root:compose config with overrides: [&#39;tokenizer=trainer&#39;]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>unigram_huggingface
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:No method defined to call
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 2.36 s (started: 2022-11-29 10:48:14 +00:00)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg_group</span> <span class="o">=</span> <span class="s2">&quot;tokenizer=trainer&quot;</span>
-<span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">cfg_group</span><span class="p">)</span>
-<span class="n">cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;bnwiki&quot;</span>
-<span class="n">trainer</span> <span class="o">=</span> <span class="n">TokenizerTrainer</span><span class="p">(</span><span class="o">**</span><span class="n">cfg</span><span class="p">)</span>
-
-<span class="n">sentences</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">files</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">input_files</span>
-<span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">sentences</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;number of sentences:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sentences</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">sentences</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:root:compose config with overrides: [&#39;tokenizer=trainer&#39;]
-INFO:ekorpkit.base:No method defined to call
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>number of sentences: 357833
-জোড্ডা পূর্ব বাংলাদেশের কুমিল্লা জেলার অন্তর্গত নাঙ্গলকোট উপজেলার একটি ইউনিয়ন।
-time: 980 ms (started: 2022-11-29 10:48:22 +00:00)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compare_tokens</span><span class="p">(</span><span class="n">tokenizers</span><span class="p">,</span> <span class="n">sentences</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text: মোহাম্মদ রফিকুল ইসলাম ২০২০ সালের ১ সেপ্টেম্বর গাজীপুরে অবস্থিত আন্তর্জাতিক প্রযুক্তি বিশ্ববিদ্যালয়, ইসলামিক ইউনিভার্সিটি অব টেকনোলজির (আইইউটি) উপাচার্য হিসেবে যোগদান করেন।
-</pre></div>
-</div>
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>bpe_spm</th>
-      <th>unigram_spm</th>
-      <th>bpe_huggingface</th>
-      <th>unigram_huggingface</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>▁মোহাম্মদ</td>
-      <td>▁মোহাম্মদ</td>
-      <td>মহমমদ</td>
-      <td>▁</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>▁রফিকুল</td>
-      <td>▁রফিকুল</td>
-      <td>রফকল</td>
-      <td>মহমমদ</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>▁ইসলাম</td>
-      <td>▁ইসলাম</td>
-      <td>ইসলম</td>
-      <td>▁</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>▁২০২০</td>
-      <td>▁২০২০</td>
-      <td>২০২০</td>
-      <td>রফকল</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>▁সালের</td>
-      <td>▁সালের</td>
-      <td>সলর</td>
-      <td>▁</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>▁১</td>
-      <td>▁১</td>
-      <td>১</td>
-      <td>ইসলম</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>▁সেপ্টেম্বর</td>
-      <td>▁সেপ্টেম্বর</td>
-      <td>সপটমবর</td>
-      <td>▁</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>▁গাজীপুর</td>
-      <td>▁গাজীপুর</td>
-      <td>গজপর</td>
-      <td>২০২০</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>ে</td>
-      <td>ে</td>
-      <td>অবসথত</td>
-      <td>▁</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>▁অবস্থিত</td>
-      <td>▁অবস্থিত</td>
-      <td>আনতরজতক</td>
-      <td>সলর</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>▁আন্তর্জাতিক</td>
-      <td>▁আন্তর্জাতিক</td>
-      <td>পরযকত</td>
-      <td>▁</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>▁প্রযুক্তি</td>
-      <td>▁প্রযুক্তি</td>
-      <td>বশববদযলয</td>
-      <td>১</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>▁বিশ্ববিদ্যালয়</td>
-      <td>▁বিশ্ববিদ্যালয়</td>
-      <td>,</td>
-      <td>▁</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>,</td>
-      <td>,</td>
-      <td>ইসলমক</td>
-      <td>সপটমবর</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>▁ইসলামিক</td>
-      <td>▁ইসলামিক</td>
-      <td>ইউনভরসট</td>
-      <td>▁</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>▁ইউনিভার্সিটি</td>
-      <td>▁ইউনিভার্সিটি</td>
-      <td>অব</td>
-      <td>গজপর</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>▁অব</td>
-      <td>▁অব</td>
-      <td>টকনলজর</td>
-      <td>▁</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>▁টেকনোলজির</td>
-      <td>▁টেকনোলজির</td>
-      <td>(</td>
-      <td>অবসথত</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>▁(</td>
-      <td>▁(</td>
-      <td>আই</td>
-      <td>▁</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>আই</td>
-      <td>আইইউ</td>
-      <td>ইউট</td>
-      <td>আনতরজতক</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>ইউ</td>
-      <td>টি</td>
-      <td>)</td>
-      <td>▁</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>টি</td>
-      <td>)</td>
-      <td>উপচরয</td>
-      <td>পরযকত</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>)</td>
-      <td>▁উপাচার্য</td>
-      <td>হসব</td>
-      <td>▁</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>▁উপাচার্য</td>
-      <td>▁হিসেবে</td>
-      <td>যগদন</td>
-      <td>বশববদযলয</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>▁হিসেবে</td>
-      <td>▁যোগদান</td>
-      <td>করন</td>
-      <td>,</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>▁যোগদান</td>
-      <td>▁করেন</td>
-      <td>।</td>
-      <td>▁</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>▁করেন</td>
-      <td>।</td>
-      <td></td>
-      <td>ইসলমক</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>।</td>
-      <td></td>
-      <td></td>
-      <td>▁</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>ইউনভরসট</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>▁</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>অব</td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>▁</td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>টকনলজ</td>
-    </tr>
-    <tr>
-      <th>33</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>র</td>
-    </tr>
-    <tr>
-      <th>34</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>▁</td>
-    </tr>
-    <tr>
-      <th>35</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>(</td>
-    </tr>
-    <tr>
-      <th>36</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>আইইউ</td>
-    </tr>
-    <tr>
-      <th>37</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>ট</td>
-    </tr>
-    <tr>
-      <th>38</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>)</td>
-    </tr>
-    <tr>
-      <th>39</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>▁</td>
-    </tr>
-    <tr>
-      <th>40</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>উপচরয</td>
-    </tr>
-    <tr>
-      <th>41</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>▁</td>
-    </tr>
-    <tr>
-      <th>42</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>হসব</td>
-    </tr>
-    <tr>
-      <th>43</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>▁</td>
-    </tr>
-    <tr>
-      <th>44</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>যগদন</td>
-    </tr>
-    <tr>
-      <th>45</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>▁</td>
-    </tr>
-    <tr>
-      <th>46</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>করন</td>
-    </tr>
-    <tr>
-      <th>47</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>।</td>
-    </tr>
-  </tbody>
-</table>
-</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 25 ms (started: 2022-11-29 10:48:30 +00:00)
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="id3">
-<h2>Usage of Tokenizer Trainer<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;retina&#39;
-<span class="o">%</span><span class="k">load_ext</span> autotime
-<span class="o">%</span><span class="k">load_ext</span> autoreload
-<span class="o">%</span><span class="k">autoreload</span> 2
-
-<span class="kn">from</span> <span class="nn">ekorpkit</span> <span class="kn">import</span> <span class="n">eKonf</span>
-
-<span class="n">eKonf</span><span class="o">.</span><span class="n">setLogger</span><span class="p">(</span><span class="s2">&quot;INFO&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;version:&quot;</span><span class="p">,</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
-
-<span class="n">is_colab</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">is_colab</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;is colab?&quot;</span><span class="p">,</span> <span class="n">is_colab</span><span class="p">)</span>
-<span class="k">if</span> <span class="n">is_colab</span><span class="p">:</span>
-    <span class="n">eKonf</span><span class="o">.</span><span class="n">mount_google_drive</span><span class="p">()</span>
-<span class="n">workspace_dir</span> <span class="o">=</span> <span class="s2">&quot;/content/drive/MyDrive/workspace&quot;</span>
-<span class="n">project_name</span> <span class="o">=</span> <span class="s2">&quot;ekorpkit-book&quot;</span>
-<span class="n">project_dir</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">set_workspace</span><span class="p">(</span><span class="n">workspace</span><span class="o">=</span><span class="n">workspace_dir</span><span class="p">,</span> <span class="n">project</span><span class="o">=</span><span class="n">project_name</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;project_dir:&quot;</span><span class="p">,</span> <span class="n">project_dir</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.utils.notebook:Google Colab not detected.
-INFO:ekorpkit.base:Overwriting EKORPKIT_WORKSPACE_ROOT=/workspace with /content/drive/MyDrive/workspace
-INFO:ekorpkit.base:Setting EKORPKIT_WORKSPACE_ROOT to /content/drive/MyDrive/workspace
-INFO:ekorpkit.base:Overwriting EKORPKIT_PROJECT=ekorpkit-book with ekorpkit-book
-INFO:ekorpkit.base:Setting EKORPKIT_PROJECT to ekorpkit-book
-INFO:ekorpkit.base:Overwriting EKORPKIT_PROJECT_DIR=/workspace/projects/ekorpkit-book with /content/drive/MyDrive/workspace/projects/ekorpkit-book
-INFO:ekorpkit.base:Loaded .env from /workspace/projects/ekorpkit-book/config/.env
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>version: 0.1.40.post0.dev37
-is colab? False
-project_dir: /content/drive/MyDrive/workspace/projects/ekorpkit-book
-time: 964 ms (started: 2022-11-30 06:49:42 +00:00)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_file</span> <span class="o">=</span> <span class="s2">&quot;data/enko_filtered.parquet&quot;</span>
-
-<span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;tokenizer=trainer&quot;</span><span class="p">)</span>
-<span class="n">cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;enkowiki&quot;</span>
-<span class="n">cfg</span><span class="o">.</span><span class="n">batch</span><span class="o">.</span><span class="n">num_workers</span> <span class="o">=</span> <span class="mi">128</span>
-<span class="n">cfg</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">train_file</span> <span class="o">=</span> <span class="n">data_file</span>
-<span class="n">cfg</span><span class="o">.</span><span class="n">_train_</span><span class="o">.</span><span class="n">use_sample</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="n">cfg</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">model_type</span> <span class="o">=</span> <span class="s2">&quot;bpe&quot;</span>
-<span class="n">cfg</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">vocab_size</span> <span class="o">=</span> <span class="mi">30000</span>
-<span class="c1"># cfg.auto = &quot;train&quot;</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">data_dir</span><span class="p">)</span>
-<span class="c1"># eKonf.copy(f&quot;{project_dir}/{data_file}&quot;, cfg.path.data_dir)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:root:compose config with overrides: [&#39;tokenizer=trainer&#39;]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/content/drive/MyDrive/workspace/projects/ekorpkit-book/language-modeling/data
-time: 506 ms (started: 2022-11-30 06:49:43 +00:00)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ekorpkit.tokenizers.trainer</span> <span class="kn">import</span> <span class="n">TokenizerTrainer</span>
-
-<span class="n">cfg</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">model_type</span> <span class="o">=</span> <span class="s2">&quot;unigram&quot;</span>
-<span class="n">trainer</span> <span class="o">=</span> <span class="n">TokenizerTrainer</span><span class="p">(</span><span class="o">**</span><span class="n">cfg</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:root:compose config with overrides: [&#39;tokenizer=trainer&#39;]
-INFO:ekorpkit.base:Loaded .env from /workspace/projects/ekorpkit-book/config/.env
-INFO:ekorpkit.base:Setting WANDB_PROJECT=ekorpkit-book
-INFO:ekorpkit.config:Using existing path: /content/drive/MyDrive/workspace/projects/ekorpkit-book/language-modeling
-INFO:ekorpkit.base:No method defined to call
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 2.06 s (started: 2022-11-30 06:49:45 +00:00)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;▁&#39;, &#39;test&#39;]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 64.5 ms (started: 2022-11-30 06:49:48 +00:00)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainer</span><span class="o">.</span><span class="n">save_config</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.config:Saving config to /content/drive/MyDrive/workspace/projects/ekorpkit-book/language-modeling/outputs/enkowiki/configs/enkowiki(11)_config.yaml
-INFO:ekorpkit.config:Saving config to /content/drive/MyDrive/workspace/projects/ekorpkit-book/language-modeling/outputs/enkowiki/configs/enkowiki(11)_config.json
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;enkowiki(11)_config.yaml&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 267 ms (started: 2022-11-30 06:39:45 +00:00)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ekorpkit<span class="w"> </span><span class="nv">print_config</span><span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="nv">project_name</span><span class="o">=</span>ekorpkit-book<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="nv">workspace_dir</span><span class="o">=</span>/content/drive/MyDrive/workspace<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="nv">run</span><span class="o">=</span>tokenizer<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="nv">tokenizer</span><span class="o">=</span>trainer<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.name<span class="o">=</span>enkowiki<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.dataset.train_file<span class="o">=</span>data/enko_filtered.parquet<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.model.model_type<span class="o">=</span>unigram<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.model.vocab_size<span class="o">=</span><span class="m">30000</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer._train_.use_sample<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.batch.num_workers<span class="o">=</span><span class="m">128</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>tokenizer.auto<span class="o">=</span>train
-</pre></div>
-</div>
+<p>In summary, we have trained three tokenizers using the same specifications as the GPT, BERT, and T5 models. BPE is used in GPT with a vocabulary size of 50,000, WordPiece is used in BERT with a vocabulary size of 30,000, and Unigram is used in T5 with a vocabulary size of 32,000. These tokenizers are all data-driven and provide different ways to handle subword tokenization, which can be beneficial for handling out-of-vocabulary words and improving the performance of the models.</p>
 </section>
 </section>
 
@@ -2728,46 +911,23 @@ INFO:ekorpkit.config:Saving config to /content/drive/MyDrive/workspace/projects/
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-the-environment">Prepare the environment</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-saved-corpora">Load the saved corpora</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#covert-pandas-datafame-to-huggingface-dataset">Covert pandas datafame to huggingface dataset</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shuffle-the-dataset">Shuffle the dataset</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#split-the-dataset-into-sentences-for-training">Split the dataset into sentences for training</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-sentences-and-combine-them-into-a-single-file">Sample sentences and combine them into a single file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-install-necessary-libraries">Step 1: Install necessary libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-load-the-dataset">Step 2: Load the dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-prepare-the-text">Step 3: Prepare the text</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-train-the-tokenizers">Step 4: Train the tokenizers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#byte-pair-encoding-bpe">Byte Pair Encoding (BPE)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wordpiece">WordPiece</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unigram">Unigram</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sentencepiece">SentencePiece</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-tokenizers-with-hugging-face-tokenizers">Train tokenizers with Hugging Face Tokenizers</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-the-libraries-and-prepare-functions">Import the libraries and prepare functions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-bpe-tokenizer">Train BPE tokenizer</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-unigram-tokenizer">Train Unigram tokenizer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-compare-the-tokenizers">Step 5: Compare the tokenizers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-tokenizers-for-gpt-bert-and-t5">Training Tokenizers for GPT, BERT, and T5</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#byte-pair-encoding-bpe-gpt">Byte Pair Encoding (BPE) - GPT</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-tokenizers-with-google-sentencepiece-spm">Train tokenizers with Google SentencePiece (SPM)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-sentencepiece">Install SentencePiece</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-sentencepiece-models">Train SentencePiece models</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#train-unigram-model">Train Unigram model</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-trained-model">Load the trained model</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#train-bpe-model">Train BPE model</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Load the trained model</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-the-tokenizers">Compare the Tokenizers</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-tokenizers">Load the tokenizers</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analyze-the-output-of-the-tokenizers">Analyze the output of the tokenizers</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-the-tokens">Compare the Tokens</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage-of-tokenizer-trainer">Usage of Tokenizer Trainer</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bpe-model-by-hugging-face">BPE Model by Hugging Face</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unigram-model-by-hugging-face">Unigram Model by Hugging Face</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bpe-model-by-sentencepiece">BPE Model by SentencePiece</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unigram-model-by-sentencepiece">Unigram Model by SentencePiece</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Compare the Tokenizers</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Usage of Tokenizer Trainer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wordpiece-bert">WordPiece - BERT</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unigram-t5">Unigram - T5</a></li>
 </ul>
   </nav></div>
 
