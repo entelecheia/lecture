@@ -241,7 +241,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Tokenization</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="subword.html">Subword Tokenization</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">Tokenization Pipeline</a></li>
-
 <li class="toctree-l3"><a class="reference internal" href="bpe.html">BPE Step-by-Step Implementation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="sentencepiece.html">SentencePiece Tokenizer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="lab-train-tokenizers.html">Lab: Training Tokenizers</a></li>
@@ -561,17 +560,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tokenization Pipeline</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-tokenization-in-python">Implementing Tokenization in Python</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalization">Normalization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-tokenization">Pre-tokenization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model">Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#post-processing">Post-processing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postprocessing">Postprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-tokenization-in-python">Implementing Tokenization in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalization">Normalization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-tokenization">Pre-tokenization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model">Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#post-processing">Post-processing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#postprocessing">Postprocessing</a></li>
 </ul>
 </li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -582,7 +579,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="tokenization-pipeline">
+  <section class="tex2jax_ignore mathjax_ignore" id="tokenization-pipeline">
 <h1>Tokenization Pipeline<a class="headerlink" href="#tokenization-pipeline" title="Permalink to this heading">#</a></h1>
 <figure class="align-default" id="fig-tokenization-pipeline">
 <a class="reference internal image-reference" href="../../../_images/tokenization_pipeline.png"><img alt="../../../_images/tokenization_pipeline.png" src="../../../_images/tokenization_pipeline.png" style="width: 80%;" /></a>
@@ -598,9 +595,8 @@ document.write(`
 <li><p><strong>Post-processing</strong>: This involves any additional processing that needs to be done after tokenization. This could include removing stop words (common words like ‘is’, ‘the’, ‘and’, etc. that are often filtered out), stemming (reducing words to their root form), or lemmatization (reducing words to their base or dictionary form).</p></li>
 </ol>
 <p>Let’s now look at how we can implement this pipeline using Python.</p>
-</section>
 <section id="implementing-tokenization-in-python">
-<h1>Implementing Tokenization in Python<a class="headerlink" href="#implementing-tokenization-in-python" title="Permalink to this heading">#</a></h1>
+<h2>Implementing Tokenization in Python<a class="headerlink" href="#implementing-tokenization-in-python" title="Permalink to this heading">#</a></h2>
 <p>We will be using the <code class="docutils literal notranslate"><span class="pre">transformers</span></code> library from Hugging Face, which provides a wide range of pre-trained models for NLP tasks. It also provides various tokenizers that we can use.</p>
 <p>First, let’s import the necessary libraries:</p>
 <div class="cell docutils container">
@@ -612,7 +608,7 @@ document.write(`
 </div>
 <p>We can use the <code class="docutils literal notranslate"><span class="pre">AutoTokenizer</span></code> class to automatically infer the correct tokenizer to use based on the pre-trained model we specify.</p>
 <section id="normalization">
-<h2>Normalization<a class="headerlink" href="#normalization" title="Permalink to this heading">#</a></h2>
+<h3>Normalization<a class="headerlink" href="#normalization" title="Permalink to this heading">#</a></h3>
 <p>Normalization is usually handled internally by the tokenizer. However, we can see the effect of normalization by directly calling the normalizer:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -630,7 +626,7 @@ document.write(`
 <p>In this example, we’re using the tokenizer for the <code class="docutils literal notranslate"><span class="pre">bert-base-uncased</span></code> model. The <code class="docutils literal notranslate"><span class="pre">normalize_str</span></code> method applies the normalizer to the input string, converting all characters to lowercase and removing any special characters.</p>
 </section>
 <section id="pre-tokenization">
-<h2>Pre-tokenization<a class="headerlink" href="#pre-tokenization" title="Permalink to this heading">#</a></h2>
+<h3>Pre-tokenization<a class="headerlink" href="#pre-tokenization" title="Permalink to this heading">#</a></h3>
 <p>Next, we perform pre-tokenization. This involves splitting the text into preliminary tokens:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -672,11 +668,11 @@ document.write(`
 </div>
 </section>
 <section id="model">
-<h2>Model<a class="headerlink" href="#model" title="Permalink to this heading">#</a></h2>
+<h3>Model<a class="headerlink" href="#model" title="Permalink to this heading">#</a></h3>
 <p>The model is the core algorithm that determines how the pre-tokenized text is further broken down into tokens. This is usually handled internally by the tokenizer, so we won’t go into detail here.</p>
 </section>
 <section id="post-processing">
-<h2>Post-processing<a class="headerlink" href="#post-processing" title="Permalink to this heading">#</a></h2>
+<h3>Post-processing<a class="headerlink" href="#post-processing" title="Permalink to this heading">#</a></h3>
 <p>Finally, we perform post-processing. This involves any additional processing that needs to be done after tokenization. For example, we might want to convert our tokens into input IDs, which can be inputted into our</p>
 <p>model:</p>
 <div class="cell docutils container">
@@ -704,7 +700,7 @@ document.write(`
 <p>In this example, we’re using the <code class="docutils literal notranslate"><span class="pre">pre_tokenize_str</span></code> method of the tokenizer’s model to tokenize the input string.</p>
 </section>
 <section id="postprocessing">
-<h2>Postprocessing<a class="headerlink" href="#postprocessing" title="Permalink to this heading">#</a></h2>
+<h3>Postprocessing<a class="headerlink" href="#postprocessing" title="Permalink to this heading">#</a></h3>
 <p>Postprocessing involves any additional processing that needs to be done after the text has been tokenized. This can include padding the tokenized text to a certain length, adding special tokens (like start and end tokens), or converting the tokenized text into a format that can be used by a machine learning model.</p>
 <p>Here’s an example of how you can perform postprocessing using the <code class="docutils literal notranslate"><span class="pre">transformers</span></code> library:</p>
 <div class="cell docutils container">
@@ -776,6 +772,7 @@ document.write(`
 <p>The <code class="docutils literal notranslate"><span class="pre">input_ids</span></code> attribute contains the input IDs, the <code class="docutils literal notranslate"><span class="pre">token_type_ids</span></code> attribute contains the token type IDs (used for models that have separate segments of input, like BERT), and the <code class="docutils literal notranslate"><span class="pre">attention_mask</span></code> attribute contains the attention mask (used for models that use attention, like BERT and GPT-2).</p>
 </section>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -844,17 +841,15 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tokenization Pipeline</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-tokenization-in-python">Implementing Tokenization in Python</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalization">Normalization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-tokenization">Pre-tokenization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model">Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#post-processing">Post-processing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postprocessing">Postprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-tokenization-in-python">Implementing Tokenization in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalization">Normalization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-tokenization">Pre-tokenization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model">Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#post-processing">Post-processing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#postprocessing">Postprocessing</a></li>
 </ul>
 </li>
 </ul>
-
   </nav></div>
 
 </div></div>
