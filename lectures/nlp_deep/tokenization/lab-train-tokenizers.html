@@ -649,7 +649,7 @@ Extracting data files: 100%|██████████| 1/1 [00:00&lt;00:00,
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># change this to your own path</span>
-<span class="n">wiki_filepath</span> <span class="o">=</span> <span class="s2">&quot;/tmp/wiki.txt&quot;</span>
+<span class="n">wiki_filepath</span> <span class="o">=</span> <span class="s2">&quot;./tmp/wiki.txt&quot;</span>
 
 <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">article</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">article</span> <span class="ow">in</span> <span class="n">wiki</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">])</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">wiki_filepath</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -668,11 +668,14 @@ Extracting data files: 100%|██████████| 1/1 [00:00&lt;00:00,
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tokenizers</span> <span class="kn">import</span> <span class="n">Tokenizer</span>
 <span class="kn">from</span> <span class="nn">tokenizers.models</span> <span class="kn">import</span> <span class="n">BPE</span>
+<span class="kn">from</span> <span class="nn">tokenizers.pre_tokenizers</span> <span class="kn">import</span> <span class="n">Whitespace</span>
+
 
 <span class="c1"># change this to your own path</span>
-<span class="n">bpe_tokenizer_path</span> <span class="o">=</span> <span class="s2">&quot;/tmp/bpe_tokenizer.json&quot;</span>
+<span class="n">bpe_tokenizer_path</span> <span class="o">=</span> <span class="s2">&quot;./tmp/bpe_tokenizer.json&quot;</span>
 
 <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">BPE</span><span class="p">())</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">pre_tokenizer</span> <span class="o">=</span> <span class="n">Whitespace</span><span class="p">()</span>
 <span class="n">tokenizer</span><span class="o">.</span><span class="n">train</span><span class="p">([</span><span class="n">wiki_filepath</span><span class="p">])</span>
 <span class="n">tokenizer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">bpe_tokenizer_path</span><span class="p">)</span>
 </pre></div>
@@ -692,11 +695,16 @@ Extracting data files: 100%|██████████| 1/1 [00:00&lt;00:00,
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tokenizers.models</span> <span class="kn">import</span> <span class="n">WordPiece</span>
 
 <span class="c1"># change this to your own path</span>
-<span class="n">wordpiece_tokenizer_path</span> <span class="o">=</span> <span class="s2">&quot;/tmp/wordpiece_tokenizer.json&quot;</span>
+<span class="n">wordpiece_tokenizer_path</span> <span class="o">=</span> <span class="s2">&quot;./tmp/wordpiece_tokenizer.json&quot;</span>
 
 <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">WordPiece</span><span class="p">())</span>
 <span class="n">tokenizer</span><span class="o">.</span><span class="n">train</span><span class="p">([</span><span class="n">wiki_filepath</span><span class="p">])</span>
 <span class="n">tokenizer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">wordpiece_tokenizer_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -709,7 +717,7 @@ Extracting data files: 100%|██████████| 1/1 [00:00&lt;00:00,
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tokenizers.models</span> <span class="kn">import</span> <span class="n">Unigram</span>
 
 <span class="c1"># change this to your own path</span>
-<span class="n">unigram_tokenizer_path</span> <span class="o">=</span> <span class="s2">&quot;/tmp/unigram_tokenizer.json&quot;</span>
+<span class="n">unigram_tokenizer_path</span> <span class="o">=</span> <span class="s2">&quot;./tmp/unigram_tokenizer.json&quot;</span>
 
 <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">Unigram</span><span class="p">())</span>
 <span class="n">tokenizer</span><span class="o">.</span><span class="n">train</span><span class="p">([</span><span class="n">wiki_filepath</span><span class="p">])</span>
@@ -722,16 +730,144 @@ Extracting data files: 100%|██████████| 1/1 [00:00&lt;00:00,
 <section id="sentencepiece">
 <h3>SentencePiece<a class="headerlink" href="#sentencepiece" title="Permalink to this heading">#</a></h3>
 <p>For SentencePiece, we’ll use the SentencePiece library directly.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sentencepiece</span> <span class="k">as</span> <span class="nn">spm</span>
 
+<span class="n">sentencepiece_tokenizer_path</span> <span class="o">=</span> <span class="s2">&quot;./tmp/sentencepiece_tokenizer.model&quot;</span>
+<span class="n">num_threads</span> <span class="o">=</span> <span class="mi">1</span>
+
 <span class="n">spm</span><span class="o">.</span><span class="n">SentencePieceTrainer</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
-    <span class="s2">&quot;--input=wiki_ko.txt --model_prefix=sentencepiece --vocab_size=32000&quot;</span>
+    <span class="s2">&quot;--input=</span><span class="si">{}</span><span class="s2"> --model_prefix=sentencepiece --vocab_size=32000 --num_threads=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wiki_filepath</span><span class="p">,</span> <span class="n">num_threads</span><span class="p">)</span>
 <span class="p">)</span>
+<span class="o">!</span>mv<span class="w"> </span>sentencepiece.*<span class="w"> </span>./tmp/
 </pre></div>
 </div>
 </div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sentencepiece_trainer.cc(177) LOG(INFO) Running command: --input=./tmp/wiki.txt --model_prefix=sentencepiece --vocab_size=32000 --num_threads=40
+sentencepiece_trainer.cc(77) LOG(INFO) Starts training with : 
+trainer_spec {
+  input: ./tmp/wiki.txt
+  input_format: 
+  model_prefix: sentencepiece
+  model_type: UNIGRAM
+  vocab_size: 32000
+  self_test_sample_size: 0
+  character_coverage: 0.9995
+  input_sentence_size: 0
+  shuffle_input_sentence: 1
+  seed_sentencepiece_size: 1000000
+  shrinking_factor: 0.75
+  max_sentence_length: 4192
+  num_threads: 40
+  num_sub_iterations: 2
+  max_sentencepiece_length: 16
+  split_by_unicode_script: 1
+  split_by_number: 1
+  split_by_whitespace: 1
+  split_digits: 0
+  pretokenization_delimiter: 
+  treat_whitespace_as_suffix: 0
+  allow_whitespace_only_pieces: 0
+  required_chars: 
+  byte_fallback: 0
+  vocabulary_output_piece_score: 1
+  train_extremely_large_corpus: 0
+  hard_vocab_limit: 1
+  use_all_vocab: 0
+  unk_id: 0
+  bos_id: 1
+  eos_id: 2
+  pad_id: -1
+  unk_piece: &lt;unk&gt;
+  bos_piece: &lt;s&gt;
+  eos_piece: &lt;/s&gt;
+  pad_piece: &lt;pad&gt;
+  unk_surface:  ⁇ 
+  enable_differential_privacy: 0
+  differential_privacy_noise_level: 0
+  differential_privacy_clipping_threshold: 0
+}
+normalizer_spec {
+  name: nmt_nfkc
+  add_dummy_prefix: 1
+  remove_extra_whitespaces: 1
+  escape_whitespaces: 1
+  normalization_rule_tsv: 
+}
+denormalizer_spec {}
+trainer_interface.cc(351) LOG(INFO) SentenceIterator is not specified. Using MultiFileSentenceIterator.
+trainer_interface.cc(183) LOG(INFO) Loading corpus: ./tmp/wiki.txt
+trainer_interface.cc(378) LOG(WARNING) Found too long line (4536 &gt; 4192).
+trainer_interface.cc(380) LOG(WARNING) Too long lines are skipped in the training.
+trainer_interface.cc(381) LOG(WARNING) The maximum length can be changed with --max_sentence_length=&lt;size&gt; flag.
+trainer_interface.cc(145) LOG(INFO) Loaded 1000000 lines
+trainer_interface.cc(145) LOG(INFO) Loaded 2000000 lines
+trainer_interface.cc(145) LOG(INFO) Loaded 3000000 lines
+trainer_interface.cc(145) LOG(INFO) Loaded 4000000 lines
+trainer_interface.cc(145) LOG(INFO) Loaded 5000000 lines
+trainer_interface.cc(145) LOG(INFO) Loaded 6000000 lines
+trainer_interface.cc(145) LOG(INFO) Loaded 7000000 lines
+trainer_interface.cc(145) LOG(INFO) Loaded 8000000 lines
+trainer_interface.cc(145) LOG(INFO) Loaded 9000000 lines
+trainer_interface.cc(145) LOG(INFO) Loaded 10000000 lines
+trainer_interface.cc(145) LOG(INFO) Loaded 11000000 lines
+trainer_interface.cc(145) LOG(INFO) Loaded 12000000 lines
+trainer_interface.cc(145) LOG(INFO) Loaded 13000000 lines
+trainer_interface.cc(122) LOG(WARNING) Too many sentences are loaded! (13749557), which may slow down training.
+trainer_interface.cc(124) LOG(WARNING) Consider using --input_sentence_size=&lt;size&gt; and --shuffle_input_sentence=true.
+trainer_interface.cc(127) LOG(WARNING) They allow to randomly sample &lt;size&gt; sentences from the entire corpus.
+trainer_interface.cc(407) LOG(INFO) Loaded all 13749557 sentences
+trainer_interface.cc(414) LOG(INFO) Skipped 369 too long sentences.
+trainer_interface.cc(423) LOG(INFO) Adding meta_piece: &lt;unk&gt;
+trainer_interface.cc(423) LOG(INFO) Adding meta_piece: &lt;s&gt;
+trainer_interface.cc(423) LOG(INFO) Adding meta_piece: &lt;/s&gt;
+trainer_interface.cc(428) LOG(INFO) Normalizing sentences...
+trainer_interface.cc(537) LOG(INFO) all chars count=551013136
+trainer_interface.cc(548) LOG(INFO) Done: 99.95% characters are covered.
+trainer_interface.cc(558) LOG(INFO) Alphabet size=4699
+trainer_interface.cc(559) LOG(INFO) Final character coverage=0.9995
+trainer_interface.cc(591) LOG(INFO) Done! preprocessed 13441046 sentences.
+unigram_model_trainer.cc(247) LOG(INFO) Making suffix array...
+unigram_model_trainer.cc(251) LOG(INFO) Extracting frequent sub strings... node_num=224525048
+unigram_model_trainer.cc(301) LOG(INFO) Initialized 1004699 seed sentencepieces
+trainer_interface.cc(597) LOG(INFO) Tokenizing input sentences with whitespace: 13441046
+trainer_interface.cc(608) LOG(INFO) Done! 11688710
+unigram_model_trainer.cc(607) LOG(INFO) Using 11688710 sentences for EM training
+unigram_model_trainer.cc(623) LOG(INFO) EM sub_iter=0 size=773874 obj=20.4511 num_tokens=38686257 num_tokens/piece=49.9904
+unigram_model_trainer.cc(623) LOG(INFO) EM sub_iter=1 size=723238 obj=15.2004 num_tokens=38170992 num_tokens/piece=52.7779
+unigram_model_trainer.cc(623) LOG(INFO) EM sub_iter=0 size=460480 obj=15.2601 num_tokens=41257696 num_tokens/piece=89.5972
+unigram_model_trainer.cc(623) LOG(INFO) EM sub_iter=1 size=459793 obj=15.1461 num_tokens=41280580 num_tokens/piece=89.7808
+unigram_model_trainer.cc(623) LOG(INFO) EM sub_iter=0 size=344844 obj=15.2885 num_tokens=43137869 num_tokens/piece=125.094
+unigram_model_trainer.cc(623) LOG(INFO) EM sub_iter=1 size=344843 obj=15.2281 num_tokens=43142897 num_tokens/piece=125.109
+unigram_model_trainer.cc(623) LOG(INFO) EM sub_iter=0 size=258632 obj=15.4073 num_tokens=45086624 num_tokens/piece=174.327
+unigram_model_trainer.cc(623) LOG(INFO) EM sub_iter=1 size=258632 obj=15.3484 num_tokens=45087203 num_tokens/piece=174.33
+unigram_model_trainer.cc(623) LOG(INFO) EM sub_iter=0 size=193974 obj=15.5576 num_tokens=46726298 num_tokens/piece=240.889
+unigram_model_trainer.cc(623) LOG(INFO) EM sub_iter=1 size=193974 obj=15.5026 num_tokens=46726287 num_tokens/piece=240.889
+unigram_model_trainer.cc(623) LOG(INFO) EM sub_iter=0 size=145480 obj=15.7268 num_tokens=48196596 num_tokens/piece=331.294
+unigram_model_trainer.cc(623) LOG(INFO) EM sub_iter=1 size=145480 obj=15.6766 num_tokens=48196650 num_tokens/piece=331.294
+unigram_model_trainer.cc(623) LOG(INFO) EM sub_iter=0 size=109110 obj=15.9223 num_tokens=49621655 num_tokens/piece=454.786
+unigram_model_trainer.cc(623) LOG(INFO) EM sub_iter=1 size=109110 obj=15.872 num_tokens=49621543 num_tokens/piece=454.785
+unigram_model_trainer.cc(623) LOG(INFO) EM sub_iter=0 size=81832 obj=16.1363 num_tokens=51032940 num_tokens/piece=623.631
+unigram_model_trainer.cc(623) LOG(INFO) EM sub_iter=1 size=81832 obj=16.084 num_tokens=51033150 num_tokens/piece=623.633
+unigram_model_trainer.cc(623) LOG(INFO) EM sub_iter=0 size=61374 obj=16.373 num_tokens=52469102 num_tokens/piece=854.908
+unigram_model_trainer.cc(623) LOG(INFO) EM sub_iter=1 size=61374 obj=16.314 num_tokens=52470264 num_tokens/piece=854.927
+unigram_model_trainer.cc(623) LOG(INFO) EM sub_iter=0 size=46030 obj=16.6282 num_tokens=53971634 num_tokens/piece=1172.53
+unigram_model_trainer.cc(623) LOG(INFO) EM sub_iter=1 size=46030 obj=16.5661 num_tokens=53972222 num_tokens/piece=1172.54
+unigram_model_trainer.cc(623) LOG(INFO) EM sub_iter=0 size=35200 obj=16.8836 num_tokens=55349142 num_tokens/piece=1572.42
+unigram_model_trainer.cc(623) LOG(INFO) EM sub_iter=1 size=35200 obj=16.8155 num_tokens=55349925 num_tokens/piece=1572.44
+trainer_interface.cc(686) LOG(INFO) Saving model: sentencepiece.model
+trainer_interface.cc(698) LOG(INFO) Saving vocabs: sentencepiece.vocab
+</pre></div>
+</div>
+</div>
+</details>
 </div>
 </section>
 </section>
@@ -740,24 +876,39 @@ Extracting data files: 100%|██████████| 1/1 [00:00&lt;00:00,
 <p>Now, let’s load each tokenizer and see how they tokenize a sample sentence.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_sentence</span> <span class="o">=</span> <span class="s2">&quot;안녕하세요. 이 문장은 토크나이저를 테스트하기 위한 샘플 문장입니다.&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tokenizers</span> <span class="kn">import</span> <span class="n">Tokenizer</span>
+<span class="kn">import</span> <span class="nn">sentencepiece</span> <span class="k">as</span> <span class="nn">spm</span>
+
+<span class="n">sample_sentence</span> <span class="o">=</span> <span class="s2">&quot;안녕하세요. 이 문장은 토크나이저를 테스트하기 위한 샘플 문장입니다.&quot;</span>
+
+<span class="n">bpe_tokenizer_path</span> <span class="o">=</span> <span class="s2">&quot;./tmp/bpe_tokenizer.json&quot;</span>
+<span class="n">wordpiece_tokenizer_path</span> <span class="o">=</span> <span class="s2">&quot;./tmp/wordpiece_tokenizer.json&quot;</span>
+<span class="n">unigram_tokenizer_path</span> <span class="o">=</span> <span class="s2">&quot;./tmp/unigram_tokenizer.json&quot;</span>
+<span class="n">sentencepiece_tokenizer_path</span> <span class="o">=</span> <span class="s2">&quot;./tmp/sentencepiece_tokenizer.model&quot;</span>
 
 <span class="c1"># BPE</span>
-<span class="n">bpe</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s2">&quot;bpe_tokenizer.json&quot;</span><span class="p">)</span>
+<span class="n">bpe</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">bpe_tokenizer_path</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;BPE:&quot;</span><span class="p">,</span> <span class="n">bpe</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">sample_sentence</span><span class="p">)</span><span class="o">.</span><span class="n">tokens</span><span class="p">)</span>
 
 <span class="c1"># WordPiece</span>
-<span class="n">wordpiece</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s2">&quot;wordpiece_tokenizer.json&quot;</span><span class="p">)</span>
+<span class="n">wordpiece</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">wordpiece_tokenizer_path</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;WordPiece:&quot;</span><span class="p">,</span> <span class="n">wordpiece</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">sample_sentence</span><span class="p">)</span><span class="o">.</span><span class="n">tokens</span><span class="p">)</span>
 
 <span class="c1"># Unigram</span>
-<span class="n">unigram</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s2">&quot;unigram_tokenizer.json&quot;</span><span class="p">)</span>
+<span class="n">unigram</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">unigram_tokenizer_path</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Unigram:&quot;</span><span class="p">,</span> <span class="n">unigram</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">sample_sentence</span><span class="p">)</span><span class="o">.</span><span class="n">tokens</span><span class="p">)</span>
 
 <span class="c1"># SentencePiece</span>
 <span class="n">spm</span> <span class="o">=</span> <span class="n">spm</span><span class="o">.</span><span class="n">SentencePieceProcessor</span><span class="p">()</span>
-<span class="n">spm</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;sentencepiece.model&quot;</span><span class="p">)</span>
+<span class="n">spm</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">sentencepiece_tokenizer_path</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SentencePiece:&quot;</span><span class="p">,</span> <span class="n">spm</span><span class="o">.</span><span class="n">encode_as_pieces</span><span class="p">(</span><span class="n">sample_sentence</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BPE: [&#39;안&#39;, &#39;녕&#39;, &#39;하&#39;, &#39;세&#39;, &#39;요&#39;, &#39;.&#39;, &#39;이&#39;, &#39;문&#39;, &#39;장은&#39;, &#39;토&#39;, &#39;크&#39;, &#39;나이&#39;, &#39;저&#39;, &#39;를&#39;, &#39;테&#39;, &#39;스트&#39;, &#39;하기&#39;, &#39;위한&#39;, &#39;샘&#39;, &#39;플&#39;, &#39;문&#39;, &#39;장&#39;, &#39;입&#39;, &#39;니다&#39;, &#39;.&#39;]
+WordPiece: [&#39;안&#39;, &#39;##녕&#39;, &#39;##하&#39;, &#39;##세&#39;, &#39;##요&#39;, &#39;##.&#39;, &#39;## &#39;, &#39;##이&#39;, &#39;## &#39;, &#39;##문&#39;, &#39;##장&#39;, &#39;##은&#39;, &#39;## &#39;, &#39;##토&#39;, &#39;##크&#39;, &#39;##나&#39;, &#39;##이&#39;, &#39;##저&#39;, &#39;##를&#39;, &#39;## &#39;, &#39;##테&#39;, &#39;##스&#39;, &#39;##트&#39;, &#39;##하&#39;, &#39;##기&#39;, &#39;## &#39;, &#39;##위&#39;, &#39;##한&#39;, &#39;## &#39;, &#39;##샘&#39;, &#39;##플&#39;, &#39;## &#39;, &#39;##문&#39;, &#39;##장&#39;, &#39;##입&#39;, &#39;##니&#39;, &#39;##다&#39;, &#39;##.&#39;]
+SentencePiece: [&#39;▁&#39;, &#39;안녕하세요&#39;, &#39;.&#39;, &#39;▁이&#39;, &#39;▁문장&#39;, &#39;은&#39;, &#39;▁토크&#39;, &#39;나&#39;, &#39;이&#39;, &#39;저&#39;, &#39;를&#39;, &#39;▁테스트&#39;, &#39;하기&#39;, &#39;▁위한&#39;, &#39;▁샘플&#39;, &#39;▁문장&#39;, &#39;입니다&#39;, &#39;.&#39;]
 </pre></div>
 </div>
 </div>
