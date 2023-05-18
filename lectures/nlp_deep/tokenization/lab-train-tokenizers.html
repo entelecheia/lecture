@@ -578,10 +578,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-compare-the-tokenizers">Step 5: Compare the tokenizers</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-tokenizers-for-gpt-bert-and-t5">Training Tokenizers for GPT, BERT, and T5</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#byte-pair-encoding-bpe-gpt">Byte Pair Encoding (BPE) - GPT</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wordpiece-bert">WordPiece - BERT</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unigram-t5">Unigram - T5</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wordpiece-bert">WordPiece - BERT</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unigram-t5">Unigram - T5</a></li>
 </ul>
             </nav>
         </div>
@@ -700,11 +700,6 @@ Extracting data files: 100%|██████████| 1/1 [00:00&lt;00:00,
 <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">WordPiece</span><span class="p">())</span>
 <span class="n">tokenizer</span><span class="o">.</span><span class="n">train</span><span class="p">([</span><span class="n">wiki_filepath</span><span class="p">])</span>
 <span class="n">tokenizer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">wordpiece_tokenizer_path</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -946,9 +941,8 @@ SentencePiece: [&#39;▁&#39;, &#39;안녕하세요&#39;, &#39;.&#39;, &#39;▁�
 </div>
 </div>
 </section>
-</section>
 <section id="wordpiece-bert">
-<h2>WordPiece - BERT<a class="headerlink" href="#wordpiece-bert" title="Permalink to this heading">#</a></h2>
+<h3>WordPiece - BERT<a class="headerlink" href="#wordpiece-bert" title="Permalink to this heading">#</a></h3>
 <p>BERT models use the WordPiece tokenizer with a vocabulary size of 30,000. WordPiece is a data-driven tokenization strategy that allows for better handling of out-of-vocabulary (OOV) words.</p>
 <p>To train a WordPiece tokenizer with the same specifications as BERT:</p>
 <div class="cell docutils container">
@@ -971,7 +965,7 @@ SentencePiece: [&#39;▁&#39;, &#39;안녕하세요&#39;, &#39;.&#39;, &#39;▁�
 </div>
 </section>
 <section id="unigram-t5">
-<h2>Unigram - T5<a class="headerlink" href="#unigram-t5" title="Permalink to this heading">#</a></h2>
+<h3>Unigram - T5<a class="headerlink" href="#unigram-t5" title="Permalink to this heading">#</a></h3>
 <p>T5 models use the Unigram tokenizer with a vocabulary size of 32,000. The Unigram tokenizer is a subword regularization algorithm that learns a vocabulary based on the frequency of subwords in the training text.</p>
 <p>To train a Unigram tokenizer with the same specifications as T5:</p>
 <div class="cell docutils container">
@@ -992,6 +986,7 @@ SentencePiece: [&#39;▁&#39;, &#39;안녕하세요&#39;, &#39;.&#39;, &#39;▁�
 </div>
 </div>
 <p>In summary, we have trained three tokenizers using the same specifications as the GPT, BERT, and T5 models. BPE is used in GPT with a vocabulary size of 50,000, WordPiece is used in BERT with a vocabulary size of 30,000, and Unigram is used in T5 with a vocabulary size of 32,000. These tokenizers are all data-driven and provide different ways to handle subword tokenization, which can be beneficial for handling out-of-vocabulary words and improving the performance of the models.</p>
+</section>
 </section>
 </section>
 
@@ -1075,10 +1070,10 @@ SentencePiece: [&#39;▁&#39;, &#39;안녕하세요&#39;, &#39;.&#39;, &#39;▁�
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-compare-the-tokenizers">Step 5: Compare the tokenizers</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-tokenizers-for-gpt-bert-and-t5">Training Tokenizers for GPT, BERT, and T5</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#byte-pair-encoding-bpe-gpt">Byte Pair Encoding (BPE) - GPT</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wordpiece-bert">WordPiece - BERT</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unigram-t5">Unigram - T5</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wordpiece-bert">WordPiece - BERT</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unigram-t5">Unigram - T5</a></li>
 </ul>
   </nav></div>
 
