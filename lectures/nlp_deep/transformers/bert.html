@@ -209,7 +209,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/sentiments/index.html">Sentiment Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lexicon.html">Lexicon-Based Methods</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/ml.html">Machine Learning-Based Methods</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lab-lexicon.html">Lab: Lexicon-Based Sentiment Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lab-lexicon.html">Lab: Lexicon-based Sentiment Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lab-ml.html">Lab: ML-based Sentiment Classification</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -613,14 +614,14 @@ document.write(`
 <figure class="align-default" id="fig-sentence-vector">
 <a class="reference internal image-reference" href="../../../_images/sentence_vector.png"><img alt="../../../_images/sentence_vector.png" src="../../../_images/sentence_vector.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 103 </span><span class="caption-text">Sentence vector</span><a class="headerlink" href="#fig-sentence-vector" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 104 </span><span class="caption-text">Sentence vector</span><a class="headerlink" href="#fig-sentence-vector" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Attention is essentially a function that takes <span class="math notranslate nohighlight">\(X\)</span> as input and returns another sequence <span class="math notranslate nohighlight">\(Y\)</span> of the same length as <span class="math notranslate nohighlight">\(X\)</span>, composed of vectors with the same dimension as the vectors in <span class="math notranslate nohighlight">\(X\)</span>.</p>
 <figure class="align-default" id="fig-sentence-input-output">
 <a class="reference internal image-reference" href="../../../_images/attention_input_output.png"><img alt="../../../_images/attention_input_output.png" src="../../../_images/attention_input_output.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 104 </span><span class="caption-text">Sentence input and output</span><a class="headerlink" href="#fig-sentence-input-output" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 105 </span><span class="caption-text">Sentence input and output</span><a class="headerlink" href="#fig-sentence-input-output" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Each vector in <span class="math notranslate nohighlight">\(Y\)</span> is computed by taking a weighted average of the vectors in <span class="math notranslate nohighlight">\(X\)</span>. In other words, attention is just a weighted average of the values of the vectors in <span class="math notranslate nohighlight">\(X\)</span>. The weights indicate how much the model <strong>attends</strong> to each vector in <span class="math notranslate nohighlight">\(X\)</span> when computing the output vector.</p>
@@ -631,7 +632,7 @@ document.write(`
 <figure class="align-default" id="fig-word-embedding">
 <a class="reference internal image-reference" href="../../../_images/word_embedding.png"><img alt="../../../_images/word_embedding.png" src="../../../_images/word_embedding.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 105 </span><span class="caption-text">Word embedding</span><a class="headerlink" href="#fig-word-embedding" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 106 </span><span class="caption-text">Word embedding</span><a class="headerlink" href="#fig-word-embedding" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>A word embedding is a vector representation of a word, consisting of real numbers. Each element of the vector represents a dimension of the word that captures some aspect of its meaning. These aspects can be semantic, syntactic, or even phonetic. For example, the first element of the vector may represent the semantic meaning of the word, the second element may represent the syntactic meaning, and the third element may represent the phonetic meaning of the word.</p>
@@ -671,7 +672,7 @@ A[Input: the cat ran] --&gt; B[Attention Weights: 0.1, 0.8, 0.1] --&gt; C[Output
 <figure class="align-default" id="fig-attention-query-key">
 <a class="reference internal image-reference" href="../../../_images/attention_query_key.png"><img alt="../../../_images/attention_query_key.png" src="../../../_images/attention_query_key.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 106 </span><span class="caption-text">Attention query and key</span><a class="headerlink" href="#fig-attention-query-key" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 107 </span><span class="caption-text">Attention query and key</span><a class="headerlink" href="#fig-attention-query-key" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p><strong>Queries</strong> and <strong>keys</strong> are similar to word embeddings, like the value vectors we saw earlier. However, they are specifically designed for determining the similarity between words in the input.</p>
@@ -679,14 +680,14 @@ A[Input: the cat ran] --&gt; B[Attention Weights: 0.1, 0.8, 0.1] --&gt; C[Output
 <figure class="align-default" id="fig-attention-query-key-dot-product">
 <a class="reference internal image-reference" href="../../../_images/attention_query_key_dot_product.png"><img alt="../../../_images/attention_query_key_dot_product.png" src="../../../_images/attention_query_key_dot_product.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 107 </span><span class="caption-text">Attention query and key dot product</span><a class="headerlink" href="#fig-attention-query-key-dot-product" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 108 </span><span class="caption-text">Attention query and key dot product</span><a class="headerlink" href="#fig-attention-query-key-dot-product" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>To transform the dot product into a <strong>probability</strong>, we apply a <strong>softmax function</strong> to the dot product. The softmax function normalizes the dot product so that it sums to 1, giving us a probability distribution.</p>
 <figure class="align-default" id="fig-attention-query-key-softmax">
 <a class="reference internal image-reference" href="../../../_images/attention_query_key_softmax.png"><img alt="../../../_images/attention_query_key_softmax.png" src="../../../_images/attention_query_key_softmax.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 108 </span><span class="caption-text">Attention query and key softmax</span><a class="headerlink" href="#fig-attention-query-key-softmax" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 109 </span><span class="caption-text">Attention query and key softmax</span><a class="headerlink" href="#fig-attention-query-key-softmax" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The softmax values on the right represent the final weights of the attention mechanism. These weights indicate the importance of each word in the input when computing the output vector.</p>
@@ -699,7 +700,7 @@ A[Input: the cat ran] --&gt; B[Attention Weights: 0.1, 0.8, 0.1] --&gt; C[Output
 <figure class="align-default" id="fig-neuron-view">
 <a class="reference internal image-reference" href="../../../_images/neuron_view.png"><img alt="../../../_images/neuron_view.png" src="../../../_images/neuron_view.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 109 </span><span class="caption-text">Neuron view</span><a class="headerlink" href="#fig-neuron-view" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 110 </span><span class="caption-text">Neuron view</span><a class="headerlink" href="#fig-neuron-view" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The neuron view demonstrates the computation of attention from the selected word on the left to the entire sequence of words on the right. Positive values are displayed in blue and negative values in orange, with the color intensity representing the magnitude.</p>

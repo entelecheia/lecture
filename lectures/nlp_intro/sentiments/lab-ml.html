@@ -1,0 +1,1256 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Lab: ML-based Sentiment Classification &#8212; ἐντελέχεια.άι</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/js/hoverxref.js"></script>
+    <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_intro/sentiments/lab-ml';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_intro/sentiments/lab-ml.html" />
+    <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Tokenization" href="../tokenization/index.html" />
+    <link rel="prev" title="Lab: Lexicon-based Sentiment Analysis" href="lab-lexicon.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+
+  <div class="bd-header-announcement container-fluid bd-header-announcement">
+    <div class="bd-header-announcement__content"><p>
+  <strong>Announcement:</strong>
+  You can install the accompanying AI tutor <a href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd" target="_blank">here</a>.
+  <a class="reference external" href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd" target="_blank"><img alt="chrome-web-store-image" src="https://img.shields.io/chrome-web-store/v/lfgfgbomindbccgidgalhhndggddpagd" /></a>
+</p>
+</div>
+  </div>
+
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">ἐντελέχεια.άι</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../index.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Introduction to NLP</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../research/index.html">Research Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lm/index.html">Language Models</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../datasets/corpus.html">Text Data Collection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datasets/lab-dart.html">Lab: Crawling DART Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../topic/index.html">Topic Modeling</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../topic/coherence.html">Topic Coherence Measures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../topic/tomotopy.html">Lab: Tomotopy</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Sentiment Analysis</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="lexicon.html">Lexicon-Based Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ml.html">Machine Learning-Based Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lab-lexicon.html">Lab: Lexicon-based Sentiment Analysis</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Lab: ML-based Sentiment Classification</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tokenization/segmentation.html">Word Segmentation and Association</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../embeddings/index.html">Word Embeddings</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_deep/index.html">Deep Learning for NLP</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/llms/index.html">Large Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/zeroshot.html">Zero Shot and Prompt Engineering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/decoding.html">Decoding and Search Strategies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/plms.html">Pretrained Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/transformers/index.html">Transformers</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/bert.html">BERT: Bidirectional Encoder Representations from Transformers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/bertviz.html">BERT: Visualizing Attention</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/t5.html">T5: Text-To-Text Transfer Transformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/datasets/mc4.html">mC4 Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/datasets/lab-eda.html">Lab: Exploratory Data Analysis (EDA)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/subword.html">Subword Tokenization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/pipeline.html">Tokenization Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/bpe.html">BPE Step-by-Step Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/wordpiece.html">WordPiece Step-by-Step Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/unigram.html">Unigram Step-by-Step Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/sentencepiece.html">SentencePiece Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/lab-train-tokenizers.html">Lab: Training Tokenizers</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/training/index.html">Training Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/training/lab-pretraining.html">Lab: Pretraining Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/chatbots/index.html">Conversational AI and Chatbots</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/chatbots/rlhf.html">Reinforcement Learning with Human Feedback (RLHF)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/chatbots/detectGPT.html">How to Spot Machine-Written Texts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_advances/index.html">Advances in AI and NLP</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/thesis.html">Writing a Thesis</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_advances/gpt/index.html">Generative Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/detectGPT.html">DetectGPT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/gpt4.html">GPT-4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/camelids.html">Meet the Camelids: A Family of LLMs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/sam/index.html">Segment Anything</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../aiart/index.html">AI Art (Generative AI)</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/intro/index.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/brave/index.html">A Brave New World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/aiart/index.html">Art and Music in Light of AI</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../aiart/text-to-image/index.html">Text-to-Image Models</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/dalle1.html">DALL·E 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/dalle2.html">DALL·E 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/imagen.html">Imagen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/motion-capture-and-synthesis/index.html">Motion Capture and Motion Synthesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/robot/index.html">Robot Drawing System</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../mlops/index.html">Machine Learning Systems Design</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/intro.html">Introduction to MLOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/project.html">MLOps Project</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/devops/index.html">DevOps</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/gitops.html">GitOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/devsecops.html">DevSecOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/llmops.html">LLMOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/dotfiles/index.html">Dotfiles</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai">Dotfiles Project</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dotdrop/">Dotdrop Setup</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/github/">GitHub Setup</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/ssh-gpg-age/">SSH, GPG, and Age Setup</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/sops/">SOPS Usage</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/pass/">Pass and Passage Usage</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/doppler/">Doppler Usage</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dockerfiles/">Dockerfiles Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/security/index.html">Security Management</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/auth-enc-sign.html">Authentication, Encryption, and Signing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/age-gpg-ssh.html">SSH, GPG, and AGE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/pass.html">Unix Password Managers</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/github/index.html">GitHub Workflow</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/github/fork-pull.html">Github’s Fork &amp; Pull Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/github/template.html">Project Templating Tools</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://hyperfast-python.entelecheia.ai/">Hyperfast Python Template</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://hyperfast-template.entelecheia.ai/">Hyperfast Template</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/containerization/index.html">Containerization</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/containerization/docker.html">Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/containerization/containerd.html"><code class="docutils literal notranslate"><span class="pre">containerd</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/simple-pipeline/index.html">Simple MLOps Pipeline</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/simple-pipeline/server.html">Server Setup &amp; Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/simple-pipeline/vpn.html">VPN Connectivity</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../ds/index.html">Data Science for Economics and Finance</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-24"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../ds/fomc/index.html">Textual Analysis of FOMC contents</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-25"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/01_numerical_data.html">Preparing Numerical Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/02_textual_data.html">Preparing Textual Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/03_EDA_numericals1.html">EDA on Numerical Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/03_EDA_numericals2.html">EDA on Numerical Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/04_training_datasets.html">Create Training Datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/05_features.html">Visualizing Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/06_AutoML.html">Checking Baseline with AutoML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/07_predict_sentiments.html">Predicting Sentiments of FOMC Corpus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/08_EDA_sentiments1.html">EDA on Sentiments: Correlation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/08_EDA_sentiments2.html">EDA on Sentiment Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/09_visualize_features.html">Visualize Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/10_monetary_shocks.html">Monetary Policy Shocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/11_AutoML_with_tones.html">Predicting the next decisions with tones</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../ds/esg-ratings/index.html">ESG Ratings</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-26"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/esg-ratings/prepare_datasets.html">Preparing training datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/esg-ratings/improve_datasets.html">Improving classification datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/esg-ratings/train_classifiers.html">Training Classifiers for ESG Ratings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/esg-ratings/build_news_corpus.html">Building <code class="docutils literal notranslate"><span class="pre">econ_news_kr</span></code> corpus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/esg-ratings/predict_esg_classes.html">Predicting ESG Categories and Polarities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/esg-ratings/cross_validate_datasets.html">Cross validating datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/esg-ratings/prepare_datasets_for_labeling.html">Preparing active learning data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/esg-ratings/all_in_one_pipeline.html">Putting them together in a pipeline</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../about/lecture-bot.html">LectureBot for ἐντελέχεια.άι</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://course.entelecheia.ai">course.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://research.entelecheia.ai">research.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/nlp_intro/sentiments/lab-ml.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/lectures/nlp_intro/sentiments/lab-ml.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lab: ML-based Sentiment Classification</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dataset">The Dataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-details">Task Details</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering">Feature Engineering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-the-libraries">Importing the Libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-dataset">Loading the Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploratory-data-analysis-eda">Exploratory Data Analysis (EDA)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Feature Engineering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-model">Training the Model</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-ml-based-sentiment-classification">
+<h1>Lab: ML-based Sentiment Classification<a class="headerlink" href="#lab-ml-based-sentiment-classification" title="Permalink to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>In this lab, we will explore the task of sentiment classification using machine learning (ML). We will be using the Yelp review dataset.</p>
+<section id="the-dataset">
+<h3>The Dataset<a class="headerlink" href="#the-dataset" title="Permalink to this heading">#</a></h3>
+<p>The Yelp review dataset contains reviews along with a numeric score for each review. Each score ranges from 1 to 5, where 1 represents a very poor review and 5 represents an excellent one.</p>
+</section>
+</section>
+<section id="task-details">
+<h2>Task Details<a class="headerlink" href="#task-details" title="Permalink to this heading">#</a></h2>
+<p>We’ll be addressing two tasks in this session:</p>
+<ol class="arabic simple">
+<li><p><strong>3-class sentiment analysis:</strong> We’ll transform the score into a sentiment, where scores 1-2 map to negative, 3 maps to neutral, and 4-5 map to positive. For this task, we’ll balance the training set using random undersampling to ensure each class has an equal presence.</p></li>
+<li><p><strong>5-class sentiment analysis:</strong> Here, each unique score will represent its own class, resulting in a 5-class problem.</p></li>
+</ol>
+<p>In both tasks, we will employ a linear Support Vector Machine (SVM) with a one-versus-all multi-class handling strategy. The SVM algorithm is renowned for its effectiveness in high-dimensional spaces, making it suitable for text classification problems.</p>
+</section>
+<section id="feature-engineering">
+<h2>Feature Engineering<a class="headerlink" href="#feature-engineering" title="Permalink to this heading">#</a></h2>
+<p>Feature engineering is the process of designing and developing the representation of instances for a given task. This process determines the potential patterns that can be identified during learning.</p>
+<p>We differentiate between two types of features:</p>
+<ol class="arabic simple">
+<li><p><strong>Standard features:</strong> These are derived from more or less general linguistic phenomena and can aid in various tasks.</p></li>
+<li><p><strong>Specific features:</strong> These are tailored for specific tasks and usually require expert knowledge about the task.</p></li>
+</ol>
+<p>For our task, we will employ a combination of both standard and specific features.</p>
+<p><strong>Standard Content Features</strong></p>
+<ul class="simple">
+<li><p><em>Token n-grams:</em> These are sequences of n words or characters within a text. They allow us to capture local context.</p></li>
+<li><p><em>Target class features:</em> These are the keywords or phrases which are typically associated with a particular sentiment. For instance, words like ‘terrible’ or ‘disappointing’ are usually associated with negative sentiment.</p></li>
+</ul>
+<p><strong>Standard Style Features</strong></p>
+<ul class="simple">
+<li><p><em>Part of Speech (POS) and phrase n-grams:</em> They encapsulate grammatical patterns that might be indicative of sentiment.</p></li>
+<li><p><em>Stylometric features:</em> These include characteristics like sentence length, use of punctuation, capitalization, etc., which may offer clues about the sentiment.</p></li>
+</ul>
+<figure class="align-default" id="fig-ling-phenomena">
+<a class="reference internal image-reference" href="../../../_images/82.png"><img alt="../../../_images/82.png" src="../../../_images/82.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 71 </span><span class="caption-text">Some General Linguistic Phenomena</span><a class="headerlink" href="#fig-ling-phenomena" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p><strong>Specific Features</strong></p>
+<ul class="simple">
+<li><p><em>Local sentiment:</em> Sentiment scores assigned to sentences or phrases within the text, using sentiment lexicons.</p></li>
+<li><p><em>Discourse relations:</em> Sentiment polarity can be influenced by discourse markers. For example, the word ‘but’ often introduces a contrast in sentiment.</p></li>
+<li><p><em>Flow patterns:</em> These refer to the sequence of positive, negative, and neutral sentiments in the review. For example, a pattern of ‘positive-negative-positive’ might indicate a more complex sentiment structure.</p></li>
+</ul>
+<p>During the lab session, we will walk you through the process of extracting these features from the text data and training our SVM model for sentiment classification. By the end of this session, you should have a clear understanding of how to design, implement, and evaluate a sentiment classification task using a machine learning approach.</p>
+<p>Let’s begin!</p>
+</section>
+<section id="importing-the-libraries">
+<h2>Importing the Libraries<a class="headerlink" href="#importing-the-libraries" title="Permalink to this heading">#</a></h2>
+<p>We’ll start by importing the libraries we’ll be using in this lab.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install datasets imblearn
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://pypi.ngc.nvidia.com
+Requirement already satisfied: datasets in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (2.12.0)
+Collecting imblearn
+  Downloading imblearn-0.0-py2.py3-none-any.whl (1.9 kB)
+Requirement already satisfied: requests&gt;=2.19.0 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from datasets) (2.28.2)
+Requirement already satisfied: huggingface-hub&lt;1.0.0,&gt;=0.11.0 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from datasets) (0.12.1)
+Requirement already satisfied: pyyaml&gt;=5.1 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from datasets) (6.0)
+Requirement already satisfied: fsspec[http]&gt;=2021.11.1 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from datasets) (2023.4.0)
+Requirement already satisfied: numpy&gt;=1.17 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from datasets) (1.23.5)
+Requirement already satisfied: xxhash in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from datasets) (3.2.0)
+Requirement already satisfied: dill&lt;0.3.7,&gt;=0.3.0 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from datasets) (0.3.6)
+Requirement already satisfied: multiprocess in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from datasets) (0.70.14)
+Requirement already satisfied: packaging in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from datasets) (23.1)
+Requirement already satisfied: pandas in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from datasets) (1.5.3)
+Requirement already satisfied: tqdm&gt;=4.62.1 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from datasets) (4.65.0)
+Requirement already satisfied: responses&lt;0.19 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from datasets) (0.18.0)
+Requirement already satisfied: pyarrow&gt;=8.0.0 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from datasets) (12.0.0)
+Requirement already satisfied: aiohttp in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from datasets) (3.8.4)
+Collecting imbalanced-learn
+  Downloading imbalanced_learn-0.10.1-py3-none-any.whl (226 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">226.0/226.0 kB</span> <span class=" -Color -Color-Red">8.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hRequirement already satisfied: charset-normalizer&lt;4.0,&gt;=2.0 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from aiohttp-&gt;datasets) (3.1.0)
+Requirement already satisfied: async-timeout&lt;5.0,&gt;=4.0.0a3 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from aiohttp-&gt;datasets) (4.0.2)
+Requirement already satisfied: yarl&lt;2.0,&gt;=1.0 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from aiohttp-&gt;datasets) (1.8.2)
+Requirement already satisfied: frozenlist&gt;=1.1.1 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from aiohttp-&gt;datasets) (1.3.3)
+Requirement already satisfied: aiosignal&gt;=1.1.2 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from aiohttp-&gt;datasets) (1.3.1)
+Requirement already satisfied: attrs&gt;=17.3.0 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from aiohttp-&gt;datasets) (23.1.0)
+Requirement already satisfied: multidict&lt;7.0,&gt;=4.5 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from aiohttp-&gt;datasets) (6.0.4)
+Requirement already satisfied: typing-extensions&gt;=3.7.4.3 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from huggingface-hub&lt;1.0.0,&gt;=0.11.0-&gt;datasets) (4.5.0)
+Requirement already satisfied: filelock in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from huggingface-hub&lt;1.0.0,&gt;=0.11.0-&gt;datasets) (3.9.1)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from requests&gt;=2.19.0-&gt;datasets) (1.26.15)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from requests&gt;=2.19.0-&gt;datasets) (3.4)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from requests&gt;=2.19.0-&gt;datasets) (2022.12.7)
+Requirement already satisfied: scipy&gt;=1.3.2 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from imbalanced-learn-&gt;imblearn) (1.10.1)
+Requirement already satisfied: joblib&gt;=1.1.1 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from imbalanced-learn-&gt;imblearn) (1.2.0)
+Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from imbalanced-learn-&gt;imblearn) (3.1.0)
+Requirement already satisfied: scikit-learn&gt;=1.0.2 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from imbalanced-learn-&gt;imblearn) (1.2.2)
+Requirement already satisfied: pytz&gt;=2020.1 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from pandas-&gt;datasets) (2023.3)
+Requirement already satisfied: python-dateutil&gt;=2.8.1 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from pandas-&gt;datasets) (2.8.2)
+Requirement already satisfied: six&gt;=1.5 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from python-dateutil&gt;=2.8.1-&gt;pandas-&gt;datasets) (1.16.0)
+Installing collected packages: imbalanced-learn, imblearn
+Successfully installed imbalanced-learn-0.10.1 imblearn-0.0
+
+<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip is available: <span class=" -Color -Color-Red">23.0</span> -&gt; <span class=" -Color -Color-Green">23.1.2</span>
+<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> To update, run: <span class=" -Color -Color-Green">pip install --upgrade pip</span>
+Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="loading-the-dataset">
+<h2>Loading the Dataset<a class="headerlink" href="#loading-the-dataset" title="Permalink to this heading">#</a></h2>
+<p>We’ll now load the dataset using the <code class="docutils literal notranslate"><span class="pre">datasets</span></code> module from the Hugging Face library. We’ll be using the <code class="docutils literal notranslate"><span class="pre">argilla/tripadvisor-hotel-reviews</span></code> dataset, which contains hotel reviews along with their corresponding scores.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;yelp_review_full&quot;</span><span class="p">)</span>
+
+<span class="c1"># The dataset is returned as a &#39;DatasetDict&#39;, let&#39;s convert it to a pandas DataFrame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading builder script: 100%|██████████| 4.41k/4.41k [00:00&lt;00:00, 2.63MB/s]
+Downloading metadata: 100%|██████████| 2.04k/2.04k [00:00&lt;00:00, 1.36MB/s]
+Downloading readme: 100%|██████████| 6.55k/6.55k [00:00&lt;00:00, 3.72MB/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading and preparing dataset yelp_review_full/yelp_review_full to /home/yjlee/.cache/huggingface/datasets/yelp_review_full/yelp_review_full/1.0.0/e8e18e19d7be9e75642fc66b198abadb116f73599ec89a69ba5dd8d1e57ba0bf...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading data: 100%|██████████| 196M/196M [00:34&lt;00:00, 5.72MB/s]   
+                                                                                         
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset yelp_review_full downloaded and prepared to /home/yjlee/.cache/huggingface/datasets/yelp_review_full/yelp_review_full/1.0.0/e8e18e19d7be9e75642fc66b198abadb116f73599ec89a69ba5dd8d1e57ba0bf. Subsequent calls will reuse this data.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 2/2 [00:00&lt;00:00, 178.74it/s]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Inspect the first few entries in the DataFrame to ensure everything loaded correctly:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>label</th>
+      <th>text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>4</td>
+      <td>dr. goldberg offers everything i look for in a...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>Unfortunately, the frustration of being Dr. Go...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Been going to Dr. Goldberg for over 10 years. ...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>Got a letter in the mail last week that said D...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>I don't know what Dr. Goldberg was like before...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The dataset already has labels ranging from 0 to 4, which we can map to our 5-class sentiment:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a mapping for sentiments</span>
+<span class="n">sentiment_mapping</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;very negative&quot;</span><span class="p">,</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;negative&quot;</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;neutral&quot;</span><span class="p">,</span>
+    <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;positive&quot;</span><span class="p">,</span>
+    <span class="mi">4</span><span class="p">:</span> <span class="s2">&quot;very positive&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># Map the sentiment</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;sentiment&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">sentiment_mapping</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we can balance our dataset for the 5-class problem using random undersampling. Let’s split our data into training and testing sets:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;sentiment&quot;</span><span class="p">],</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we’ll perform random undersampling to balance our training dataset:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">imblearn.under_sampling</span> <span class="kn">import</span> <span class="n">RandomUnderSampler</span>
+
+<span class="n">rus</span> <span class="o">=</span> <span class="n">RandomUnderSampler</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">X_res</span><span class="p">,</span> <span class="n">y_res</span> <span class="o">=</span> <span class="n">rus</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]),</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;sentiment&quot;</span><span class="p">]),</span>
+<span class="p">)</span>
+
+<span class="n">X_train_balanced</span> <span class="o">=</span> <span class="n">X_res</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span>
+<span class="n">y_train_balanced</span> <span class="o">=</span> <span class="n">y_res</span><span class="p">[</span><span class="s2">&quot;sentiment&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exploratory-data-analysis-eda">
+<h2>Exploratory Data Analysis (EDA)<a class="headerlink" href="#exploratory-data-analysis-eda" title="Permalink to this heading">#</a></h2>
+<p>Exploratory Data Analysis (EDA) is a crucial step in understanding the dataset. Here, we’ll check the distribution of the ratings, inspect some reviews, and visualize the most common words in positive and negative reviews.</p>
+<p>First, let’s import the necessary libraries:</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install seaborn wordcloud
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://pypi.ngc.nvidia.com
+Requirement already satisfied: seaborn in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (0.12.2)
+Collecting wordcloud
+  Downloading wordcloud-1.9.2-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (461 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">461.3/461.3 kB</span> <span class=" -Color -Color-Red">12.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>a <span class=" -Color -Color-Cyan">0:00:01</span>
+?25hRequirement already satisfied: numpy!=1.24.0,&gt;=1.17 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from seaborn) (1.23.5)
+Requirement already satisfied: pandas&gt;=0.25 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from seaborn) (1.5.3)
+Requirement already satisfied: matplotlib!=3.6.1,&gt;=3.1 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from seaborn) (3.7.1)
+Requirement already satisfied: pillow in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from wordcloud) (9.5.0)
+Requirement already satisfied: contourpy&gt;=1.0.1 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from matplotlib!=3.6.1,&gt;=3.1-&gt;seaborn) (1.0.7)
+Requirement already satisfied: cycler&gt;=0.10 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from matplotlib!=3.6.1,&gt;=3.1-&gt;seaborn) (0.11.0)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from matplotlib!=3.6.1,&gt;=3.1-&gt;seaborn) (1.4.4)
+Requirement already satisfied: pyparsing&gt;=2.3.1 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from matplotlib!=3.6.1,&gt;=3.1-&gt;seaborn) (3.0.9)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from matplotlib!=3.6.1,&gt;=3.1-&gt;seaborn) (4.39.3)
+Requirement already satisfied: importlib-resources&gt;=3.2.0 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from matplotlib!=3.6.1,&gt;=3.1-&gt;seaborn) (5.12.0)
+Requirement already satisfied: packaging&gt;=20.0 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from matplotlib!=3.6.1,&gt;=3.1-&gt;seaborn) (23.1)
+Requirement already satisfied: python-dateutil&gt;=2.7 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from matplotlib!=3.6.1,&gt;=3.1-&gt;seaborn) (2.8.2)
+Requirement already satisfied: pytz&gt;=2020.1 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from pandas&gt;=0.25-&gt;seaborn) (2023.3)
+Requirement already satisfied: zipp&gt;=3.1.0 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from importlib-resources&gt;=3.2.0-&gt;matplotlib!=3.6.1,&gt;=3.1-&gt;seaborn) (3.15.0)
+Requirement already satisfied: six&gt;=1.5 in /home/yjlee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib!=3.6.1,&gt;=3.1-&gt;seaborn) (1.16.0)
+Installing collected packages: wordcloud
+Successfully installed wordcloud-1.9.2
+
+<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip is available: <span class=" -Color -Color-Red">23.0</span> -&gt; <span class=" -Color -Color-Green">23.1.2</span>
+<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> To update, run: <span class=" -Color -Color-Green">pip install --upgrade pip</span>
+Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">wordcloud</span> <span class="kn">import</span> <span class="n">WordCloud</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will begin by checking the distribution of sentiments in our dataset:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;sentiment&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">sentiment_mapping</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribution of Sentiments&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Sentiment&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Count&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/9159b9a1689a14e0cb407601172338dcceda2c865058d94356d28559673320bd.png" src="../../../_images/9159b9a1689a14e0cb407601172338dcceda2c865058d94356d28559673320bd.png" />
+</div>
+</div>
+<p>This will give us a bar plot showing the number of reviews for each sentiment class.</p>
+<p>Now, let’s take a look at some of the reviews:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">sentiment</span> <span class="ow">in</span> <span class="n">sentiment_mapping</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sample </span><span class="si">{</span><span class="n">sentiment</span><span class="si">}</span><span class="s2"> review:&quot;</span><span class="p">)</span>
+    <span class="n">sample_review</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;sentiment&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">sentiment</span><span class="p">][</span><span class="s2">&quot;text&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">sample_review</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sample very negative review:
+I don&#39;t know what Dr. Goldberg was like before  moving to Arizona, but let me tell you, STAY AWAY from this doctor and this office. I was going to Dr. Johnson before he left and Goldberg took over when Johnson left. He is not a caring doctor. He is only interested in the co-pay and having you come in for medication refills every month. He will not give refills and could less about patients&#39;s financial situations. Trying to get your 90 days mail away pharmacy prescriptions through this guy is a joke. And to make matters even worse, his office staff is incompetent. 90% of the time when you call the office, they&#39;ll put you through to a voice mail, that NO ONE ever answers or returns your call. Both my adult children and husband have decided to leave this practice after experiencing such frustration. The entire office has an attitude like they are doing you a favor. Give me a break! Stay away from this doc and the practice. You deserve better and they will not be there when you really need them. I have never felt compelled to write a bad review about anyone until I met this pathetic excuse for a doctor who is all about the money.
+
+
+Sample negative review:
+Unfortunately, the frustration of being Dr. Goldberg&#39;s patient is a repeat of the experience I&#39;ve had with so many other doctors in NYC -- good doctor, terrible staff.  It seems that his staff simply never answers the phone.  It usually takes 2 hours of repeated calling to get an answer.  Who has time for that or wants to deal with it?  I have run into this problem with many other doctors and I just don&#39;t get it.  You have office workers, you have patients with medical needs, why isn&#39;t anyone answering the phone?  It&#39;s incomprehensible and not work the aggravation.  It&#39;s with regret that I feel that I have to give Dr. Goldberg 2 stars.
+
+
+Sample neutral review:
+Decent range somewhat close to the city.  The mats are pretty solid; however, the grass range needs to be tended too.  It&#39;s like hitting out of US Open type rough...not very amenable to practicing.  Which kind of defeats the purpose of going to a golf range...Still gets 3 stars because the range is lit up at night which is excellent for those of us who are addicted to this amazing game, but are somewhat short on time (having a job kinda sucks sometimes, no?).
+
+
+Sample positive review:
+Been going to Dr. Goldberg for over 10 years. I think I was one of his 1st patients when he started at MHMG. He&#39;s been great over the years and is really all about the big picture. It is because of him, not my now former gyn Dr. Markoff, that I found out I have fibroids. He explores all options with you and is very patient and understanding. He doesn&#39;t judge and asks all the right questions. Very thorough and wants to be kept in the loop on every aspect of your medical health and your life.
+
+
+Sample very positive review:
+dr. goldberg offers everything i look for in a general practitioner.  he&#39;s nice and easy to talk to without being patronizing; he&#39;s always on time in seeing his patients; he&#39;s affiliated with a top-notch hospital (nyu) which my parents have explained to me is very important in case something happens and you need surgery; and you can get referrals to see specialists without having to see him first.  really, what more do you need?  i&#39;m sitting here trying to think of any complaints i have about him, but i&#39;m really drawing a blank.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, let’s create word clouds for the different sentiment classes. This will give us a visual representation of the most frequent words in each sentiment class:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">sentiment</span> <span class="ow">in</span> <span class="n">sentiment_mapping</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="n">reviews</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;sentiment&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">sentiment</span><span class="p">][</span><span class="s2">&quot;text&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">reviews</span><span class="p">)</span>
+
+    <span class="n">wordcloud</span> <span class="o">=</span> <span class="n">WordCloud</span><span class="p">(</span>
+        <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">max_font_size</span><span class="o">=</span><span class="mi">100</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">wordcloud</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;bilinear&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Words frequently appearing in </span><span class="si">{</span><span class="n">sentiment</span><span class="si">}</span><span class="s2"> reviews&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/4435f025f5ae34f97fa26346fd4cbe39f5e9de833958601537a2a095d77335b1.png" src="../../../_images/4435f025f5ae34f97fa26346fd4cbe39f5e9de833958601537a2a095d77335b1.png" />
+<img alt="../../../_images/1ded802ffc9b19f8b878af96e49baf7afe1a974196c17492559af3e243fed612.png" src="../../../_images/1ded802ffc9b19f8b878af96e49baf7afe1a974196c17492559af3e243fed612.png" />
+<img alt="../../../_images/8ee78169c94314bda106db42503ca7643028862b0a159d9ee3a78a979f9652e9.png" src="../../../_images/8ee78169c94314bda106db42503ca7643028862b0a159d9ee3a78a979f9652e9.png" />
+<img alt="../../../_images/3b1598eb2773ad404cc0e603225da8e7f1e5e00a2b3dc415ad546a306c7462d7.png" src="../../../_images/3b1598eb2773ad404cc0e603225da8e7f1e5e00a2b3dc415ad546a306c7462d7.png" />
+<img alt="../../../_images/7f164be270d50ba1ad91e72e481c0530473905ef9be5ce593163a3762e46f62c.png" src="../../../_images/7f164be270d50ba1ad91e72e481c0530473905ef9be5ce593163a3762e46f62c.png" />
+</div>
+</div>
+<p>This analysis helps us understand the general patterns in our data and can guide us in the subsequent feature extraction and model training steps.</p>
+</section>
+<section id="id1">
+<h2>Feature Engineering<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<p>Let’s move onto feature engineering, where we’ll transform our text data into features that can be used by our SVM model.</p>
+<p>We will need to import a few additional libraries:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
+<span class="kn">from</span> <span class="nn">nltk.stem</span> <span class="kn">import</span> <span class="n">WordNetLemmatizer</span>
+<span class="kn">import</span> <span class="nn">string</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s define some helper functions for text preprocessing:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">remove_punctuation</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">text</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">lemmatize_text</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">lemmatizer</span> <span class="o">=</span> <span class="n">WordNetLemmatizer</span><span class="p">()</span>
+    <span class="k">return</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">lemmatizer</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)])</span>
+
+
+<span class="k">def</span> <span class="nf">remove_stopwords</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">stop_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s2">&quot;english&quot;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can then apply these functions to our reviews:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lowercase the text</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+<span class="c1"># Remove punctuation</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">remove_punctuation</span><span class="p">)</span>
+
+<span class="c1"># Remove stopwords</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">remove_stopwords</span><span class="p">)</span>
+
+<span class="c1"># Lemmatize the text</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">lemmatize_text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll then use the TF-IDF vectorizer to create features from the preprocessed text. The TF-IDF vectorizer will convert our text data into a matrix of TF-IDF features.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For the labels, we need to convert the text labels into numerical values. We’ll use <code class="docutils literal notranslate"><span class="pre">LabelEncoder</span></code> for this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;sentiment&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s split our data into training and testing sets:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="training-the-model">
+<h2>Training the Model<a class="headerlink" href="#training-the-model" title="Permalink to this heading">#</a></h2>
+<p>Let’s proceed with training the SVM model using the features we’ve extracted. First, we need to import the required libraries:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">svm</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We are going to use a linear SVM with a one-versus-all strategy for multi-class handling. This can be achieved using the <code class="docutils literal notranslate"><span class="pre">LinearSVC</span></code> class in scikit-learn, which automatically uses the one-vs-all strategy for multi-class classification problems.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize the LinearSVC model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">LinearSVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Train the model</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We now have a trained model! The next step is to evaluate the performance of our model on the testing data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use the model to predict the test set</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Print the classification report</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="n">le</span><span class="o">.</span><span class="n">classes_</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The classification report will show the precision, recall, and F1-score of our model for each class.</p>
+<p>It’s important to remember that the quality of the model can depend on many factors, such as the choice of features and the parameters of the model. You may need to go back and modify the feature extraction step or tune the parameters of the model to improve its performance.</p>
+<p>Also, note that SVMs are more suited to binary classification tasks and can be computationally expensive for multi-class problems with large datasets. Depending on the size of your dataset and the computational resources available, you may need to consider other models such as logistic regression or deep learning.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/lecture",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lectures/nlp_intro/sentiments"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lab-lexicon.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lab: Lexicon-based Sentiment Analysis</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../tokenization/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tokenization</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dataset">The Dataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-details">Task Details</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering">Feature Engineering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-the-libraries">Importing the Libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-dataset">Loading the Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploratory-data-analysis-eda">Exploratory Data Analysis (EDA)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Feature Engineering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-model">Training the Model</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
