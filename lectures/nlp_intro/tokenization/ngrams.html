@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Part-of-Speech Tagging and Parsing &#8212; ἐντελέχεια.άι</title>
+    <title>N-grams for Tokenization &#8212; ἐντελέχεια.άι</title>
   
   
   
@@ -88,13 +88,13 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_intro/tokenization/pos';</script>
-    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_intro/tokenization/pos.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_intro/tokenization/ngrams';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_intro/tokenization/ngrams.html" />
     <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="N-grams for Tokenization" href="ngrams.html" />
-    <link rel="prev" title="Tokenization: Understanding the Basics" href="tokenization.html" />
+    <link rel="next" title="Word Segmentation and Association" href="segmentation.html" />
+    <link rel="prev" title="Part-of-Speech Tagging and Parsing" href="pos.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -216,8 +216,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Tokenization</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="tokenization.html">Tokenization: Understanding the Basics</a></li>
 
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">Part-of-Speech Tagging and Parsing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ngrams.html">N-grams for Tokenization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pos.html">Part-of-Speech Tagging and Parsing</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">N-grams for Tokenization</a></li>
 <li class="toctree-l3"><a class="reference internal" href="segmentation.html">Word Segmentation and Association</a></li>
 </ul>
 </li>
@@ -426,7 +426,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../../_sources/lectures/nlp_intro/tokenization/pos.md" target="_blank"
+      <li><a href="../../../_sources/lectures/nlp_intro/tokenization/ngrams.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -508,7 +508,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Part-of-Speech Tagging and Parsing</h1>
+    <h1>N-grams for Tokenization</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -518,20 +518,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-part-of-speech-pos">Introduction to Part-of-Speech (POS)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-pos-tagging">What is POS Tagging?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-do-we-need-pos-tagging">Why Do We Need POS Tagging?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependency-parsing">Dependency Parsing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constituency-parsing">Constituency Parsing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-pos-tagger">Creating a POS Tagger</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-the-tag-set">1. Defining the Tag Set</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collecting-and-annotating-data">2. Collecting and Annotating Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-a-model">3. Choosing a Model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-model">4. Training the Model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-model">5. Evaluating the Model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-and-updating-the-model">6. Using and Updating the Model</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-n-grams">Understanding N-grams</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-n-grams">Why use N-grams?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#n-grams-in-tokenization">N-grams in Tokenization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#n-grams-dimensionality-and-managing-vocabulary">N-grams, Dimensionality, and Managing Vocabulary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#high-dimensionality-in-n-grams">High Dimensionality in N-grams</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hashing-vectorizer">Hashing Vectorizer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collocations">Collocations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pointwise-mutual-information">Pointwise Mutual Information</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#out-of-vocabulary-words-oov-for-n-grams">Out-of-Vocabulary Words (OOV) for N-grams</a></li>
 </ul>
             </nav>
         </div>
@@ -543,164 +538,129 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="part-of-speech-tagging-and-parsing">
-<h1>Part-of-Speech Tagging and Parsing<a class="headerlink" href="#part-of-speech-tagging-and-parsing" title="Permalink to this heading">#</a></h1>
-<section id="introduction-to-part-of-speech-pos">
-<h2>Introduction to Part-of-Speech (POS)<a class="headerlink" href="#introduction-to-part-of-speech-pos" title="Permalink to this heading">#</a></h2>
-<p>The term “Part-of-Speech” refers to categories into which we can place words based on their syntactic role and behavior in a sentence. Examples include nouns, verbs, adjectives, adverbs, pronouns, prepositions, and conjunctions, among others.</p>
-<p>For instance, consider the sentence “The quick brown fox jumps over the lazy dog.” Here, “fox” and “dog” are nouns, “quick” and “lazy” are adjectives, “jumps” is a verb, “over” is a preposition, and “the” is a determiner.</p>
-<p>Each language has its own set of POS categories. For a more standardized approach, you might want to check out the Universal POS tags: <a class="reference external" href="https://universaldependencies.org/u/pos/">Universal POS tags</a>.</p>
-<figure class="align-default" id="fig-universal-pos">
-<a class="reference internal image-reference" href="../../../_images/221.png"><img alt="../../../_images/221.png" src="../../../_images/221.png" style="width: 50%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 73 </span><span class="caption-text"><a class="reference external" href="https://universaldependencies.org/u/pos/">List of Universal POS tags</a></span><a class="headerlink" href="#fig-universal-pos" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
+  <section class="tex2jax_ignore mathjax_ignore" id="n-grams-for-tokenization">
+<h1>N-grams for Tokenization<a class="headerlink" href="#n-grams-for-tokenization" title="Permalink to this heading">#</a></h1>
+<p>N-grams are a crucial concept in the field of Natural Language Processing (NLP) and are extensively used in text processing and modeling. They represent a sequence of ‘n’ items in a given sample of text or speech. Let’s break down this concept and learn how to apply it for tokenization.</p>
+<section id="understanding-n-grams">
+<h2>Understanding N-grams<a class="headerlink" href="#understanding-n-grams" title="Permalink to this heading">#</a></h2>
+<p>N-grams are contiguous sequences of n items in a text. When applied to text, an item could be a character, a word, or a sentence. For instance, in the sentence “I love dogs”, the 1-grams (also known as unigrams) are “I”, “love”, “dogs”, the 2-grams (bigrams) are “I love”, “love dogs”, and the only 3-gram (trigram) is “I love dogs”.</p>
+<p>The ‘n’ in n-gram stands for the number of grouped words. Therefore, a 1-gram is a single word, a 2-gram consists of two words, a 3-gram consists of three words, and so on.</p>
 </section>
-<section id="what-is-pos-tagging">
-<h2>What is POS Tagging?<a class="headerlink" href="#what-is-pos-tagging" title="Permalink to this heading">#</a></h2>
-<p>POS tagging involves assigning a POS category to each word in a text based on both its meaning and context. This task is not as straightforward as it might seem due to the fact that words can serve different roles depending on their placement and function in a sentence.</p>
-<p>For instance, consider the word “back” in the following contexts:</p>
-<ol class="arabic simple">
-<li><p>“The back door” - Here, “back” is an adjective.</p></li>
-<li><p>“On my back” - Here, “back” is a noun.</p></li>
-<li><p>“Win the voters back” - Here, “back” is a particle.</p></li>
-<li><p>“Promised to back the bill” - Here, “back” is a verb.</p></li>
-</ol>
-<p>Given the ambiguity and the existence of unknown words, we can’t rely solely on a dictionary for POS tagging.</p>
+<section id="why-use-n-grams">
+<h2>Why use N-grams?<a class="headerlink" href="#why-use-n-grams" title="Permalink to this heading">#</a></h2>
+<p>One of the primary uses of n-grams in NLP is to capture the language structure, such as phrases and other commonly occurring word sequences. This not only helps us understand the context better but also assists in predicting the next item in a sequence, which is highly beneficial in language modeling, spelling correction, and even speech recognition.</p>
 </section>
-<section id="why-do-we-need-pos-tagging">
-<h2>Why Do We Need POS Tagging?<a class="headerlink" href="#why-do-we-need-pos-tagging" title="Permalink to this heading">#</a></h2>
-<p>POS tagging is a crucial step in many Natural Language Processing (NLP) tasks. It allows us to understand the basic structure of a sentence and plays a key role in syntactic parsing and information extraction.</p>
-<p>Let’s take a look at how we can implement a POS tagger using the Python library <code class="docutils literal notranslate"><span class="pre">spacy</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># !python -m spacy download en</span>
-<span class="kn">import</span> <span class="nn">spacy</span>
+<section id="n-grams-in-tokenization">
+<h2>N-grams in Tokenization<a class="headerlink" href="#n-grams-in-tokenization" title="Permalink to this heading">#</a></h2>
+<p>Tokenization is the process of splitting a large paragraph into sentences or words. When we apply the concept of n-grams in tokenization, we divide the text into chunks of n contiguous items (usually words). Each chunk (or token) can then be analyzed separately. This is particularly useful when the context between words is necessary to better understand the meaning of the text.</p>
+<p>For instance, in the phrase “New York”, treating “New” and “York” as separate tokens (unigrams) loses the meaning that the two words together represent a single entity (a city). But if we treat “New York” as a single token (a bigram), we can preserve this meaning.</p>
+<p>Here is an example of how to implement tokenization using n-grams:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">nltk.util</span> <span class="kn">import</span> <span class="n">ngrams</span>
 
-<span class="n">nlp</span> <span class="o">=</span> <span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;en_core_web_sm&quot;</span><span class="p">)</span>
-
-<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;POS tagging is the process of marking up a word in a text (corpus) as corresponding to a particular part of speech, based on both its definition and its context.&quot;</span>
-
-<span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">nlp</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">token</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s2">&quot;=&gt;&quot;</span><span class="p">,</span> <span class="n">token</span><span class="o">.</span><span class="n">pos_</span><span class="p">,</span> <span class="s2">&quot;=&gt;&quot;</span><span class="p">,</span> <span class="n">token</span><span class="o">.</span><span class="n">tag_</span><span class="p">)</span>
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;I love to play football.&quot;</span>
+<span class="n">tokenized_text</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="n">bigrams</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ngrams</span><span class="p">(</span><span class="n">tokenized_text</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bigrams</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>POS =&gt; PROPN =&gt; NNP
-tagging =&gt; NOUN =&gt; NN
-is =&gt; AUX =&gt; VBZ
-the =&gt; DET =&gt; DT
-process =&gt; NOUN =&gt; NN
-of =&gt; ADP =&gt; IN
-marking =&gt; VERB =&gt; VBG
-up =&gt; ADP =&gt; RP
-a =&gt; DET =&gt; DT
-word =&gt; NOUN =&gt; NN
-in =&gt; ADP =&gt; IN
-a =&gt; DET =&gt; DT
-text =&gt; NOUN =&gt; NN
-( =&gt; PUNCT =&gt; -LRB-
-corpus =&gt; PROPN =&gt; NNP
-) =&gt; PUNCT =&gt; -RRB-
-as =&gt; ADP =&gt; IN
-corresponding =&gt; VERB =&gt; VBG
-to =&gt; ADP =&gt; IN
-a =&gt; DET =&gt; DT
-particular =&gt; ADJ =&gt; JJ
-part =&gt; NOUN =&gt; NN
-of =&gt; ADP =&gt; IN
-speech =&gt; NOUN =&gt; NN
-, =&gt; PUNCT =&gt; ,
-based =&gt; VERB =&gt; VBN
-on =&gt; ADP =&gt; IN
-both =&gt; CCONJ =&gt; CC
-its =&gt; PRON =&gt; PRP$
-definition =&gt; NOUN =&gt; NN
-and =&gt; CCONJ =&gt; CC
-its =&gt; PRON =&gt; PRP$
-context =&gt; NOUN =&gt; NN
-. =&gt; PUNCT =&gt; .
+<p>Output:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[(</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;love&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;love&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="s1">&#39;play&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;play&#39;</span><span class="p">,</span> <span class="s1">&#39;football.&#39;</span><span class="p">)]</span>
 </pre></div>
 </div>
-<p>In the above script, we load the English language model (<code class="docutils literal notranslate"><span class="pre">en_core_web_sm</span></code>) from <code class="docutils literal notranslate"><span class="pre">spacy</span></code>. Then, we process a sentence through this model, which yields a <code class="docutils literal notranslate"><span class="pre">Doc</span></code> object. For each <code class="docutils literal notranslate"><span class="pre">Token</span></code> object in the <code class="docutils literal notranslate"><span class="pre">Doc</span></code>, we print its text along with its corresponding coarse-grained (<code class="docutils literal notranslate"><span class="pre">pos_</span></code>) and fine-grained (<code class="docutils literal notranslate"><span class="pre">tag_</span></code>) POS tags.</p>
+<p>In the example above, we first tokenize the input text into individual words using <code class="docutils literal notranslate"><span class="pre">nltk.word_tokenize()</span></code>. We then generate the bigrams using the <code class="docutils literal notranslate"><span class="pre">ngrams()</span></code> function.</p>
 </section>
-<section id="dependency-parsing">
-<h2>Dependency Parsing<a class="headerlink" href="#dependency-parsing" title="Permalink to this heading">#</a></h2>
-<p>While POS tagging gives us information about the role of individual words in a sentence, dependency parsing helps us understand how these words interact with each other. In dependency parsing, we look for relationships between words: which word depends on which, and what’s the nature of this dependency.</p>
-<figure class="align-default" id="fig-universal-dep">
-<a class="reference internal image-reference" href="../../../_images/231.png"><img alt="../../../_images/231.png" src="../../../_images/231.png" style="width: 70%;" /></a>
+<section id="n-grams-dimensionality-and-managing-vocabulary">
+<h2>N-grams, Dimensionality, and Managing Vocabulary<a class="headerlink" href="#n-grams-dimensionality-and-managing-vocabulary" title="Permalink to this heading">#</a></h2>
+<p>As we generate n-grams for larger values of ‘n’, we will see a significant increase in the number of features. This increase can lead to a high-dimensional feature space and cause computational challenges due to the curse of dimensionality. Therefore, it’s essential to manage the feature space effectively.</p>
+</section>
+<section id="high-dimensionality-in-n-grams">
+<h2>High Dimensionality in N-grams<a class="headerlink" href="#high-dimensionality-in-n-grams" title="Permalink to this heading">#</a></h2>
+<p>For example, considering a corpus with 1,000 unique words:</p>
+<ul class="simple">
+<li><p>If we use 1-grams (unigrams), we get 1,000 features</p></li>
+<li><p>For 2-grams (bigrams), we can have up to 1,000 * 1,000 = 1,000,000 features.</p></li>
+</ul>
+<p>This exponential increase poses problems in terms of memory and computational efficiency. It is essential to filter out low-frequency and uninformative n-grams to keep the feature space manageable.</p>
+<figure class="align-default" id="fig-text-classification-flowchart">
+<a class="reference internal image-reference" href="../../../_images/101.png"><img alt="../../../_images/101.png" src="../../../_images/101.png" style="width: 60%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 74 </span><span class="caption-text"><a class="reference external" href="https://universaldependencies.org/u/dep/">Universal Dependency Relations</a></span><a class="headerlink" href="#fig-universal-dep" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 78 </span><span class="caption-text">Text classification flowchart (from Google Developers)</span><a class="headerlink" href="#fig-text-classification-flowchart" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Let’s visualize dependency parsing for our example sentence using <code class="docutils literal notranslate"><span class="pre">spacy</span></code>’s built-in <code class="docutils literal notranslate"><span class="pre">displacy</span></code> module:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spacy</span> <span class="kn">import</span> <span class="n">displacy</span>
+</section>
+<section id="hashing-vectorizer">
+<h2>Hashing Vectorizer<a class="headerlink" href="#hashing-vectorizer" title="Permalink to this heading">#</a></h2>
+<p>One way to deal with high-dimensional feature spaces is to use a Hashing Vectorizer. Instead of mapping each n-gram to a unique integer in our feature space (as CountVectorizer does), a Hashing Vectorizer hashes the n-grams into a fixed number of buckets. This is a lossy transformation (some information is lost), but it can help maintain a manageable feature space.</p>
+<p>The hash function used in the vectorizer is deterministic, which means that it will always map the same n-gram to the same integer.</p>
+<p>Here’s an example of how to use a Hashing Vectorizer:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">HashingVectorizer</span>
 
-<span class="n">sent</span> <span class="o">=</span> <span class="s2">&quot;The quick brown fox jumps over the lazy dog.&quot;</span>
-<span class="n">displacy</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">nlp</span><span class="p">(</span><span class="n">sent</span><span class="p">),</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;dep&#39;</span><span class="p">,</span> <span class="n">jupyter</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>The output of this script will be a graphical representation of words in the sentence and the grammatical relationships between them.</p>
-</section>
-<section id="constituency-parsing">
-<h2>Constituency Parsing<a class="headerlink" href="#constituency-parsing" title="Permalink to this heading">#</a></h2>
-<p>Unlike dependency parsing, which centers on the relationships between individual words, constituency parsing focuses on the sentence’s hierarchical structure. It breaks down the sentence into sub-phrases or constituents, each of which belongs to a specific category in the grammar of the language. Categories include noun phrase (NP), verb phrase (VP), etc.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spacy</span> <span class="kn">import</span> <span class="n">displacy</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">HashingVectorizer</span><span class="p">(</span>
+    <span class="n">n_features</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="mi">4</span><span class="p">,</span> <span class="n">stop_words</span><span class="o">=</span><span class="s2">&quot;english&quot;</span><span class="p">,</span> <span class="n">alternate_sign</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
 
-<span class="n">sent</span> <span class="o">=</span> <span class="s2">&quot;The quick brown fox jumps over the lazy dog.&quot;</span>
-<span class="n">displacy</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">nlp</span><span class="p">(</span><span class="n">sent</span><span class="p">),</span> <span class="n">jupyter</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
-<figure class="align-default" id="fig-dependency">
-<a class="reference internal image-reference" href="../../../_images/dependency.png"><img alt="../../../_images/dependency.png" src="../../../_images/dependency.png" style="width: 80%;" /></a>
+<p>In the code snippet above, we transform our text data into a feature matrix with a fixed size of 16 (2**4) using the HashingVectorizer.</p>
+<figure class="align-default" id="fig-hashing-vectorizer">
+<a class="reference internal image-reference" href="../../../_images/112.png"><img alt="../../../_images/112.png" src="../../../_images/112.png" style="width: 50%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 75 </span><span class="caption-text">Dependency parsing</span><a class="headerlink" href="#fig-dependency" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 79 </span><span class="caption-text">Hashing Vectorizer</span><a class="headerlink" href="#fig-hashing-vectorizer" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>In constituency parsing, sentences are often represented as constituency trees. For instance, the sentence “It took me more than two hours to translate a few pages of English.” might be broken down into the following sub-phrases: “It” (NP), “took me more than two hours to translate a few pages of English” (VP), and so on.</p>
-<figure class="align-default" id="fig-constituency">
-<a class="reference internal image-reference" href="../../../_images/271.png"><img alt="../../../_images/271.png" src="../../../_images/271.png" style="width: 80%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 76 </span><span class="caption-text">Constituency parsing: “It took me more than two hours to translate a few pages of English.”</span><a class="headerlink" href="#fig-constituency" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<p>As of now, constituency parsing is not directly supported by spaCy, but there are other libraries such as NLTK that do offer this feature.</p>
-<p>Overall, POS tagging, dependency parsing, and constituency parsing play crucial roles in understanding the structure and meaning of text, and are key steps in many NLP applications.</p>
 </section>
-<section id="creating-a-pos-tagger">
-<h2>Creating a POS Tagger<a class="headerlink" href="#creating-a-pos-tagger" title="Permalink to this heading">#</a></h2>
-<p>Creating a Part-Of-Speech (POS) tagger is an essential task in Natural Language Processing (NLP). A POS tagger is a type of machine learning classifier that assigns a part-of-speech tag to each word in an input sentence or document. These tags provide crucial information about the role of each word in the sentence, which can greatly aid in tasks like parsing and entity recognition.</p>
-<figure class="align-default" id="fig-pos">
-<a class="reference internal image-reference" href="../../../_images/212.png"><img alt="../../../_images/212.png" src="../../../_images/212.png" style="width: 40%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 77 </span><span class="caption-text">POS tagger</span><a class="headerlink" href="#fig-pos" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<p>Creating a POS tagger involves the following steps:</p>
-<section id="defining-the-tag-set">
-<h3>1. Defining the Tag Set<a class="headerlink" href="#defining-the-tag-set" title="Permalink to this heading">#</a></h3>
-<p>The first step is to decide on the set of tags that you’ll be using. These tags might include common parts of speech like ‘NOUN’, ‘VERB’, ‘ADJ’ (adjective), and ‘ADV’ (adverb), among others. Depending on your specific task, you might need a more detailed tag set, which includes tags for specific verb tenses or noun types, for instance.</p>
+<section id="collocations">
+<h2>Collocations<a class="headerlink" href="#collocations" title="Permalink to this heading">#</a></h2>
+<p>Another essential concept in NLP is Collocations, which are phrases that occur together more often than would be expected by chance. These phrases can be non-compositional (their meaning is not just the sum of their parts), non-substitutable (you can’t substitute a part with its synonym), and non-modifiable (you can’t modify the phrase with additional words).</p>
+<ul>
+<li><p>Non-compositional: meaning is not the sum of its parts</p>
+<blockquote>
+<div><p>e.g., “New York” is not the sum of “New” and “York”</p>
+</div></blockquote>
+</li>
+<li><p>Non-substitutable: cannot substitute with a synonym</p>
+<blockquote>
+<div><p>e.g., “fast food” is not the same as “quick food”</p>
+</div></blockquote>
+</li>
+<li><p>Non-modifiable: cannot modify with additional words</p>
+<blockquote>
+<div><p>e.g., “kick around the bucket” is not the same as “kick the bucket around”</p>
+</div></blockquote>
+</li>
+</ul>
 </section>
-<section id="collecting-and-annotating-data">
-<h3>2. Collecting and Annotating Data<a class="headerlink" href="#collecting-and-annotating-data" title="Permalink to this heading">#</a></h3>
-<p>Next, you need to collect and annotate a large amount of text data with these POS tags. The exact amount of data you need will depend on the complexity of your task and the diversity of your tag set. More complex tasks and more diverse tag sets generally require more data.</p>
-<p>If you’re creating a POS tagger for a new language or domain, you may need to do this annotation yourself, which can be a time-consuming process. If you’re working with an existing language or domain, you might be able to find an existing annotated corpus to use.</p>
+<section id="pointwise-mutual-information">
+<h2>Pointwise Mutual Information<a class="headerlink" href="#pointwise-mutual-information" title="Permalink to this heading">#</a></h2>
+<p>Pointwise Mutual Information (PMI) is a measure of how often two words co-occur in a corpus, considering their individual probabilities. PMI helps rank word pairs based on how often they collocate, compared to how often they would theoretically collocate if they were independent.</p>
+<p>PMI of two words <span class="math notranslate nohighlight">\(w_1\)</span> and <span class="math notranslate nohighlight">\(w_2\)</span> is defined as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+PMI(w_1,w_2) = \frac{P(w_1\_ w_2)}{P(w_1)P(w_2)} \\
+= \frac{\text{Prob. of collocation, actual}}{\text{Prob. of collocation, if independent}}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(w_1\)</span> and <span class="math notranslate nohighlight">\(w_2\)</span> are words in the vocabulary, and <span class="math notranslate nohighlight">\(w_1\)</span>, <span class="math notranslate nohighlight">\(w_2\)</span> is the N-gram <span class="math notranslate nohighlight">\(w_1\_w_2\)</span>.
+ranks words by how often they collocate, relative to how often they occur apart.</p>
+<p>It can be generalized to n-grams as:</p>
+<div class="math notranslate nohighlight">
+\[ \frac{P(w*1,\ldots w_2 )}{\prod*{i=1}^{n} \sqrt[n]{P(w_i)}} \]</div>
+<p>Caveat: PMI is biased towards rare words. It is more likely to overestimate the strength of association between two rare words than between two frequent words. This is because the denominator of the PMI equation is the product of the individual probabilities of the words, which is smaller for rare words.</p>
 </section>
-<section id="choosing-a-model">
-<h3>3. Choosing a Model<a class="headerlink" href="#choosing-a-model" title="Permalink to this heading">#</a></h3>
-<p>Once you have your annotated data, you’ll need to choose a machine learning model for your POS tagger. Common choices include Hidden Markov Models (HMMs), Conditional Random Fields (CRFs), and more recently, neural networks, each with its strengths and weaknesses.</p>
-</section>
-<section id="training-the-model">
-<h3>4. Training the Model<a class="headerlink" href="#training-the-model" title="Permalink to this heading">#</a></h3>
-<p>Next, you’ll need to train your chosen model on your annotated data. This generally involves splitting your data into a training set and a validation set, training your model on the training set, and periodically evaluating its performance on the validation set.</p>
-</section>
-<section id="evaluating-the-model">
-<h3>5. Evaluating the Model<a class="headerlink" href="#evaluating-the-model" title="Permalink to this heading">#</a></h3>
-<p>After your model is trained, you’ll need to evaluate its performance on a separate test set to ensure that it generalizes well to new data. Common metrics for evaluating POS taggers include accuracy (the percentage of words that were assigned the correct tag) and F1 score (a weighted average of precision and recall).</p>
-</section>
-<section id="using-and-updating-the-model">
-<h3>6. Using and Updating the Model<a class="headerlink" href="#using-and-updating-the-model" title="Permalink to this heading">#</a></h3>
-<p>Finally, once your model is trained and evaluated, you can use it to tag new sentences! Over time, you may need to update your model as new words and usages emerge in the language.</p>
-<p>Remember, creating a POS tagger is not a one-time task. It’s an ongoing process that requires regular updates and adjustments to keep up with changes in language use. But with the right approach, you can create a powerful tool that provides valuable insights into the structure and meaning of text.</p>
-</section>
+<section id="out-of-vocabulary-words-oov-for-n-grams">
+<h2>Out-of-Vocabulary Words (OOV) for N-grams<a class="headerlink" href="#out-of-vocabulary-words-oov-for-n-grams" title="Permalink to this heading">#</a></h2>
+<p>In any text analysis, we often encounter words that are not in our predefined vocabulary, also known as out-of-vocabulary (OOV) words. This is especially true for n-gram models, where the number of potential word sequences can be enormous.</p>
+<p>There are several strategies for dealing with OOV words:</p>
+<ul class="simple">
+<li><p>Replace them with a special token, e.g., <code class="docutils literal notranslate"><span class="pre">&lt;UNK&gt;</span></code>.</p></li>
+<li><p>Replace them with their part-of-speech tag, e.g., <code class="docutils literal notranslate"><span class="pre">&lt;NOUN&gt;</span></code>.</p></li>
+<li><p>Replace them with a higher-level category or hypernym, e.g., <code class="docutils literal notranslate"><span class="pre">&lt;ANIMAL&gt;</span></code>.</p></li>
+<li><p>Use a hash function to map OOV words to a fixed number of buckets, similar to the hashing trick mentioned above.</p></li>
+</ul>
+<p>These strategies can help manage the vocabulary and keep the feature space manageable while dealing with new or unexpected words in the data.</p>
 </section>
 </section>
 
@@ -736,20 +696,20 @@ context =&gt; NOUN =&gt; NN
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="tokenization.html"
+       href="pos.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Tokenization: Understanding the Basics</p>
+        <p class="prev-next-title">Part-of-Speech Tagging and Parsing</p>
       </div>
     </a>
     <a class="right-next"
-       href="ngrams.html"
+       href="segmentation.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">N-grams for Tokenization</p>
+        <p class="prev-next-title">Word Segmentation and Association</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -771,20 +731,15 @@ context =&gt; NOUN =&gt; NN
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-part-of-speech-pos">Introduction to Part-of-Speech (POS)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-pos-tagging">What is POS Tagging?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-do-we-need-pos-tagging">Why Do We Need POS Tagging?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependency-parsing">Dependency Parsing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constituency-parsing">Constituency Parsing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-pos-tagger">Creating a POS Tagger</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-the-tag-set">1. Defining the Tag Set</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collecting-and-annotating-data">2. Collecting and Annotating Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-a-model">3. Choosing a Model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-model">4. Training the Model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-model">5. Evaluating the Model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-and-updating-the-model">6. Using and Updating the Model</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-n-grams">Understanding N-grams</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-n-grams">Why use N-grams?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#n-grams-in-tokenization">N-grams in Tokenization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#n-grams-dimensionality-and-managing-vocabulary">N-grams, Dimensionality, and Managing Vocabulary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#high-dimensionality-in-n-grams">High Dimensionality in N-grams</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hashing-vectorizer">Hashing Vectorizer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collocations">Collocations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pointwise-mutual-information">Pointwise Mutual Information</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#out-of-vocabulary-words-oov-for-n-grams">Out-of-Vocabulary Words (OOV) for N-grams</a></li>
 </ul>
   </nav></div>
 
