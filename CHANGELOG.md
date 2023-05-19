@@ -1,5 +1,16 @@
 <!--next-version-placeholder-->
 
+## v0.5.0 (2023-05-19)
+### Feature
+* **nlp:** Add lab-ml file to sentiments section ([`68dd2fd`](https://github.com/entelecheia/lecture/commit/68dd2fd52edc396748a63301651914065e9bbc8e))
+
+### Documentation
+* **intro-nlp:** Add ml-based sa lab ([`1aaae44`](https://github.com/entelecheia/lecture/commit/1aaae44a35867bb2af698bdd4cfb74a577911b22))
+* **deepnlp:** Update training tokenizers lab ([`191645c`](https://github.com/entelecheia/lecture/commit/191645cf48d515ef466912b54278adcdc6b50221))
+* **deepnlp:** Update training tokenizers lab ([`a5d76aa`](https://github.com/entelecheia/lecture/commit/a5d76aa68790eec2c4b2f77ea556e2b92c4a7504))
+* **deepnlp:** Update tokenizer lab ([`7ef31ac`](https://github.com/entelecheia/lecture/commit/7ef31ac369e54c914c381ac7477282fdb49d1cf0))
+* **deepnlp:** Update SentencePiece ([`d732162`](https://github.com/entelecheia/lecture/commit/d7321625277cfffcc34e0a2834da57bfe387d118))
+
 ## v0.4.1 (2023-05-17)
 ### Fix
 * **tokenization:** Add unigram tokenization lecture ([`ff67595`](https://github.com/entelecheia/lecture/commit/ff67595016598f14176d67766a7b5abed311d9cb))
