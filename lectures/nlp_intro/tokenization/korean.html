@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>GitHub Workflow &#8212; ἐντελέχεια.άι</title>
+    <title>Text Preprocessing in Korean &#8212; ἐντελέχεια.άι</title>
   
   
   
@@ -88,13 +88,13 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/mlops/github/index';</script>
-    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/mlops/github/index.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_intro/tokenization/korean';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_intro/tokenization/korean.html" />
     <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Github’s Fork &amp; Pull Workflow" href="fork-pull.html" />
-    <link rel="prev" title="Unix Password Managers" href="../security/pass.html" />
+    <link rel="next" title="Word Segmentation and Association" href="segmentation.html" />
+    <link rel="prev" title="N-grams for Tokenization" href="ngrams.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -192,36 +192,36 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_intro/index.html">Introduction to NLP</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/intro/index.html">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/research/index.html">Research Applications</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/lm/index.html">Language Models</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/datasets/corpus.html">Text Data Collection</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/datasets/lab-dart.html">Lab: Crawling DART Data</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Introduction to NLP</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../research/index.html">Research Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lm/index.html">Language Models</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../datasets/corpus.html">Text Data Collection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datasets/lab-dart.html">Lab: Crawling DART Data</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/topic/index.html">Topic Modeling</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/coherence.html">Topic Coherence Measures</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/tomotopy.html">Lab: Tomotopy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../topic/index.html">Topic Modeling</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../topic/coherence.html">Topic Coherence Measures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../topic/tomotopy.html">Lab: Tomotopy</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/sentiments/index.html">Sentiment Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lexicon.html">Lexicon-Based Methods</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/ml.html">Machine Learning-Based Methods</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lab-lexicon.html">Lab: Lexicon-based Sentiment Analysis</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lab-ml.html">Lab: ML-based Sentiment Classification</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../sentiments/index.html">Sentiment Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../sentiments/lexicon.html">Lexicon-Based Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sentiments/ml.html">Machine Learning-Based Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sentiments/lab-lexicon.html">Lab: Lexicon-based Sentiment Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sentiments/lab-ml.html">Lab: ML-based Sentiment Classification</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/tokenization.html">Understanding the Basics</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/pos.html">Part-of-Speech Tagging and Parsing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/ngrams.html">N-grams for Tokenization</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/korean.html">Text Preprocessing in Korean</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/segmentation.html">Word Segmentation and Association</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Tokenization</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="tokenization.html">Understanding the Basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pos.html">Part-of-Speech Tagging and Parsing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ngrams.html">N-grams for Tokenization</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Text Preprocessing in Korean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="segmentation.html">Word Segmentation and Association</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/embeddings/index.html">Word Embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../embeddings/index.html">Word Embeddings</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_deep/index.html">Deep Learning for NLP</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -289,16 +289,16 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../aiart/robot/index.html">Robot Drawing System</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Machine Learning Systems Design</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../intro.html">Introduction to MLOps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../project.html">MLOps Project</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../devops/index.html">DevOps</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../devops/gitops.html">GitOps</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../devops/devsecops.html">DevSecOps</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../devops/llmops.html">LLMOps</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../mlops/index.html">Machine Learning Systems Design</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/intro.html">Introduction to MLOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/project.html">MLOps Project</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/devops/index.html">DevOps</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/gitops.html">GitOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/devsecops.html">DevSecOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/llmops.html">LLMOps</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../dotfiles/index.html">Dotfiles</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/dotfiles/index.html">Dotfiles</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai">Dotfiles Project</a></li>
 <li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dotdrop/">Dotdrop Setup</a></li>
 <li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/github/">GitHub Setup</a></li>
@@ -309,27 +309,27 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dockerfiles/">Dockerfiles Usage</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../security/index.html">Security Management</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../security/auth-enc-sign.html">Authentication, Encryption, and Signing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../security/age-gpg-ssh.html">SSH, GPG, and AGE</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../security/pass.html">Unix Password Managers</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/security/index.html">Security Management</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/auth-enc-sign.html">Authentication, Encryption, and Signing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/age-gpg-ssh.html">SSH, GPG, and AGE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/pass.html">Unix Password Managers</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">GitHub Workflow</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="fork-pull.html">Github’s Fork &amp; Pull Workflow</a></li>
-<li class="toctree-l3"><a class="reference internal" href="template.html">Project Templating Tools</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/github/index.html">GitHub Workflow</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/github/fork-pull.html">Github’s Fork &amp; Pull Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/github/template.html">Project Templating Tools</a></li>
 <li class="toctree-l3"><a class="reference external" href="https://hyperfast-python.entelecheia.ai/">Hyperfast Python Template</a></li>
 <li class="toctree-l3"><a class="reference external" href="https://hyperfast-template.entelecheia.ai/">Hyperfast Template</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../containerization/index.html">Containerization</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../containerization/docker.html">Docker</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../containerization/containerd.html"><code class="docutils literal notranslate"><span class="pre">containerd</span></code></a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/containerization/index.html">Containerization</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/containerization/docker.html">Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/containerization/containerd.html"><code class="docutils literal notranslate"><span class="pre">containerd</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../simple-pipeline/index.html">Simple MLOps Pipeline</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../simple-pipeline/server.html">Server Setup &amp; Usage</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../simple-pipeline/vpn.html">VPN Connectivity</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/simple-pipeline/index.html">Simple MLOps Pipeline</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/simple-pipeline/server.html">Server Setup &amp; Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/simple-pipeline/vpn.html">VPN Connectivity</a></li>
 </ul>
 </li>
 </ul>
@@ -426,7 +426,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../../_sources/lectures/mlops/github/index.md" target="_blank"
+      <li><a href="../../../_sources/lectures/nlp_intro/tokenization/korean.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -508,7 +508,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>GitHub Workflow</h1>
+    <h1>Text Preprocessing in Korean</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -518,17 +518,22 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-github-workflow">1. Introduction to GitHub Workflow</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forking-a-repository">2. Forking a Repository</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cloning-a-repository">3. Cloning a Repository</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-new-branch">4. Creating a New Branch</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-changes-and-committing">5. Making Changes and Committing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pushing-changes-to-github">6. Pushing Changes to GitHub</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-pull-request">7. Creating a Pull Request</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-a-pull-request">8. Merging a Pull Request</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#syncing-your-fork">9. Syncing Your Fork</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-usage">10. Example Usage</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next">Next</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sentence-tokenization-in-korean">Sentence Tokenization in Korean</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#korean-part-of-speech-pos-tagging">Korean Part-of-Speech (POS) Tagging</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#morphological-analysis-in-korean">Morphological Analysis in Korean</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linguistic-grammatical-classification">Linguistic (Grammatical) Classification</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#isolating-inflectional-and-agglutinative-languages">Isolating, Inflectional, and Agglutinative Languages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agglutinative-languages">Agglutinative Languages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#isolating-languages">Isolating Languages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inflectional-languages">Inflectional Languages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#morphological-analysis-part-of-speech-tagging">Morphological Analysis (Part of Speech Tagging)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-morphological-analysis">What is Morphological Analysis?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conjugation">Conjugation (활용)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#difficulty-of-korean-tokenization">Difficulty of Korean Tokenization</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -540,145 +545,177 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="github-workflow">
-<h1>GitHub Workflow<a class="headerlink" href="#github-workflow" title="Permalink to this heading">#</a></h1>
-<p>This lecture note provides an in-depth look at the GitHub workflow, with example usages to help you understand how to effectively manage projects on GitHub. By the end of this lecture, you should have a clear understanding of the GitHub workflow and be able to implement it in your own projects.</p>
-<section id="introduction-to-github-workflow">
-<h2>1. Introduction to GitHub Workflow<a class="headerlink" href="#introduction-to-github-workflow" title="Permalink to this heading">#</a></h2>
-<p>GitHub Workflow is a set of best practices that allows developers to collaborate on projects effectively. The core components of the workflow are:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="text-preprocessing-in-korean">
+<h1>Text Preprocessing in Korean<a class="headerlink" href="#text-preprocessing-in-korean" title="Permalink to this heading">#</a></h1>
+<p>In Natural Language Processing, one of the first and crucial steps is text preprocessing. For Korean text, preprocessing is quite unique and more complicated due to the language’s nature and structure. Let’s discuss some of these aspects.</p>
+<section id="sentence-tokenization-in-korean">
+<h2>Sentence Tokenization in Korean<a class="headerlink" href="#sentence-tokenization-in-korean" title="Permalink to this heading">#</a></h2>
+<p>Sentence tokenization refers to dividing text into individual sentences, also known as sentence segmentation or sentence boundary detection. In English, this is straightforward using punctuation marks like full stops (‘.’), exclamation marks (‘!’), or question marks (‘?’) as boundaries. However, in Korean, this is not as easy due to the different sentence structures and use of punctuation.</p>
+<p>For instance, a full stop in Korean can be used in multiple scenarios and not just to denote the end of a sentence. Here are some examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">IP</span> <span class="mf">192.168.56.31</span> <span class="n">서버에</span> <span class="n">들어가서</span> <span class="n">로그</span> <span class="n">파일</span> <span class="n">저장해서</span> <span class="n">aaa</span><span class="nd">@gmail</span><span class="o">.</span><span class="n">com로</span> <span class="n">결과</span> <span class="n">좀</span> <span class="n">보내줘</span><span class="o">.</span> <span class="n">그</span> <span class="n">후</span> <span class="n">점심</span> <span class="n">먹으러</span> <span class="n">가자</span><span class="o">.</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Since</span> <span class="n">I</span><span class="s1">&#39;m actively looking for Ph.D. students, I get the same question a dozen times every year.</span>
+</pre></div>
+</div>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>원문</p></th>
+<th class="head"><p>나는 그 과자를 먹었다.</p></th>
+<th class="head"><p>너는 그를 사랑하니?</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>형태소 분석</p></td>
+<td><p>나(대명사) + 는(조사) + 그(대명사) + 과자(명 사) + 먹-(동사)±었(선어말어미)± 다(어말 어 미)+ .(문장 부호)</p></td>
+<td><p>너(대명사) + 는(조사) + 그(대명사) + 사랑(명사) ±하(동사)+니(어말 어미) + ? (문장부호)</p></td>
+</tr>
+<tr class="row-odd"><td><p>구문 분석</p></td>
+<td><p>(S (NP 나/Noun) 는/Josa (NP 그/Noun 사 과/Noun) 를/Josa (VP 먹었다/Verb)./ Punctuation)</p></td>
+<td><p>(S (NP 너/Noun) 는/Josa (NP 그/Noun) 를/ Josa (NP 사랑/Noun) (VP 하니/Verb) ?/ Punctuation)</p></td>
+</tr>
+<tr class="row-even"><td><p>의미 분석</p></td>
+<td><p>술부: 먹다 행위자: 나 대상: 그 과자</p></td>
+<td><p>술부: 사랑하다 행위자: 너 대상: 그</p></td>
+</tr>
+<tr class="row-odd"><td><p>담화 분석</p></td>
+<td><p>단순 서술</p></td>
+<td><p>의문형</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="korean-part-of-speech-pos-tagging">
+<h2>Korean Part-of-Speech (POS) Tagging<a class="headerlink" href="#korean-part-of-speech-pos-tagging" title="Permalink to this heading">#</a></h2>
+<p>The process of assigning word classes (or POS tags) to each word in a sentence is called POS tagging. In Korean, this process involves understanding the complex morphological and syntactic structures of the language.</p>
+<p><strong>한국어의 5언 9품사</strong></p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>언</p></th>
+<th class="head"><p>품사</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>체언</p></td>
+<td><p>명사, 대명사, 수사</p></td>
+</tr>
+<tr class="row-odd"><td><p>수식언</p></td>
+<td><p>관형사, 부사</p></td>
+</tr>
+<tr class="row-even"><td><p>관계언</p></td>
+<td><p>조사</p></td>
+</tr>
+<tr class="row-odd"><td><p>독립언</p></td>
+<td><p>감탄사</p></td>
+</tr>
+<tr class="row-even"><td><p>용언</p></td>
+<td><p>동사, 형용사</p></td>
+</tr>
+</tbody>
+</table>
+<p>Korean is classified into five types of words (언), which are further divided into nine POS categories:</p>
 <ul class="simple">
-<li><p>Forking a repository</p></li>
-<li><p>Cloning the repository to your local machine</p></li>
-<li><p>Creating branches for new features or bug fixes</p></li>
-<li><p>Committing changes</p></li>
-<li><p>Pushing changes to GitHub</p></li>
-<li><p>Creating pull requests</p></li>
-<li><p>Merging pull requests</p></li>
-<li><p>Syncing your fork with the upstream repository</p></li>
+<li><p>체언: Nouns (명사), Pronouns (대명사), and Numbers (수사)</p></li>
+<li><p>수식언: Determinatives (관형사) and Adverbs (부사)</p></li>
+<li><p>관계언: Particles (조사)</p></li>
+<li><p>독립언: Interjections (감탄사)</p></li>
+<li><p>용언: Verbs (동사) and Adjectives (형용사)</p></li>
+</ul>
+<p>In particular, ‘동사’ (Verbs) and ‘형용사’ (Adjectives) that fall under ‘용언’ are combined with stems and endings to form a word. The word classification is based on three criteria: function, meaning, and form.</p>
+</section>
+<section id="morphological-analysis-in-korean">
+<h2>Morphological Analysis in Korean<a class="headerlink" href="#morphological-analysis-in-korean" title="Permalink to this heading">#</a></h2>
+<p>In Korean, a sentence can be analyzed at different levels such as morphological, syntactic, semantic, and discourse levels. Morphological analysis is the process of breaking down words into their smallest meaningful units (morphemes) and assigning them appropriate POS tags.</p>
+<p>For example, consider the sentence: “나는 그 과자를 먹었다.” (I ate that cookie.). A morphological analysis would break down the sentence as follows:</p>
+<p>나(대명사) + 는(조사) + 그(대명사) + 과자(명사) + 먹(동사) + -었(선어말어미) + -다(어말어미) + .(문장부호)</p>
+</section>
+<section id="linguistic-grammatical-classification">
+<h2>Linguistic (Grammatical) Classification<a class="headerlink" href="#linguistic-grammatical-classification" title="Permalink to this heading">#</a></h2>
+<section id="isolating-inflectional-and-agglutinative-languages">
+<h3>Isolating, Inflectional, and Agglutinative Languages<a class="headerlink" href="#isolating-inflectional-and-agglutinative-languages" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Agglutinative(교착어): Languages that indicate the function of each word by attaching affixes to roots.</p></li>
+<li><p>Inflectional(굴절어): Languages that use changes in the word itself to indicate its grammatical function.</p></li>
+<li><p>Isolating(고립어): Languages that establish grammatical relationships based on word order, without changing the form of words.</p></li>
 </ul>
 </section>
-<section id="forking-a-repository">
-<h2>2. Forking a Repository<a class="headerlink" href="#forking-a-repository" title="Permalink to this heading">#</a></h2>
-<p>Forking a repository creates a copy of the project under your GitHub account. This allows you to make changes without affecting the original project.</p>
-<p>To fork a repository:</p>
-<ol class="arabic simple">
-<li><p>Navigate to the repository you want to fork.</p></li>
-<li><p>Click the “Fork” button in the upper-right corner.</p></li>
-</ol>
-<p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Original</span> <span class="n">Repository</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">owner</span><span class="o">/</span><span class="n">project</span><span class="o">.</span><span class="n">git</span>
-<span class="n">Forked</span> <span class="n">Repository</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">yourusername</span><span class="o">/</span><span class="n">project</span><span class="o">.</span><span class="n">git</span>
-</pre></div>
-</div>
+<section id="agglutinative-languages">
+<h3>Agglutinative Languages<a class="headerlink" href="#agglutinative-languages" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Ural-Altaic agglutinative languages determine the final meaning of a word by attaching affixes to it.</p></li>
+<li><p>For instance, in Korean, the root ‘나 (I)’ can be combined with affixes like ‘은/는/이/가’ to form a subject and ‘을/를’ to form an object.</p></li>
+<li><p>The verb tense is also determined by attaching affixes to the root.</p></li>
+<li><p>For example, ‘가다 (go)’ can change to ‘갔다 (went)’, ‘갔었다 (had gone)’ by changing affixes.</p></li>
+</ul>
 </section>
-<section id="cloning-a-repository">
-<h2>3. Cloning a Repository<a class="headerlink" href="#cloning-a-repository" title="Permalink to this heading">#</a></h2>
-<p>After forking a repository, you need to clone it to your local machine to start working on it.</p>
-<p>To clone a repository:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/yourusername/project.git
-<span class="nb">cd</span><span class="w"> </span>project
-</pre></div>
-</div>
+<section id="isolating-languages">
+<h3>Isolating Languages<a class="headerlink" href="#isolating-languages" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Languages such as Chinese and Tibetan are isolating languages, which determine the meaning of words based on word order.</p></li>
+<li><p>For example, in Chinese, ‘我 (I)’ and ‘去 (go)’ can form ‘我去 (I go)’ in a certain order, but if the order is changed to ‘去我’, it means ‘make me go’.</p></li>
+<li><p>The form of the word ‘我’ and ‘去’ does not change, but the meaning changes depending on the order.</p></li>
+<li><p>Chinese and Tibetan languages are called isolating because the form of words does not change independently, but the meaning of words changes depending on the order and context.</p></li>
+</ul>
 </section>
-<section id="creating-a-new-branch">
-<h2>4. Creating a New Branch<a class="headerlink" href="#creating-a-new-branch" title="Permalink to this heading">#</a></h2>
-<p>Create a new branch to work on a specific feature or bug fix without affecting the main branch.</p>
-<p>To create a new branch and switch to it:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>my-feature
-</pre></div>
-</div>
+<section id="inflectional-languages">
+<h3>Inflectional Languages<a class="headerlink" href="#inflectional-languages" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Indo-European inflectional languages determine the meaning of a word by changing the word’s form.</p></li>
+<li><p>A representative inflectional language is Latin.</p></li>
+<li><p>For instance, the English word ‘good’ comes from the Latin word ‘bonus’, where the affix ‘-us’ denotes masculine singular nominative case.</p></li>
+<li><p>If you want to express a different attribute, you replace the affix with another, for example, replacing ‘-us’ with ‘-um’ to form ‘bonum’, which is masculine singular accusative (or neuter singular accusative/nominative).</p></li>
+<li><p>Inflectional languages change the form of words by attaching different affixes for each element of the word such as case, gender, tense, number, part of speech.</p></li>
+<li><p>Indo-European languages are inflectional languages where the meaning of the word changes as the form of the word inflects.</p></li>
+<li><p>Inflectional languages are not greatly influenced by word order because each word has all the grammatical elements.</p></li>
+</ul>
 </section>
-<section id="making-changes-and-committing">
-<h2>5. Making Changes and Committing<a class="headerlink" href="#making-changes-and-committing" title="Permalink to this heading">#</a></h2>
-<p>Make changes to the code and commit them. It’s recommended to make small, focused commits with clear messages.</p>
-<p>To commit changes:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.
-git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add a meaningful message describing the changes&quot;</span>
-</pre></div>
-</div>
 </section>
-<section id="pushing-changes-to-github">
-<h2>6. Pushing Changes to GitHub<a class="headerlink" href="#pushing-changes-to-github" title="Permalink to this heading">#</a></h2>
-<p>Push your changes to the remote repository on GitHub.</p>
-<p>To push your branch:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>my-feature
-</pre></div>
-</div>
-</section>
-<section id="creating-a-pull-request">
-<h2>7. Creating a Pull Request<a class="headerlink" href="#creating-a-pull-request" title="Permalink to this heading">#</a></h2>
-<p>To merge your changes into the original repository, you need to create a pull request.</p>
-<ol class="arabic simple">
-<li><p>Navigate to your forked repository on GitHub.</p></li>
-<li><p>Click the “New pull request” button.</p></li>
-<li><p>Choose the original repository as the base and your fork as the head.</p></li>
-<li><p>Click “Create pull request”.</p></li>
-<li><p>Add a descriptive title and explain the changes in the description.</p></li>
-</ol>
-</section>
-<section id="merging-a-pull-request">
-<h2>8. Merging a Pull Request<a class="headerlink" href="#merging-a-pull-request" title="Permalink to this heading">#</a></h2>
-<p>Once the pull request is reviewed and approved, it can be merged into the original repository.</p>
-<ol class="arabic simple">
-<li><p>Navigate to the pull request in the original repository.</p></li>
-<li><p>If there are no conflicts, click “Merge pull request”.</p></li>
-<li><p>Click “Confirm merge” to finalize the merge.</p></li>
-</ol>
-<p><strong>Note</strong>: Only users with write access to the original repository can merge pull requests.</p>
-</section>
-<section id="syncing-your-fork">
-<h2>9. Syncing Your Fork<a class="headerlink" href="#syncing-your-fork" title="Permalink to this heading">#</a></h2>
-<p>After the pull request is merged, you need to sync your fork with the upstream repository to keep it up-to-date.</p>
-<p>To sync your fork:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add the upstream repository as a remote</span>
-git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>https://github.com/owner/project.git
-
-<span class="c1"># Fetch changes from the upstream repository</span>
-git<span class="w"> </span>fetch<span class="w"> </span>upstream
-
-<span class="c1"># Switch to the main branch</span>
-git<span class="w"> </span>checkout<span class="w"> </span>main
-
-<span class="c1"># Merge changes from upstream/main into your local main branch</span>
-git<span class="w"> </span>merge<span class="w"> </span>upstream/main
-
-<span class="c1"># Push the updated main branch to your fork on GitHub</span>
-git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
-</pre></div>
-</div>
-</section>
-<section id="example-usage">
-<h2>10. Example Usage<a class="headerlink" href="#example-usage" title="Permalink to this heading">#</a></h2>
-<p>Here’s an example of how to use the GitHub Workflow for contributing to a project:</p>
-<ol class="arabic">
-<li><p>Fork the repository: <a class="github reference external" href="https://github.com/owner/project.git">owner/project.git</a></p></li>
-<li><p>Clone the forked repository: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/yourusername/project.git</span></code></p></li>
-<li><p>Create a new branch: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">my-feature</span></code></p></li>
-<li><p>Make changes and commit: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span> <span class="pre">&amp;&amp;</span> <span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;Add</span> <span class="pre">new</span> <span class="pre">feature&quot;</span></code></p></li>
-<li><p>Push the changes to GitHub: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">my-feature</span></code></p></li>
-<li><p>Create a pull request on GitHub.</p></li>
-<li><p>After the pull request is merged, sync your fork:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">upstream</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">owner</span><span class="o">/</span><span class="n">project</span><span class="o">.</span><span class="n">git</span>
-<span class="n">git</span> <span class="n">fetch</span> <span class="n">upstream</span>
-<span class="n">git</span> <span class="n">checkout</span> <span class="n">main</span>
-<span class="n">git</span> <span class="n">merge</span> <span class="n">upstream</span><span class="o">/</span><span class="n">main</span>
-<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">main</span>
-</pre></div>
-</div>
-</li>
-</ol>
-<p>By following the GitHub Workflow, you can effectively contribute to open-source projects or collaborate with other developers in a structured and organized manner.</p>
-</section>
-<section id="next">
-<h2>Next<a class="headerlink" href="#next" title="Permalink to this heading">#</a></h2>
-<div class="toctree-wrapper compound">
+<section id="morphological-analysis-part-of-speech-tagging">
+<h2>Morphological Analysis (Part of Speech Tagging)<a class="headerlink" href="#morphological-analysis-part-of-speech-tagging" title="Permalink to this heading">#</a></h2>
+<section id="what-is-morphological-analysis">
+<h3>What is Morphological Analysis?<a class="headerlink" href="#what-is-morphological-analysis" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>It is the process of dividing sentences into morpheme units, distinguishing parts of speech, tagging them, and restoring the phenomenon of morpheme dropout due to various uses of verbs.</p></li>
+<li><p>The morpheme division method varies depending on the analyzer, so you need to choose an analyzer that matches the data.</p></li>
+<li><p>Morphological analysis plays the most important and basic role in all language natural language processing processes.</p></li>
+<li><p>Application of Morphological Analysis:</p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="fork-pull.html">Github’s Fork &amp; Pull Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="template.html">Project Templating Tools</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://hyperfast-python.entelecheia.ai/">Hyperfast Python Template</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://hyperfast-template.entelecheia.ai/">Hyperfast Template</a></li>
+<li><p>Linguistic aspect: Can be used to explain the generation process of a specific language phenomenon.</p></li>
+<li><p>Computational aspect: Can be used for purposes such as information retrieval or syntax analysis in automatic natural language processing systems.</p></li>
 </ul>
-</div>
+</li>
+</ul>
+</section>
+<section id="conjugation">
+<h3>Conjugation (활용)<a class="headerlink" href="#conjugation" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Stem (어간):</strong> This is the invariant part of a verb or adjective in principle when it is conjugated. It precedes the ending in a conjugated form. However, sometimes, even the stem can change (For example, 긋다 (to draw) can become 긋고 (and draw), 그어서 (after drawing), 그어라 (draw!)).</p></li>
+<li><p><strong>Ending (어미):</strong> This is the part attached to the stem of a verb or adjective during conjugation. The ending changes depending on the grammatical function it is performing, such as tense, mood, honorific form, etc.</p></li>
+</ul>
+<p>Conjugation rules in Korean can be divided into regular and irregular forms.</p>
+<ul class="simple">
+<li><p><strong>Regular Conjugation (규칙 활용):</strong> In regular conjugation, the stem remains the same when the ending is attached. For example, 잡다 (to catch) can be broken down into 잡 (stem) + 다 (ending). As the stem retains its form before and after the ending is attached, simple rule-based approaches can extract the stem by removing the ending.</p></li>
+<li><p><strong>Irregular Conjugation (불규칙 활용):</strong> In irregular conjugation, the stem or the ending changes when the stem takes an ending. Examples of this irregular change include:</p>
+<ul>
+<li><p>듣- (to listen), 돕- (to help), 곱- (to be beautiful), 잇- (to continue), 오르- (to rise), 노랗- (to be yellow) becomes 듣/들-, 돕/도우-, 곱/고우-, 잇/이-, 오르/올-, 노랗/노라-.</p></li>
+<li><p>오르 + 아/어 becomes 올라, 하 + 아/어 becomes 하여, 이르 + 아/어 becomes 이르러.
+As the stem changes when the ending is attached, simple removal of the ending is not enough to extract the stem, and more complex rules are needed.</p></li>
+</ul>
+</li>
+</ul>
+<p>Considering these points, it is evident that Korean tokenization, especially when it involves conjugation, is a task of substantial complexity. It requires robust morphological analysis or statistical methods to efficiently and correctly tokenize the language.</p>
+</section>
+<section id="difficulty-of-korean-tokenization">
+<h3>Difficulty of Korean Tokenization<a class="headerlink" href="#difficulty-of-korean-tokenization" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Agglutinative Language: Korean is an agglutinative language, where words are formed by combining morphemes, which are the smallest meaningful units of language. Each morpheme in an agglutinative language like Korean has a clear meaning and grammatical function, and they can be freely added or removed to change the meaning of the word. This is different from languages like English where the meaning of a word is generally fixed and doesn’t change much with the addition or removal of morphemes. This morphological complexity of Korean poses a significant challenge in tokenization.</p></li>
+<li><p>Word Boundaries: Another challenge in Korean tokenization is the lack of clear word boundaries. Unlike English where words are usually separated by spaces, Korean uses spaces to separate phrases or sentences rather than individual words. This makes it harder to define what constitutes a “word” in Korean, and consequently makes tokenization more difficult.</p></li>
+<li><p>Particles: Korean also uses a variety of particles to indicate the grammatical role of a word in a sentence. These particles (also known as postpositions) can be attached to the end of a noun to indicate the noun’s role, such as subject, object, or location. The same noun can take on different meanings depending on the particle attached to it. This use of particles adds an extra layer of complexity to Korean tokenization.</p></li>
+<li><p>Homonyms: Korean also has a high degree of homonymy, meaning that there are many words that sound the same but have different meanings. This can make it hard to tokenize Korean text correctly, as the tokenizer has to be able to determine the correct meaning of a word based on its context.</p></li>
+<li><p>Compound Nouns: Korean frequently uses compound nouns, where two or more nouns are combined to form a new word. The meaning of a compound noun can often be different from the meanings of its individual components, which can add to the complexity of tokenization.</p></li>
+</ul>
+<p>Because of these challenges, Korean tokenization often requires more complex techniques than simple space-based tokenization. This might include morphological analysis, which breaks down words into their individual morphemes and assigns them appropriate part-of-speech tags, and statistical methods, which use machine learning algorithms to predict the most likely tokenization of a sentence based on training data.</p>
+</section>
 </section>
 </section>
 
@@ -695,7 +732,7 @@ git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </
         },
         kernelOptions: {
             name: "python3",
-            path: "./lectures/mlops/github"
+            path: "./lectures/nlp_intro/tokenization"
         },
         predefinedOutput: true
     }
@@ -714,20 +751,20 @@ git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../security/pass.html"
+       href="ngrams.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Unix Password Managers</p>
+        <p class="prev-next-title">N-grams for Tokenization</p>
       </div>
     </a>
     <a class="right-next"
-       href="fork-pull.html"
+       href="segmentation.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Github’s Fork &amp; Pull Workflow</p>
+        <p class="prev-next-title">Word Segmentation and Association</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -749,17 +786,22 @@ git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-github-workflow">1. Introduction to GitHub Workflow</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forking-a-repository">2. Forking a Repository</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cloning-a-repository">3. Cloning a Repository</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-new-branch">4. Creating a New Branch</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-changes-and-committing">5. Making Changes and Committing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pushing-changes-to-github">6. Pushing Changes to GitHub</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-pull-request">7. Creating a Pull Request</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-a-pull-request">8. Merging a Pull Request</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#syncing-your-fork">9. Syncing Your Fork</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-usage">10. Example Usage</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next">Next</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sentence-tokenization-in-korean">Sentence Tokenization in Korean</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#korean-part-of-speech-pos-tagging">Korean Part-of-Speech (POS) Tagging</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#morphological-analysis-in-korean">Morphological Analysis in Korean</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linguistic-grammatical-classification">Linguistic (Grammatical) Classification</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#isolating-inflectional-and-agglutinative-languages">Isolating, Inflectional, and Agglutinative Languages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agglutinative-languages">Agglutinative Languages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#isolating-languages">Isolating Languages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inflectional-languages">Inflectional Languages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#morphological-analysis-part-of-speech-tagging">Morphological Analysis (Part of Speech Tagging)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-morphological-analysis">What is Morphological Analysis?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conjugation">Conjugation (활용)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#difficulty-of-korean-tokenization">Difficulty of Korean Tokenization</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
