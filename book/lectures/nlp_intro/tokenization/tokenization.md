@@ -1,4 +1,4 @@
-# Tokenization: Understanding the Basics
+# Understanding the Basics
 
 ## What is Tokenization?
 
@@ -74,30 +74,30 @@ Pre-processing involves deciding which data to keep and which to discard:
 - Uninformative data can add noise, reduce statistical precision, and increase computational cost.
 - Pre-processing choices can significantly impact the results, especially in unsupervised learning tasks.
 
-### Some Common Pre-processing Techniques
+## Some Common Pre-processing Techniques
 
-#### Capitalization
+### Capitalization
 
 Standard corpus normalization often involves removing capitalization as it's usually not informative. However, for some tasks, capitalization is crucial (e.g., sentence splitting, part-of-speech tagging, syntactic parsing, and semantic role labeling). For sequence data, such as language modeling, tokenizer packages (like Huggingface's tokenizer) remove capitalization but then add a special "capitalized" token before the word.
 
-#### Punctuation
+### Punctuation
 
 Inclusion of punctuation depends on your task. For vectorizing the document as a bag of words or n-grams, punctuation is usually not necessary. But, similar to capitalization, punctuation is needed for tasks like sentence splitting, part-of-speech tagging, syntax parsing, and role labeling.
 
-#### Numbers
+### Numbers
 
 For tasks like document classification using a bag of words, numbers can be dropped or replaced with special characters. But for language models, numbers are treated just like letters. For instance, GPT-3 can even solve basic math problems.
 
-#### Stopwords
+### Stopwords
 
 Stopwords are words so common that they don’t carry much information. Depending on your task, you can drop stopwords or keep them as part of phrases. You can also filter out words and phrases using part-of-speech tags.
 
-#### Stemming/Lemmatizing
+### Stemming/Lemmatizing
 
 Stemming (reducing words to their root form) and lemmatization (reducing words to their base or dictionary form) can help reduce the dimensions of the data with minimal loss of information. For example, the phrase "I am running" can be transformed to "I am run" using lemmatization.
 
 These techniques are part of the "art" of text analysis and require careful consideration as they can significantly impact the performance of the downstream tasks.
 
-# Conclusion
+## Conclusion
 
 Tokenization is a crucial step in NLP and can heavily influence the success of your text analytics project. By understanding these principles and approaches, you can ensure that your text data is processed effectively, leading to more accurate and insightful outcomes. Remember that while there are standard practices, the best approach often depends on the specifics of your task and the characteristics of your data.
