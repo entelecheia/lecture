@@ -1,4 +1,4 @@
-# Text Preprocessing in Korean
+# Tokenization in Korean
 
 In Natural Language Processing, one of the first and crucial steps is text preprocessing. For Korean text, preprocessing is quite unique and more complicated due to the language's nature and structure. Let's discuss some of these aspects.
 
