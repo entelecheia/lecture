@@ -109,17 +109,6 @@ displacy.render(nlp(sent), style='dep', jupyter=True)
 
 The output of this script will be a graphical representation of words in the sentence and the grammatical relationships between them.
 
-## Constituency Parsing
-
-Unlike dependency parsing, which centers on the relationships between individual words, constituency parsing focuses on the sentence's hierarchical structure. It breaks down the sentence into sub-phrases or constituents, each of which belongs to a specific category in the grammar of the language. Categories include noun phrase (NP), verb phrase (VP), etc.
-
-```python
-from spacy import displacy
-
-sent = "The quick brown fox jumps over the lazy dog."
-displacy.render(nlp(sent), jupyter=True)
-```
-
 ```{figure} figs/dependency.png
 ---
 width: 80%
@@ -127,6 +116,10 @@ name: fig-dependency
 ---
 Dependency parsing
 ```
+
+## Constituency Parsing
+
+Unlike dependency parsing, which centers on the relationships between individual words, constituency parsing focuses on the sentence's hierarchical structure. It breaks down the sentence into sub-phrases or constituents, each of which belongs to a specific category in the grammar of the language. Categories include noun phrase (NP), verb phrase (VP), etc.
 
 In constituency parsing, sentences are often represented as constituency trees. For instance, the sentence "It took me more than two hours to translate a few pages of English." might be broken down into the following sub-phrases: "It" (NP), "took me more than two hours to translate a few pages of English" (VP), and so on.
 
