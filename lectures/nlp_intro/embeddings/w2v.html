@@ -1,0 +1,1471 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Word2Vec &#8212; ἐντελέχεια.άι</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/js/hoverxref.js"></script>
+    <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_intro/embeddings/w2v';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_intro/embeddings/w2v.html" />
+    <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="GloVe" href="glove.html" />
+    <link rel="prev" title="Neural Language Models" href="nlm.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+
+  <div class="bd-header-announcement container-fluid bd-header-announcement">
+    <div class="bd-header-announcement__content"><p>
+  <strong>Announcement:</strong>
+  You can install the accompanying AI tutor <a href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd" target="_blank">here</a>.
+  <a class="reference external" href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd" target="_blank"><img alt="chrome-web-store-image" src="https://img.shields.io/chrome-web-store/v/lfgfgbomindbccgidgalhhndggddpagd" /></a>
+</p>
+</div>
+  </div>
+
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">ἐντελέχεια.άι</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../index.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Introduction to NLP</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../research/index.html">Research Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lm/index.html">Language Models</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../datasets/corpus.html">Text Data Collection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datasets/lab-dart.html">Lab: Crawling DART Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../topic/index.html">Topic Modeling</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../topic/methods.html">Topic Modeling Methodologies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../topic/lab-methods.html">Lab: Topic Modeling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../topic/coherence.html">Topic Coherence Measures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../topic/lab-coherence.html">Lab: Topic Coherence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../topic/tomotopy.html">Lab: Tomotopy</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../sentiments/index.html">Sentiment Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../sentiments/lexicon.html">Lexicon-Based Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sentiments/ml.html">Machine Learning-Based Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sentiments/lab-lexicon.html">Lab: Lexicon-based Sentiment Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sentiments/lab-ml.html">Lab: ML-based Sentiment Classification</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tokenization/tokenization.html">Understanding the Basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tokenization/pos.html">Part-of-Speech Tagging and Parsing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tokenization/ngrams.html">N-grams for Tokenization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tokenization/korean.html">Tokenization in Korean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tokenization/segmentation.html">Word Segmentation and Association</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tokenization/lab-tokenization.html">Lab: Tokenization and Pre-processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tokenization/lab-korean.html">Lab: Korean Text Processing</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../vectorization/index.html">Vector Representation</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../vectorization/semantics.html">Vector Semantics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vectorization/bow.html">Bags of Words Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vectorization/tf-idf.html">TF-IDF Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vectorization/similarity.html">Word Similarity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vectorization/lab-similarity.html">Lab: Word Similarity</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Word Embeddings</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="nlm.html">Neural Language Models</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Word2Vec</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="glove.html">GloVe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fasttext.html">FastText</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_deep/index.html">Deep Learning for NLP</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/llms/index.html">Large Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/zeroshot.html">Zero Shot and Prompt Engineering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/decoding.html">Decoding and Search Strategies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/plms.html">Pretrained Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/transformers/index.html">Transformers</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/bert.html">BERT: Bidirectional Encoder Representations from Transformers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/bertviz.html">BERT: Visualizing Attention</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/t5.html">T5: Text-To-Text Transfer Transformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/datasets/mc4.html">mC4 Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/datasets/lab-eda.html">Lab: Exploratory Data Analysis (EDA)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/subword.html">Subword Tokenization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/pipeline.html">Tokenization Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/bpe.html">BPE Step-by-Step Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/wordpiece.html">WordPiece Step-by-Step Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/unigram.html">Unigram Step-by-Step Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/sentencepiece.html">SentencePiece Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/lab-train-tokenizers.html">Lab: Training Tokenizers</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/training/index.html">Training Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/training/lab-pretraining.html">Lab: Pretraining Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/chatbots/index.html">Conversational AI and Chatbots</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/chatbots/rlhf.html">Reinforcement Learning with Human Feedback (RLHF)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/chatbots/detectGPT.html">How to Spot Machine-Written Texts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_advances/index.html">Advances in AI and NLP</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/thesis.html">Writing a Thesis</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_advances/gpt/index.html">Generative Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/detectGPT.html">DetectGPT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/gpt4.html">GPT-4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/camelids.html">Meet the Camelids: A Family of LLMs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/sam/index.html">Segment Anything</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../aiart/index.html">AI Art (Generative AI)</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/intro/index.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/brave/index.html">A Brave New World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/aiart/index.html">Art and Music in Light of AI</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../aiart/text-to-image/index.html">Text-to-Image Models</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/dalle1.html">DALL·E 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/dalle2.html">DALL·E 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/imagen.html">Imagen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/motion-capture-and-synthesis/index.html">Motion Capture and Motion Synthesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/robot/index.html">Robot Drawing System</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../mlops/index.html">Machine Learning Systems Design</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/intro.html">Introduction to MLOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/project.html">MLOps Project</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/devops/index.html">DevOps</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/gitops.html">GitOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/devsecops.html">DevSecOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/llmops.html">LLMOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/dotfiles/index.html">Dotfiles</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai">Dotfiles Project</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dotdrop/">Dotdrop Setup</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/github/">GitHub Setup</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/ssh-gpg-age/">SSH, GPG, and Age Setup</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/sops/">SOPS Usage</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/pass/">Pass and Passage Usage</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/doppler/">Doppler Usage</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dockerfiles/">Dockerfiles Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/security/index.html">Security Management</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/auth-enc-sign.html">Authentication, Encryption, and Signing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/age-gpg-ssh.html">SSH, GPG, and AGE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/pass.html">Unix Password Managers</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/github/index.html">GitHub Workflow</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/github/fork-pull.html">Github’s Fork &amp; Pull Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/github/template.html">Project Templating Tools</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://hyperfast-python.entelecheia.ai/">Hyperfast Python Template</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://hyperfast-template.entelecheia.ai/">Hyperfast Template</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/containerization/index.html">Containerization</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-24"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/containerization/docker.html">Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/containerization/containerd.html"><code class="docutils literal notranslate"><span class="pre">containerd</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/simple-pipeline/index.html">Simple MLOps Pipeline</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-25"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/simple-pipeline/server.html">Server Setup &amp; Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/simple-pipeline/vpn.html">VPN Connectivity</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../ds/index.html">Data Science for Economics and Finance</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-26"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../ds/fomc/index.html">Textual Analysis of FOMC contents</a><input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-27"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/01_numerical_data.html">Preparing Numerical Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/02_textual_data.html">Preparing Textual Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/03_EDA_numericals1.html">EDA on Numerical Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/03_EDA_numericals2.html">EDA on Numerical Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/04_training_datasets.html">Create Training Datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/05_features.html">Visualizing Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/06_AutoML.html">Checking Baseline with AutoML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/07_predict_sentiments.html">Predicting Sentiments of FOMC Corpus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/08_EDA_sentiments1.html">EDA on Sentiments: Correlation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/08_EDA_sentiments2.html">EDA on Sentiment Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/09_visualize_features.html">Visualize Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/10_monetary_shocks.html">Monetary Policy Shocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/fomc/11_AutoML_with_tones.html">Predicting the next decisions with tones</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../ds/esg-ratings/index.html">ESG Ratings</a><input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-28"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/esg-ratings/prepare_datasets.html">Preparing training datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/esg-ratings/improve_datasets.html">Improving classification datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/esg-ratings/train_classifiers.html">Training Classifiers for ESG Ratings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/esg-ratings/build_news_corpus.html">Building <code class="docutils literal notranslate"><span class="pre">econ_news_kr</span></code> corpus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/esg-ratings/predict_esg_classes.html">Predicting ESG Categories and Polarities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/esg-ratings/cross_validate_datasets.html">Cross validating datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/esg-ratings/prepare_datasets_for_labeling.html">Preparing active learning data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ds/esg-ratings/all_in_one_pipeline.html">Putting them together in a pipeline</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../about/lecture-bot.html">LectureBot for ἐντελέχεια.άι</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://course.entelecheia.ai">course.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://research.entelecheia.ai">research.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/nlp_intro/embeddings/w2v.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/lectures/nlp_intro/embeddings/w2v.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Word2Vec</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Word2Vec</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main-idea">Main idea</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#negative-sampling">Negative sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-models">Two models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-the-skip-gram-model-and-when-to-use-cbow">When to use the skip-gram model and when to use CBOW?</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#skip-gram-model">Skip-gram model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-output-hidden-layer">Input/output/hidden layer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-0-prepare-the-data">Step 0: Prepare the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-setting-target-and-context-variable">Step 1: Setting target and context variable</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-building-the-model">Step 2: Building the model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-loss-and-optimization-function">Step 3: Loss and optimization function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-training-the-model">Step 4: Training the model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-embeddings">Visualizing the embeddings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-bag-of-words-cbow">Continuous Bag of Words (CBOW)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture">Architecture</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-define-a-function-to-create-a-context-and-a-target-word">Step 1: Define a function to create a context and a target word</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-build-the-model">Step 2: Build the model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Step 3: Loss and optimization function.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Step 4: Training the model.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Visualizing the embeddings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Evaluation</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#improving-predictive-functions">Improving predictive functions</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#softmax">Softmax</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hierarchical-softmax">Hierarchical softmax</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#noise-contrastive-estimation">Noise-contrastive estimation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Negative sampling</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="word2vec">
+<h1>Word2Vec<a class="headerlink" href="#word2vec" title="Permalink to this heading">#</a></h1>
+<p>Word2Vec is a neural network architecture that was proposed by <span id="id1">[<a class="reference internal" href="../../../about/index.html#id24" title="Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg S Corrado, and Jeff Dean. Distributed representations of words and phrases and their compositionality. Advances in neural information processing systems, 2013.">Mikolov <em>et al.</em>, 2013</a>]</span> in 2013. It is a shallow, two-layer neural network that is trained to reconstruct linguistic contexts of words.</p>
+<p>The problem of the previous neural network is that it is computationally expensive to train. The hidden layer computes probability distribution for all the words in the vocabulary. This is because the output layer is a fully connected layer.</p>
+<p>Word2Vec solves this problem by using a single output neuron. This is achieved by using a <code class="docutils literal notranslate"><span class="pre">hierarchical</span> <span class="pre">softmax</span></code> or <code class="docutils literal notranslate"><span class="pre">negative</span> <span class="pre">sampling</span></code> method.</p>
+<section id="main-idea">
+<h2>Main idea<a class="headerlink" href="#main-idea" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Use a <code class="docutils literal notranslate"><span class="pre">binary</span> <span class="pre">classifier</span></code> to predict which words appear in the context of (i.e. near) a target word.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">parameters</span> <span class="pre">of</span> <span class="pre">that</span> <span class="pre">classifier</span></code> provide a dense vector representation of the target word (embedding).</p></li>
+<li><p>Words that appear in similar contexts (that have high distributional similarity) will have very similar vector representations.</p></li>
+<li><p>These models can be trained on large amounts of raw text (and pre-trained embeddings can be downloaded).</p></li>
+</ul>
+</section>
+<section id="negative-sampling">
+<h2>Negative sampling<a class="headerlink" href="#negative-sampling" title="Permalink to this heading">#</a></h2>
+<p>Train a binary classifier that decides whether a target word t appears in the context of other words <span class="math notranslate nohighlight">\(c_{1..k}\)</span></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Context</span></code>: the set of k words near (surrounding) t</p></li>
+<li><p>Treat the target word t and any word that actually appears in its context in a real corpus as <code class="docutils literal notranslate"><span class="pre">positive</span></code> examples</p></li>
+<li><p>Treat the target word t and randomly sampled words that don’t appear in its context as <code class="docutils literal notranslate"><span class="pre">negative</span></code> examples</p></li>
+<li><p>Train a <code class="docutils literal notranslate"><span class="pre">binary</span> <span class="pre">logistic</span> <span class="pre">regression</span></code> classifier to distinguish these cases</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">weights</span></code> of this classifier depend on the <code class="docutils literal notranslate"><span class="pre">similarity</span></code> of t and the words in <span class="math notranslate nohighlight">\(c_{1..k}\)</span></p></li>
+</ul>
+</section>
+<section id="two-models">
+<h2>Two models<a class="headerlink" href="#two-models" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Continuous Bag of Words (CBOW)</strong>: predicts the target word from the context words.</p></li>
+<li><p><strong>Skip-gram</strong>: predicts the context words from the target word.</p></li>
+</ul>
+<p><img alt="" src="../../../_images/cbow_skip-gram.png" /></p>
+</section>
+<section id="when-to-use-the-skip-gram-model-and-when-to-use-cbow">
+<h2>When to use the skip-gram model and when to use CBOW?<a class="headerlink" href="#when-to-use-the-skip-gram-model-and-when-to-use-cbow" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>CBOW is faster to train than skip-gram.</p></li>
+<li><p>Skip-gram is better at capturing rare words and their contexts.</p></li>
+<li><p>CBOW is better at capturing common words and their contexts.</p></li>
+<li><p>Skip-gram works better with small datasets.</p></li>
+<li><p>Therefore, the choice of model depends on the kind of problem you are trying to solve.</p></li>
+</ul>
+</section>
+</section>
+<section id="skip-gram-model">
+<h1>Skip-gram model<a class="headerlink" href="#skip-gram-model" title="Permalink to this heading">#</a></h1>
+<p>The skip-gram model is the same as the CBOW model with one difference: it predicts the context words from the target word.</p>
+<p>In the above figure, <span class="math notranslate nohighlight">\(w[t]\)</span> is the target word, and <span class="math notranslate nohighlight">\(w[t-2], w[t-1], w[t+1], w[t+2]\)</span> are the context words, where <span class="math notranslate nohighlight">\(t\)</span> is the location of the target word in the sentence.</p>
+<p>The model predicts the probability of a word being a context word given the target word. The output probabilities explain how likely a word is to be close to the target word.</p>
+<p>This shallow neural network architecture is called a <code class="docutils literal notranslate"><span class="pre">skip-gram</span></code> model because it predicts the context words from the target word.</p>
+<p>We don’t use this trained network for prediction. Instead, we use the weights of the embedding layer as the word embeddings.</p>
+<section id="input-output-hidden-layer">
+<h2>Input/output/hidden layer<a class="headerlink" href="#input-output-hidden-layer" title="Permalink to this heading">#</a></h2>
+<p>How do we represent a single target word as a large vector?</p>
+<ul class="simple">
+<li><p>We can use a one-hot vector to represent the target word.</p></li>
+<li><p>Say we have a vocabulary of 10,000 words. Then the one-hot vector for the word “deep” will be a vector of 10,000 elements, where all the elements are 0 except the 4th element, which is 1.</p></li>
+<li><p>Similarly, the output layer will be a vector of 10,000 elements, where each element represents the probability of the word being the context word.</p></li>
+<li><p>The hidden layer is a linear layer that maps the one-hot vector to a vector of <span class="math notranslate nohighlight">\(d\)</span> elements, where <span class="math notranslate nohighlight">\(d\)</span> is the dimension of the word embeddings.</p></li>
+<li><p>The opimized weights of the hidden layer are the word embeddings.</p></li>
+<li><p>The dimensions of the hidden layer are <span class="math notranslate nohighlight">\(d \times V\)</span>, where <span class="math notranslate nohighlight">\(V\)</span> is the size of the vocabulary.</p></li>
+</ul>
+<p><img alt="" src="../../../_images/skip-gram.png" /></p>
+</section>
+<section id="step-0-prepare-the-data">
+<h2>Step 0: Prepare the data<a class="headerlink" href="#step-0-prepare-the-data" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;retina&#39;
+
+<span class="kn">from</span> <span class="nn">ekorpkit</span> <span class="kn">import</span> <span class="n">eKonf</span>
+
+<span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">uri</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/entelecheia/ekorpkit-book/raw/main/assets/data/us_equities_news_sampled.zip&#39;</span>
+<span class="n">corpus</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s2">&quot;us_equities_news_sampled.parquet&quot;</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">cached_path</span><span class="p">)</span>
+<span class="n">sentences</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">text</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">words</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sentences</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="n">sentences</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;chip name micron technology inc nasdaq mu is higher on two new price target hikes from analysts specifically bmo lifted its price target to 60 from 50 while cowen boosted its estimate to 46 from 38 these two bull notes come just one day before mu s fiscal fourth quarter earnings report due out after the close tomorrow sept 26&#39;,
+ &#39;this puts the consensus micron nasdaq mu 12 month target price at 51 59 which sits just atop the stock s sept 11 of 51 39 and represents a 7 premium to mu s current perch at 49 22 up 1 5 on the day meanwhile 14 brokerages in coverage call the equity a buy or better and 10 say it s a hold or worse&#39;,
+ &#39;it s no surprise that most analysts are optimistic ahead of mu s quarterly reveal the semiconductor name tends to do quite well the day after earnings in fact only three of its last eight post earnings moves were negative and the equity managed a 13 3 next day pop on in june this time around the options market is pricing in an 11 4 swing for friday s trading regardless of direction much wider than the 6 9 move the equity has averaged over the past two years&#39;,
+ &#39;while mu tends to pop the day after earnings investors might want to look out a little further data from schaeffer s senior quantitative analyst rocky white shows the equity is one of the after the fed cuts rates twice in 60 days which just occurred last week looking at data from 1984 mu finished the higher one month later after only 33 of previous signals averaging an underwhelming one month gain of 1 04&#39;,
+ &#39;drilling down the options pits have seen an uptick in bearish activity today with 47 000 puts across the tape two times the intraday average compared to 25 000 calls a massive portion of these contracts have changed hands at the october 43 put where positions are possibly being bought to open this means traders are expecting a big swing lower through expiration at the close on friday oct 18&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-1-setting-target-and-context-variable">
+<h2>Step 1: Setting target and context variable<a class="headerlink" href="#step-1-setting-target-and-context-variable" title="Permalink to this heading">#</a></h2>
+<p>Since skipgram takes a single context word and n number of target variables, we just need to flip the CBOW from the previous model.</p>
+<p>when the window size is 1, we take one word before and after the target word.</p>
+<p>For example, if we have the sentence “I like deep learning because it is fun”, and the window size is 1, the function will return the following list:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="s1">&#39;like&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">],</span>
+ <span class="p">[</span><span class="s1">&#39;like&#39;</span><span class="p">,</span> <span class="s1">&#39;deep&#39;</span><span class="p">],</span>
+ <span class="p">[</span><span class="s1">&#39;deep&#39;</span><span class="p">,</span> <span class="s1">&#39;like&#39;</span><span class="p">],</span>
+ <span class="p">[</span><span class="s1">&#39;deep&#39;</span><span class="p">,</span> <span class="s1">&#39;learning&#39;</span><span class="p">],</span>
+ <span class="p">[</span><span class="s1">&#39;learning&#39;</span><span class="p">,</span> <span class="s1">&#39;deep&#39;</span><span class="p">],</span>
+ <span class="p">[</span><span class="s1">&#39;learning&#39;</span><span class="p">,</span> <span class="s1">&#39;because&#39;</span><span class="p">],</span>
+ <span class="o">...</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">skipgram</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">skip_grams</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">window_size</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> <span class="o">-</span> <span class="n">window_size</span><span class="p">):</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="p">[</span><span class="n">words</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">window_size</span><span class="p">],</span> <span class="n">words</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">window_size</span><span class="p">]]</span>
+        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">context</span><span class="p">:</span>
+            <span class="n">skip_grams</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">target</span><span class="p">,</span> <span class="n">w</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">skip_grams</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">skipgram</span><span class="p">(</span><span class="s2">&quot;I like deep learning because it is fun&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[&#39;like&#39;, &#39;I&#39;],
+ [&#39;like&#39;, &#39;deep&#39;],
+ [&#39;deep&#39;, &#39;like&#39;],
+ [&#39;deep&#39;, &#39;learning&#39;],
+ [&#39;learning&#39;, &#39;deep&#39;],
+ [&#39;learning&#39;, &#39;because&#39;],
+ [&#39;because&#39;, &#39;learning&#39;],
+ [&#39;because&#39;, &#39;it&#39;],
+ [&#39;it&#39;, &#39;because&#39;],
+ [&#39;it&#39;, &#39;is&#39;],
+ [&#39;is&#39;, &#39;it&#39;],
+ [&#39;is&#39;, &#39;fun&#39;]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-2-building-the-model">
+<h2>Step 2: Building the model<a class="headerlink" href="#step-2-building-the-model" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+
+
+<span class="k">class</span> <span class="nc">skipgramModel</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">,</span> <span class="n">word_to_ix</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">skipgramModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">W</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">embedding_size</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">WT</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">embedding_size</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">word_to_ix</span> <span class="o">=</span> <span class="n">word_to_ix</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="n">embeddings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">hidden_layer</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">W</span><span class="p">(</span><span class="n">embeddings</span><span class="p">))</span>
+        <span class="n">output_layer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">WT</span><span class="p">(</span><span class="n">hidden_layer</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output_layer</span>
+
+    <span class="k">def</span> <span class="nf">get_word_emdedding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
+        <span class="n">word</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">word_to_ix</span><span class="p">[</span><span class="n">word</span><span class="p">]])</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span><span class="n">word</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-3-loss-and-optimization-function">
+<h2>Step 3: Loss and optimization function<a class="headerlink" href="#step-3-loss-and-optimization-function" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
+
+<span class="n">word_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">words</span><span class="p">))</span>
+<span class="n">word_to_id</span> <span class="o">=</span> <span class="p">{</span><span class="n">w</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">word_list</span><span class="p">)}</span>
+<span class="n">id_to_word</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">w</span> <span class="k">for</span> <span class="n">w</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">word_to_id</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+<span class="n">vocab_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">word_list</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;vocab_size:&quot;</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">)</span>
+
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># mini-batch size</span>
+<span class="n">embedding_size</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># embedding size</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">skipgramModel</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">,</span> <span class="n">word_to_id</span><span class="p">)</span>
+
+<span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>vocab_size: 222
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-4-training-the-model">
+<h2>Step 4: Training the model<a class="headerlink" href="#step-4-training-the-model" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">tqdm.auto</span> <span class="kn">import</span> <span class="n">tqdm</span>
+
+
+<span class="k">def</span> <span class="nf">words_to_vector</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="n">word_to_ix</span><span class="p">):</span>
+    <span class="n">idxs</span> <span class="o">=</span> <span class="p">[</span><span class="n">word_to_ix</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">idxs</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">random_batch</span><span class="p">(</span><span class="n">skip_grams</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">random_inputs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">random_labels</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">random_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">skip_grams</span><span class="p">)),</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">random_index</span><span class="p">:</span>
+        <span class="n">random_inputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">skip_grams</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># target</span>
+        <span class="n">random_labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">skip_grams</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># context word</span>
+
+    <span class="k">return</span> <span class="n">random_inputs</span><span class="p">,</span> <span class="n">random_labels</span>
+
+
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">150000</span><span class="p">),</span> <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">skipgram</span><span class="p">(</span><span class="n">words</span><span class="p">))):</span>
+    <span class="n">input_batch</span><span class="p">,</span> <span class="n">target_batch</span> <span class="o">=</span> <span class="n">random_batch</span><span class="p">(</span><span class="n">skipgram</span><span class="p">(</span><span class="n">words</span><span class="p">),</span> <span class="n">batch_size</span><span class="p">)</span>
+    <span class="n">input_batch</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">(</span><span class="n">words_to_vector</span><span class="p">(</span><span class="n">input_batch</span><span class="p">,</span> <span class="n">word_to_id</span><span class="p">))</span>
+    <span class="n">target_batch</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">(</span><span class="n">words_to_vector</span><span class="p">(</span><span class="n">target_batch</span><span class="p">,</span> <span class="n">word_to_id</span><span class="p">))</span>
+
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">input_batch</span><span class="p">)</span>
+
+    <span class="c1"># output : [batch_size, voc_size], target_batch : [batch_size] (LongTensor, not one-hot)</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">target_batch</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">10000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Epoch:&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%04d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">&quot;cost =&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{:.6f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">loss</span><span class="p">))</span>
+
+    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">retain_graph</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "f921115bdbc147129044193c73849852", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 10000 cost = 3.896727
+Epoch: 20000 cost = 2.242064
+Epoch: 30000 cost = 3.617461
+Epoch: 40000 cost = 4.317378
+Epoch: 50000 cost = 2.380702
+Epoch: 60000 cost = 4.073981
+Epoch: 70000 cost = 3.560866
+Epoch: 80000 cost = 4.322421
+Epoch: 90000 cost = 2.438971
+Epoch: 100000 cost = 4.790970
+Epoch: 110000 cost = 4.703344
+Epoch: 120000 cost = 2.545708
+Epoch: 130000 cost = 2.590156
+Epoch: 140000 cost = 2.531536
+Epoch: 150000 cost = 2.791655
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualizing-the-embeddings">
+<h2>Visualizing the embeddings<a class="headerlink" href="#visualizing-the-embeddings" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">word_list</span><span class="p">:</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_word_emdedding</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">numpy</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_word_emdedding</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">numpy</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+        <span class="n">w</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s2">&quot;offset points&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;bottom&quot;</span>
+    <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/bef414ff101355f897c52a7589565c9f7f524bcb6f7ba3f169ef39bbe6fb1a4c.png" src="../../../_images/bef414ff101355f897c52a7589565c9f7f524bcb6f7ba3f169ef39bbe6fb1a4c.png" />
+</div>
+</div>
+</section>
+<section id="evaluation">
+<h2>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">skipgram_test</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    <span class="n">correct_ct</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">test_data</span><span class="p">)):</span>
+        <span class="n">input_batch</span><span class="p">,</span> <span class="n">target_batch</span> <span class="o">=</span> <span class="n">random_batch</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">)</span>
+        <span class="n">input_batch</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">(</span><span class="n">words_to_vector</span><span class="p">(</span><span class="n">input_batch</span><span class="p">,</span> <span class="n">word_to_id</span><span class="p">))</span>
+        <span class="n">target_batch</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">(</span><span class="n">words_to_vector</span><span class="p">(</span><span class="n">target_batch</span><span class="p">,</span> <span class="n">word_to_id</span><span class="p">))</span>
+
+        <span class="n">model</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">predicted</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">input_batch</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">predicted</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">target_batch</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">correct_ct</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="s2">&quot;Accuracy: </span><span class="si">{:.1f}</span><span class="s2">% (</span><span class="si">{:d}</span><span class="s2">/</span><span class="si">{:d}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">correct_ct</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="n">correct_ct</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">skipgram_test</span><span class="p">(</span><span class="n">skipgram</span><span class="p">(</span><span class="n">words</span><span class="p">),</span> <span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 13.0% (93/716)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;earnings&quot;</span><span class="p">]</span>
+
+<span class="n">model_pred</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">e</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">model_pred</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pred</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="k">while</span> <span class="n">e</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">:</span>
+    <span class="n">word</span> <span class="o">=</span> <span class="n">id_to_word</span><span class="p">[</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">([</span><span class="n">word_to_id</span><span class="p">[</span><span class="n">model_pred</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]])))</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+    <span class="p">]</span>
+    <span class="n">model_pred</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+    <span class="n">e</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">model_pred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;earnings quarter fourth october 9 and senior&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>The skip-gram model increases computational complexity because it has to predict nearby words based on the number of neighboring words. The more distant words tend to be slightly less related to the current word.</p>
+</section>
+</section>
+<section id="continuous-bag-of-words-cbow">
+<h1>Continuous Bag of Words (CBOW)<a class="headerlink" href="#continuous-bag-of-words-cbow" title="Permalink to this heading">#</a></h1>
+<p>The CBOW model predicts the target word from the context words.</p>
+<p>This model reduces the complexity of calculating the probability distribution for all the words in the vocabulary to the <span class="math notranslate nohighlight">\(\log_2(V)\)</span> complexity of calculating the probability distribution for the target word.</p>
+<p><img alt="" src="../../../_images/cbow_skip-gram.png" /></p>
+<section id="architecture">
+<h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this heading">#</a></h2>
+<a class="bg-primary mb-1 reference internal image-reference" href="../../../_images/cbow.png"><img alt="cbow" class="bg-primary mb-1 align-center" src="../../../_images/cbow.png" style="width: 350px;" /></a>
+<ul class="simple">
+<li><p>The input layer is the context words.</p></li>
+<li><p>The input is <span class="math notranslate nohighlight">\(C\)</span> context words, each represented as a one-hot vector of size <span class="math notranslate nohighlight">\(V\)</span>, where <span class="math notranslate nohighlight">\(V\)</span> is the size of the vocabulary, yielding a <span class="math notranslate nohighlight">\(C \times V\)</span> matrix.</p></li>
+<li><p>Each row of the matrix is multiplied by the weight matrix <span class="math notranslate nohighlight">\(W\)</span> of size <span class="math notranslate nohighlight">\(V \times N\)</span>, where <span class="math notranslate nohighlight">\(N\)</span> is the size of the embedding.</p></li>
+<li><p>The resulting matrix is summed up to get a vector of size <span class="math notranslate nohighlight">\(N\)</span>.</p></li>
+<li><p>This vector is passed through a softmax layer to get the probability distribution of the target word.</p></li>
+<li><p>The learned weights of the softmax layer are the word embeddings.</p></li>
+</ul>
+</section>
+<section id="step-1-define-a-function-to-create-a-context-and-a-target-word">
+<h2>Step 1: Define a function to create a context and a target word<a class="headerlink" href="#step-1-define-a-function-to-create-a-context-and-a-target-word" title="Permalink to this heading">#</a></h2>
+<p>Define a function to create a context window with n words from the right and left of the target word.</p>
+<p>The function should take two arguments: data and window size. The window size will define how many words we are supposed to take from the right and from the left.</p>
+<p>The for loop: <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">range(window_size,</span> <span class="pre">len(words)</span> <span class="pre">–</span> <span class="pre">window_size)</span></code>: iterates through a range starting from the window size, i.e. 2 means it will ignore words in index 0 and 1 from the sentence, and end 2 words before the sentence ends.</p>
+<p>Inside the for loop, we try separate context and target words and store them in a list.</p>
+<p>For example, if we have the sentence “I like deep learning because it is fun”, and the window size is 2, the function will return the following list:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[([</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;like&#39;</span><span class="p">,</span> <span class="s1">&#39;learning&#39;</span><span class="p">,</span> <span class="s1">&#39;because&#39;</span><span class="p">],</span> <span class="s1">&#39;deep&#39;</span><span class="p">),</span>
+ <span class="p">([</span><span class="s1">&#39;like&#39;</span><span class="p">,</span> <span class="s1">&#39;deep&#39;</span><span class="p">,</span> <span class="s1">&#39;because&#39;</span><span class="p">,</span> <span class="s1">&#39;it&#39;</span><span class="p">],</span> <span class="s1">&#39;learning&#39;</span><span class="p">),</span>
+ <span class="p">([</span><span class="s1">&#39;deep&#39;</span><span class="p">,</span> <span class="s1">&#39;learning&#39;</span><span class="p">,</span> <span class="s1">&#39;it&#39;</span><span class="p">,</span> <span class="s1">&#39;is&#39;</span><span class="p">],</span> <span class="s1">&#39;because&#39;</span><span class="p">),</span>
+ <span class="p">([</span><span class="s1">&#39;learning&#39;</span><span class="p">,</span> <span class="s1">&#39;because&#39;</span><span class="p">,</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">],</span> <span class="s1">&#39;it&#39;</span><span class="p">)]</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">CBOW</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">window_size</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> <span class="o">-</span> <span class="n">window_size</span><span class="p">):</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">words</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">window_size</span><span class="p">],</span>
+            <span class="n">words</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="p">(</span><span class="n">window_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)],</span>
+            <span class="n">words</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="p">(</span><span class="n">window_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)],</span>
+            <span class="n">words</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">window_size</span><span class="p">],</span>
+        <span class="p">]</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">context</span><span class="p">,</span> <span class="n">target</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s call the function and see the output.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CBOW</span><span class="p">(</span><span class="s2">&quot;I like deep learning because it is fun&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[([&#39;I&#39;, &#39;like&#39;, &#39;learning&#39;, &#39;because&#39;], &#39;deep&#39;),
+ ([&#39;like&#39;, &#39;deep&#39;, &#39;because&#39;, &#39;it&#39;], &#39;learning&#39;),
+ ([&#39;deep&#39;, &#39;learning&#39;, &#39;it&#39;, &#39;is&#39;], &#39;because&#39;),
+ ([&#39;learning&#39;, &#39;because&#39;, &#39;is&#39;, &#39;fun&#39;], &#39;it&#39;)]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-2-build-the-model">
+<h2>Step 2: Build the model<a class="headerlink" href="#step-2-build-the-model" title="Permalink to this heading">#</a></h2>
+<p>In the CBOW model, we reduce the hidden layer to only one. So all together we have: an embedding layer, a hidden layer which passes through the ReLU layer, and an output layer.</p>
+<p>The context words index is fed into the embedding layers, which is then passed through the hidden layer followed by the nonlinear activation layer, i.e. ReLU, and finally we get the output.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+
+
+<span class="k">class</span> <span class="nc">CBOW_Model</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="p">,</span> <span class="n">word_to_ix</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CBOW_Model</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">word_to_ix</span> <span class="o">=</span> <span class="n">word_to_ix</span>
+
+        <span class="c1"># out: 1 x emdedding_dim</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">embedding_dim</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">activation_function1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+
+        <span class="c1"># out: 1 x vocab_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
+        <span class="n">embeds</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span><span class="p">(</span><span class="n">inputs</span><span class="p">))</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear1</span><span class="p">(</span><span class="n">embeds</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">activation_function1</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear2</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">out</span>
+
+    <span class="k">def</span> <span class="nf">get_word_emdedding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
+        <span class="n">word</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">word_to_ix</span><span class="p">[</span><span class="n">word</span><span class="p">]])</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span><span class="p">(</span><span class="n">word</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h2>Step 3: Loss and optimization function.<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<p>We are using the cross-entropy loss function and the SGD optimizer. You can also use the Adam optimizer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CONTEXT_SIZE</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># 2 words to the left, 2 to the right</span>
+<span class="n">EMDEDDING_DIM</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="c1"># By deriving a set from `words`, we deduplicate the array</span>
+<span class="n">vocab</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+<span class="n">vocab_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vocab</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;vocab_size:&quot;</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">)</span>
+
+<span class="n">word_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">vocab</span><span class="p">)</span>
+
+<span class="n">word_to_id</span> <span class="o">=</span> <span class="p">{</span><span class="n">word</span><span class="p">:</span> <span class="n">ix</span> <span class="k">for</span> <span class="n">ix</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vocab</span><span class="p">)}</span>
+<span class="n">id_to_word</span> <span class="o">=</span> <span class="p">{</span><span class="n">ix</span><span class="p">:</span> <span class="n">word</span> <span class="k">for</span> <span class="n">ix</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vocab</span><span class="p">)}</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">CBOW</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">CBOW_Model</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">EMDEDDING_DIM</span><span class="p">,</span> <span class="n">word_to_id</span><span class="p">)</span>
+
+<span class="n">loss_function</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>vocab_size: 222
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id3">
+<h2>Step 4: Training the model.<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<p>Finally, we train the model.</p>
+<p><code class="docutils literal notranslate"><span class="pre">words_to_vector</span></code> turns words into numbers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
+    <span class="n">total_loss</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">context</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">context_vector</span> <span class="o">=</span> <span class="n">words_to_vector</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">word_to_id</span><span class="p">)</span>
+
+        <span class="n">log_probs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">context_vector</span><span class="p">)</span>
+
+        <span class="n">total_loss</span> <span class="o">+=</span> <span class="n">loss_function</span><span class="p">(</span><span class="n">log_probs</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">word_to_id</span><span class="p">[</span><span class="n">target</span><span class="p">]]))</span>
+
+    <span class="c1"># optimize at the end of each epoch</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+    <span class="n">total_loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Epoch: </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s2">, Loss: </span><span class="si">{</span><span class="n">total_loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 9, Loss: 7.895180702209473
+Epoch: 19, Loss: 6.261657238006592
+Epoch: 29, Loss: 5.2918782234191895
+Epoch: 39, Loss: 4.626347541809082
+Epoch: 49, Loss: 4.151697635650635
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id4">
+<h2>Visualizing the embeddings<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">word_list</span><span class="p">:</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_word_emdedding</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">numpy</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_word_emdedding</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">numpy</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+        <span class="n">w</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s2">&quot;offset points&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;bottom&quot;</span>
+    <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/2accffbb868fd77c684f771c28a62aa2d473915bbeed73484346ed9a306e5370.png" src="../../../_images/2accffbb868fd77c684f771c28a62aa2d473915bbeed73484346ed9a306e5370.png" />
+</div>
+</div>
+</section>
+<section id="id5">
+<h2>Evaluation<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">CBOW_test</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    <span class="n">correct_ct</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">context</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">context_vector</span> <span class="o">=</span> <span class="n">words_to_vector</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">word_to_id</span><span class="p">)</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="n">predicted</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">context_vector</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">predicted</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">word_to_id</span><span class="p">[</span><span class="n">target</span><span class="p">]]):</span>
+            <span class="n">correct_ct</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="s2">&quot;Accuracy: </span><span class="si">{:.1f}</span><span class="s2">% (</span><span class="si">{:d}</span><span class="s2">/</span><span class="si">{:d}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">correct_ct</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="n">correct_ct</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CBOW_test</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 99.7% (355/356)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">context</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;chip&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;technology&quot;</span><span class="p">,</span> <span class="s2">&quot;inc&quot;</span><span class="p">]</span>
+<span class="n">context_vector</span> <span class="o">=</span> <span class="n">words_to_vector</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">word_to_id</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">context_vector</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Context: </span><span class="si">{</span><span class="n">context</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Prediction: </span><span class="si">{</span><span class="n">id_to_word</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">item</span><span class="p">()]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Context: [&#39;chip&#39;, &#39;name&#39;, &#39;technology&#39;, &#39;inc&#39;]
+
+Prediction: micron
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="improving-predictive-functions">
+<h1>Improving predictive functions<a class="headerlink" href="#improving-predictive-functions" title="Permalink to this heading">#</a></h1>
+<section id="softmax">
+<h2>Softmax<a class="headerlink" href="#softmax" title="Permalink to this heading">#</a></h2>
+<p>The equation for the softmax function is:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\text{softmax}(x_i|c) = \frac{e^{x_i}}{\sum_{j=1}^n e^{x_j}}
+\end{align}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(x_i\)</span> is the score of the target word <span class="math notranslate nohighlight">\(w_i\)</span> and <span class="math notranslate nohighlight">\(c\)</span> is the context words.</p>
+<p>The complexity of the softmax function is <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the number of words in the vocabulary.</p>
+<p>With a large vocabulary, say 100,000 words, the softmax function becomes very expensive to compute. For each word (<span class="math notranslate nohighlight">\(w_i\)</span>), we have to compute the exponential of the score of each word in the vocabulary (<span class="math notranslate nohighlight">\(x_j\)</span>) and then sum them up. This is <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span>.</p>
+</section>
+<section id="hierarchical-softmax">
+<h2>Hierarchical softmax<a class="headerlink" href="#hierarchical-softmax" title="Permalink to this heading">#</a></h2>
+<p>Hierarchical softmax is a method to reduce the complexity of the softmax function. It is a tree-based data structure that is used to represent the vocabulary.</p>
+<p>Hierarchical softmax was introduced by Morin and Bengio in 2005, as an alternative to the full softmax function, where it replaces it with a hierarchical layer. It borrows the technique from the binary huffman tree, which reduces the complexity of calculating the probability from <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span> to <span class="math notranslate nohighlight">\(\mathcal{O}(\log_2(n))\)</span>.</p>
+<p>The hierarchical softmax is a binary tree, where each node represents a word in the vocabulary. The root node represents the entire vocabulary. The left child represents the words that are less frequent than the parent node, and the right child represents the words that are more frequent than the parent node.</p>
+<p>The probability of a word <span class="math notranslate nohighlight">\(w_i\)</span> is the product of the probabilities of the nodes on the path from the root to the leaf node that represents <span class="math notranslate nohighlight">\(w_i\)</span>.</p>
+<p>In the huffman tree, we no longer calculate the output embeddings <span class="math notranslate nohighlight">\(w^\prime\)</span>. Instead, we calculate the probability of turning right or left at each node.</p>
+</section>
+<section id="noise-contrastive-estimation">
+<h2>Noise-contrastive estimation<a class="headerlink" href="#noise-contrastive-estimation" title="Permalink to this heading">#</a></h2>
+<p>Noise-contrastive estimation (NCE) is an approximation method to reduce the complexity of the softmax function. It is a sampling-based method that is used to approximate the softmax function.</p>
+<p>NCE takes an unnormalised multinomial function (i.e. the function that has multiple labels and its output has not been passed through a softmax layer), and converts it to a binary logistic regression.</p>
+<p>In order to learn the distribution to predict the target word (<span class="math notranslate nohighlight">\(w_t\)</span>) from some specific context (<span class="math notranslate nohighlight">\(c\)</span>), we need to create two classes: <strong>positive samples</strong> and <strong>negative samples</strong>.</p>
+<p>The positive class contains samples from training data distribution, while the negative class contains samples from a noise distribution <span class="math notranslate nohighlight">\(Q\)</span>, and we label them 1 and 0 respectively. Noise distribution is a unigram distribution of the training set.</p>
+<p>For every target word given context, we generate sample noise from the distribution <span class="math notranslate nohighlight">\(Q\)</span> as <span class="math notranslate nohighlight">\(Q(w)\)</span>, such that it’s <span class="math notranslate nohighlight">\(k\)</span> times more frequent than the samples from the training data distribution <span class="math notranslate nohighlight">\(P(w|c)\)</span>.</p>
+<p>The loss function is the sum of the log probabilities of the positive samples and the negative samples, and is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\mathcal{L} = -\sum_{w_i \in V} \log \frac{e^{s_{\theta}(w|c)}}{e^{s_{\theta}(w|c)} + k Q(w)} + \sum_{j=1}^k \log[1-\frac{e^{s_{\theta}(\bar{w}_{ij}|c)}}{e^{s_{\theta}(\bar{w}_{ij}|c)} + k Q(\bar{w}_{ij})}]
+\end{align}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(w_i\)</span> is the <span class="math notranslate nohighlight">\(i\)</span>th negative sample.</p>
+<p>As we increase the number of noise samples <span class="math notranslate nohighlight">\(k\)</span>, the NCE derivative approaches the likelihood gradient, or the softmax function of the normalised model.</p>
+<p>In conclusion, NCE is a way of learning a data distribution by comparing it against a noise distribution, and modifying the learning parameters such that the model <span class="math notranslate nohighlight">\(P_{\theta}\)</span> is closer to the noise <span class="math notranslate nohighlight">\(P_{\text{data}}\)</span>.</p>
+</section>
+<section id="id6">
+<h2>Negative sampling<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
+<p>Negative sampling is a sampling-based method that is used to approximate the softmax function. It simplifies the NCE method by removing the need to calculate the noise distribution <span class="math notranslate nohighlight">\(Q\)</span>.</p>
+<p>Negative sampling gets rid of the noise distribution <span class="math notranslate nohighlight">\(Q\)</span> and uses a single noise sample <span class="math notranslate nohighlight">\(w_j\)</span> for each target word <span class="math notranslate nohighlight">\(w_t\)</span>.</p>
+<p>The loss function is the sum of the log probabilities of the positive samples and the negative samples, and is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\mathcal{L} = -\sum_{w_i \in V} \log \sigma (s_{\theta}(w|c)) + \sum_{j=1}^k \log \sigma (-s_{\theta}(\bar{w}_{ij}|c))
+\end{align}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\sigma\)</span> is the sigmoid function.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/lecture",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lectures/nlp_intro/embeddings"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="nlm.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Neural Language Models</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="glove.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">GloVe</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Word2Vec</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main-idea">Main idea</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#negative-sampling">Negative sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-models">Two models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-the-skip-gram-model-and-when-to-use-cbow">When to use the skip-gram model and when to use CBOW?</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#skip-gram-model">Skip-gram model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-output-hidden-layer">Input/output/hidden layer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-0-prepare-the-data">Step 0: Prepare the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-setting-target-and-context-variable">Step 1: Setting target and context variable</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-building-the-model">Step 2: Building the model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-loss-and-optimization-function">Step 3: Loss and optimization function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-training-the-model">Step 4: Training the model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-embeddings">Visualizing the embeddings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-bag-of-words-cbow">Continuous Bag of Words (CBOW)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture">Architecture</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-define-a-function-to-create-a-context-and-a-target-word">Step 1: Define a function to create a context and a target word</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-build-the-model">Step 2: Build the model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Step 3: Loss and optimization function.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Step 4: Training the model.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Visualizing the embeddings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Evaluation</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#improving-predictive-functions">Improving predictive functions</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#softmax">Softmax</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hierarchical-softmax">Hierarchical softmax</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#noise-contrastive-estimation">Noise-contrastive estimation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Negative sampling</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
