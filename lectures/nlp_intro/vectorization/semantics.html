@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Generative Language Models &#8212; ἐντελέχεια.άι</title>
+    <title>Vector Semantics &#8212; ἐντελέχεια.άι</title>
   
   
   
@@ -88,13 +88,13 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_advances/gpt/index';</script>
-    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_advances/gpt/index.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_intro/vectorization/semantics';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_intro/vectorization/semantics.html" />
     <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="DetectGPT" href="detectGPT.html" />
-    <link rel="prev" title="Writing a Thesis" href="../thesis.html" />
+    <link rel="next" title="Word Embeddings" href="../embeddings/index.html" />
+    <link rel="prev" title="Vector Representation" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -192,45 +192,45 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_intro/index.html">Introduction to NLP</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/intro/index.html">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/research/index.html">Research Applications</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/lm/index.html">Language Models</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/datasets/corpus.html">Text Data Collection</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/datasets/lab-dart.html">Lab: Crawling DART Data</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Introduction to NLP</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../research/index.html">Research Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lm/index.html">Language Models</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../datasets/corpus.html">Text Data Collection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datasets/lab-dart.html">Lab: Crawling DART Data</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/topic/index.html">Topic Modeling</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/methods.html">Topic Modeling Methodologies</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/lab-methods.html">Lab: Topic Modeling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/coherence.html">Topic Coherence Measures</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/lab-coherence.html">Lab: Topic Coherence</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/tomotopy.html">Lab: Tomotopy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../topic/index.html">Topic Modeling</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../topic/methods.html">Topic Modeling Methodologies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../topic/lab-methods.html">Lab: Topic Modeling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../topic/coherence.html">Topic Coherence Measures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../topic/lab-coherence.html">Lab: Topic Coherence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../topic/tomotopy.html">Lab: Tomotopy</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/sentiments/index.html">Sentiment Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lexicon.html">Lexicon-Based Methods</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/ml.html">Machine Learning-Based Methods</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lab-lexicon.html">Lab: Lexicon-based Sentiment Analysis</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lab-ml.html">Lab: ML-based Sentiment Classification</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../sentiments/index.html">Sentiment Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../sentiments/lexicon.html">Lexicon-Based Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sentiments/ml.html">Machine Learning-Based Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sentiments/lab-lexicon.html">Lab: Lexicon-based Sentiment Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sentiments/lab-ml.html">Lab: ML-based Sentiment Classification</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/tokenization.html">Understanding the Basics</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/pos.html">Part-of-Speech Tagging and Parsing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/ngrams.html">N-grams for Tokenization</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/korean.html">Tokenization in Korean</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/segmentation.html">Word Segmentation and Association</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/lab-tokenization.html">Lab: Tokenization and Pre-processing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/lab-korean.html">Lab: Korean Text Processing</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tokenization/tokenization.html">Understanding the Basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tokenization/pos.html">Part-of-Speech Tagging and Parsing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tokenization/ngrams.html">N-grams for Tokenization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tokenization/korean.html">Tokenization in Korean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tokenization/segmentation.html">Word Segmentation and Association</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tokenization/lab-tokenization.html">Lab: Tokenization and Pre-processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tokenization/lab-korean.html">Lab: Korean Text Processing</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/vectorization/index.html">Vector Representation</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/vectorization/semantics.html">Vector Semantics</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Vector Representation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Vector Semantics</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/embeddings/index.html">Word Embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../embeddings/index.html">Word Embeddings</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_deep/index.html">Deep Learning for NLP</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -273,15 +273,15 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Advances in AI and NLP</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../thesis.html">Writing a Thesis</a></li>
-<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">Generative Language Models</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="detectGPT.html">DetectGPT</a></li>
-<li class="toctree-l3"><a class="reference internal" href="gpt4.html">GPT-4</a></li>
-<li class="toctree-l3"><a class="reference internal" href="camelids.html">Meet the Camelids: A Family of LLMs</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_advances/index.html">Advances in AI and NLP</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/thesis.html">Writing a Thesis</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_advances/gpt/index.html">Generative Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/detectGPT.html">DetectGPT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/gpt4.html">GPT-4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/camelids.html">Meet the Camelids: A Family of LLMs</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../sam/index.html">Segment Anything</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/sam/index.html">Segment Anything</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../aiart/index.html">AI Art (Generative AI)</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -435,7 +435,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../../_sources/lectures/nlp_advances/gpt/index.md" target="_blank"
+      <li><a href="../../../_sources/lectures/nlp_intro/vectorization/semantics.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -504,7 +504,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -515,11 +517,32 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Generative Language Models</h1>
+    <h1>Vector Semantics</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lexical-semantics">Lexical Semantics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distributional-semantics">Distributional Semantics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-distributional-hypothesis">The Distributional Hypothesis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-in-word-representation">Importance in Word Representation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-represent-words-to-capture-word-similarities">How do we Represent Words to Capture Word Similarities?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atomic-symbols">1. Atomic Symbols</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sparse-vectors">2. Sparse Vectors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dense-vectors-word-embeddings">3. Dense Vectors (Word Embeddings)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -529,20 +552,86 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="generative-language-models">
-<h1>Generative Language Models<a class="headerlink" href="#generative-language-models" title="Permalink to this heading">#</a></h1>
-<p>In the rapidly advancing field of natural language processing (NLP), generative language models have emerged as a transformative technology that has reshaped the way we interact with machines and process textual data. These models are capable of generating human-like text based on a given context, enabling a wide range of applications such as machine translation, question-answering, summarization, and creative writing, among others.</p>
-<p>At the core of generative language models lies the ability to predict the next word in a sequence, given the context of the previous words. This process, also known as language modeling, has been significantly enhanced by the advent of deep learning techniques and the development of powerful neural network architectures. Among the most notable advances in this field are the GPT (Generative Pre-trained Transformer) series of models developed by OpenAI, with GPT-4 being the most recent iteration at the time of writing.</p>
-<p>GPT-4, like its predecessors, is based on the transformer architecture, which has proven to be highly effective in capturing long-range dependencies and context within the text. The model is trained on a massive corpus of text data, enabling it to generate contextually relevant and coherent outputs. By fine-tuning the model on specific tasks or domains, researchers and developers can leverage its capabilities to create tailored solutions for various NLP applications.</p>
-<p>Despite their impressive performance, generative language models also present a number of challenges and concerns. These include ethical considerations, such as potential biases in the training data and the risk of generating harmful content. Furthermore, there are computational limitations and energy consumption concerns associated with training and deploying such large-scale models.</p>
-<p><strong>Contents</strong></p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="detectGPT.html">DetectGPT</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gpt4.html">GPT-4</a></li>
-<li class="toctree-l1"><a class="reference internal" href="camelids.html">Meet the Camelids: A Family of LLMs</a></li>
+  <section class="tex2jax_ignore mathjax_ignore" id="vector-semantics">
+<h1>Vector Semantics<a class="headerlink" href="#vector-semantics" title="Permalink to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>Vector semantics deals with the study of how to represent the meaning of words in vector form, focusing on two primary aspects: lexical semantics and distributional semantics. This is based on the distributional hypothesis, which states that words that occur in similar contexts have similar meanings.</p>
+</section>
+<section id="lexical-semantics">
+<h2>Lexical Semantics<a class="headerlink" href="#lexical-semantics" title="Permalink to this heading">#</a></h2>
+<p>In the realm of <strong>lexical semantics</strong>, we’re focused on the study of the meaning of words. This approach aims to mirror the lexicographic tradition, capturing the same kind of information that would be represented in lexical entries in dictionaries.</p>
+<p>For instance, the word “cassoulet” could be represented in different ways:</p>
+<ul class="simple">
+<li><p>A French dish</p></li>
+<li><p>A food item containing meat and beans</p></li>
+<li><p>A stew</p></li>
 </ul>
-</div>
+<p>Each of these representations offers a unique aspect of the word’s meaning. The same can be said for the word “bar”:</p>
+<ul class="simple">
+<li><p>A place where you can drink alcohol</p></li>
+<li><p>A long rod</p></li>
+<li><p>To prevent something from happening</p></li>
+</ul>
+<p>What lexical semantics emphasizes is the complex many-to-many relationship that exists between concepts or word senses and words. It explores relationships between words such as synonyms (e.g. “bar” and “pub”), antonyms (e.g. “bar” and “open”), and connotations (e.g. “bar” and “prison”).</p>
+<p>Lexical semantics often uses resources such as lexicons, thesauri, and ontologies to capture explicit knowledge about word meanings. It works under the assumption that words have discrete senses that can be captured in a lexicon. However, while it may capture explicit knowledge about word meanings, it’s limited in its ability to capture the meaning of words not found in the lexicon.</p>
+</section>
+<section id="distributional-semantics">
+<h2>Distributional Semantics<a class="headerlink" href="#distributional-semantics" title="Permalink to this heading">#</a></h2>
+<p>On the other hand, <strong>distributional semantics</strong> is concerned with understanding the meaning of words based on their distributional properties in large text corpora. The main hypothesis in this field is that words that appear in similar contexts share similar meanings.</p>
+<p>Distributional semantics maps words to vector representations that capture the distributional properties of words in a corpus. It uses large volumes of raw text to learn the meaning of words from their context. These representations are dense, as opposed to sparse, which gives rise to word embeddings.</p>
+<section id="the-distributional-hypothesis">
+<h3>The Distributional Hypothesis<a class="headerlink" href="#the-distributional-hypothesis" title="Permalink to this heading">#</a></h3>
+<p>A core assumption that underpins many of the vector-based methods in Natural Language Processing (NLP) is the Distributional Hypothesis. This hypothesis, originating from the field of linguistics, provides a framework for understanding word meaning based on the contexts in which words are used.</p>
+<p>The Distributional Hypothesis was originally proposed by <span id="id1">Harris [<a class="reference internal" href="../../../about/index.html#id71" title="Zellig S Harris. Distributional structure. Word, 10(2-3):146–162, 1954.">1954</a>]</span> and further developed by others, notably by <span id="id2">Firth [<a class="reference internal" href="../../../about/index.html#id72" title="John Firth. A synopsis of linguistic theory, 1930-1955. Studies in linguistic analysis, pages 10–32, 1957.">1957</a>]</span>. The hypothesis essentially posits that <strong>words that occur in similar contexts have similar meanings</strong>. This is often summed up as <strong>“you shall know a word by the company it keeps.”</strong></p>
+<p>Consider two words: <code class="docutils literal notranslate"><span class="pre">oculist</span></code> and <code class="docutils literal notranslate"><span class="pre">eye</span> <span class="pre">doctor</span></code>. Both of these terms often occur in similar contexts: they may be followed by words like ‘examined’, ‘prescribed’, or ‘diagnosed’. According to the Distributional Hypothesis, we can infer that <code class="docutils literal notranslate"><span class="pre">oculist</span></code> and <code class="docutils literal notranslate"><span class="pre">eye</span> <span class="pre">doctor</span></code> have similar meanings due to these shared contexts.</p>
+<p>This hypothesis does not mean that words with similar contexts have the exact same meaning, but rather they share some semantic properties. It’s an essential premise for many NLP tasks, especially those involving unsupervised learning from large amounts of text.</p>
+</section>
+<section id="importance-in-word-representation">
+<h3>Importance in Word Representation<a class="headerlink" href="#importance-in-word-representation" title="Permalink to this heading">#</a></h3>
+<p>The Distributional Hypothesis has far-reaching implications for how we choose to represent words in NLP.</p>
+<p>Consider an unfamiliar word: <code class="docutils literal notranslate"><span class="pre">tezgüino</span></code>. Without knowing its meaning, we can still gather some understanding by examining its context:</p>
+<ul class="simple">
+<li><p>A bottle of <code class="docutils literal notranslate"><span class="pre">tezgüino</span></code> is on the table.</p></li>
+<li><p>Everybody likes <code class="docutils literal notranslate"><span class="pre">tezgüino</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Tezgüino</span></code> makes you drunk.</p></li>
+<li><p>We make <code class="docutils literal notranslate"><span class="pre">tezgüino</span></code> out of corn.</p></li>
+</ul>
+<p>These contexts suggest that <code class="docutils literal notranslate"><span class="pre">tezgüino</span></code> is a type of drink, similar to <code class="docutils literal notranslate"><span class="pre">wine</span></code> or <code class="docutils literal notranslate"><span class="pre">beer</span></code>.</p>
+<p>Word embeddings, or dense vector representations of words, directly apply the Distributional Hypothesis by learning word meanings from their usage in large bodies of text. Algorithms like Word2Vec, GloVe, or fastText train on massive corpora of text, learning to predict a word from its context (or vice versa). This results in words that appear in similar contexts being mapped to similar points in the vector space, effectively capturing the idea proposed by the Distributional Hypothesis.</p>
+</section>
+</section>
+<section id="how-do-we-represent-words-to-capture-word-similarities">
+<h2>How do we Represent Words to Capture Word Similarities?<a class="headerlink" href="#how-do-we-represent-words-to-capture-word-similarities" title="Permalink to this heading">#</a></h2>
+<p>Understanding the meaning of words and their relationship to one another is one of the core challenges in Natural Language Processing (NLP). How do we represent words in a way that captures their similarities and differences?</p>
+<p>There are three main ways we can represent words to capture word similarities: atomic symbols, sparse vectors, and dense vectors.</p>
+<section id="atomic-symbols">
+<h3>1. Atomic Symbols<a class="headerlink" href="#atomic-symbols" title="Permalink to this heading">#</a></h3>
+<p>The first approach treats each word as a unique, distinct entity, akin to an atomic symbol. This can be likened to traditional n-gram language models or the use of explicit features in a machine learning model. In this model, each word is considered a discrete, unrelated entity. For instance, in a one-hot encoded vector space, each word would have a unique vector, with a value of 1 in its unique index and 0s everywhere else.</p>
+<p>For example:</p>
+<ul class="simple">
+<li><p>“aardvark” could be represented as [1,0,…,0]</p></li>
+<li><p>“bear” as [0,1,…,0], and so on.</p></li>
+</ul>
+<p>This makes it easy to identify individual words, but it fails to capture any meaningful relationships between words. For instance, in such a representation, the words “height” and “tall” are as distinct as “aardvark” and “zebra”, even though intuitively we understand that “height” and “tall” share semantic similarities.</p>
+</section>
+<section id="sparse-vectors">
+<h3>2. Sparse Vectors<a class="headerlink" href="#sparse-vectors" title="Permalink to this heading">#</a></h3>
+<p>The next step up from atomic symbols is to use high-dimensional sparse vectors, like those seen in bag-of-words or tf-idf models. In these models, the dimensions of the vector space correspond to specific words in a predefined vocabulary, and the value at each dimension corresponds to the count or frequency of the word in a given context (such as a document).</p>
+<p>While this approach does capture some context by noting which words occur together in the same document, it is still very high-dimensional (the size of the vocabulary) and does not capture much semantic or syntactic similarity between words.</p>
+</section>
+<section id="dense-vectors-word-embeddings">
+<h3>3. Dense Vectors (Word Embeddings)<a class="headerlink" href="#dense-vectors-word-embeddings" title="Permalink to this heading">#</a></h3>
+<p>The most advanced approach is to use low-dimensional dense vectors, also known as word embeddings. Word embeddings are representations of words in a dense vector space that capture semantic and syntactic relationships between words.</p>
+<p>In this space, similar words are close together, and the spatial relationships between words can capture meaningful relationships. For example, the famous analogy “man is to king as woman is to queen” can be approximately encoded by the vector equation “king - man + woman ≈ queen”.</p>
+<p>Word embeddings are usually learned using large amounts of text data and machine learning algorithms such as Word2Vec, GloVe, or fastText. These algorithms work by learning to predict a word from its context (or vice versa), such that words that appear in similar contexts end up with similar vector representations.</p>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+<p>Each method of word representation has its strengths and weaknesses, and the appropriate choice depends on the specific task at hand. Atomic symbols and sparse vectors are simple to implement and understand, but they do not capture much meaningful information about word relationships.</p>
+<p>On the other hand, dense vectors or word embeddings are more complex but provide a powerful way to represent words that capture many aspects of their meaning. They have proven extremely useful in a wide range of NLP tasks, including text classification, sentiment analysis, machine translation, and more.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -558,7 +647,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./lectures/nlp_advances/gpt"
+            path: "./lectures/nlp_intro/vectorization"
         },
         predefinedOutput: true
     }
@@ -577,20 +666,20 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../thesis.html"
+       href="index.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Writing a Thesis</p>
+        <p class="prev-next-title">Vector Representation</p>
       </div>
     </a>
     <a class="right-next"
-       href="detectGPT.html"
+       href="../embeddings/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">DetectGPT</p>
+        <p class="prev-next-title">Word Embeddings</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -603,6 +692,33 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lexical-semantics">Lexical Semantics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distributional-semantics">Distributional Semantics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-distributional-hypothesis">The Distributional Hypothesis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-in-word-representation">Importance in Word Representation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-represent-words-to-capture-word-similarities">How do we Represent Words to Capture Word Similarities?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atomic-symbols">1. Atomic Symbols</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sparse-vectors">2. Sparse Vectors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dense-vectors-word-embeddings">3. Dense Vectors (Word Embeddings)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
