@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>N-grams for Tokenization &#8212; ἐντελέχεια.άι</title>
+    <title>TF-IDF Model &#8212; ἐντελέχεια.άι</title>
   
   
   
@@ -88,13 +88,13 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_intro/tokenization/ngrams';</script>
-    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_intro/tokenization/ngrams.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_intro/vectorization/tf-idf';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_intro/vectorization/tf-idf.html" />
     <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Tokenization in Korean" href="korean.html" />
-    <link rel="prev" title="Part-of-Speech Tagging and Parsing" href="pos.html" />
+    <link rel="next" title="Word Embeddings" href="../embeddings/index.html" />
+    <link rel="prev" title="Bags of Words Model" href="bow.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -216,20 +216,20 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="../sentiments/lab-ml.html">Lab: ML-based Sentiment Classification</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Tokenization</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="tokenization.html">Understanding the Basics</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pos.html">Part-of-Speech Tagging and Parsing</a></li>
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">N-grams for Tokenization</a></li>
-<li class="toctree-l3"><a class="reference internal" href="korean.html">Tokenization in Korean</a></li>
-<li class="toctree-l3"><a class="reference internal" href="segmentation.html">Word Segmentation and Association</a></li>
-<li class="toctree-l3"><a class="reference internal" href="lab-tokenization.html">Lab: Tokenization and Pre-processing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="lab-korean.html">Lab: Korean Text Processing</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tokenization/tokenization.html">Understanding the Basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tokenization/pos.html">Part-of-Speech Tagging and Parsing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tokenization/ngrams.html">N-grams for Tokenization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tokenization/korean.html">Tokenization in Korean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tokenization/segmentation.html">Word Segmentation and Association</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tokenization/lab-tokenization.html">Lab: Tokenization and Pre-processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tokenization/lab-korean.html">Lab: Korean Text Processing</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../vectorization/index.html">Vector Representation</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../vectorization/semantics.html">Vector Semantics</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../vectorization/bow.html">Bags of Words Model</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../vectorization/tf-idf.html">TF-IDF Model</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Vector Representation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="semantics.html">Vector Semantics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bow.html">Bags of Words Model</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">TF-IDF Model</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../embeddings/index.html">Word Embeddings</a></li>
@@ -437,7 +437,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../../_sources/lectures/nlp_intro/tokenization/ngrams.md" target="_blank"
+      <li><a href="../../../_sources/lectures/nlp_intro/vectorization/tf-idf.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -519,7 +519,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>N-grams for Tokenization</h1>
+    <h1>TF-IDF Model</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -529,15 +529,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-n-grams">Understanding N-grams</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-n-grams">Why use N-grams?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#n-grams-in-tokenization">N-grams in Tokenization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#n-grams-dimensionality-and-managing-vocabulary">N-grams, Dimensionality, and Managing Vocabulary</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#high-dimensionality-in-n-grams">High Dimensionality in N-grams</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hashing-vectorizer">Hashing Vectorizer</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collocations">Collocations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pointwise-mutual-information">Pointwise Mutual Information</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#out-of-vocabulary-words-oov-for-n-grams">Out-of-Vocabulary Words (OOV) for N-grams</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-tf-idf">What is TF-IDF?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-with-countvectorizer">Comparison with CountVectorizer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-code-examples">Python Code Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 </ul>
             </nav>
         </div>
@@ -549,129 +544,68 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="n-grams-for-tokenization">
-<h1>N-grams for Tokenization<a class="headerlink" href="#n-grams-for-tokenization" title="Permalink to this heading">#</a></h1>
-<p>N-grams are a crucial concept in the field of Natural Language Processing (NLP) and are extensively used in text processing and modeling. They represent a sequence of ‘n’ items in a given sample of text or speech. Let’s break down this concept and learn how to apply it for tokenization.</p>
-<section id="understanding-n-grams">
-<h2>Understanding N-grams<a class="headerlink" href="#understanding-n-grams" title="Permalink to this heading">#</a></h2>
-<p>N-grams are contiguous sequences of n items in a text. When applied to text, an item could be a character, a word, or a sentence. For instance, in the sentence “I love dogs”, the 1-grams (also known as unigrams) are “I”, “love”, “dogs”, the 2-grams (bigrams) are “I love”, “love dogs”, and the only 3-gram (trigram) is “I love dogs”.</p>
-<p>The ‘n’ in n-gram stands for the number of grouped words. Therefore, a 1-gram is a single word, a 2-gram consists of two words, a 3-gram consists of three words, and so on.</p>
-</section>
-<section id="why-use-n-grams">
-<h2>Why use N-grams?<a class="headerlink" href="#why-use-n-grams" title="Permalink to this heading">#</a></h2>
-<p>One of the primary uses of n-grams in NLP is to capture the language structure, such as phrases and other commonly occurring word sequences. This not only helps us understand the context better but also assists in predicting the next item in a sequence, which is highly beneficial in language modeling, spelling correction, and even speech recognition.</p>
-</section>
-<section id="n-grams-in-tokenization">
-<h2>N-grams in Tokenization<a class="headerlink" href="#n-grams-in-tokenization" title="Permalink to this heading">#</a></h2>
-<p>Tokenization is the process of splitting a large paragraph into sentences or words. When we apply the concept of n-grams in tokenization, we divide the text into chunks of n contiguous items (usually words). Each chunk (or token) can then be analyzed separately. This is particularly useful when the context between words is necessary to better understand the meaning of the text.</p>
-<p>For instance, in the phrase “New York”, treating “New” and “York” as separate tokens (unigrams) loses the meaning that the two words together represent a single entity (a city). But if we treat “New York” as a single token (a bigram), we can preserve this meaning.</p>
-<p>Here is an example of how to implement tokenization using n-grams:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
-<span class="kn">from</span> <span class="nn">nltk.util</span> <span class="kn">import</span> <span class="n">ngrams</span>
-
-<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;I love to play football.&quot;</span>
-<span class="n">tokenized_text</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-<span class="n">bigrams</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ngrams</span><span class="p">(</span><span class="n">tokenized_text</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">bigrams</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Output:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[(</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;love&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;love&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="s1">&#39;play&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;play&#39;</span><span class="p">,</span> <span class="s1">&#39;football.&#39;</span><span class="p">)]</span>
-</pre></div>
-</div>
-<p>In the example above, we first tokenize the input text into individual words using <code class="docutils literal notranslate"><span class="pre">nltk.word_tokenize()</span></code>. We then generate the bigrams using the <code class="docutils literal notranslate"><span class="pre">ngrams()</span></code> function.</p>
-</section>
-<section id="n-grams-dimensionality-and-managing-vocabulary">
-<h2>N-grams, Dimensionality, and Managing Vocabulary<a class="headerlink" href="#n-grams-dimensionality-and-managing-vocabulary" title="Permalink to this heading">#</a></h2>
-<p>As we generate n-grams for larger values of ‘n’, we will see a significant increase in the number of features. This increase can lead to a high-dimensional feature space and cause computational challenges due to the curse of dimensionality. Therefore, it’s essential to manage the feature space effectively.</p>
-</section>
-<section id="high-dimensionality-in-n-grams">
-<h2>High Dimensionality in N-grams<a class="headerlink" href="#high-dimensionality-in-n-grams" title="Permalink to this heading">#</a></h2>
-<p>For example, considering a corpus with 1,000 unique words:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="tf-idf-model">
+<h1>TF-IDF Model<a class="headerlink" href="#tf-idf-model" title="Permalink to this heading">#</a></h1>
+<p>In today’s lecture, we’ll discuss an important concept in Natural Language Processing (NLP): Term Frequency-Inverse Document Frequency (TF-IDF). We’ll also compare it to the CountVectorizer (also known as the Bag of Words model) and illustrate both with Python code examples.</p>
+<section id="what-is-tf-idf">
+<h2>What is TF-IDF?<a class="headerlink" href="#what-is-tf-idf" title="Permalink to this heading">#</a></h2>
+<p>TF-IDF is a statistical measure used to evaluate the importance of a word to a document in a collection or corpus of documents. It is based on the premise that words that are most common in one document but rare in other documents in the corpus may be particularly important to the specific document.</p>
+<p>TF-IDF is an acronym for two separate components:</p>
 <ul class="simple">
-<li><p>If we use 1-grams (unigrams), we get 1,000 features</p></li>
-<li><p>For 2-grams (bigrams), we can have up to 1,000 * 1,000 = 1,000,000 features.</p></li>
+<li><p><strong>Term Frequency (TF)</strong>: This measures the frequency of a word in a document. It’s the ratio of the number of times the word appears in the document compared to the total number of words in the document.</p></li>
+<li><p><strong>Inverse Document Frequency (IDF)</strong>: This measures the importance of the word in the corpus. It’s calculated as the logarithm of the ratio of the total number of documents in the corpus to the number of documents containing the word.</p></li>
 </ul>
-<p>This exponential increase poses problems in terms of memory and computational efficiency. It is essential to filter out low-frequency and uninformative n-grams to keep the feature space manageable.</p>
-<figure class="align-default" id="fig-text-classification-flowchart">
-<a class="reference internal image-reference" href="../../../_images/101.png"><img alt="../../../_images/101.png" src="../../../_images/101.png" style="width: 60%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 78 </span><span class="caption-text">Text classification flowchart (from Google Developers)</span><a class="headerlink" href="#fig-text-classification-flowchart" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
+<p>The TF-IDF value of a word in a document is the product of its TF and IDF values.</p>
 </section>
-<section id="hashing-vectorizer">
-<h2>Hashing Vectorizer<a class="headerlink" href="#hashing-vectorizer" title="Permalink to this heading">#</a></h2>
-<p>One way to deal with high-dimensional feature spaces is to use a Hashing Vectorizer. Instead of mapping each n-gram to a unique integer in our feature space (as CountVectorizer does), a Hashing Vectorizer hashes the n-grams into a fixed number of buckets. This is a lossy transformation (some information is lost), but it can help maintain a manageable feature space.</p>
-<p>The hash function used in the vectorizer is deterministic, which means that it will always map the same n-gram to the same integer.</p>
-<p>Here’s an example of how to use a Hashing Vectorizer:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">HashingVectorizer</span>
+<section id="comparison-with-countvectorizer">
+<h2>Comparison with CountVectorizer<a class="headerlink" href="#comparison-with-countvectorizer" title="Permalink to this heading">#</a></h2>
+<p>The Bag of Words model, as implemented by the <code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code> in Python’s <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> library, simply represents text data as the frequency of each word in a document. It does not consider the importance of the word in the document relative to the other documents in the corpus.</p>
+<p>On the other hand, TF-IDF assigns a weight to each word based not only on its frequency in a single document but also on its distribution across the entire corpus. This allows it to give more importance to words that are more specific to a particular document.</p>
+</section>
+<section id="python-code-examples">
+<h2>Python Code Examples<a class="headerlink" href="#python-code-examples" title="Permalink to this heading">#</a></h2>
+<p>Let’s look at a simple Python code example to illustrate these concepts. We’ll use the <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> library for our example.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span><span class="p">,</span> <span class="n">TfidfVectorizer</span>
 
-<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">HashingVectorizer</span><span class="p">(</span>
-    <span class="n">n_features</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="mi">4</span><span class="p">,</span> <span class="n">stop_words</span><span class="o">=</span><span class="s2">&quot;english&quot;</span><span class="p">,</span> <span class="n">alternate_sign</span><span class="o">=</span><span class="kc">False</span>
-<span class="p">)</span>
+<span class="c1"># Define a small corpus</span>
+<span class="n">corpus</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;The sky is blue and beautiful.&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Love this blue and beautiful sky!&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;The quick brown fox jumps over the lazy dog.&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;A king’s breakfast has sausages, ham, bacon, eggs, toast and beans&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;I love green eggs, ham, sausages and bacon!&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;The brown fox is quick and the blue dog is lazy!&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;The sky is very blue and the sky is very beautiful today&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;The dog is lazy but the brown fox is quick!&#39;</span>
+<span class="p">]</span>
 
-<span class="n">X</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span>
+<span class="c1"># Initialize a CountVectorizer</span>
+<span class="n">cv</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># Fit and transform the corpus</span>
+<span class="n">cv_matrix</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span>
+
+<span class="c1"># Convert the matrix to an array and print it</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Count Vectorizer:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cv_matrix</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
+
+<span class="c1"># Now let&#39;s do the same with a TfidfVectorizer</span>
+<span class="n">tfidf</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
+
+<span class="c1"># Fit and transform the corpus</span>
+<span class="n">tfidf_matrix</span> <span class="o">=</span> <span class="n">tfidf</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span>
+
+<span class="c1"># Convert the matrix to an array and print it</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">TF-IDF Vectorizer:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tfidf_matrix</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
 </pre></div>
 </div>
-<p>In the code snippet above, we transform our text data into a feature matrix with a fixed size of 16 (2**4) using the HashingVectorizer.</p>
-<figure class="align-default" id="fig-hashing-vectorizer">
-<a class="reference internal image-reference" href="../../../_images/112.png"><img alt="../../../_images/112.png" src="../../../_images/112.png" style="width: 50%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 79 </span><span class="caption-text">Hashing Vectorizer</span><a class="headerlink" href="#fig-hashing-vectorizer" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
+<p>In the above code, we first create a <code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code> and <code class="docutils literal notranslate"><span class="pre">fit_transform</span></code> our corpus to convert it into a matrix of word counts. Each row in the matrix corresponds to a document in the corpus and each column corresponds to a word in the vocabulary, with the value being the count of the word in the document.</p>
+<p>Next, we do the same with a <code class="docutils literal notranslate"><span class="pre">TfidfVectorizer</span></code>. The resulting matrix is similar, but instead of simple word counts, it contains the TF-IDF values for each word in each document.</p>
 </section>
-<section id="collocations">
-<h2>Collocations<a class="headerlink" href="#collocations" title="Permalink to this heading">#</a></h2>
-<p>Another essential concept in NLP is Collocations, which are phrases that occur together more often than would be expected by chance. These phrases can be non-compositional (their meaning is not just the sum of their parts), non-substitutable (you can’t substitute a part with its synonym), and non-modifiable (you can’t modify the phrase with additional words).</p>
-<ul>
-<li><p>Non-compositional: meaning is not the sum of its parts</p>
-<blockquote>
-<div><p>e.g., “New York” is not the sum of “New” and “York”</p>
-</div></blockquote>
-</li>
-<li><p>Non-substitutable: cannot substitute with a synonym</p>
-<blockquote>
-<div><p>e.g., “fast food” is not the same as “quick food”</p>
-</div></blockquote>
-</li>
-<li><p>Non-modifiable: cannot modify with additional words</p>
-<blockquote>
-<div><p>e.g., “kick around the bucket” is not the same as “kick the bucket around”</p>
-</div></blockquote>
-</li>
-</ul>
-</section>
-<section id="pointwise-mutual-information">
-<h2>Pointwise Mutual Information<a class="headerlink" href="#pointwise-mutual-information" title="Permalink to this heading">#</a></h2>
-<p>Pointwise Mutual Information (PMI) is a measure of how often two words co-occur in a corpus, considering their individual probabilities. PMI helps rank word pairs based on how often they collocate, compared to how often they would theoretically collocate if they were independent.</p>
-<p>PMI of two words <span class="math notranslate nohighlight">\(w_1\)</span> and <span class="math notranslate nohighlight">\(w_2\)</span> is defined as:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-PMI(w_1,w_2) = \frac{P(w_1\_ w_2)}{P(w_1)P(w_2)} \\
-= \frac{\text{Prob. of collocation, actual}}{\text{Prob. of collocation, if independent}}
-\end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(w_1\)</span> and <span class="math notranslate nohighlight">\(w_2\)</span> are words in the vocabulary, and <span class="math notranslate nohighlight">\(w_1\)</span>, <span class="math notranslate nohighlight">\(w_2\)</span> is the N-gram <span class="math notranslate nohighlight">\(w_1\_w_2\)</span>.
-ranks words by how often they collocate, relative to how often they occur apart.</p>
-<p>It can be generalized to n-grams as:</p>
-<div class="math notranslate nohighlight">
-\[ \frac{P(w*1,\ldots w_2 )}{\prod*{i=1}^{n} \sqrt[n]{P(w_i)}} \]</div>
-<p>Caveat: PMI is biased towards rare words. It is more likely to overestimate the strength of association between two rare words than between two frequent words. This is because the denominator of the PMI equation is the product of the individual probabilities of the words, which is smaller for rare words.</p>
-</section>
-<section id="out-of-vocabulary-words-oov-for-n-grams">
-<h2>Out-of-Vocabulary Words (OOV) for N-grams<a class="headerlink" href="#out-of-vocabulary-words-oov-for-n-grams" title="Permalink to this heading">#</a></h2>
-<p>In any text analysis, we often encounter words that are not in our predefined vocabulary, also known as out-of-vocabulary (OOV) words. This is especially true for n-gram models, where the number of potential word sequences can be enormous.</p>
-<p>There are several strategies for dealing with OOV words:</p>
-<ul class="simple">
-<li><p>Replace them with a special token, e.g., <code class="docutils literal notranslate"><span class="pre">&lt;UNK&gt;</span></code>.</p></li>
-<li><p>Replace them with their part-of-speech tag, e.g., <code class="docutils literal notranslate"><span class="pre">&lt;NOUN&gt;</span></code>.</p></li>
-<li><p>Replace them with a higher-level category or hypernym, e.g., <code class="docutils literal notranslate"><span class="pre">&lt;ANIMAL&gt;</span></code>.</p></li>
-<li><p>Use a hash function to map OOV words to a fixed number of buckets, similar to the hashing trick mentioned above.</p></li>
-</ul>
-<p>These strategies can help manage the vocabulary and keep the feature space manageable while dealing with new or unexpected words in the data.</p>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+<p>While the <code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code> (or Bag of Words model) provides a simple way to represent text data, it can often result in large, sparse matrices and does not consider the relative importance of words. The TF-IDF model addresses these issues by assigning weights to words based on their importance in the document and the corpus, resulting in a denser and more informative representation of the text data.</p>
 </section>
 </section>
 
@@ -688,7 +622,7 @@ ranks words by how often they collocate, relative to how often they occur apart.
         },
         kernelOptions: {
             name: "python3",
-            path: "./lectures/nlp_intro/tokenization"
+            path: "./lectures/nlp_intro/vectorization"
         },
         predefinedOutput: true
     }
@@ -707,20 +641,20 @@ ranks words by how often they collocate, relative to how often they occur apart.
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="pos.html"
+       href="bow.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Part-of-Speech Tagging and Parsing</p>
+        <p class="prev-next-title">Bags of Words Model</p>
       </div>
     </a>
     <a class="right-next"
-       href="korean.html"
+       href="../embeddings/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Tokenization in Korean</p>
+        <p class="prev-next-title">Word Embeddings</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -742,15 +676,10 @@ ranks words by how often they collocate, relative to how often they occur apart.
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-n-grams">Understanding N-grams</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-n-grams">Why use N-grams?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#n-grams-in-tokenization">N-grams in Tokenization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#n-grams-dimensionality-and-managing-vocabulary">N-grams, Dimensionality, and Managing Vocabulary</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#high-dimensionality-in-n-grams">High Dimensionality in N-grams</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hashing-vectorizer">Hashing Vectorizer</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collocations">Collocations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pointwise-mutual-information">Pointwise Mutual Information</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#out-of-vocabulary-words-oov-for-n-grams">Out-of-Vocabulary Words (OOV) for N-grams</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-tf-idf">What is TF-IDF?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-with-countvectorizer">Comparison with CountVectorizer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-code-examples">Python Code Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 </ul>
   </nav></div>
 
