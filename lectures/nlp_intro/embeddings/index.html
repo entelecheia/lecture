@@ -541,15 +541,11 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-word-embeddings">What are word embeddings?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#categorical-embeddings">Categorical Embeddings</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#an-embedding-layer-is-matrix-multiplication">An embedding layer is matrix multiplication:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#embedding-layers-versus-dense-layers">Embedding Layers versus Dense Layers</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Word Embeddings</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-do-we-need-neural-networks-for-word-embeddings">Why do we need neural networks for word embeddings?</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#categorical-embeddings">Categorical Embeddings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-embedding-layer-is-matrix-multiplication">An embedding layer is matrix multiplication:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#embedding-layers-vs-dense-layers">Embedding Layers vs. Dense Layers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Word Embeddings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-do-we-need-neural-nin-the-realm-of-machine-learning-and-natural-language-processing-we-often-face-a-dilemma-when-dealing-with-text-data-should-we-use-traditional-clustering-algorithms-or-do-we-need-the-more-advanced-neural-network-models-for-tasks-such-as-word-embeddings">Why do we need neural nIn the realm of machine learning and natural language processing, we often face a dilemma when dealing with text data: should we use traditional clustering algorithms, or do we need the more advanced neural network models for tasks such as <strong>word embeddings</strong>?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next">Next</a></li>
 </ul>
             </nav>
@@ -564,133 +560,99 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="word-embeddings">
 <h1>Word Embeddings<a class="headerlink" href="#word-embeddings" title="Permalink to this heading">#</a></h1>
-<p><img alt="" src="../../../_images/embeddings.png" /></p>
+<a class="bg-primary mb-1 reference internal image-reference" href="../../../_images/embeddings.png"><img alt="Word Embeddings" class="bg-primary mb-1 align-center" src="../../../_images/embeddings.png" style="width: 80%;" /></a>
 <section id="what-are-word-embeddings">
 <h2>What are word embeddings?<a class="headerlink" href="#what-are-word-embeddings" title="Permalink to this heading">#</a></h2>
-<p>Word embeddings are a way of representing words as vectors. The vectors are learned from text data and are able to capture some of the semantic and systactic information of the words.</p>
-<p>For example, the word <code class="docutils literal notranslate"><span class="pre">cat</span></code> is similar to <code class="docutils literal notranslate"><span class="pre">dog</span></code> from the following sentences:</p>
-<p>“The cat is lying on the floor and the dog was eating”,</p>
-<p>“The doc was lying on the floor and the cat was eating”</p>
-<p>In a mathematical sense, a word embedding is a parameterized function of the word:</p>
-<div class="math notranslate nohighlight">
-\[ f\_{\theta}(w) = \theta \]</div>
-<p>where <span class="math notranslate nohighlight">\(\theta\)</span> is a vector of real numbers. The vector <span class="math notranslate nohighlight">\(\theta\)</span> is the embedding of the word <span class="math notranslate nohighlight">\(w\)</span>.</p>
-<p>In a broad sense, <code class="docutils literal notranslate"><span class="pre">embedding</span></code> refers to a lower-dimensional dense vector representation of a higher-dimensional object.</p>
-<ul class="simple">
-<li><p>in NLP, this higher-dimensional object will be a document.</p></li>
-<li><p>in computer vision, this higher-dimensional object will be an image.</p></li>
-</ul>
-<p>Examples of embeddings and non-embeddings:</p>
-<ul class="simple">
-<li><p><strong>Non-embeddings</strong>:</p>
-<ul>
-<li><p>one-hot encoding, bag-of-words, TF-IDF, etc.</p></li>
-<li><p>counts over LIWC dictionary categories.</p></li>
-<li><p>sklearn CountVectorizer count vectors</p></li>
-</ul>
-</li>
-<li><p><strong>Embeddings</strong>:</p>
-<ul>
-<li><p>word2vec, GloVe, BERT, ELMo, etc.</p></li>
-<li><p>PCA reductions of the word count vectors</p></li>
-<li><p>LDA topic shares</p></li>
-<li><p>compressed encodings from an autoencoder</p></li>
-</ul>
-</li>
-</ul>
+<p><strong>Word embeddings</strong> are a captivating facet of <strong>natural language processing</strong> that enable us to represent words as vectors. These vectors, learned from the textual data, encapsulate much of the <strong>semantic</strong> and <strong>syntactic properties</strong> of words, enabling us to quantify and analyze linguistic relationships with mathematical precision.</p>
+<p>Picture two sentences: “The cat is lying on the floor and the dog was eating,” and “The dog was lying on the floor and the cat was eating.” Despite the switched roles of ‘cat’ and ‘dog’ in these sentences, we instinctively comprehend their similarity - they are both common pets and lovable internet sensations. <strong>Word embeddings</strong> capture this similarity by assigning similar vector representations to the words ‘cat’ and ‘dog’.</p>
+<p>But how does this work exactly? Essentially, a <strong>word embedding</strong> is a function that is parameterized by a vector of real numbers, denoted as 𝜃. When this function is applied to a word w, it yields the vector 𝜃 - the <strong>embedding</strong> of the word w. In simpler words, every word is transformed into a corresponding vector of real numbers that encapsulates its ‘meaning’ in the multi-dimensional vector space.</p>
+<p>The concept of ‘<strong>embedding</strong>’ extends beyond the realm of NLP. More broadly, it denotes the process of representing a high-dimensional object - like a document in NLP or an image in computer vision - as a lower-dimensional, dense vector. The power of embeddings lies in their ability to condense a vast amount of information into a compact, manageable form without losing the core essence of the original object.</p>
+<p>While <strong>word embeddings</strong> like <strong>word2vec</strong>, <strong>GloVe</strong>, <strong>BERT</strong>, and <strong>ELMo</strong> have made a name for themselves in the NLP world, it’s important to distinguish that not all representations of words qualify as embeddings. Methods like <strong>one-hot encoding</strong>, <strong>bag-of-words</strong>, and <strong>TF-IDF</strong>, for instance, are not deemed as embeddings. These techniques, along with tools like sklearn’s <strong>CountVectorizer</strong> count vectors or counts over <strong>LIWC dictionary</strong> categories, represent words in a way that lacks the dense, continuous, and comparative nature of word embeddings. Conversely, <strong>PCA reductions</strong> of word count vectors, <strong>LDA topic shares</strong>, and compressed encodings from an <strong>autoencoder</strong> are considered embeddings, thanks to their capacity to capture the contextual and semantic richness of the data they represent.</p>
+<p>In a nutshell, word embeddings are an incredible tool that allows us to project the vast landscape of human language onto the precise terrain of mathematics, facilitating the analysis, understanding, and manipulation of words in ways previously unimagined.</p>
 </section>
 <section id="categorical-embeddings">
 <h2>Categorical Embeddings<a class="headerlink" href="#categorical-embeddings" title="Permalink to this heading">#</a></h2>
-<p><img alt="" src="../../../_images/11.png" /></p>
-<p>Categorical embeddings are a way of representing categorical variables as vectors.</p>
-<p>For a binary classification problem with outcome <span class="math notranslate nohighlight">\(Y\)</span>:</p>
-<ul class="simple">
-<li><p>If you have a high-dimensional categorical variable <span class="math notranslate nohighlight">\(X\)</span>, (e.g. 1000 categories), you can represent <span class="math notranslate nohighlight">\(X\)</span> as a vector of length 1000.</p></li>
-<li><p>It is computationally expensive for a ML model to learn from a high-dimensional categorical variable.</p></li>
-</ul>
-<p>Instead, you can represent <span class="math notranslate nohighlight">\(X\)</span> as a lower-dimensional vector of length <span class="math notranslate nohighlight">\(k\)</span> (e.g. 10). This is called a categorical embedding.</p>
-<p>Embedding approaches:</p>
+<figure class="align-default" id="fig-categorical-embeddings">
+<a class="reference internal image-reference" href="../../../_images/11.png"><img alt="../../../_images/11.png" src="../../../_images/11.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 87 </span><span class="caption-text">Categorical Embeddings</span><a class="headerlink" href="#fig-categorical-embeddings" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p><strong>Categorical embeddings</strong> offer a powerful way to represent categorical variables, which are common in various fields like market research, medical studies, and social science, as vectors. This method is especially beneficial when dealing with high-dimensional categorical variables - variables that have a large number of categories.</p>
+<p>Imagine a binary classification problem where the outcome is denoted by <span class="math notranslate nohighlight">\(Y\)</span>, and you’re dealing with a high-dimensional categorical variable <span class="math notranslate nohighlight">\(X\)</span> that has 1000 categories. Naturally, the first instinct might be to represent <span class="math notranslate nohighlight">\(X\)</span> as a vector of length 1000. However, the challenge here is that it becomes computationally intensive for a machine learning model to learn from such a high-dimensional categorical variable.</p>
+<p>This is where <strong>categorical embeddings</strong> come to the rescue. Instead of representing <span class="math notranslate nohighlight">\(X\)</span> as a high-dimensional vector, we can represent it as a lower-dimensional vector of length <span class="math notranslate nohighlight">\(k\)</span> (for instance, 10). This process effectively transforms <span class="math notranslate nohighlight">\(X\)</span> into a manageable and useful form without losing its core information - the essence of what embeddings are all about.</p>
+<p>There are primarily two approaches to creating categorical embeddings:</p>
 <ol class="arabic simple">
-<li><p>PCA applied to the dummy variables <span class="math notranslate nohighlight">\(X\)</span> to get a lower-dimensional vector representation of <span class="math notranslate nohighlight">\(\tilde{X}\)</span>.</p></li>
-<li><p>Regress <span class="math notranslate nohighlight">\(Y\)</span> on <span class="math notranslate nohighlight">\(X\)</span>, predict <span class="math notranslate nohighlight">\(\hat{Y}(X_i)\)</span>, use that as a feature in a new model.</p></li>
+<li><p><strong>Principal Component Analysis (PCA):</strong> The first approach applies PCA, a dimensionality reduction technique, to the dummy variables <span class="math notranslate nohighlight">\(X\)</span> to create a lower-dimensional vector representation, denoted by <span class="math notranslate nohighlight">\(\tilde{X}\)</span>. This compressed representation of <span class="math notranslate nohighlight">\(X\)</span> enables models to work more efficiently while preserving the variance in the data.</p></li>
+<li><p><strong>Regression Prediction:</strong> The second approach involves regressing <span class="math notranslate nohighlight">\(Y\)</span> on <span class="math notranslate nohighlight">\(X\)</span>, predicting <span class="math notranslate nohighlight">\(\hat{Y}(X_i)\)</span>, and then using this prediction as a feature in a new model. Essentially, it leverages the prediction from one model as a feature for another, creating a richer representation of the original categorical variable.</p></li>
 </ol>
+<p>In essence, <strong>categorical embeddings</strong> are an elegant solution to a complex problem, simplifying high-dimensional categorical data into a compact form, allowing machine learning models to learn more effectively and efficiently.</p>
+</section>
 <section id="an-embedding-layer-is-matrix-multiplication">
-<h3>An embedding layer is matrix multiplication:<a class="headerlink" href="#an-embedding-layer-is-matrix-multiplication" title="Permalink to this heading">#</a></h3>
+<h2>An embedding layer is matrix multiplication:<a class="headerlink" href="#an-embedding-layer-is-matrix-multiplication" title="Permalink to this heading">#</a></h2>
+<p>An <strong>embedding layer</strong> in neural networks is essentially a matrix multiplication operation. To understand this, consider the following formula:</p>
 <div class="math notranslate nohighlight">
 \[
 \underbrace{h_1}_{n_E \times 1} = \underbrace{\omega_E}_{n_E \times n_W} \cdot \underbrace{x}_{n_x \times 1}
 \]</div>
+<p>Here, <strong><span class="math notranslate nohighlight">\(x\)</span></strong> represents a categorical variable, such as a word. This variable is encoded as a one-hot vector, with a single item equating to one. <span class="math notranslate nohighlight">\(x\)</span> acts as the input to the embedding layer.</p>
+<p>On the other hand, <strong><span class="math notranslate nohighlight">\(h_1\)</span></strong> denotes the first hidden layer of the neural network, which is the output of the embedding layer.</p>
+<p>What links <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(h_1\)</span> is the <strong>embedding matrix</strong>, denoted as <span class="math notranslate nohighlight">\(\omega_E\)</span>. This matrix encodes predictive information about the categories, transforming the input into the output.</p>
+<p>But the embedding matrix is not merely a mathematical tool; it has a rich spatial interpretation when projected into 2D space. Each row of <span class="math notranslate nohighlight">\(\omega_E\)</span> serves as a vector in <span class="math notranslate nohighlight">\(n_E\)</span>-dimensional space. Hence, the rows of <span class="math notranslate nohighlight">\(\omega_E\)</span> can be viewed as the coordinates of points in this vector space, where each point represents a category.</p>
+<p>This spatial representation illuminates the relationships between categories in a powerful way:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(x\)</span> = a categorical variable (e.g., representing a word)</p>
-<ul>
-<li><p>One-hot vector with a single item equaling one.</p></li>
-<li><p>Input to the embedding layer.</p></li>
+<li><p>The <strong>distance</strong> between points in the space is indicative of the <strong>similarity</strong> between the corresponding categories. Categories that are closer together are more similar.</p></li>
+<li><p>The <strong>angle</strong> between points in the space can be seen as the <strong>relationship</strong> between the corresponding categories. Categories with smaller angles between them are more closely related.</p></li>
 </ul>
-</li>
-<li><p><span class="math notranslate nohighlight">\(h_1\)</span> = the first hidden layer of the neural net</p>
-<ul>
-<li><p>The output of the embedding layer.</p></li>
-</ul>
-</li>
-<li><p>The embedding matrix <span class="math notranslate nohighlight">\(\omega_E\)</span> encodes predictive information about the categories.</p></li>
-<li><p>It has a spatial interpretation when projected into 2D space.</p>
-<ul>
-<li><p>Each row of <span class="math notranslate nohighlight">\(\omega_E\)</span> is a vector in <span class="math notranslate nohighlight">\(n_E\)</span>-dimensional space.</p></li>
-<li><p>The rows of <span class="math notranslate nohighlight">\(\omega_E\)</span> are the coordinates of the points in the vector space.</p></li>
-<li><p>The points are the categories.</p></li>
-<li><p>The distance between the points is the similarity between the categories.</p></li>
-<li><p>The angle between the points is the relationship between the categories.</p></li>
-</ul>
-</li>
-</ul>
+<p>In this way, an <strong>embedding layer</strong> elegantly transforms categorical data into a format that neural networks can work with effectively while preserving the intricate relationships between categories.</p>
 </section>
-<section id="embedding-layers-versus-dense-layers">
-<h3>Embedding Layers versus Dense Layers<a class="headerlink" href="#embedding-layers-versus-dense-layers" title="Permalink to this heading">#</a></h3>
-<p>An embedding layer is statistically equivalent to a fully-connected dense layer with one-hot vectors as input and linear activation.</p>
-<ul class="simple">
-<li><p>Embedding layers are much faster for many categories (&gt;~50)</p></li>
-</ul>
-</section>
+<section id="embedding-layers-vs-dense-layers">
+<h2>Embedding Layers vs. Dense Layers<a class="headerlink" href="#embedding-layers-vs-dense-layers" title="Permalink to this heading">#</a></h2>
+<p>When it comes to neural networks, there’s a fascinating relationship between <strong>embedding layers</strong> and <strong>dense layers</strong>. In fact, an embedding layer can be seen as statistically equivalent to a fully-connected dense layer, provided we have one-hot vectors as input and a linear activation function.</p>
+<p>Here’s why: an <strong>embedding layer</strong> takes a one-hot encoded vector, multiplies it by the embedding matrix (which is just a learned look-up table), and produces an output. This is essentially what a dense layer with a linear activation does too. In a dense layer, the input is multiplied by the weights (equivalent to the embedding matrix in an embedding layer), and an optional bias is added. If we don’t use a bias and the activation is linear, then the dense layer does exactly the same as the embedding layer.</p>
+<p>However, while functionally similar, an important distinction between the two lies in their efficiency. Specifically, <strong>embedding layers are much faster than dense layers when dealing with a large number of categories</strong> (generally more than around 50). The reason for this speed difference is the computational expense involved in matrix multiplication. In an embedding layer, the matrix multiplication with a one-hot encoded vector effectively boils down to selecting the corresponding row in the embedding matrix, which is a much simpler operation.</p>
+<p>In contrast, a dense layer with a one-hot vector as input would still perform a full matrix multiplication, which is more computationally expensive. So, while both layers can theoretically perform the same operation, when it comes to handling a high number of categories, the embedding layer stands out as the more efficient choice.</p>
 </section>
 <section id="id1">
 <h2>Word Embeddings<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
-<blockquote>
-<div><p>Word embeddings are neural network layers that map words to dense vectors.</p>
-</div></blockquote>
-<p>Documents are lists of word indexes <span class="math notranslate nohighlight">\({w_1 ,w_2 ,...,w_{n_i} }\)</span>.</p>
-<ul class="simple">
-<li><p>Let <span class="math notranslate nohighlight">\(w_i\)</span> be a one-hot vector (dimensionality <span class="math notranslate nohighlight">\(n_w\)</span> = vocab size) where the associated word’s index equals one.</p></li>
-<li><p>Normalize all documents to the same length L; shorter documents can be padded with a null token.</p></li>
-<li><p>This requirement can be relaxed with recurrent neural networks.</p></li>
-</ul>
-<p>The embedding layer replaces the list of sparse one-hot vectors with a list of n E -dimensional (<span class="math notranslate nohighlight">\(n_E\)</span> &lt;&lt; <span class="math notranslate nohighlight">\(n_w\)</span> ) dense vectors</p>
+<p><strong>Word embeddings</strong> are an innovative application of neural network layers. They provide an efficient, dense representation for words by mapping them onto vectors.</p>
+<p>Here’s how they work: Consider any document, which we can view as a list of word indexes, <span class="math notranslate nohighlight">\({w_1 ,w_2 ,...,w_{n_i} }\)</span>. Each <span class="math notranslate nohighlight">\(w_i\)</span> can be represented as a one-hot vector. The dimensionality of this vector, <span class="math notranslate nohighlight">\(n_w\)</span>, equals the size of the vocabulary - each word in the vocabulary has a unique index that is marked as ‘1’ in the one-hot vector, while all other indexes are ‘0’.</p>
+<p>To ensure consistent input structure for the neural network, it is usually necessary to normalize all documents to the same length, <span class="math notranslate nohighlight">\(L\)</span>. This can be done by padding shorter documents with a null token. However, it’s worth noting that this requirement can be relaxed when using recurrent neural networks.</p>
+<p>The magic happens in the <strong>embedding layer</strong>. This layer replaces the sparse one-hot vectors with a list of dense vectors. Each dense vector <span class="math notranslate nohighlight">\(x_j\)</span> has a lower dimensionality <span class="math notranslate nohighlight">\(n_E\)</span> (where <span class="math notranslate nohighlight">\(n_E\)</span> &lt;&lt; <span class="math notranslate nohighlight">\(n_w\)</span> ). The embedding layer produces an array <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> of these dense vectors:</p>
 <div class="math notranslate nohighlight">
 \[ \mathbf{X} = [x_1 \ldots x_L ] \]</div>
-<p>where</p>
+<p>How is each <span class="math notranslate nohighlight">\(x_j\)</span> produced? It’s done via matrix multiplication between the embedding matrix <span class="math notranslate nohighlight">\(\mathbf{E}\)</span> and the one-hot vector <span class="math notranslate nohighlight">\(w_j\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 \underbrace{x_j}_{n_E \times 1} = \underbrace{\mathbf{E}}_{n_E \times n_W} \cdot \underbrace{w_j}_{n_w \times 1}
 \]</div>
-<p><span class="math notranslate nohighlight">\(\mathbf{E}\)</span> a matrix of word vectors. The column associated with the word at <span class="math notranslate nohighlight">\(j\)</span> is selected by the dot-product with one-hot vector <span class="math notranslate nohighlight">\(w_j\)</span>.</p>
-<p><span class="math notranslate nohighlight">\(\mathbf{X}\)</span> is flattened into an <span class="math notranslate nohighlight">\(L * n_E\)</span> vector for input to the next layer.</p>
-<p><img alt="" src="../../../_images/41.png" /></p>
-<section id="why-do-we-need-neural-networks-for-word-embeddings">
-<h3>Why do we need neural networks for word embeddings?<a class="headerlink" href="#why-do-we-need-neural-networks-for-word-embeddings" title="Permalink to this heading">#</a></h3>
-<p>There are a lot of shallow algorithms that work well for clustering.</p>
-<ul class="simple">
-<li><p>k-means</p></li>
-<li><p>hierarchical clustering</p></li>
-<li><p>spectral clustering</p></li>
-<li><p>PCA</p></li>
-</ul>
-<p>The reasons we use neural networks for word embeddings are:</p>
-<ul class="simple">
-<li><p>They are able to learn the relationships between words.</p></li>
-<li><p>They can be used as input to a downstream task.</p></li>
-<li><p>They create a mapping of discrete words to continuous vectors.</p></li>
-<li><p>They solve the curse of dimensionality.</p></li>
-</ul>
+<p>The <strong>embedding matrix <span class="math notranslate nohighlight">\(\mathbf{E}\)</span></strong> contains the word vectors. Each column in this matrix is associated with a word from the vocabulary. The dot product with the one-hot vector <span class="math notranslate nohighlight">\(w_j\)</span> selects the column (i.e., the word vector) associated with the word at index <span class="math notranslate nohighlight">\(j\)</span>.</p>
+<p>After this transformation, <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> is then flattened into a single <span class="math notranslate nohighlight">\(L * n_E\)</span> vector which serves as input to the next layer of the neural network.</p>
+<figure class="align-default" id="fig-word-embeddings">
+<a class="reference internal image-reference" href="../../../_images/41.png"><img alt="../../../_images/41.png" src="../../../_images/41.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 88 </span><span class="caption-text">Word Embeddings</span><a class="headerlink" href="#fig-word-embeddings" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>In a nutshell, word embeddings offer an efficient, computationally friendly way of representing words for machine learning tasks, condensing the high-dimensional space of one-hot vectors into a denser, lower-dimensional representation that still captures essential semantic features.</p>
 </section>
+<section id="why-do-we-need-neural-nin-the-realm-of-machine-learning-and-natural-language-processing-we-often-face-a-dilemma-when-dealing-with-text-data-should-we-use-traditional-clustering-algorithms-or-do-we-need-the-more-advanced-neural-network-models-for-tasks-such-as-word-embeddings">
+<h2>Why do we need neural nIn the realm of machine learning and natural language processing, we often face a dilemma when dealing with text data: should we use traditional clustering algorithms, or do we need the more advanced neural network models for tasks such as <strong>word embeddings</strong>?<a class="headerlink" href="#why-do-we-need-neural-nin-the-realm-of-machine-learning-and-natural-language-processing-we-often-face-a-dilemma-when-dealing-with-text-data-should-we-use-traditional-clustering-algorithms-or-do-we-need-the-more-advanced-neural-network-models-for-tasks-such-as-word-embeddings" title="Permalink to this heading">#</a></h2>
+<p>There’s a good number of conventional, or as we often call them, shallow algorithms, that work remarkably well for clustering tasks. These include:</p>
+<ul class="simple">
+<li><p><strong>k-means clustering</strong>: An algorithm that groups similar data points into ‘k’ number of clusters.</p></li>
+<li><p><strong>Hierarchical clustering</strong>: A method that builds nested clusters by merging or splitting them successively.</p></li>
+<li><p><strong>Spectral clustering</strong>: An approach that uses eigenvalues (the ‘spectrum’) of a similarity matrix to reduce the dimensionality of the data before clustering in fewer dimensions.</p></li>
+<li><p><strong>PCA (Principal Component Analysis)</strong>: A technique that helps identify the most significant variables and eliminate redundant ones.</p></li>
+</ul>
+<p>Despite the effectiveness of these methods, we frequently turn to neural networks for generating word embeddings. Why so? Here are the compelling reasons:</p>
+<ol class="arabic simple">
+<li><p><strong>Learning Relationships</strong>: Unlike shallow algorithms, neural networks can learn and capture the relationships between words based on their contexts in the corpus. This is an essential aspect of semantic understanding in natural language processing.</p></li>
+<li><p><strong>Useful for Downstream Tasks</strong>: The word embeddings produced by neural networks can be readily used as input to downstream tasks such as text classification, sentiment analysis, or machine translation.</p></li>
+<li><p><strong>Mapping Discrete Words to Continuous Vectors</strong>: Neural networks facilitate a continuous, dense representation for words that was otherwise sparse and high-dimensional in one-hot encoded format. This condensed representation is what we refer to as word embeddings.</p></li>
+<li><p><strong>Solution to the Curse of Dimensionality</strong>: Lastly, word embeddings generated by neural networks effectively tackle the ‘curse of dimensionality’. This refers to the challenge posed by extremely high-dimensional data (like text data) that becomes increasingly sparse, and hence difficult for many machine learning algorithms to handle.</p></li>
+</ol>
+<p>In conclusion, while traditional clustering algorithms hold their merits in specific scenarios, the flexibility, learning ability, and higher representation power of neural networks make them the go-to choice for tasks such as word embeddings in natural language processing.</p>
 </section>
 <section id="next">
 <h2>Next<a class="headerlink" href="#next" title="Permalink to this heading">#</a></h2>
@@ -776,15 +738,11 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-word-embeddings">What are word embeddings?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#categorical-embeddings">Categorical Embeddings</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#an-embedding-layer-is-matrix-multiplication">An embedding layer is matrix multiplication:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#embedding-layers-versus-dense-layers">Embedding Layers versus Dense Layers</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Word Embeddings</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-do-we-need-neural-networks-for-word-embeddings">Why do we need neural networks for word embeddings?</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#categorical-embeddings">Categorical Embeddings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-embedding-layer-is-matrix-multiplication">An embedding layer is matrix multiplication:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#embedding-layers-vs-dense-layers">Embedding Layers vs. Dense Layers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Word Embeddings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-do-we-need-neural-nin-the-realm-of-machine-learning-and-natural-language-processing-we-often-face-a-dilemma-when-dealing-with-text-data-should-we-use-traditional-clustering-algorithms-or-do-we-need-the-more-advanced-neural-network-models-for-tasks-such-as-word-embeddings">Why do we need neural nIn the realm of machine learning and natural language processing, we often face a dilemma when dealing with text data: should we use traditional clustering algorithms, or do we need the more advanced neural network models for tasks such as <strong>word embeddings</strong>?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next">Next</a></li>
 </ul>
   </nav></div>
