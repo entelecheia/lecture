@@ -1,3 +1,5 @@
+# Word Similarity
+
 ## Two ways NLP uses context for semantics
 
 `Distributional similarity`: (vector-space semantics)
