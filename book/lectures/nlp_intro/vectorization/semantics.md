@@ -34,7 +34,7 @@ Distributional semantics maps words to vector representations that capture the d
 
 A core assumption that underpins many of the vector-based methods in Natural Language Processing (NLP) is the Distributional Hypothesis. This hypothesis, originating from the field of linguistics, provides a framework for understanding word meaning based on the contexts in which words are used.
 
-The Distributional Hypothesis was originally proposed by linguist Zellig Harris in 1954 and further developed by others, notably by J.R. Firth in 1957. The hypothesis essentially posits that **words that occur in similar contexts have similar meanings**. This is often summed up as "a word is characterized by the company it keeps."
+The Distributional Hypothesis was originally proposed by {cite:t}`harris1954distributional` and further developed by others, notably by {cite:t}`firth1957synopsis`. The hypothesis essentially posits that **words that occur in similar contexts have similar meanings**. This is often summed up as **"you shall know a word by the company it keeps."**
 
 Consider two words: `oculist` and `eye doctor`. Both of these terms often occur in similar contexts: they may be followed by words like 'examined', 'prescribed', or 'diagnosed'. According to the Distributional Hypothesis, we can infer that `oculist` and `eye doctor` have similar meanings due to these shared contexts.
 
