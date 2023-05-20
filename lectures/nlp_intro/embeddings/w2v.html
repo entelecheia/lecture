@@ -237,9 +237,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Word Embeddings</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="nlm.html">Neural Language Models</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">Word2Vec</a></li>
-
-
-
 <li class="toctree-l3"><a class="reference internal" href="glove.html">GloVe</a></li>
 <li class="toctree-l3"><a class="reference internal" href="fasttext.html">FastText</a></li>
 </ul>
@@ -589,43 +586,39 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Word2Vec</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main-idea">Main idea</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#negative-sampling">Negative sampling</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-models">Two models</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-the-skip-gram-model-and-when-to-use-cbow">When to use the skip-gram model and when to use CBOW?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skip-gram-model">Skip-gram model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input-output-hidden-layer">Input/output/hidden layer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-0-prepare-the-data">Step 0: Prepare the data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-setting-target-and-context-variable">Step 1: Setting target and context variable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-building-the-model">Step 2: Building the model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-loss-and-optimization-function">Step 3: Loss and optimization function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-training-the-model">Step 4: Training the model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-embeddings">Visualizing the embeddings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#skip-gram-model">Skip-gram model</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-output-hidden-layer">Input/output/hidden layer</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-0-prepare-the-data">Step 0: Prepare the data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-setting-target-and-context-variable">Step 1: Setting target and context variable</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-building-the-model">Step 2: Building the model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-loss-and-optimization-function">Step 3: Loss and optimization function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-training-the-model">Step 4: Training the model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-embeddings">Visualizing the embeddings</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-bag-of-words-cbow">Continuous Bag of Words (CBOW)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture">Architecture</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-define-a-function-to-create-a-context-and-a-target-word">Step 1: Define a function to create a context and a target word</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-build-the-model">Step 2: Build the model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Step 3: Loss and optimization function.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Step 4: Training the model.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Visualizing the embeddings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Evaluation</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-bag-of-words-cbow">Continuous Bag of Words (CBOW)</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture">Architecture</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-define-a-function-to-create-a-context-and-a-target-word">Step 1: Define a function to create a context and a target word</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-build-the-model">Step 2: Build the model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Step 3: Loss and optimization function.</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Step 4: Training the model.</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Visualizing the embeddings</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Evaluation</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#improving-predictive-functions">Improving predictive functions</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#softmax">Softmax</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hierarchical-softmax">Hierarchical softmax</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#noise-contrastive-estimation">Noise-contrastive estimation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Negative sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#improving-predictive-functions">Improving predictive functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#softmax">Softmax</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hierarchical-softmax">Hierarchical softmax</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#noise-contrastive-estimation">Noise-contrastive estimation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Negative sampling</a></li>
 </ul>
 </li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -636,7 +629,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="word2vec">
+  <section class="tex2jax_ignore mathjax_ignore" id="word2vec">
 <h1>Word2Vec<a class="headerlink" href="#word2vec" title="Permalink to this heading">#</a></h1>
 <p>Word2Vec is a neural network architecture that was proposed by <span id="id1">[<a class="reference internal" href="../../../about/index.html#id24" title="Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg S Corrado, and Jeff Dean. Distributed representations of words and phrases and their compositionality. Advances in neural information processing systems, 2013.">Mikolov <em>et al.</em>, 2013</a>]</span> in 2013. It is a shallow, two-layer neural network that is trained to reconstruct linguistic contexts of words.</p>
 <p>The problem of the previous neural network is that it is computationally expensive to train. The hidden layer computes probability distribution for all the words in the vocabulary. This is because the output layer is a fully connected layer.</p>
@@ -679,16 +672,15 @@ document.write(`
 <li><p>Therefore, the choice of model depends on the kind of problem you are trying to solve.</p></li>
 </ul>
 </section>
-</section>
 <section id="skip-gram-model">
-<h1>Skip-gram model<a class="headerlink" href="#skip-gram-model" title="Permalink to this heading">#</a></h1>
+<h2>Skip-gram model<a class="headerlink" href="#skip-gram-model" title="Permalink to this heading">#</a></h2>
 <p>The skip-gram model is the same as the CBOW model with one difference: it predicts the context words from the target word.</p>
 <p>In the above figure, <span class="math notranslate nohighlight">\(w[t]\)</span> is the target word, and <span class="math notranslate nohighlight">\(w[t-2], w[t-1], w[t+1], w[t+2]\)</span> are the context words, where <span class="math notranslate nohighlight">\(t\)</span> is the location of the target word in the sentence.</p>
 <p>The model predicts the probability of a word being a context word given the target word. The output probabilities explain how likely a word is to be close to the target word.</p>
 <p>This shallow neural network architecture is called a <code class="docutils literal notranslate"><span class="pre">skip-gram</span></code> model because it predicts the context words from the target word.</p>
 <p>We don’t use this trained network for prediction. Instead, we use the weights of the embedding layer as the word embeddings.</p>
 <section id="input-output-hidden-layer">
-<h2>Input/output/hidden layer<a class="headerlink" href="#input-output-hidden-layer" title="Permalink to this heading">#</a></h2>
+<h3>Input/output/hidden layer<a class="headerlink" href="#input-output-hidden-layer" title="Permalink to this heading">#</a></h3>
 <p>How do we represent a single target word as a large vector?</p>
 <ul class="simple">
 <li><p>We can use a one-hot vector to represent the target word.</p></li>
@@ -701,7 +693,7 @@ document.write(`
 <p><img alt="" src="../../../_images/skip-gram.png" /></p>
 </section>
 <section id="step-0-prepare-the-data">
-<h2>Step 0: Prepare the data<a class="headerlink" href="#step-0-prepare-the-data" title="Permalink to this heading">#</a></h2>
+<h3>Step 0: Prepare the data<a class="headerlink" href="#step-0-prepare-the-data" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;retina&#39;
@@ -729,7 +721,7 @@ document.write(`
 </div>
 </section>
 <section id="step-1-setting-target-and-context-variable">
-<h2>Step 1: Setting target and context variable<a class="headerlink" href="#step-1-setting-target-and-context-variable" title="Permalink to this heading">#</a></h2>
+<h3>Step 1: Setting target and context variable<a class="headerlink" href="#step-1-setting-target-and-context-variable" title="Permalink to this heading">#</a></h3>
 <p>Since skipgram takes a single context word and n number of target variables, we just need to flip the CBOW from the previous model.</p>
 <p>when the window size is 1, we take one word before and after the target word.</p>
 <p>For example, if we have the sentence “I like deep learning because it is fun”, and the window size is 1, the function will return the following list:</p>
@@ -783,7 +775,7 @@ document.write(`
 </div>
 </section>
 <section id="step-2-building-the-model">
-<h2>Step 2: Building the model<a class="headerlink" href="#step-2-building-the-model" title="Permalink to this heading">#</a></h2>
+<h3>Step 2: Building the model<a class="headerlink" href="#step-2-building-the-model" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
@@ -813,7 +805,7 @@ document.write(`
 </div>
 </section>
 <section id="step-3-loss-and-optimization-function">
-<h2>Step 3: Loss and optimization function<a class="headerlink" href="#step-3-loss-and-optimization-function" title="Permalink to this heading">#</a></h2>
+<h3>Step 3: Loss and optimization function<a class="headerlink" href="#step-3-loss-and-optimization-function" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
@@ -842,7 +834,7 @@ document.write(`
 </div>
 </section>
 <section id="step-4-training-the-model">
-<h2>Step 4: Training the model<a class="headerlink" href="#step-4-training-the-model" title="Permalink to this heading">#</a></h2>
+<h3>Step 4: Training the model<a class="headerlink" href="#step-4-training-the-model" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -906,7 +898,7 @@ Epoch: 150000 cost = 2.791655
 </div>
 </section>
 <section id="visualizing-the-embeddings">
-<h2>Visualizing the embeddings<a class="headerlink" href="#visualizing-the-embeddings" title="Permalink to this heading">#</a></h2>
+<h3>Visualizing the embeddings<a class="headerlink" href="#visualizing-the-embeddings" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -931,7 +923,7 @@ Epoch: 150000 cost = 2.791655
 </div>
 </section>
 <section id="evaluation">
-<h2>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this heading">#</a></h2>
+<h3>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">skipgram_test</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
@@ -998,12 +990,12 @@ Epoch: 150000 cost = 2.791655
 </section>
 </section>
 <section id="continuous-bag-of-words-cbow">
-<h1>Continuous Bag of Words (CBOW)<a class="headerlink" href="#continuous-bag-of-words-cbow" title="Permalink to this heading">#</a></h1>
+<h2>Continuous Bag of Words (CBOW)<a class="headerlink" href="#continuous-bag-of-words-cbow" title="Permalink to this heading">#</a></h2>
 <p>The CBOW model predicts the target word from the context words.</p>
 <p>This model reduces the complexity of calculating the probability distribution for all the words in the vocabulary to the <span class="math notranslate nohighlight">\(\log_2(V)\)</span> complexity of calculating the probability distribution for the target word.</p>
 <p><img alt="" src="../../../_images/cbow_skip-gram.png" /></p>
 <section id="architecture">
-<h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this heading">#</a></h2>
+<h3>Architecture<a class="headerlink" href="#architecture" title="Permalink to this heading">#</a></h3>
 <a class="bg-primary mb-1 reference internal image-reference" href="../../../_images/cbow.png"><img alt="cbow" class="bg-primary mb-1 align-center" src="../../../_images/cbow.png" style="width: 350px;" /></a>
 <ul class="simple">
 <li><p>The input layer is the context words.</p></li>
@@ -1015,7 +1007,7 @@ Epoch: 150000 cost = 2.791655
 </ul>
 </section>
 <section id="step-1-define-a-function-to-create-a-context-and-a-target-word">
-<h2>Step 1: Define a function to create a context and a target word<a class="headerlink" href="#step-1-define-a-function-to-create-a-context-and-a-target-word" title="Permalink to this heading">#</a></h2>
+<h3>Step 1: Define a function to create a context and a target word<a class="headerlink" href="#step-1-define-a-function-to-create-a-context-and-a-target-word" title="Permalink to this heading">#</a></h3>
 <p>Define a function to create a context window with n words from the right and left of the target word.</p>
 <p>The function should take two arguments: data and window size. The window size will define how many words we are supposed to take from the right and from the left.</p>
 <p>The for loop: <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">range(window_size,</span> <span class="pre">len(words)</span> <span class="pre">–</span> <span class="pre">window_size)</span></code>: iterates through a range starting from the window size, i.e. 2 means it will ignore words in index 0 and 1 from the sentence, and end 2 words before the sentence ends.</p>
@@ -1064,7 +1056,7 @@ Epoch: 150000 cost = 2.791655
 </div>
 </section>
 <section id="step-2-build-the-model">
-<h2>Step 2: Build the model<a class="headerlink" href="#step-2-build-the-model" title="Permalink to this heading">#</a></h2>
+<h3>Step 2: Build the model<a class="headerlink" href="#step-2-build-the-model" title="Permalink to this heading">#</a></h3>
 <p>In the CBOW model, we reduce the hidden layer to only one. So all together we have: an embedding layer, a hidden layer which passes through the ReLU layer, and an output layer.</p>
 <p>The context words index is fed into the embedding layers, which is then passed through the hidden layer followed by the nonlinear activation layer, i.e. ReLU, and finally we get the output.</p>
 <div class="cell docutils container">
@@ -1102,7 +1094,7 @@ Epoch: 150000 cost = 2.791655
 </div>
 </section>
 <section id="id2">
-<h2>Step 3: Loss and optimization function.<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<h3>Step 3: Loss and optimization function.<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <p>We are using the cross-entropy loss function and the SGD optimizer. You can also use the Adam optimizer.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1135,7 +1127,7 @@ Epoch: 150000 cost = 2.791655
 </div>
 </section>
 <section id="id3">
-<h2>Step 4: Training the model.<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<h3>Step 4: Training the model.<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <p>Finally, we train the model.</p>
 <p><code class="docutils literal notranslate"><span class="pre">words_to_vector</span></code> turns words into numbers.</p>
 <div class="cell docutils container">
@@ -1171,7 +1163,7 @@ Epoch: 49, Loss: 4.151697635650635
 </div>
 </section>
 <section id="id4">
-<h2>Visualizing the embeddings<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<h3>Visualizing the embeddings<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -1195,7 +1187,7 @@ Epoch: 49, Loss: 4.151697635650635
 </div>
 </section>
 <section id="id5">
-<h2>Evaluation<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<h3>Evaluation<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">CBOW_test</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
@@ -1257,9 +1249,9 @@ Prediction: micron
 </section>
 </section>
 <section id="improving-predictive-functions">
-<h1>Improving predictive functions<a class="headerlink" href="#improving-predictive-functions" title="Permalink to this heading">#</a></h1>
+<h2>Improving predictive functions<a class="headerlink" href="#improving-predictive-functions" title="Permalink to this heading">#</a></h2>
 <section id="softmax">
-<h2>Softmax<a class="headerlink" href="#softmax" title="Permalink to this heading">#</a></h2>
+<h3>Softmax<a class="headerlink" href="#softmax" title="Permalink to this heading">#</a></h3>
 <p>The equation for the softmax function is:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1272,7 +1264,7 @@ Prediction: micron
 <p>With a large vocabulary, say 100,000 words, the softmax function becomes very expensive to compute. For each word (<span class="math notranslate nohighlight">\(w_i\)</span>), we have to compute the exponential of the score of each word in the vocabulary (<span class="math notranslate nohighlight">\(x_j\)</span>) and then sum them up. This is <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span>.</p>
 </section>
 <section id="hierarchical-softmax">
-<h2>Hierarchical softmax<a class="headerlink" href="#hierarchical-softmax" title="Permalink to this heading">#</a></h2>
+<h3>Hierarchical softmax<a class="headerlink" href="#hierarchical-softmax" title="Permalink to this heading">#</a></h3>
 <p>Hierarchical softmax is a method to reduce the complexity of the softmax function. It is a tree-based data structure that is used to represent the vocabulary.</p>
 <p>Hierarchical softmax was introduced by Morin and Bengio in 2005, as an alternative to the full softmax function, where it replaces it with a hierarchical layer. It borrows the technique from the binary huffman tree, which reduces the complexity of calculating the probability from <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span> to <span class="math notranslate nohighlight">\(\mathcal{O}(\log_2(n))\)</span>.</p>
 <p>The hierarchical softmax is a binary tree, where each node represents a word in the vocabulary. The root node represents the entire vocabulary. The left child represents the words that are less frequent than the parent node, and the right child represents the words that are more frequent than the parent node.</p>
@@ -1280,7 +1272,7 @@ Prediction: micron
 <p>In the huffman tree, we no longer calculate the output embeddings <span class="math notranslate nohighlight">\(w^\prime\)</span>. Instead, we calculate the probability of turning right or left at each node.</p>
 </section>
 <section id="noise-contrastive-estimation">
-<h2>Noise-contrastive estimation<a class="headerlink" href="#noise-contrastive-estimation" title="Permalink to this heading">#</a></h2>
+<h3>Noise-contrastive estimation<a class="headerlink" href="#noise-contrastive-estimation" title="Permalink to this heading">#</a></h3>
 <p>Noise-contrastive estimation (NCE) is an approximation method to reduce the complexity of the softmax function. It is a sampling-based method that is used to approximate the softmax function.</p>
 <p>NCE takes an unnormalised multinomial function (i.e. the function that has multiple labels and its output has not been passed through a softmax layer), and converts it to a binary logistic regression.</p>
 <p>In order to learn the distribution to predict the target word (<span class="math notranslate nohighlight">\(w_t\)</span>) from some specific context (<span class="math notranslate nohighlight">\(c\)</span>), we need to create two classes: <strong>positive samples</strong> and <strong>negative samples</strong>.</p>
@@ -1298,7 +1290,7 @@ Prediction: micron
 <p>In conclusion, NCE is a way of learning a data distribution by comparing it against a noise distribution, and modifying the learning parameters such that the model <span class="math notranslate nohighlight">\(P_{\theta}\)</span> is closer to the noise <span class="math notranslate nohighlight">\(P_{\text{data}}\)</span>.</p>
 </section>
 <section id="id6">
-<h2>Negative sampling<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
+<h3>Negative sampling<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
 <p>Negative sampling is a sampling-based method that is used to approximate the softmax function. It simplifies the NCE method by removing the need to calculate the noise distribution <span class="math notranslate nohighlight">\(Q\)</span>.</p>
 <p>Negative sampling gets rid of the noise distribution <span class="math notranslate nohighlight">\(Q\)</span> and uses a single noise sample <span class="math notranslate nohighlight">\(w_j\)</span> for each target word <span class="math notranslate nohighlight">\(w_t\)</span>.</p>
 <p>The loss function is the sum of the log probabilities of the positive samples and the negative samples, and is given by:</p>
@@ -1309,6 +1301,7 @@ Prediction: micron
 \end{align}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\sigma\)</span> is the sigmoid function.</p>
+</section>
 </section>
 </section>
 
@@ -1379,43 +1372,39 @@ Prediction: micron
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Word2Vec</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main-idea">Main idea</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#negative-sampling">Negative sampling</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-models">Two models</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-the-skip-gram-model-and-when-to-use-cbow">When to use the skip-gram model and when to use CBOW?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skip-gram-model">Skip-gram model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input-output-hidden-layer">Input/output/hidden layer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-0-prepare-the-data">Step 0: Prepare the data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-setting-target-and-context-variable">Step 1: Setting target and context variable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-building-the-model">Step 2: Building the model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-loss-and-optimization-function">Step 3: Loss and optimization function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-training-the-model">Step 4: Training the model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-embeddings">Visualizing the embeddings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#skip-gram-model">Skip-gram model</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-output-hidden-layer">Input/output/hidden layer</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-0-prepare-the-data">Step 0: Prepare the data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-setting-target-and-context-variable">Step 1: Setting target and context variable</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-building-the-model">Step 2: Building the model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-loss-and-optimization-function">Step 3: Loss and optimization function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-training-the-model">Step 4: Training the model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-embeddings">Visualizing the embeddings</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-bag-of-words-cbow">Continuous Bag of Words (CBOW)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture">Architecture</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-define-a-function-to-create-a-context-and-a-target-word">Step 1: Define a function to create a context and a target word</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-build-the-model">Step 2: Build the model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Step 3: Loss and optimization function.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Step 4: Training the model.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Visualizing the embeddings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Evaluation</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-bag-of-words-cbow">Continuous Bag of Words (CBOW)</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture">Architecture</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-define-a-function-to-create-a-context-and-a-target-word">Step 1: Define a function to create a context and a target word</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-build-the-model">Step 2: Build the model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Step 3: Loss and optimization function.</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Step 4: Training the model.</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Visualizing the embeddings</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Evaluation</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#improving-predictive-functions">Improving predictive functions</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#softmax">Softmax</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hierarchical-softmax">Hierarchical softmax</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#noise-contrastive-estimation">Noise-contrastive estimation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Negative sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#improving-predictive-functions">Improving predictive functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#softmax">Softmax</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hierarchical-softmax">Hierarchical softmax</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#noise-contrastive-estimation">Noise-contrastive estimation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Negative sampling</a></li>
 </ul>
 </li>
 </ul>
-
   </nav></div>
 
 </div></div>
