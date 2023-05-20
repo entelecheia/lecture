@@ -1,4 +1,4 @@
-# Research Applications
+# NLP Applications
 
 ```{image} figs/entelecheia_economic_research.png
 :alt: Research
