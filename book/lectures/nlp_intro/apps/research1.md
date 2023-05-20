@@ -1,4 +1,4 @@
-# Research Applications - Part I
+# Research Part I
 
 ## Firm-Level Political Risk: Measurement and Effects
 
