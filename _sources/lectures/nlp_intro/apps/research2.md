@@ -1,4 +1,4 @@
-# Research Applications - Part II
+# Research Part II
 
 ## The Diffusion of Disruptive Technologies
 
