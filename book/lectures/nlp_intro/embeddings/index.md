@@ -110,7 +110,9 @@ Word Embeddings
 
 In a nutshell, word embeddings offer an efficient, computationally friendly way of representing words for machine learning tasks, condensing the high-dimensional space of one-hot vectors into a denser, lower-dimensional representation that still captures essential semantic features.
 
-## Why do we need neural nIn the realm of machine learning and natural language processing, we often face a dilemma when dealing with text data: should we use traditional clustering algorithms, or do we need the more advanced neural network models for tasks such as **word embeddings**?
+## Why do we need neural networks for word embeddings?
+
+In the realm of machine learning and natural language processing, we often face a dilemma when dealing with text data: should we use traditional clustering algorithms, or do we need the more advanced neural network models for tasks such as **word embeddings**?
 
 There's a good number of conventional, or as we often call them, shallow algorithms, that work remarkably well for clustering tasks. These include:
 
