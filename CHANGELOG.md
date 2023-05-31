@@ -1,5 +1,37 @@
 <!--next-version-placeholder-->
 
+## v0.6.0 (2023-05-31)
+### Feature
+* **course:** Add two new labs to NLP_deep training section ([`9d3fd93`](https://github.com/entelecheia/lecture/commit/9d3fd9398fbca8f7a97bd4c4a9b274e2c71696a8))
+
+### Documentation
+* Add lab finetune mlm ([`4768679`](https://github.com/entelecheia/lecture/commit/4768679826d545fb4ecd8952712278073b540e56))
+* Add lab pretrain mlm ([`362d68c`](https://github.com/entelecheia/lecture/commit/362d68c0ff2ad68aa7507495424d313e04ce9771))
+* **deepnlp:** Update tokenization pipeline ([`bc0be98`](https://github.com/entelecheia/lecture/commit/bc0be989ccaa9daf64c216916f26c001196c2f7f))
+* **intro-nlp:** Update language model lecture ([`653f3be`](https://github.com/entelecheia/lecture/commit/653f3be6ffe8b8d0c1753ff889241a64310e7ccf))
+* **intro-nlp:** Update language model lecture ([`f28f18c`](https://github.com/entelecheia/lecture/commit/f28f18c997a9d58f262a002af86fd71bf2a81b96))
+* **intro-nlp:** Update language model lecture ([`19391f9`](https://github.com/entelecheia/lecture/commit/19391f99b05505a4b88ec76521c9353bccf8ceb4))
+* **intro-nlp:** Update research applications lecture ([`cf096d5`](https://github.com/entelecheia/lecture/commit/cf096d5fb383356c51d2d5bd4cebfd048b67ff44))
+* **intro-nlp:** Update embeddings lecture ([`a2f6bae`](https://github.com/entelecheia/lecture/commit/a2f6bae9b4c7e58e62713ff37e5f628acce4819b))
+* **intro-nlp:** Update embeddings lecture ([`427605a`](https://github.com/entelecheia/lecture/commit/427605adc108094baec583beb267c838fdfff145))
+* **intro-nlp:** Update embeddings lecture ([`1c25972`](https://github.com/entelecheia/lecture/commit/1c259726564f35068bec50892fbbc12141166aa7))
+* **intro-nlp:** Add embeddings lectures ([`993fb5c`](https://github.com/entelecheia/lecture/commit/993fb5c8dbc285e629cb1a6733b74aa80a09b7f8))
+* **intro-nlp:** Add lab-similarity ([`8e9fed1`](https://github.com/entelecheia/lecture/commit/8e9fed114ac334f8a7f72da92a3c1fe80a031856))
+* **intro-nlp:** Add similarity ([`bbba9ce`](https://github.com/entelecheia/lecture/commit/bbba9ce8eab6bd51721fa1a1ea8c152254936430))
+* **intro-nlp:** Add tf-idf ([`7bebec8`](https://github.com/entelecheia/lecture/commit/7bebec8a514d68ee4f54e8bb370959d39103c87b))
+* **intro-nlp:** Add bow ([`dacb5ff`](https://github.com/entelecheia/lecture/commit/dacb5ffc8630bb798a0103b1d253321f7b2bdc8a))
+* **intro-nlp:** Add semantics ([`c8139c0`](https://github.com/entelecheia/lecture/commit/c8139c0a4e533f1859f862608e0830e761a02f68))
+* **intro-nlp:** Update lab-korean ([`ec19cbc`](https://github.com/entelecheia/lecture/commit/ec19cbc24d1216cb3a0b50c3428a24e0b426628e))
+* **intro-nlp:** Add lab-korean ([`91624e6`](https://github.com/entelecheia/lecture/commit/91624e6746a2cf5ad97ad74950992300e880e1fd))
+* **intro-nlp:** Add lab-tokenization ([`6eb276d`](https://github.com/entelecheia/lecture/commit/6eb276ddc8ebb3b96f9a8dab81661bc0403d6b5d))
+* **intro-nlp:** Update topic lectures ([`1c82e4c`](https://github.com/entelecheia/lecture/commit/1c82e4c98ea245122a3c1ddff8663c778751f2b1))
+* **intro-nlp:** Update korean tokenization lecture ([`08764e7`](https://github.com/entelecheia/lecture/commit/08764e736db41847c1ea24ec706408aad1fcbcad))
+* **intro-nlp:** Add korean tokenization lecture ([`b997440`](https://github.com/entelecheia/lecture/commit/b997440b79e85d180bb23ddf9643f091c97d7a79))
+* **intro-nlp:** Add ngram lecture ([`47f0ab6`](https://github.com/entelecheia/lecture/commit/47f0ab62714f2c158c89bdbcecf61fc3f04bd7ab))
+* **intro-nlp:** Add tokeinzation, pos lecture ([`031ffa9`](https://github.com/entelecheia/lecture/commit/031ffa9f4fc7a144e47344518c10c05ff77138e5))
+* **intro-nlp:** Update ml-based sa lab ([`70fa252`](https://github.com/entelecheia/lecture/commit/70fa2520d9c36a552de918bb13551395c08f6050))
+* **intro-nlp:** Update ml-based sa lab ([`06b12c0`](https://github.com/entelecheia/lecture/commit/06b12c0b77a664d6dec5cd0e2fca56482623b3ea))
+
 ## v0.5.0 (2023-05-19)
 ### Feature
 * **nlp:** Add lab-ml file to sentiments section ([`68dd2fd`](https://github.com/entelecheia/lecture/commit/68dd2fd52edc396748a63301651914065e9bbc8e))
