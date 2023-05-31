@@ -1,5 +1,9 @@
 <!--next-version-placeholder-->
 
+## v0.6.1 (2023-05-31)
+### Fix
+* **deep-nlp:** Finetune mlm heading level ([`d93e286`](https://github.com/entelecheia/lecture/commit/d93e2862a4b282b6b4f57deb441faf5fba59d9f2))
+
 ## v0.6.0 (2023-05-31)
 ### Feature
 * **course:** Add two new labs to NLP_deep training section ([`9d3fd93`](https://github.com/entelecheia/lecture/commit/9d3fd9398fbca8f7a97bd4c4a9b274e2c71696a8))
