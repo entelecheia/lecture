@@ -1,5 +1,12 @@
 # Training Language Models
 
+```{image} figs/train.png
+:alt: tokenization
+:class: bg-primary mb-1
+:width: 80%
+:align: center
+```
+
 ## Overview
 
 Pretraining and finetuning are powerful techniques for training language models that have led to significant advancements in NLP. By leveraging transfer learning and adapting pretrained models to specific tasks, researchers and practitioners can develop high-performing NLP applications with relatively small amounts of labeled data. However, it is essential to be aware of the challenges and limitations of these techniques and consider their ethical implications when developing and deploying language models.
