@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Lab: Finetuining a Masked Language Model &#8212; ἐντελέχεια.άι</title>
+    <title>Lab: Finetuining a MLM &#8212; ἐντελέχεια.άι</title>
   
   
   
@@ -280,8 +280,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Training Language Models</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="lab-pretrain-mlm.html">Lab: Pretraining LMs with MLM</a></li>
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">Lab: Finetuining a Masked Language Model</a></li>
-
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Lab: Finetuining a MLM</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../chatbots/index.html">Conversational AI and Chatbots</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -584,7 +583,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Lab: Finetuining a Masked Language Model</h1>
+    <h1>Lab: Finetuining a MLM</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -594,11 +593,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Lab: Finetuining a Masked Language Model</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-environment">Preparing the Environment</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-environment">Preparing the Environment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-pretrained-model-and-tokenizer">Loading the Pretrained Model and Tokenizer</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-dataset">Preparing the Dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenizing-and-formatting-the-data">Tokenizing and Formatting the Data</a></li>
@@ -607,9 +603,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validating-the-model">Validating the Model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-and-loading-the-model">Saving and Loading the Model</a></li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -620,8 +613,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="lab-finetuining-a-masked-language-model">
-<h1>Lab: Finetuining a Masked Language Model<a class="headerlink" href="#lab-finetuining-a-masked-language-model" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-finetuining-a-mlm">
+<h1>Lab: Finetuining a MLM<a class="headerlink" href="#lab-finetuining-a-mlm" title="Permalink to this heading">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>In this lab session, we are going to take the previously pretrained BERT model that we created using the Masked Language Modeling (MLM) objective and finetune it for a downstream task: sentiment analysis. Sentiment analysis is a common Natural Language Processing (NLP) task that involves determining the sentiment expressed in a piece of text, usually positive, negative, or neutral.</p>
@@ -640,9 +633,8 @@ document.write(`
 <p>Remember, this whole process is happening within the Google Colab environment, which provides a convenient and powerful platform for running our model training tasks.</p>
 <p>Now, let’s dive in and start finetuning our BERT model for sentiment analysis.</p>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="preparing-the-environment">
-<h1>Preparing the Environment<a class="headerlink" href="#preparing-the-environment" title="Permalink to this heading">#</a></h1>
+<section id="preparing-the-environment">
+<h2>Preparing the Environment<a class="headerlink" href="#preparing-the-environment" title="Permalink to this heading">#</a></h2>
 <p>Before we start, we need to set up our working environment in Google Colab. This involves installing necessary libraries and setting up GPU for our computations.</p>
 <p>Here are the steps:</p>
 <ol class="arabic simple">
@@ -706,6 +698,7 @@ document.write(`
 </div>
 </div>
 <p>These libraries will help us in loading the model, the tokenizer, training the model, loading the dataset and evaluating our model’s performance.</p>
+</section>
 <section id="loading-the-pretrained-model-and-tokenizer">
 <h2>Loading the Pretrained Model and Tokenizer<a class="headerlink" href="#loading-the-pretrained-model-and-tokenizer" title="Permalink to this heading">#</a></h2>
 <p>Now that our environment is prepared, we can load our pretrained BERT model and the tokenizer we trained along with it. These components have been saved from the previous steps we completed.</p>
@@ -1071,11 +1064,8 @@ epoch: 2.0000
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Lab: Finetuining a Masked Language Model</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-environment">Preparing the Environment</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-environment">Preparing the Environment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-pretrained-model-and-tokenizer">Loading the Pretrained Model and Tokenizer</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-dataset">Preparing the Dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenizing-and-formatting-the-data">Tokenizing and Formatting the Data</a></li>
@@ -1084,9 +1074,6 @@ epoch: 2.0000
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validating-the-model">Validating the Model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-and-loading-the-model">Saving and Loading the Model</a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>
