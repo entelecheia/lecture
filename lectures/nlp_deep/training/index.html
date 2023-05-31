@@ -86,14 +86,12 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_deep/training/index';</script>
     <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_deep/training/index.html" />
     <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Lab: Pretraining Language Models" href="lab-pretraining.html" />
+    <link rel="next" title="Lab: Pretraining LMs with MLM" href="lab-pretrain-mlm.html" />
     <link rel="prev" title="Lab: Training Tokenizers" href="../tokenization/lab-train-tokenizers.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -281,7 +279,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">Training Language Models</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="lab-pretraining.html">Lab: Pretraining Language Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lab-pretrain-mlm.html">Lab: Pretraining LMs with MLM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lab-finetune-mlm.html">Lab: Finetuining a Masked Language Model</a></li>
+
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../chatbots/index.html">Conversational AI and Chatbots</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -564,6 +564,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="training-language-models">
 <h1>Training Language Models<a class="headerlink" href="#training-language-models" title="Permalink to this heading">#</a></h1>
+<a class="bg-primary mb-1 reference internal image-reference" href="../../../_images/train.png"><img alt="tokenization" class="bg-primary mb-1 align-center" src="../../../_images/train.png" style="width: 80%;" /></a>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p>Pretraining and finetuning are powerful techniques for training language models that have led to significant advancements in NLP. By leveraging transfer learning and adapting pretrained models to specific tasks, researchers and practitioners can develop high-performing NLP applications with relatively small amounts of labeled data. However, it is essential to be aware of the challenges and limitations of these techniques and consider their ethical implications when developing and deploying language models.</p>
@@ -616,7 +617,9 @@ document.write(`
 <h2>Contents<a class="headerlink" href="#contents" title="Permalink to this heading">#</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="lab-pretraining.html">Lab: Pretraining Language Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab-pretrain-mlm.html">Lab: Pretraining LMs with MLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab-finetune-mlm.html">Lab: Finetuining a Masked Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab-finetune-mlm.html#preparing-the-environment">Preparing the Environment</a></li>
 </ul>
 </div>
 </section>
@@ -663,11 +666,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="lab-pretraining.html"
+       href="lab-pretrain-mlm.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lab: Pretraining Language Models</p>
+        <p class="prev-next-title">Lab: Pretraining LMs with MLM</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

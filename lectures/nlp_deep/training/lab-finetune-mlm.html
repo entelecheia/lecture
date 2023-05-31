@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Tokenization Pipeline &#8212; ἐντελέχεια.άι</title>
+    <title>Lab: Finetuining a Masked Language Model &#8212; ἐντελέχεια.άι</title>
   
   
   
@@ -86,13 +86,13 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_deep/tokenization/pipeline';</script>
-    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_deep/tokenization/pipeline.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_deep/training/lab-finetune-mlm';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_deep/training/lab-finetune-mlm.html" />
     <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="BPE Step-by-Step Implementation" href="bpe.html" />
-    <link rel="prev" title="Subword Tokenization" href="subword.html" />
+    <link rel="next" title="Conversational AI and Chatbots" href="../chatbots/index.html" />
+    <link rel="prev" title="Lab: Pretraining LMs with MLM" href="lab-pretrain-mlm.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -268,19 +268,19 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="../datasets/lab-eda.html">Lab: Exploratory Data Analysis (EDA)</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Tokenization</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="subword.html">Subword Tokenization</a></li>
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">Tokenization Pipeline</a></li>
-<li class="toctree-l3"><a class="reference internal" href="bpe.html">BPE Step-by-Step Implementation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="wordpiece.html">WordPiece Step-by-Step Implementation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="unigram.html">Unigram Step-by-Step Implementation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="sentencepiece.html">SentencePiece Tokenizer</a></li>
-<li class="toctree-l3"><a class="reference internal" href="lab-train-tokenizers.html">Lab: Training Tokenizers</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tokenization/subword.html">Subword Tokenization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tokenization/pipeline.html">Tokenization Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tokenization/bpe.html">BPE Step-by-Step Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tokenization/wordpiece.html">WordPiece Step-by-Step Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tokenization/unigram.html">Unigram Step-by-Step Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tokenization/sentencepiece.html">SentencePiece Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tokenization/lab-train-tokenizers.html">Lab: Training Tokenizers</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../training/index.html">Training Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../training/lab-pretrain-mlm.html">Lab: Pretraining LMs with MLM</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/lab-finetune-mlm.html">Lab: Finetuining a Masked Language Model</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Training Language Models</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="lab-pretrain-mlm.html">Lab: Pretraining LMs with MLM</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Lab: Finetuining a Masked Language Model</a></li>
 
 </ul>
 </li>
@@ -453,7 +453,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/nlp_deep/tokenization/pipeline.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/nlp_deep/training/lab-finetune-mlm.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -502,7 +502,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../../_sources/lectures/nlp_deep/tokenization/pipeline.ipynb" target="_blank"
+      <li><a href="../../../_sources/lectures/nlp_deep/training/lab-finetune-mlm.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -584,7 +584,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Tokenization Pipeline</h1>
+    <h1>Lab: Finetuining a Masked Language Model</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -594,18 +594,22 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-tokenization-in-python">Implementing Tokenization in Python</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalization">Normalization</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#unicode-normalization">Unicode Normalization</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Lab: Finetuining a Masked Language Model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-tokenization">Pre-tokenization</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model">Model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#post-processing">Post-processing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#postprocessing">Postprocessing</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-environment">Preparing the Environment</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-pretrained-model-and-tokenizer">Loading the Pretrained Model and Tokenizer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-dataset">Preparing the Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenizing-and-formatting-the-data">Tokenizing and Formatting the Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modifying-the-model-for-sentiment-analysis">Modifying the Model for Sentiment Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-model">Training the Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validating-the-model">Validating the Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-and-loading-the-model">Saving and Loading the Model</a></li>
 </ul>
 </li>
 </ul>
+
             </nav>
         </div>
     </div>
@@ -616,245 +620,387 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="tokenization-pipeline">
-<h1>Tokenization Pipeline<a class="headerlink" href="#tokenization-pipeline" title="Permalink to this heading">#</a></h1>
-<figure class="align-default" id="fig-tokenization-pipeline">
-<a class="reference internal image-reference" href="../../../_images/tokenization_pipeline.png"><img alt="../../../_images/tokenization_pipeline.png" src="../../../_images/tokenization_pipeline.png" style="width: 80%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 130 </span><span class="caption-text">Tokenization pipeline</span><a class="headerlink" href="#fig-tokenization-pipeline" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<p>The tokenization process typically involves the following steps:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-finetuining-a-masked-language-model">
+<h1>Lab: Finetuining a Masked Language Model<a class="headerlink" href="#lab-finetuining-a-masked-language-model" title="Permalink to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>In this lab session, we are going to take the previously pretrained BERT model that we created using the Masked Language Modeling (MLM) objective and finetune it for a downstream task: sentiment analysis. Sentiment analysis is a common Natural Language Processing (NLP) task that involves determining the sentiment expressed in a piece of text, usually positive, negative, or neutral.</p>
+<p>While pretraining, the model learned to understand the syntax and semantics of the language. Now, during finetuning, we will teach the model how to apply this understanding to a specific task.</p>
+<p>Here’s a brief overview of the procedure we will follow:</p>
 <ol class="arabic simple">
-<li><p><strong>Normalization</strong>: This is the process of converting text into a standard format. This may involve converting all text to lowercase, removing punctuation or special characters, correcting spelling errors, and so on. The goal of normalization is to reduce the complexity of the text and to focus on the important features.</p></li>
-<li><p><strong>Pre-tokenization</strong>: This involves splitting the text into preliminary tokens. This could be as simple as splitting the text into words based on whitespace, or it could involve more complex processes like sentence segmentation.</p></li>
-<li><p><strong>Model</strong>: This is the core algorithm that determines how the pre-tokenized text is further broken down into tokens. There are various models available, including word-level, character-level, and subword-level tokenization models.</p></li>
-<li><p><strong>Post-processing</strong>: This involves any additional processing that needs to be done after tokenization. This could include removing stop words (common words like ‘is’, ‘the’, ‘and’, etc. that are often filtered out), stemming (reducing words to their root form), or lemmatization (reducing words to their base or dictionary form).</p></li>
+<li><p><strong>Preparing the Environment:</strong> We’ll start by setting up the necessary libraries and tools in our Google Colab environment.</p></li>
+<li><p><strong>Loading the Pretrained Model and Tokenizer:</strong> Next, we will load our pretrained BERT model and the tokenizer we used during pretraining.</p></li>
+<li><p><strong>Preparing the Dataset:</strong> We will prepare our sentiment analysis dataset by loading it, cleaning the text, and splitting it into training and validation sets.</p></li>
+<li><p><strong>Tokenizing and Formatting the Data:</strong> We’ll then tokenize our data using the previously trained tokenizer and format it for the sentiment analysis task.</p></li>
+<li><p><strong>Modifying the Model for Sentiment Analysis:</strong> Before starting the finetuning process, we need to modify our BERT model to make it suitable for sentiment analysis. We’ll do this by adding a new classification layer on top of BERT.</p></li>
+<li><p><strong>Training the Model:</strong> Once our model is ready, we’ll train it on our sentiment analysis dataset using the Hugging Face’s <code class="docutils literal notranslate"><span class="pre">Trainer</span></code> class.</p></li>
+<li><p><strong>Validating the Model:</strong> After training, we will validate our model’s performance on the validation dataset.</p></li>
+<li><p><strong>Saving and Loading the Model:</strong> Finally, we’ll save our finetuned model for future use and learn how to load it from disk.</p></li>
 </ol>
-<p>Let’s now look at how we can implement this pipeline using Python.</p>
-<section id="implementing-tokenization-in-python">
-<h2>Implementing Tokenization in Python<a class="headerlink" href="#implementing-tokenization-in-python" title="Permalink to this heading">#</a></h2>
-<p>We will be using the <code class="docutils literal notranslate"><span class="pre">transformers</span></code> library from Hugging Face, which provides a wide range of pre-trained models for NLP tasks. It also provides various tokenizers that we can use.</p>
-<p>First, let’s import the necessary libraries:</p>
+<p>Remember, this whole process is happening within the Google Colab environment, which provides a convenient and powerful platform for running our model training tasks.</p>
+<p>Now, let’s dive in and start finetuning our BERT model for sentiment analysis.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="preparing-the-environment">
+<h1>Preparing the Environment<a class="headerlink" href="#preparing-the-environment" title="Permalink to this heading">#</a></h1>
+<p>Before we start, we need to set up our working environment in Google Colab. This involves installing necessary libraries and setting up GPU for our computations.</p>
+<p>Here are the steps:</p>
+<ol class="arabic simple">
+<li><p><strong>Check Python Version</strong></p></li>
+</ol>
+<p>Google Colab should come with Python 3.7 or later pre-installed. You can verify this by running:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!python --version
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Installing Hugging Face Transformers Library</strong></p></li>
+</ol>
+<p>We will use the Hugging Face Transformers library for our BERT model and tokenizer. To install it, run:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!pip install transformers
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>Installing the Hugging Face Datasets Library</strong></p></li>
+</ol>
+<p>We also need the Hugging Face Datasets library for handling our dataset. You can install it by running:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!pip install datasets
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p><strong>Setting up the GPU</strong></p></li>
+</ol>
+<p>Google Colab provides access to a free GPU that we can use to train our models faster. To set up the GPU, follow these steps:</p>
+<ul class="simple">
+<li><p>Click on the <code class="docutils literal notranslate"><span class="pre">Runtime</span></code> tab in the Google Colab menu.</p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Change</span> <span class="pre">runtime</span> <span class="pre">type</span></code>.</p></li>
+<li><p>In the pop-up window, under <code class="docutils literal notranslate"><span class="pre">Hardware</span> <span class="pre">accelerator</span></code>, choose <code class="docutils literal notranslate"><span class="pre">GPU</span></code> and click <code class="docutils literal notranslate"><span class="pre">Save</span></code>.</p></li>
+</ul>
+<p>After these steps, your Google Colab environment is ready for training and finetuning models.</p>
+<p>Remember to import necessary libraries before starting the next steps:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %pip install transformers datasets torch</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>We can use the <code class="docutils literal notranslate"><span class="pre">AutoTokenizer</span></code> class to automatically infer the correct tokenizer to use based on the pre-trained model we specify.</p>
-<section id="normalization">
-<h3>Normalization<a class="headerlink" href="#normalization" title="Permalink to this heading">#</a></h3>
-<p>Normalization is usually handled internally by the tokenizer. However, we can see the effect of normalization by directly calling the normalizer:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;bert-base-uncased&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">backend_tokenizer</span><span class="o">.</span><span class="n">normalizer</span><span class="o">.</span><span class="n">normalize_str</span><span class="p">(</span><span class="s2">&quot;Héllò hôw are ü?&quot;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">BertForMaskedLM</span><span class="p">,</span>
+    <span class="n">BertForSequenceClassification</span><span class="p">,</span>
+    <span class="n">PreTrainedTokenizerFast</span><span class="p">,</span>
+    <span class="n">Trainer</span><span class="p">,</span>
+    <span class="n">TrainingArguments</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span><span class="p">,</span> <span class="n">load_metric</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hello how are u?
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.8/dist-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
 </pre></div>
 </div>
 </div>
 </div>
-<p>In this example, we’re using the tokenizer for the <code class="docutils literal notranslate"><span class="pre">bert-base-uncased</span></code> model. The <code class="docutils literal notranslate"><span class="pre">normalize_str</span></code> method applies the normalizer to the input string, converting all characters to lowercase and removing any special characters.</p>
-<section id="unicode-normalization">
-<h4>Unicode Normalization<a class="headerlink" href="#unicode-normalization" title="Permalink to this heading">#</a></h4>
-<p><strong>TL;DR</strong></p>
-<p>Use <code class="docutils literal notranslate"><span class="pre">NFKC</span></code> normalization to normalize your text before training your language model.</p>
-<p><strong>Unicode Normalization Forms</strong></p>
-<p>There are four normalization forms:</p>
-<ul class="simple">
-<li><p><strong>NFC</strong>: Normalization Form Canonical Composition</p></li>
-<li><p><strong>NFD</strong>: Normalization Form Canonical Decomposition</p></li>
-<li><p><strong>NFKC</strong>: Normalization Form Compatibility Composition</p></li>
-<li><p><strong>NFKD</strong>: Normalization Form Compatibility Decomposition</p></li>
-</ul>
-<p>In the above forms, “C” stands for “Canonical” and “K” stands for “Compatibility”. The “C” forms are the most commonly used. The “K” forms are used when you need to convert characters to their compatibility representation. For example, the “K” forms will convert “ﬁ” to “fi”.</p>
-<p>There two main differences between the two sets of forms:</p>
-<ul class="simple">
-<li><p>The length of the string is changed or not: NFC and NFKC always produce a string of the same length or shorter, while NFD and NFKD may produce a string that is longer.</p></li>
-<li><p>The original string is changed or not: NFC and NFD always produce a string that is identical to the original string, while NFKC and NFKD may produce a string that is different from the original string.</p></li>
-</ul>
-<p><strong>Unicode Normalization in Python</strong></p>
-<p>In Python, you can use the <code class="docutils literal notranslate"><span class="pre">unicodedata</span></code> module to normalize your text. The <code class="docutils literal notranslate"><span class="pre">unicodedata.normalize</span></code> function takes two arguments:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">form</span></code>: The normalization form to use. This can be one of the following: <code class="docutils literal notranslate"><span class="pre">NFC</span></code>, <code class="docutils literal notranslate"><span class="pre">NFD</span></code>, <code class="docutils literal notranslate"><span class="pre">NFKC</span></code>, <code class="docutils literal notranslate"><span class="pre">NFKD</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">unistr</span></code>: The string to normalize.</p></li>
-</ul>
+<p>These libraries will help us in loading the model, the tokenizer, training the model, loading the dataset and evaluating our model’s performance.</p>
+<section id="loading-the-pretrained-model-and-tokenizer">
+<h2>Loading the Pretrained Model and Tokenizer<a class="headerlink" href="#loading-the-pretrained-model-and-tokenizer" title="Permalink to this heading">#</a></h2>
+<p>Now that our environment is prepared, we can load our pretrained BERT model and the tokenizer we trained along with it. These components have been saved from the previous steps we completed.</p>
+<p>Here’s how we can do it:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">unicodedata</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the pretrained BERT model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">BertForMaskedLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;../tmp//bert_base_uncased&quot;</span><span class="p">)</span>
 
-<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;ａｂｃＡＢＣ１２３가나다…&quot;</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Original: </span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">form</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;NFC&quot;</span><span class="p">,</span> <span class="s2">&quot;NFD&quot;</span><span class="p">,</span> <span class="s2">&quot;NFKC&quot;</span><span class="p">,</span> <span class="s2">&quot;NFKD&quot;</span><span class="p">]:</span>
-    <span class="n">ntext</span> <span class="o">=</span> <span class="n">unicodedata</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">ntext</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ntext</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Original: ａｂｃＡＢＣ１２３가나다…, 13
-NFC: ａｂｃＡＢＣ１２３가나다…, 13
-NFD: ａｂｃＡＢＣ１２３가나다…, 16
-NFKC: abcABC123가나다..., 15
-NFKD: abcABC123가나다..., 18
+<span class="c1"># Load the tokenizer</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">PreTrainedTokenizerFast</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;../tmp/bert_base_uncased&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>In the above code, <code class="docutils literal notranslate"><span class="pre">BertForMaskedLM.from_pretrained</span></code> and <code class="docutils literal notranslate"><span class="pre">BertTokenizerFast.from_pretrained</span></code> functions are used to load the model and tokenizer, respectively. We specify the path to the directory where we saved the pretrained model and tokenizer, and these functions handle the rest.</p>
+<p>Now that we have loaded the pretrained BERT model and tokenizer, we can move forward to prepare our sentiment analysis dataset.</p>
 </section>
-</section>
-<section id="pre-tokenization">
-<h3>Pre-tokenization<a class="headerlink" href="#pre-tokenization" title="Permalink to this heading">#</a></h3>
-<p>Next, we perform pre-tokenization. This involves splitting the text into preliminary tokens:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;bert-base-uncased&quot;</span><span class="p">)</span>
-<span class="n">tokenizer</span><span class="o">.</span><span class="n">backend_tokenizer</span><span class="o">.</span><span class="n">pre_tokenizer</span><span class="o">.</span><span class="n">pre_tokenize_str</span><span class="p">(</span><span class="s2">&quot;Hello, how are  you?&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Hello&#39;, (0, 5)),
- (&#39;,&#39;, (5, 6)),
- (&#39;how&#39;, (7, 10)),
- (&#39;are&#39;, (11, 14)),
- (&#39;you&#39;, (16, 19)),
- (&#39;?&#39;, (19, 20))]
-</pre></div>
-</div>
-</div>
-</div>
-<p>Different models may use different pre-tokenization methods. For example, the GPT-2 and T5 models use different pre-tokenizers:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;gpt2&quot;</span><span class="p">)</span>
-<span class="n">tokenizer</span><span class="o">.</span><span class="n">backend_tokenizer</span><span class="o">.</span><span class="n">pre_tokenizer</span><span class="o">.</span><span class="n">pre_tokenize_str</span><span class="p">(</span><span class="s2">&quot;Hello, how are  you?&quot;</span><span class="p">)</span>
+<section id="preparing-the-dataset">
+<h2>Preparing the Dataset<a class="headerlink" href="#preparing-the-dataset" title="Permalink to this heading">#</a></h2>
+<p>For the task of sentiment analysis, we will be using the IMDb dataset which contains movie reviews along with their sentiment polarity (positive/negative). This dataset is widely used for sentiment analysis tasks and is available through the Hugging Face Datasets library.</p>
+<p>Here’s how to load and prepare the IMDb dataset:</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the IMDb dataset</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;imdb&quot;</span><span class="p">)</span>
 
-<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;t5-small&quot;</span><span class="p">)</span>
-<span class="n">tokenizer</span><span class="o">.</span><span class="n">backend_tokenizer</span><span class="o">.</span><span class="n">pre_tokenizer</span><span class="o">.</span><span class="n">pre_tokenize_str</span><span class="p">(</span><span class="s2">&quot;Hello, how are  you?&quot;</span><span class="p">)</span>
+<span class="c1"># Print out the number of items in the train and test sets</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of training examples: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of testing examples: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;▁Hello,&#39;, (0, 6)),
- (&#39;▁how&#39;, (7, 10)),
- (&#39;▁are&#39;, (11, 14)),
- (&#39;▁you?&#39;, (16, 20))]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found cached dataset imdb (/home/yj.lee/.cache/huggingface/datasets/imdb/plain_text/1.0.0/d613c88cf8fa3bab83b4ded3713f1f74830d1100e171db75bbddb80b3345c9c0)
+100%|██████████| 3/3 [00:00&lt;00:00, 854.88it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of training examples: 25000
+Number of testing examples: 25000
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>This will load the IMDb dataset and split it into a training set and a test set.</p>
+<p>Next, we split our training data further into training and validation sets:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Split the training set into train and validation</span>
+<span class="n">train_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span>
+<span class="n">valid_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)[</span><span class="s2">&quot;test&quot;</span><span class="p">]</span>
+<span class="n">test_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;test&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Here, we use the <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code> method to split the original training data into a training set (90%) and a validation set (10%). The testing dataset will remain the same.</p>
+<p>In the next section, we’ll preprocess and tokenize this dataset, preparing it for training our sentiment analysis model.</p>
 </section>
-<section id="model">
-<h3>Model<a class="headerlink" href="#model" title="Permalink to this heading">#</a></h3>
-<p>The model is the core algorithm that determines how the pre-tokenized text is further broken down into tokens. This is usually handled internally by the tokenizer, so we won’t go into detail here.</p>
+<section id="tokenizing-and-formatting-the-data">
+<h2>Tokenizing and Formatting the Data<a class="headerlink" href="#tokenizing-and-formatting-the-data" title="Permalink to this heading">#</a></h2>
+<p>Now that we have loaded our data, the next step is to preprocess it. This includes tokenizing the text and formatting it so that it can be used as input to our BERT model. As we are performing a sentiment analysis task, we’ll also need to format the labels.</p>
+<p>Here’s how we can tokenize and format our data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to tokenize the data</span>
+<span class="k">def</span> <span class="nf">tokenize_function</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span>
+        <span class="n">element</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">],</span>
+        <span class="n">padding</span><span class="o">=</span><span class="s2">&quot;longest&quot;</span><span class="p">,</span>
+        <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">outputs</span>
+
+
+<span class="c1"># Tokenize the data</span>
+<span class="n">train_dataset</span> <span class="o">=</span> <span class="n">train_dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">tokenize_function</span><span class="p">,</span> <span class="n">batched</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">valid_dataset</span> <span class="o">=</span> <span class="n">valid_dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">tokenize_function</span><span class="p">,</span> <span class="n">batched</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">test_dataset</span> <span class="o">=</span> <span class="n">test_dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">tokenize_function</span><span class="p">,</span> <span class="n">batched</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading cached processed dataset at /home/yj.lee/.cache/huggingface/datasets/imdb/plain_text/1.0.0/d613c88cf8fa3bab83b4ded3713f1f74830d1100e171db75bbddb80b3345c9c0/cache-82520e7875fc69ed.arrow
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Format the dataset to output PyTorch tensors</span>
+<span class="n">train_dataset</span><span class="o">.</span><span class="n">set_format</span><span class="p">(</span><span class="s2">&quot;torch&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;input_ids&quot;</span><span class="p">,</span> <span class="s2">&quot;attention_mask&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">])</span>
+<span class="n">valid_dataset</span><span class="o">.</span><span class="n">set_format</span><span class="p">(</span><span class="s2">&quot;torch&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;input_ids&quot;</span><span class="p">,</span> <span class="s2">&quot;attention_mask&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">])</span>
+<span class="n">test_dataset</span><span class="o">.</span><span class="n">set_format</span><span class="p">(</span><span class="s2">&quot;torch&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;input_ids&quot;</span><span class="p">,</span> <span class="s2">&quot;attention_mask&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_dataset</span><span class="o">.</span><span class="n">features</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;text&#39;: Value(dtype=&#39;string&#39;, id=None),
+ &#39;label&#39;: ClassLabel(names=[&#39;neg&#39;, &#39;pos&#39;], id=None),
+ &#39;input_ids&#39;: Sequence(feature=Value(dtype=&#39;int32&#39;, id=None), length=-1, id=None),
+ &#39;token_type_ids&#39;: Sequence(feature=Value(dtype=&#39;int8&#39;, id=None), length=-1, id=None),
+ &#39;attention_mask&#39;: Sequence(feature=Value(dtype=&#39;int8&#39;, id=None), length=-1, id=None)}
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this code, we first define a <code class="docutils literal notranslate"><span class="pre">tokenize_function</span></code> that tokenizes the text, pads or truncates it to a maximum length, and returns the result. We then map this function to our train, validation, and test datasets to tokenize them.</p>
+<p>Finally, we set the format of our datasets to output PyTorch tensors. We specify the columns that we want in the output: <code class="docutils literal notranslate"><span class="pre">input_ids</span></code>, <code class="docutils literal notranslate"><span class="pre">attention_mask</span></code>, and <code class="docutils literal notranslate"><span class="pre">label</span></code>.</p>
+<p>Now our data is ready to be used for training our sentiment analysis model. In the next section, we’ll modify our BERT model to make it suitable for this task.</p>
 </section>
-<section id="post-processing">
-<h3>Post-processing<a class="headerlink" href="#post-processing" title="Permalink to this heading">#</a></h3>
-<p>Finally, we perform post-processing. This involves any additional processing that needs to be done after tokenization. For example, we might want to convert our tokens into input IDs, which can be inputted into our</p>
-<p>model:</p>
+<section id="modifying-the-model-for-sentiment-analysis">
+<h2>Modifying the Model for Sentiment Analysis<a class="headerlink" href="#modifying-the-model-for-sentiment-analysis" title="Permalink to this heading">#</a></h2>
+<p>We’ve pretrained a BERT model using a Masked Language Model (MLM) objective and loaded it into memory. However, this model isn’t suitable for sentiment analysis as it is. We need to add a classifier on top of the base BERT model to classify the sentiments.</p>
+<p>First, let’s resize the token embeddings of our model. This is necessary because the number of tokens in our pretraining and finetuning tasks might be different:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;gpt2&quot;</span><span class="p">)</span>
-<span class="n">tokenizer</span><span class="o">.</span><span class="n">backend_tokenizer</span><span class="o">.</span><span class="n">pre_tokenizer</span><span class="o">.</span><span class="n">pre_tokenize_str</span><span class="p">(</span><span class="s2">&quot;Hello, how are  you?&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">resize_token_embeddings</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading (…)/main/tokenizer.json: 100%|██████████| 1.36M/1.36M [00:00&lt;00:00, 2.46MB/s]
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Hello&#39;, (0, 5)),
- (&#39;,&#39;, (5, 6)),
- (&#39;Ġhow&#39;, (6, 10)),
- (&#39;Ġare&#39;, (10, 14)),
- (&#39;Ġ&#39;, (14, 15)),
- (&#39;Ġyou&#39;, (15, 19)),
- (&#39;?&#39;, (19, 20))]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Embedding(30000, 768, padding_idx=0)
 </pre></div>
 </div>
 </div>
 </div>
-<p>In this example, we’re using the <code class="docutils literal notranslate"><span class="pre">pre_tokenize_str</span></code> method of the tokenizer’s model to tokenize the input string.</p>
+<p>Next, we’ll modify the model for sentiment analysis. The Hugging Face Transformers library makes this easy with the <code class="docutils literal notranslate"><span class="pre">BertForSequenceClassification</span></code> model. This model is the same as the standard BERT model, but with an added classification layer on top. Here’s how to modify the model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the model with a sequence classification head</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">BertForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="s2">&quot;../tmp/bert_base_uncased&quot;</span><span class="p">,</span> <span class="n">num_labels</span><span class="o">=</span><span class="mi">2</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Some weights of the model checkpoint at ../tmp/bert_base_uncased were not used when initializing BertForSequenceClassification: [&#39;cls.predictions.bias&#39;, &#39;cls.predictions.transform.dense.weight&#39;, &#39;cls.predictions.decoder.weight&#39;, &#39;cls.predictions.transform.dense.bias&#39;, &#39;cls.predictions.transform.LayerNorm.weight&#39;, &#39;cls.predictions.decoder.bias&#39;, &#39;cls.predictions.transform.LayerNorm.bias&#39;]
+- This IS expected if you are initializing BertForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing BertForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at ../tmp/bert_base_uncased and are newly initialized: [&#39;classifier.weight&#39;, &#39;bert.pooler.dense.weight&#39;, &#39;bert.pooler.dense.bias&#39;, &#39;classifier.bias&#39;]
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the above code, we’re using the <code class="docutils literal notranslate"><span class="pre">from_pretrained</span></code> method to load our pretrained model. We also specify <code class="docutils literal notranslate"><span class="pre">num_labels=2</span></code> because our sentiment analysis task has two classes: positive and negative.</p>
+<p>Our model is now ready to be trained for sentiment analysis. In the next section, we’ll define the training arguments and start the training process.</p>
 </section>
-<section id="postprocessing">
-<h3>Postprocessing<a class="headerlink" href="#postprocessing" title="Permalink to this heading">#</a></h3>
-<p>Postprocessing involves any additional processing that needs to be done after the text has been tokenized. This can include padding the tokenized text to a certain length, adding special tokens (like start and end tokens), or converting the tokenized text into a format that can be used by a machine learning model.</p>
-<p>Here’s an example of how you can perform postprocessing using the <code class="docutils literal notranslate"><span class="pre">transformers</span></code> library:</p>
+<section id="training-the-model">
+<h2>Training the Model<a class="headerlink" href="#training-the-model" title="Permalink to this heading">#</a></h2>
+<p>Now that our model is set up for sentiment analysis and our data is prepared, we can start training. For this, we’ll use the <code class="docutils literal notranslate"><span class="pre">Trainer</span></code> class from the Hugging Face Transformers library.</p>
+<p>Before we can start training, we need to define some training arguments using the <code class="docutils literal notranslate"><span class="pre">TrainingArguments</span></code> class:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;bert-base-uncased&quot;</span><span class="p">)</span>
-<span class="n">tokens</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="s2">&quot;Hello, how are you?&quot;</span><span class="p">)</span>
-<span class="n">input_ids</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">convert_tokens_to_ids</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
-<span class="n">input_ids</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the training arguments</span>
+<span class="n">training_args</span> <span class="o">=</span> <span class="n">TrainingArguments</span><span class="p">(</span>
+    <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;../tmp/results&quot;</span><span class="p">,</span>
+    <span class="n">num_train_epochs</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">per_device_train_batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span>
+    <span class="n">per_device_eval_batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span>
+    <span class="n">warmup_steps</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+    <span class="n">weight_decay</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+    <span class="n">logging_dir</span><span class="o">=</span><span class="s2">&quot;../tmp/logs&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">output_dir</span></code> is the directory where the training outputs will be saved, <code class="docutils literal notranslate"><span class="pre">num_train_epochs</span></code> is the number of training epochs, <code class="docutils literal notranslate"><span class="pre">per_device_train_batch_size</span></code> and <code class="docutils literal notranslate"><span class="pre">per_device_eval_batch_size</span></code> are the batch sizes for training and evaluation respectively, <code class="docutils literal notranslate"><span class="pre">warmup_steps</span></code> is the number of warm-up steps, and <code class="docutils literal notranslate"><span class="pre">weight_decay</span></code> is the weight decay. We also set a logging directory to store logs.</p>
+<p>With these training arguments defined, we can now create our <code class="docutils literal notranslate"><span class="pre">Trainer</span></code> and start training:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function for computing the metrics</span>
+<span class="k">def</span> <span class="nf">compute_metrics</span><span class="p">(</span><span class="n">eval_pred</span><span class="p">):</span>
+    <span class="n">logits</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">eval_pred</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">load_metric</span><span class="p">(</span><span class="s2">&quot;accuracy&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">predictions</span><span class="o">=</span><span class="n">predictions</span><span class="p">,</span> <span class="n">references</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+
+
+<span class="c1"># Initialize the Trainer</span>
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">Trainer</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">args</span><span class="o">=</span><span class="n">training_args</span><span class="p">,</span>
+    <span class="n">train_dataset</span><span class="o">=</span><span class="n">train_dataset</span><span class="p">,</span>
+    <span class="n">eval_dataset</span><span class="o">=</span><span class="n">valid_dataset</span><span class="p">,</span>
+    <span class="n">compute_metrics</span><span class="o">=</span><span class="n">compute_metrics</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Start training</span>
+<span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[7592, 1010, 2129, 2024, 2017, 1029]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/yj.lee/.local/lib/python3.8/site-packages/transformers/optimization.py:407: FutureWarning: This implementation of AdamW is deprecated and will be removed in a future version. Use the PyTorch implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this warning
+  warnings.warn(
+</pre></div>
+</div>
+<div class="output text_html">
+    <div>
+      
+      <progress value='7' max='704' style='width:300px; height:20px; vertical-align: middle;'></progress>
+      [  7/704 00:06 < 15:19, 0.76 it/s, Epoch 0.02/2]
+    </div>
+    <table border="1" class="dataframe">
+  <thead>
+ <tr style="text-align: left;">
+      <th>Step</th>
+      <th>Training Loss</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table><p></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TrainOutput(global_step=704, training_loss=0.45673076672987506, metrics={&#39;train_runtime&#39;: 932.9201, &#39;train_samples_per_second&#39;: 48.236, &#39;train_steps_per_second&#39;: 0.755, &#39;total_flos&#39;: 1.18399974912e+16, &#39;train_loss&#39;: 0.45673076672987506, &#39;epoch&#39;: 2.0})
 </pre></div>
 </div>
 </div>
 </div>
-<p>In this example, the <code class="docutils literal notranslate"><span class="pre">convert_tokens_to_ids</span></code> method is used to convert each token into its corresponding input ID.</p>
-<p>Another common post-processing step is adding special tokens, such as <code class="docutils literal notranslate"><span class="pre">[CLS]</span></code> and <code class="docutils literal notranslate"><span class="pre">[SEP]</span></code>, which are used by models like BERT:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;bert-base-uncased&quot;</span><span class="p">)</span>
-<span class="n">tokens</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="s2">&quot;Hello, how are you?&quot;</span><span class="p">)</span>
-<span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;[CLS]&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">tokens</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;[SEP]&quot;</span><span class="p">]</span>
-<span class="n">tokens</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;[CLS]&#39;, &#39;hello&#39;, &#39;,&#39;, &#39;how&#39;, &#39;are&#39;, &#39;you&#39;, &#39;?&#39;, &#39;[SEP]&#39;]
-</pre></div>
-</div>
-</div>
-</div>
-<p>In this example, we manually add the <code class="docutils literal notranslate"><span class="pre">[CLS]</span></code> token at the beginning of our token list and the <code class="docutils literal notranslate"><span class="pre">[SEP]</span></code> token at the end.</p>
-<p>However, the <code class="docutils literal notranslate"><span class="pre">transformers</span></code> library provides a more convenient way to perform these post-processing steps:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;bert-base-uncased&quot;</span><span class="p">)</span>
-<span class="n">encoded_input</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="s2">&quot;Hello, how are you?&quot;</span><span class="p">,</span> <span class="n">add_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">encoded_input</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;input_ids&#39;: [101, 7592, 1010, 2129, 2024, 2017, 1029, 102], &#39;token_type_ids&#39;: [0, 0, 0, 0, 0, 0, 0, 0], &#39;attention_mask&#39;: [1, 1, 1, 1, 1, 1, 1, 1]}
-</pre></div>
-</div>
-</div>
-</div>
-<p>In this example, the <code class="docutils literal notranslate"><span class="pre">tokenizer</span></code> method automatically tokenizes the input text, converts the tokens to input IDs, and adds the special tokens. The <code class="docutils literal notranslate"><span class="pre">add_special_tokens=True</span></code> argument specifies that we want to add the special tokens.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">tokenizer</span></code> method returns an <code class="docutils literal notranslate"><span class="pre">Encoding</span></code> object, which contains all the information we need:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">encoded_input</span><span class="o">.</span><span class="n">input_ids</span><span class="p">)</span>  <span class="c1"># The input IDs</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">encoded_input</span><span class="o">.</span><span class="n">token_type_ids</span><span class="p">)</span>  <span class="c1"># The token type IDs</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">encoded_input</span><span class="o">.</span><span class="n">attention_mask</span><span class="p">)</span>  <span class="c1"># The attention mask</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[101, 7592, 1010, 2129, 2024, 2017, 1029, 102]
-[0, 0, 0, 0, 0, 0, 0, 0]
-[1, 1, 1, 1, 1, 1, 1, 1]
-</pre></div>
-</div>
-</div>
-</div>
-<p>The <code class="docutils literal notranslate"><span class="pre">input_ids</span></code> attribute contains the input IDs, the <code class="docutils literal notranslate"><span class="pre">token_type_ids</span></code> attribute contains the token type IDs (used for models that have separate segments of input, like BERT), and the <code class="docutils literal notranslate"><span class="pre">attention_mask</span></code> attribute contains the attention mask (used for models that use attention, like BERT and GPT-2).</p>
+<p>In the above code, we first define a <code class="docutils literal notranslate"><span class="pre">compute_metrics</span></code> function that will be used to compute the accuracy of our model. We then initialize our <code class="docutils literal notranslate"><span class="pre">Trainer</span></code> with our model, the training arguments, the training and validation datasets, and the <code class="docutils literal notranslate"><span class="pre">compute_metrics</span></code> function. Finally, we start training with the <code class="docutils literal notranslate"><span class="pre">train</span></code> method.</p>
+<p>This completes the training step. Our model is now finetuned for sentiment analysis. In the next section, we’ll validate our model’s performance on the validation dataset.</p>
 </section>
+<section id="validating-the-model">
+<h2>Validating the Model<a class="headerlink" href="#validating-the-model" title="Permalink to this heading">#</a></h2>
+<p>Now that our model is trained, we need to evaluate its performance on unseen data. We will use our validation dataset for this purpose. We’ll leverage the <code class="docutils literal notranslate"><span class="pre">Trainer</span></code>’s <code class="docutils literal notranslate"><span class="pre">evaluate</span></code> method, which takes care of the entire evaluation process.</p>
+<p>Here’s how you can do it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Evaluate the model</span>
+<span class="n">evaluation_results</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
+
+<span class="c1"># Print the evaluation results</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">evaluation_results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>eval_loss: 0.2014
+eval_accuracy: 0.9272
+eval_runtime: 19.4237
+eval_samples_per_second: 128.7090
+eval_steps_per_second: 2.0590
+epoch: 2.0000
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the above code, the <code class="docutils literal notranslate"><span class="pre">evaluate</span></code> method returns a dictionary with the evaluation results. We then print out these results. The dictionary usually contains the loss and any metrics that we specified in the <code class="docutils literal notranslate"><span class="pre">compute_metrics</span></code> function during training.</p>
+<p>It’s always a good idea to inspect these results to understand how well our model is doing. Remember that a model that performs well on the training data but poorly on the validation data is probably overfitting. Conversely, a model that performs poorly on both is likely underfitting.</p>
+<p>This completes the validation step. In the final section, we’ll save our finetuned model for future use and learn how to load it from disk.</p>
+</section>
+<section id="saving-and-loading-the-model">
+<h2>Saving and Loading the Model<a class="headerlink" href="#saving-and-loading-the-model" title="Permalink to this heading">#</a></h2>
+<p>After finetuning our model and validating its performance, we’ll want to save it for future use. We might also want to load it back into memory at a later time. In this section, we’ll see how to do both of these tasks.</p>
+<p>Here’s how you can save your model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save the model</span>
+<span class="n">model</span><span class="o">.</span><span class="n">save_pretrained</span><span class="p">(</span><span class="s2">&quot;../tmp/sentiment_analysis_model&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the above code, <code class="docutils literal notranslate"><span class="pre">save_pretrained</span></code> is a method that saves both the model’s weights and its configuration. We specify the directory where we want to save the model.</p>
+<p>Now, suppose you want to load this model at a later time. You can do this as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">BertForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;../tmp/sentiment_analysis_model&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this code, we use the <code class="docutils literal notranslate"><span class="pre">from_pretrained</span></code> method, as we did before, to load our model. We specify the path to the directory where we saved our model, and this method takes care of the rest.</p>
+<p>Remember that when you load a model, you also need to load the corresponding tokenizer. You can do this the same way you loaded the tokenizer before.</p>
+<p>This completes our guide on finetuning a BERT model for sentiment analysis using Google Colab. You now know how to prepare your environment, load a pretrained model and tokenizer, prepare your dataset, tokenize and format your data, modify your model for sentiment analysis, train your model, validate it, and finally, save and load it.</p>
 </section>
 </section>
 
@@ -871,7 +1017,7 @@ NFKD: abcABC123가나다..., 18
         },
         kernelOptions: {
             name: "python3",
-            path: "./lectures/nlp_deep/tokenization"
+            path: "./lectures/nlp_deep/training"
         },
         predefinedOutput: true
     }
@@ -890,20 +1036,20 @@ NFKD: abcABC123가나다..., 18
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="subword.html"
+       href="lab-pretrain-mlm.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Subword Tokenization</p>
+        <p class="prev-next-title">Lab: Pretraining LMs with MLM</p>
       </div>
     </a>
     <a class="right-next"
-       href="bpe.html"
+       href="../chatbots/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">BPE Step-by-Step Implementation</p>
+        <p class="prev-next-title">Conversational AI and Chatbots</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -925,18 +1071,22 @@ NFKD: abcABC123가나다..., 18
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-tokenization-in-python">Implementing Tokenization in Python</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalization">Normalization</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#unicode-normalization">Unicode Normalization</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Lab: Finetuining a Masked Language Model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-tokenization">Pre-tokenization</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model">Model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#post-processing">Post-processing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#postprocessing">Postprocessing</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-environment">Preparing the Environment</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-pretrained-model-and-tokenizer">Loading the Pretrained Model and Tokenizer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-dataset">Preparing the Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenizing-and-formatting-the-data">Tokenizing and Formatting the Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modifying-the-model-for-sentiment-analysis">Modifying the Model for Sentiment Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-model">Training the Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validating-the-model">Validating the Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-and-loading-the-model">Saving and Loading the Model</a></li>
 </ul>
 </li>
 </ul>
+
   </nav></div>
 
 </div></div>
