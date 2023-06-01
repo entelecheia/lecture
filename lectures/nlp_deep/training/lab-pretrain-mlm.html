@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Lab: Pretraining LMs with MLM &#8212; ἐντελέχεια.άι</title>
+    <title>Lab: Pretraining LMs - MLM &#8212; ἐντελέχεια.άι</title>
   
   
   
@@ -279,7 +279,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Training Language Models</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">Lab: Pretraining LMs with MLM</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Lab: Pretraining LMs - MLM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="lab-pretrain-clm.html">Lab: Pretraining LMs - CLM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="lab-finetune-mlm.html">Lab: Finetuining a MLM</a></li>
 </ul>
@@ -584,7 +584,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Lab: Pretraining LMs with MLM</h1>
+    <h1>Lab: Pretraining LMs - MLM</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -595,7 +595,6 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-the-procedure">Summary of the Procedure</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-environment">Preparing the Environment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-dataset">Preparing the Dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-tokenizer">Creating a Tokenizer</a></li>
@@ -619,16 +618,13 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="lab-pretraining-lms-with-mlm">
-<h1>Lab: Pretraining LMs with MLM<a class="headerlink" href="#lab-pretraining-lms-with-mlm" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-pretraining-lms-mlm">
+<h1>Lab: Pretraining LMs - MLM<a class="headerlink" href="#lab-pretraining-lms-mlm" title="Permalink to this heading">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>In this lab session, we’ll delve into the core of transformer-based models, specifically focusing on the BERT model, which utilizes a unique pretraining method called Masked Language Modeling (MLM). Our objective is to learn how to train a small-scale BERT model from scratch with a subset of the Wikipedia dataset. We will accomplish this task using Google Colab, a cloud-based programming environment that offers free access to computational resources, including GPUs which are ideal for tasks like training deep learning models.</p>
 <p>BERT (Bidirectional Encoder Representations from Transformers) is a transformer-based machine learning technique for natural language processing (NLP) pre-training developed by Google. It was created and published in 2018 by Jacob Devlin and his colleagues from Google. Unlike the traditional approach of training language models in either a left-to-right or right-to-left direction, BERT is trained bidirectionally. This bidirectional training approach allows the model to understand the context of a word based on all of its surroundings (left and right of the word).</p>
 <p>The major characteristic of BERT is its use of MLM during pretraining. In MLM, a random subset of the input tokens is masked, and the objective for the model is to predict the original vocabulary id of the masked word, given its context. Unlike next sentence prediction, MLM can be defined over any input sequence and doesn’t require explicitly labeled pairs of sentences as input.</p>
-</section>
-<section id="summary-of-the-procedure">
-<h2>Summary of the Procedure<a class="headerlink" href="#summary-of-the-procedure" title="Permalink to this heading">#</a></h2>
 <p>The procedure for training our own BERT model involves the following steps:</p>
 <ol class="arabic simple">
 <li><p><strong>Preparing the Environment</strong>: Set up Google Colab and ensure it has a functioning GPU.</p></li>
@@ -1441,7 +1437,6 @@ You&#39;re using a PreTrainedTokenizerFast tokenizer. Please note that with a fa
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-the-procedure">Summary of the Procedure</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-environment">Preparing the Environment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-dataset">Preparing the Dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-tokenizer">Creating a Tokenizer</a></li>
