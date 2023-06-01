@@ -1,5 +1,15 @@
 <!--next-version-placeholder-->
 
+## v0.8.0 (2023-06-01)
+### Feature
+* **mlops:** Add new section on Bentochain in MLOps lecture ([`a4de495`](https://github.com/entelecheia/lecture/commit/a4de495470a9e82e38bb59189c69f89543e800e2))
+* **lectures:** Add new section on llmops in mlops course ([`1af70d8`](https://github.com/entelecheia/lecture/commit/1af70d8a3677f11401b1e2ca235e879f3bb30031))
+
+### Documentation
+* Update BentoML ([`107d063`](https://github.com/entelecheia/lecture/commit/107d063f44ea7f953e6ebad10122474fa05b01c9))
+* Update book/TOC.yml with LLMOPS/BentoML section ([`a1c804a`](https://github.com/entelecheia/lecture/commit/a1c804ae51ccfa5a6a19bd4ef880b46567b56273))
+* **deep-nlp:** Update lab for pretraining MLM ([`dbaec95`](https://github.com/entelecheia/lecture/commit/dbaec95e5dbbbafe3a30dfc0d5f1a1f5b96e9788))
+
 ## v0.7.0 (2023-06-01)
 ### Feature
 * **deep-nlp:** Add lab for pretraining CLM ([`2c266e0`](https://github.com/entelecheia/lecture/commit/2c266e0a20e9aecc3d15fe1988b8cd8661048683))
