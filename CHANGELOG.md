@@ -1,5 +1,14 @@
 <!--next-version-placeholder-->
 
+## v0.8.1 (2023-06-01)
+### Fix
+
+* **file-renaming:** Rename bentonchain.md to bentochain.md ([`3146025`](https://github.com/entelecheia/lecture/commit/31460251a41fab1e9ea91a298acbf301aca6dc64))
+
+### Documentation
+
+* **llmops:** Add table of contents to index.md ([`6fec7ef`](https://github.com/entelecheia/lecture/commit/6fec7ef20134d040a7f5cef212c0e01e93104972))
+
 ## v0.8.0 (2023-06-01)
 ### Feature
 * **mlops:** Add new section on Bentochain in MLOps lecture ([`a4de495`](https://github.com/entelecheia/lecture/commit/a4de495470a9e82e38bb59189c69f89543e800e2))
