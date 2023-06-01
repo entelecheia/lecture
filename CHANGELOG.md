@@ -1,5 +1,12 @@
 <!--next-version-placeholder-->
 
+## v0.7.0 (2023-06-01)
+### Feature
+* **deep-nlp:** Add lab for pretraining CLM ([`2c266e0`](https://github.com/entelecheia/lecture/commit/2c266e0a20e9aecc3d15fe1988b8cd8661048683))
+
+### Documentation
+* **deep-nlp:** Update lab for pretraining CLM ([`a996722`](https://github.com/entelecheia/lecture/commit/a99672206923ef4f31988c26137c608a47ff63b8))
+
 ## v0.6.1 (2023-05-31)
 ### Fix
 * **deep-nlp:** Finetune mlm heading level ([`d93e286`](https://github.com/entelecheia/lecture/commit/d93e2862a4b282b6b4f57deb441faf5fba59d9f2))
