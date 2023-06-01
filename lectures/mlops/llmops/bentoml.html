@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Github’s Fork &amp; Pull Workflow &#8212; ἐντελέχεια.άι</title>
+    <title>Introduction to BentoML &#8212; ἐντελέχεια.άι</title>
   
   
   
@@ -86,13 +86,13 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/mlops/github/fork-pull';</script>
-    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/mlops/github/fork-pull.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/mlops/llmops/bentoml';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/mlops/llmops/bentoml.html" />
     <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Project Templating Tools" href="template.html" />
-    <link rel="prev" title="GitHub Workflow" href="index.html" />
+    <link rel="next" title="Data Science for Economics and Finance" href="../../ds/index.html" />
+    <link rel="prev" title="LLMOps" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -341,9 +341,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="../security/pass.html">Unix Password Managers</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">GitHub Workflow</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-25"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">Github’s Fork &amp; Pull Workflow</a></li>
-<li class="toctree-l3"><a class="reference internal" href="template.html">Project Templating Tools</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../github/index.html">GitHub Workflow</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-25"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../github/fork-pull.html">Github’s Fork &amp; Pull Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../github/template.html">Project Templating Tools</a></li>
 <li class="toctree-l3"><a class="reference external" href="https://hyperfast-python.entelecheia.ai/">Hyperfast Python Template</a></li>
 <li class="toctree-l3"><a class="reference external" href="https://hyperfast-template.entelecheia.ai/">Hyperfast Template</a></li>
 </ul>
@@ -358,8 +358,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="../simple-pipeline/vpn.html">VPN Connectivity</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../llmops/index.html">LLMOps</a><input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-28"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../llmops/bentoml.html">Introduction to BentoML</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">LLMOps</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-28"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Introduction to BentoML</a></li>
 </ul>
 </li>
 </ul>
@@ -456,7 +456,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../../_sources/lectures/mlops/github/fork-pull.md" target="_blank"
+      <li><a href="../../../_sources/lectures/mlops/llmops/bentoml.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -538,7 +538,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Github’s Fork & Pull Workflow</h1>
+    <h1>Introduction to BentoML</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -548,16 +548,32 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-fork-pull-workflow">1. Understanding Fork &amp; Pull Workflow</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forking-a-repository">2. Forking a Repository</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cloning-the-forked-repository">3. Cloning the Forked Repository</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-new-branch">4. Creating a New Branch</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-changes-and-committing">5. Making Changes and Committing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pushing-changes-to-your-fork">6. Pushing Changes to Your Fork</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-pull-request">7. Creating a Pull Request</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collaborating-and-merging">8. Collaborating and Merging</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-bentoml">Why BentoML?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-concepts-of-bentoml">Core Concepts of BentoML</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bentoservice">BentoService</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#artifacts">Artifacts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adapters">Adapters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment">Deployment</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frameworks-supported-by-bentoml">Frameworks Supported by BentoML</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scikit-learn">Scikit-learn</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch">PyTorch</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tensorflow-and-keras">TensorFlow and Keras</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xgboost-and-lightgbm">XGBoost and LightGBM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#h2o">H2O</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fast-ai">Fast.ai</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-guides-with-bentoml">Deployment Guides with BentoML</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">Docker</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kubernetes">Kubernetes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aws-lambda">AWS Lambda</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#google-cloud-run">Google Cloud Run</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#azure-functions">Azure Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#offline-batch-serving">Offline Batch Serving</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
             </nav>
@@ -570,83 +586,147 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="githubs-fork-pull-workflow">
-<h1>Github’s Fork &amp; Pull Workflow<a class="headerlink" href="#githubs-fork-pull-workflow" title="Permalink to this heading">#</a></h1>
-<section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
-<p>We will explore the Fork &amp; Pull workflow, which is a popular collaboration model for open-source projects on Github. By the end of this lecture, you will understand the basic concepts of the Fork &amp; Pull workflow and learn how to contribute to open-source projects using this approach.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-bentoml">
+<h1>Introduction to BentoML<a class="headerlink" href="#introduction-to-bentoml" title="Permalink to this heading">#</a></h1>
+<p>BentoML is a flexible, high-performance framework for serving, managing, and deploying machine learning models. It bridges the gap between Data Science and DevOps, making it easier to turn a machine learning model into a production-ready API endpoint.</p>
+<p>BentoML supports a wide range of ML frameworks and libraries out of the box including PyTorch, Scikit-learn, Tensorflow, Keras, H2O, XGBoost and many more.</p>
+<section id="why-bentoml">
+<h2>Why BentoML?<a class="headerlink" href="#why-bentoml" title="Permalink to this heading">#</a></h2>
+<p>Machine learning models are more than just the algorithms. They include pre-processing steps, post-processing steps, feature extraction code, and possibly lookup tables or reference datasets. All these components are crucial for a model to make accurate predictions in production.</p>
+<p>However, when moving from development to production, these components can become scattered and disjointed, leading to potential issues and bugs. BentoML solves this problem by providing a standard way to package all these components together into a single, versioned file that can be easily distributed and deployed.</p>
 </section>
-<section id="understanding-fork-pull-workflow">
-<h2>1. Understanding Fork &amp; Pull Workflow<a class="headerlink" href="#understanding-fork-pull-workflow" title="Permalink to this heading">#</a></h2>
-<p>The Fork &amp; Pull workflow involves two primary steps: forking a repository and creating a pull request. Forking is the process of creating a personal copy of another user’s repository. You can make changes to your forked repository without affecting the original project. Once you have made your changes, you can submit a pull request to the original repository, requesting that the project maintainer merge your changes.</p>
-</section>
-<section id="forking-a-repository">
-<h2>2. Forking a Repository<a class="headerlink" href="#forking-a-repository" title="Permalink to this heading">#</a></h2>
-<p>To fork a repository, follow these steps:</p>
+<section id="core-concepts-of-bentoml">
+<h2>Core Concepts of BentoML<a class="headerlink" href="#core-concepts-of-bentoml" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>a) Go to the Github repository you wish to contribute to.</p></li>
-<li><p>b) Click on the “Fork” button located in the top right corner of the page.</p></li>
-<li><p>c) Select your account as the destination for the forked repository.</p></li>
-<li><p>d) Wait for Github to create your fork. Once completed, you will have a personal copy of the repository under your Github account.</p></li>
+<li><p><strong>BentoService</strong>: A BentoService is a prediction service defined by the user, with all its dependencies and configurations. It’s a way to package your model into a Docker image or a Python package for distribution.</p></li>
+<li><p><strong>Artifacts</strong>: Artifacts are the trained models. BentoML provides a flexible way to manage and distribute trained ML models as part of a BentoService.</p></li>
+<li><p><strong>Adapters</strong>: Adapters convert incoming data into a format that your prediction service can handle. BentoML supports a wide range of input data types out of the box.</p></li>
+<li><p><strong>Deployment</strong>: Once your model is packaged into a BentoService, BentoML provides a variety of ways to deploy your model to cloud services like AWS Lambda, Google Cloud Run, or Azure Functions, as well as edge devices for offline inference.</p></li>
 </ul>
-<p>Example: Let’s assume you want to contribute to the “example-project” repository. After forking, you will have a copy of “example-project” in your account, like “your_username/example-project”.</p>
-</section>
-<section id="cloning-the-forked-repository">
-<h2>3. Cloning the Forked Repository<a class="headerlink" href="#cloning-the-forked-repository" title="Permalink to this heading">#</a></h2>
-<p>Now, you need to clone the forked repository to your local machine:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/your_username/example-project.git
+<p>In the following sections, we will dive deeper into each of these concepts and demonstrate how to use BentoML to train a model, package it, and deploy it to a cloud service.</p>
+<section id="bentoservice">
+<h3>BentoService<a class="headerlink" href="#bentoservice" title="Permalink to this heading">#</a></h3>
+<p>A BentoService is a container for packaging a trained ML model, along with its pre-processing, post-processing code, dependencies, and configurations. It is a prediction service defined by the user.</p>
+<p>Each BentoService is a versioned file that can be easily distributed and deployed. It can be converted into a Docker image, a REST API server, a command-line tool, or a PyPI package, providing a straightforward way to ship your ML models to production.</p>
+<p>Here is an example of a simple BentoService:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bentoml</span> <span class="kn">import</span> <span class="n">env</span><span class="p">,</span> <span class="n">artifacts</span><span class="p">,</span> <span class="n">api</span><span class="p">,</span> <span class="n">BentoService</span>
+<span class="kn">from</span> <span class="nn">bentoml.adapters</span> <span class="kn">import</span> <span class="n">DataframeInput</span>
+<span class="kn">from</span> <span class="nn">bentoml.frameworks.sklearn</span> <span class="kn">import</span> <span class="n">SklearnModelArtifact</span>
+
+<span class="nd">@env</span><span class="p">(</span><span class="n">auto_pip_dependencies</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@artifacts</span><span class="p">([</span><span class="n">SklearnModelArtifact</span><span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">)])</span>
+<span class="k">class</span> <span class="nc">IrisClassifier</span><span class="p">(</span><span class="n">BentoService</span><span class="p">):</span>
+
+    <span class="nd">@api</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">DataframeInput</span><span class="p">(),</span> <span class="n">batch</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">artifacts</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
-<section id="creating-a-new-branch">
-<h2>4. Creating a New Branch<a class="headerlink" href="#creating-a-new-branch" title="Permalink to this heading">#</a></h2>
-<p>It’s a good practice to create a new branch for your changes, so you can keep your master branch in sync with the original repository:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>new-feature
+<section id="artifacts">
+<h3>Artifacts<a class="headerlink" href="#artifacts" title="Permalink to this heading">#</a></h3>
+<p>Artifacts in BentoML represent the trained machine learning models. They are an essential part of a BentoService. BentoML provides a flexible way to manage and distribute trained ML models as part of a BentoService.</p>
+<p>BentoML supports a wide range of ML frameworks and libraries out of the box. Each type of model or dataset is represented by a different class of Artifact in BentoML, such as <code class="docutils literal notranslate"><span class="pre">SklearnModelArtifact</span></code>, <code class="docutils literal notranslate"><span class="pre">PytorchModelArtifact</span></code>, <code class="docutils literal notranslate"><span class="pre">FastaiModelArtifact</span></code>, and more.</p>
+<p>Here is an example of how to pack a trained model into a BentoService:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Train the model</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+
+<span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+
+<span class="c1"># Create a BentoService instance</span>
+<span class="n">iris_classifier_service</span> <span class="o">=</span> <span class="n">IrisClassifier</span><span class="p">()</span>
+
+<span class="c1"># Pack the trained model</span>
+<span class="n">iris_classifier_service</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
-<section id="making-changes-and-committing">
-<h2>5. Making Changes and Committing<a class="headerlink" href="#making-changes-and-committing" title="Permalink to this heading">#</a></h2>
-<p>Make your changes in the new branch, and then commit them:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.
-git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add new feature&quot;</span>
+<section id="adapters">
+<h3>Adapters<a class="headerlink" href="#adapters" title="Permalink to this heading">#</a></h3>
+<p>Adapters in BentoML are used to define the expected input format for a BentoService API. They convert incoming request data into the required format for your prediction service.</p>
+<p>BentoML supports a wide range of input data types out of the box, including JSON, Image, CSV, and more. For example, the <code class="docutils literal notranslate"><span class="pre">DataframeInput</span></code> adapter converts incoming data into a pandas DataFrame.</p>
+<p>Here is an example of defining an API with a DataframeInput adapter:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@api</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">DataframeInput</span><span class="p">(),</span> <span class="n">batch</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">artifacts</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
-<section id="pushing-changes-to-your-fork">
-<h2>6. Pushing Changes to Your Fork<a class="headerlink" href="#pushing-changes-to-your-fork" title="Permalink to this heading">#</a></h2>
-<p>Now, push your changes to your forked repository on Github:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>new-feature
+<section id="deployment">
+<h3>Deployment<a class="headerlink" href="#deployment" title="Permalink to this heading">#</a></h3>
+<p>Once your model is packaged into a BentoService, BentoML provides a variety of ways to deploy your model. You can deploy your model as a web service using platforms like AWS Lambda, Google Cloud Run, or Azure Functions. You can also deploy your model on edge devices for offline inference.</p>
+<p>Here is an example of how to save a BentoService to file, which can then be deployed:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save the BentoService to file</span>
+<span class="n">saved_path</span> <span class="o">=</span> <span class="n">iris_classifier_service</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>
-<section id="creating-a-pull-request">
-<h2>7. Creating a Pull Request<a class="headerlink" href="#creating-a-pull-request" title="Permalink to this heading">#</a></h2>
-<p>To create a pull request, follow these steps:</p>
-<ul class="simple">
-<li><p>a) Go to your forked repository on Github.</p></li>
-<li><p>b) Switch to the branch containing your changes (in this case, “new-feature”).</p></li>
-<li><p>c) Click on the “New Pull Request” button.</p></li>
-<li><p>d) Ensure that the base repository is the original repository and the base branch is the branch you want your changes to be merged into (usually “master” or “main”).</p></li>
-<li><p>e) Confirm that the head repository is your forked repository and the compare branch is the branch containing your changes.</p></li>
-<li><p>f) Add a descriptive title and a detailed explanation of your changes in the pull request description.</p></li>
-<li><p>g) Click “Create Pull Request”.</p></li>
-</ul>
 </section>
-<section id="collaborating-and-merging">
-<h2>8. Collaborating and Merging<a class="headerlink" href="#collaborating-and-merging" title="Permalink to this heading">#</a></h2>
-<p>The project maintainer will review your pull request and may request changes or clarifications. Collaborate with the maintainer by addressing their comments and pushing new commits to your branch. Once your changes are approved, the maintainer will merge your pull request into the original repository.</p>
+<section id="frameworks-supported-by-bentoml">
+<h2>Frameworks Supported by BentoML<a class="headerlink" href="#frameworks-supported-by-bentoml" title="Permalink to this heading">#</a></h2>
+<p>BentoML is designed to be framework agnostic, supporting a wide range of machine learning frameworks out of the box. This allows you to use BentoML with your preferred machine learning library, making it a flexible tool for model serving and deployment. Here are some of the key frameworks supported:</p>
+<section id="scikit-learn">
+<h3>Scikit-learn<a class="headerlink" href="#scikit-learn" title="Permalink to this heading">#</a></h3>
+<p>Scikit-learn is a popular machine learning library in Python, known for its simplicity and efficiency. It provides a range of supervised and unsupervised learning algorithms. BentoML supports Scikit-learn models through the <code class="docutils literal notranslate"><span class="pre">SklearnModelArtifact</span></code> class, allowing you to easily package and deploy your Scikit-learn models.</p>
 </section>
-<section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
-<p>In this lecture, we have learned about Github’s Fork &amp; Pull workflow and how it facilitates collaboration on open-source projects. By understanding this workflow and following the steps outlined above, you can start contributing to open-source projects and enhance your Git skills.</p>
+<section id="pytorch">
+<h3>PyTorch<a class="headerlink" href="#pytorch" title="Permalink to this heading">#</a></h3>
+<p>PyTorch is a powerful open-source machine learning library for Python, known for its flexibility and deep learning capabilities. BentoML supports PyTorch models through the <code class="docutils literal notranslate"><span class="pre">PytorchModelArtifact</span></code> class, allowing you to package and deploy models trained with PyTorch.</p>
+</section>
+<section id="tensorflow-and-keras">
+<h3>TensorFlow and Keras<a class="headerlink" href="#tensorflow-and-keras" title="Permalink to this heading">#</a></h3>
+<p>TensorFlow is a comprehensive open-source machine learning platform with a wide array of tools for building and deploying ML-powered applications. Keras is a user-friendly neural network library written in Python that runs on top of TensorFlow. BentoML supports both TensorFlow and Keras models through the <code class="docutils literal notranslate"><span class="pre">TensorflowSavedModelArtifact</span></code> and <code class="docutils literal notranslate"><span class="pre">KerasModelArtifact</span></code> classes, respectively.</p>
+</section>
+<section id="xgboost-and-lightgbm">
+<h3>XGBoost and LightGBM<a class="headerlink" href="#xgboost-and-lightgbm" title="Permalink to this heading">#</a></h3>
+<p>XGBoost and LightGBM are gradient boosting frameworks that use tree-based learning algorithms. They are known for their performance and efficiency. BentoML supports both XGBoost and LightGBM models through the <code class="docutils literal notranslate"><span class="pre">XgboostModelArtifact</span></code> and <code class="docutils literal notranslate"><span class="pre">LightGBMModelArtifact</span></code> classes, respectively.</p>
+</section>
+<section id="h2o">
+<h3>H2O<a class="headerlink" href="#h2o" title="Permalink to this heading">#</a></h3>
+<p>H2O is an open-source software for data analysis, with capabilities for data munging, advanced algorithms, and more. BentoML supports H2O models through the <code class="docutils literal notranslate"><span class="pre">H2oModelArtifact</span></code> class.</p>
+</section>
+<section id="fast-ai">
+<h3><a class="reference external" href="http://Fast.ai">Fast.ai</a><a class="headerlink" href="#fast-ai" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="http://Fast.ai">Fast.ai</a> is a deep learning library built on top of PyTorch, designed to make deep learning more accessible. BentoML supports <a class="reference external" href="http://Fast.ai">Fast.ai</a> models through the <code class="docutils literal notranslate"><span class="pre">FastaiModelArtifact</span></code> class.</p>
+<p>In conclusion, BentoML’s support for a wide range of machine learning frameworks makes it a versatile tool for model serving and deployment, regardless of the framework you use for model training.</p>
+</section>
+</section>
+<section id="deployment-guides-with-bentoml">
+<h2>Deployment Guides with BentoML<a class="headerlink" href="#deployment-guides-with-bentoml" title="Permalink to this heading">#</a></h2>
+<p>BentoML provides comprehensive guides for deploying your machine learning models on various platforms. Here’s an overview of how you can deploy your models using BentoML:</p>
+<section id="docker">
+<h3>Docker<a class="headerlink" href="#docker" title="Permalink to this heading">#</a></h3>
+<p>BentoML can automatically package your model as a Docker image, with a REST API server serving your model for online prediction requests. You can build and push this Docker image to a Docker registry, and then deploy it on any platform that supports Docker.</p>
+</section>
+<section id="kubernetes">
+<h3>Kubernetes<a class="headerlink" href="#kubernetes" title="Permalink to this heading">#</a></h3>
+<p>BentoML supports deploying your models on Kubernetes, a popular open-source platform for managing containerized workloads and services. You can use the BentoML API server image in a Kubernetes Deployment and expose it as a service.</p>
+</section>
+<section id="aws-lambda">
+<h3>AWS Lambda<a class="headerlink" href="#aws-lambda" title="Permalink to this heading">#</a></h3>
+<p>BentoML provides a command-line tool for deploying your model as a serverless function on AWS Lambda, a service that lets you run your code without provisioning or managing servers. The serverless function can be triggered by an HTTP request and scale automatically.</p>
+</section>
+<section id="google-cloud-run">
+<h3>Google Cloud Run<a class="headerlink" href="#google-cloud-run" title="Permalink to this heading">#</a></h3>
+<p>Google Cloud Run is a managed compute platform that enables you to run stateless containers that are invocable via HTTP requests. BentoML supports deploying your models on Google Cloud Run, allowing you to take advantage of its auto-scaling capabilities.</p>
+</section>
+<section id="azure-functions">
+<h3>Azure Functions<a class="headerlink" href="#azure-functions" title="Permalink to this heading">#</a></h3>
+<p>Azure Functions is a serverless compute service that lets you run event-triggered code without having to explicitly provision or manage infrastructure. BentoML supports deploying your models on Azure Functions, providing you with another option for serverless deployment.</p>
+</section>
+<section id="offline-batch-serving">
+<h3>Offline Batch Serving<a class="headerlink" href="#offline-batch-serving" title="Permalink to this heading">#</a></h3>
+<p>BentoML also supports offline batch serving, allowing you to run prediction jobs on large datasets and save the results to a file system or a cloud storage service.</p>
+<p>Each of these deployment guides provides step-by-step instructions on how to deploy your BentoService on the respective platform. They also include information on how to manage and monitor your deployed models, ensuring that you can effectively operate your models in production.</p>
+</section>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://gist.github.com/Chaser324/ce0505fbed06b947d962#file-github-forking-md">GitHub Standard Fork &amp; Pull Request Workflow</a></p></li>
-<li><p><a class="reference external" href="https://github.blog/2017-07-06-introducing-code-owners/">Introducing code owners</a></p></li>
-<li><p><a class="reference external" href="https://dev.to/opensauced/how-to-create-a-good-pull-request-template-and-why-you-should-add-gifs-4i0l">How to Create a Good Pull Request Template</a></p></li>
+<li><p><a class="reference external" href="https://docs.bentoml.org/en/latest/">BentoML Documentation</a></p></li>
 </ul>
 </section>
 </section>
@@ -664,7 +744,7 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
         },
         kernelOptions: {
             name: "python3",
-            path: "./lectures/mlops/github"
+            path: "./lectures/mlops/llmops"
         },
         predefinedOutput: true
     }
@@ -688,15 +768,15 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">GitHub Workflow</p>
+        <p class="prev-next-title">LLMOps</p>
       </div>
     </a>
     <a class="right-next"
-       href="template.html"
+       href="../../ds/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Project Templating Tools</p>
+        <p class="prev-next-title">Data Science for Economics and Finance</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -718,16 +798,32 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-fork-pull-workflow">1. Understanding Fork &amp; Pull Workflow</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forking-a-repository">2. Forking a Repository</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cloning-the-forked-repository">3. Cloning the Forked Repository</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-new-branch">4. Creating a New Branch</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-changes-and-committing">5. Making Changes and Committing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pushing-changes-to-your-fork">6. Pushing Changes to Your Fork</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-pull-request">7. Creating a Pull Request</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collaborating-and-merging">8. Collaborating and Merging</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-bentoml">Why BentoML?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-concepts-of-bentoml">Core Concepts of BentoML</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bentoservice">BentoService</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#artifacts">Artifacts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adapters">Adapters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment">Deployment</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frameworks-supported-by-bentoml">Frameworks Supported by BentoML</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scikit-learn">Scikit-learn</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch">PyTorch</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tensorflow-and-keras">TensorFlow and Keras</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xgboost-and-lightgbm">XGBoost and LightGBM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#h2o">H2O</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fast-ai">Fast.ai</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-guides-with-bentoml">Deployment Guides with BentoML</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">Docker</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kubernetes">Kubernetes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aws-lambda">AWS Lambda</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#google-cloud-run">Google Cloud Run</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#azure-functions">Azure Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#offline-batch-serving">Offline Batch Serving</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
   </nav></div>
