@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Predicting ESG Categories and Polarities &#8212; ἐντελέχεια.άι</title>
+    <title>Preparing active learning data &#8212; ἐντελέχεια.άι</title>
   
   
   
@@ -86,13 +86,13 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/ds/esg-ratings/predict_esg_classes';</script>
-    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/ds/esg-ratings/predict_esg_classes.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/dsecon/esg-ratings/prepare_datasets_for_labeling';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/dsecon/esg-ratings/prepare_datasets_for_labeling.html" />
     <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Cross validating datasets" href="cross_validate_datasets.html" />
-    <link rel="prev" title="Building econ_news_kr corpus" href="build_news_corpus.html" />
+    <link rel="next" title="Putting them together in a pipeline" href="all_in_one_pipeline.html" />
+    <link rel="prev" title="Cross validating datasets" href="cross_validate_datasets.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -387,14 +387,15 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="improve_datasets.html">Improving classification datasets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="train_classifiers.html">Training Classifiers for ESG Ratings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="build_news_corpus.html">Building <code class="docutils literal notranslate"><span class="pre">econ_news_kr</span></code> corpus</a></li>
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">Predicting ESG Categories and Polarities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="predict_esg_classes.html">Predicting ESG Categories and Polarities</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cross_validate_datasets.html">Cross validating datasets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="prepare_datasets_for_labeling.html">Preparing active learning data</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Preparing active learning data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="all_in_one_pipeline.html">Putting them together in a pipeline</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../softeng/index.html">Software Engineering</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul class="nav bd-sidenav">
@@ -457,7 +458,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/ds/esg-ratings/predict_esg_classes.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/dsecon/esg-ratings/prepare_datasets_for_labeling.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -506,7 +507,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../../_sources/lectures/ds/esg-ratings/predict_esg_classes.ipynb" target="_blank"
+      <li><a href="../../../_sources/lectures/dsecon/esg-ratings/prepare_datasets_for_labeling.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -588,7 +589,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Predicting ESG Categories and Polarities</h1>
+    <h1>Preparing active learning data</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -599,9 +600,11 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-polarities">Predicting polarities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-company-code-info">Load company code info</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-out-invalid-data">Filter out invalid data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predict-polarities">Predict polarities</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-categories">Predicting categories</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#check-and-label-predictions">Check and label predictions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-data-to-labelstudio">Import data to labelstudio</a></li>
 </ul>
             </nav>
         </div>
@@ -613,8 +616,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="predicting-esg-categories-and-polarities">
-<h1>Predicting ESG Categories and Polarities<a class="headerlink" href="#predicting-esg-categories-and-polarities" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="preparing-active-learning-data">
+<h1>Preparing active learning data<a class="headerlink" href="#preparing-active-learning-data" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ekorpkit</span> <span class="kn">import</span> <span class="n">eKonf</span>
@@ -625,7 +628,8 @@ document.write(`
     <span class="n">workspace</span><span class="o">=</span><span class="s2">&quot;/workspace&quot;</span><span class="p">,</span> 
     <span class="n">project</span><span class="o">=</span><span class="s2">&quot;ekorpkit-book/exmaples&quot;</span><span class="p">,</span> 
     <span class="n">task</span><span class="o">=</span><span class="s2">&quot;esg&quot;</span><span class="p">,</span> 
-    <span class="n">log_level</span><span class="o">=</span><span class="s2">&quot;INFO&quot;</span>
+    <span class="n">log_level</span><span class="o">=</span><span class="s2">&quot;INFO&quot;</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;version:&quot;</span><span class="p">,</span> <span class="n">ws</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;project_dir:&quot;</span><span class="p">,</span> <span class="n">ws</span><span class="o">.</span><span class="n">project_dir</span><span class="p">)</span>
@@ -633,45 +637,34 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Set environment variable EKORPKIT_DATA_ROOT=/workspace/data
-INFO:ekorpkit.base:Set environment variable CACHED_PATH_CACHE_ROOT=/workspace/.cache/cached_path
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.utils.notebook:Google Colab not detected.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>version: 0.1.40.post0.dev57
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>version: 0.1.40.post0.dev58
 project_dir: /workspace/projects/ekorpkit-book/exmaples
-time: 944 ms (started: 2022-12-16 00:50:17 +00:00)
+time: 493 ms (started: 2022-12-17 00:29:17 +00:00)
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell tag_hide-cell docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_dir</span> <span class="o">=</span> <span class="s2">&quot;../data/econ_news_kr&quot;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 282 µs (started: 2022-12-09 08:28:36 +00:00)
-</pre></div>
-</div>
-</div>
-</details>
 </div>
 <section id="load-data">
 <h2>Load data<a class="headerlink" href="#load-data" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filtered_data</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s2">&quot;econ_news_filtered_20220905.parquet&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
-<span class="n">filtered_data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">project_dir</span> <span class="o">/</span> <span class="s2">&quot;esg/data/econ_news_kr/news_slice/&quot;</span>
+
+<span class="n">chunk_data</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span>
+    <span class="s2">&quot;econ_news_kr_chunks_*_20220911.parquet&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">,</span> <span class="n">concatenate</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">chunk_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">chunk_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1833910, 3)
+</pre></div>
+</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -690,117 +683,104 @@ time: 944 ms (started: 2022-12-16 00:50:17 +00:00)
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>id</th>
-      <th>chunk_id</th>
       <th>text</th>
+      <th>chunk_id</th>
       <th>filename</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>11</td>
+      <td>△ 사진 설명 : 경자년 새해가 밝았다  제각각 삶터에서 묵묵히 노력하는 대한민국...</td>
       <td>0</td>
-      <td>문재인 대통령이 지난해 전용차로 선택한 수소전기차 '넥쏘'가 중·장년층 남성들로부터...</td>
-      <td>02100101.20201101113442001.txt</td>
+      <td>02100101.20200101001103001.txt</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>11</td>
-      <td>1</td>
-      <td>넥쏘는 국내 뿐만 아니라 해외에서도 코로나19 확산 여파를 이겨내고 질주하고 있다....</td>
-      <td>02100101.20201101113442001.txt</td>
+      <td>"청년 벤처기업가들한테 진짜로 미안했어요  부끄럽고 " 지난해 12월 29일 서울...</td>
+      <td>0</td>
+      <td>02100101.20200101001253001.txt</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>19</td>
+      <td>오늘부터 30년 후면 2050년이다  30년 전인 1990년을 전후하여 세계는 독...</td>
       <td>0</td>
-      <td>LG전자는 국내 최대 쇼핑 행사 ‘2020 코리아세일페스타’에 맞춰 11월 1일부터...</td>
-      <td>02100101.20201101125903001.txt</td>
+      <td>02100101.20200101001855001.txt</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>20</td>
+      <td>◆ 2020 경제기상도 / 환율 ◆ 지난해 미·중 무역분쟁이라는 대형 변수로 출렁...</td>
       <td>0</td>
-      <td>SK는 그룹 8개 관계사가 한국 최초로 ‘RE100’에 가입한다고 1일 밝혔다.\n...</td>
-      <td>02100101.20201101130118001.txt</td>
+      <td>02100101.20200101040159002.txt</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>20</td>
-      <td>1</td>
-      <td>SK 8개사가 신청서를 제출하면 더 클라이밋 그룹의 검토를 거친 후 가입이 최종 확...</td>
-      <td>02100101.20201101130118001.txt</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>160582</th>
-      <td>1090535</td>
-      <td>1</td>
-      <td>업종별로 하락한 업종은 운수창고(-1.22%), 운수장비(-1.12%), 전기전자(...</td>
-      <td>02100851.20220228093428001.txt</td>
-    </tr>
-    <tr>
-      <th>160583</th>
-      <td>1090566</td>
+      <td>◆ 2020 경제기상도 / 업종별 전망 (반도체) ◆ 지난해 미·중 무역분쟁과 공...</td>
       <td>0</td>
-      <td>[회사채 미매각 현황]\n회사채 시장에 미매각이 속출하고 있다. 현재 연 1.25%...</td>
-      <td>02100851.20220228103653001.txt</td>
-    </tr>
-    <tr>
-      <th>160584</th>
-      <td>1090566</td>
-      <td>1</td>
-      <td>하지만 가뜩이나 악화된 회사채 시장 분위기에 사고 소식까지 전해지면서 아무도 수요예...</td>
-      <td>02100851.20220228103653001.txt</td>
-    </tr>
-    <tr>
-      <th>160585</th>
-      <td>1090566</td>
-      <td>2</td>
-      <td>이에 채권시장에서 자금을 운용하는 각 증권사들의 부담이 커지고 있다. 대부분이 총액...</td>
-      <td>02100851.20220228103653001.txt</td>
-    </tr>
-    <tr>
-      <th>160586</th>
-      <td>1090615</td>
-      <td>0</td>
-      <td>[사진=아주경제 DB]\n우크라이나와 러시아가 협상 테이블을 마련한다는 소식에 국내...</td>
-      <td>02100851.20220228154344001.txt</td>
+      <td>02100101.20200101040200001.txt</td>
     </tr>
   </tbody>
 </table>
-<p>160587 rows × 4 columns</p>
-</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 2.01 s (started: 2022-12-09 08:28:37 +00:00)
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 15.8 s (started: 2022-12-17 00:30:03 +00:00)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filtered_data</span><span class="o">.</span><span class="n">text</span><span class="p">[</span><span class="mi">222</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chunk_data</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;특히 반도체산업 회복 기대감이 높다. 삼성전자와 SK하이닉스는 코스피 시가총액 25%를 차지한다. 삼성전자는 내년 영업이익이 46조원대로 올해 대비 25% 이상 증가할 것이라는 전망이 나온다. 같은 기간 SK하이닉스 영업이익은 8조3000억원대로 70% 넘게 늘어날 듯 보인다.\n김용구 삼성증권 애널리스트는 “내년 국내 증시는 역사적 신고가 돌파에 나서는 대세 상승장 시작점에 해당된다”고 밝혔다. 근거는 ▲수출 실적 정상화 ▲전 세계적인 경기 부양 정책 환경 ▲외국인과 개인 수급 선순환 구도 본격화다.\nKB증권이 내세운 희망 키워드는 생산과 투자 회복이다. 선진국 소비는 코로나 팬데믹 이전을 넘어섰으나 생산은 아직 절반밖에 회복하지 못했기 때문에 내년 생산 증가를 기대해볼 만하다는 분석이다. 신동준 KB증권 리서치센터장은 “한국 기업이익은 올해 상반기 줄어들고 하반기 늘어나는 양상을 보였다”며 “내년 성장폭은 작아도 이익 정상화는 충분히 가능하다”고 봤다.\n신지윤 KTB투자증권 리서치센터장은 “저금리, 재정확장 정책, 원화 강세 현상은 증시로 자금을 끌어모으는 요인”이라며 “삼성전자와 현대차 등 대형주 실적이 좋아 주가 상승을 기대해볼 만하다”고 말했다. 명쾌하게 결론은 안 났지만 美 대선 불확실성을 벗어났다는 점도 호재로 평가된다.&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+Int64Index: 1833910 entries, 0 to 785336
+Data columns (total 3 columns):
+ #   Column    Dtype 
+---  ------    ----- 
+ 0   text      object
+ 1   chunk_id  int64 
+ 2   filename  object
+dtypes: int64(1), object(2)
+memory usage: 56.0+ MB
+time: 3.92 ms (started: 2022-12-10 07:20:55 +00:00)
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="load-company-code-info">
+<h2>Load company code info<a class="headerlink" href="#load-company-code-info" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filtered_data</span><span class="p">[</span><span class="n">filtered_data</span><span class="o">.</span><span class="n">filename</span> <span class="o">==</span> <span class="s2">&quot;02100201.20200323170208001.txt&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;io/loader=plaintext_parser&quot;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data_sources</span> <span class="o">=</span> <span class="s2">&quot;econ_news_kr_chunks*.txt&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">item</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;filename&quot;</span><span class="p">,</span> <span class="n">codes</span><span class="o">=</span><span class="s2">&quot;codes&quot;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">split</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">data_key</span> <span class="o">=</span> <span class="s2">&quot;codes&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">progress_per</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">code_info</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="o">**</span><span class="n">cfg</span><span class="p">)</span>
+<span class="n">code_info</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:root:compose config with overrides: [&#39;+io/loader=plaintext_parser&#39;]
+INFO:ekorpkit.base:setting environment variable CACHED_PATH_CACHE_ROOT to /root/.ekorpkit/.cache/cached_path
+INFO:ekorpkit.base:setting environment variable KMP_DUPLICATE_LIB_OK to TRUE
+INFO:ekorpkit.io.file:Processing [3] files from [&#39;econ_news_kr_chunks*.txt&#39;]
+INFO:ekorpkit.io.load.data:==&gt; processing 1/3 files &lt;==
+INFO:ekorpkit.io.parse.json:Number of data in the contents: 37495
+INFO:ekorpkit.io.load.data:==&gt; processing 2/3 files &lt;==
+INFO:ekorpkit.io.parse.json:Number of data in the contents: 108675
+INFO:ekorpkit.io.load.data:==&gt; processing 3/3 files &lt;==
+INFO:ekorpkit.io.parse.json:Number of data in the contents: 97506
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;filename&#39;: &#39;econ_news_kr_chunks_2022_code_20220911.txt&#39;, &#39;codes&#39;: &#39;02100101.20220101002520005,1,005380&#39;}
+</pre></div>
+</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -819,34 +799,171 @@ time: 944 ms (started: 2022-12-16 00:50:17 +00:00)
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>id</th>
-      <th>chunk_id</th>
-      <th>text</th>
       <th>filename</th>
+      <th>codes</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>58469</th>
-      <td>385724</td>
-      <td>0</td>
-      <td>[머니투데이 박소연 기자] [당장 유동성보다는 전 세계 수요·구매력 감소가 더 큰 ...</td>
-      <td>02100201.20200323170208001.txt</td>
+      <th>243671</th>
+      <td>econ_news_kr_chunks_2020_code_20220911.txt</td>
+      <td>02100851.20201231110236001,1,032640</td>
     </tr>
     <tr>
-      <th>58470</th>
-      <td>385724</td>
-      <td>1</td>
-      <td>국내 전자업계는 공장이 한국과 중국, 베트남 지역에 있어 북미나 유럽발 셧다운으로 ...</td>
-      <td>02100201.20200323170208001.txt</td>
+      <th>243672</th>
+      <td>econ_news_kr_chunks_2020_code_20220911.txt</td>
+      <td>02100851.20201231111427001,1,035720</td>
+    </tr>
+    <tr>
+      <th>243673</th>
+      <td>econ_news_kr_chunks_2020_code_20220911.txt</td>
+      <td>02100851.20201231132917001,0,011200</td>
+    </tr>
+    <tr>
+      <th>243674</th>
+      <td>econ_news_kr_chunks_2020_code_20220911.txt</td>
+      <td>02100851.20201231164457001,0,000660</td>
+    </tr>
+    <tr>
+      <th>243675</th>
+      <td>econ_news_kr_chunks_2020_code_20220911.txt</td>
+      <td>02100851.20201231204324001,0,068270</td>
     </tr>
   </tbody>
 </table>
-</div></div></div>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 24.9 s (started: 2022-12-10 07:21:05 +00:00)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">code_info_available</span> <span class="o">=</span> <span class="n">code_info</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">code_info_available</span><span class="p">[</span><span class="s2">&quot;filename&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">code_info_available</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">str</span><span class="p">[:</span><span class="mi">26</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.txt&quot;</span>
+<span class="n">code_info_available</span><span class="p">[</span><span class="s2">&quot;codes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">code_info_available</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">27</span><span class="p">:]</span>
+<span class="n">code_info_available</span><span class="p">[</span><span class="s2">&quot;codes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">code_info_available</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+<span class="n">code_info_available</span><span class="p">[</span><span class="s2">&quot;chunk_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">code_info_available</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="n">code_info_available</span><span class="p">[</span><span class="s2">&quot;codes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">code_info_available</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+<span class="n">code_info_available</span><span class="p">[</span><span class="s2">&quot;num_codes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">code_info_available</span><span class="p">[</span><span class="s2">&quot;codes&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">len</span><span class="p">)</span>
+<span class="n">code_info_available</span> <span class="o">=</span> <span class="n">code_info_available</span><span class="o">.</span><span class="n">explode</span><span class="p">(</span><span class="s2">&quot;codes&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">eKonf</span><span class="o">.</span><span class="n">save_data</span><span class="p">(</span><span class="n">code_info_available</span><span class="p">,</span> <span class="s2">&quot;econ_news_code_info_available_20220911.parquet&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">code_info_available</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">code_info_available</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.io.file:Saving dataframe to ../data/econ_news_kr/news_slice/econ_news_code_info_available_20220911.parquet
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(258537, 4)
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 258537 entries, 0 to 258536
+Data columns (total 4 columns):
+ #   Column     Non-Null Count   Dtype 
+---  ------     --------------   ----- 
+ 0   filename   258537 non-null  object
+ 1   codes      258537 non-null  object
+ 2   chunk_id   258537 non-null  int64 
+ 3   num_codes  258537 non-null  int64 
+dtypes: int64(2), object(2)
+memory usage: 7.9+ MB
+time: 1.39 s (started: 2022-12-10 07:21:44 +00:00)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filtered_data</span> <span class="o">=</span> <span class="n">chunk_data</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+    <span class="n">code_info_available</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;filename&quot;</span><span class="p">,</span> <span class="s2">&quot;chunk_id&quot;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span>
+<span class="p">)</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;filename&quot;</span><span class="p">,</span> <span class="s2">&quot;chunk_id&quot;</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="s2">&quot;codes&quot;</span><span class="p">]</span>
+<span class="n">filtered_data</span> <span class="o">=</span> <span class="n">filtered_data</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span>
+<span class="n">eKonf</span><span class="o">.</span><span class="n">save_data</span><span class="p">(</span><span class="n">filtered_data</span><span class="p">,</span> <span class="s2">&quot;econ_news_filtered_20220911.parquet&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">filtered_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">filtered_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.io.file:Saving dataframe to ../data/econ_news_kr/news_slice/econ_news_filtered_20220911.parquet
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(267111, 4)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>filename</th>
+      <th>chunk_id</th>
+      <th>text</th>
+      <th>codes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>02100101.20200101040200001.txt</td>
+      <td>0</td>
+      <td>◆ 2020 경제기상도 / 업종별 전망 (반도체) ◆ 지난해 미·중 무역분쟁과 공...</td>
+      <td>000660</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>02100101.20200101040200001.txt</td>
+      <td>1</td>
+      <td>지난해 3분기 반도체 부문 영업이익 3조500억원으로 3조원대에 간신히 턱걸이한 ...</td>
+      <td>005930</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>02100101.20200101040200002.txt</td>
+      <td>0</td>
+      <td>◆ 2020 경제기상도 / 업종별 전망 (가전) ◆ TV, 냉장고, 세탁기 등 전...</td>
+      <td>005930</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>02100101.20200101040200002.txt</td>
+      <td>0</td>
+      <td>◆ 2020 경제기상도 / 업종별 전망 (가전) ◆ TV, 냉장고, 세탁기 등 전...</td>
+      <td>066570</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>02100101.20200101040201001.txt</td>
+      <td>1</td>
+      <td>디스플레이 업계 등에서는 삼성과 LG가 글로벌 디스플레이 시장에서 중국 업체의 L...</td>
+      <td>003550</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 24.3 s (started: 2022-12-10 07:21:48 +00:00)
+</pre></div>
+</div>
+</div>
 </div>
 </section>
-<section id="predicting-polarities">
-<h2>Predicting polarities<a class="headerlink" href="#predicting-polarities" title="Permalink to this heading">#</a></h2>
+<section id="filter-out-invalid-data">
+<h2>Filter out invalid data<a class="headerlink" href="#filter-out-invalid-data" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">overrides</span><span class="o">=</span><span class="p">[</span>
@@ -854,36 +971,31 @@ time: 944 ms (started: 2022-12-16 00:50:17 +00:00)
     <span class="s1">&#39;+model/transformer/pretrained=ekonelectra-base&#39;</span><span class="p">,</span>
 <span class="p">]</span>
 <span class="n">model_cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s1">&#39;model/transformer=classification&#39;</span><span class="p">,</span> <span class="n">overrides</span><span class="p">)</span>
-<span class="n">model_cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;esg_polarity&quot;</span>
-<span class="n">model_cfg</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="n">model_cfg</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">num_train_epochs</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">model_cfg</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">max_seq_length</span> <span class="o">=</span> <span class="mi">256</span>
-<span class="n">model_cfg</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">train_batch_size</span> <span class="o">=</span> <span class="mi">32</span>
-<span class="n">model_cfg</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">eval_batch_size</span> <span class="o">=</span> <span class="mi">32</span>
-<span class="c1"># set to your model dir</span>
-<span class="n">model_cfg</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">best_model_dir</span> <span class="o">=</span> <span class="s1">&#39;/workspace/.tmp/esg/polarity/best_model&#39;</span>
+<span class="n">model_cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;esg_invalid&quot;</span>
 
-<span class="n">model</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">model_cfg</span><span class="p">)</span>
+<span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">config_group</span><span class="o">=</span><span class="s1">&#39;pipeline&#39;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;esg_invalid_20220911&#39;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data_file</span> <span class="o">=</span> <span class="s1">&#39;econ_news_filtered_20220911.parquet&#39;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">_pipeline_</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;predict&#39;</span><span class="p">]</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">predict</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model_cfg</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">predict</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">predict</span><span class="o">.</span><span class="n">output_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">cfg</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">-preds.parquet&#39;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">num_workers</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">invalid_preds_df</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+<span class="n">invalid_preds_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:No method defined to call
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function predict at 0x7f2e20d95a60&gt;)
+INFO:ekorpkit.base:No method defined to call
 </pre></div>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">filtered_data</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "d571c5f1ed20425d83fe8eee63d9462d", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Token indices sequence length is longer than the specified maximum sequence length for this model (522 &gt; 512). Running this sequence through the model will result in indexing errors
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "a1865df3992c486eb1d43bb638646109", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Token indices sequence length is longer than the specified maximum sequence length for this model (640 &gt; 512). Running this sequence through the model will result in indexing errors
-</pre></div>
-</div>
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "5334fece88ce46e8a7e2257562ed6d5a", "version_major": 2, "version_minor": 0}</script><div class="output text_html"><div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "0f780c039fce417aac3fd54107d1ef14", "version_major": 2, "version_minor": 0}</script><div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -901,10 +1013,10 @@ time: 944 ms (started: 2022-12-16 00:50:17 +00:00)
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>id</th>
+      <th>filename</th>
       <th>chunk_id</th>
       <th>text</th>
-      <th>filename</th>
+      <th>codes</th>
       <th>pred_labels</th>
       <th>raw_preds</th>
       <th>pred_probs</th>
@@ -912,54 +1024,54 @@ time: 944 ms (started: 2022-12-16 00:50:17 +00:00)
   </thead>
   <tbody>
     <tr>
-      <th>160582</th>
-      <td>1090535</td>
-      <td>1</td>
-      <td>업종별로 하락한 업종은 운수창고(-1.22%), 운수장비(-1.12%), 전기전자(...</td>
-      <td>02100851.20220228093428001.txt</td>
-      <td>Neutral</td>
-      <td>{'Negative': 0.021272389449621617, 'Neutral': ...</td>
-      <td>0.558927</td>
-    </tr>
-    <tr>
-      <th>160583</th>
-      <td>1090566</td>
+      <th>0</th>
+      <td>02100101.20200101040200001.txt</td>
       <td>0</td>
-      <td>[회사채 미매각 현황]\n회사채 시장에 미매각이 속출하고 있다. 현재 연 1.25%...</td>
-      <td>02100851.20220228103653001.txt</td>
-      <td>Negative</td>
-      <td>{'Negative': 0.3028968002392749, 'Neutral': 0....</td>
-      <td>0.302897</td>
+      <td>◆ 2020 경제기상도 / 업종별 전망 (반도체) ◆ 지난해 미·중 무역분쟁과 공...</td>
+      <td>000660</td>
+      <td>Discarded</td>
+      <td>{'Discarded': 0.1799878992578683, 'Validated':...</td>
+      <td>0.206845</td>
     </tr>
     <tr>
-      <th>160584</th>
-      <td>1090566</td>
+      <th>1</th>
+      <td>02100101.20200101040200001.txt</td>
       <td>1</td>
-      <td>하지만 가뜩이나 악화된 회사채 시장 분위기에 사고 소식까지 전해지면서 아무도 수요예...</td>
-      <td>02100851.20220228103653001.txt</td>
-      <td>Negative</td>
-      <td>{'Negative': 0.21217251856446653, 'Neutral': 0...</td>
-      <td>0.227077</td>
+      <td>지난해 3분기 반도체 부문 영업이익 3조500억원으로 3조원대에 간신히 턱걸이한 ...</td>
+      <td>005930</td>
+      <td>Discarded</td>
+      <td>{'Discarded': 0.6575677396177281, 'Validated':...</td>
+      <td>0.657568</td>
     </tr>
     <tr>
-      <th>160585</th>
-      <td>1090566</td>
-      <td>2</td>
-      <td>이에 채권시장에서 자금을 운용하는 각 증권사들의 부담이 커지고 있다. 대부분이 총액...</td>
-      <td>02100851.20220228103653001.txt</td>
-      <td>Neutral</td>
-      <td>{'Negative': 0.16820714620311472, 'Neutral': 0...</td>
-      <td>0.807850</td>
-    </tr>
-    <tr>
-      <th>160586</th>
-      <td>1090615</td>
+      <th>2</th>
+      <td>02100101.20200101040200002.txt</td>
       <td>0</td>
-      <td>[사진=아주경제 DB]\n우크라이나와 러시아가 협상 테이블을 마련한다는 소식에 국내...</td>
-      <td>02100851.20220228154344001.txt</td>
-      <td>Neutral</td>
-      <td>{'Negative': 0.001653071269117536, 'Neutral': ...</td>
-      <td>0.287804</td>
+      <td>◆ 2020 경제기상도 / 업종별 전망 (가전) ◆ TV, 냉장고, 세탁기 등 전...</td>
+      <td>005930</td>
+      <td>Discarded</td>
+      <td>{'Discarded': 0.13758843340302507, 'Validated'...</td>
+      <td>0.156780</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>02100101.20200101040200002.txt</td>
+      <td>0</td>
+      <td>◆ 2020 경제기상도 / 업종별 전망 (가전) ◆ TV, 냉장고, 세탁기 등 전...</td>
+      <td>066570</td>
+      <td>Discarded</td>
+      <td>{'Discarded': 0.13758843340302507, 'Validated'...</td>
+      <td>0.156780</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>02100101.20200101040201001.txt</td>
+      <td>1</td>
+      <td>디스플레이 업계 등에서는 삼성과 LG가 글로벌 디스플레이 시장에서 중국 업체의 L...</td>
+      <td>003550</td>
+      <td>Discarded</td>
+      <td>{'Discarded': 0.5148541733920216, 'Validated':...</td>
+      <td>0.514854</td>
     </tr>
   </tbody>
 </table>
@@ -967,10 +1079,39 @@ time: 944 ms (started: 2022-12-16 00:50:17 +00:00)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">config_group</span><span class="o">=</span><span class="s1">&#39;pipeline&#39;</span><span class="p">)</span>
-<span class="n">cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;esg_polarities_20220905&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;filename&quot;</span><span class="p">,</span> <span class="s2">&quot;chunk_id&quot;</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="s2">&quot;codes&quot;</span><span class="p">]</span>
+<span class="n">valid_data</span> <span class="o">=</span> <span class="n">invalid_preds_df</span><span class="p">[</span>
+    <span class="n">invalid_preds_df</span><span class="o">.</span><span class="n">pred_labels</span> <span class="o">==</span> <span class="s2">&quot;Validated&quot;</span>
+<span class="p">][</span><span class="n">cols</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">valid_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;esg_news_valid_20220911.parquet&quot;</span>
+<span class="n">eKonf</span><span class="o">.</span><span class="n">save_data</span><span class="p">(</span><span class="n">valid_data</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(115784, 4)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="predict-polarities">
+<h2>Predict polarities<a class="headerlink" href="#predict-polarities" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">overrides</span><span class="o">=</span><span class="p">[</span>
+    <span class="s1">&#39;+model/transformer=classification&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;+model/transformer/pretrained=ekonelectra-base&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">model_cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s1">&#39;model/transformer=classification&#39;</span><span class="p">,</span> <span class="n">overrides</span><span class="p">)</span>
+<span class="n">model_cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;esg_cv_polarity&quot;</span>
+<span class="n">model_cfg</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">config_group</span><span class="o">=</span><span class="s1">&#39;pipeline&#39;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;esg_news_polarities_20220911&#39;</span>
 <span class="n">cfg</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
-<span class="n">cfg</span><span class="o">.</span><span class="n">data_file</span> <span class="o">=</span> <span class="s1">&#39;econ_news_filtered_20220905.parquet&#39;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data_file</span> <span class="o">=</span> <span class="s1">&#39;esg_news_valid_20220911.parquet&#39;</span>
 <span class="n">cfg</span><span class="o">.</span><span class="n">_pipeline_</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;predict&#39;</span><span class="p">]</span>
 <span class="n">cfg</span><span class="o">.</span><span class="n">predict</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model_cfg</span>
 <span class="n">cfg</span><span class="o">.</span><span class="n">predict</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
@@ -982,17 +1123,14 @@ time: 944 ms (started: 2022-12-16 00:50:17 +00:00)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Loaded .env from /workspace/projects/ekorpkit-book/config/.env
-INFO:ekorpkit.base:setting environment variable CACHED_PATH_CACHE_ROOT to /workspace/.cache/cached_path
-INFO:ekorpkit.base:setting environment variable KMP_DUPLICATE_LIB_OK to TRUE
-INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function predict at 0x7faa65df1ee0&gt;)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function predict at 0x7f2e20d95a60&gt;)
 INFO:ekorpkit.base:No method defined to call
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "5b4f95bff11243939823069387338271", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Token indices sequence length is longer than the specified maximum sequence length for this model (552 &gt; 512). Running this sequence through the model will result in indexing errors
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "dc3318a70fdf46a0840992162c843fb1", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Token indices sequence length is longer than the specified maximum sequence length for this model (1492 &gt; 512). Running this sequence through the model will result in indexing errors
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "c7ab0d7bacc24b1f9c55e4c66928af33", "version_major": 2, "version_minor": 0}</script><div class="output text_html"><div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "61d9b5fc4a4245ba8442a385aca2068d", "version_major": 2, "version_minor": 0}</script><div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1010,10 +1148,10 @@ INFO:ekorpkit.base:No method defined to call
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>id</th>
+      <th>filename</th>
       <th>chunk_id</th>
       <th>text</th>
-      <th>filename</th>
+      <th>codes</th>
       <th>pred_labels</th>
       <th>raw_preds</th>
       <th>pred_probs</th>
@@ -1021,54 +1159,54 @@ INFO:ekorpkit.base:No method defined to call
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>11</td>
+      <th>5</th>
+      <td>02100101.20200101040202001.txt</td>
       <td>0</td>
-      <td>문재인 대통령이 지난해 전용차로 선택한 수소전기차 '넥쏘'가 중·장년층 남성들로부터...</td>
-      <td>02100101.20201101113442001.txt</td>
-      <td>Positive</td>
-      <td>{'Negative': 0.003234388916771163, 'Neutral': ...</td>
-      <td>0.320464</td>
+      <td>◆ 2020 경제기상도 / 업종별 전망 (자동차) ◆ 지난해 국내 자동차 시장은 ...</td>
+      <td>000270</td>
+      <td>Negative</td>
+      <td>{'Neutral': 0.22110844002351862, 'Positive': 0...</td>
+      <td>0.717613</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>11</td>
-      <td>1</td>
-      <td>넥쏘는 국내 뿐만 아니라 해외에서도 코로나19 확산 여파를 이겨내고 질주하고 있다....</td>
-      <td>02100101.20201101113442001.txt</td>
-      <td>Positive</td>
-      <td>{'Negative': 0.005179156956969719, 'Neutral': ...</td>
-      <td>0.463171</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>19</td>
+      <th>10</th>
+      <td>02100101.20200101040206003.txt</td>
       <td>0</td>
-      <td>LG전자는 국내 최대 쇼핑 행사 ‘2020 코리아세일페스타’에 맞춰 11월 1일부터...</td>
-      <td>02100101.20201101125903001.txt</td>
-      <td>Positive</td>
-      <td>{'Negative': 0.0022622254938860858, 'Neutral':...</td>
-      <td>0.293573</td>
+      <td>◆ 2020 경제기상도 / 업종별 전망 (유통) ◆ 2020년은 국내 대표 온·오...</td>
+      <td>139480</td>
+      <td>Neutral</td>
+      <td>{'Neutral': 0.8255044887345607, 'Positive': 0....</td>
+      <td>0.825504</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>20</td>
+      <th>11</th>
+      <td>02100101.20200101060214001.txt</td>
       <td>0</td>
-      <td>SK는 그룹 8개 관계사가 한국 최초로 ‘RE100’에 가입한다고 1일 밝혔다.\n...</td>
-      <td>02100101.20201101130118001.txt</td>
-      <td>Positive</td>
-      <td>{'Negative': 0.003873849489889034, 'Neutral': ...</td>
-      <td>0.457221</td>
+      <td>[Pulse로 배우는 영작문-762] 'Pulse로 배우는 영작문'으로 영문 뉴스...</td>
+      <td>005380</td>
+      <td>Neutral</td>
+      <td>{'Neutral': 0.11524808398723353, 'Positive': 0...</td>
+      <td>0.126036</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>20</td>
-      <td>1</td>
-      <td>SK 8개사가 신청서를 제출하면 더 클라이밋 그룹의 검토를 거친 후 가입이 최종 확...</td>
-      <td>02100101.20201101130118001.txt</td>
-      <td>Positive</td>
-      <td>{'Negative': 0.0033662562749769104, 'Neutral':...</td>
-      <td>0.387810</td>
+      <th>18</th>
+      <td>02100101.20200101183234001.txt</td>
+      <td>0</td>
+      <td>제네시스의 첫 번째 스포츠유틸리티차량(SUV) 모델인 GV80가 역동적이면서 우아...</td>
+      <td>005380</td>
+      <td>Neutral</td>
+      <td>{'Neutral': 0.2245705448013361, 'Positive': 0....</td>
+      <td>0.271877</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>02100101.20200101184423001.txt</td>
+      <td>0</td>
+      <td>◆ 2020 유통대전 ① ◆ 유통기업 '빅(Big)2' 롯데쇼핑과 이마트의 새 수...</td>
+      <td>139480</td>
+      <td>Neutral</td>
+      <td>{'Neutral': 0.9101777918673029, 'Positive': 0....</td>
+      <td>0.910178</td>
     </tr>
   </tbody>
 </table>
@@ -1084,43 +1222,32 @@ INFO:ekorpkit.base:No method defined to call
     <span class="s1">&#39;+model/transformer/pretrained=ekonelectra-base&#39;</span><span class="p">,</span>
 <span class="p">]</span>
 <span class="n">model_cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s1">&#39;model/transformer=classification&#39;</span><span class="p">,</span> <span class="n">overrides</span><span class="p">)</span>
-<span class="n">model_cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;esg_topics&quot;</span>
+<span class="n">model_cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;esg_cv_topics&quot;</span>
 <span class="n">model_cfg</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="n">model_cfg</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">num_train_epochs</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">model_cfg</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">max_seq_length</span> <span class="o">=</span> <span class="mi">256</span>
-<span class="n">model_cfg</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">train_batch_size</span> <span class="o">=</span> <span class="mi">32</span>
-<span class="n">model_cfg</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">eval_batch_size</span> <span class="o">=</span> <span class="mi">32</span>
-<span class="c1"># set to your model dir</span>
-<span class="n">model_cfg</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">best_model_dir</span> <span class="o">=</span> <span class="s1">&#39;/workspace/.tmp/esg/topic/best_model&#39;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">config_group</span><span class="o">=</span><span class="s1">&#39;pipeline&#39;</span><span class="p">)</span>
-<span class="n">cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;esg_categories_20220905&#39;</span>
+
+<span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">config_group</span><span class="o">=</span><span class="s1">&#39;pipeline&#39;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;esg_news_topics_20220911&#39;</span>
 <span class="n">cfg</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
-<span class="n">cfg</span><span class="o">.</span><span class="n">data_file</span> <span class="o">=</span> <span class="s1">&#39;econ_news_filtered.parquet&#39;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">data_file</span> <span class="o">=</span> <span class="s1">&#39;esg_news_valid_20220911.parquet&#39;</span>
 <span class="n">cfg</span><span class="o">.</span><span class="n">_pipeline_</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;predict&#39;</span><span class="p">]</span>
 <span class="n">cfg</span><span class="o">.</span><span class="n">predict</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model_cfg</span>
 <span class="n">cfg</span><span class="o">.</span><span class="n">predict</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
 <span class="n">cfg</span><span class="o">.</span><span class="n">predict</span><span class="o">.</span><span class="n">output_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">cfg</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">-preds.parquet&#39;</span>
 <span class="n">cfg</span><span class="o">.</span><span class="n">num_workers</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">cat_preds_df</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
-<span class="n">cat_preds_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">category_preds_df</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+<span class="n">category_preds_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function predict at 0x7f1029331f70&gt;)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Applying pipe: functools.partial(&lt;function predict at 0x7f2e20d95a60&gt;)
 INFO:ekorpkit.base:No method defined to call
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "23bf2075f8f8434a961c2ef261af1521", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Token indices sequence length is longer than the specified maximum sequence length for this model (552 &gt; 512). Running this sequence through the model will result in indexing errors
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "b6cb087cbb014dfcb0010b542aa78613", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Token indices sequence length is longer than the specified maximum sequence length for this model (1492 &gt; 512). Running this sequence through the model will result in indexing errors
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "7061aee0a26c42db8ac85c4fd75c6bdd", "version_major": 2, "version_minor": 0}</script><div class="output text_html"><div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "5cfc6e86370640c0bbb269b68782baf9", "version_major": 2, "version_minor": 0}</script><div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1138,10 +1265,10 @@ INFO:ekorpkit.base:No method defined to call
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>id</th>
+      <th>filename</th>
       <th>chunk_id</th>
       <th>text</th>
-      <th>filename</th>
+      <th>codes</th>
       <th>pred_labels</th>
       <th>raw_preds</th>
       <th>pred_probs</th>
@@ -1149,410 +1276,250 @@ INFO:ekorpkit.base:No method defined to call
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>11</td>
+      <th>5</th>
+      <td>02100101.20200101040202001.txt</td>
       <td>0</td>
-      <td>문재인 대통령이 지난해 전용차로 선택한 수소전기차 '넥쏘'가 중·장년층 남성들로부터...</td>
-      <td>02100101.20201101113442001.txt</td>
-      <td>E-환경혁신</td>
-      <td>{'S-기업(공급망)동반성장/상생': 0.0035235610749915036, 'G...</td>
-      <td>0.274359</td>
+      <td>◆ 2020 경제기상도 / 업종별 전망 (자동차) ◆ 지난해 국내 자동차 시장은 ...</td>
+      <td>000270</td>
+      <td>S-고용</td>
+      <td>{'S-고용': 0.9784880492636585, 'E-환경영향': 0.00082...</td>
+      <td>0.978488</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>11</td>
-      <td>1</td>
-      <td>넥쏘는 국내 뿐만 아니라 해외에서도 코로나19 확산 여파를 이겨내고 질주하고 있다....</td>
-      <td>02100101.20201101113442001.txt</td>
-      <td>E-환경혁신</td>
-      <td>{'S-기업(공급망)동반성장/상생': 0.00476169941298804, 'G-지...</td>
-      <td>0.385310</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>19</td>
+      <th>10</th>
+      <td>02100101.20200101040206003.txt</td>
       <td>0</td>
-      <td>LG전자는 국내 최대 쇼핑 행사 ‘2020 코리아세일페스타’에 맞춰 11월 1일부터...</td>
-      <td>02100101.20201101125903001.txt</td>
+      <td>◆ 2020 경제기상도 / 업종별 전망 (유통) ◆ 2020년은 국내 대표 온·오...</td>
+      <td>139480</td>
       <td>S-소비자</td>
-      <td>{'S-기업(공급망)동반성장/상생': 0.007591910869623802, 'G-...</td>
-      <td>0.393870</td>
+      <td>{'S-고용': 0.22015353503574592, 'E-환경영향': 0.0088...</td>
+      <td>0.559892</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>20</td>
+      <th>11</th>
+      <td>02100101.20200101060214001.txt</td>
       <td>0</td>
-      <td>SK는 그룹 8개 관계사가 한국 최초로 ‘RE100’에 가입한다고 1일 밝혔다.\n...</td>
-      <td>02100101.20201101130118001.txt</td>
-      <td>G-지배구조</td>
-      <td>{'S-기업(공급망)동반성장/상생': 0.00795168713418085, 'G-지...</td>
-      <td>0.316108</td>
+      <td>[Pulse로 배우는 영작문-762] 'Pulse로 배우는 영작문'으로 영문 뉴스...</td>
+      <td>005380</td>
+      <td>S-소비자</td>
+      <td>{'S-고용': 0.000642749081254596, 'E-환경영향': 0.002...</td>
+      <td>0.223181</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>20</td>
-      <td>1</td>
-      <td>SK 8개사가 신청서를 제출하면 더 클라이밋 그룹의 검토를 거친 후 가입이 최종 확...</td>
-      <td>02100101.20201101130118001.txt</td>
+      <th>18</th>
+      <td>02100101.20200101183234001.txt</td>
+      <td>0</td>
+      <td>제네시스의 첫 번째 스포츠유틸리티차량(SUV) 모델인 GV80가 역동적이면서 우아...</td>
+      <td>005380</td>
       <td>S-소비자</td>
-      <td>{'S-기업(공급망)동반성장/상생': 0.003973197078848794, 'G-...</td>
-      <td>0.269355</td>
+      <td>{'S-고용': 0.0018075713776912943, 'E-환경영향': 0.00...</td>
+      <td>0.330156</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>02100101.20200101184423001.txt</td>
+      <td>0</td>
+      <td>◆ 2020 유통대전 ① ◆ 유통기업 '빅(Big)2' 롯데쇼핑과 이마트의 새 수...</td>
+      <td>139480</td>
+      <td>S-고용</td>
+      <td>{'S-고용': 0.9527512959359385, 'E-환경영향': 0.00096...</td>
+      <td>0.952751</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
 </section>
-<section id="check-and-label-predictions">
-<h2>Check and label predictions<a class="headerlink" href="#check-and-label-predictions" title="Permalink to this heading">#</a></h2>
+<section id="import-data-to-labelstudio">
+<h2>Import data to labelstudio<a class="headerlink" href="#import-data-to-labelstudio" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">polarity_preds_df</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s2">&quot;esg_polarities_20220905-preds.parquet&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
-<span class="n">category_preds_df</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s2">&quot;esg_categories_20220905-preds.parquet&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
-<span class="n">code_info_available</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s2">&quot;econ_news_code_info_available_20220905.parquet&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">codes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;035720&#39;</span><span class="p">,</span> <span class="s1">&#39;051910&#39;</span><span class="p">,</span> <span class="s1">&#39;207940&#39;</span><span class="p">,</span> <span class="s1">&#39;009830&#39;</span><span class="p">]</span>
-<span class="n">selected</span> <span class="o">=</span> <span class="n">code_info_available</span><span class="p">[</span><span class="n">code_info_available</span><span class="p">[</span><span class="s1">&#39;codes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">codes</span><span class="p">)]</span>
-<span class="n">selected</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">project_dir</span> <span class="o">/</span> <span class="s2">&quot;data/econ_news_kr/news_slice/&quot;</span>
+
+<span class="n">polarity_preds_df</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s2">&quot;esg_news_polarities_20220911-preds.parquet&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+<span class="n">category_preds_df</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s2">&quot;esg_news_topics_20220911-preds.parquet&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>filename</th>
-      <th>codes</th>
-      <th>len</th>
-      <th>num_codes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>21</th>
-      <td>02100101.20200102040158002.txt</td>
-      <td>035720</td>
-      <td>40</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>36</th>
-      <td>02100101.20200102080234001.txt</td>
-      <td>051910</td>
-      <td>96</td>
-      <td>10</td>
-    </tr>
-    <tr>
-      <th>41</th>
-      <td>02100101.20200102080234001.txt</td>
-      <td>035720</td>
-      <td>96</td>
-      <td>10</td>
-    </tr>
-    <tr>
-      <th>73</th>
-      <td>02100101.20200103000814001.txt</td>
-      <td>207940</td>
-      <td>47</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>151</th>
-      <td>02100101.20200108092412001.txt</td>
-      <td>207940</td>
-      <td>40</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>198534</th>
-      <td>02100851.20220527101334001.txt</td>
-      <td>051910</td>
-      <td>40</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>198538</th>
-      <td>02100851.20220527154429001.txt</td>
-      <td>207940</td>
-      <td>61</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>198592</th>
-      <td>02100851.20220531091955001.txt</td>
-      <td>051910</td>
-      <td>47</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>198596</th>
-      <td>02100851.20220531112630001.txt</td>
-      <td>009830</td>
-      <td>40</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>198602</th>
-      <td>02100851.20220531154303001.txt</td>
-      <td>051910</td>
-      <td>40</td>
-      <td>2</td>
-    </tr>
-  </tbody>
-</table>
-<p>18675 rows × 4 columns</p>
-</div></div></div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.io.file:Processing [1] files from [&#39;esg_news_polarities_20220911-preds.parquet&#39;]
+INFO:ekorpkit.io.file:Loading 1 dataframes from [&#39;/workspace/projects/ekorpkit-book/exmaples/esg/data/econ_news_kr/news_slice/esg_news_polarities_20220911-preds.parquet&#39;]
+INFO:ekorpkit.io.file:Loading data from /workspace/projects/ekorpkit-book/exmaples/esg/data/econ_news_kr/news_slice/esg_news_polarities_20220911-preds.parquet
+INFO:ekorpkit.io.file:Processing [1] files from [&#39;esg_news_topics_20220911-preds.parquet&#39;]
+INFO:ekorpkit.io.file:Loading 1 dataframes from [&#39;/workspace/projects/ekorpkit-book/exmaples/esg/data/econ_news_kr/news_slice/esg_news_topics_20220911-preds.parquet&#39;]
+INFO:ekorpkit.io.file:Loading data from /workspace/projects/ekorpkit-book/exmaples/esg/data/econ_news_kr/news_slice/esg_news_topics_20220911-preds.parquet
+</pre></div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selected_category_preds</span> <span class="o">=</span> <span class="n">category_preds_df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">selected</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;filename&#39;</span><span class="p">)</span>
-<span class="n">selected_polarity_preds</span> <span class="o">=</span> <span class="n">polarity_preds_df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">selected</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;filename&#39;</span><span class="p">)</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 3.03 s (started: 2022-12-10 08:34:51 +00:00)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selected_category_preds</span> <span class="o">=</span> <span class="n">selected_category_preds</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
-    <span class="n">selected_polarity_preds</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">polarity_data</span> <span class="o">=</span> <span class="n">polarity_preds_df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+    <span class="n">category_preds_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pred_labels&quot;</span><span class="p">:</span> <span class="s2">&quot;category_preds&quot;</span><span class="p">}</span>
+    <span class="p">)[[</span><span class="s1">&#39;filename&#39;</span><span class="p">,</span> <span class="s1">&#39;chunk_id&#39;</span><span class="p">,</span> <span class="s1">&#39;codes&#39;</span><span class="p">,</span> <span class="s1">&#39;category_preds&#39;</span><span class="p">]],</span>
+    <span class="n">on</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;filename&#39;</span><span class="p">,</span> <span class="s1">&#39;chunk_id&#39;</span><span class="p">,</span> <span class="s1">&#39;codes&#39;</span><span class="p">]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;raw_preds&#39;</span><span class="p">])</span>
+<span class="n">category_data</span> <span class="o">=</span> <span class="n">category_preds_df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+    <span class="n">polarity_preds_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
         <span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pred_labels&quot;</span><span class="p">:</span> <span class="s2">&quot;polarity_preds&quot;</span><span class="p">}</span>
-    <span class="p">)[[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;chunk_id&#39;</span><span class="p">,</span> <span class="s1">&#39;codes&#39;</span><span class="p">,</span> <span class="s1">&#39;polarity_preds&#39;</span><span class="p">]],</span>
-    <span class="n">on</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;chunk_id&#39;</span><span class="p">,</span> <span class="s1">&#39;codes&#39;</span><span class="p">]</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selected_category_preds</span> <span class="o">=</span> <span class="n">selected_category_preds</span><span class="p">[</span><span class="n">selected_category_preds</span><span class="o">.</span><span class="n">polarity_preds</span> <span class="o">!=</span> <span class="s1">&#39;Neutral&#39;</span><span class="p">]</span>
-<span class="n">selected_polarity_preds</span> <span class="o">=</span> <span class="n">selected_polarity_preds</span><span class="p">[</span><span class="n">selected_polarity_preds</span><span class="o">.</span><span class="n">pred_labels</span> <span class="o">!=</span> <span class="s1">&#39;Neutral&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selected_category_preds</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+    <span class="p">)[[</span><span class="s1">&#39;filename&#39;</span><span class="p">,</span> <span class="s1">&#39;chunk_id&#39;</span><span class="p">,</span> <span class="s1">&#39;codes&#39;</span><span class="p">,</span> <span class="s1">&#39;polarity_preds&#39;</span><span class="p">]],</span>
+    <span class="n">on</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;filename&#39;</span><span class="p">,</span> <span class="s1">&#39;chunk_id&#39;</span><span class="p">,</span> <span class="s1">&#39;codes&#39;</span><span class="p">]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;raw_preds&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 235 ms (started: 2022-12-10 08:34:54 +00:00)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ekorpkit.io.fetch.labelstudio</span> <span class="kn">import</span> <span class="n">LabelStudio</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+<span class="c1"># cfg = eKonf.compose(&quot;io/fetcher=labelstudio&quot;)</span>
+<span class="c1"># eKonf.print(cfg)</span>
+<span class="n">ls</span> <span class="o">=</span> <span class="n">LabelStudio</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:root:compose config with overrides: [&#39;+io/fetcher=labelstudio&#39;]
+INFO:ekorpkit.config:Initalized batch: labelstudio(2) in /workspace/projects/ekorpkit-book/exmaples/esg/data
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 756 ms (started: 2022-12-10 08:34:54 +00:00)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">project_list</span> <span class="o">=</span> <span class="n">ls</span><span class="o">.</span><span class="n">list_projects</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13: ESG Topic Classification (Sep 2022)
+12: ESG Polarity Classification (Sep 2022)
+3: ESG Topic Classification
+2: ESG Polarity Classification
+time: 1.1 s (started: 2022-12-10 08:34:55 +00:00)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span><span class="o">.</span><span class="n">delete_project</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">label_config</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&lt;View&gt;</span>
+<span class="s2">  &lt;Header value=&quot;Choose text sentiment:&quot;/&gt;</span>
+<span class="s2">  &lt;Text name=&quot;text&quot; value=&quot;$text&quot;/&gt;</span>
+<span class="s2">  &lt;Choices name=&quot;sentiment&quot; toName=&quot;text&quot; choice=&quot;single&quot; showInline=&quot;true&quot;&gt;</span>
+<span class="s2">    &lt;Choice value=&quot;Positive&quot;/&gt;</span>
+<span class="s2">    &lt;Choice value=&quot;Negative&quot;/&gt;</span>
+<span class="s2">    &lt;Choice value=&quot;Neutral&quot;/&gt;</span>
+<span class="s2">  &lt;/Choices&gt;</span>
+<span class="s2">&lt;/View&gt;</span>
+<span class="s2">&quot;&quot;&quot;</span>
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>chunk_id</th>
-      <th>text</th>
-      <th>filename</th>
-      <th>pred_labels</th>
-      <th>raw_preds</th>
-      <th>pred_probs</th>
-      <th>codes</th>
-      <th>len</th>
-      <th>num_codes</th>
-      <th>polarity_preds</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>46470</th>
-      <td>1090194</td>
-      <td>0</td>
-      <td>KB금융지주 신임 사외이사 후보인 최재홍 강릉원주대 멀티미디어공학과 교수. [사진=...</td>
-      <td>02100851.20220224155144001.txt</td>
-      <td>G-지배구조</td>
-      <td>{'E-기후변화': 0.0013807213841885606, 'E-환경영향': 0....</td>
-      <td>0.638696</td>
-      <td>035720</td>
-      <td>40</td>
-      <td>2</td>
-      <td>Negative</td>
-    </tr>
-    <tr>
-      <th>46471</th>
-      <td>1090194</td>
-      <td>1</td>
-      <td>최 후보는 3단계로 운영되는 KB금융지주 '사추위'의 엄격한 사외이사 후보 추천 프...</td>
-      <td>02100851.20220224155144001.txt</td>
-      <td>G-지배구조</td>
-      <td>{'E-기후변화': 0.0010913496344655172, 'E-환경영향': 0....</td>
-      <td>0.472998</td>
-      <td>035720</td>
-      <td>40</td>
-      <td>2</td>
-      <td>Positive</td>
-    </tr>
-    <tr>
-      <th>46475</th>
-      <td>1090506</td>
-      <td>0</td>
-      <td>왼쪽 위부터 시계방향으로 KB금융, 신한금융, 하나금융, 우리금융. [사진=각 사]...</td>
-      <td>02100851.20220228050135001.txt</td>
-      <td>G-지배구조</td>
-      <td>{'E-기후변화': 0.001021931625316696, 'E-환경영향': 0.0...</td>
-      <td>0.462396</td>
-      <td>035720</td>
-      <td>40</td>
-      <td>2</td>
-      <td>Positive</td>
-    </tr>
-    <tr>
-      <th>46477</th>
-      <td>1090506</td>
-      <td>2</td>
-      <td>우리금융은 3월 정기 주총에서 ESG 전문 여성 변호사를 사외이사로 영입할 예정이다...</td>
-      <td>02100851.20220228050135001.txt</td>
-      <td>G-지배구조</td>
-      <td>{'E-기후변화': 0.0009028980666769455, 'E-환경영향': 0....</td>
-      <td>0.425499</td>
-      <td>035720</td>
-      <td>40</td>
-      <td>2</td>
-      <td>Positive</td>
-    </tr>
-    <tr>
-      <th>46478</th>
-      <td>1090506</td>
-      <td>3</td>
-      <td>금융지주 가운데 가장 많은 사외이사(12명)를 보유한 신한금융의 경우 대부분이 경제...</td>
-      <td>02100851.20220228050135001.txt</td>
-      <td>G-지배구조</td>
-      <td>{'E-기후변화': 0.00200496373839086, 'E-환경영향': 0.00...</td>
-      <td>0.944045</td>
-      <td>035720</td>
-      <td>40</td>
-      <td>2</td>
-      <td>Positive</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rb_cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s1">&#39;model/rubrix&#39;</span><span class="p">)</span>
-<span class="n">rb_cfg</span><span class="o">.</span><span class="n">auto</span><span class="o">.</span><span class="n">init</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">rb</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">rb_cfg</span><span class="p">)</span>
-<span class="n">rb</span><span class="o">.</span><span class="n">get_workspace</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.base:Loaded .env from /workspace/projects/ekorpkit-book/config/.env
-INFO:ekorpkit.base:setting environment variable CACHED_PATH_CACHE_ROOT to /workspace/.cache/cached_path
-INFO:ekorpkit.base:setting environment variable KMP_DUPLICATE_LIB_OK to TRUE
-INFO:ekorpkit.base:Loaded .env from /workspace/projects/ekorpkit-book/config/.env
-INFO:ekorpkit.base:Loaded .env from /workspace/projects/ekorpkit-book/config/.env
-INFO:ekorpkit.base:Loaded .env from /workspace/projects/ekorpkit-book/config/.env
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;esgml&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;chunk_id&#39;</span><span class="p">,</span> <span class="s1">&#39;filename&#39;</span><span class="p">,</span> <span class="s1">&#39;codes&#39;</span><span class="p">,</span> <span class="s1">&#39;num_codes&#39;</span><span class="p">,</span> <span class="s1">&#39;polarity_preds&#39;</span><span class="p">]</span>
-<span class="n">category_records</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">create_records_from_cv_preds</span><span class="p">(</span>
-    <span class="n">selected_category_preds</span><span class="p">,</span>
-    <span class="n">meta_columns</span><span class="o">=</span><span class="n">meta_columns</span><span class="p">,</span>
-    <span class="n">prediction_agent</span><span class="o">=</span><span class="s2">&quot;ekonelectra-base&quot;</span>
+<span class="n">project</span> <span class="o">=</span> <span class="n">ls</span><span class="o">.</span><span class="n">create_project</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;ESG Polarity Classification (Sep 2022)&quot;</span><span class="p">,</span>
+    <span class="n">label_config</span><span class="o">=</span><span class="n">label_config</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#D55C9D&quot;</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="n">category_records</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TextClassificationRecord(text=&#39;지난 10월 25일 故 이건희 삼성그룹 회장이 별세하면서 삼성그룹주 주가가 요동치고 있다. 천문학적인 상속세 마련을 위해 삼성그룹 지배구조에 변화가 이뤄질 수 있다는 관측 때문이다.\n故 이건희 회장이 보유한 삼성전자, 삼성SDS, 삼성물산, 삼성생명 등 주식 가치는 18조원이 넘는 것으로 알려졌다. 부인 홍라희 전 리움미술관 관장과 이재용 삼성그룹 부회장 등 자녀들이 내야 하는 상속세만 10조원이 넘을 것으로 추정된다. 액수가 워낙 크다 보니 5년간 분할 납부하는 연부연납제도를 활용한다고 해도 상속세 신고·납부 기한인 2021년 4월까지 내야 할 첫해 상속세만 1조8000억원이 넘는다.\n결국 상속세 납부를 위해 총수 일가가 보유한 일부 삼성 계열사 지분을 처분하는 것이 불가피할 전망이다. 여기에 재원 마련을 위한 배당 확대 가능성과 이른바 ‘삼성생명법’으로 불리는 보험업법 개정안까지 얽혀 있어 계열사마다 복잡한 셈법이 작용할 것으로 예상된다. 시장에서는 벌써부터 이재용 부회장의 지분이 높은 계열사를 중심으로 주가가 강세를 나타내는 움직임을 보이고 있다. 삼성그룹의 지배구조 개편 시나리오별 주가 향방을 점쳐본다.\n▶‘이재용 체제’ 강화 움직임\n▷전면적인 지배구조 개편 가능성은 희박\n먼저 삼성 총수 일가가 납부해야 할 상속세를 들여다볼 필요가 있다. 故 이건희 회장의 지분 상속 문제는 총수 일가의 지배구조는 물론 삼성그룹 사업구조와도 밀접하게 맞물려 있다.&#39;, inputs={&#39;text&#39;: &#39;지난 10월 25일 故 이건희 삼성그룹 회장이 별세하면서 삼성그룹주 주가가 요동치고 있다. 천문학적인 상속세 마련을 위해 삼성그룹 지배구조에 변화가 이뤄질 수 있다는 관측 때문이다.\n故 이건희 회장이 보유한 삼성전자, 삼성SDS, 삼성물산, 삼성생명 등 주식 가치는 18조원이 넘는 것으로 알려졌다. 부인 홍라희 전 리움미술관 관장과 이재용 삼성그룹 부회장 등 자녀들이 내야 하는 상속세만 10조원이 넘을 것으로 추정된다. 액수가 워낙 크다 보니 5년간 분할 납부하는 연부연납제도를 활용한다고 해도 상속세 신고·납부 기한인 2021년 4월까지 내야 할 첫해 상속세만 1조8000억원이 넘는다.\n결국 상속세 납부를 위해 총수 일가가 보유한 일부 삼성 계열사 지분을 처분하는 것이 불가피할 전망이다. 여기에 재원 마련을 위한 배당 확대 가능성과 이른바 ‘삼성생명법’으로 불리는 보험업법 개정안까지 얽혀 있어 계열사마다 복잡한 셈법이 작용할 것으로 예상된다. 시장에서는 벌써부터 이재용 부회장의 지분이 높은 계열사를 중심으로 주가가 강세를 나타내는 움직임을 보이고 있다. 삼성그룹의 지배구조 개편 시나리오별 주가 향방을 점쳐본다.\n▶‘이재용 체제’ 강화 움직임\n▷전면적인 지배구조 개편 가능성은 희박\n먼저 삼성 총수 일가가 납부해야 할 상속세를 들여다볼 필요가 있다. 故 이건희 회장의 지분 상속 문제는 총수 일가의 지배구조는 물론 삼성그룹 사업구조와도 밀접하게 맞물려 있다.&#39;}, prediction=[(&#39;E-기후변화&#39;, 0.000977778226698302), (&#39;E-환경영향&#39;, 0.0009417470597143389), (&#39;E-환경혁신&#39;, 0.0012780994727015953), (&#39;G-기업윤리/불공정/소송&#39;, 0.017537753614771317), (&#39;G-지배구조&#39;, 0.46723321235772747), (&#39;S-고용&#39;, 0.004175689859563079), (&#39;S-기업(공급망)동반성장/상생&#39;, 0.0015103125334617502), (&#39;S-사회공헌&#39;, 0.0011744614247291812), (&#39;S-소비자&#39;, 0.002442110228841302), (&#39;S-재해/안전관리&#39;, 0.0010086221579924967)], prediction_agent=&#39;ekonelectra-base&#39;, annotation=None, annotation_agent=None, multi_label=False, explanation=None, id=None, metadata={&#39;id&#39;: 226, &#39;chunk_id&#39;: 0, &#39;filename&#39;: &#39;02100101.20201102114419001.txt&#39;, &#39;codes&#39;: &#39;207940&#39;, &#39;num_codes&#39;: 3, &#39;polarity_preds&#39;: &#39;Negative&#39;}, status=&#39;Default&#39;, event_timestamp=None, metrics=None, search_keywords=None)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;chunk_id&#39;</span><span class="p">,</span> <span class="s1">&#39;filename&#39;</span><span class="p">,</span> <span class="s1">&#39;codes&#39;</span><span class="p">,</span> <span class="s1">&#39;num_codes&#39;</span><span class="p">]</span>
-<span class="n">polarity_records</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">create_records_from_cv_preds</span><span class="p">(</span>
-    <span class="n">selected_polarity_preds</span><span class="p">,</span>
-    <span class="n">meta_columns</span><span class="o">=</span><span class="n">meta_columns</span><span class="p">,</span>
-    <span class="n">prediction_agent</span><span class="o">=</span><span class="s2">&quot;ekonelectra-base&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred_file</span> <span class="o">=</span> <span class="n">ls</span><span class="o">.</span><span class="n">dataframe_to_predictions</span><span class="p">(</span>
+    <span class="n">polarity_data</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mf">0.8</span><span class="p">),</span>
+    <span class="n">prediction_file</span><span class="o">=</span><span class="s2">&quot;polarity_preds.json&quot;</span><span class="p">,</span>
+    <span class="n">choices_name</span><span class="o">=</span><span class="s2">&quot;sentiment&quot;</span><span class="p">,</span>
+    <span class="n">model_version</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="n">polarity_records</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1"># ls.import_file(pred_file, project_id=12)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TextClassificationRecord(text=&#39;지난 10월 25일 故 이건희 삼성그룹 회장이 별세하면서 삼성그룹주 주가가 요동치고 있다. 천문학적인 상속세 마련을 위해 삼성그룹 지배구조에 변화가 이뤄질 수 있다는 관측 때문이다.\n故 이건희 회장이 보유한 삼성전자, 삼성SDS, 삼성물산, 삼성생명 등 주식 가치는 18조원이 넘는 것으로 알려졌다. 부인 홍라희 전 리움미술관 관장과 이재용 삼성그룹 부회장 등 자녀들이 내야 하는 상속세만 10조원이 넘을 것으로 추정된다. 액수가 워낙 크다 보니 5년간 분할 납부하는 연부연납제도를 활용한다고 해도 상속세 신고·납부 기한인 2021년 4월까지 내야 할 첫해 상속세만 1조8000억원이 넘는다.\n결국 상속세 납부를 위해 총수 일가가 보유한 일부 삼성 계열사 지분을 처분하는 것이 불가피할 전망이다. 여기에 재원 마련을 위한 배당 확대 가능성과 이른바 ‘삼성생명법’으로 불리는 보험업법 개정안까지 얽혀 있어 계열사마다 복잡한 셈법이 작용할 것으로 예상된다. 시장에서는 벌써부터 이재용 부회장의 지분이 높은 계열사를 중심으로 주가가 강세를 나타내는 움직임을 보이고 있다. 삼성그룹의 지배구조 개편 시나리오별 주가 향방을 점쳐본다.\n▶‘이재용 체제’ 강화 움직임\n▷전면적인 지배구조 개편 가능성은 희박\n먼저 삼성 총수 일가가 납부해야 할 상속세를 들여다볼 필요가 있다. 故 이건희 회장의 지분 상속 문제는 총수 일가의 지배구조는 물론 삼성그룹 사업구조와도 밀접하게 맞물려 있다.&#39;, inputs={&#39;text&#39;: &#39;지난 10월 25일 故 이건희 삼성그룹 회장이 별세하면서 삼성그룹주 주가가 요동치고 있다. 천문학적인 상속세 마련을 위해 삼성그룹 지배구조에 변화가 이뤄질 수 있다는 관측 때문이다.\n故 이건희 회장이 보유한 삼성전자, 삼성SDS, 삼성물산, 삼성생명 등 주식 가치는 18조원이 넘는 것으로 알려졌다. 부인 홍라희 전 리움미술관 관장과 이재용 삼성그룹 부회장 등 자녀들이 내야 하는 상속세만 10조원이 넘을 것으로 추정된다. 액수가 워낙 크다 보니 5년간 분할 납부하는 연부연납제도를 활용한다고 해도 상속세 신고·납부 기한인 2021년 4월까지 내야 할 첫해 상속세만 1조8000억원이 넘는다.\n결국 상속세 납부를 위해 총수 일가가 보유한 일부 삼성 계열사 지분을 처분하는 것이 불가피할 전망이다. 여기에 재원 마련을 위한 배당 확대 가능성과 이른바 ‘삼성생명법’으로 불리는 보험업법 개정안까지 얽혀 있어 계열사마다 복잡한 셈법이 작용할 것으로 예상된다. 시장에서는 벌써부터 이재용 부회장의 지분이 높은 계열사를 중심으로 주가가 강세를 나타내는 움직임을 보이고 있다. 삼성그룹의 지배구조 개편 시나리오별 주가 향방을 점쳐본다.\n▶‘이재용 체제’ 강화 움직임\n▷전면적인 지배구조 개편 가능성은 희박\n먼저 삼성 총수 일가가 납부해야 할 상속세를 들여다볼 필요가 있다. 故 이건희 회장의 지분 상속 문제는 총수 일가의 지배구조는 물론 삼성그룹 사업구조와도 밀접하게 맞물려 있다.&#39;}, prediction=[(&#39;Negative&#39;, 0.3544959825168774), (&#39;Neutral&#39;, 0.1439800856751984), (&#39;Positive&#39;, 0.021316067016847247)], prediction_agent=&#39;ekonelectra-base&#39;, annotation=None, annotation_agent=None, multi_label=False, explanation=None, id=None, metadata={&#39;id&#39;: 226, &#39;chunk_id&#39;: 0, &#39;filename&#39;: &#39;02100101.20201102114419001.txt&#39;, &#39;codes&#39;: &#39;207940&#39;, &#39;num_codes&#39;: 3}, status=&#39;Default&#39;, event_timestamp=None, metrics=None, search_keywords=None)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.io.fetch.labelstudio:/workspace/projects/ekorpkit-book/exmaples/esg/data/outputs/labelstudio/labelstudio(2)_polarity_preds.json is saved
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 7.08 s (started: 2022-12-10 08:34:59 +00:00)
 </pre></div>
 </div>
 </div>
 </div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">label_config</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&lt;View&gt;</span>
+<span class="s2">  &lt;Header value=&quot;Choose ESG topic clas:&quot;/&gt;</span>
+<span class="s2">  &lt;Text name=&quot;text&quot; value=&quot;$text&quot;/&gt;</span>
+<span class="s2">  &lt;Choices name=&quot;sentiment&quot; toName=&quot;text&quot; choice=&quot;single&quot; showInline=&quot;true&quot;&gt;</span>
+<span class="s2">    &lt;Choice value=&quot;E-기후변화&quot;/&gt;</span>
+<span class="s2">    &lt;Choice value=&quot;E-환경영향&quot;/&gt;</span>
+<span class="s2">    &lt;Choice value=&quot;E-환경혁신&quot;/&gt;</span>
+<span class="s2">    &lt;Choice value=&quot;S-재해/안전관리&quot;/&gt;</span>
+<span class="s2">    &lt;Choice value=&quot;S-고용&quot;/&gt;</span>
+<span class="s2">    &lt;Choice value=&quot;S-기업(공급망)동반성장/상생&quot;/&gt;</span>
+<span class="s2">    &lt;Choice value=&quot;S-사회공헌&quot;/&gt;</span>
+<span class="s2">    &lt;Choice value=&quot;S-소비자&quot;/&gt;</span>
+<span class="s2">    &lt;Choice value=&quot;G-지배구조&quot;/&gt;</span>
+<span class="s2">    &lt;Choice value=&quot;G-기업윤리/불공정/소송&quot;/&gt;</span>
+<span class="s2">    &lt;Choice value=&quot;UNKNOWN&quot;/&gt;</span>
+<span class="s2">  &lt;/Choices&gt;</span>
+<span class="s2">&lt;/View&gt;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">project</span> <span class="o">=</span> <span class="n">ls</span><span class="o">.</span><span class="n">create_project</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;ESG Topic Classification (Sep 2022)&quot;</span><span class="p">,</span>
+    <span class="n">label_config</span><span class="o">=</span><span class="n">label_config</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#51AAFD&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">project</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">],</span> <span class="n">project</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rb</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">category_records</span><span class="p">,</span> <span class="s2">&quot;esg_category_prediction_check&quot;</span><span class="p">)</span>
-<span class="n">rb</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">polarity_records</span><span class="p">,</span> <span class="s2">&quot;esg_polarity_prediction_check&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred_file</span> <span class="o">=</span> <span class="n">ls</span><span class="o">.</span><span class="n">dataframe_to_predictions</span><span class="p">(</span>
+    <span class="n">category_data</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mf">0.8</span><span class="p">),</span>
+    <span class="n">prediction_file</span><span class="o">=</span><span class="s2">&quot;category_preds.json&quot;</span><span class="p">,</span>
+    <span class="n">choices_name</span><span class="o">=</span><span class="s2">&quot;sentiment&quot;</span><span class="p">,</span>
+    <span class="n">model_version</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="c1"># ls.import_file(pred_file, project_id=project[&quot;id&quot;])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "cf38dc66b9af49f188510591f870ff19", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15341 records logged to http://ekorpkit-book:6900/datasets/esgml/esg_category_prediction_check
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.io.fetch.labelstudio:/workspace/projects/ekorpkit-book/exmaples/esg/data/outputs/labelstudio/labelstudio(2)_category_preds.json is saved
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "7f4bb231c17440d9a3df2c1f42cfc786", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13809 records logged to http://ekorpkit-book:6900/datasets/esgml/esg_polarity_prediction_check
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># rb.delete(&quot;esg_category_prediction_check&quot;)</span>
-<span class="c1"># rb.delete(&quot;esg_category_prediction_check&quot;)</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 7.16 s (started: 2022-12-10 08:35:06 +00:00)
 </pre></div>
 </div>
 </div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">label_config</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&lt;View&gt;</span>
+<span class="s2">  &lt;Header value=&quot;Choose text sentiment:&quot;/&gt;</span>
+<span class="s2">  &lt;Text name=&quot;text&quot; value=&quot;$text&quot;/&gt;</span>
+<span class="s2">  &lt;Choices name=&quot;sentiment&quot; toName=&quot;text&quot; choice=&quot;single&quot; showInline=&quot;true&quot;&gt;</span>
+<span class="s2">    &lt;Choice value=&quot;Positive&quot;/&gt;</span>
+<span class="s2">    &lt;Choice value=&quot;Negative&quot;/&gt;</span>
+<span class="s2">    &lt;Choice value=&quot;Neutral&quot;/&gt;</span>
+<span class="s2">  &lt;/Choices&gt;</span>
+<span class="s2">&lt;/View&gt;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">project</span> <span class="o">=</span> <span class="n">ls</span><span class="o">.</span><span class="n">create_project</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;ESG Polarity Classification (Sep 2022)&quot;</span><span class="p">,</span> <span class="n">label_config</span><span class="o">=</span><span class="n">label_config</span><span class="p">)</span>
+</pre></div>
 </div>
 </section>
 </section>
@@ -1570,7 +1537,7 @@ INFO:ekorpkit.base:Loaded .env from /workspace/projects/ekorpkit-book/config/.en
         },
         kernelOptions: {
             name: "python3",
-            path: "./lectures/ds/esg-ratings"
+            path: "./lectures/dsecon/esg-ratings"
         },
         predefinedOutput: true
     }
@@ -1589,20 +1556,20 @@ INFO:ekorpkit.base:Loaded .env from /workspace/projects/ekorpkit-book/config/.en
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="build_news_corpus.html"
+       href="cross_validate_datasets.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Building <code class="docutils literal notranslate"><span class="pre">econ_news_kr</span></code> corpus</p>
+        <p class="prev-next-title">Cross validating datasets</p>
       </div>
     </a>
     <a class="right-next"
-       href="cross_validate_datasets.html"
+       href="all_in_one_pipeline.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Cross validating datasets</p>
+        <p class="prev-next-title">Putting them together in a pipeline</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1625,9 +1592,11 @@ INFO:ekorpkit.base:Loaded .env from /workspace/projects/ekorpkit-book/config/.en
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-polarities">Predicting polarities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-company-code-info">Load company code info</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-out-invalid-data">Filter out invalid data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predict-polarities">Predict polarities</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-categories">Predicting categories</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#check-and-label-predictions">Check and label predictions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-data-to-labelstudio">Import data to labelstudio</a></li>
 </ul>
   </nav></div>
 

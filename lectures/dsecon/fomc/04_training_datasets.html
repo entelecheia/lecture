@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Predicting the next decisions with tones &#8212; ἐντελέχεια.άι</title>
+    <title>Create Training Datasets &#8212; ἐντελέχεια.άι</title>
   
   
   
@@ -86,13 +86,13 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/ds/fomc/11_AutoML_with_tones';</script>
-    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/ds/fomc/11_AutoML_with_tones.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/dsecon/fomc/04_training_datasets';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/dsecon/fomc/04_training_datasets.html" />
     <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="ESG Ratings" href="../esg-ratings/index.html" />
-    <link rel="prev" title="Monetary Policy Shocks" href="10_monetary_shocks.html" />
+    <link rel="next" title="Visualizing Features" href="05_features.html" />
+    <link rel="prev" title="EDA on Numerical Data" href="03_EDA_numericals2.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -371,7 +371,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="02_textual_data.html">Preparing Textual Data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="03_EDA_numericals1.html">EDA on Numerical Data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="03_EDA_numericals2.html">EDA on Numerical Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="04_training_datasets.html">Create Training Datasets</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Create Training Datasets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="05_features.html">Visualizing Features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="06_AutoML.html">Checking Baseline with AutoML</a></li>
 <li class="toctree-l3"><a class="reference internal" href="07_predict_sentiments.html">Predicting Sentiments of FOMC Corpus</a></li>
@@ -379,7 +379,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="08_EDA_sentiments2.html">EDA on Sentiment Data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="09_visualize_features.html">Visualize Features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="10_monetary_shocks.html">Monetary Policy Shocks</a></li>
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">Predicting the next decisions with tones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="11_AutoML_with_tones.html">Predicting the next decisions with tones</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../esg-ratings/index.html">ESG Ratings</a><input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-31"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -395,6 +395,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../softeng/index.html">Software Engineering</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul class="nav bd-sidenav">
@@ -457,7 +458,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/ds/fomc/11_AutoML_with_tones.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/dsecon/fomc/04_training_datasets.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -506,7 +507,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../../_sources/lectures/ds/fomc/11_AutoML_with_tones.ipynb" target="_blank"
+      <li><a href="../../../_sources/lectures/dsecon/fomc/04_training_datasets.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -588,7 +589,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Predicting the next decisions with tones</h1>
+    <h1>Create Training Datasets</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -598,11 +599,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-a-feature-set">Load a feature set</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auto-ml-with-econ-data">Auto ML with econ data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auto-ml-with-lm-tones">Auto ML with LM tones</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auto-ml-with-finbert-tones">Auto ML with finbert tones</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auto-ml-with-t5-tones">Auto ML with T5 tones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-preprocessed-data">Load preprocessed data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-on-numerical-data">EDA on numerical data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-values">Missing Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-data">Save Data</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -614,17 +616,15 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="predicting-the-next-decisions-with-tones">
-<h1>Predicting the next decisions with tones<a class="headerlink" href="#predicting-the-next-decisions-with-tones" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="create-training-datasets">
+<h1>Create Training Datasets<a class="headerlink" href="#create-training-datasets" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;retina&#39;
 <span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">from</span> <span class="nn">ekorpkit</span> <span class="kn">import</span> <span class="n">eKonf</span>
 
 <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;version:&quot;</span><span class="p">,</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;is notebook?&quot;</span><span class="p">,</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">is_notebook</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;is colab?&quot;</span><span class="p">,</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">is_colab</span><span class="p">())</span>
@@ -634,7 +634,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>version: 0.1.33+28.g90d1dea.dirty
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>version: 0.1.33+20.g8433774.dirty
 is notebook? True
 is colab? False
 evironment varialbles:
@@ -654,24 +654,301 @@ evironment varialbles:
 </div>
 </div>
 </div>
-<section id="load-a-feature-set">
-<h2>Load a feature set<a class="headerlink" href="#load-a-feature-set" title="Permalink to this heading">#</a></h2>
+<section id="load-preprocessed-data">
+<h2>Load preprocessed data<a class="headerlink" href="#load-preprocessed-data" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fs_cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">config_group</span><span class="o">=</span><span class="s2">&quot;dataset=feature&quot;</span><span class="p">)</span>
-<span class="n">fs_cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;fomc_tone_features&quot;</span>
-<span class="n">fs_cfg</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
-<span class="n">fs</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">fs_cfg</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">econ_data</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s2">&quot;econ_data2.parquet&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+<span class="n">econ_data</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>unscheduled</th>
+      <th>forecast</th>
+      <th>confcall</th>
+      <th>speaker</th>
+      <th>rate</th>
+      <th>rate_change</th>
+      <th>rate_decision</th>
+      <th>rate_changed</th>
+      <th>GDP</th>
+      <th>GDP_diff_prev</th>
+      <th>...</th>
+      <th>Rate</th>
+      <th>Taylor</th>
+      <th>Balanced</th>
+      <th>Inertia</th>
+      <th>Taylor-Rate</th>
+      <th>Balanced-Rate</th>
+      <th>Inertia-Rate</th>
+      <th>Taylor_diff</th>
+      <th>Balanced_diff</th>
+      <th>Inertia_diff</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2021-11-03</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>Jerome Powell</td>
+      <td>0.25</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>19478.893</td>
+      <td>0.570948</td>
+      <td>...</td>
+      <td>0.25</td>
+      <td>5.747177</td>
+      <td>4.940210</td>
+      <td>-0.528532</td>
+      <td>5.497177</td>
+      <td>4.690210</td>
+      <td>-0.778532</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2021-12-15</th>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>Jerome Powell</td>
+      <td>0.25</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>19478.893</td>
+      <td>0.570948</td>
+      <td>...</td>
+      <td>0.25</td>
+      <td>6.472329</td>
+      <td>5.665362</td>
+      <td>-0.637304</td>
+      <td>6.222329</td>
+      <td>5.415362</td>
+      <td>-0.887304</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2022-01-26</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>Jerome Powell</td>
+      <td>0.25</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>19478.893</td>
+      <td>0.570948</td>
+      <td>...</td>
+      <td>0.25</td>
+      <td>7.222928</td>
+      <td>6.415961</td>
+      <td>-0.749894</td>
+      <td>6.972928</td>
+      <td>6.165961</td>
+      <td>-0.999894</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2022-03-16</th>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>Jerome Powell</td>
+      <td>0.50</td>
+      <td>0.25</td>
+      <td>1.0</td>
+      <td>1</td>
+      <td>19806.290</td>
+      <td>1.680778</td>
+      <td>...</td>
+      <td>0.25</td>
+      <td>8.499377</td>
+      <td>8.267766</td>
+      <td>-1.027665</td>
+      <td>8.249377</td>
+      <td>8.017766</td>
+      <td>-1.277665</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2022-05-04</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>Jerome Powell</td>
+      <td>1.00</td>
+      <td>0.50</td>
+      <td>1.0</td>
+      <td>1</td>
+      <td>19735.895</td>
+      <td>-0.355417</td>
+      <td>...</td>
+      <td>0.50</td>
+      <td>8.094924</td>
+      <td>7.420939</td>
+      <td>-0.688141</td>
+      <td>7.594924</td>
+      <td>6.920939</td>
+      <td>-1.188141</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 58 columns</p>
+</div></div></div>
 </div>
 </section>
-<section id="auto-ml-with-econ-data">
-<h2>Auto ML with econ data<a class="headerlink" href="#auto-ml-with-econ-data" title="Permalink to this heading">#</a></h2>
+<section id="eda-on-numerical-data">
+<h2>EDA on numerical data<a class="headerlink" href="#eda-on-numerical-data" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">econ_cols</span> <span class="o">=</span> <span class="p">[</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add previous rate decision to see inertia effect</span>
+<span class="n">econ_data</span><span class="p">[</span><span class="s2">&quot;Rate Decision&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">econ_data</span><span class="p">[</span><span class="s2">&quot;rate_decision&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">&quot;Cut&quot;</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">1</span> <span class="k">else</span> <span class="s2">&quot;Hike&quot;</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="k">else</span> <span class="s2">&quot;Hold&quot;</span>
+<span class="p">)</span>
+<span class="n">econ_data</span><span class="p">[</span><span class="s2">&quot;rate_decision&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">econ_data</span><span class="p">[</span><span class="s2">&quot;rate_decision&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">1</span> <span class="k">else</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">0</span>
+<span class="p">)</span>
+<span class="n">econ_data</span><span class="p">[</span><span class="s2">&quot;prev_decision&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">econ_data</span><span class="p">[</span><span class="s2">&quot;rate_decision&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">econ_data</span><span class="p">[</span><span class="s2">&quot;next_decision&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">econ_data</span><span class="p">[</span><span class="s2">&quot;rate_decision&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">econ_data</span><span class="p">[[</span><span class="s2">&quot;Rate Decision&quot;</span><span class="p">,</span> <span class="s2">&quot;rate_decision&quot;</span><span class="p">,</span> <span class="s2">&quot;prev_decision&quot;</span><span class="p">,</span> <span class="s2">&quot;next_decision&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Rate Decision</th>
+      <th>rate_decision</th>
+      <th>prev_decision</th>
+      <th>next_decision</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1982-10-05</th>
+      <td>Cut</td>
+      <td>-1</td>
+      <td>NaN</td>
+      <td>-1.0</td>
+    </tr>
+    <tr>
+      <th>1982-11-16</th>
+      <td>Cut</td>
+      <td>-1</td>
+      <td>-1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1982-12-21</th>
+      <td>Hold</td>
+      <td>0</td>
+      <td>-1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1983-01-14</th>
+      <td>Hold</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1983-01-21</th>
+      <td>Hold</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Rate Decision&quot;</span><span class="p">,</span>
     <span class="s2">&quot;prev_decision&quot;</span><span class="p">,</span>
     <span class="s2">&quot;GDP_diff_prev&quot;</span><span class="p">,</span>
     <span class="s2">&quot;PMI&quot;</span><span class="p">,</span>
@@ -683,409 +960,253 @@ evironment varialbles:
     <span class="s2">&quot;Balanced_diff&quot;</span><span class="p">,</span>
 <span class="p">]</span>
 
-<span class="n">fs</span><span class="o">.</span><span class="n">COLUMN</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">econ_cols</span>
+<span class="n">econ_train_small</span> <span class="o">=</span> <span class="n">econ_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()[</span><span class="n">columns</span><span class="p">]</span>
+<span class="n">econ_train_small</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Rate Decision&quot;</span><span class="p">:</span> <span class="s2">&quot;target&quot;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">econ_train_small</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">econ_train_small</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(415, 10)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="n">model_cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">config_group</span><span class="o">=</span><span class="s1">&#39;model/automl=classification&#39;</span><span class="p">)</span>
-<span class="n">model_cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;fomc_tone_lm&#39;</span>
-<span class="n">model_cfg</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">time_budget</span> <span class="o">=</span> <span class="mi">1000</span>
-<span class="n">model_cfg</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="n">model_econ</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">model_cfg</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_econ</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="n">model_econ</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:flaml.searcher.blendsearch:No low-cost partial config given to the search algorithm. For cost-frugal search, consider providing low-cost values for cost-related hps via &#39;low_cost_partial_config&#39;. More info can be found at https://microsoft.github.io/FLAML/docs/FAQ#about-low_cost_partial_config-in-tune
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best ML leaner: lgbm
-Best hyperparmeter config: {&#39;n_estimators&#39;: 6, &#39;num_leaves&#39;: 12, &#39;min_child_samples&#39;: 22, &#39;learning_rate&#39;: 1.0, &#39;log_max_bin&#39;: 9, &#39;colsample_bytree&#39;: 0.6151176895973893, &#39;reg_alpha&#39;: 0.0410723001576519, &#39;reg_lambda&#39;: 0.6109052265588026}
-Best accuracy on validation data: 0.7456
-Training duration of best run: 0.08016 s
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_econ</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
-<span class="n">model_econ</span><span class="o">.</span><span class="n">show_results</span><span class="p">()</span>
-<span class="n">model_econ</span><span class="o">.</span><span class="n">plot_learning_curve</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best ML leaner: lgbm
-Best hyperparmeter config: {&#39;n_estimators&#39;: 6, &#39;num_leaves&#39;: 12, &#39;min_child_samples&#39;: 22, &#39;learning_rate&#39;: 1.0, &#39;log_max_bin&#39;: 9, &#39;colsample_bytree&#39;: 0.6151176895973893, &#39;reg_alpha&#39;: 0.0410723001576519, &#39;reg_lambda&#39;: 0.6109052265588026}
-Best accuracy on validation data: 0.7456
-Training duration of best run: 0.08016 s
-</pre></div>
-</div>
-<img alt="../../../_images/f587ba075c7560f0fa9d3d1e63b8ed6744b95683ffa769546927062c4f48f246.png" src="../../../_images/f587ba075c7560f0fa9d3d1e63b8ed6744b95683ffa769546927062c4f48f246.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_econ</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>r2: -0.45446985446985444
-mse: 0.803030303030303
-mae: 0.5
-Accuracy:  0.6515151515151515
-Precison:  0.6015325670498084
-Recall:  0.6515151515151515
-F1 Score:  0.5940357313858171
-Model Report: 
-___________________________________________________
-              precision    recall  f1-score   support
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-         Cut       0.50      0.10      0.17        10
-        Hike       0.33      0.18      0.24        11
-        Hold       0.69      0.89      0.78        45
-
-    accuracy                           0.65        66
-   macro avg       0.51      0.39      0.39        66
-weighted avg       0.60      0.65      0.59        66
-</pre></div>
-</div>
-<img alt="../../../_images/cc8a2946cb140e75180b44aa7ecf1eae70c7df6098f323a801ee21b7db9d4849.png" src="../../../_images/cc8a2946cb140e75180b44aa7ecf1eae70c7df6098f323a801ee21b7db9d4849.png" />
-</div>
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>target</th>
+      <th>prev_decision</th>
+      <th>GDP_diff_prev</th>
+      <th>PMI</th>
+      <th>EMP_diff_prev</th>
+      <th>RSALES_diff_year</th>
+      <th>UNEMP_diff_prev</th>
+      <th>HSALES_diff_year</th>
+      <th>Inertia_diff</th>
+      <th>Balanced_diff</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2021-11-03</th>
+      <td>Hold</td>
+      <td>0.0</td>
+      <td>0.570948</td>
+      <td>60.5</td>
+      <td>0.288624</td>
+      <td>8.474656</td>
+      <td>-9.615385</td>
+      <td>-26.135217</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2021-12-15</th>
+      <td>Hold</td>
+      <td>0.0</td>
+      <td>0.570948</td>
+      <td>60.6</td>
+      <td>0.437147</td>
+      <td>10.977142</td>
+      <td>-8.695652</td>
+      <td>-11.163337</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2022-01-26</th>
+      <td>Hold</td>
+      <td>0.0</td>
+      <td>0.570948</td>
+      <td>58.8</td>
+      <td>0.395555</td>
+      <td>9.101289</td>
+      <td>-7.142857</td>
+      <td>-3.673938</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2022-03-16</th>
+      <td>Hike</td>
+      <td>0.0</td>
+      <td>1.680778</td>
+      <td>58.6</td>
+      <td>0.476814</td>
+      <td>9.076698</td>
+      <td>-5.000000</td>
+      <td>3.125000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2022-05-04</th>
+      <td>Hike</td>
+      <td>1.0</td>
+      <td>-0.355417</td>
+      <td>57.1</td>
+      <td>0.283658</td>
+      <td>-0.034915</td>
+      <td>0.000000</td>
+      <td>-26.946848</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_econ</span><span class="o">.</span><span class="n">plot_feature_importance</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Large dataset</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Rate Decision&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;prev_decision&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GDP_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GDP_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GDPPOT_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GDPPOT_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PCE_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PCE_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CPI_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CPI_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;UNEMP&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;UNEMP_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;UNEMP_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;EMP&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;EMP_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;EMP_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PMI&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PMI_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PMI_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;RSALES_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;RSALES_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HSALES_diff_prev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HSALES_diff_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Taylor-Rate&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Balanced-Rate&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Inertia-Rate&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Taylor_diff&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Balanced_diff&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Inertia_diff&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+
+<span class="n">econ_train_large</span> <span class="o">=</span> <span class="n">econ_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()[</span><span class="n">columns</span><span class="p">]</span>
+<span class="n">econ_train_large</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Rate Decision&quot;</span><span class="p">:</span> <span class="s2">&quot;target&quot;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">econ_train_large</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/bcba89f9f1bec251ba974a79b3610fc473d31b875a042baf85a59cb7f7997a93.png" src="../../../_images/bcba89f9f1bec251ba974a79b3610fc473d31b875a042baf85a59cb7f7997a93.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(415, 29)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="missing-values">
+<h3>Missing Values<a class="headerlink" href="#missing-values" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># As most likely the decision is 0 (hold), fill prev_decision of the first row</span>
+<span class="n">econ_train_small</span><span class="p">[</span><span class="s2">&quot;prev_decision&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">econ_train_large</span><span class="p">[</span><span class="s2">&quot;prev_decision&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ax.set_xlim(0, 400)</span>
+<span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;visualize/plot=lineplot&quot;</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">lineplot</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;date&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">lineplot</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;HSALES_diff_year&quot;</span>
+
+<span class="n">lineplot</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">lineplot</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">lineplot</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;date&quot;</span>
+<span class="n">lineplot</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;RSALES_diff_year&quot;</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lineplot</span><span class="p">)</span>
+
+<span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">econ_train_small</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/c163d2564de6c56e08959789b76ea1b9f31687f2735c54365a2ddc080ff6fe8d.png" src="../../../_images/c163d2564de6c56e08959789b76ea1b9f31687f2735c54365a2ddc080ff6fe8d.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Retail sales growth ratio is difficult to estimate. Though it is not ideal, simply use the average</span>
+<span class="n">econ_train_small</span><span class="p">[</span><span class="s2">&quot;RSALES_diff_year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span>
+    <span class="n">econ_train_small</span><span class="p">[</span><span class="s2">&quot;RSALES_diff_year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">econ_train_large</span><span class="p">[</span><span class="s2">&quot;RSALES_diff_prev&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span>
+    <span class="n">econ_train_large</span><span class="p">[</span><span class="s2">&quot;RSALES_diff_prev&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">econ_train_large</span><span class="p">[</span><span class="s2">&quot;RSALES_diff_year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span>
+    <span class="n">econ_train_large</span><span class="p">[</span><span class="s2">&quot;RSALES_diff_year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">econ_train_small</span><span class="p">[</span><span class="s2">&quot;Inertia_diff&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span>
+    <span class="n">econ_train_small</span><span class="p">[</span><span class="s2">&quot;Inertia_diff&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">econ_train_small</span><span class="p">[</span><span class="s2">&quot;Balanced_diff&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span>
+    <span class="n">econ_train_small</span><span class="p">[</span><span class="s2">&quot;Balanced_diff&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">econ_train_large</span><span class="p">[</span><span class="s2">&quot;Inertia_diff&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span>
+    <span class="n">econ_train_large</span><span class="p">[</span><span class="s2">&quot;Inertia_diff&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">econ_train_large</span><span class="p">[</span><span class="s2">&quot;Balanced_diff&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span>
+    <span class="n">econ_train_large</span><span class="p">[</span><span class="s2">&quot;Balanced_diff&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">econ_train_large</span><span class="p">[</span><span class="s2">&quot;Taylor_diff&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span>
+    <span class="n">econ_train_large</span><span class="p">[</span><span class="s2">&quot;Taylor_diff&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 </div>
 </div>
 </section>
-<section id="auto-ml-with-lm-tones">
-<h2>Auto ML with LM tones<a class="headerlink" href="#auto-ml-with-lm-tones" title="Permalink to this heading">#</a></h2>
+<section id="save-data">
+<h3>Save Data<a class="headerlink" href="#save-data" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lm_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;polarity_diffusion_minutes&#39;</span><span class="p">,</span> <span class="s1">&#39;polarity_diffusion_speech&#39;</span><span class="p">]</span>
-<span class="n">fs</span><span class="o">.</span><span class="n">COLUMN</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">econ_cols</span> <span class="o">+</span> <span class="n">lm_cols</span>
-
-<span class="n">model_cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">config_group</span><span class="o">=</span><span class="s1">&#39;model/automl=classification&#39;</span><span class="p">)</span>
-<span class="n">model_cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;fomc_tone_lm&#39;</span>
-<span class="n">model_cfg</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">time_budget</span> <span class="o">=</span> <span class="mi">1000</span>
-<span class="n">model_cfg</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="n">model_lm</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">model_cfg</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eKonf</span><span class="o">.</span><span class="n">save_data</span><span class="p">(</span><span class="n">econ_train_small</span><span class="p">,</span> <span class="s2">&quot;econ_train_small.parquet&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+<span class="n">eKonf</span><span class="o">.</span><span class="n">save_data</span><span class="p">(</span><span class="n">econ_train_large</span><span class="p">,</span> <span class="s2">&quot;econ_train_large.parquet&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_lm</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:flaml.searcher.blendsearch:No low-cost partial config given to the search algorithm. For cost-frugal search, consider providing low-cost values for cost-related hps via &#39;low_cost_partial_config&#39;. More info can be found at https://microsoft.github.io/FLAML/docs/FAQ#about-low_cost_partial_config-in-tune
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best ML leaner: lgbm
-Best hyperparmeter config: {&#39;n_estimators&#39;: 13, &#39;num_leaves&#39;: 9, &#39;min_child_samples&#39;: 18, &#39;learning_rate&#39;: 1.0, &#39;log_max_bin&#39;: 10, &#39;colsample_bytree&#39;: 0.8073120721209749, &#39;reg_alpha&#39;: 0.0009765625, &#39;reg_lambda&#39;: 0.026280250067218697}
-Best accuracy on validation data: 0.7529
-Training duration of best run: 0.2223 s
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_lm</span><span class="o">.</span><span class="n">best_estimator</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-2 {color: black;background-color: white;}#sk-container-id-2 pre{padding: 0;}#sk-container-id-2 div.sk-toggleable {background-color: white;}#sk-container-id-2 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-2 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-2 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-2 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-2 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-2 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-2 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-2 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-2 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-2 div.sk-item {position: relative;z-index: 1;}#sk-container-id-2 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-2 div.sk-item::before, #sk-container-id-2 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-2 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-2 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-2 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-2 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-2 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-2 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-2 div.sk-label-container {text-align: center;}#sk-container-id-2 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-2 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LGBMClassifier(colsample_bytree=0.8073120721209749, learning_rate=1.0,
-               max_bin=1023, min_child_samples=18, n_estimators=13,
-               num_leaves=9, reg_alpha=0.0009765625,
-               reg_lambda=0.026280250067218697, verbose=-1)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" checked><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">LGBMClassifier</label><div class="sk-toggleable__content"><pre>LGBMClassifier(colsample_bytree=0.8073120721209749, learning_rate=1.0,
-               max_bin=1023, min_child_samples=18, n_estimators=13,
-               num_leaves=9, reg_alpha=0.0009765625,
-               reg_lambda=0.026280250067218697, verbose=-1)</pre></div></div></div></div></div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_lm</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_lm</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_lm</span><span class="o">.</span><span class="n">show_results</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best ML leaner: lgbm
-Best hyperparmeter config: {&#39;n_estimators&#39;: 13, &#39;num_leaves&#39;: 9, &#39;min_child_samples&#39;: 18, &#39;learning_rate&#39;: 1.0, &#39;log_max_bin&#39;: 10, &#39;colsample_bytree&#39;: 0.8073120721209749, &#39;reg_alpha&#39;: 0.0009765625, &#39;reg_lambda&#39;: 0.026280250067218697}
-Best accuracy on validation data: 0.7529
-Training duration of best run: 0.2223 s
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_lm</span><span class="o">.</span><span class="n">plot_learning_curve</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../../_images/1d7a4db2c77287634fe7eae7cf5484b721be9286c7190f9e496cd2db0937a547.png" src="../../../_images/1d7a4db2c77287634fe7eae7cf5484b721be9286c7190f9e496cd2db0937a547.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_lm</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>r2: -0.5916839916839918
-mse: 0.8787878787878788
-mae: 0.5454545454545454
-Accuracy:  0.6212121212121212
-Precison:  0.5881895881895881
-Recall:  0.6212121212121212
-F1 Score:  0.5964958867020723
-Model Report: 
-___________________________________________________
-              precision    recall  f1-score   support
-
-         Cut       0.40      0.20      0.27        10
-        Hike       0.33      0.27      0.30        11
-        Hold       0.69      0.80      0.74        45
-
-    accuracy                           0.62        66
-   macro avg       0.48      0.42      0.44        66
-weighted avg       0.59      0.62      0.60        66
-</pre></div>
-</div>
-<img alt="../../../_images/829d805be99e5e3a0cbf6585538e52991119f1d7870049cf8344ea8d56c19523.png" src="../../../_images/829d805be99e5e3a0cbf6585538e52991119f1d7870049cf8344ea8d56c19523.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_lm</span><span class="o">.</span><span class="n">plot_feature_importance</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../../_images/0ca44f6cc48b2b207dc420e742cab34c9b91a44bbfa00e32e049d8c4f9785d5d.png" src="../../../_images/0ca44f6cc48b2b207dc420e742cab34c9b91a44bbfa00e32e049d8c4f9785d5d.png" />
 </div>
 </div>
 </section>
-<section id="auto-ml-with-finbert-tones">
-<h2>Auto ML with finbert tones<a class="headerlink" href="#auto-ml-with-finbert-tones" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">finbert_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;finbert_diffusion_minutes&#39;</span><span class="p">,</span> <span class="s1">&#39;finbert_diffusion_speech&#39;</span><span class="p">]</span>
-<span class="n">fs</span><span class="o">.</span><span class="n">COLUMN</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">econ_cols</span> <span class="o">+</span> <span class="n">finbert_cols</span>
-
-<span class="n">model_cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">config_group</span><span class="o">=</span><span class="s1">&#39;model/automl=classification&#39;</span><span class="p">)</span>
-<span class="n">model_cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;fomc_tone_finbert&#39;</span>
-<span class="n">model_cfg</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">time_budget</span> <span class="o">=</span> <span class="mi">1000</span>
-<span class="n">model_cfg</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="n">model_finbert</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">model_cfg</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_finbert</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="n">model_finbert</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:flaml.searcher.blendsearch:No low-cost partial config given to the search algorithm. For cost-frugal search, consider providing low-cost values for cost-related hps via &#39;low_cost_partial_config&#39;. More info can be found at https://microsoft.github.io/FLAML/docs/FAQ#about-low_cost_partial_config-in-tune
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best ML leaner: xgboost
-Best hyperparmeter config: {&#39;n_estimators&#39;: 6, &#39;max_leaves&#39;: 20, &#39;min_child_weight&#39;: 0.0032603326981582993, &#39;learning_rate&#39;: 0.8025984580504936, &#39;subsample&#39;: 0.9793456785422703, &#39;colsample_bylevel&#39;: 0.65007954279483, &#39;colsample_bytree&#39;: 0.672965435185822, &#39;reg_alpha&#39;: 0.001785838507319488, &#39;reg_lambda&#39;: 0.47215969661434976}
-Best accuracy on validation data: 0.732
-Training duration of best run: 0.06369 s
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_finbert</span><span class="o">.</span><span class="n">show_results</span><span class="p">()</span>
-<span class="n">model_finbert</span><span class="o">.</span><span class="n">plot_learning_curve</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best ML leaner: xgboost
-Best hyperparmeter config: {&#39;n_estimators&#39;: 6, &#39;max_leaves&#39;: 20, &#39;min_child_weight&#39;: 0.0032603326981582993, &#39;learning_rate&#39;: 0.8025984580504936, &#39;subsample&#39;: 0.9793456785422703, &#39;colsample_bylevel&#39;: 0.65007954279483, &#39;colsample_bytree&#39;: 0.672965435185822, &#39;reg_alpha&#39;: 0.001785838507319488, &#39;reg_lambda&#39;: 0.47215969661434976}
-Best accuracy on validation data: 0.732
-Training duration of best run: 0.06369 s
-</pre></div>
-</div>
-<img alt="../../../_images/4f1916501f6cf2ad4236ca005f5cefad30e00a713f9404b3a9d076122eda88f8.png" src="../../../_images/4f1916501f6cf2ad4236ca005f5cefad30e00a713f9404b3a9d076122eda88f8.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_finbert</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>r2: -0.34469854469854466
-mse: 0.7424242424242424
-mae: 0.4393939393939394
-Accuracy:  0.7121212121212122
-Precison:  0.5997474747474748
-Recall:  0.7121212121212122
-F1 Score:  0.6368729309905782
-Model Report: 
-___________________________________________________
-              precision    recall  f1-score   support
-
-         Cut       0.00      0.00      0.00        10
-        Hike       0.67      0.36      0.47        11
-        Hold       0.72      0.96      0.82        45
-
-    accuracy                           0.71        66
-   macro avg       0.46      0.44      0.43        66
-weighted avg       0.60      0.71      0.64        66
-</pre></div>
-</div>
-<img alt="../../../_images/d9e94aabc9bef469f217fbc24a61e779abcbe71b62be8f880a9d0fe1b2a9dc8a.png" src="../../../_images/d9e94aabc9bef469f217fbc24a61e779abcbe71b62be8f880a9d0fe1b2a9dc8a.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_finbert</span><span class="o">.</span><span class="n">plot_feature_importance</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../../_images/ef3b64452e797306f43c5be6da7e760bc46934d8261bc33ef02e59cb29fa6ecd.png" src="../../../_images/ef3b64452e797306f43c5be6da7e760bc46934d8261bc33ef02e59cb29fa6ecd.png" />
-</div>
-</div>
-</section>
-<section id="auto-ml-with-t5-tones">
-<h2>Auto ML with T5 tones<a class="headerlink" href="#auto-ml-with-t5-tones" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t5_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;t5_diffusion_minutes&#39;</span><span class="p">,</span> <span class="s1">&#39;t5_diffusion_speech&#39;</span><span class="p">]</span>
-<span class="n">fs</span><span class="o">.</span><span class="n">COLUMN</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">econ_cols</span> <span class="o">+</span> <span class="n">t5_cols</span>
-
-<span class="n">model_cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">config_group</span><span class="o">=</span><span class="s1">&#39;model/automl=classification&#39;</span><span class="p">)</span>
-<span class="n">model_cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;fomc_tone_t5&#39;</span>
-<span class="n">model_cfg</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">time_budget</span> <span class="o">=</span> <span class="mi">1000</span>
-<span class="n">model_cfg</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="n">model_t5</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">instantiate</span><span class="p">(</span><span class="n">model_cfg</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_t5</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="n">model_t5</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:flaml.searcher.blendsearch:No low-cost partial config given to the search algorithm. For cost-frugal search, consider providing low-cost values for cost-related hps via &#39;low_cost_partial_config&#39;. More info can be found at https://microsoft.github.io/FLAML/docs/FAQ#about-low_cost_partial_config-in-tune
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best ML leaner: xgb_limitdepth
-Best hyperparmeter config: {&#39;n_estimators&#39;: 7, &#39;max_depth&#39;: 5, &#39;min_child_weight&#39;: 2.679706026453727, &#39;learning_rate&#39;: 0.01545220130427584, &#39;subsample&#39;: 1.0, &#39;colsample_bylevel&#39;: 0.8939241734827547, &#39;colsample_bytree&#39;: 1.0, &#39;reg_alpha&#39;: 0.0112442822962447, &#39;reg_lambda&#39;: 25.212986089077653}
-Best accuracy on validation data: 0.7327
-Training duration of best run: 0.07241 s
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_t5</span><span class="o">.</span><span class="n">show_results</span><span class="p">()</span>
-<span class="n">model_t5</span><span class="o">.</span><span class="n">plot_learning_curve</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best ML leaner: xgb_limitdepth
-Best hyperparmeter config: {&#39;n_estimators&#39;: 7, &#39;max_depth&#39;: 5, &#39;min_child_weight&#39;: 2.679706026453727, &#39;learning_rate&#39;: 0.01545220130427584, &#39;subsample&#39;: 1.0, &#39;colsample_bylevel&#39;: 0.8939241734827547, &#39;colsample_bytree&#39;: 1.0, &#39;reg_alpha&#39;: 0.0112442822962447, &#39;reg_lambda&#39;: 25.212986089077653}
-Best accuracy on validation data: 0.7327
-Training duration of best run: 0.07241 s
-</pre></div>
-</div>
-<img alt="../../../_images/21452427978f511d055dfb94afc8cf735159eb7192234e9d12e42c2c9983f83e.png" src="../../../_images/21452427978f511d055dfb94afc8cf735159eb7192234e9d12e42c2c9983f83e.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_t5</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>r2: -0.34469854469854466
-mse: 0.7424242424242424
-mae: 0.4393939393939394
-Accuracy:  0.7121212121212122
-Precison:  0.6893939393939394
-Recall:  0.7121212121212122
-F1 Score:  0.6503607503607504
-Model Report: 
-___________________________________________________
-              precision    recall  f1-score   support
-
-         Cut       0.50      0.10      0.17        10
-        Hike       0.75      0.27      0.40        11
-        Hold       0.72      0.96      0.82        45
-
-    accuracy                           0.71        66
-   macro avg       0.66      0.44      0.46        66
-weighted avg       0.69      0.71      0.65        66
-</pre></div>
-</div>
-<img alt="../../../_images/2010e8e6654a1c25758aa0d9b1ea11fe640314c3a104221d9091561779638470.png" src="../../../_images/2010e8e6654a1c25758aa0d9b1ea11fe640314c3a104221d9091561779638470.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_t5</span><span class="o">.</span><span class="n">plot_feature_importance</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../../_images/5a10b4604faf486fe17df1a8474373cf7c72110a6e5d9940a953bf7135bc7743.png" src="../../../_images/5a10b4604faf486fe17df1a8474373cf7c72110a6e5d9940a953bf7135bc7743.png" />
-</div>
-</div>
 </section>
 </section>
 
@@ -1102,7 +1223,7 @@ weighted avg       0.69      0.71      0.65        66
         },
         kernelOptions: {
             name: "python3",
-            path: "./lectures/ds/fomc"
+            path: "./lectures/dsecon/fomc"
         },
         predefinedOutput: true
     }
@@ -1121,20 +1242,20 @@ weighted avg       0.69      0.71      0.65        66
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="10_monetary_shocks.html"
+       href="03_EDA_numericals2.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Monetary Policy Shocks</p>
+        <p class="prev-next-title">EDA on Numerical Data</p>
       </div>
     </a>
     <a class="right-next"
-       href="../esg-ratings/index.html"
+       href="05_features.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">ESG Ratings</p>
+        <p class="prev-next-title">Visualizing Features</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1156,11 +1277,12 @@ weighted avg       0.69      0.71      0.65        66
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-a-feature-set">Load a feature set</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auto-ml-with-econ-data">Auto ML with econ data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auto-ml-with-lm-tones">Auto ML with LM tones</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auto-ml-with-finbert-tones">Auto ML with finbert tones</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auto-ml-with-t5-tones">Auto ML with T5 tones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-preprocessed-data">Load preprocessed data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-on-numerical-data">EDA on numerical data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-values">Missing Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-data">Save Data</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
