@@ -1,5 +1,11 @@
 <!--next-version-placeholder-->
 
+## v0.11.0 (2023-09-01)
+
+### Feature
+
+* **.envrc:** Add new environment configuration file ([`fc326ba`](https://github.com/entelecheia/lecture/commit/fc326ba3fe3a3add338ed96b414c90fea6c53b0b))
+
 ## v0.10.0 (2023-09-01)
 
 ### Feature
