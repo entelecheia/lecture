@@ -1,5 +1,15 @@
 <!--next-version-placeholder-->
 
+## v0.10.0 (2023-09-01)
+
+### Feature
+
+* **lectures:** Add Requirements Engineering notes ([`ad42cec`](https://github.com/entelecheia/lecture/commit/ad42cecbe506f1a3cb091322995582bd8a68f69a))
+* **softeng/intro:** Add details about Software Development Life Cycle models ([`27aea37`](https://github.com/entelecheia/lecture/commit/27aea370ed8e650378a6ce2b98ef0223fa3d113c))
+* **book:** Add SDLC lecture notes ([`2089e2d`](https://github.com/entelecheia/lecture/commit/2089e2df0b98b56df613891f31276e4009b18c65))
+* **lectures:** Add Software Processes content to softeng/intro ([`ac05f3c`](https://github.com/entelecheia/lecture/commit/ac05f3c3c439c8c896646241576e2f945a6318d2))
+* **lectures:** Add Introduction to Software Engineering content ([`a7aed21`](https://github.com/entelecheia/lecture/commit/a7aed2161314451026f8c41a6f7d796a6eb7c4a1))
+
 ## v0.9.0 (2023-09-01)
 
 ### Feature
