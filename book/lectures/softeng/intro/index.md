@@ -59,3 +59,9 @@ A well-engineered software not only meets current requirements but is also desig
 4. **Project Management**: Provides tools for planning, executing, and monitoring large projects efficiently.
 
 5. **Reliability and Effectiveness**: Ensures that the software meets quality standards and performs reliably over time.
+
+## Next
+
+```{tableofcontents}
+
+```
