@@ -46,3 +46,70 @@ Once the software has been tested and certified, it moves to the deployment stag
 ### Stage 7: Maintenance
 
 After the software has been deployed, it enters a maintenance phase, where bugs are fixed, and updates are rolled out to ensure it continues to meet user needs and operate efficiently.
+
+## Software Development Life Cycle Models
+
+```{image} figs/sdlc-models.png
+:width: 60%
+:align: center
+```
+
+The Software Development Life Cycle (SDLC) is a conceptual framework that serves as a guide for the production and maintenance of high-quality software. Different models of SDLC are suited for various types of projects, and each has its own specific phases and activities.
+
+### Waterfall Model
+
+- **Characteristics**: Sequential and non-iterative, activities flow like a waterfall.
+- **Advantages**: Simple and well-understood, straightforward phases.
+- **Limitations**: Difficult to accommodate changes, risky if requirements aren’t well-understood.
+
+### RAD Model
+
+- **Characteristics**: Adaptation of the Waterfall model, focused on rapid development.
+- **Advantages**: Quick market entry, user involvement ensures a better end product.
+- **Limitations**: Requires strong team coordination, not suitable for large projects.
+
+### Spiral Model
+
+- **Characteristics**: Risk-driven, combines elements of Waterfall and prototypes.
+- **Advantages**: Effective risk management, adaptable to evolving requirements.
+- **Limitations**: Complexity, cost and time can spiral if not managed well.
+
+### V-Model
+
+- **Characteristics**: Testing and development occur in parallel.
+- **Advantages**: Ensures robustness and reliability.
+- **Limitations**: Inflexible, rigidly structured.
+
+### Incremental Model
+
+- **Characteristics**: Series of mini-Waterfalls, adds functionality incrementally.
+- **Advantages**: Partial systems are quickly built, easier to test and debug.
+- **Limitations**: Needs a clear and complete definition of the system.
+
+### Agile Model
+
+- **Characteristics**: Iterative, accommodates changing requirements.
+- **Advantages**: Fast, adaptive, customer-focused.
+- **Limitations**: Can lack a coherent architectural vision, not suitable for all types of projects.
+
+### Iterative Model
+
+- **Characteristics**: Simplified initial implementations, complexity added iteratively.
+- **Advantages**: Easier to test and debug, client feedback incorporated.
+- **Limitations**: May require more resources, prone to scope creep.
+
+### Big Bang Model
+
+- **Characteristics**: Minimal planning, mainly coding.
+- **Advantages**: Flexible and creative.
+- **Limitations**: Risky, uncontrolled, and often leads to chaos.
+
+### Prototype Model
+
+- **Characteristics**: Initial prototype built and improved through iterations.
+- **Advantages**: Incorporates user feedback, allows refinement.
+- **Limitations**: May result in insufficiently analyzed systems, can become too focused on visible qualities.
+
+## Conclusion
+
+The choice of SDLC model can significantly impact the success of a software development project. It’s essential to match the model to the specific requirements, constraints, and risks of the project. No one-size-fits-all solution exists. Therefore, it's possible to consider a hybrid approach that combines the strengths of two or more models. Additionally, an evolving trend is the use of AI in SDLC to predict risks, automate testing, and optimize various aspects of software development, potentially reshaping our understanding of how best to implement these models.
