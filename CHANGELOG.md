@@ -1,5 +1,15 @@
 <!--next-version-placeholder-->
 
+## v0.9.0 (2023-09-01)
+
+### Feature
+
+* **book:** Add llms intro and bentochain sections ([`8f189a2`](https://github.com/entelecheia/lecture/commit/8f189a2a25420f13d6d4a0c5dce0e95e22000598))
+* **llms:** Introduction to the Large Language Models ([`3f86a9c`](https://github.com/entelecheia/lecture/commit/3f86a9c42c95bc5ffeda2e09d61257362de53923))
+* **book:** Add llms lecture index ([`f273339`](https://github.com/entelecheia/lecture/commit/f2733394a898d3fa53eff136395e49f38fa651e9))
+* **course:** Add Large Language Models course description ([`5e99d42`](https://github.com/entelecheia/lecture/commit/5e99d4285ec13dabda298ec2622a66356d2280f2))
+* **lectures:** Add software engineering course description ([`783d290`](https://github.com/entelecheia/lecture/commit/783d29065c813668dcf574e2a00cf09638720bf8))
+
 ## v0.8.1 (2023-06-01)
 ### Fix
 
