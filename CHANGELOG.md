@@ -1,5 +1,13 @@
 <!--next-version-placeholder-->
 
+## v0.12.0 (2023-09-02)
+
+### Feature
+
+* **lectures:** Add Data Analytics Methods in economics and finance content ([`7608562`](https://github.com/entelecheia/lecture/commit/76085620f95baad99e7dab57f199fab1a2cea14a))
+* **lectures:** Add new content about technical challenges in data science ([`631e528`](https://github.com/entelecheia/lecture/commit/631e52879ec407878668a10ed9b13a73c2d1c1b9))
+* **book:** Add Introduction section to the ([`4981248`](https://github.com/entelecheia/lecture/commit/49812487d87c1c2434fe93f7f81bf12333ef4b12))
+
 ## v0.11.0 (2023-09-01)
 
 ### Feature
