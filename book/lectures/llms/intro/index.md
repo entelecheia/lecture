@@ -1,4 +1,4 @@
-# Introduction to the Large Language Models
+# Introduction to the LLMs
 
 ## Abstract
 
