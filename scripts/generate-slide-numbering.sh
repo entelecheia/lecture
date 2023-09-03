@@ -18,11 +18,20 @@ echo '```{carousel}
 :show_controls:
 :show_indicators:
 ' >drafts/carousel.md
+echo '' >drafts/images.md
 
 # Loop through the range and append the image to the file
 for i in $(seq "$num_slides"); do
+    # carousel.md
     echo ":::{image} slides/${filename_prefix}${i}.png" >>drafts/carousel.md
     echo ":::" >>drafts/carousel.md
+    # images.md
+    echo '```{image} ' >>drafts/images.md
+    echo "slides/${filename_prefix}${i}.png" >>drafts/images.md
+    echo ":width: 100%" >>drafts/images.md
+    echo ":align: center" >>drafts/images.md
+    echo '```' >>drafts/images.md
+    echo '' >>drafts/images.md
 done
 
 # Append footer to the file
