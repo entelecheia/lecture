@@ -1,5 +1,16 @@
 <!--next-version-placeholder-->
 
+## v0.13.0 (2023-09-03)
+
+### Feature
+
+* **drafts:** Add carousel.md and images.md with slide images ([`e47b518`](https://github.com/entelecheia/lecture/commit/e47b518f67a660327c1a9aea4ee69acc132dca77))
+* **scripts:** Add image.md generation in generate-slide-numbering.sh ([`dede33d`](https://github.com/entelecheia/lecture/commit/dede33d0b6eb75cb5c07a2a6bfd6de625fd1fd36))
+* **book:** Add new css styles for iframe presentation ([`79d3e88`](https://github.com/entelecheia/lecture/commit/79d3e881c328898ac26efc4a26115f4620a0671b))
+* **tasks-extra:** Add generate-slide-numbering task ([`970301b`](https://github.com/entelecheia/lecture/commit/970301ba0d0f71bbbac98092aa987c9efbc2286a))
+* **scripts:** Add generate-slide-numbering script ([`74a2264`](https://github.com/entelecheia/lecture/commit/74a22643c16ccfac2968ae7f00c57dbedf44a48c))
+* **book:** Add sphinx-contrib-slide dependency ([`656f374`](https://github.com/entelecheia/lecture/commit/656f374cd93b277dd836762b47ab4a045398cc4c))
+
 ## v0.12.0 (2023-09-02)
 
 ### Feature
