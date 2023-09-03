@@ -110,6 +110,6 @@ The Software Development Life Cycle (SDLC) is a conceptual framework that serves
 - **Advantages**: Incorporates user feedback, allows refinement.
 - **Limitations**: May result in insufficiently analyzed systems, can become too focused on visible qualities.
 
-## Conclusion
+## Summary
 
 The choice of SDLC model can significantly impact the success of a software development project. It’s essential to match the model to the specific requirements, constraints, and risks of the project. No one-size-fits-all solution exists. Therefore, it's possible to consider a hybrid approach that combines the strengths of two or more models. Additionally, an evolving trend is the use of AI in SDLC to predict risks, automate testing, and optimize various aspects of software development, potentially reshaping our understanding of how best to implement these models.

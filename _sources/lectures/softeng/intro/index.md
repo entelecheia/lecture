@@ -6,7 +6,7 @@ Software Engineering is an engineering discipline focused on the systematic appl
 
 ```
 
-## Next
+## Sections
 
 ```{tableofcontents}
 
