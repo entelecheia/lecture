@@ -1,5 +1,12 @@
 <!--next-version-placeholder-->
 
+## v0.15.0 (2023-09-03)
+
+### Feature
+
+* **book:** Add introduction section to the lecture content ([`d10ed13`](https://github.com/entelecheia/lecture/commit/d10ed13a58504ff8bf0c9b6ef6a053701de1b1da))
+* **book:** Add introduction to Data Science in Economics ([`2acae2d`](https://github.com/entelecheia/lecture/commit/2acae2d4612bd47dd8d39941f19c78d54ab6b1a2))
+
 ## v0.14.0 (2023-09-03)
 
 ### Feature
