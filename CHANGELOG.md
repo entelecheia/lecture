@@ -1,5 +1,12 @@
 <!--next-version-placeholder-->
 
+## v0.16.0 (2023-09-03)
+
+### Feature
+
+* **book/lectures:** Add large language models introduction ([`91750cc`](https://github.com/entelecheia/lecture/commit/91750cc9e5ffb93320008d0815972d9726fa8fbf))
+* **book:** Add new section in llms intro ([`9d93721`](https://github.com/entelecheia/lecture/commit/9d93721ca0cc61ed4137a0fa202ff4783f742dea))
+
 ## v0.15.0 (2023-09-03)
 
 ### Feature
