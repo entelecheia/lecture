@@ -1,5 +1,11 @@
 <!--next-version-placeholder-->
 
+## v0.14.0 (2023-09-03)
+
+### Feature
+
+* **book/config:** Add sphinxcontrib.slide to sphinx config ([`e5e1d16`](https://github.com/entelecheia/lecture/commit/e5e1d161c9e09f0076b1fba15acc97a98267ce61))
+
 ## v0.13.0 (2023-09-03)
 
 ### Feature
