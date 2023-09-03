@@ -1,4 +1,4 @@
-# Introduction to Software Engineering
+# Software Engineering?
 
 ```{image} figs/softeng-intro.png
 :width: 60%
