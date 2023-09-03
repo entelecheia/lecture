@@ -1,7 +1,5 @@
 # Introduction to Software Engineering
 
-Software Engineering is an engineering discipline focused on the systematic application of scientific and engineering concepts to produce efficient, reliable, and scalable software. It employs a combination of software development methodologies, principles, and tools to create, manage, and evolve software systems.
-
 ```{image} figs/softeng-intro.png
 :width: 60%
 :align: center
@@ -59,4 +57,3 @@ A well-engineered software not only meets current requirements but is also desig
 4. **Project Management**: Provides tools for planning, executing, and monitoring large projects efficiently.
 
 5. **Reliability and Effectiveness**: Ensures that the software meets quality standards and performs reliably over time.
-
