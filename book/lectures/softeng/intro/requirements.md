@@ -60,7 +60,7 @@ Requirements Engineering (RE) serves as a foundational stage in software develop
 - **Execution Qualities**: Security, Usability
 - **Evolution Qualities**: Testability, Maintainability
 
-## Conclusions
+## Summary
 
 A comprehensive understanding of Requirements Engineering provides the groundwork for successful software development. However, it is not devoid of challenges such as stakeholder conflicts and shifting requirements. Alternative methodologies such as Agile or Lean could be used to facilitate a more adaptive approach to requirements engineering.
 
