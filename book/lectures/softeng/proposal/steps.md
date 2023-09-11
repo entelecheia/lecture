@@ -1,6 +1,6 @@
 # Steps in Software Engineering Projects
 
-This lecture aims to provide a granular breakdown of the steps involved in executing a software engineering project. It delves into the tasks, goals, activities, and tools associated with each stage—namely, planning, requirements gathering, design, development, testing, deployment, and maintenance. Additionally, the lectur characterizes various types of software engineering projects. The objective is to give students a comprehensive, practical roadmap for managing and executing software engineering projects of different types and complexities.
+This lecture provides a granular breakdown of the steps involved in executing a software engineering project. It delves into the tasks, goals, activities, and tools associated with each stage—namely, planning, requirements gathering, design, development, testing, deployment, and maintenance. Additionally, the lectur characterizes various types of software engineering projects. The objective is to give students a comprehensive, practical roadmap for managing and executing software engineering projects of different types and complexities.
 
 ## Introduction
 
