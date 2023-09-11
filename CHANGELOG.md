@@ -1,5 +1,15 @@
 <!--next-version-placeholder-->
 
+## v0.17.0 (2023-09-11)
+
+### Feature
+
+* **book:** Add new sections to software engineering proposal ([`a7436b3`](https://github.com/entelecheia/lecture/commit/a7436b35693a993aedee525404c75968845d5481))
+* **book:** Add new section on project proposal ([`6a35ab6`](https://github.com/entelecheia/lecture/commit/6a35ab63311360d8a1cc1769db8a2be84b101bb1))
+* **proposal:** Add project proposal template ([`cacbc65`](https://github.com/entelecheia/lecture/commit/cacbc651ad004811faa5eac75929b51ef1aaa43b))
+* **guideline:** Add software engineering proposal guidelines ([`05a70c3`](https://github.com/entelecheia/lecture/commit/05a70c37742d3b573d015a5fd37516dadbac818f))
+* **lectures:** Add steps in software engineering projects ([`45554db`](https://github.com/entelecheia/lecture/commit/45554db865e9c012139550d05581076bc5db16fc))
+
 ## v0.16.0 (2023-09-03)
 
 ### Feature
