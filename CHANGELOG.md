@@ -1,5 +1,15 @@
 <!--next-version-placeholder-->
 
+## v0.20.0 (2023-09-11)
+
+### Feature
+
+* **llms/stack:** Add slide link in the documentation ([`cc92b7e`](https://github.com/entelecheia/lecture/commit/cc92b7ed385a2e30829329c8d357928bc14f9ad0))
+
+### Documentation
+
+* **book:** Add stack lectures to table of contents ([`b966d60`](https://github.com/entelecheia/lecture/commit/b966d607216cd6e9677abc342d2f94b184fcccef))
+
 ## v0.19.0 (2023-09-11)
 
 ### Feature
