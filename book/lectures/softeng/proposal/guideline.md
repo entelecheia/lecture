@@ -1,6 +1,6 @@
 # Software Engineering Proposal Guideline
 
-The lecture provides an in-depth guideline for creating a software engineering proposal. It elaborates on each key component that a proposal should encompass, such as the Executive Summary, Background, Objectives, and so on. The lecture is designed to equip students and professionals with the structured approach needed to draft a comprehensive and effective software engineering proposal. By adhering to these guidelines, stakeholders will have a robust blueprint to guide the project from conception to completion.
+This lecture provides an in-depth guideline for creating a software engineering proposal. It elaborates on each key component that a proposal should encompass, such as the Executive Summary, Background, Objectives, and so on. The lecture is designed to equip students and professionals with the structured approach needed to draft a comprehensive and effective software engineering proposal. By adhering to these guidelines, stakeholders will have a robust blueprint to guide the project from conception to completion.
 
 ## Introduction
 
