@@ -1,5 +1,11 @@
 <!--next-version-placeholder-->
 
+## v0.18.0 (2023-09-11)
+
+### Feature
+
+* **lectures:** Add link to project proposal lecture slide ([`12f9a0a`](https://github.com/entelecheia/lecture/commit/12f9a0a2fd0f5bcb09e1f8740990101cf1aa3c92))
+
 ## v0.17.0 (2023-09-11)
 
 ### Feature
