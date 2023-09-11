@@ -1,5 +1,16 @@
 <!--next-version-placeholder-->
 
+## v0.19.0 (2023-09-11)
+
+### Feature
+
+* **llms-stack:** Add new documentation file ([`eee96a1`](https://github.com/entelecheia/lecture/commit/eee96a12ca6759c1a0c6a080708d66f09b7d3bf3))
+* **llms/stack/figs:** Add new figures ([`f8a18f1`](https://github.com/entelecheia/lecture/commit/f8a18f107590e6e7554ccd97c7b3cbbe37f051da))
+* **book:** Add new chapter on LLM application architectures ([`68b4d20`](https://github.com/entelecheia/lecture/commit/68b4d209c5a96e9211e17bd2bb097991d58d5a17))
+* **infra.md:** Add comprehensive information on generative AI infrastructure stack ([`412fc5b`](https://github.com/entelecheia/lecture/commit/412fc5b8257c68463f5484f91f4e9607a7445280))
+* **book:** Add Large Language Model App Ecosystem lecture content ([`62988cc`](https://github.com/entelecheia/lecture/commit/62988ccc51114a99d2d5170a5c6abb6eb3f7a37e))
+* **llms/stack/figs:** Add ai-engineer and app-stack images ([`5719c98`](https://github.com/entelecheia/lecture/commit/5719c98c633fa6fd78525187f998bcbd9532c27e))
+
 ## v0.18.0 (2023-09-11)
 
 ### Feature
