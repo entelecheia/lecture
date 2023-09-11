@@ -12,7 +12,7 @@ This lecture dissects the emerging ecosystem for developing applications with La
 As AI engineering matures, the developer landscape is experiencing an exciting transition: the rise of AI engineers specialized in Large Language Models (LLMs). Firms like Andreessen-Horowitz have delineated what an LLM application stack looks like, highlighting the convergence of data engineering, orchestration, and operational capabilities required for leveraging these powerful models.
 
 ```{image} figs/app-stack.png
-:width: 80%
+:width: 90%
 :align: center
 ```
 
