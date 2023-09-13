@@ -8,10 +8,41 @@ Central banks (CBs) have long been the guardians of national economies, relying 
 
 ## Types of Alternative Data
 
-1. **Text Data**: Extracted from news articles, social media, and other textual content.
-2. **Transactional Data**: Payment transactions, e-commerce data, etc.
-3. **Geospatial Data**: From satellite imagery to geolocation data from mobile devices.
-4. **Web-Scraped Data**: Online prices, job postings, and other publicly accessible data from the internet.
+This section provides an in-depth discussion of the different types of alternative data that central banks could employ for policy-making and economic forecasting. The data are categorized into textual data, social media analytics, transactional data, and geospatial data. Each type's characteristics, utility, and specific application scenarios within the context of central banking are addressed.
+
+### 1. Textual Data
+
+**Overview**: Textual data include articles, reports, and other forms of written content. Text analytics tools can derive sentiments, themes, and trends that may be beneficial for policy analysis.
+
+**Utility in Central Banking**: Economic narratives, sentiment analysis from business news, and minutes from governmental meetings can provide real-time insights into economic conditions.
+
+**Examples**: Bank of Korea Quarterly Reports, FOMC meeting minutes.
+
+### 2. Social Media Analytics
+
+**Overview**: This type of data captures the sentiment and behavior of the public through posts, tweets, and other social media activities.
+
+**Utility in Central Banking**: Monitoring public sentiment about economic conditions, or tracking the impact of policy announcements on public perception.
+
+**Examples**: Twitter sentiment analysis post interest rate changes, public sentiment trends on platforms like Reddit related to economic policy.
+
+### 3. Transactional Data
+
+**Overview**: These are data points related to economic activities such as credit card transactions, retail sales, or inter-bank transfers.
+
+**Utility in Central Banking**: Can be used to assess the health of consumer markets, predict inflation trends, and understand liquidity positions within the banking sector.
+
+**Examples**: Credit card spending patterns, supply chain transactions.
+
+### 4. Geospatial Data
+
+**Overview**: Geospatial data refers to information tied to geographical locations, often captured through satellite imagery or IoT sensors.
+
+**Utility in Central Banking**: Assessing regional economic activity, identifying logistical bottlenecks, or monitoring the impact of natural disasters on the economy.
+
+**Examples**: Satellite images of shipping activity, tracking of agricultural yields via drone imagery.
+
+Understanding these different types of alternative data in detail allows central banks to strategically incorporate them into their economic forecasting models, thereby enhancing policy effectiveness.
 
 ## Applications in Central Banking
 
