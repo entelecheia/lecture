@@ -46,21 +46,47 @@ Machine learning models can use alternative data to predict various economic ind
 
 ## Use-Cases
 
-### Real-Time Economic Monitoring Using Social Media Data
+The potential for leveraging alternative data in central banking is immense. Below are descriptions of some notable use-cases that illustrate the practical implications of adopting alternative data.
 
-**Methodology**: Sentiment analysis via NLP algorithms.
+### 1. Real-Time Economic Monitoring Using Social Media Data
 
-### Web-Scraping for Inflation Expectations
+**Methodology**: Utilizing NLP algorithms to conduct sentiment analysis on social media content.
 
-**Methodology**: Automated scraping and statistical modeling.
+**Implementation**: Tweets, blog posts, and news articles are scraped to generate a real-time sentiment index that gauges public opinion on economic conditions.
 
-### Machine Learning for Financial Risk Assessment
+**Outcome**: This offers immediate insights into consumer and business confidence, thereby providing early warning signals for economic downturns or booms.
 
-**Methodology**: Using ensemble machine learning techniques for predictive analysis.
+**Challenges**: Filtering out noise and ensuring data privacy are key challenges in this methodology.
 
-### Utilizing Satellite Imagery for Agricultural Output Predictions
+### 2. Web-Scraping for Inflation Expectations
 
-**Methodology**: Convolutional Neural Networks for image analysis.
+**Methodology**: Automated scraping tools are used to gather online prices of consumer goods.
+
+**Implementation**: This data is then used to construct an alternative Consumer Price Index (CPI), which can be updated much more frequently than traditional measures.
+
+**Outcome**: Allows central banks to gauge inflation levels more accurately and in real-time, aiding in timely policy adjustments.
+
+**Challenges**: Data reliability and handling pricing anomalies are areas that need careful attention.
+
+### 3. Machine Learning for Financial Risk Assessment
+
+**Methodology**: Ensemble machine learning techniques are applied to a wide range of financial and transactional data.
+
+**Implementation**: These models can forecast loan defaults, identify systemic risks, and predict other financial vulnerabilities.
+
+**Outcome**: This enables central banks to act proactively rather than reactively in mitigating financial crises.
+
+**Challenges**: Ensuring fairness and explainability in the models is vital to their ethical use.
+
+### 4. Utilizing Satellite Imagery for Agricultural Output Predictions
+
+**Methodology**: Convolutional Neural Networks (CNNs) are used for image analysis of satellite data.
+
+**Implementation**: Images of farmland across various seasons can be analyzed to predict crop yields, which are a crucial component of GDP.
+
+**Outcome**: Accurate predictions can guide policy decisions related to agriculture subsidies, import-export policies, and even monetary policy.
+
+**Challenges**: High computational costs and the need for specialized expertise.
 
 ## Conclusion and Future Directions
 
