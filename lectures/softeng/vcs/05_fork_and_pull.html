@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Bags of Words Model &#8212; ἐντελέχεια.άι</title>
+    <title>Fork and Pull &#8212; ἐντελέχεια.άι</title>
   
   
   
@@ -88,13 +88,13 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_intro/vectorization/bow';</script>
-    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_intro/vectorization/bow.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/softeng/vcs/05_fork_and_pull';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/softeng/vcs/05_fork_and_pull.html" />
     <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="TF-IDF Model" href="tf-idf.html" />
-    <link rel="prev" title="Vector Semantics" href="semantics.html" />
+    <link rel="next" title="Large Language Models" href="../../llms/index.html" />
+    <link rel="prev" title="Collaboration" href="04_collaboration.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -201,61 +201,61 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Introduction to NLP</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../apps/index.html">NLP Applications</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../apps/research1.html">Research Part I</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../apps/research2.html">Research Part II</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_intro/index.html">Introduction to NLP</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/intro/index.html">Introduction</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/apps/index.html">NLP Applications</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/apps/research1.html">Research Part I</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/apps/research2.html">Research Part II</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../lm/index.html">Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../lm/ngram.html">N-gram Language Models</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../lm/usage.html">Usage of Language Models</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/lm/index.html">Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/lm/ngram.html">N-gram Language Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/lm/usage.html">Usage of Language Models</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../datasets/corpus.html">Text Data Collection</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../datasets/lab-dart.html">Lab: Crawling DART Data</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/datasets/corpus.html">Text Data Collection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/datasets/lab-dart.html">Lab: Crawling DART Data</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../topic/index.html">Topic Modeling</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../topic/methods.html">Topic Modeling Methodologies</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../topic/lab-methods.html">Lab: Topic Modeling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../topic/coherence.html">Topic Coherence Measures</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../topic/lab-coherence.html">Lab: Topic Coherence</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../topic/tomotopy.html">Lab: Tomotopy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/topic/index.html">Topic Modeling</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/methods.html">Topic Modeling Methodologies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/lab-methods.html">Lab: Topic Modeling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/coherence.html">Topic Coherence Measures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/lab-coherence.html">Lab: Topic Coherence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/tomotopy.html">Lab: Tomotopy</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../sentiments/index.html">Sentiment Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../sentiments/lexicon.html">Lexicon-Based Methods</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../sentiments/ml.html">Machine Learning-Based Methods</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../sentiments/lab-lexicon.html">Lab: Lexicon-based Sentiment Analysis</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../sentiments/lab-ml.html">Lab: ML-based Sentiment Classification</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/sentiments/index.html">Sentiment Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lexicon.html">Lexicon-Based Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/ml.html">Machine Learning-Based Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lab-lexicon.html">Lab: Lexicon-based Sentiment Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lab-ml.html">Lab: ML-based Sentiment Classification</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../tokenization/tokenization.html">Understanding the Basics</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../tokenization/pos.html">Part-of-Speech Tagging and Parsing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../tokenization/ngrams.html">N-grams for Tokenization</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../tokenization/korean.html">Tokenization in Korean</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../tokenization/segmentation.html">Word Segmentation and Association</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../tokenization/lab-tokenization.html">Lab: Tokenization and Pre-processing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../tokenization/lab-korean.html">Lab: Korean Text Processing</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/tokenization.html">Understanding the Basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/pos.html">Part-of-Speech Tagging and Parsing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/ngrams.html">N-grams for Tokenization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/korean.html">Tokenization in Korean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/segmentation.html">Word Segmentation and Association</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/lab-tokenization.html">Lab: Tokenization and Pre-processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/lab-korean.html">Lab: Korean Text Processing</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Vector Representation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="semantics.html">Vector Semantics</a></li>
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">Bags of Words Model</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tf-idf.html">TF-IDF Model</a></li>
-<li class="toctree-l3"><a class="reference internal" href="similarity.html">Word Similarity</a></li>
-<li class="toctree-l3"><a class="reference internal" href="lab-similarity.html">Lab: Word Similarity</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/vectorization/index.html">Vector Representation</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/vectorization/semantics.html">Vector Semantics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/vectorization/bow.html">Bags of Words Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/vectorization/tf-idf.html">TF-IDF Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/vectorization/similarity.html">Word Similarity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/vectorization/lab-similarity.html">Lab: Word Similarity</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../embeddings/index.html">Word Embeddings</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../embeddings/nlm.html">Neural Language Models</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../embeddings/w2v.html">Word2Vec</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../embeddings/glove.html">GloVe</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../embeddings/fasttext.html">FastText</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/embeddings/index.html">Word Embeddings</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/embeddings/nlm.html">Neural Language Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/embeddings/w2v.html">Word2Vec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/embeddings/glove.html">GloVe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/embeddings/fasttext.html">FastText</a></li>
 </ul>
 </li>
 </ul>
@@ -416,27 +416,27 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../softeng/index.html">Software Engineering</a><input class="toctree-checkbox" id="toctree-checkbox-34" name="toctree-checkbox-34" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-34"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../softeng/intro/index.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-35" name="toctree-checkbox-35" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-35"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../softeng/intro/introduction.html">Software Engineering?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../softeng/intro/processes.html">Software Processes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../softeng/intro/sdlc.html">Software Development Life Cycle (SDLC)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../softeng/intro/requirements.html">Requirements Engineering (RE)</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Software Engineering</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-34" name="toctree-checkbox-34" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-34"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../intro/index.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-35" name="toctree-checkbox-35" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-35"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../intro/introduction.html">Software Engineering?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../intro/processes.html">Software Processes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../intro/sdlc.html">Software Development Life Cycle (SDLC)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../intro/requirements.html">Requirements Engineering (RE)</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../softeng/proposal/index.html">Project Proposal</a><input class="toctree-checkbox" id="toctree-checkbox-36" name="toctree-checkbox-36" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-36"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../softeng/proposal/steps.html">Steps in Software Engineering Projects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../softeng/proposal/guidelines.html">Software Engineering Proposal Guideline</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../softeng/proposal/template.html">Project Proposal Template</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../proposal/index.html">Project Proposal</a><input class="toctree-checkbox" id="toctree-checkbox-36" name="toctree-checkbox-36" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-36"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../proposal/steps.html">Steps in Software Engineering Projects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../proposal/guidelines.html">Software Engineering Proposal Guideline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../proposal/template.html">Project Proposal Template</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../softeng/vcs/index.html">Version Control Systems</a><input class="toctree-checkbox" id="toctree-checkbox-37" name="toctree-checkbox-37" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-37"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/00_introduction.html">Introduction to version control</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/01_solo_work_with_git.html">Solo work with git</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/02_fixing_mistakes.html">Fixing mistakes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/03_publishing.html">Publishing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/04_collaboration.html">Collaboration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/05_fork_and_pull.html">Fork and Pull</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Version Control Systems</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-37" name="toctree-checkbox-37" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-37"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="00_introduction.html">Introduction to version control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="01_solo_work_with_git.html">Solo work with git</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_fixing_mistakes.html">Fixing mistakes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03_publishing.html">Publishing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="04_collaboration.html">Collaboration</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Fork and Pull</a></li>
 </ul>
 </li>
 </ul>
@@ -508,6 +508,55 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/softeng/vcs/05_fork_and_pull.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -516,7 +565,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../../_sources/lectures/nlp_intro/vectorization/bow.md" target="_blank"
+      <li><a href="../../../_sources/lectures/softeng/vcs/05_fork_and_pull.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -526,7 +575,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -598,7 +647,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Bags of Words Model</h1>
+    <h1>Fork and Pull</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -608,9 +657,21 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-bag-of-words-model">What is Bag of Words Model?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-it-work">How does it work?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-the-bag-of-words-model">Limitations of the Bag of Words Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#different-ways-of-collaborating">Different ways of collaborating</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forking-a-repository-on-github">Forking a repository on GitHub</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pull-request">Pull Request</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-example-team-up">Practical example - Team up!</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fork-repository">1. Fork repository</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clone-your-forked-repo">2. Clone your forked repo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-feature-branch">3. Create a feature branch</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-commit-and-push-changes-to-new-branch">4. Make, commit and push changes to new branch</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-pull-request">5. Create Pull Request</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feedback-from-team-leader">6. Feedback from team leader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fixes-by-collaborator">7. Fixes by collaborator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leader-accepts-pull-request">8. Leader accepts pull request</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-considerations">Some Considerations</a></li>
 </ul>
             </nav>
         </div>
@@ -622,49 +683,137 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="bags-of-words-model">
-<h1>Bags of Words Model<a class="headerlink" href="#bags-of-words-model" title="Permalink to this heading">#</a></h1>
-<p>In the realm of Natural Language Processing, there are several methods and models used to represent and understand text data. One of the simplest yet surprisingly powerful methods is the <strong>Bag of Words (BoW)</strong> model. This method is simple, intuitive, and has been effectively used in various NLP tasks such as information retrieval, sentiment analysis, and document classification.</p>
-<section id="what-is-bag-of-words-model">
-<h2>What is Bag of Words Model?<a class="headerlink" href="#what-is-bag-of-words-model" title="Permalink to this heading">#</a></h2>
-<p>The Bag of Words (BoW) model is a way of representing text data when modeling text with machine learning algorithms. It describes the occurrence of words within a document or a set of documents (corpus). It’s called a “bag” of words because it discards most of the structure of the input text, such as paragraph and sentence boundaries, punctuation, and any order of words, focusing only on the frequency of words in the text.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="fork-and-pull">
+<h1>Fork and Pull<a class="headerlink" href="#fork-and-pull" title="Permalink to this heading">#</a></h1>
+<section id="different-ways-of-collaborating">
+<h2>Different ways of collaborating<a class="headerlink" href="#different-ways-of-collaborating" title="Permalink to this heading">#</a></h2>
+<p>We have just seen how we can work with others on GitHub: we add them as collaborators on our repositories and give them permissions to push changes.</p>
+<p>Let’s talk now about some other type of collaboration.</p>
+<p>Imagine you are a user of an Open Source project like Numpy and find a bug in one of their methods.</p>
+<p>You can inspect and clone Numpy’s code in GitHub <a class="github reference external" href="https://github.com/numpy/numpy">numpy/numpy</a>, play around a bit and find how to fix the bug.</p>
+<p>Numpy has done so much for you asking nothing in return, that you really want to contribute back by fixing the bug for them.</p>
+<p>You make all of the changes but you can’t push it back to Numpy’s repository because you don’t have permissions.</p>
+<p>The right way to do this is <strong>forking Numpy’s repository</strong>.</p>
 </section>
-<section id="how-does-it-work">
-<h2>How does it work?<a class="headerlink" href="#how-does-it-work" title="Permalink to this heading">#</a></h2>
-<p>Here is a basic step-by-step breakdown of how the BoW model works:</p>
-<ol class="arabic simple">
-<li><p><strong>Tokenization</strong>: The first step in creating a BoW model is to break down the text into individual words or tokens. This process is known as tokenization.</p></li>
-<li><p><strong>Vocabulary Creation</strong>: After tokenization, a vocabulary of known words (unique words) for a given corpus is created.</p></li>
-<li><p><strong>Encoding</strong>: Finally, each document is encoded as a vector in an n-dimensional space, where n is the size of the created vocabulary. This vector contains the frequency of each word in the document.</p></li>
-</ol>
-<p>Here’s a simple example to illustrate:</p>
-<p>Consider the following sentences:</p>
-<ol class="arabic simple">
-<li><p>The cat sat on the mat.</p></li>
-<li><p>The dog sat on the log.</p></li>
-<li><p>Cats and dogs are mortal enemies.</p></li>
-</ol>
-<p>First, we tokenize each sentence, breaking them down into individual words.</p>
-<p>Next, we create a vocabulary of unique words from all sentences:</p>
-<p>{the, cat, sat, on, mat, dog, log, cats, and, dogs, are, mortal, enemies}</p>
-<p>Then, we create a vector for each sentence, encoding the frequency of each word from our vocabulary:</p>
-<ol class="arabic simple">
-<li><p>The cat sat on the mat: [2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]</p></li>
-<li><p>The dog sat on the log: [2, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0]</p></li>
-<li><p>Cats and dogs are mortal enemies: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1]</p></li>
-</ol>
-<p>Each vector’s position corresponds to a word in our vocabulary and the value at each index is the count of that word in the sentence.</p>
+<section id="forking-a-repository-on-github">
+<h2>Forking a repository on GitHub<a class="headerlink" href="#forking-a-repository-on-github" title="Permalink to this heading">#</a></h2>
+<p>By forking a repository, all you do is make a copy of it in your GitHub account, where you will have write permissions as well.</p>
+<p>If you fork Numpy’s repository, you will find a new repository in your GitHub account that is an exact copy of Numpy.
+You can then clone it to your computer, work locally on fixing the bug and push the changes to your <em>fork</em> of Numpy.</p>
+<p>Once you are happy with with the changes, GitHub also offers you a way to notify Numpy’s developers of this changes so that they can include them in the official Numpy repository via starting a <strong>Pull Request</strong>.</p>
 </section>
-<section id="limitations-of-the-bag-of-words-model">
-<h2>Limitations of the Bag of Words Model<a class="headerlink" href="#limitations-of-the-bag-of-words-model" title="Permalink to this heading">#</a></h2>
-<p>Despite its simplicity, the BoW model has several limitations:</p>
-<ol class="arabic simple">
-<li><p><strong>Semantic meaning</strong>: BoW does not capture the order or semantics of the words in the text, so it cannot understand the context in which words are used.</p></li>
-<li><p><strong>Sparse representations</strong>: BoW representations are typically high-dimensional (due to the size of the vocabulary) and sparse (since each document only contains a small subset of words). This can lead to computational challenges and inefficiencies.</p></li>
-<li><p><strong>Stop words</strong>: Common words that don’t contain important meaning, known as stop words (e.g., “is”, “the”, “and”) are often represented frequently in the BoW model, which can lead to less meaningful representations.</p></li>
-<li><p><strong>Word sense disambiguation</strong>: BoW cannot handle words with multiple meanings.</p></li>
-</ol>
-<p>Despite these limitations, the Bag of Words model is a fundamental step in understanding text data in machine learning. It forms the basis for more sophisticated methods, like TF-IDF and Word2Vec, which we will explore in more depth in subsequent lectures.</p>
+<section id="pull-request">
+<h2>Pull Request<a class="headerlink" href="#pull-request" title="Permalink to this heading">#</a></h2>
+<p>You can create a Pull Request and select those changes that you think can be useful for fixing Numpy’s bug.</p>
+<p>Numpy’s developers will review your code and make comments and suggestions on your fix.
+Then, you can commit more improvements in the pull request for them to review and so on.</p>
+<p>Once Numpy’s developers are happy with your changes, they’ll accept your Pull Request and merge the changes into their original repository, for everyone to use.</p>
+</section>
+<section id="practical-example-team-up">
+<h2>Practical example - Team up!<a class="headerlink" href="#practical-example-team-up" title="Permalink to this heading">#</a></h2>
+<p>We will be working in the same repository with one of you being the leader and the other being the collaborator.</p>
+<p>Collaborators need to go to the leader’s GitHub profile and find the repository we created for that lesson.
+The example repository of this course is in <a class="github reference external" href="https://github.com/chu-aie/github-example">chu-aie/github-example</a>.</p>
+<section id="fork-repository">
+<h3>1. Fork repository<a class="headerlink" href="#fork-repository" title="Permalink to this heading">#</a></h3>
+<p>You will see on the top right of the page a <code class="docutils literal notranslate"><span class="pre">Fork</span></code> button with an accompanying number indicating how many GitHub users have forked that repository.</p>
+<p>Collaborators need to navigate to the leader’s repository and click the <code class="docutils literal notranslate"><span class="pre">Fork</span></code> button.</p>
+<p>Collaborators: note how GitHub has redirected you to your own GitHub page and you are now looking at an exact copy of the team leader’s repository.</p>
+</section>
+<section id="clone-your-forked-repo">
+<h3>2. Clone your forked repo<a class="headerlink" href="#clone-your-forked-repo" title="Permalink to this heading">#</a></h3>
+<p>Collaborators: go to your terminal and clone the newly created fork.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">chu</span><span class="o">-</span><span class="n">aie</span><span class="o">/</span><span class="n">github</span><span class="o">-</span><span class="n">example</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</section>
+<section id="create-a-feature-branch">
+<h3>3. Create a feature branch<a class="headerlink" href="#create-a-feature-branch" title="Permalink to this heading">#</a></h3>
+<p>It’s a good practice to create a new branch that’ll contain the changes we want.
+We’ll learn more about branches later on.
+For now, just think of this as a separate area where our changes will be kept not to interfere with other people’s work.</p>
+<p>(Be sure to first navigate to the cloned directory, or git commands will not use this repository: <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">github-example</span></code>)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">southwest</span>
+</pre></div>
+</div>
+</section>
+<section id="make-commit-and-push-changes-to-new-branch">
+<h3>4. Make, commit and push changes to new branch<a class="headerlink" href="#make-commit-and-push-changes-to-new-branch" title="Permalink to this heading">#</a></h3>
+<p>For example, let’s create a new file called <code class="docutils literal notranslate"><span class="pre">SouthWest.md</span></code> and edit it to add this text:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Exmoor</span>
+<span class="o">*</span> <span class="n">Dartmoor</span>
+<span class="o">*</span> <span class="n">Bodmin</span> <span class="n">Moor</span>
+</pre></div>
+</div>
+<p>Save it, and push this changes to your fork’s new branch:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="n">SouthWest</span><span class="o">.</span><span class="n">md</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;The South West is also hilly.&quot;</span>
+<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">southwest</span>
+</pre></div>
+</div>
+</section>
+<section id="create-pull-request">
+<h3>5. Create Pull Request<a class="headerlink" href="#create-pull-request" title="Permalink to this heading">#</a></h3>
+<p>Go back to the collaborator’s GitHub site and reload the fork.
+GitHub has noticed there is a new branch and is presenting us with a green button to <code class="docutils literal notranslate"><span class="pre">Compare</span> <span class="pre">&amp;</span> <span class="pre">pull</span> <span class="pre">request</span></code>.
+Fantastic!
+Click that button.</p>
+<p>Fill in the form with additional information about your change, as you consider necesary to make the team leader understand what this is all about.</p>
+<p>Take some time to inspect the commits and the changes you are submitting for review.
+When you are ready, click on the <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">Pull</span> <span class="pre">Request</span></code> button.</p>
+<p>Now, the leader needs to go to their GitHub site.
+They have been notified there is a pull request in their repo awaiting revision.</p>
+</section>
+<section id="feedback-from-team-leader">
+<h3>6. Feedback from team leader<a class="headerlink" href="#feedback-from-team-leader" title="Permalink to this heading">#</a></h3>
+<p>Leaders can see the list of pull requests in the vertical menu of the repo, on the right hand side of the screen.
+Select the pull request the collaborator has done, and inspect the changes.</p>
+<p>There are three tabs: in one you can start a conversation with the collaborator about their changes, and in the others you can have a look at the commits and changes made.</p>
+<p>Go to the tab labeled as “Files Changed”.
+When you hover over the changes, a small <code class="docutils literal notranslate"><span class="pre">+</span></code> button appears.
+Select one line you want to make a comment on.
+For example, the line that contains “Exmoor”.</p>
+<p>GitHub allows you to add a comment about that specific part of the change.
+Your collaborator has forgotten to add a title at the beginning of the file right before “Exmoor”, so tell them so in the form presented after clicking the <code class="docutils literal notranslate"><span class="pre">+</span></code> button.</p>
+</section>
+<section id="fixes-by-collaborator">
+<h3>7. Fixes by collaborator<a class="headerlink" href="#fixes-by-collaborator" title="Permalink to this heading">#</a></h3>
+<p>Collaborators will be notified of this comment by email and also in their profiles page.
+Click the link accompanying this notification to read the comment from the team leader.</p>
+<p>Go back to your local repository, make the changes suggested and push them to the new branch.</p>
+<p>Add this at the beginning of your file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hills</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">South</span> <span class="n">West</span><span class="p">:</span>
+<span class="o">=======================</span>
+
+</pre></div>
+</div>
+<p>Then push the change to your fork:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="o">.</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;Titles added as requested.&quot;</span>
+<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">southwest</span>
+</pre></div>
+</div>
+<p>This change will automatically be added to the pull request you started.</p>
+</section>
+<section id="leader-accepts-pull-request">
+<h3>8. Leader accepts pull request<a class="headerlink" href="#leader-accepts-pull-request" title="Permalink to this heading">#</a></h3>
+<p>The team leader will be notified of the new changes that can be reviewed in the same fashion as earlier.</p>
+<p>Let’s assume the team leader is now happy with the changes.</p>
+<p>Leaders can see in the “Conversation” tab of the pull request a green button labelled <code class="docutils literal notranslate"><span class="pre">Merge</span> <span class="pre">pull</span> <span class="pre">request</span></code>.
+Click it and confirm the decision.</p>
+<p>The collaborator’s pull request has been accepted and appears now in the original repository owned by the team leader.</p>
+<p>Fork and Pull Request done!</p>
+</section>
+</section>
+<section id="some-considerations">
+<h2>Some Considerations<a class="headerlink" href="#some-considerations" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Fork and Pull Request are things happening only on the repository’s server side (GitHub in our case). Consequently, you can’t do things like <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fork</span></code> or <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull-request</span></code> from the local copy of a repository.</p></li>
+<li><p>You don’t always need to fork repositories with the intention of contributing. You can fork a library you use, install it manually on your computer, and add more functionality or customise the existing one, so that it is more useful for you and your team.</p></li>
+<li><p>Numpy’s example is only illustrative. Normally, Open Source projects have in their documentation (sometimes in the form of a wiki) a set of instructions you need to follow if you want to contribute to their software.</p></li>
+<li><p>Pull Requests can also be done for merging branches in a non-forked repository. It’s typically used in teams to merge code from a branch into the master branch and ask team colleagues for code reviews before merging.</p></li>
+<li><p>It’s a good practice before starting a fork and a pull request to have a look at existing forks and pull requests. On GitHub, you can find the list of pull requests on the horizontal menu on the top of the page. Try to also find the network graph displaying all existing forks of a repo, like this example in the NumpyDoc repo: <a class="github reference external" href="https://github.com/numpy/numpydoc/network">numpy/numpydoc</a></p></li>
+</ul>
 </section>
 </section>
 
@@ -681,7 +830,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./lectures/nlp_intro/vectorization"
+            path: "./lectures/softeng/vcs"
         },
         predefinedOutput: true
     }
@@ -699,20 +848,20 @@ document.write(`
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="semantics.html"
+       href="04_collaboration.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Vector Semantics</p>
+        <p class="prev-next-title">Collaboration</p>
       </div>
     </a>
     <a class="right-next"
-       href="tf-idf.html"
+       href="../../llms/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">TF-IDF Model</p>
+        <p class="prev-next-title">Large Language Models</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -731,9 +880,21 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-bag-of-words-model">What is Bag of Words Model?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-it-work">How does it work?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-the-bag-of-words-model">Limitations of the Bag of Words Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#different-ways-of-collaborating">Different ways of collaborating</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forking-a-repository-on-github">Forking a repository on GitHub</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pull-request">Pull Request</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-example-team-up">Practical example - Team up!</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fork-repository">1. Fork repository</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clone-your-forked-repo">2. Clone your forked repo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-feature-branch">3. Create a feature branch</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-commit-and-push-changes-to-new-branch">4. Make, commit and push changes to new branch</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-pull-request">5. Create Pull Request</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feedback-from-team-leader">6. Feedback from team leader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fixes-by-collaborator">7. Fixes by collaborator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leader-accepts-pull-request">8. Leader accepts pull request</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-considerations">Some Considerations</a></li>
 </ul>
   </nav></div>
 
