@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Introduction to version control &#8212; ἐντελέχεια.άι</title>
+    <title>Collaboration &#8212; ἐντελέχεια.άι</title>
   
   
   
@@ -88,13 +88,15 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/softeng/vcs/00_introduction';</script>
-    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/softeng/vcs/00_introduction.html" />
+    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/softeng/vcs/04_collaboration';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/softeng/vcs/04_collaboration.html" />
     <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Solo work with git" href="01_solo_work_with_git.html" />
-    <link rel="prev" title="Version Control Systems" href="index.html" />
+    <link rel="next" title="Large Language Models" href="../../llms/index.html" />
+    <link rel="prev" title="Publishing" href="03_publishing.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -431,13 +433,13 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Version Control Systems</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-37" name="toctree-checkbox-37" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-37"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">Introduction to version control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="00_introduction.html">Introduction to version control</a></li>
 <li class="toctree-l3"><a class="reference internal" href="01_solo_work_with_git.html">Solo work with git</a></li>
 <li class="toctree-l3"><a class="reference internal" href="02_fixing_mistakes.html">Fixing mistakes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="03_publishing.html">Publishing</a></li>
 
 
-<li class="toctree-l3"><a class="reference internal" href="04_collaboration.html">Collaboration</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Collaboration</a></li>
 
 </ul>
 </li>
@@ -518,7 +520,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/softeng/vcs/00_introduction.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/entelecheia/lecture/blob/main/book/lectures/softeng/vcs/04_collaboration.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -567,7 +569,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../../_sources/lectures/softeng/vcs/00_introduction.ipynb" target="_blank"
+      <li><a href="../../../_sources/lectures/softeng/vcs/04_collaboration.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -649,7 +651,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introduction to version control</h1>
+    <h1>Collaboration</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -659,25 +661,27 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#whats-version-control">What’s version control?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-version-control">Why use version control?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-github">Git != GitHub</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-use-version-control">How do we use version control?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-version-control-team-version">What is version control? (Team version)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scope">Scope</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-exercise">Example Exercise</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-and-documents">Programming and documents</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown">Markdown</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#displaying-text-in-this-tutorial">Displaying Text in this Tutorial</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-somewhere-to-work">Setting up somewhere to work</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Collaboration</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#form-a-team">Form a team</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#giving-permission">Giving permission</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obtaining-a-colleagues-code">Obtaining a colleague’s code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nonconflicting-changes">Nonconflicting changes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rejected-push">Rejected push</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-commits">Merge commits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nonconflicted-commits-to-the-same-file">Nonconflicted commits to the same file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conflicting-commits">Conflicting commits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resolving-conflicts">Resolving conflicts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commit-the-resolved-file">Commit the resolved file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distributed-vcs-in-teams-with-conflicts">Distributed VCS in teams with conflicts</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solo-work">Solo work</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuring-git-with-your-name-and-email">Configuring Git with your name and email</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialising-the-repository">Initialising the repository</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-levels-of-git">The Levels of Git</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#editing-directly-on-github">Editing directly on GitHub</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#github-as-a-social-network">GitHub as a social network</a></li>
 </ul>
 </li>
 </ul>
+
             </nav>
         </div>
     </div>
@@ -688,201 +692,436 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-version-control">
-<h1>Introduction to version control<a class="headerlink" href="#introduction-to-version-control" title="Permalink to this heading">#</a></h1>
-<section id="whats-version-control">
-<h2>What’s version control?<a class="headerlink" href="#whats-version-control" title="Permalink to this heading">#</a></h2>
-<p>Version control is a tool for <strong>managing changes</strong> to a set of files.</p>
-<p>There are many different <strong>version control systems</strong>:</p>
-<ul class="simple">
-<li><p>Git</p></li>
-<li><p>Mercurial (<code class="docutils literal notranslate"><span class="pre">hg</span></code>)</p></li>
-<li><p>CVS</p></li>
-<li><p>Subversion (<code class="docutils literal notranslate"><span class="pre">svn</span></code>)</p></li>
-<li><p>…</p></li>
-</ul>
+  <section class="tex2jax_ignore mathjax_ignore" id="collaboration">
+<h1>Collaboration<a class="headerlink" href="#collaboration" title="Permalink to this heading">#</a></h1>
+<section id="form-a-team">
+<h2>Form a team<a class="headerlink" href="#form-a-team" title="Permalink to this heading">#</a></h2>
+<p>Now we’re going to get to the most important question of all with Git and GitHub: working with others.</p>
+<p>Organise into pairs. You’re going to be working on the website of one of the two of you, together, so decide who is going to be the leader, and who the collaborator.</p>
 </section>
-<section id="why-use-version-control">
-<h2>Why use version control?<a class="headerlink" href="#why-use-version-control" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Better kind of <strong>backup</strong>.</p></li>
-<li><p>Review <strong>history</strong> (“When did I introduce this bug?”).</p></li>
-<li><p>Restore older <strong>code versions</strong>.</p></li>
-<li><p>Ability to <strong>undo mistakes</strong>.</p></li>
-<li><p>Maintain <strong>several versions</strong> of the code at a time.</p></li>
-</ul>
-<p>Git is also a <strong>collaborative</strong> tool:</p>
-<ul class="simple">
-<li><p>“How can I share my code?”</p></li>
-<li><p>“How can I submit a change to someone else’s code?”</p></li>
-<li><p>“How can I merge my work with Sue’s?”</p></li>
-</ul>
+<section id="giving-permission">
+<h2>Giving permission<a class="headerlink" href="#giving-permission" title="Permalink to this heading">#</a></h2>
+<p>The leader needs to let the collaborator have the right to make changes to his code.</p>
+<p>In GitHub, go to <code class="docutils literal notranslate"><span class="pre">Settings</span></code> on the right, then <code class="docutils literal notranslate"><span class="pre">Collaborators</span> <span class="pre">&amp;</span> <span class="pre">teams</span></code> on the left.</p>
+<p>Add the user name of your collaborator to the box. They now have the right to push to your repository.</p>
 </section>
-<section id="git-github">
-<h2>Git != GitHub<a class="headerlink" href="#git-github" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p><strong>Git</strong>: version control system tool to manage source code history.</p></li>
-<li><p><strong>GitHub</strong>: hosting service for Git repositories.</p></li>
-</ul>
-</section>
-<section id="how-do-we-use-version-control">
-<h2>How do we use version control?<a class="headerlink" href="#how-do-we-use-version-control" title="Permalink to this heading">#</a></h2>
-<p>Do some programming, then commit our work:</p>
-<p><code class="docutils literal notranslate"><span class="pre">my_vcs</span> <span class="pre">commit</span></code></p>
-<p>Program some more.</p>
-<p>Spot a mistake:</p>
-<p><code class="docutils literal notranslate"><span class="pre">my_vcs</span> <span class="pre">rollback</span></code></p>
-<p>Mistake is undone.</p>
-</section>
-<section id="what-is-version-control-team-version">
-<h2>What is version control? (Team version)<a class="headerlink" href="#what-is-version-control-team-version" title="Permalink to this heading">#</a></h2>
-<table class="colwidths-auto table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Sue</p></th>
-<th class="head"><p>James</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">my_vcs</span> <span class="pre">commit</span></code></p></td>
-<td><p>…</p></td>
-</tr>
-<tr class="row-odd"><td><p>…</p></td>
-<td><p>Join the team</p></td>
-</tr>
-<tr class="row-even"><td><p>…</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">my_vcs</span> <span class="pre">checkout</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p>…</p></td>
-<td><p>Do some programming</p></td>
-</tr>
-<tr class="row-even"><td><p>…</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">my_vcs</span> <span class="pre">commit</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">my_vcs</span> <span class="pre">update</span></code></p></td>
-<td><p>…</p></td>
-</tr>
-<tr class="row-even"><td><p>Do some programming</p></td>
-<td><p>Do some programming</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">my_vcs</span> <span class="pre">commit</span></code></p></td>
-<td><p>…</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">my_vcs</span> <span class="pre">update</span></code></p></td>
-<td><p>…</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">my_vcs</span> <span class="pre">merge</span></code></p></td>
-<td><p>…</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">my_vcs</span> <span class="pre">commit</span></code></p></td>
-<td><p>…</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="scope">
-<h2>Scope<a class="headerlink" href="#scope" title="Permalink to this heading">#</a></h2>
-<p>This course will use the <code class="docutils literal notranslate"><span class="pre">git</span></code> version control system, but much of what you learn will be valid with other version control tools you may encounter, including subversion (<code class="docutils literal notranslate"><span class="pre">svn</span></code>) and mercurial (<code class="docutils literal notranslate"><span class="pre">hg</span></code>).</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Git Exercise</span>
-</pre></div>
-</div>
-</div>
-</div>
-<section id="example-exercise">
-<h3>Example Exercise<a class="headerlink" href="#example-exercise" title="Permalink to this heading">#</a></h3>
-<p>In this course, we will use, as an example, the development of a few text files containing a description of a topic of your choice.</p>
-<p>This could be your research, a hobby, or something else. In the end, we will show you how to display the content of these files as a very simple website.</p>
-</section>
-<section id="programming-and-documents">
-<h3>Programming and documents<a class="headerlink" href="#programming-and-documents" title="Permalink to this heading">#</a></h3>
-<p>The purpose of this exercise is to learn how to use Git to manage program code you write, not simple text website content, but we’ll just use these text files instead of code for now, so as not to confuse matters with trying to learn version control while thinking about programming too.</p>
-</section>
-<section id="markdown">
-<h3>Markdown<a class="headerlink" href="#markdown" title="Permalink to this heading">#</a></h3>
-<p>The text files we create will use a simple “wiki” markup style called <a class="reference external" href="http://daringfireball.net/projects/markdown/basics">markdown</a> to show formatting.
-This is the convention used in this file, too.</p>
-<p>You can view the content of this file in the way Markdown renders it by looking on the <a class="reference external" href="https://alan-turing-institute.github.io/rse-course/html/module04_version_control_with_git/04_00_introduction.html">web</a>, and compare the <a class="reference external" href="https://raw.githubusercontent.com/alan-turing-institute/rse-course/main/module04_version_control_with_git/04_00_introduction.ipynb">raw text</a>.</p>
-</section>
-<section id="displaying-text-in-this-tutorial">
-<h3>Displaying Text in this Tutorial<a class="headerlink" href="#displaying-text-in-this-tutorial" title="Permalink to this heading">#</a></h3>
-<p>This tutorial is based on use of the Git command line. So you’ll be typing commands in the shell.</p>
-<p>Commands you can type will look like this, using the %%bash “magic” for the notebook.</p>
-<p>If you are running the notebook on windows you’ll have to use %%cmd.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-echo some output
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>some output
-</pre></div>
-</div>
-</div>
-</div>
-<p>with the results you should see below.</p>
-<p>In this document, we will show the new content of an edited document like this:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> somefile.md
-<span class="n">Some</span> <span class="n">content</span> <span class="n">here</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing somefile.md
-</pre></div>
-</div>
-</div>
-</div>
-<p>But if you are following along, you should edit the file using a <a class="reference external" href="https://alan-turing-institute.github.io/rse-course/html/course_prerequisites/03_editor.html">text editor</a>.</p>
-</section>
-<section id="setting-up-somewhere-to-work">
-<h3>Setting up somewhere to work<a class="headerlink" href="#setting-up-somewhere-to-work" title="Permalink to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-rm -rf learning_git/git_example # Just in case it&#39;s left over from a previous session
-mkdir -p learning_git/git_example
-cd learning_git/git_example
-</pre></div>
-</div>
-</div>
-</div>
-<p>We need to move this Jupyter notebook’s current directory as well:</p>
+<section id="obtaining-a-colleagues-code">
+<h2>Obtaining a colleague’s code<a class="headerlink" href="#obtaining-a-colleagues-code" title="Permalink to this heading">#</a></h2>
+<p>Next, the collaborator needs to get a copy of the leader’s code. For this example notebook,
+I’m going to be collaborating with myself, swapping between my two repositories.
+Make yourself a space to put it your work. (I will have two)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 
 <span class="n">top_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
-<span class="n">top_dir</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/raid/cis/yjlee/workspace/projects/lecture/book/lectures/softeng/vcs/learning_git/git_example&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">git_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">top_dir</span><span class="p">,</span> <span class="s2">&quot;learning_git&quot;</span><span class="p">)</span>
-<span class="n">git_dir</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/raid/cis/yjlee/workspace/projects/lecture/book/lectures/softeng/vcs/learning_git/git_example/learning_git&#39;
+<span class="n">git_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">top_dir</span><span class="p">,</span> <span class="s2">&quot;learning_git&quot;</span><span class="p">)</span>
+<span class="n">working_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s2">&quot;git_example&quot;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">git_dir</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">working_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s2">&quot;git_example&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+pwd
+rm -rf github-example # cleanup after previous example
+rm -rf partner_dir # cleanup after previous example
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/raid/cis/yjlee/workspace/projects/lecture/book/lectures/softeng/vcs/learning_git
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, the collaborator needs to find out the URL of the repository: they should go to the leader’s repository’s GitHub page, and note the URL on the top of the screen.</p>
+<p>As before, we’re using <code class="docutils literal notranslate"><span class="pre">HTTPS</span></code> to connect - to do this you’ll need to make sure the <code class="docutils literal notranslate"><span class="pre">HTTS</span></code> button is pushed, and check that the URL begins with <code class="docutils literal notranslate"><span class="pre">https://github.com</span></code>.</p>
+<p>Copy the URL into your clipboard by clicking on the icon to the right of the URL, and then:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+pwd
+git clone https://github.com/chu-aie/github-example.git partner_dir
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/raid/cis/yjlee/workspace/projects/lecture/book/lectures/softeng/vcs/learning_git
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cloning into &#39;partner_dir&#39;...
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">partner_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s2">&quot;partner_dir&quot;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">partner_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+pwd
+ls
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/raid/cis/yjlee/workspace/projects/lecture/book/lectures/softeng/vcs/learning_git/partner_dir
+lakeland.md
+test.md
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that your partner’s files are now present on your disk:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+cat lakeland.md
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Lakeland
+========
+
+Cumbria has some pretty hills, and lakes too
+
+Mountains:
+* Helvellyn
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="nonconflicting-changes">
+<h2>Nonconflicting changes<a class="headerlink" href="#nonconflicting-changes" title="Permalink to this heading">#</a></h2>
+<p>Now, both of you should make some changes. To start with, make changes to <em>different</em> files. This will mean your work doesn’t “conflict”. Later, we’ll see how to deal with changes to a shared file.</p>
+<p>Both of you should commit, but not push, your changes to your respective files:</p>
+<p>E.g., the leader:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">working_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> Wales.md
+<span class="n">Mountains</span> <span class="n">In</span> <span class="n">Wales</span>
+<span class="o">==================</span>
+
+<span class="o">*</span> <span class="n">Tryfan</span>
+<span class="o">*</span> <span class="n">Yr</span> <span class="n">Wyddfa</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing Wales.md
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+ls
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lakeland.md
+test.md
+Wales.md
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git add Wales.md
+git commit -m &quot;Add wales&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 046a712] Add wales
+ 1 file changed, 5 insertions(+)
+ create mode 100644 Wales.md
+</pre></div>
+</div>
+</div>
+</div>
+<p>And the partner:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">partner_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> Scotland.md
+<span class="n">Mountains</span> <span class="n">In</span> <span class="n">Scotland</span>
+<span class="o">==================</span>
+
+<span class="o">*</span> <span class="n">Ben</span> <span class="n">Eighe</span>
+<span class="o">*</span> <span class="n">Cairngorm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing Scotland.md
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+ls
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lakeland.md
+Scotland.md
+test.md
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git add Scotland.md
+git commit -m &quot;Add Scotland&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 5524925] Add Scotland
+ 1 file changed, 5 insertions(+)
+ create mode 100644 Scotland.md
+</pre></div>
+</div>
+</div>
+</div>
+<p>One of you should now push with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git push
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To https://github.com/chu-aie/github-example.git
+   4fa39c8..5524925  main -&gt; main
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="rejected-push">
+<h2>Rejected push<a class="headerlink" href="#rejected-push" title="Permalink to this heading">#</a></h2>
+<p>The other should then attempt to push, but should receive an error message:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">working_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git push || echo &quot;Push failed&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To https://github.com/chu-aie/github-example.git
+ ! [rejected]        main -&gt; main (fetch first)
+error: failed to push some refs to &#39;https://github.com/chu-aie/github-example.git&#39;
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., &#39;git pull ...&#39;) before pushing again.
+hint: See the &#39;Note about fast-forwards&#39; in &#39;git push --help&#39; for details.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Push failed
+</pre></div>
+</div>
+</div>
+</div>
+<p>Do as it suggests:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git pull
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>From https://github.com/chu-aie/github-example
+   4fa39c8..5524925  main       -&gt; origin/main
+Successfully rebased and updated refs/heads/main.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="merge-commits">
+<h2>Merge commits<a class="headerlink" href="#merge-commits" title="Permalink to this heading">#</a></h2>
+<p>A window may pop up with a suggested default commit message. This commit is special: it is a <em>merge</em> commit. It is a commit which combines your collaborator’s work with your own.</p>
+<p>Now, push again with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>. This time it works. If you look on GitHub, you’ll now see that it contains both sets of changes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git push
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To https://github.com/chu-aie/github-example.git
+   5524925..54fa40f  main -&gt; main
+</pre></div>
+</div>
+</div>
+</div>
+<p>The partner now needs to pull down that commit:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">partner_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git pull
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>From https://github.com/chu-aie/github-example
+   5524925..54fa40f  main       -&gt; origin/main
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Updating 5524925..54fa40f
+Fast-forward
+ Wales.md | 5 +++++
+ 1 file changed, 5 insertions(+)
+ create mode 100644 Wales.md
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+ls
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lakeland.md
+Scotland.md
+test.md
+Wales.md
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="nonconflicted-commits-to-the-same-file">
+<h2>Nonconflicted commits to the same file<a class="headerlink" href="#nonconflicted-commits-to-the-same-file" title="Permalink to this heading">#</a></h2>
+<p>Go through the whole process again, but this time, both of you should make changes to a single file, but make sure that you don’t touch the same <em>line</em>. Again, the merge should work as before:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> Wales.md
+<span class="n">Mountains</span> <span class="n">In</span> <span class="n">Wales</span>
+<span class="o">==================</span>
+
+<span class="o">*</span> <span class="n">Tryfan</span>
+<span class="o">*</span> <span class="n">Snowdon</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting Wales.md
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git diff
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>diff --git a/Wales.md b/Wales.md
+index f3e88b4..90f23ec 100644
+--- a/Wales.md
++++ b/Wales.md
+@@ -2,4 +2,4 @@ Mountains In Wales
+ ==================
+ 
+ * Tryfan
+-* Yr Wyddfa
++* Snowdon
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git commit -am &quot;Translating from the Welsh&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main ce8bddc] Translating from the Welsh
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git log --oneline
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ce8bddc Translating from the Welsh
+54fa40f Add wales
+5524925 Add Scotland
+4fa39c8 Add Helvellyn
+d2b4434 Include lakes in the scope
+b943bed Add lakeland
+9793609 Revert &quot;Add a lie about a mountain&quot;
+6626d56 Change title
+453f5bc Add a lie about a mountain
+74efc42 First commit of discourse on UK topography
 </pre></div>
 </div>
 </div>
@@ -894,91 +1133,647 @@ cd learning_git/git_example
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="solo-work">
-<h2>Solo work<a class="headerlink" href="#solo-work" title="Permalink to this heading">#</a></h2>
-<section id="configuring-git-with-your-name-and-email">
-<h3>Configuring Git with your name and email<a class="headerlink" href="#configuring-git-with-your-name-and-email" title="Permalink to this heading">#</a></h3>
-<p>First, we should configure Git to know our name and email address:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.name<span class="w"> </span><span class="s2">&quot;YOUR NAME HERE&quot;</span>
-git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.email<span class="w"> </span><span class="s2">&quot;yourname@example.com&quot;</span>
-</pre></div>
-</div>
-<p>Note that by using the <code class="docutils literal notranslate"><span class="pre">--global</span></code> flag, we are setting these options for all projects. To set them just for this project, use <code class="docutils literal notranslate"><span class="pre">--local</span></code> instead.</p>
-<p>Now check that this worked</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-git config --get user.name
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Young Joon Lee
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-git config --get user.email
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>entelecheia@hotmail.com
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="initialising-the-repository">
-<h3>Initialising the repository<a class="headerlink" href="#initialising-the-repository" title="Permalink to this heading">#</a></h3>
-<p>Now, we will tell Git to track the content of this folder as a git “repository”.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-pwd # Note where we are standing-- MAKE SURE YOU INITIALISE THE RIGHT FOLDER
-git init --initial-branch=main
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/raid/cis/yjlee/workspace/projects/lecture/book/lectures/softeng/vcs/learning_git/git_example/learning_git/git_example
-Initialized empty Git repository in /raid/cis/yjlee/workspace/projects/lecture/book/lectures/softeng/vcs/learning_git/git_example/learning_git/git_example/.git/
-</pre></div>
-</div>
-</div>
-</div>
-<p>As yet, this repository contains no files:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-ls
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-git status
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>On branch main
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> Wales.md
+<span class="n">Mountains</span> <span class="n">In</span> <span class="n">Wales</span>
+<span class="o">==================</span>
 
-No commits yet
+<span class="o">*</span> <span class="n">Pen</span> <span class="n">y</span> <span class="n">Fan</span>
+<span class="o">*</span> <span class="n">Tryfan</span>
+<span class="o">*</span> <span class="n">Yr</span> <span class="n">Wyddfa</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting Wales.md
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git commit -am &quot;Add a beacon&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main ac80a2f] Add a beacon
+ 1 file changed, 1 insertion(+)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git log --oneline
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ac80a2f Add a beacon
+54fa40f Add wales
+5524925 Add Scotland
+4fa39c8 Add Helvellyn
+d2b4434 Include lakes in the scope
+b943bed Add lakeland
+9793609 Revert &quot;Add a lie about a mountain&quot;
+6626d56 Change title
+453f5bc Add a lie about a mountain
+74efc42 First commit of discourse on UK topography
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git push
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To https://github.com/chu-aie/github-example.git
+   54fa40f..ac80a2f  main -&gt; main
+</pre></div>
+</div>
+</div>
+</div>
+<p>Switching back to the other partner…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">partner_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git push || echo &quot;Push failed&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To https://github.com/chu-aie/github-example.git
+ ! [rejected]        main -&gt; main (fetch first)
+error: failed to push some refs to &#39;https://github.com/chu-aie/github-example.git&#39;
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., &#39;git pull ...&#39;) before pushing again.
+hint: See the &#39;Note about fast-forwards&#39; in &#39;git push --help&#39; for details.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Push failed
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git pull
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>From https://github.com/chu-aie/github-example
+   54fa40f..ac80a2f  main       -&gt; origin/main
+Successfully rebased and updated refs/heads/main.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git push
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To https://github.com/chu-aie/github-example.git
+   ac80a2f..b101602  main -&gt; main
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git log --oneline --graph
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* b101602 Translating from the Welsh
+* ac80a2f Add a beacon
+* 54fa40f Add wales
+* 5524925 Add Scotland
+* 4fa39c8 Add Helvellyn
+* d2b4434 Include lakes in the scope
+* b943bed Add lakeland
+* 9793609 Revert &quot;Add a lie about a mountain&quot;
+* 6626d56 Change title
+* 453f5bc Add a lie about a mountain
+* 74efc42 First commit of discourse on UK topography
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">working_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git pull
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>From https://github.com/chu-aie/github-example
+   ac80a2f..b101602  main       -&gt; origin/main
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Updating ac80a2f..b101602
+Fast-forward
+ Wales.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git log --graph --oneline
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* b101602 Translating from the Welsh
+* ac80a2f Add a beacon
+* 54fa40f Add wales
+* 5524925 Add Scotland
+* 4fa39c8 Add Helvellyn
+* d2b4434 Include lakes in the scope
+* b943bed Add lakeland
+* 9793609 Revert &quot;Add a lie about a mountain&quot;
+* 6626d56 Change title
+* 453f5bc Add a lie about a mountain
+* 74efc42 First commit of discourse on UK topography
+</pre></div>
+</div>
+</div>
+</div>
+<div align="center" class="mermaid align-center">
+            sequenceDiagram
+  participant S as Sue
+  participant SR as Sue's repo
+  participant M as Shared remote
+  participant JR as Jim's repo
+  participant J as Jim
 
-nothing to commit (create/copy files and use &quot;git add&quot; to track)
+  Note over S: git clone
+  M-&gt;&gt;SR: Fetch commits
+  SR-&gt;&gt;S: Working directory as at latest commit
+
+  Note over S: Edit Scotland.md
+  Note over J: Edit Wales.md
+
+  Note over S: git commit -am &quot;Add Scotland&quot;
+  S-&gt;&gt;SR: Create commit with Scotland file
+
+  Note over J: git commit -am &quot;Add Wales&quot;
+  J-&gt;&gt;JR: Create commit with Wales file
+
+  Note over S: git push
+  SR-&gt;&gt;M: Update remote with changes
+
+  Note over J: git push
+  JR-xM: !Rejected change
+
+  Note over J: git pull
+  M-&gt;&gt;JR: Pull in Sue's last commit, merge histories
+  JR-&gt;&gt;J: Add Scotland.md to working directory
+
+  Note over J: git push
+  JR-&gt;&gt;M: Transfer merged history to remote
+        </div>
+        </section>
+<section id="conflicting-commits">
+<h2>Conflicting commits<a class="headerlink" href="#conflicting-commits" title="Permalink to this heading">#</a></h2>
+<p>Finally, go through the process again, but this time, make changes which touch the same line.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> Wales.md
+<span class="n">Mountains</span> <span class="n">In</span> <span class="n">Wales</span>
+<span class="o">==================</span>
+
+<span class="o">*</span> <span class="n">Pen</span> <span class="n">y</span> <span class="n">Fan</span>
+<span class="o">*</span> <span class="n">Tryfan</span>
+<span class="o">*</span> <span class="n">Snowdon</span>
+<span class="o">*</span> <span class="n">Fan</span> <span class="n">y</span> <span class="n">Big</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting Wales.md
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git commit -am &quot;Add another Beacon&quot;
+git push
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main e5451fd] Add another Beacon
+ 1 file changed, 1 insertion(+)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To https://github.com/chu-aie/github-example.git
+   b101602..e5451fd  main -&gt; main
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">partner_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> Wales.md
+<span class="n">Mountains</span> <span class="n">In</span> <span class="n">Wales</span>
+<span class="o">==================</span>
+
+<span class="o">*</span> <span class="n">Pen</span> <span class="n">y</span> <span class="n">Fan</span>
+<span class="o">*</span> <span class="n">Tryfan</span>
+<span class="o">*</span> <span class="n">Snowdon</span>
+<span class="o">*</span> <span class="n">Glyder</span> <span class="n">Fawr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting Wales.md
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git commit -am &quot;Add Glyder&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 0928826] Add Glyder
+ 1 file changed, 1 insertion(+)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git push || echo &quot;Push failed&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To https://github.com/chu-aie/github-example.git
+ ! [rejected]        main -&gt; main (fetch first)
+error: failed to push some refs to &#39;https://github.com/chu-aie/github-example.git&#39;
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., &#39;git pull ...&#39;) before pushing again.
+hint: See the &#39;Note about fast-forwards&#39; in &#39;git push --help&#39; for details.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Push failed
+</pre></div>
+</div>
+</div>
+</div>
+<p>When you pull, instead of offering an automatic merge commit message, it says:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git pull || echo &quot;Pull failed&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>From https://github.com/chu-aie/github-example
+   b101602..e5451fd  main       -&gt; origin/main
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Auto-merging Wales.md
+CONFLICT (content): Merge conflict in Wales.md
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>error: could not apply 0928826... Add Glyder
+hint: Resolve all conflicts manually, mark them as resolved with
+hint: &quot;git add/rm &lt;conflicted_files&gt;&quot;, then run &quot;git rebase --continue&quot;.
+hint: You can instead skip this commit: run &quot;git rebase --skip&quot;.
+hint: To abort and get back to the state before &quot;git rebase&quot;, run &quot;git rebase --abort&quot;.
+Could not apply 0928826... Add Glyder
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pull failed
 </pre></div>
 </div>
 </div>
 </div>
 </section>
+<section id="resolving-conflicts">
+<h2>Resolving conflicts<a class="headerlink" href="#resolving-conflicts" title="Permalink to this heading">#</a></h2>
+<p>Git couldn’t work out how to merge the two different sets of changes.</p>
+<p>You now need to manually resolve the conflict.</p>
+<p>It has marked the conflicted area:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+cat Wales.md
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mountains In Wales
+==================
+
+* Pen y Fan
+* Tryfan
+* Snowdon
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+* Fan y Big
+=======
+* Glyder Fawr
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 0928826 (Add Glyder)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Manually edit the file, to combine the changes as seems sensible and get rid of the symbols:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> Wales.md
+<span class="n">Mountains</span> <span class="n">In</span> <span class="n">Wales</span>
+<span class="o">==================</span>
+
+<span class="o">*</span> <span class="n">Pen</span> <span class="n">y</span> <span class="n">Fan</span>
+<span class="o">*</span> <span class="n">Tryfan</span>
+<span class="o">*</span> <span class="n">Snowdon</span>
+<span class="o">*</span> <span class="n">Fan</span> <span class="n">y</span> <span class="n">Big</span>
+<span class="o">*</span> <span class="n">Glyder</span> <span class="n">Fawr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting Wales.md
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="commit-the-resolved-file">
+<h2>Commit the resolved file<a class="headerlink" href="#commit-the-resolved-file" title="Permalink to this heading">#</a></h2>
+<p>Now commit the merged result:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git commit -a --no-edit # added a No-edit for this non-interactive session. You can edit the commit if you like.
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[detached HEAD cc360cb] Add Glyder
+ 1 file changed, 1 insertion(+)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git push origin HEAD:main
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To https://github.com/chu-aie/github-example.git
+   e5451fd..cc360cb  HEAD -&gt; main
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">working_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git pull
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>From https://github.com/chu-aie/github-example
+   e5451fd..cc360cb  main       -&gt; origin/main
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Updating e5451fd..cc360cb
+Fast-forward
+ Wales.md | 1 +
+ 1 file changed, 1 insertion(+)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+cat Wales.md
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mountains In Wales
+==================
+
+* Pen y Fan
+* Tryfan
+* Snowdon
+* Fan y Big
+* Glyder Fawr
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git log --oneline --graph
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* cc360cb Add Glyder
+* e5451fd Add another Beacon
+* b101602 Translating from the Welsh
+* ac80a2f Add a beacon
+* 54fa40f Add wales
+* 5524925 Add Scotland
+* 4fa39c8 Add Helvellyn
+* d2b4434 Include lakes in the scope
+* b943bed Add lakeland
+* 9793609 Revert &quot;Add a lie about a mountain&quot;
+* 6626d56 Change title
+* 453f5bc Add a lie about a mountain
+* 74efc42 First commit of discourse on UK topography
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="distributed-vcs-in-teams-with-conflicts">
+<h2>Distributed VCS in teams with conflicts<a class="headerlink" href="#distributed-vcs-in-teams-with-conflicts" title="Permalink to this heading">#</a></h2>
+<div align="center" class="mermaid align-center">
+            sequenceDiagram
+  participant S as Sue
+  participant SR as Sue's repo
+  participant M as Shared remote
+  participant JR as Jim's repo
+  participant J as Jim
+
+  Note over S: Edit the same line in wales.md
+  Note over J: Edit the same line in wales.md
+
+  Note over S: git commit -am &quot;update wales.md&quot;
+  S-&gt;&gt;SR: Add commit to local repo
+
+  Note over J: git commit -am &quot;update wales.md&quot;
+  J-&gt;&gt;JR: Add commit to local repo
+
+  Note over S: git push
+  SR-&gt;&gt;M: Transfer commit to remote
+
+  Note over J: git push
+  JR-xM: !Rejected
+
+  Note over J: git pull
+  M-&gt;&gt;J: Make conflicted file with conflict markers
+
+  Note over J: Edit file to resolve conflicts
+  Note over J: git add wales.md
+  Note over J: git commit
+  J-&gt;&gt;JR: Mark conflict as resolved
+
+  Note over J: git push
+  JR-&gt;&gt;M: Transfer merged history to remote
+
+  Note over S: git pull
+  M-&gt;&gt;SR: Download Jim's resolution of conflict
+        </div>
+        </section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="the-levels-of-git">
+<h1>The Levels of Git<a class="headerlink" href="#the-levels-of-git" title="Permalink to this heading">#</a></h1>
+<div align="center" class="mermaid align-center">
+            sequenceDiagram
+  participant WD as Working Directory
+  participant SA as Staging Area
+  participant LR as Local Repository
+  participant RR as Remote Repository
+
+  Note over WD: git add
+  WD-&gt;&gt;SA: Stage changes
+
+  Note over SA: git commit
+  SA-&gt;&gt;LR: Commit staged changes
+
+  Note over LR: git commit -a
+  LR-&gt;&gt;LR: Stage and commit changes
+
+  Note over LR: git checkout
+  LR-&gt;&gt;WD: Update to specified state
+
+  Note over LR: git reset
+  LR-&gt;&gt;SA: Reset staging area to commit
+
+  Note over LR: git reset --hard
+  LR-&gt;&gt;WD: Reset to commit &amp; update files
+
+  Note over LR: git push
+  LR-&gt;&gt;RR: Push changes to remote
+
+  Note over RR: git fetch
+  RR-&gt;&gt;LR: Fetch updates from remote
+
+  Note over LR: git merge
+  LR-&gt;&gt;WD: Merge fetched changes
+
+  Note over RR: git pull
+  RR-&gt;&gt;WD: Fetch and merge changes
+        </div>
+        <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Working Directory -&gt; Staging Area : git add</span>
+<span class="s2">Staging Area -&gt; Local Repository : git commit</span>
+<span class="s2">Local Repository -&gt; Local Repository : git commit -a</span>
+<span class="s2">Local Repository -&gt; Working Directory : git checkout</span>
+<span class="s2">Local Repository -&gt; Staging Area : git reset</span>
+<span class="s2">Local Repository -&gt; Working Directory: git reset --hard</span>
+<span class="s2">Local Repository -&gt; Remote Repository : git push</span>
+<span class="s2">Remote Repository -&gt; Local Repository : git fetch</span>
+<span class="s2">Local Repository -&gt; Working Directory : git merge</span>
+<span class="s2">Remote Repository -&gt; Working Directory: git pull</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">wsd</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/7d58ae989198ae9bae1f59e57456831467179672d91c0f94af6aa5ce2de71425.png" src="../../../_images/7d58ae989198ae9bae1f59e57456831467179672d91c0f94af6aa5ce2de71425.png" />
+</div>
+</div>
+<section id="editing-directly-on-github">
+<h2>Editing directly on GitHub<a class="headerlink" href="#editing-directly-on-github" title="Permalink to this heading">#</a></h2>
+<p>Note that you can also make changes in the GitHub website itself. Visit one of your files, and hit “edit”.</p>
+<p>Make a change in the edit window, and add an appropriate commit message.</p>
+<p>That change now appears on the website, but not in your local copy. (Verify this).</p>
+<p>Now pull, and check the change is now present on your local version.</p>
+</section>
+<section id="github-as-a-social-network">
+<h2>GitHub as a social network<a class="headerlink" href="#github-as-a-social-network" title="Permalink to this heading">#</a></h2>
+<p>In addition to being a repository for code, and a way to publish code, GitHub is a social network.</p>
+<p>You can follow the public work of other coders: go to the profile of your collaborator in your browser, and hit the “follow” button.</p>
+<p><a class="reference external" href="https://github.com/entelecheia">Here’s mine</a> : if you want to you can follow me.</p>
+<p>Using GitHub to build up a good public profile of software projects you’ve worked on is great for your CV!</p>
 </section>
 </section>
 
@@ -1013,20 +1808,20 @@ nothing to commit (create/copy files and use &quot;git add&quot; to track)
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="index.html"
+       href="03_publishing.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Version Control Systems</p>
+        <p class="prev-next-title">Publishing</p>
       </div>
     </a>
     <a class="right-next"
-       href="01_solo_work_with_git.html"
+       href="../../llms/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Solo work with git</p>
+        <p class="prev-next-title">Large Language Models</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1045,25 +1840,27 @@ nothing to commit (create/copy files and use &quot;git add&quot; to track)
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#whats-version-control">What’s version control?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-version-control">Why use version control?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-github">Git != GitHub</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-use-version-control">How do we use version control?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-version-control-team-version">What is version control? (Team version)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scope">Scope</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-exercise">Example Exercise</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-and-documents">Programming and documents</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown">Markdown</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#displaying-text-in-this-tutorial">Displaying Text in this Tutorial</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-somewhere-to-work">Setting up somewhere to work</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Collaboration</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#form-a-team">Form a team</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#giving-permission">Giving permission</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obtaining-a-colleagues-code">Obtaining a colleague’s code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nonconflicting-changes">Nonconflicting changes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rejected-push">Rejected push</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-commits">Merge commits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nonconflicted-commits-to-the-same-file">Nonconflicted commits to the same file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conflicting-commits">Conflicting commits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resolving-conflicts">Resolving conflicts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commit-the-resolved-file">Commit the resolved file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distributed-vcs-in-teams-with-conflicts">Distributed VCS in teams with conflicts</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solo-work">Solo work</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuring-git-with-your-name-and-email">Configuring Git with your name and email</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialising-the-repository">Initialising the repository</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-levels-of-git">The Levels of Git</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#editing-directly-on-github">Editing directly on GitHub</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#github-as-a-social-network">GitHub as a social network</a></li>
 </ul>
 </li>
 </ul>
+
   </nav></div>
 
 </div></div>
