@@ -437,8 +437,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="01_solo_work_with_git.html">Solo work with git</a></li>
 <li class="toctree-l3"><a class="reference internal" href="02_fixing_mistakes.html">Fixing mistakes</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">Publishing</a></li>
-
-
 <li class="toctree-l3"><a class="reference internal" href="04_collaboration.html">Collaboration</a></li>
 
 </ul>
@@ -661,24 +659,20 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Publishing</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sharing-your-work">Sharing your work</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-repository">Creating a repository</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#github-private-repositories">GitHub private repositories</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-a-new-remote-to-your-repository">Adding a new remote to your repository</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remotes">Remotes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#playing-with-github">Playing with GitHub</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-multiple-files">Working with multiple files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-new-content">Some new content</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git-will-not-by-default-commit-your-new-file">Git will not by default commit your new file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tell-git-about-the-new-file">Tell git about the new file</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-multiple-files">Working with multiple files</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-new-content">Some new content</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-will-not-by-default-commit-your-new-file">Git will not by default commit your new file</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tell-git-about-the-new-file">Tell git about the new file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-two-files-at-once">Changing two files at once</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-two-files-at-once">Changing two files at once</a></li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -818,11 +812,10 @@ git push -uf origin main # Note we use the &#39;-f&#39; flag here to force an up
 <p>Take a few moments to click around and work your way through the GitHub interface. Try clicking on ‘<a class="reference external" href="http://test.md">test.md</a>’ to see the content of the file: notice how the markdown renders prettily.</p>
 <p>Click on “commits” near the top of the screen, to see all the changes you’ve made. Click on the commit number next to the right of a change, to see what changes it includes: removals are shown in red, and additions in green.</p>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="working-with-multiple-files">
-<h1>Working with multiple files<a class="headerlink" href="#working-with-multiple-files" title="Permalink to this heading">#</a></h1>
+<section id="working-with-multiple-files">
+<h2>Working with multiple files<a class="headerlink" href="#working-with-multiple-files" title="Permalink to this heading">#</a></h2>
 <section id="some-new-content">
-<h2>Some new content<a class="headerlink" href="#some-new-content" title="Permalink to this heading">#</a></h2>
+<h3>Some new content<a class="headerlink" href="#some-new-content" title="Permalink to this heading">#</a></h3>
 <p>So far, we’ve only worked with one file. Let’s add another:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vim<span class="w"> </span>lakeland.md
 </pre></div>
@@ -860,7 +853,7 @@ Cumbria has some pretty hills, and lakes too.
 </div>
 </section>
 <section id="git-will-not-by-default-commit-your-new-file">
-<h2>Git will not by default commit your new file<a class="headerlink" href="#git-will-not-by-default-commit-your-new-file" title="Permalink to this heading">#</a></h2>
+<h3>Git will not by default commit your new file<a class="headerlink" href="#git-will-not-by-default-commit-your-new-file" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
@@ -885,7 +878,7 @@ Commit failed
 <p>This failed, because we’ve not told git to track the new file yet.</p>
 </section>
 <section id="tell-git-about-the-new-file">
-<h2>Tell git about the new file<a class="headerlink" href="#tell-git-about-the-new-file" title="Permalink to this heading">#</a></h2>
+<h3>Tell git about the new file<a class="headerlink" href="#tell-git-about-the-new-file" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
@@ -920,8 +913,8 @@ git push
 <p>Visit GitHub, and notice this change is on your repository on the server. We could have said <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span></code> to specify the remote to use, but origin is the default.</p>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="changing-two-files-at-once">
-<h1>Changing two files at once<a class="headerlink" href="#changing-two-files-at-once" title="Permalink to this heading">#</a></h1>
+<section id="changing-two-files-at-once">
+<h2>Changing two files at once<a class="headerlink" href="#changing-two-files-at-once" title="Permalink to this heading">#</a></h2>
 <p>What if we change both files?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1069,6 +1062,7 @@ git push
   R-&gt;&gt;M: Transfer commits to Github
         </div>
         </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1133,24 +1127,20 @@ git push
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Publishing</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sharing-your-work">Sharing your work</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-repository">Creating a repository</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#github-private-repositories">GitHub private repositories</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-a-new-remote-to-your-repository">Adding a new remote to your repository</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remotes">Remotes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#playing-with-github">Playing with GitHub</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-multiple-files">Working with multiple files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-new-content">Some new content</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git-will-not-by-default-commit-your-new-file">Git will not by default commit your new file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tell-git-about-the-new-file">Tell git about the new file</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-multiple-files">Working with multiple files</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-new-content">Some new content</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-will-not-by-default-commit-your-new-file">Git will not by default commit your new file</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tell-git-about-the-new-file">Tell git about the new file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-two-files-at-once">Changing two files at once</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-two-files-at-once">Changing two files at once</a></li>
-</ul>
-
   </nav></div>
 
 </div></div>
