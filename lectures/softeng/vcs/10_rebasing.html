@@ -93,7 +93,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Large Language Models" href="../../llms/index.html" />
+    <link rel="next" title="11. Debugging With git bisect" href="11_debugging_with_git_bisect.html" />
     <link rel="prev" title="9. Publishing from GitHub" href="09_github_pages.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -442,7 +442,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="08_advanced_git_concepts.html">8. Advanced git concepts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="09_github_pages.html">9. Publishing from GitHub</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">10. Rebasing</a></li>
-
+<li class="toctree-l3"><a class="reference internal" href="11_debugging_with_git_bisect.html">11. Debugging With git bisect</a></li>
 </ul>
 </li>
 </ul>
@@ -663,19 +663,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">10. Rebasing</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rebase-vs-merge">Rebase vs merge</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-rebase">An example rebase</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fast-forwards">Fast Forwards</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rebasing-pros-and-cons">Rebasing pros and cons</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#squashing">Squashing</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#squashing">Squashing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-rebase-to-squash">Using rebase to squash</a></li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -798,9 +792,8 @@ Fast-forward
 <p>If you know your changes are still secret, it might be better to rebase to keep the history clean.
 If in doubt, just merge.</p>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="squashing">
-<h1>Squashing<a class="headerlink" href="#squashing" title="Permalink to this heading">#</a></h1>
+<section id="squashing">
+<h2>Squashing<a class="headerlink" href="#squashing" title="Permalink to this heading">#</a></h2>
 <p>A second way to use the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rebase</span></code> command is to rebase your work on top of one of <em>your own</em> earlier commits,
 in interactive mode (<code class="docutils literal notranslate"><span class="pre">-i</span></code>). A common use of this is to “squash” several commits that should really be one, i.e. combine them into a single commit that contains all their changes:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>log
@@ -813,6 +806,7 @@ in interactive mode (<code class="docutils literal notranslate"><span class="pre
 <span class="n">cd27</span> <span class="n">Initial</span> <span class="n">commit</span>
 </pre></div>
 </div>
+</section>
 <section id="using-rebase-to-squash">
 <h2>Using rebase to squash<a class="headerlink" href="#using-rebase-to-squash" title="Permalink to this heading">#</a></h2>
 <p>If we type</p>
@@ -897,11 +891,11 @@ as the change they represent has changed.</p>
       </div>
     </a>
     <a class="right-next"
-       href="../../llms/index.html"
+       href="11_debugging_with_git_bisect.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Large Language Models</p>
+        <p class="prev-next-title">11. Debugging With git bisect</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -920,19 +914,13 @@ as the change they represent has changed.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">10. Rebasing</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rebase-vs-merge">Rebase vs merge</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-rebase">An example rebase</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fast-forwards">Fast Forwards</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rebasing-pros-and-cons">Rebasing pros and cons</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#squashing">Squashing</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#squashing">Squashing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-rebase-to-squash">Using rebase to squash</a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>
