@@ -1,5 +1,35 @@
 <!--next-version-placeholder-->
 
+## v0.21.0 (2023-09-17)
+
+### Feature
+
+* **lectures:** Add multiple remotes tutorial ([`579f193`](https://github.com/entelecheia/lecture/commit/579f193710264efe7b1a53c9752c98b8baeb4626))
+* **lectures:** Add mermaid diagram to softeng/vcs/02_fixing_mistakes.ipynb ([`b76a230`](https://github.com/entelecheia/lecture/commit/b76a23042c6ca0cf9840460cccaef565cc8f1974))
+* **lectures:** Add new sections on Git levels and solo workflow ([`347706f`](https://github.com/entelecheia/lecture/commit/347706fdd5392ea4be4da790783867c27fd93747))
+* **lectures/softeng/vcs:** Add debugging with git bisect lecture ([`1f64ed2`](https://github.com/entelecheia/lecture/commit/1f64ed2682e1f9ecd2a164dd113c845453113772))
+* **lectures:** Add rebasing lecture ([`baa5e8f`](https://github.com/entelecheia/lecture/commit/baa5e8ffe78e929ccba992e89386aec17a05966c))
+* **lectures:** Add GitHub pages section in softeng/vcs lecture ([`e37b16a`](https://github.com/entelecheia/lecture/commit/e37b16aa7ace2eae95370cb37c33ff6926dd96ab))
+* **lecture:** Add advanced git concepts ([`f10fd47`](https://github.com/entelecheia/lecture/commit/f10fd47bfc809ae98afffbd7dc30dbadf47a7a34))
+* **lectures:** Add a new file on git branches ([`9ffd335`](https://github.com/entelecheia/lecture/commit/9ffd3354f94814b5e8088c9180276f601490dab1))
+* **lectures:** Add git theory lecture in softeng/vcs module ([`31e0655`](https://github.com/entelecheia/lecture/commit/31e0655dda9a61ac4d43644f23e8f1cbbbb4ffb9))
+* **lectures:** Add Fork and Pull lecture ([`f2c1deb`](https://github.com/entelecheia/lecture/commit/f2c1debefbb75b32f1626fd4fb1759aca08e1bbc))
+* **book:** Add collaboration lecture ([`7301c4e`](https://github.com/entelecheia/lecture/commit/7301c4e75f10ed7e0fed13a117336390d4fc355c))
+* **lectures/softeng/vcs:** Add new content about publishing using Git ([`2bb857a`](https://github.com/entelecheia/lecture/commit/2bb857a0fe767e07cec7a1ecf17a44b959d944a4))
+* **lectures:** Add lecture about fixing mistakes in git ([`bd176d1`](https://github.com/entelecheia/lecture/commit/bd176d19b88cf5733447064d562a32663fe0173e))
+* **book:** Uncomment solo work with git lecture ([`aa0c0ab`](https://github.com/entelecheia/lecture/commit/aa0c0abe02a09b0b8db7a2e6c04415f308b6a74b))
+* **lectures:** Add solo work with git lecture ([`f88b886`](https://github.com/entelecheia/lecture/commit/f88b8867ac45abcda5a14c76b7cb7336498b4577))
+* **pyproject.toml:** Add matplotlib dependency ([`fc82ca3`](https://github.com/entelecheia/lecture/commit/fc82ca3439702cd5d063801bd9d0b0bc8adaff56))
+* **book:** Add new sections to software engineering VCS lecture ([`13b2a0d`](https://github.com/entelecheia/lecture/commit/13b2a0d0cd297166c2e805d6da0828159d0800d2))
+* **book:** Add Introduction to Version Control lecture ([`4f52f3f`](https://github.com/entelecheia/lecture/commit/4f52f3f77dcf4833bd922db75f2259f8a4fc0875))
+* **book:** Add vcs section to softeng lectures ([`9c96e4f`](https://github.com/entelecheia/lecture/commit/9c96e4f13dd20ad3f7736c90390e0e89673b43b7))
+* **lectures:** Add new 'Version Control Systems' section ([`7851c3c`](https://github.com/entelecheia/lecture/commit/7851c3c7e1198de2e05f534c252a0afc6854cc43))
+* **book:** Expand alternative data types description 'altdata.md' ([`18e8d21`](https://github.com/entelecheia/lecture/commit/18e8d2181431209e00252c7aeb0d7268432e4515))
+* **booklectures:** Expand the cases in altdata.md ([`cfcb220`](https://github.com/entelecheia/lecture/commit/cfcb220e96865ae10231688db8619067e9fd6f4f))
+* **book:** Add new section in dcon/cb with altdata ([`4c38b64`](https://github.com/entelecheia/lecture/commit/4c38b64c0685d9ec93a6a8084a63bfe4aad14ce7))
+* **book:** Add Central Banks section ([`c7972d2`](https://github.com/entelecheia/lecture/commit/c7972d2b375a6ae080564bb4de3a742c4fa5a825))
+* **book:** Add new lecture content on data in central banks ([`1402df8`](https://github.com/entelecheia/lecture/commit/1402df8a278900f99e2a3525a59d536e85c6ff59))
+
 ## v0.20.0 (2023-09-11)
 
 ### Feature
