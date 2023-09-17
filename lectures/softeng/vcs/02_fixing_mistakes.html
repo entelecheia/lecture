@@ -1019,6 +1019,32 @@ But has some tall hills, and maybe a mountain or two depending on your definitio
 </div>
 </div>
 </div>
+<p>We can add this to our diagram:</p>
+<div align="center" class="mermaid align-center">
+            sequenceDiagram
+  participant WD as Working Directory
+  participant SA as Staging Area
+  participant LR as Local Repository
+
+  Note over WD: git add
+  WD-&gt;&gt;SA: Stage changes
+
+  Note over SA: git commit
+  SA-&gt;&gt;LR: Commit staged changes
+
+  Note over WD: git commit -a
+  WD-&gt;&gt;LR: Stage and commit changes
+
+  Note over LR: git checkout
+  LR-&gt;&gt;WD: Update to specified state
+
+  Note over LR: git reset
+  LR-&gt;&gt;SA: Reset staging area to commit
+
+  Note over LR: git reset --hard
+  LR-&gt;&gt;WD: Reset to commit &amp; update files
+        </div>
+        <p>We can add it to Jim’s story:</p>
 <div align="center" class="mermaid align-center">
             sequenceDiagram
   participant R as Jim's repo

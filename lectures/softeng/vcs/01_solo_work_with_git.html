@@ -88,6 +88,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/softeng/vcs/01_solo_work_with_git';</script>
     <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/softeng/vcs/01_solo_work_with_git.html" />
     <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
@@ -682,6 +684,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-staging-area">The staging area</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-levels-of-git">The Levels of Git</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correcting-mistakes">Correcting mistakes</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#review-of-status">Review of status</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#carry-on-regardless">Carry on regardless</a></li>
@@ -689,6 +692,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#review-of-changes">Review of changes</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-solo-workflow">Git Solo Workflow</a></li>
 </ul>
             </nav>
         </div>
@@ -977,6 +981,24 @@ git add --update
 <p>You can include specific changes to specific files with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code>, commit them, add some more files, and commit them. (You can even add specific changes within a file to be included in the index.)</p>
 </section>
 </section>
+<section id="the-levels-of-git">
+<h2>The Levels of Git<a class="headerlink" href="#the-levels-of-git" title="Permalink to this heading">#</a></h2>
+<div align="center" class="mermaid align-center">
+            sequenceDiagram
+  participant WD as Working Directory
+  participant SA as Staging Area
+  participant LR as Local Repository
+
+  Note over WD: git add
+  WD-&gt;&gt;SA: Stage changes
+
+  Note over SA: git commit
+  SA-&gt;&gt;LR: Commit staged changes
+
+  Note over WD: git commit -a
+  WD-&gt;&gt;LR: Stage and commit changes
+        </div>
+        </section>
 <section id="correcting-mistakes">
 <h2>Correcting mistakes<a class="headerlink" href="#correcting-mistakes" title="Permalink to this heading">#</a></h2>
 <section id="review-of-status">
@@ -1137,6 +1159,39 @@ git log --oneline
 </div>
 </section>
 </section>
+<section id="git-solo-workflow">
+<h2>Git Solo Workflow<a class="headerlink" href="#git-solo-workflow" title="Permalink to this heading">#</a></h2>
+<p>We can make a diagram that summarises the above story:</p>
+<div align="center" class="mermaid align-center">
+            sequenceDiagram
+  participant J as Jim
+  participant I as Jim's index
+  participant R as Jim's repo
+
+  Note over J: vim test.md
+
+  Note over J: git init
+  J-&gt;&gt;R: Create repository
+
+  Note over J: git add test.md
+  J-&gt;&gt;I: Add content of test.md
+
+  Note over J: git commit
+  I-&gt;&gt;R: Commit content of test.md
+
+  Note over J: vim test.md
+
+  Note over J: git add --update
+  J-&gt;&gt;I: Update content of test.md
+
+  Note over J: git commit -m &quot;Add a lie&quot;
+  I-&gt;&gt;R: Commit change to test.md
+
+  Note over J: vim test.md
+  Note over J: git commit -am &quot;Change title&quot;
+  J-&gt;&gt;R: Add and commit change to test.md (and all tracked files)
+        </div>
+        </section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1221,6 +1276,7 @@ git log --oneline
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-staging-area">The staging area</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-levels-of-git">The Levels of Git</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correcting-mistakes">Correcting mistakes</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#review-of-status">Review of status</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#carry-on-regardless">Carry on regardless</a></li>
@@ -1228,6 +1284,7 @@ git log --oneline
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#review-of-changes">Review of changes</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-solo-workflow">Git Solo Workflow</a></li>
 </ul>
   </nav></div>
 
