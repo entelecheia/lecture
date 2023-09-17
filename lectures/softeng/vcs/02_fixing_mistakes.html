@@ -95,7 +95,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Large Language Models" href="../../llms/index.html" />
+    <link rel="next" title="Publishing" href="03_publishing.html" />
     <link rel="prev" title="Solo work with git" href="01_solo_work_with_git.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -436,6 +436,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="00_introduction.html">Introduction to version control</a></li>
 <li class="toctree-l3"><a class="reference internal" href="01_solo_work_with_git.html">Solo work with git</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">Fixing mistakes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03_publishing.html">Publishing</a></li>
+
+
 </ul>
 </li>
 </ul>
@@ -1012,25 +1015,25 @@ But has some tall hills, and maybe a mountain or two depending on your definitio
 </div>
 <div align="center" class="mermaid align-center">
             sequenceDiagram
-  participant &quot;Jim's repo&quot; as R
-  participant &quot;Jim's index&quot; as I
-  participant Jim as J
+  participant R as Jim's repo
+  participant I as Jim's index
+  participant J as Jim
 
-  note right of J: git revert HEAD~
+  Note over J: git revert HEAD~
   J-&gt;&gt;R: Add new commit reversing change
   R-&gt;&gt;I: Update staging area to reverted version
   I-&gt;&gt;J: Update file to reverted version
 
-  note right of J: vim test.md
-  note right of J: git commit -am &quot;Add another mistake&quot;
+  Note over J: vim test.md
+  Note over J: git commit -am &quot;Add another mistake&quot;
   J-&gt;&gt;I: Add mistake
   I-&gt;&gt;R: Add mistake
 
-  note right of J: git reset HEAD~
+  Note over J: git reset HEAD~
   J-&gt;&gt;R: Delete mistaken commit
   R-&gt;&gt;I: Update staging area to reset commit
 
-  note right of J: git checkout test.md
+  Note over J: git checkout test.md
   R-&gt;&gt;J: Update file to reverted version
         </div>
         </section>
@@ -1076,11 +1079,11 @@ But has some tall hills, and maybe a mountain or two depending on your definitio
       </div>
     </a>
     <a class="right-next"
-       href="../../llms/index.html"
+       href="03_publishing.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Large Language Models</p>
+        <p class="prev-next-title">Publishing</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
