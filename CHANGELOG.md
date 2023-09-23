@@ -1,5 +1,15 @@
 <!--next-version-placeholder-->
 
+## v0.22.0 (2023-09-23)
+
+### Feature
+
+* **lectures/softeng/vcs:** Enhance output display and directory handling for multiple remotes ([`ca72c54`](https://github.com/entelecheia/lecture/commit/ca72c54b137ff4204d8fd38ea0b91f50effe20cc))
+* **softeng/vcs:** Enhance git directory setting in jupyter notebook ([`93eded3`](https://github.com/entelecheia/lecture/commit/93eded39d40faf0f926097f90653013704b22784))
+* **softeng/vcs:** Add google colab support and improve directory handling in github pages lecture ([`cd6a4f2`](https://github.com/entelecheia/lecture/commit/cd6a4f219b7d2563de5fd1cefd75bcce581c73ac))
+* **vcs:** Add Google Colab support in the advanced git concepts lesson ([`0e975e5`](https://github.com/entelecheia/lecture/commit/0e975e57187eb46b87e4693379ae55d02a0a314d))
+* **lecture:** Improve git theory notebook with better code execution and directory handling ([`375d8cd`](https://github.com/entelecheia/lecture/commit/375d8cda1a92d0ae761e4a07045b14cb82b0fa47))
+
 ## v0.21.0 (2023-09-17)
 
 ### Feature
