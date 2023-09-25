@@ -1,5 +1,11 @@
 <!--next-version-placeholder-->
 
+## v0.22.1 (2023-09-25)
+
+### Fix
+
+* **git-config:** Fix user name and email setup ([`44fd289`](https://github.com/entelecheia/lecture/commit/44fd289d160cb5fa56ce650cab24aa26b454ba39))
+
 ## v0.22.0 (2023-09-23)
 
 ### Feature
