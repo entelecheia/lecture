@@ -1,5 +1,11 @@
 <!--next-version-placeholder-->
 
+## v0.22.2 (2023-10-10)
+
+### Fix
+
+* **lectures:** Add GitHub authentication section for Google Colaboratory ([`a26f050`](https://github.com/entelecheia/lecture/commit/a26f050abe2205d61529fc39c0cff3747acf5ab2))
+
 ## v0.22.1 (2023-09-25)
 
 ### Fix
