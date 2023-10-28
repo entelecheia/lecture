@@ -2,6 +2,11 @@
 
 AutoGen, developed by Microsoft in collaboration with Penn State University and University of Washington, is a framework designed for creating Large Language Model (LLM) applications through multi-agent conversations. It significantly simplifies the automation, orchestration, and optimization of complex LLM workflows, thus making the development of next-generation LLM applications more accessible. This framework provides a structured environment for agents to interact and solve tasks autonomously or with human intervention. The installation and utilization of AutoGen require a specific set of steps and understanding of its core components which include setting up a virtual environment, installing necessary dependencies, and executing multi-agent conversations. This tutorial aims to provide a comprehensive guide on setting up and using AutoGen for developing LLM applications.
 
+```{image} figs/autogen-agentchat.png
+:width: 80%
+:align: center
+```
+
 ## Installation
 
 - **Setting Up a Virtual Environment**:
