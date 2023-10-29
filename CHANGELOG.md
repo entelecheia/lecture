@@ -1,5 +1,21 @@
 <!--next-version-placeholder-->
 
+## v0.23.0 (2023-10-29)
+
+### Feature
+
+* **book:** Add 'agents' section to lectures ([`2c2825a`](https://github.com/entelecheia/lecture/commit/2c2825a94580dd6cd61fcaf464f19cb6f5043276))
+* **book:** Add Introduction to AI Agents topic ([`1d101c4`](https://github.com/entelecheia/lecture/commit/1d101c455e860c16c07f7bf91fd80307dfa74ac2))
+* **autogen.md:** Add new image ([`aeccf2d`](https://github.com/entelecheia/lecture/commit/aeccf2dda4dee9905abdcecb80b29443613f209f))
+* **autogen.md:** Add examples of AutoGen Functionality ([`daaeae8`](https://github.com/entelecheia/lecture/commit/daaeae811b87f3bd0e7ce28c34f33ab5346dcf9f))
+* **llms/agents:** Add distinctive features of AutoGen section ([`acbb07f`](https://github.com/entelecheia/lecture/commit/acbb07f25242f92e63b68b83e6fd626d23c649c4))
+* **book:** Add section on differentiators of LLM Agents and notable projects in autogen.md ([`5a2deb5`](https://github.com/entelecheia/lecture/commit/5a2deb595dd6f5b7b27e7457fd0f3a38e94f8359))
+* **book:** Update autogen.md ([`8ef1bb4`](https://github.com/entelecheia/lecture/commit/8ef1bb48d1bb1a10b00435b598a7a5ab5801d0d2))
+* **book/lectures:** Add image to autogen.md ([`20ba893`](https://github.com/entelecheia/lecture/commit/20ba893e4752a5eb6aea2c03fc403012ed1e04a3))
+* **book/lectures:** Add new agent chat figures ([`93ec83c`](https://github.com/entelecheia/lecture/commit/93ec83c81992ad4c34d32cce9b6d8c3396cce115))
+* **llms:** Add AutoGen framework guide in lectures ([`21ba8c1`](https://github.com/entelecheia/lecture/commit/21ba8c130508edac22b6849435dcebd75618cae4))
+* **book/lectures:** Add new llms/agents autogen.md file ([`bc422a9`](https://github.com/entelecheia/lecture/commit/bc422a9fc8024aad34770dfa373a63344b44fea1))
+
 ## v0.22.2 (2023-10-10)
 
 ### Fix
