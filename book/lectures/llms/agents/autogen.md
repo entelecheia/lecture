@@ -137,6 +137,11 @@ AutoGen’s design encapsulates a balanced blend of autonomy, human interaction,
 
 AutoGen, with its versatile capabilities, has been employed in diverse scenarios to facilitate multi-agent interaction, code generation, and human-AI collaboration. Below are categories of examples showcasing AutoGen's efficacy in orchestrating complex workflows:
 
+```{image} figs/autogen-apps.png
+:width: 80%
+:align: center
+```
+
 1. **Code Generation, Execution, and Debugging**:
    AutoGen streamlines the process of code generation and debugging through automated chats among agents. Here are some examples:
 
