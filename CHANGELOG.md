@@ -1,5 +1,11 @@
 <!--next-version-placeholder-->
 
+## v0.24.1 (2023-10-29)
+
+### Fix
+
+* **autoscraper:** Correct typo in heading ([`af3d5d4`](https://github.com/entelecheia/lecture/commit/af3d5d43f71f6da7eca0af85d904d99e044459c9))
+
 ## v0.24.0 (2023-10-29)
 
 ### Feature
