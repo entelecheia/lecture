@@ -132,3 +132,42 @@ AutoGen manifests a set of compelling features that differentiate it from other 
    The introduction of the **UserProxyAgent** is a significant feature of AutoGen. This AI assistant operates on behalf of humans, acting as a proxy. Users have the discretion to determine the **"trust level"** accorded to this AI partner, thereby establishing a balanced autonomy that aligns with the user's comfort and project requirements.
 
 AutoGen’s design encapsulates a balanced blend of autonomy, human interaction, and collaborative AI, paving the way for more intricate and result-oriented AI-driven projects. Through these features, AutoGen emerges as a flexible and interactive platform, promoting enhanced outcomes through human-AI and AI-AI collaborations.
+
+## Illustrative Examples of AutoGen Functionality
+
+AutoGen, with its versatile capabilities, has been employed in diverse scenarios to facilitate multi-agent interaction, code generation, and human-AI collaboration. Below are categories of examples showcasing AutoGen's efficacy in orchestrating complex workflows:
+
+1. **Code Generation, Execution, and Debugging**:
+   AutoGen streamlines the process of code generation and debugging through automated chats among agents. Here are some examples:
+
+   - **Automated Task Solving** with Code Generation, Execution & Debugging.
+   - **Auto Code Generation**, Execution, Debugging and Human Feedback.
+   - **Automated Code Generation and Question Answering** with Retrieval Augmented Agents.
+
+2. **Multi-Agent Collaboration ( > 3 Agents)**:
+   Engaging multiple agents in a collaborative environment elevates the problem-solving capability. These examples depict such collaborative efforts:
+
+   - **Automated Task Solving** with GPT-4 + Multiple Human Users.
+   - **Automated Task Solving by Group Chat** (with 3 group member agents and 1 manager agent).
+   - **Automated Data Visualization by Group Chat** (with 3 group member agents and 1 manager agent).
+
+3. **Applications**:
+   Beyond code generation and multi-agent interaction, AutoGen finds applicability in various domains as shown below:
+
+   - **Automated Chess Game Playing & Chitchatting** by GPT-4 Agents.
+   - **Automated Continual Learning** from New Data.
+   - **OptiGuide** - Large Language Models for Supply Chain Optimization.
+
+4. **Tool Use**:
+   AutoGen facilitates the use of external tools to enhance the problem-solving capabilities of AI agents. Examples include:
+
+   - **Web Search**: Solve Tasks Requiring Web Info.
+   - **Use Provided Tools as Functions**.
+   - **Task Solving with Langchain Provided Tools as Functions**.
+
+5. **Agent Teaching and Learning**:
+   AutoGen supports the training and education of agents to acquire new skills and knowledge, demonstrated in the following examples:
+   - **Teach Agents New Skills & Reuse** via Automated Chat.
+   - **Teach Agents New Facts, User Preferences and Skills Beyond Coding**.
+
+These examples underscore AutoGen's breadth in facilitating complex, multi-agent interactions and its adaptability in handling varied tasks and workflows, which can be explored in greater detail through the [provided notebooks](https://microsoft.github.io/autogen/docs/Examples/AutoGen-AgentChat).
