@@ -41,6 +41,6 @@ The task involves creating a Python script to scrape the titles and URLs of spee
 
 This structured breakdown will serve as a clear guide for the AutoGen agent to understand and execute the web scraping task proficiently, adhering to the specified criteria and output requirements.
 
-## Exaample Python Code for AutoGen Agent
+## Example Python Code for AutoGen Agent
 
 You can check the example code at `examples/autogen/autoscraper.py` from the [course repo](https://github.com/chu-aie/deepnlp-2023) for the AutoGen agent to scrape the Central Bankers' Speeches web pages.
