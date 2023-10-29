@@ -1,5 +1,11 @@
 <!--next-version-placeholder-->
 
+## v0.24.0 (2023-10-29)
+
+### Feature
+
+* **llms/agents:** Add autoscraper markdown documentation ([`b9c7df2`](https://github.com/entelecheia/lecture/commit/b9c7df2cd56829288747f346a637b6cc2b6c5f71))
+
 ## v0.23.0 (2023-10-29)
 
 ### Feature
