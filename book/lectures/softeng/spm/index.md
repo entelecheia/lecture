@@ -249,6 +249,11 @@ The **Spiral Model** is a sophisticated software development model that merges t
 
 ### Spiral vs Waterfall vs Iterative Model
 
+```{image} figs/spiral_vs_waterfall_vs_iterative.png
+:width: 70%
+:align: center
+```
+
 Comparing the **Spiral**, **Waterfall**, and **Iterative** models reveals distinct differences:
 
 - **Waterfall Model**:
