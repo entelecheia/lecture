@@ -65,10 +65,71 @@ Software process descriptions elucidate the framework within which software deve
 
 ### Plan-Driven vs Agile Processes
 
-In the software development realm, **Plan-Driven** processes and **Agile** processes represent two fundamentally different approaches to software creation. Plan-Driven processes are characterized by their reliance on **comprehensive documentation** and **upfront planning**. They follow a **sequential design process**, often exemplified by models like the Waterfall model. The primary goal is to define all the requirements and design solutions before any coding starts, emphasizing **predictability** and **control**.
+In software development, **Plan-Driven** and **Agile** processes represent distinct approaches:
 
-Conversely, **Agile** processes are more **iterative** and **incremental**. They prioritize **working software** and **customer collaboration** over comprehensive documentation. Agile methods, such as Scrum or Kanban, focus on adaptability, with **short development cycles** (sprints) and **regular reassessment** of project priorities. This flexibility allows teams to better manage changing requirements and to produce increments of the product frequently, enhancing **responsiveness** to customer feedback.
+- **Plan-Driven Processes**:
+
+  - Emphasize **upfront planning** and **design**.
+  - Involve **detailed documentation**.
+  - Focus on **predictability** and **control**.
+  - **Sequential execution** of phases.
+  - Suited for environments where requirements are **well-understood** and changes are **minimal**.
+
+- **Agile Processes**:
+  - Prioritize **flexibility** and **customer feedback**.
+  - **Iterative** and **incremental development**.
+  - **Minimal upfront planning**, with more focus on **adaptive changes**.
+  - **Continuous delivery** of functional software.
+  - Best in dynamic environments with **evolving requirements**.
+
+The choice between Plan-Driven and Agile depends on project requirements, customer needs, and the **volatility** of the project environment.
 
 ## Software Process Models
 
-Software Process Models are the **scaffolding** used in planning, structuring, and controlling the process of developing information systems. These models serve as **blueprints** that describe the **sequence of phases** and **activities** involved in the creation of a software product. They are essential in ensuring that the software development process is **repeatable** and **consistent**, which is crucial for managing **complexity**, **cost**, **quality**, and **timing**. Models like the **Waterfall**, **Spiral**, **V-Model**, and **Incremental** represent various approaches, each with its own set of principles and practices designed to suit different project requirements and risk profiles.
+Software process models are fundamental frameworks that outline the **strategy for developing software**. Key aspects include:
+
+- **Structure**: They provide a structured sequence of stages in software development.
+- **Guidance**: Models guide teams on what to do next during the software lifecycle.
+- **Predictability**: They offer a degree of predictability in software development.
+- **Efficiency**: Aimed at improving the efficiency of the development process.
+
+Examples of such models include:
+
+- **Waterfall Model**: Emphasizes linear progression through phases such as requirements, design, implementation, verification, and maintenance.
+- **Agile Model**: Focuses on iterative development and customer collaboration.
+- **Spiral Model**: Combines iterative development with systematic aspects of the waterfall model, adding risk analysis.
+- **V-Model**: Stresses on verification and validation early in the development cycle.
+- **Incremental Model**: Allows partial implementation of the software and gradually adds functionality in increments.
+
+Understanding these models is crucial as they significantly influence the organization, management, and success of software development projects.
+
+## The Waterfall Model
+
+The Waterfall Model is one of the earliest software process models, structured in a **linear sequential flow**. This means that any phase in the development process begins only after the previous phase is complete. The model's phases include **Requirements Analysis**, **System Design**, **Implementation**, **Integration and Testing**, **Deployment**, and **Maintenance**. Its disciplined approach is advantageous for projects with well-understood requirements. However, its **rigid structure** can be a drawback, as it does not accommodate changing requirements well after the project has commenced, making it less flexible than Agile models.
+
+```{image} figs/waterfall_model.png
+:width: 60%
+:align: center
+```
+
+### Waterfall Model Phases
+
+The Waterfall Model is composed of distinct, consecutive phases:
+
+1. **Requirements Analysis**: This is where all possible **requirements** of the system to be developed are captured in detail.
+2. **System Design**: In this phase, the system's **architecture and design** are defined and documented.
+3. **Implementation**: The actual **coding** of the software takes place during this phase.
+4. **Integration and Testing**: After coding, the system is put together as a whole and **tested** for any defects.
+5. **Deployment**: Once testing is complete, the system is **deployed** to the user environment.
+6. **Maintenance**: This final phase involves **ongoing support** and **product enhancements** after deployment.
+
+### Waterfall Model Drawbacks
+
+The Waterfall Model's main disadvantages include:
+
+- **Inflexible Partitioning**: It enforces a strict phase-by-phase progression that **limits responsiveness** to evolving customer requirements.
+- **Applicability**: Due to its rigid structure, it is best suited for projects with **well-defined** and stable requirements, as it poorly accommodates changes during the design process.
+
+- **Changing Requirements**: It is less effective for business systems where requirements are unlikely to remain stable.
+
+- **Large Systems Engineering Projects**: The Waterfall Model is more commonly applied in large projects spread across several sites where its **plan-driven nature** aids in coordination.
