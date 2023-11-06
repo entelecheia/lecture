@@ -1,5 +1,19 @@
 <!--next-version-placeholder-->
 
+## v0.25.0 (2023-11-06)
+
+### Feature
+
+* **lectures:** Add spiral vs waterfall vs iterative comparison image ([`7728df3`](https://github.com/entelecheia/lecture/commit/7728df39eef79287294658ddadefee0549e1f151))
+* **lectures:** Add content about Spiral Model to Software Project Management index ([`5e54968`](https://github.com/entelecheia/lecture/commit/5e54968d02d98218958d9e40bfee832190e44eab))
+* **lectures/softeng/spm:** Add Iterative Model section ([`6e83d26`](https://github.com/entelecheia/lecture/commit/6e83d268b501b09040674af747503cade3e5e3a3))
+* **lectures/softeng/spm:** Add V-model details ([`361a72b`](https://github.com/entelecheia/lecture/commit/361a72b50f0b0b31beba9b139be66e7055f00a65))
+* **book:** Add software project management lecture index ([`be2936f`](https://github.com/entelecheia/lecture/commit/be2936fd405e4b367069cd941f7c0b5102e923f4))
+* **softeng/spm:** Add increment model section ([`bef75d2`](https://github.com/entelecheia/lecture/commit/bef75d253ec4c635748aaac053a526ed011638d7))
+* **lectures:** Add waterfall_model.png image ([`e616110`](https://github.com/entelecheia/lecture/commit/e616110c19fd050433a97b7f646ca21fe88ad1d0))
+* **book:** Add new figures to software engineering section ([`d4dfe39`](https://github.com/entelecheia/lecture/commit/d4dfe395c9bd85a4fb04bbb8fb44962975de2418))
+* **lectures/softeng/spm:** Add new content about software process models ([`303c10d`](https://github.com/entelecheia/lecture/commit/303c10d3e476ebeb6d30032d81621f881438e609))
+
 ## v0.24.1 (2023-10-29)
 
 ### Fix
