@@ -7,6 +7,7 @@
 - Waterfall model
 - V-model
 - Incremental model
+- Iterative model
 - Spiral model
 
 ## Objectives
@@ -205,3 +206,33 @@ Incremental Development, while beneficial, also presents certain challenges:
 - **Documentation Overhead**: Rapid development can render it cost-ineffective to produce detailed documentation for every increment.
 - **Structural Degradation**: As new increments are added, the system's structure may degrade.
 - **Refactoring Necessity**: Without investing in refactoring, the software's architecture may become convoluted, making further changes difficult and expensive.
+
+## Iterative Model
+
+The **Iterative model** is a cyclical software development process where iterations of the software are successively refined and expanded upon until the full system is developed:
+
+- **Initial Version Development**: Starts with the development of a limited version of the software, which is then gradually improved through several iterations.
+- **Feedback Incorporation**: Each iteration is based on feedback from the previous version, allowing for continuous refinement.
+- **Progressive Refinement**: Features are designed, developed, and tested incrementally over multiple cycles, with each iteration building upon the previous one.
+- **Risk Management**: Early iterations expose potential risks and enable proactive resolution before they become larger issues.
+- **Adaptability**: The model is adaptable to changes because it allows for modifications as requirements evolve or new information emerges.
+
+### Iterative Model Benefits
+
+The **Iterative Model** offers significant advantages in software development:
+
+- **Early Release of Partial Systems**: Provides early partial releases of the system, which can be a strategic advantage.
+- **Flexible Design Changes**: Enables incorporation of **change requests** and **design alterations** during the development process.
+- **Risk Reduction**: Helps in **identifying risks** early on by evolving requirements and user feedback.
+- **Customer Satisfaction**: Regular iterations and visible progress increase customer engagement and satisfaction.
+- **Testing and Debugging**: Makes **testing and debugging** during smaller iterations easier, as opposed to handling the entire system at once.
+
+### Iterative Model Problems
+
+While the **Iterative Model** has distinct advantages, it also presents several challenges:
+
+- **Resource Intensiveness**: Each iteration requires its own phase of **testing and debugging**, which can be resource-intensive.
+- **Project Management Complexity**: Managing the iterations can become complex, requiring meticulous **tracking and control**.
+- **Change Management**: Frequent changes can lead to **scope creep** if not managed carefully.
+- **System Architecture Rigidity**: Initial architecture may become a constraint in future iterations, potentially leading to significant **refactoring costs**.
+- **Iterative Overhead**: There can be significant overhead from **repeatedly iterating** through the process, particularly if increments are not well defined.
