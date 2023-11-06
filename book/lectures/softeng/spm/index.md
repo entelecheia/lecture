@@ -165,3 +165,43 @@ Incremental Development, while beneficial, also presents certain challenges:
 - **Documentation Overhead**: Rapid development can render it cost-ineffective to produce detailed documentation for every increment.
 - **Structural Degradation**: As new increments are added, the system's structure may degrade.
 - **Refactoring Necessity**: Without investing in refactoring, the software's architecture may become convoluted, making further changes difficult and expensive.
+
+## V-model
+
+The **V-model**, also known as the **Verification and Validation model**, is a strict, sequential development process often used in software development. This model emphasizes the parallel nature of development and testing. The key stages in the V-model include:
+
+- **Requirements Analysis**
+- **System Design**
+- **Architecture Design**
+- **Module Design**
+
+On the other side of the "V," corresponding testing phases are aligned with each development stage:
+
+- **Unit Testing**
+- **Integration Testing**
+- **System Testing**
+- **Acceptance Testing**
+
+The V-model is particularly useful for projects where requirements are clearly defined and unlikely to change.
+
+### V-model Benefits
+
+The **V-model** offers distinct advantages:
+
+- **Systematic Approach**: It provides a highly disciplined approach where each phase has specific deliverables and a review process.
+- **Early Planning**: All test planning and design work is done early in the life cycle, which helps in understanding the risks at the beginning.
+- **Early Error Detection**: By integrating testing into early development stages, errors can be detected early, reducing the cost of fixing them.
+- **Rigorous Structure**: Its structured approach ensures high-quality output, with clear milestones and deliverables.
+- **Clarity in Design**: Correspondence between development and testing stages leads to a greater focus on meeting original design requirements.
+- **Disciplined Approach**: The V-model enforces discipline in development, as each phase must be completed before the next begins, ensuring thoroughness.
+- **Parallel Processes**: Development and testing activities are parallel, allowing for simultaneous progress in both areas.
+- **Quality Assurance**: With its emphasis on corresponding testing phases for each development stage, the model inherently stresses on quality, making sure that no phase is closed without verifying its corresponding development stage.
+
+### V-model Problems
+
+The **V-model** has several limitations:
+
+- **Inflexibility to Change**: It is not well-suited for projects where requirements are likely to evolve, as any change requires revisiting and revising earlier stages.
+- **Costly Changes**: Modifications in the late stages of development can be very expensive and time-consuming due to the rigid structure of the model.
+- **Assumption of Requirement Stability**: The model operates under the assumption that requirements can be accurately defined at the beginning, which is not always possible.
+- **Delayed Testing Cycle**: Testing is delayed until after the completion of the development cycle, potentially leading to a backlog of unresolved issues late in the project.
