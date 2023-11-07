@@ -34,11 +34,6 @@ Applying this back to machine learning, fine-tuning a pre-trained model—like o
 
 ## Different LLM Fine-Tuning Techniques
 
-```{image} figs/fine-tuning-techniques.png
-:width: 60%
-:align: center
-```
-
 When it comes to fine-tuning **Large Language Models (LLMs)**, the approach must be tailored to the specific end-use. Fine-tuning is not a one-size-fits-all solution; it ranges from minor architectural adjustments to significant retraining of the model.
 
 For instance, if we possess a pre-trained LLM designed for text generation, but we wish to pivot its functionality to **sentiment or topic classification**, a **repurposing** of the model is required. This involves a slight modification to the model's architecture, particularly the way its embeddings are utilized. **Embeddings**—numerical vectors representing input features—are key to this process. Some LLMs, such as those in the GPT family, use these embeddings to generate subsequent tokens in text generation tasks. In repurposing for classification, these embeddings are instead routed to a **classification model**—usually a series of fully connected layers that translate the embedding vectors into class probabilities.
@@ -51,3 +46,39 @@ Alternatively, there are scenarios where a more thorough fine-tuning is necessar
 - **Embeddings** are re-routed to a new classifier model, while the transformer's attention layers are typically **frozen**.
 - **Computational efficiency** is gained by not updating the entire model, just the classifier using a **supervised dataset**.
 - **Full fine-tuning** may be necessary for more complex tasks, requiring **unfreezing** and updating the entire model's parameters, which is more **computationally expensive**.
+
+## Self-Supervised Learning vs Supervised Fine-Tuning
+
+When updating an LLM’s knowledge base to encompass new domains, such as **medical literature** or **new languages**, the use of unstructured datasets is a common approach. Unstructured datasets—often comprising **articles and scientific papers**—allow the model to assimilate a wealth of domain-specific information through **self-supervised learning**. This form of training utilizes the raw text to adjust the model's parameters without explicit labeling, effectively learning from context and content.
+
+**Self-supervised learning** stands out for its scalability. Since it does not rely on labeled data, it can leverage vast amounts of information, mirroring the initial training phase of many **foundation models**. For organizations with extensive in-house databases, this approach can be particularly effective, as they can draw upon existing knowledge bases for model training.
+
+However, there are instances where merely updating the model’s knowledge is insufficient. When the objective is to alter the **behavior** of the LLM, such as ensuring it follows instructions or maintains context over long conversations, **Supervised Fine-Tuning (SFT)** becomes essential. SFT involves training the model on a dataset of **prompts and corresponding responses**, requiring manual curation or generation via other models. This method is crucial for models like **ChatGPT**, designed to adhere to user instructions and engage in extended dialogues.
+
+Instruction fine-tuning is a more specialized form of SFT where the model is trained to understand and execute specific commands or tasks. It's a targeted approach that aligns the model's outputs with expected behaviors and outcomes, particularly useful for interactive applications where user engagement is key.
+
+- **Self-supervised learning** updates an LLM’s knowledge using **unstructured datasets**, ideal for domain adaptation.
+- It leverages **contextual learning** from large volumes of text, making it highly **scalable**.
+- **Supervised Fine-Tuning (SFT)** is necessary to modify an LLM's behavior, using **prompt-response pairs**.
+- **Instruction fine-tuning** is a specialized SFT that trains LLMs to follow complex instructions, critical for models like **ChatGPT**.
+
+## Reinforcement Learning from Human Feedback (RLHF)
+
+```{image} figs/RLHF.png
+:width: 90%
+:align: center
+```
+
+**Reinforcement Learning from Human Feedback (RLHF)** represents the cutting edge in the fine-tuning of LLMs, where human judgment plays a critical role in model refinement. This approach transcends traditional fine-tuning methods by incorporating human preferences into the learning loop, enabling the model to produce outputs that align more closely with user expectations and values.
+
+The process of RLHF is intricate, involving several stages and the collaboration of human reviewers. Initially, an LLM such as GPT is fine-tuned using **Supervised Fine-Tuning (SFT)** on carefully crafted prompts and responses to guide the model towards the desired output. Upon this foundation, RLHF introduces **human reviewers** who evaluate the model's responses to a variety of prompts, grading them according to relevance, coherence, and appropriateness.
+
+These human evaluations are then used to construct a **reward model**—an auxiliary model that aims to predict human preferences based on the ratings given to the LLM’s outputs. The language model enters a **deep reinforcement learning (RL) loop**, where it generates responses, the reward model assesses them, and the language model adapts its parameters to maximize the 'reward' or positive feedback it receives from the reward model.
+
+One of the most prominent applications of RLHF is in the development of **ChatGPT** by OpenAI, where it underwent fine-tuning in alignment with the principles outlined in the InstructGPT paper. Through this process, ChatGPT was tailored to generate responses that not only maintain coherence but also adhere to the instructions and intent of the user, embodying a significant leap towards AI that can interact more naturally and effectively with human users.
+
+- **RLHF** involves human reviewers to fine-tune LLMs beyond standard SFT, aligning outputs with human preferences.
+- Begins with **SFT** on crafted prompts and responses to direct initial model behavior.
+- Utilizes **human reviewers** to rate model outputs, integrating human judgment into the training process.
+- Develops a **reward model** to emulate human ratings and guide the LLM towards producing higher-rated responses.
+- Engages in a **reinforcement learning loop** where the LLM is iteratively adjusted to maximize the reward, exemplified by the development of **ChatGPT**.
