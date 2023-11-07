@@ -1,5 +1,18 @@
 <!--next-version-placeholder-->
 
+## v0.26.0 (2023-11-07)
+
+### Feature
+
+* **autotrain.md:** Enhance documentation with details on fine-tuning LLMs using AutoTrain ([`ac2bbd9`](https://github.com/entelecheia/lecture/commit/ac2bbd9c1e1eeca5ec8abf2a2b96c7c4a7caa384))
+* **book:** Add new finetune section in llms lectures ([`0154a68`](https://github.com/entelecheia/lecture/commit/0154a686111edc35f0b8f963e3ad17139b38717b))
+* **lectures:** Add fine-tuning llms guide ([`59382ff`](https://github.com/entelecheia/lecture/commit/59382ff569f0e3eaf6b3e46270b5f1a90d5b23b6))
+* **llms:** Add conclusion section to finetune index ([`9714419`](https://github.com/entelecheia/lecture/commit/971441901f4dfdf09173f192877a50c7bb7aa37e))
+* **llms/finetune:** Add new sections ([`3cc1bb2`](https://github.com/entelecheia/lecture/commit/3cc1bb2fb7c855782e32fe4c941ea9c6fa945bac))
+* **llms/finetune:** Add sections on Self-Supervised learning vs Supervised Fine-tuning and Reinforcement Learning from Human Feedback ([`7f218cb`](https://github.com/entelecheia/lecture/commit/7f218cbb50e81f706eb9b96c5e2f3c64395a9eed))
+* **llms/finetune:** Add new fine-tuning.png image ([`f751ac2`](https://github.com/entelecheia/lecture/commit/f751ac2b429f176638568515ac902b12aba03461))
+* **finetune:** Add new content for large language models fine-tuning ([`1d9e397`](https://github.com/entelecheia/lecture/commit/1d9e397aa189bfcb2e2ee9d3b604cc3560e74ac2))
+
 ## v0.25.0 (2023-11-06)
 
 ### Feature
