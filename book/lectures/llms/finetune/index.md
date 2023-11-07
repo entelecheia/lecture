@@ -111,3 +111,9 @@ These methods enable a more agile and immediate adaptation of LLMs to new conten
 - **In-context learning** and **retrieval augmentation** emerge as practical solutions when conventional fine-tuning is not feasible.
 - These strategies ensure that LLMs maintain their utility and performance in **data-constrained** or **highly dynamic** application scenarios.
 - The choice of fine-tuning method depends on the balance between the **desired model behavior**, **resource availability**, and **application requirements**.
+
+## Next Contents
+
+```{tableofcontents}
+
+```
