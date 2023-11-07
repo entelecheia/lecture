@@ -34,6 +34,11 @@ Applying this back to machine learning, fine-tuning a pre-trained model—like o
 
 ## Different LLM Fine-Tuning Techniques
 
+```{image} figs/fine-tuning-techniques.png
+:width: 60%
+:align: center
+```
+
 When it comes to fine-tuning **Large Language Models (LLMs)**, the approach must be tailored to the specific end-use. Fine-tuning is not a one-size-fits-all solution; it ranges from minor architectural adjustments to significant retraining of the model.
 
 For instance, if we possess a pre-trained LLM designed for text generation, but we wish to pivot its functionality to **sentiment or topic classification**, a **repurposing** of the model is required. This involves a slight modification to the model's architecture, particularly the way its embeddings are utilized. **Embeddings**—numerical vectors representing input features—are key to this process. Some LLMs, such as those in the GPT family, use these embeddings to generate subsequent tokens in text generation tasks. In repurposing for classification, these embeddings are instead routed to a **classification model**—usually a series of fully connected layers that translate the embedding vectors into class probabilities.
@@ -82,3 +87,16 @@ One of the most prominent applications of RLHF is in the development of **ChatGP
 - Utilizes **human reviewers** to rate model outputs, integrating human judgment into the training process.
 - Develops a **reward model** to emulate human ratings and guide the LLM towards producing higher-rated responses.
 - Engages in a **reinforcement learning loop** where the LLM is iteratively adjusted to maximize the reward, exemplified by the development of **ChatGPT**.
+
+## Other Approaches to Enhancing LLM Performance
+
+When **fine-tuning** is not viable or advantageous for a **Large Language Model (LLM)**, alternative strategies like **in-context learning** and **retrieval augmentation** come into play. These methods provide flexibility and can significantly improve the model's performance, particularly in dynamic or data-constrained environments.
+
+In-context learning leverages the LLM's ability to utilize the context provided during inference to generate appropriate responses. This is especially useful when models are accessed through **APIs with limited fine-tuning capabilities**, or when there is insufficient data to fine-tune effectively. Additionally, in highly dynamic domains such as news, where data changes daily, frequent retraining is impractical. In-context learning can adapt to new information with each query, bypassing the need for constant fine-tuning.
+
+Retrieval augmentation, on the other hand, involves enriching the prompt with relevant information retrieved in real-time. This approach can be particularly beneficial in applications where the context is continuously evolving or highly personalized, such as in the creation of a chatbot that tailors its interactions to individual users. A practical implementation of this approach could involve the creation of a **vector database** that stores embeddings of company documents. When a user query is received, the database retrieves the most relevant documents, and their content is used to condition the LLM's response, ensuring that the model's output is informed and specific to the user's needs.
+
+- **In-context learning** allows LLMs to generate relevant responses based on the context provided during inference, useful when fine-tuning is not an option.
+- **Retrieval augmentation** enhances prompts with real-time information from relevant documents, ideal for dynamic and context-sensitive applications.
+- A **vector database** of document embeddings can be used to retrieve and provide contextual information to the model, streamlining the retrieval augmentation process.
+- These approaches enable LLMs to remain effective in environments where **data is scarce, frequently changing, or highly personalized**.
