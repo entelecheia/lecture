@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Fine-Tuning LLMs Using Hugging Face AutoTrain &#8212; ἐντελέχεια.άι</title>
+    <title>Fine-Tuning LLMs with Hugging Face AutoTrain &#8212; ἐντελέχεια.άι</title>
   
   
   
@@ -467,7 +467,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">LLM Fine-tuning</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-42" name="toctree-checkbox-42" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-42"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">Fine-Tuning LLMs Using Hugging Face AutoTrain</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Fine-Tuning LLMs with Hugging Face AutoTrain</a></li>
 </ul>
 </li>
 </ul>
@@ -616,7 +616,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Fine-Tuning LLMs Using Hugging Face AutoTrain</h1>
+    <h1>Fine-Tuning LLMs with Hugging Face AutoTrain</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -626,13 +626,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-prepare-your-dataset">Step 1: Prepare Your Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-select-the-pre-trained-model">Step 2: Select the Pre-Trained Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-fine-tune-with-autotrain">Step 3: Fine-Tune with AutoTrain</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-regularization-and-learning-rates">Step 4: Regularization and Learning Rates</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-training-and-epochs">Step 5: Training and Epochs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-computational-costs-and-ethics">Step 6: Computational Costs and Ethics</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-evaluation-and-deployment">Step 7: Evaluation and Deployment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-benefits-of-fine-tuning-llms">Key Benefits of Fine-Tuning LLMs:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-with-autotrain">Getting Started with AutoTrain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-lab-fine-tuning-falcon-7b-on-openassistant">Step-by-Step Lab: Fine-Tuning Falcon-7B on OpenAssistant</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-install-necessary-libraries-and-set-up-autotrain">Step 1: Install Necessary Libraries and Set Up AutoTrain</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-prepare-dataset-and-define-task">Step 2: Prepare Dataset and Define Task</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-prepare-your-dataset">Step 3: Prepare Your Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-training-with-autotrain">Step 4: Training with AutoTrain</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-evaluation-and-deployment">Step 5: Evaluation and Deployment</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-and-considerations">Conclusion and Considerations</a></li>
 </ul>
             </nav>
         </div>
@@ -644,64 +648,106 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="fine-tuning-llms-using-hugging-face-autotrain">
-<h1>Fine-Tuning LLMs Using Hugging Face AutoTrain<a class="headerlink" href="#fine-tuning-llms-using-hugging-face-autotrain" title="Permalink to this heading">#</a></h1>
-<p>Fine-tuning <strong>Large Language Models (LLMs)</strong> is a critical step in adapting these models to specific domains and use cases. <a class="reference external" href="https://huggingface.co/docs/autotrain/v0.6.10/index">Hugging Face’s <strong>AutoTrain</strong></a> provides a streamlined, no-code platform that can assist even those without deep technical expertise in the fine-tuning process.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="fine-tuning-llms-with-hugging-face-autotrain">
+<h1>Fine-Tuning LLMs with Hugging Face AutoTrain<a class="headerlink" href="#fine-tuning-llms-with-hugging-face-autotrain" title="Permalink to this heading">#</a></h1>
+<p>Fine-tuning <strong>Large Language Models (LLMs)</strong> like GPT-3 or BERT is a process that tailors these general-purpose models to specialized tasks or domains. Through fine-tuning, we can leverage a model’s learned capabilities and adapt them to perform new tasks or understand new types of data. This customization is particularly valuable in sectors where the context is crucial, such as legal, medical, or customer support.</p>
+<p>Hugging Face’s <strong>AutoTrain</strong> platform emerges as a solution for those who may not be deeply familiar with machine learning workflows. It offers an intuitive, no-code interface and a Python API, making it accessible for users to fine-tune models without extensive coding or machine learning expertise.</p>
+<section id="key-benefits-of-fine-tuning-llms">
+<h2>Key Benefits of Fine-Tuning LLMs:<a class="headerlink" href="#key-benefits-of-fine-tuning-llms" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p><strong>Prepare</strong> a high-quality, task-representative dataset for effective fine-tuning.</p></li>
-<li><p><strong>Select</strong> an appropriate pre-trained model from Hugging Face’s model library.</p></li>
-<li><p>Utilize <strong>AutoTrain</strong> for a guided, no-code fine-tuning process, adjusting parameters as necessary.</p></li>
-<li><p>Apply <strong>regularization</strong> and <strong>optimize learning rates</strong> to prevent overfitting and improve learning efficacy.</p></li>
-<li><p><strong>Monitor</strong> training epochs and costs, keeping training efficient and within budget.</p></li>
-<li><p><strong>Evaluate</strong> the fine-tuned model’s performance and deploy responsibly, adhering to <strong>ethical standards</strong>.</p></li>
-</ul>
-<section id="step-1-prepare-your-dataset">
-<h2>Step 1: Prepare Your Dataset<a class="headerlink" href="#step-1-prepare-your-dataset" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Start by gathering your dataset. Ensure it is clean, diverse, and representative of the tasks you want the LLM to perform. The quality of your dataset is crucial as it directly impacts the model’s performance.</p></li>
+<li><p><strong>Customization:</strong> Tailor models to understand the nuances of specific domains or tasks.</p></li>
+<li><p><strong>Accuracy:</strong> Improve the model’s predictions or generation quality for your particular use case.</p></li>
+<li><p><strong>Data Privacy:</strong> Ensure sensitive information remains private by training on your own datasets.</p></li>
+<li><p><strong>Bias Control:</strong> Reduce model bias by fine-tuning with balanced and diverse datasets.</p></li>
 </ul>
 </section>
-<section id="step-2-select-the-pre-trained-model">
-<h2>Step 2: Select the Pre-Trained Model<a class="headerlink" href="#step-2-select-the-pre-trained-model" title="Permalink to this heading">#</a></h2>
+<section id="getting-started-with-autotrain">
+<h2>Getting Started with AutoTrain<a class="headerlink" href="#getting-started-with-autotrain" title="Permalink to this heading">#</a></h2>
+<p>Before initiating the fine-tuning process, it’s important to have:</p>
 <ul class="simple">
-<li><p>Choose a pre-trained model from Hugging Face’s vast library that aligns closely with your use case. Understanding the strengths and weaknesses of the model will guide effective fine-tuning.</p></li>
+<li><p>A <strong>high-quality dataset</strong> that is representative of the task at hand.</p></li>
+<li><p>An <strong>appropriate pre-trained model</strong> from Hugging Face’s expansive model library.</p></li>
+<li><p>An understanding of the <strong>fine-tuning parameters</strong> like learning rates and batch sizes.</p></li>
 </ul>
+<p>With these elements in place, you can proceed with the fine-tuning process using AutoTrain.</p>
 </section>
-<section id="step-3-fine-tune-with-autotrain">
-<h2>Step 3: Fine-Tune with AutoTrain<a class="headerlink" href="#step-3-fine-tune-with-autotrain" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Navigate to Hugging Face’s AutoTrain platform and upload your dataset.</p></li>
-<li><p>Specify your task type (e.g., text classification, sentiment analysis) and select the pre-trained model you’ve chosen.</p></li>
-<li><p>AutoTrain will suggest a range of parameters, including learning rates and regularization techniques. You can start with these defaults or adjust them based on your preferences.</p></li>
-</ul>
+<section id="step-by-step-lab-fine-tuning-falcon-7b-on-openassistant">
+<h2>Step-by-Step Lab: Fine-Tuning Falcon-7B on OpenAssistant<a class="headerlink" href="#step-by-step-lab-fine-tuning-falcon-7b-on-openassistant" title="Permalink to this heading">#</a></h2>
+<p>In this lab, we will fine-tune the <a class="reference external" href="https://huggingface.co/tiiuae/falcon-7b"><strong>Falcon-7B</strong></a> model using the <a class="reference external" href="https://huggingface.co/datasets/timdettmers/openassistant-guanaco"><strong>OpenAssistant</strong></a> dataset. The Falcon-7B model, a 7-billion-parameter LLM, is a powerful foundation model trained on a diverse corpus of text from the web (OpenWebText2).</p>
+<section id="step-1-install-necessary-libraries-and-set-up-autotrain">
+<h3>Step 1: Install Necessary Libraries and Set Up AutoTrain<a class="headerlink" href="#step-1-install-necessary-libraries-and-set-up-autotrain" title="Permalink to this heading">#</a></h3>
+<p>To begin fine-tuning with AutoTrain’s Python API, you must set up your Python environment. This involves installing the AutoTrain and Transformers libraries, along with other necessary dependencies, which might include PyTorch specific to your hardware capabilities (e.g., CUDA version for GPU support).</p>
+<p>The command provided installs the required packages as specified in a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file. This file should list all the necessary libraries, ensuring that your environment is correctly configured for the tasks ahead.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt<span class="w"> </span>--extra-index-url<span class="w"> </span>https://download.pytorch.org/whl/cu118
+</pre></div>
+</div>
+<p>After installation, running <code class="docutils literal notranslate"><span class="pre">autotrain</span> <span class="pre">setup</span></code> initializes the AutoTrain environment, which involves setting up authentication with Hugging Face and configuring your workspace.</p>
+<div class="highlight-base notranslate"><div class="highlight"><pre><span></span>autotrain setup
+</pre></div>
+</div>
 </section>
-<section id="step-4-regularization-and-learning-rates">
-<h2>Step 4: Regularization and Learning Rates<a class="headerlink" href="#step-4-regularization-and-learning-rates" title="Permalink to this heading">#</a></h2>
+<section id="step-2-prepare-dataset-and-define-task">
+<h3>Step 2: Prepare Dataset and Define Task<a class="headerlink" href="#step-2-prepare-dataset-and-define-task" title="Permalink to this heading">#</a></h3>
+<p>Setting up the environment involves creating a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file (e.g., <code class="docutils literal notranslate"><span class="pre">falcon.env</span></code>) that contains all the necessary variables for the fine-tuning process. This configuration includes the model details, dataset information, learning parameters, and other training options.</p>
+<p>Key aspects to define in this step:</p>
 <ul class="simple">
-<li><p>Apply regularization techniques as suggested by AutoTrain to prevent overfitting.</p></li>
-<li><p>Experiment with learning rates, starting from a smaller value and increasing as needed.</p></li>
+<li><p><strong>Model and Dataset</strong>: Specify the model you’re fine-tuning and the dataset you’re using. For instance, “tiiuae/falcon-7b” is the model and “timdettmers/openassistant-guanaco” is the dataset path.</p></li>
+<li><p><strong>Hyperparameters</strong>: Define learning rate, epochs, batch size, and other hyperparameters that control the fine-tuning process. These need to be chosen carefully to balance the trade-off between model accuracy and overfitting.</p></li>
+<li><p><strong>Training Configuration</strong>: Advanced parameters like warmup ratio, weight decay, and gradient accumulation steps can fine-tune the training procedure to optimize model performance.</p></li>
 </ul>
+<p>or example, <code class="docutils literal notranslate"><span class="pre">falcon.env</span></code> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>PROJECT_ID=${PROJECT_ID:=&quot;example&quot;}
+AUTOTRAIN_PROJECT_NAME=&quot;falcon-7b/finetune-${PROJECT_ID}&quot;
+MODEL_NAME=&quot;tiiuae/falcon-7b&quot;
+DATA_PATH=&quot;timdettmers/openassistant-guanaco&quot;
+DATA_FILE=&quot;./train.csv&quot;
+TEXT_COLUMM=&quot;&quot;
+LEARNING_RATE=2E-4
+NUM_EPOCHS=4
+BATCH_SIZE=1
+BLOCK_SIZE=1024
+TRAINER=&quot;sft&quot;
+WARMUP_RATIO=0.1
+WEIGHT_DECAY=0.01
+GRADIENT_ACCUMULATION=4
+USE_FP16=&quot;True&quot;
+USE_PEFT=&quot;True&quot;
+USE_INT4=&quot;True&quot;
+LORA_R=16
+LORA_ALPHA=32
+LORA_DROPOUT=0.045
+PUSH_TO_HUB=&quot;False&quot;
+HF_TOKEN=${HF_TOKEN:=&quot;hf_XXX&quot;}
+REPO_ID=&quot;username/repo_name&quot;
+</pre></div>
+</div>
+<p>By properly setting these parameters, you are creating a blueprint that AutoTrain will follow to fine-tune your model.</p>
 </section>
-<section id="step-5-training-and-epochs">
-<h2>Step 5: Training and Epochs<a class="headerlink" href="#step-5-training-and-epochs" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Set the number of epochs. Remember that LLMs can learn quickly, so fewer epochs might be required.</p></li>
-<li><p>Monitor the training process. AutoTrain provides insights into the model’s performance as it trains.</p></li>
-</ul>
+<section id="step-3-prepare-your-dataset">
+<h3>Step 3: Prepare Your Dataset<a class="headerlink" href="#step-3-prepare-your-dataset" title="Permalink to this heading">#</a></h3>
+<p>The quality of the dataset is paramount in fine-tuning. It must be representative of the actual data the model will encounter when deployed. Cleaning the dataset to remove noise and ensuring it’s in the right format is crucial for effective fine-tuning. The command <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">autotrain.sh</span> <span class="pre">data</span></code> typically would run a script that prepares and uploads your data to AutoTrain’s environment.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash<span class="w"> </span>autotrain.sh<span class="w"> </span>data
+</pre></div>
+</div>
 </section>
-<section id="step-6-computational-costs-and-ethics">
-<h2>Step 6: Computational Costs and Ethics<a class="headerlink" href="#step-6-computational-costs-and-ethics" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Be mindful of the computational costs. Larger datasets and models will incur higher costs.</p></li>
-<li><p>Always consider ethical implications of your model, especially data privacy and biases.</p></li>
-</ul>
+<section id="step-4-training-with-autotrain">
+<h3>Step 4: Training with AutoTrain<a class="headerlink" href="#step-4-training-with-autotrain" title="Permalink to this heading">#</a></h3>
+<p>Training the model is where the actual fine-tuning happens. You initiate the process with a script (<code class="docutils literal notranslate"><span class="pre">autotrain.sh</span></code>), which uses the environment variables set earlier to start training the model on your dataset. Throughout this step, AutoTrain provides insights into the model’s learning progress and resource consumption.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash<span class="w"> </span>autotrain.sh<span class="w"> </span>train
+</pre></div>
+</div>
 </section>
-<section id="step-7-evaluation-and-deployment">
-<h2>Step 7: Evaluation and Deployment<a class="headerlink" href="#step-7-evaluation-and-deployment" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Once training is complete, evaluate the model’s performance using AutoTrain’s evaluation metrics.</p></li>
-<li><p>If satisfied, you can deploy the model directly through Hugging Face’s hosting services or export it for deployment in your environment.</p></li>
-</ul>
+<section id="step-5-evaluation-and-deployment">
+<h3>Step 5: Evaluation and Deployment<a class="headerlink" href="#step-5-evaluation-and-deployment" title="Permalink to this heading">#</a></h3>
+<p>After the model has been fine-tuned, it’s essential to evaluate its performance to ensure that it meets the expected standards. AutoTrain offers evaluation metrics that help you understand how well your model is performing. If the model’s performance is satisfactory, you can deploy it using Hugging Face’s hosting services, which offer a scalable and secure way to integrate the model into applications.</p>
+<p>Alternatively, you can export the model for deployment in a custom environment. This flexibility ensures that the fine-tuned model can be used in a way that best suits your operational requirements.</p>
+<p>This comprehensive explanation should provide a clear understanding of each step in fine-tuning an LLM using Hugging Face’s AutoTrain. With this guide, even those with limited machine learning expertise can effectively fine-tune LLMs for enhanced performance on specialized tasks.</p>
+</section>
+</section>
+<section id="conclusion-and-considerations">
+<h2>Conclusion and Considerations<a class="headerlink" href="#conclusion-and-considerations" title="Permalink to this heading">#</a></h2>
+<p>Fine-tuning an LLM with AutoTrain can significantly enhance your business operations by providing a more specialized tool tailored to your specific needs. It’s a process that balances customization with practical considerations such as computational costs and ethical standards. By following this guide, you can navigate the fine-tuning process and harness the full capabilities of LLMs for your applications.</p>
+<p>The code and more detailed instructions for this process can be found in the class GitHub repository: <a class="reference external" href="https://github.com/chu-aie/deepnlp-2023">chu-aie/deepnlp-2023</a>.</p>
 </section>
 </section>
 
@@ -768,13 +814,17 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-prepare-your-dataset">Step 1: Prepare Your Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-select-the-pre-trained-model">Step 2: Select the Pre-Trained Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-fine-tune-with-autotrain">Step 3: Fine-Tune with AutoTrain</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-regularization-and-learning-rates">Step 4: Regularization and Learning Rates</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-training-and-epochs">Step 5: Training and Epochs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-computational-costs-and-ethics">Step 6: Computational Costs and Ethics</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-evaluation-and-deployment">Step 7: Evaluation and Deployment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-benefits-of-fine-tuning-llms">Key Benefits of Fine-Tuning LLMs:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-with-autotrain">Getting Started with AutoTrain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-lab-fine-tuning-falcon-7b-on-openassistant">Step-by-Step Lab: Fine-Tuning Falcon-7B on OpenAssistant</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-install-necessary-libraries-and-set-up-autotrain">Step 1: Install Necessary Libraries and Set Up AutoTrain</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-prepare-dataset-and-define-task">Step 2: Prepare Dataset and Define Task</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-prepare-your-dataset">Step 3: Prepare Your Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-training-with-autotrain">Step 4: Training with AutoTrain</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-evaluation-and-deployment">Step 5: Evaluation and Deployment</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-and-considerations">Conclusion and Considerations</a></li>
 </ul>
   </nav></div>
 
