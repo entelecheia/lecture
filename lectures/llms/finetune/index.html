@@ -1,0 +1,871 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>LLM Fine-tuning &#8212; ἐντελέχεια.άι</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/js/hoverxref.js"></script>
+    <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/llms/finetune/index';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/llms/finetune/index.html" />
+    <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Fine-Tuning LLMs Using Hugging Face AutoTrain" href="autotrain.html" />
+    <link rel="prev" title="AutoGen AutoScraper Agent" href="../agents/autoscraper.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+
+  <div class="bd-header-announcement container-fluid bd-header-announcement">
+    <div class="bd-header-announcement__content"><p>
+  <strong>Announcement:</strong>
+  You can install the accompanying AI tutor <a href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd" target="_blank">here</a>.
+  <a class="reference external" href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd" target="_blank"><img alt="chrome-web-store-image" src="https://img.shields.io/chrome-web-store/v/lfgfgbomindbccgidgalhhndggddpagd" /></a>
+</p>
+</div>
+  </div>
+
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ἐντελέχεια.άι</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../index.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_intro/index.html">Introduction to NLP</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/intro/index.html">Introduction</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/apps/index.html">NLP Applications</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/apps/research1.html">Research Part I</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/apps/research2.html">Research Part II</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/lm/index.html">Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/lm/ngram.html">N-gram Language Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/lm/usage.html">Usage of Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/datasets/corpus.html">Text Data Collection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/datasets/lab-dart.html">Lab: Crawling DART Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/topic/index.html">Topic Modeling</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/methods.html">Topic Modeling Methodologies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/lab-methods.html">Lab: Topic Modeling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/coherence.html">Topic Coherence Measures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/lab-coherence.html">Lab: Topic Coherence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/tomotopy.html">Lab: Tomotopy</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/sentiments/index.html">Sentiment Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lexicon.html">Lexicon-Based Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/ml.html">Machine Learning-Based Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lab-lexicon.html">Lab: Lexicon-based Sentiment Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lab-ml.html">Lab: ML-based Sentiment Classification</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/tokenization.html">Understanding the Basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/pos.html">Part-of-Speech Tagging and Parsing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/ngrams.html">N-grams for Tokenization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/korean.html">Tokenization in Korean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/segmentation.html">Word Segmentation and Association</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/lab-tokenization.html">Lab: Tokenization and Pre-processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/lab-korean.html">Lab: Korean Text Processing</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/vectorization/index.html">Vector Representation</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/vectorization/semantics.html">Vector Semantics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/vectorization/bow.html">Bags of Words Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/vectorization/tf-idf.html">TF-IDF Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/vectorization/similarity.html">Word Similarity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/vectorization/lab-similarity.html">Lab: Word Similarity</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/embeddings/index.html">Word Embeddings</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/embeddings/nlm.html">Neural Language Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/embeddings/w2v.html">Word2Vec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/embeddings/glove.html">GloVe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/embeddings/fasttext.html">FastText</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_deep/index.html">Deep Learning for NLP</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/llms/index.html">Large Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/zeroshot.html">Zero Shot and Prompt Engineering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/decoding.html">Decoding and Search Strategies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/plms.html">Pretrained Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/transformers/index.html">Transformers</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/bert.html">BERT: Bidirectional Encoder Representations from Transformers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/bertviz.html">BERT: Visualizing Attention</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/t5.html">T5: Text-To-Text Transfer Transformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/datasets/mc4.html">mC4 Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/datasets/lab-eda.html">Lab: Exploratory Data Analysis (EDA)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/subword.html">Subword Tokenization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/pipeline.html">Tokenization Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/bpe.html">BPE Step-by-Step Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/wordpiece.html">WordPiece Step-by-Step Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/unigram.html">Unigram Step-by-Step Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/sentencepiece.html">SentencePiece Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/lab-train-tokenizers.html">Lab: Training Tokenizers</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/training/index.html">Training Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/training/lab-pretrain-mlm.html">Lab: Pretraining LMs - MLM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/training/lab-pretrain-clm.html">Lab: Pretraining LMs - CLM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/training/lab-finetune-mlm.html">Lab: Finetuining a MLM</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/chatbots/index.html">Conversational AI and Chatbots</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/chatbots/rlhf.html">Reinforcement Learning with Human Feedback (RLHF)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/chatbots/detectGPT.html">How to Spot Machine-Written Texts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_advances/index.html">Advances in AI and NLP</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/thesis.html">Writing a Thesis</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_advances/gpt/index.html">Generative Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/detectGPT.html">DetectGPT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/gpt4.html">GPT-4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/camelids.html">Meet the Camelids: A Family of LLMs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/sam/index.html">Segment Anything</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../aiart/index.html">AI Art (Generative AI)</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/intro/index.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/brave/index.html">A Brave New World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/aiart/index.html">Art and Music in Light of AI</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../aiart/text-to-image/index.html">Text-to-Image Models</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/dalle1.html">DALL·E 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/dalle2.html">DALL·E 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/imagen.html">Imagen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/motion-capture-and-synthesis/index.html">Motion Capture and Motion Synthesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/robot/index.html">Robot Drawing System</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../mlops/index.html">Machine Learning Systems Design</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/intro.html">Introduction to MLOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/project.html">MLOps Project</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/devops/index.html">DevOps</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/gitops.html">GitOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/devsecops.html">DevSecOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/dotfiles/index.html">Dotfiles</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai">Dotfiles Project</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dotdrop/">Dotdrop Setup</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/github/">GitHub Setup</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/ssh-gpg-age/">SSH, GPG, and Age Setup</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/sops/">SOPS Usage</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/pass/">Pass and Passage Usage</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/doppler/">Doppler Usage</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dockerfiles/">Dockerfiles Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/security/index.html">Security Management</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-24"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/auth-enc-sign.html">Authentication, Encryption, and Signing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/age-gpg-ssh.html">SSH, GPG, and AGE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/pass.html">Unix Password Managers</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/github/index.html">GitHub Workflow</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-25"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/github/fork-pull.html">Github’s Fork &amp; Pull Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/github/template.html">Project Templating Tools</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://hyperfast-python.entelecheia.ai/">Hyperfast Python Template</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://hyperfast-template.entelecheia.ai/">Hyperfast Template</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/containerization/index.html">Containerization</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-26"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/containerization/docker.html">Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/containerization/containerd.html"><code class="docutils literal notranslate"><span class="pre">containerd</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/simple-pipeline/index.html">Simple MLOps Pipeline</a><input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-27"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/simple-pipeline/server.html">Server Setup &amp; Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/simple-pipeline/vpn.html">VPN Connectivity</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/llmops/index.html">LLMOps</a><input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-28"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/llmops/bentoml.html">Introduction to BentoML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/llmops/bentochain.html">Deploy a Voice-Based Chatbot with BentoML, LangChain, and Gradio</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../dsecon/index.html">Data Science for Economics and Finance</a><input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-29"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../dsecon/intro/index.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-30"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/intro/introduction.html">Data Science in Economics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/intro/challenges.html">Technical Challenges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/intro/methods.html">Data Analytics Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../dsecon/cb/index.html">Central Banks</a><input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-31"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/cb/altdata.html">Alternative Data Sources for Central Banks</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../dsecon/fomc/index.html">Textual Analysis of FOMC contents</a><input class="toctree-checkbox" id="toctree-checkbox-32" name="toctree-checkbox-32" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-32"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/fomc/01_numerical_data.html">Preparing Numerical Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/fomc/02_textual_data.html">Preparing Textual Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/fomc/03_EDA_numericals1.html">EDA on Numerical Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/fomc/03_EDA_numericals2.html">EDA on Numerical Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/fomc/04_training_datasets.html">Create Training Datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/fomc/05_features.html">Visualizing Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/fomc/06_AutoML.html">Checking Baseline with AutoML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/fomc/07_predict_sentiments.html">Predicting Sentiments of FOMC Corpus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/fomc/08_EDA_sentiments1.html">EDA on Sentiments: Correlation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/fomc/08_EDA_sentiments2.html">EDA on Sentiment Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/fomc/09_visualize_features.html">Visualize Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/fomc/10_monetary_shocks.html">Monetary Policy Shocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/fomc/11_AutoML_with_tones.html">Predicting the next decisions with tones</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../dsecon/esg-ratings/index.html">ESG Ratings</a><input class="toctree-checkbox" id="toctree-checkbox-33" name="toctree-checkbox-33" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-33"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/esg-ratings/prepare_datasets.html">Preparing training datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/esg-ratings/improve_datasets.html">Improving classification datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/esg-ratings/train_classifiers.html">Training Classifiers for ESG Ratings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/esg-ratings/build_news_corpus.html">Building <code class="docutils literal notranslate"><span class="pre">econ_news_kr</span></code> corpus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/esg-ratings/predict_esg_classes.html">Predicting ESG Categories and Polarities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/esg-ratings/cross_validate_datasets.html">Cross validating datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/esg-ratings/prepare_datasets_for_labeling.html">Preparing active learning data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/esg-ratings/all_in_one_pipeline.html">Putting them together in a pipeline</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../softeng/index.html">Software Engineering</a><input class="toctree-checkbox" id="toctree-checkbox-34" name="toctree-checkbox-34" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-34"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../softeng/intro/index.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-35" name="toctree-checkbox-35" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-35"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/intro/introduction.html">Software Engineering?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/intro/processes.html">Software Processes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/intro/sdlc.html">Software Development Life Cycle (SDLC)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/intro/requirements.html">Requirements Engineering (RE)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../softeng/proposal/index.html">Project Proposal</a><input class="toctree-checkbox" id="toctree-checkbox-36" name="toctree-checkbox-36" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-36"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/proposal/steps.html">Steps in Software Engineering Projects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/proposal/guidelines.html">Software Engineering Proposal Guideline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/proposal/template.html">Project Proposal Template</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../softeng/vcs/index.html">Version Control Systems</a><input class="toctree-checkbox" id="toctree-checkbox-37" name="toctree-checkbox-37" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-37"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/00_introduction.html">0. Introduction to version control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/01_solo_work_with_git.html">1. Solo work with git</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/02_fixing_mistakes.html">2. Fixing mistakes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/03_publishing.html">3. Publishing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/04_collaboration.html">4. Collaboration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/05_fork_and_pull.html">5. Fork and Pull</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/06_git_theory.html">6. Git Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/07_branches.html">7. Branches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/08_advanced_git_concepts.html">8. Advanced git concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/09_github_pages.html">9. Publishing from GitHub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/10_rebasing.html">10. Rebasing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/11_debugging_with_git_bisect.html">11. Debugging With git bisect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/12_multiple_remotes.html">12. Working with multiple remotes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../softeng/spm/index.html">Software Process Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Large Language Models</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-38" name="toctree-checkbox-38" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-38"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../intro/index.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-39" name="toctree-checkbox-39" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-39"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../intro/llms.html">Large Language Models?</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../stack/index.html">LLM Stacks</a><input class="toctree-checkbox" id="toctree-checkbox-40" name="toctree-checkbox-40" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-40"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../stack/infra.html">Generative AI Infrastructure Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stack/architecture.html">LLM Application Architectures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stack/app.html">LLM App Ecosystem</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../agents/index.html">Introduction to AI Agents</a><input class="toctree-checkbox" id="toctree-checkbox-41" name="toctree-checkbox-41" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-41"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../agents/autogen.html">AutoGen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../agents/autoscraper.html">AutoGen AutoScraper Agent</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">LLM Fine-tuning</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-42" name="toctree-checkbox-42" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-42"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="autotrain.html">Fine-Tuning LLMs Using Hugging Face AutoTrain</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../about/lecture-bot.html">LectureBot for ἐντελέχεια.άι</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://course.entelecheia.ai">course.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://research.entelecheia.ai">research.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/lectures/llms/finetune/index.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>LLM Fine-tuning</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-fine-tuning">What is fine-tuning?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#different-llm-fine-tuning-techniques">Different LLM Fine-Tuning Techniques</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-supervised-learning-vs-supervised-fine-tuning">Self-Supervised Learning vs Supervised Fine-Tuning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reinforcement-learning-from-human-feedback-rlhf">Reinforcement Learning from Human Feedback (RLHF)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-approaches-to-enhancing-llm-performance">Other Approaches to Enhancing LLM Performance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-contents">Next Contents</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="llm-fine-tuning">
+<h1>LLM Fine-tuning<a class="headerlink" href="#llm-fine-tuning" title="Permalink to this heading">#</a></h1>
+<p>In the realm of <strong>machine learning</strong>, the concept of fine-tuning is akin to the art of <strong>adaptation</strong> and <strong>specialization</strong>. Just as a master craftsperson tailors their skills to the nuances of a new material, a machine learning model undergoes fine-tuning to adapt to the specific patterns and intricacies of a new dataset. This fine-tuning process is especially crucial when the new dataset—while related—is substantially different from the data the model was originally trained on, known as <strong>out-of-distribution data</strong>.</p>
+<p>To illustrate this, imagine a highly efficient <strong>spam detection system</strong> trained extensively on email data. It has become adept at recognizing the common patterns and signals of spam in emails. Now, suppose we want to deploy this system on social media platforms to detect spam messages in posts or comments. The nature of text and spam signals in social media can be vastly different from those in emails due to the use of slang, shorter texts, different formatting, and a variety of multimedia content. Direct application of the email-trained model to social media is likely to result in a high error rate due to the <strong>distributional shift</strong>.</p>
+<p>Instead of retraining a new model from the ground up with social media data, which is resource-intensive and time-consuming, <strong>fine-tuning</strong> the existing model on a curated dataset from social media can be much more efficient. The model’s prior knowledge gleaned from emails serves as a foundational layer of understanding text content, which can then be refined and adjusted to capture the nuances of social media spam.</p>
+<ul class="simple">
+<li><p><strong>Fine-tuning</strong> is critical for adapting models to <strong>new datasets</strong> where the distribution differs from the original training data.</p></li>
+<li><p>It involves <strong>updating model parameters</strong> to better fit the new data, much like a craftsperson adapts their skills to a new material.</p></li>
+<li><p><strong>Efficiency</strong> is gained by building on the existing knowledge base of the model, rather than starting anew.</p></li>
+<li><p>This approach is akin to teaching a spam detection system, originally trained on emails, to understand and detect spam on <strong>social media platforms</strong>.</p></li>
+</ul>
+<section id="what-is-fine-tuning">
+<h2>What is fine-tuning?<a class="headerlink" href="#what-is-fine-tuning" title="Permalink to this heading">#</a></h2>
+<a class="reference internal image-reference" href="../../../_images/fine-tuning.png"><img alt="../../../_images/fine-tuning.png" class="align-center" src="../../../_images/fine-tuning.png" style="width: 60%;" /></a>
+<p>Imagine a scenario where a <strong>machine learning model</strong> is like a seasoned chef, trained at a culinary school in Paris, who specializes in classic French cuisine. This chef has spent years perfecting the art of delicate sauces, pastry, and confections, developing an instinctive feel for French ingredients and techniques. Their skill set is highly specialized, and they excel within the familiar environment of a French kitchen.</p>
+<p>Now, consider that this chef is suddenly tasked with preparing authentic Thai cuisine. The foundational culinary skills are there, but the ingredients, flavor profiles, and cooking techniques of Thai food are quite distinct from French cuisine. If the chef tries to prepare Thai dishes with only their French culinary training, the results might be subpar. The chef’s palate is fine-tuned to butter and herbs, not lemongrass and fish sauce.</p>
+<p><strong>Fine-tuning</strong> in this context would involve the chef learning to adapt their existing skills to the new cuisine. They wouldn’t need to start from scratch—many of their kitchen skills are transferable—but they would need to learn the nuances that make Thai food unique. By training under a Thai master chef or practicing with a smaller, focused set of recipes, the chef can begin to recalibrate their culinary intuition to embrace the flavors and techniques of Thai cooking.</p>
+<p>Applying this back to machine learning, fine-tuning a pre-trained model—like our French chef—on a new dataset is analogous to teaching the chef to master Thai cuisine. The model’s basic structure and learned parameters serve as a strong starting point, and with additional training on a smaller, specialized dataset, it can adapt to perform well on a different task, like detecting trucks on highways rather than passenger cars in urban settings.</p>
+<ul class="simple">
+<li><p><strong>Pre-training</strong> is like a chef learning to cook French cuisine—developing a broad base of skills.</p></li>
+<li><p>Moving to <strong>Thai cuisine</strong> represents a shift in data distribution—a new task with new patterns.</p></li>
+<li><p><strong>Fine-tuning</strong> is the chef adapting their skills to Thai cooking, just as a model is updated for a new dataset.</p></li>
+<li><p>The <strong>core skills</strong> (or model parameters) are adapted, not replaced, making the process efficient.</p></li>
+<li><p>The result is a model—or chef—that can perform the new task effectively with less additional training than starting from scratch.</p></li>
+</ul>
+</section>
+<section id="different-llm-fine-tuning-techniques">
+<h2>Different LLM Fine-Tuning Techniques<a class="headerlink" href="#different-llm-fine-tuning-techniques" title="Permalink to this heading">#</a></h2>
+<a class="reference internal image-reference" href="../../../_images/fine-tuning-techniques.png"><img alt="../../../_images/fine-tuning-techniques.png" class="align-center" src="../../../_images/fine-tuning-techniques.png" style="width: 60%;" /></a>
+<p>When it comes to fine-tuning <strong>Large Language Models (LLMs)</strong>, the approach must be tailored to the specific end-use. Fine-tuning is not a one-size-fits-all solution; it ranges from minor architectural adjustments to significant retraining of the model.</p>
+<p>For instance, if we possess a pre-trained LLM designed for text generation, but we wish to pivot its functionality to <strong>sentiment or topic classification</strong>, a <strong>repurposing</strong> of the model is required. This involves a slight modification to the model’s architecture, particularly the way its embeddings are utilized. <strong>Embeddings</strong>—numerical vectors representing input features—are key to this process. Some LLMs, such as those in the GPT family, use these embeddings to generate subsequent tokens in text generation tasks. In repurposing for classification, these embeddings are instead routed to a <strong>classification model</strong>—usually a series of fully connected layers that translate the embedding vectors into class probabilities.</p>
+<p>During this <strong>repurposing phase</strong>, the <strong>attention layers</strong> of the LLM, which are responsible for understanding the context within the text, are often <strong>frozen</strong>. This means they are not updated during the fine-tuning process, resulting in significant <strong>savings in computational cost</strong>. However, the classifier built on top of the embeddings must be trained using a <strong>supervised dataset</strong>, which comprises text examples and their corresponding classes. The size and quality of this dataset are crucial and must be commensurate with the complexity of the classification task and the capabilities of the classifier.</p>
+<p>Alternatively, there are scenarios where a more thorough fine-tuning is necessary, involving the updating of the <strong>transformer model’s parameters</strong>. This <strong>full fine-tuning</strong> requires the attention layers to be <strong>unfrozen</strong>, allowing for comprehensive retraining. Such a process is inherently more <strong>resource-intensive</strong> and complex, especially as the size of the model scales up. To mitigate this, practitioners can opt to keep certain parts of the model frozen or employ advanced techniques to reduce the computational overhead.</p>
+<ul class="simple">
+<li><p><strong>Repurposing</strong> involves minor architectural changes, particularly for tasks like sentiment or topic classification.</p></li>
+<li><p><strong>Embeddings</strong> are re-routed to a new classifier model, while the transformer’s attention layers are typically <strong>frozen</strong>.</p></li>
+<li><p><strong>Computational efficiency</strong> is gained by not updating the entire model, just the classifier using a <strong>supervised dataset</strong>.</p></li>
+<li><p><strong>Full fine-tuning</strong> may be necessary for more complex tasks, requiring <strong>unfreezing</strong> and updating the entire model’s parameters, which is more <strong>computationally expensive</strong>.</p></li>
+</ul>
+</section>
+<section id="self-supervised-learning-vs-supervised-fine-tuning">
+<h2>Self-Supervised Learning vs Supervised Fine-Tuning<a class="headerlink" href="#self-supervised-learning-vs-supervised-fine-tuning" title="Permalink to this heading">#</a></h2>
+<p>When updating an LLM’s knowledge base to encompass new domains, such as <strong>medical literature</strong> or <strong>new languages</strong>, the use of unstructured datasets is a common approach. Unstructured datasets—often comprising <strong>articles and scientific papers</strong>—allow the model to assimilate a wealth of domain-specific information through <strong>self-supervised learning</strong>. This form of training utilizes the raw text to adjust the model’s parameters without explicit labeling, effectively learning from context and content.</p>
+<p><strong>Self-supervised learning</strong> stands out for its scalability. Since it does not rely on labeled data, it can leverage vast amounts of information, mirroring the initial training phase of many <strong>foundation models</strong>. For organizations with extensive in-house databases, this approach can be particularly effective, as they can draw upon existing knowledge bases for model training.</p>
+<p>However, there are instances where merely updating the model’s knowledge is insufficient. When the objective is to alter the <strong>behavior</strong> of the LLM, such as ensuring it follows instructions or maintains context over long conversations, <strong>Supervised Fine-Tuning (SFT)</strong> becomes essential. SFT involves training the model on a dataset of <strong>prompts and corresponding responses</strong>, requiring manual curation or generation via other models. This method is crucial for models like <strong>ChatGPT</strong>, designed to adhere to user instructions and engage in extended dialogues.</p>
+<p>Instruction fine-tuning is a more specialized form of SFT where the model is trained to understand and execute specific commands or tasks. It’s a targeted approach that aligns the model’s outputs with expected behaviors and outcomes, particularly useful for interactive applications where user engagement is key.</p>
+<ul class="simple">
+<li><p><strong>Self-supervised learning</strong> updates an LLM’s knowledge using <strong>unstructured datasets</strong>, ideal for domain adaptation.</p></li>
+<li><p>It leverages <strong>contextual learning</strong> from large volumes of text, making it highly <strong>scalable</strong>.</p></li>
+<li><p><strong>Supervised Fine-Tuning (SFT)</strong> is necessary to modify an LLM’s behavior, using <strong>prompt-response pairs</strong>.</p></li>
+<li><p><strong>Instruction fine-tuning</strong> is a specialized SFT that trains LLMs to follow complex instructions, critical for models like <strong>ChatGPT</strong>.</p></li>
+</ul>
+</section>
+<section id="reinforcement-learning-from-human-feedback-rlhf">
+<h2>Reinforcement Learning from Human Feedback (RLHF)<a class="headerlink" href="#reinforcement-learning-from-human-feedback-rlhf" title="Permalink to this heading">#</a></h2>
+<a class="reference internal image-reference" href="../../../_images/RLHF.png"><img alt="../../../_images/RLHF.png" class="align-center" src="../../../_images/RLHF.png" style="width: 90%;" /></a>
+<p><strong>Reinforcement Learning from Human Feedback (RLHF)</strong> represents the cutting edge in the fine-tuning of LLMs, where human judgment plays a critical role in model refinement. This approach transcends traditional fine-tuning methods by incorporating human preferences into the learning loop, enabling the model to produce outputs that align more closely with user expectations and values.</p>
+<p>The process of RLHF is intricate, involving several stages and the collaboration of human reviewers. Initially, an LLM such as GPT is fine-tuned using <strong>Supervised Fine-Tuning (SFT)</strong> on carefully crafted prompts and responses to guide the model towards the desired output. Upon this foundation, RLHF introduces <strong>human reviewers</strong> who evaluate the model’s responses to a variety of prompts, grading them according to relevance, coherence, and appropriateness.</p>
+<p>These human evaluations are then used to construct a <strong>reward model</strong>—an auxiliary model that aims to predict human preferences based on the ratings given to the LLM’s outputs. The language model enters a <strong>deep reinforcement learning (RL) loop</strong>, where it generates responses, the reward model assesses them, and the language model adapts its parameters to maximize the ‘reward’ or positive feedback it receives from the reward model.</p>
+<p>One of the most prominent applications of RLHF is in the development of <strong>ChatGPT</strong> by OpenAI, where it underwent fine-tuning in alignment with the principles outlined in the InstructGPT paper. Through this process, ChatGPT was tailored to generate responses that not only maintain coherence but also adhere to the instructions and intent of the user, embodying a significant leap towards AI that can interact more naturally and effectively with human users.</p>
+<ul class="simple">
+<li><p><strong>RLHF</strong> involves human reviewers to fine-tune LLMs beyond standard SFT, aligning outputs with human preferences.</p></li>
+<li><p>Begins with <strong>SFT</strong> on crafted prompts and responses to direct initial model behavior.</p></li>
+<li><p>Utilizes <strong>human reviewers</strong> to rate model outputs, integrating human judgment into the training process.</p></li>
+<li><p>Develops a <strong>reward model</strong> to emulate human ratings and guide the LLM towards producing higher-rated responses.</p></li>
+<li><p>Engages in a <strong>reinforcement learning loop</strong> where the LLM is iteratively adjusted to maximize the reward, exemplified by the development of <strong>ChatGPT</strong>.</p></li>
+</ul>
+</section>
+<section id="other-approaches-to-enhancing-llm-performance">
+<h2>Other Approaches to Enhancing LLM Performance<a class="headerlink" href="#other-approaches-to-enhancing-llm-performance" title="Permalink to this heading">#</a></h2>
+<p>When <strong>fine-tuning</strong> is not viable or advantageous for a <strong>Large Language Model (LLM)</strong>, alternative strategies like <strong>in-context learning</strong> and <strong>retrieval augmentation</strong> come into play. These methods provide flexibility and can significantly improve the model’s performance, particularly in dynamic or data-constrained environments.</p>
+<p>In-context learning leverages the LLM’s ability to utilize the context provided during inference to generate appropriate responses. This is especially useful when models are accessed through <strong>APIs with limited fine-tuning capabilities</strong>, or when there is insufficient data to fine-tune effectively. Additionally, in highly dynamic domains such as news, where data changes daily, frequent retraining is impractical. In-context learning can adapt to new information with each query, bypassing the need for constant fine-tuning.</p>
+<p>Retrieval augmentation, on the other hand, involves enriching the prompt with relevant information retrieved in real-time. This approach can be particularly beneficial in applications where the context is continuously evolving or highly personalized, such as in the creation of a chatbot that tailors its interactions to individual users. A practical implementation of this approach could involve the creation of a <strong>vector database</strong> that stores embeddings of company documents. When a user query is received, the database retrieves the most relevant documents, and their content is used to condition the LLM’s response, ensuring that the model’s output is informed and specific to the user’s needs.</p>
+<ul class="simple">
+<li><p><strong>In-context learning</strong> allows LLMs to generate relevant responses based on the context provided during inference, useful when fine-tuning is not an option.</p></li>
+<li><p><strong>Retrieval augmentation</strong> enhances prompts with real-time information from relevant documents, ideal for dynamic and context-sensitive applications.</p></li>
+<li><p>A <strong>vector database</strong> of document embeddings can be used to retrieve and provide contextual information to the model, streamlining the retrieval augmentation process.</p></li>
+<li><p>These approaches enable LLMs to remain effective in environments where <strong>data is scarce, frequently changing, or highly personalized</strong>.</p></li>
+</ul>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+<p>The landscape of <strong>Large Language Models (LLMs)</strong> is diverse and rapidly evolving, necessitating a variety of fine-tuning approaches to meet specific application demands. While traditional <strong>fine-tuning</strong> and <strong>Supervised Fine-Tuning (SFT)</strong> remain foundational for adapting pre-trained models to new domains and tasks, advanced techniques like <strong>Reinforcement Learning from Human Feedback (RLHF)</strong> push the boundaries by integrating human preferences into the training loop. However, when these methods are constrained by data availability, API limitations, or the dynamic nature of the application, alternative strategies such as <strong>in-context learning</strong> and <strong>retrieval augmentation</strong> prove invaluable.</p>
+<p>These methods enable a more agile and immediate adaptation of LLMs to new content and user-specific contexts, circumventing the need for extensive retraining. By leveraging the strengths of each approach, we can harness the full potential of LLMs across a broad spectrum of use cases, making AI more responsive and tailored to human needs.</p>
+<ul class="simple">
+<li><p><strong>Fine-tuning</strong> and <strong>SFT</strong> are essential for tailoring LLMs to specific tasks, with RLHF providing a pathway to integrate <strong>human evaluative feedback</strong>.</p></li>
+<li><p><strong>In-context learning</strong> and <strong>retrieval augmentation</strong> emerge as practical solutions when conventional fine-tuning is not feasible.</p></li>
+<li><p>These strategies ensure that LLMs maintain their utility and performance in <strong>data-constrained</strong> or <strong>highly dynamic</strong> application scenarios.</p></li>
+<li><p>The choice of fine-tuning method depends on the balance between the <strong>desired model behavior</strong>, <strong>resource availability</strong>, and <strong>application requirements</strong>.</p></li>
+</ul>
+</section>
+<section id="next-contents">
+<h2>Next Contents<a class="headerlink" href="#next-contents" title="Permalink to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="autotrain.html">Fine-Tuning LLMs Using Hugging Face AutoTrain</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/lecture",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lectures/llms/finetune"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../agents/autoscraper.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">AutoGen AutoScraper Agent</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="autotrain.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Fine-Tuning LLMs Using Hugging Face AutoTrain</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-fine-tuning">What is fine-tuning?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#different-llm-fine-tuning-techniques">Different LLM Fine-Tuning Techniques</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-supervised-learning-vs-supervised-fine-tuning">Self-Supervised Learning vs Supervised Fine-Tuning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reinforcement-learning-from-human-feedback-rlhf">Reinforcement Learning from Human Feedback (RLHF)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-approaches-to-enhancing-llm-performance">Other Approaches to Enhancing LLM Performance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-contents">Next Contents</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
