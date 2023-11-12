@@ -60,3 +60,23 @@ The rationale behind Agile methods includes customer satisfaction through early 
 - Emphasizes direct communication and **collaboration**, rapid prototyping, and short feedback loops.
 
 By focusing on the **fluidity of development** and being open to changing requirements, even late in the development cycle, Agile methodology champions a **customer-centric approach** that significantly reduces the overall risk associated with software development.
+
+## Agile vs Plan-Driven Development
+
+```{image} figs/agile-vs-plan-driven.png
+:width: 100%
+:align: center
+```
+
+When comparing **Agile** and **Plan-Driven Development** (often referred to as the Waterfall model), the distinctions primarily lie in their approaches to planning, execution, and adaptability. **Plan-Driven Development** adheres to a sequential design process, often linear and phase-based, where progress flows largely in one direction—"downwards" like a waterfall—through the phases of conception, initiation, analysis, design, construction, testing, deployment, and maintenance.
+
+In contrast, **Agile Development** is iterative and incremental, promoting a flexible and collaborative approach. The focus is on delivering small, workable segments of software early and often, enabling continuous feedback and adaptation. Agile methodologies, such as Scrum, Kanban, and Extreme Programming (XP), emphasize direct collaboration with stakeholders, adaptive planning, evolutionary development, early delivery, and continual improvement, and they encourage rapid and flexible response to change.
+
+While Plan-Driven Development can provide a structured and disciplined approach for large projects with clear requirements, Agile is favored for projects where requirements are expected to change or are not fully understood at the outset.
+
+- **Sequential vs Iterative**: Waterfall is linear, Agile is cyclic.
+- **Flexibility**: Agile accommodates change, Plan-Driven is more rigid.
+- **Stakeholder Engagement**: Agile involves continuous stakeholder collaboration, while Plan-Driven often limits stakeholder engagement to specific milestones.
+- **Delivery Focus**: Agile focuses on frequent delivery of working software, whereas Plan-Driven often has one major release after a long development period.
+
+The choice between Agile and Plan-Driven Development should be informed by the project context, requirements stability, team size, and customer involvement, among other factors. Agile is not inherently superior to Plan-Driven; the best approach depends on the specific circumstances of the project.
