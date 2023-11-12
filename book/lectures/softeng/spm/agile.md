@@ -43,6 +43,11 @@
 
 ## Introduction to Agile Software Development
 
+```{image} figs/agile-manifesto.png
+:width: 100%
+:align: center
+```
+
 Agile Software Development is a **methodology** that promotes continuous iteration of development and testing throughout the software development lifecycle of the project. Unlike traditional software development like the Waterfall model, Agile processes integrate planning with execution, allowing for flexible and rapid response to change, which is a fundamental aspect in the tech industry today.
 
 The core principles of Agile are derived from the **Agile Manifesto**, a formal proclamation of four fundamental values and twelve supporting principles that guide Agile project management. These values emphasize **individuals and interactions** over processes and tools, **working software** over comprehensive documentation, **customer collaboration** over contract negotiation, and **responding to change** over following a plan.
