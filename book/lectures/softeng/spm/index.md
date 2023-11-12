@@ -304,3 +304,9 @@ The **Spiral Model** can introduce specific challenges:
 - **Extensive Documentation**: Requires **thorough documentation** for each cycle, adding to the workload.
 - **Risk Analysis Expertise**: Demands significant expertise in **risk evaluation**, which can be a constraint if such expertise is not available.
 - **Time Consumption**: Due to the focus on risk and continuous iterations, the model can be **time-consuming**, potentially extending the delivery timelines.
+
+## Sections
+
+```{tableofcontents}
+
+```
