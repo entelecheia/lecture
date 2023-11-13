@@ -80,3 +80,29 @@ While Plan-Driven Development can provide a structured and disciplined approach 
 - **Delivery Focus**: Agile focuses on frequent delivery of working software, whereas Plan-Driven often has one major release after a long development period.
 
 The choice between Agile and Plan-Driven Development should be informed by the project context, requirements stability, team size, and customer involvement, among other factors. Agile is not inherently superior to Plan-Driven; the best approach depends on the specific circumstances of the project.
+
+## Agile Development Techniques
+
+```{image} figs/agile-techniques.png
+:width: 100%
+:align: center
+```
+
+- Emphasis on **communication, simplicity, feedback, and courage** in techniques.
+- **User stories** create a user-focused framework for defining features.
+- **Timeboxing** limits work to a fixed duration to encourage frequent reassessment and adaptation.
+- **Continuous Integration** and **Test-Driven Development** foster a stable and quality codebase through continuous testing and integration.
+
+These techniques help Agile teams maintain focus on delivering value to the customer, adapt to changing requirements, and ensure a high-quality product through frequent assessments and iterations.
+
+### Key Practices and Techniques
+
+Agile development is characterized by a collection of **key practices and techniques** that support its principles. These include regular **stand-up meetings** to synchronize team efforts, **pair programming** for quality code, **refactoring** to improve existing code, and **sprint reviews** for iterative evaluation. Techniques like **automated testing** and **continuous integration** ensure that the software is always in a potentially shippable state.
+
+### User Stories and Timeboxing
+
+**User Stories and Timeboxing** are two pivotal elements in Agile. **User stories** are short, simple descriptions of a feature told from the perspective of the user or customer. They are the primary method by which the team understands the user’s needs. **Timeboxing** is a time management technique that assigns a fixed, maximum unit of time for an activity, such as a sprint in Scrum, ensuring that work is reviewed and lessons are integrated regularly.
+
+### Continuous Integration and Test-Driven Development
+
+**Continuous Integration (CI)** and **Test-Driven Development (TDD)** are practices aimed at maintaining a high quality of code and ensuring that changes work as expected. CI involves merging all developer working copies to a shared mainline several times a day, while TDD encourages writing tests before the actual code, thus ensuring that code only contains features for which there is a test.
