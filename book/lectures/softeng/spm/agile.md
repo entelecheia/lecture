@@ -106,3 +106,29 @@ Agile development is characterized by a collection of **key practices and techni
 ### Continuous Integration and Test-Driven Development
 
 **Continuous Integration (CI)** and **Test-Driven Development (TDD)** are practices aimed at maintaining a high quality of code and ensuring that changes work as expected. CI involves merging all developer working copies to a shared mainline several times a day, while TDD encourages writing tests before the actual code, thus ensuring that code only contains features for which there is a test.
+
+## Agile Project Management
+
+```{image} figs/agile-project-management.png
+:width: 100%
+:align: center
+```
+
+- Agile Project Management is a **flexible and iterative** approach that allows overlapping development phases.
+- **Scrum** is a popular framework within Agile that focuses on delivering value quickly and efficiently.
+- **Scrum Roles** include the Product Owner, Scrum Master, and Development Team.
+- **Scrum Ceremonies** guide the collaborative and iterative work flow and include planning, daily stand-ups, reviews, and retrospectives.
+
+The agile project management style fosters a collaborative environment that values team input and aims to deliver high-quality products in a timely manner by dividing tasks into short, manageable sprints.
+
+### Overview of Agile Project Management
+
+Agile Project Management (APM) is an **iterative approach** to planning and guiding project processes. Just as in Agile Software Development, APM involves breaking projects into small pieces that are completed in work sessions, ranging from the design phase to testing and quality assurance. Unlike traditional project management, APM does not require the completion of one phase to start another; phases often overlap, which results in a faster, more fluid project flow.
+
+### The Scrum Framework
+
+**The Scrum Framework** is a subset of Agile and one of the most popular process frameworks for implementing Agile. It is an **adaptive, iterative, fast, flexible, and effective** methodology designed to deliver significant value quickly and throughout a project. Scrum ensures transparency in communication and creates an environment of collective accountability and continuous progress. The Scrum framework begins with a **backlog**, or a list of work to be done. Tasks are then divided into **sprints**, or short work periods.
+
+### Roles and Ceremonies in Scrum
+
+**Roles and Ceremonies in Scrum** are pivotal for the function of Scrum. Key roles include the **Product Owner**, who represents stakeholders and the voice of the customer; the **Scrum Master**, who ensures the team follows Agile practices; and the **Development Team**, who work together to deliver the product increments. The main ceremonies within Scrum are the **Sprint Planning**, which sets up the work to be performed during the sprint; **Daily Stand-Up** meetings for status updates; **Sprint Review**, to present the work done; and **Sprint Retrospective**, where the team reflects on the past sprint and makes adjustments for the next one.
