@@ -1,5 +1,18 @@
 <!--next-version-placeholder-->
 
+## v0.27.0 (2023-11-13)
+
+### Feature
+
+* **book:** Add section on Scaling Agile Methods ([`f2d3582`](https://github.com/entelecheia/lecture/commit/f2d358260b386be5ea179acec6daf2a60e8e84e9))
+* **agile.md:** Add Agile Project Management section ([`f60b5b1`](https://github.com/entelecheia/lecture/commit/f60b5b128ac33dbb9bb9347a608e4abc3ef42884))
+* **lectures:** Add Agile Development Techniques section to agile.md ([`504920d`](https://github.com/entelecheia/lecture/commit/504920d384709b55573ceea4dbd2811a8dfd6bda))
+* **lectures:** Add section on Agile vs Plan-Driven Development in softeng/spm/agile.md ([`ef78c10`](https://github.com/entelecheia/lecture/commit/ef78c107e15c700d8d9c2a7675d3e4d2b61c075d))
+* **book:** Add agile section to software project management ([`440aad8`](https://github.com/entelecheia/lecture/commit/440aad89370f37db451ff80d100ff3b0826c6fb3))
+* **lectures:** Add agile-manifesto image to the agile section ([`8c41f10`](https://github.com/entelecheia/lecture/commit/8c41f10760d4c52484bd363774f53866f35204df))
+* **lectures:** Add introduction to Agile Software Development in spm/agile.md ([`f9a460e`](https://github.com/entelecheia/lecture/commit/f9a460e9296470d30714e53e0f2343983ca28daf))
+* **lectures:** Add agile software development section ([`5e7504b`](https://github.com/entelecheia/lecture/commit/5e7504ba1d4093a0c58fd7ce7ac39579116b1e4f))
+
 ## v0.26.0 (2023-11-07)
 
 ### Feature
