@@ -1,4 +1,4 @@
-# Retrieval Augmented Generation (RAG) based LLM Applications
+# Retrieval Augmented Generation (RAG)
 
 ```{image} figs/rag-architecture.png
 :width: 100%
@@ -57,3 +57,37 @@ The above strategies are foundational to overcoming the challenges inherent in R
 5. **Error Propagation**: Implement error detection and correction mechanisms post-generation.
 6. **Stylistic Issues**: Train models on a diverse range of styles to improve stylistic variety and appropriateness.
 7. **Failure to Reconcile Contradictions**: Design systems that can detect and resolve contradictory statements within the generated content.
+
+## III. Data Preparation
+
+- **Data Standardization**: Align all input data to a uniform format and structure for consistent processing.
+- **Entity Clarity**: Rigorously resolve and clarify entities to maintain coherence and accuracy in retrieval.
+- **Information Pruning**: Systematically remove superfluous data to streamline the retrieval process.
+- **Factuality Assurance**: Implement robust validation mechanisms to maintain the integrity of the data used in the RAG system.
+
+The meticulous preparation of data sets the stage for the successful implementation of a RAG-based LLM, ensuring that the system operates on clean, clear, and factual information.
+
+### Cleaning and standardizing the data
+
+- **Normalization**: Convert data into a consistent format, ensuring uniformity in case, date formats, and numerical representations.
+- **Noise Reduction**: Remove irrelevant information, such as HTML tags or extraneous punctuation, to reduce noise.
+- **Tokenization**: Break text into tokens (e.g., words, phrases) to facilitate processing.
+- **Part-of-Speech Tagging**: Annotate tokens with their corresponding part of speech to aid in understanding grammatical structures.
+
+### Disambiguating entities and terms
+
+- **Entity Resolution**: Apply techniques to identify and merge multiple records that refer to the same entity.
+- **Synonym Mapping**: Create a synonym dictionary to group different expressions of the same concept.
+- **Contextual Clues**: Use surrounding text to resolve the meaning of ambiguous terms.
+- **Knowledge Graphs**: Integrate external knowledge graphs to enhance semantic understanding.
+
+### Eliminating duplicate or redundant information
+
+- **Deduplication**: Detect and remove duplicate entries to prevent retrieval of repetitive information.
+- **Redundancy Analysis**: Use algorithms to identify and discard information that does not add value to the context.
+
+### Ensuring factuality of the data
+
+- **Fact-Checking Protocols**: Establish rigorous verification processes to validate the truthfulness of the data.
+- **Source Credibility**: Prioritize data from credible sources to enhance the reliability of information.
+- **Cross-Referencing**: Cross-reference information with multiple sources to ensure consistency and factuality.
