@@ -1,5 +1,18 @@
 <!--next-version-placeholder-->
 
+## v0.28.0 (2023-11-14)
+
+### Feature
+
+* **book:** Add Conclusion and Summary sections to RAG lecture ([`681acd2`](https://github.com/entelecheia/lecture/commit/681acd2fa477b21ad452a2400b3bed7fbac92ce8))
+* **llms/rag:** Add evaluation and performance optimization section ([`f3c2f1a`](https://github.com/entelecheia/lecture/commit/f3c2f1afce6860905ae3636eabd87610508da9b1))
+* **llms/rag:** Add scaling and serving application section ([`be63934`](https://github.com/entelecheia/lecture/commit/be639341448d230a4241872b10fdada772dd4a8e))
+* **llms/rag:** Add new sections on RAG pipeline construction ([`8c2483b`](https://github.com/entelecheia/lecture/commit/8c2483b19d308e3bae63cd22917dd3ef39728600))
+* **book:** Expand LLM and RAG content in lectures section ([`b82d195`](https://github.com/entelecheia/lecture/commit/b82d19505cfb5bb378bec2e497e25ff3b6449471))
+* **book:** Add rag lecture to table of contents ([`24e7b7f`](https://github.com/entelecheia/lecture/commit/24e7b7f9e581a86c3040e90c5a352616ddf395f4))
+* **book:** Add rag-architecture image to lectures ([`7544f3a`](https://github.com/entelecheia/lecture/commit/7544f3ad1de478b9a6cf7183ee7760f63a66c461))
+* **llms/rag:** Add new documentation file for Retrieval Augmented Generation based LLM Applications ([`60d9d13`](https://github.com/entelecheia/lecture/commit/60d9d13dc11111da3c6bca394f785b9ace53983c))
+
 ## v0.27.0 (2023-11-13)
 
 ### Feature
