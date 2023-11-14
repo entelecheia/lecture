@@ -648,6 +648,14 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ensuring-factuality-of-the-data">Ensuring factuality of the data</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iv-building-the-rag-pipeline">IV. Building the RAG Pipeline</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-vector-database">Creating the vector database</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-dataset">Loading the Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval-process">Retrieval process</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#embedding-the-query-and-retrieved-context">Embedding the query and retrieved context</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-a-response-using-the-llm">Generating a response using the LLM</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -768,6 +776,57 @@ document.write(`
 </ul>
 </section>
 </section>
+<section id="iv-building-the-rag-pipeline">
+<h2>IV. Building the RAG Pipeline<a class="headerlink" href="#iv-building-the-rag-pipeline" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Vector Database Creation</strong>: Establishing a rich vector database is critical for effective retrieval.</p></li>
+<li><p><strong>Efficient Data Handling</strong>: Optimizing data loading and syncing is key for up-to-date and responsive systems.</p></li>
+<li><p><strong>Sophisticated Retrieval</strong>: Advanced retrieval methods are essential for providing the most relevant context.</p></li>
+<li><p><strong>Integrated Generation</strong>: Combining LLM generation with retrieved context requires careful balance to achieve natural and accurate outputs.</p></li>
+<li><p><strong>Continuous Improvement</strong>: Implementing feedback loops ensures the RAG system improves over time.</p></li>
+</ul>
+<p>Building the RAG pipeline is a complex task that requires careful consideration of both the retrieval and generation aspects to ensure the system is both accurate and efficient. This foundation is crucial for developing LLM applications that can leverage external information for better performance.</p>
+<section id="creating-the-vector-database">
+<h3>Creating the vector database<a class="headerlink" href="#creating-the-vector-database" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Vectorization</strong>: Convert text data into vector representations using models like BERT or GPT-3, capturing semantic meanings in vector space.</p></li>
+<li><p><strong>Indexing</strong>: Implement indexing strategies to efficiently store and retrieve vectors from the database.</p></li>
+<li><p><strong>Dimensionality Reduction</strong>: Apply techniques like PCA or t-SNE to reduce vector dimensions, enhancing computational efficiency without significant loss of information.</p></li>
+</ul>
+</section>
+<section id="loading-the-dataset">
+<h3>Loading the Dataset<a class="headerlink" href="#loading-the-dataset" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Data Ingestion</strong>: Automate the ingestion of new data into the system, ensuring it is vectorized and indexed consistently with existing data.</p></li>
+<li><p><strong>Batch Processing</strong>: Utilize batch processing for handling large datasets, enabling parallel processing and minimizing load times.</p></li>
+<li><p><strong>Data Syncing</strong>: Maintain synchronization mechanisms to keep the dataset current with the latest information updates.</p></li>
+</ul>
+</section>
+<section id="retrieval-process">
+<h3>Retrieval process<a class="headerlink" href="#retrieval-process" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Query Analysis</strong>: Decompose the user’s query into its semantic components for better matching with the knowledge base.</p></li>
+<li><p><strong>Search Algorithm</strong>: Use advanced search algorithms like k-nearest neighbors (k-NN) to find the most relevant vectors in the database.</p></li>
+<li><p><strong>Relevance Scoring</strong>: Score retrieved documents based on their relevance to the query, using metrics like BM25 or cosine similarity.</p></li>
+</ul>
+</section>
+<section id="embedding-the-query-and-retrieved-context">
+<h3>Embedding the query and retrieved context<a class="headerlink" href="#embedding-the-query-and-retrieved-context" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Query Vectorization</strong>: Embed the query into the same vector space as the database to allow for direct comparison.</p></li>
+<li><p><strong>Context Integration</strong>: Combine the embedded query vector with the vectors of the retrieved documents to provide a rich context for the generation process.</p></li>
+<li><p><strong>Attention Mechanisms</strong>: Apply attention models to weigh the importance of different parts of the retrieved context in relation to the query.</p></li>
+</ul>
+</section>
+<section id="generating-a-response-using-the-llm">
+<h3>Generating a response using the LLM<a class="headerlink" href="#generating-a-response-using-the-llm" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Response Formulation</strong>: Employ the LLM to generate a coherent and contextually relevant response based on the augmented information.</p></li>
+<li><p><strong>Feedback Loop</strong>: Integrate a feedback mechanism where the quality of the generated response can inform future retrieval and generation processes.</p></li>
+<li><p><strong>Quality Control</strong>: Incorporate human-in-the-loop or automated checks to ensure the response meets quality standards.</p></li>
+</ul>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -849,6 +908,14 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#disambiguating-entities-and-terms">Disambiguating entities and terms</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminating-duplicate-or-redundant-information">Eliminating duplicate or redundant information</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ensuring-factuality-of-the-data">Ensuring factuality of the data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iv-building-the-rag-pipeline">IV. Building the RAG Pipeline</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-vector-database">Creating the vector database</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-dataset">Loading the Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval-process">Retrieval process</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#embedding-the-query-and-retrieved-context">Embedding the query and retrieved context</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-a-response-using-the-llm">Generating a response using the LLM</a></li>
 </ul>
 </li>
 </ul>
