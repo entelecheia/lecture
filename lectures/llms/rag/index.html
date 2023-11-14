@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Retrieval Augmented Generation (RAG) based LLM Applications &#8212; ἐντελέχεια.άι</title>
+    <title>Retrieval Augmented Generation (RAG) &#8212; ἐντελέχεια.άι</title>
   
   
   
@@ -473,7 +473,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="../finetune/autotrain.html">Fine-Tuning LLMs with Hugging Face AutoTrain</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Retrieval Augmented Generation (RAG) based LLM Applications</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Retrieval Augmented Generation (RAG)</a></li>
 </ul>
 </li>
 </ul>
@@ -620,7 +620,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Retrieval Augmented Generation (RAG) based LLM Applications</h1>
+    <h1>Retrieval Augmented Generation (RAG)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -641,6 +641,13 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generation-problems">Generation Problems</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iii-data-preparation">III. Data Preparation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cleaning-and-standardizing-the-data">Cleaning and standardizing the data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#disambiguating-entities-and-terms">Disambiguating entities and terms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminating-duplicate-or-redundant-information">Eliminating duplicate or redundant information</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ensuring-factuality-of-the-data">Ensuring factuality of the data</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -652,8 +659,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="retrieval-augmented-generation-rag-based-llm-applications">
-<h1>Retrieval Augmented Generation (RAG) based LLM Applications<a class="headerlink" href="#retrieval-augmented-generation-rag-based-llm-applications" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="retrieval-augmented-generation-rag">
+<h1>Retrieval Augmented Generation (RAG)<a class="headerlink" href="#retrieval-augmented-generation-rag" title="Permalink to this heading">#</a></h1>
 <a class="reference internal image-reference" href="../../../_images/rag-architecture.png"><img alt="../../../_images/rag-architecture.png" class="align-center" src="../../../_images/rag-architecture.png" style="width: 100%;" /></a>
 <ul class="simple">
 <li><p>LLMs are sophisticated but not without flaws.</p></li>
@@ -716,6 +723,49 @@ document.write(`
 <li><p><strong>Stylistic Issues</strong>: Train models on a diverse range of styles to improve stylistic variety and appropriateness.</p></li>
 <li><p><strong>Failure to Reconcile Contradictions</strong>: Design systems that can detect and resolve contradictory statements within the generated content.</p></li>
 </ol>
+</section>
+</section>
+<section id="iii-data-preparation">
+<h2>III. Data Preparation<a class="headerlink" href="#iii-data-preparation" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Data Standardization</strong>: Align all input data to a uniform format and structure for consistent processing.</p></li>
+<li><p><strong>Entity Clarity</strong>: Rigorously resolve and clarify entities to maintain coherence and accuracy in retrieval.</p></li>
+<li><p><strong>Information Pruning</strong>: Systematically remove superfluous data to streamline the retrieval process.</p></li>
+<li><p><strong>Factuality Assurance</strong>: Implement robust validation mechanisms to maintain the integrity of the data used in the RAG system.</p></li>
+</ul>
+<p>The meticulous preparation of data sets the stage for the successful implementation of a RAG-based LLM, ensuring that the system operates on clean, clear, and factual information.</p>
+<section id="cleaning-and-standardizing-the-data">
+<h3>Cleaning and standardizing the data<a class="headerlink" href="#cleaning-and-standardizing-the-data" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Normalization</strong>: Convert data into a consistent format, ensuring uniformity in case, date formats, and numerical representations.</p></li>
+<li><p><strong>Noise Reduction</strong>: Remove irrelevant information, such as HTML tags or extraneous punctuation, to reduce noise.</p></li>
+<li><p><strong>Tokenization</strong>: Break text into tokens (e.g., words, phrases) to facilitate processing.</p></li>
+<li><p><strong>Part-of-Speech Tagging</strong>: Annotate tokens with their corresponding part of speech to aid in understanding grammatical structures.</p></li>
+</ul>
+</section>
+<section id="disambiguating-entities-and-terms">
+<h3>Disambiguating entities and terms<a class="headerlink" href="#disambiguating-entities-and-terms" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Entity Resolution</strong>: Apply techniques to identify and merge multiple records that refer to the same entity.</p></li>
+<li><p><strong>Synonym Mapping</strong>: Create a synonym dictionary to group different expressions of the same concept.</p></li>
+<li><p><strong>Contextual Clues</strong>: Use surrounding text to resolve the meaning of ambiguous terms.</p></li>
+<li><p><strong>Knowledge Graphs</strong>: Integrate external knowledge graphs to enhance semantic understanding.</p></li>
+</ul>
+</section>
+<section id="eliminating-duplicate-or-redundant-information">
+<h3>Eliminating duplicate or redundant information<a class="headerlink" href="#eliminating-duplicate-or-redundant-information" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Deduplication</strong>: Detect and remove duplicate entries to prevent retrieval of repetitive information.</p></li>
+<li><p><strong>Redundancy Analysis</strong>: Use algorithms to identify and discard information that does not add value to the context.</p></li>
+</ul>
+</section>
+<section id="ensuring-factuality-of-the-data">
+<h3>Ensuring factuality of the data<a class="headerlink" href="#ensuring-factuality-of-the-data" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Fact-Checking Protocols</strong>: Establish rigorous verification processes to validate the truthfulness of the data.</p></li>
+<li><p><strong>Source Credibility</strong>: Prioritize data from credible sources to enhance the reliability of information.</p></li>
+<li><p><strong>Cross-Referencing</strong>: Cross-reference information with multiple sources to ensure consistency and factuality.</p></li>
+</ul>
 </section>
 </section>
 </section>
@@ -792,6 +842,13 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval-problems">Retrieval Problems</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#augmentation-problems">Augmentation Problems</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generation-problems">Generation Problems</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iii-data-preparation">III. Data Preparation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cleaning-and-standardizing-the-data">Cleaning and standardizing the data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#disambiguating-entities-and-terms">Disambiguating entities and terms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminating-duplicate-or-redundant-information">Eliminating duplicate or redundant information</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ensuring-factuality-of-the-data">Ensuring factuality of the data</a></li>
 </ul>
 </li>
 </ul>
