@@ -1,4 +1,4 @@
-# Introduction to AI Agents
+# AI Agents
 
 Artificial Intelligence (AI) agents represent a pivotal facet of AI, embodying entities that autonomously or semi-autonomously interact with their environment to achieve specified goals. This lecture delves into the core attributes of AI agents, their classification, and their role in complex systems, with a special emphasis on Large Language Model (LLM) agents. Through real-world examples and contemporary frameworks like AutoGen, we explore the evolution of AI agents from standalone LLMs to interactive, collaborative entities capable of complex problem-solving in multi-agent settings.
 
