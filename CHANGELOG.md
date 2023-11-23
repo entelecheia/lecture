@@ -1,5 +1,11 @@
 <!--next-version-placeholder-->
 
+## v0.29.0 (2023-11-23)
+
+### Feature
+
+* **book:** Add gitops and devsecops sections to devops chapter ([`31f8592`](https://github.com/entelecheia/lecture/commit/31f85923d391374e5d4f005b86ccda041c9b3504))
+
 ## v0.28.0 (2023-11-14)
 
 ### Feature
