@@ -1,5 +1,20 @@
 <!--next-version-placeholder-->
 
+## v0.30.0 (2023-11-28)
+
+### Feature
+
+* **book:** Add new section in peft-hf ([`76574e8`](https://github.com/entelecheia/lecture/commit/76574e85b5d8a2c73163bcb775d4800bd5695e6a))
+* **book/lectures:** Add PEFT section to lectures ([`b647731`](https://github.com/entelecheia/lecture/commit/b6477312e6bea6be9bae38081ec79b4129699365))
+* **book:** Add new section to llms/peft in toc.yml ([`7426997`](https://github.com/entelecheia/lecture/commit/7426997d11ee885bd0af504d5caf358db02d21f2))
+* **peft-llms:** Add comprehensive guide on Parameter-Efficient Fine-Tuning (PEFT) techniques ([`e5cdb0b`](https://github.com/entelecheia/lecture/commit/e5cdb0b5c830bb1b3dbcb88969c3e2418e5cb00c))
+* **book:** Add q-learning lecture to table of contents ([`dba2dff`](https://github.com/entelecheia/lecture/commit/dba2dff5bdd5e1899a9559f182d9c16e19bab441))
+* **llms/q-learning:** Expand section on Q*-Learning integration in LLM training ([`5c987d2`](https://github.com/entelecheia/lecture/commit/5c987d233385cbf9229ff078477c4179660add32))
+* **llms:** Add Q-Learning approach section ([`b3cccdf`](https://github.com/entelecheia/lecture/commit/b3cccdf8d5cf692bc41945b455c32eb7a2221fb4))
+* **book:** Add new section in index ([`c1859fb`](https://github.com/entelecheia/lecture/commit/c1859fbda854134b4b89ae5d09b00ee0f793772f))
+* **book:** Expand PEFT lecture content in index.md ([`96c55b4`](https://github.com/entelecheia/lecture/commit/96c55b414314420053638bf120d8a777f0cec348))
+* **book:** Add new lecture on Parameter-Efficient Fine-Tuning ([`b738561`](https://github.com/entelecheia/lecture/commit/b73856105eb899a019e13862b767fed84a08f793))
+
 ## v0.29.0 (2023-11-23)
 
 ### Feature
