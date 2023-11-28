@@ -6,7 +6,7 @@ In this context, the necessity for more efficient approaches to leverage these m
 
 This lecture aims to provide a comprehensive understanding of each PEFT technique currently implemented in Hugging Face, delineating the differences among them. This guide fills the gaps identified in these materials and serves as a conceptual foundation for all PEFT methods present in Hugging Face. The goal is to equip readers with a fundamental understanding of PEFT, facilitating their engagement with research literature on additional PEFT techniques.
 
-## Standard Fine-Tuning vs. Parameter-Efficient Fine-Tuning (PEFT)
+## Standard Fine-Tuning vs. PEFT
 
 Fine-tuning Large Language Models (LLMs) is a complex process with implications for model performance, data security, and resource utilization. The choice between standard fine-tuning and Parameter-Efficient Fine-Tuning (PEFT) depends on various factors, including data availability, computational resources, and specific use-case requirements.
 

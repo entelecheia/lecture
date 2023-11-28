@@ -1,4 +1,4 @@
-# Parameter-Efficient Fine-Tuning
+# Parameter-Efficient Fine-Tuning (PEFT)
 
 ```{image} figs/peft.png
 :width: 100%
@@ -7,7 +7,7 @@
 
 This lecture offers an in-depth exploration of Parameter-Efficient Fine-Tuning (PEFT) within the machine learning landscape. We will delve into its foundational concepts, diverse methodologies, practical implementations, and the evolving challenges and prospective developments in the field. The aim is to provide students with a comprehensive understanding of PEFT, equipping them with the knowledge to effectively apply these principles in both research and professional contexts.
 
-## I. Introduction to Parameter-Efficient Fine-Tuning (PEFT)
+## I. Introduction to PEFT
 
 ### Definition and Overview
 
