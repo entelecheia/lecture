@@ -81,21 +81,42 @@ The Transformer architecture, introduced by Vaswani et al. in their seminal pape
 
 ```python
 def self_attention(x):
-    k = x @ W_k
-    q = x @ W_q
-    v = x @ W_v
+    # Project the input to create key (k), query (q), and value (v) matrices
+    k = x @ W_k  # Key matrix is obtained by multiplying the input with weight W_k
+    q = x @ W_q  # Query matrix is obtained by multiplying the input with weight W_q
+    v = x @ W_v  # Value matrix is obtained by multiplying the input with weight W_v
+
+    # Calculate the attention scores and apply them to the value matrix
+    # Softmax is applied to the dot product of q and the transpose of k for normalization
+    # The resulting attention scores are then multiplied with the value matrix v
     return softmax(q @ k.T) @ v
 
 def transformer_block(x):
-    """ Pseudo code by author based on [2] """
+    # Store the original input for the residual connection
     residual = x
+
+    # Apply self-attention to the input
     x = self_attention(x)
+
+    # Add the residual (original input) to the output of the self-attention layer
+    # and apply layer normalization
     x = layer_norm(x + residual)
+
+    # Store the output of the first sub-layer for the next residual connection
     residual = x
+
+    # Apply the Feed-Forward Network (FFN) to the output of the first sub-layer
     x = FFN(x)
+
+    # Add the residual (output of the first sub-layer) to the output of the FFN
+    # and apply layer normalization
     x = layer_norm(x + residual)
+
+    # Return the output of the transformer block
     return x
 ```
+
+In this code snippet, the `self_attention` function defines the self-attention mechanism used in transformer models, projecting input `x` into key, query, and value matrices and applying the attention mechanism. The `transformer_block` function represents a single block of a transformer model, which includes a self-attention layer followed by a feed-forward network (FFN), both supplemented with residual connections and layer normalization for stability and performance improvement.
 
 ### Importance in PEFT
 
@@ -108,45 +129,94 @@ def transformer_block(x):
 
 **Adapters**: Introduced by Houlsby et al., this technique involves adding small fully connected networks after Transformer sub-layers. The pseudo code for an adapted transformer block illustrates these additions.
 
-```ptyhon
+```python
 def transformer_block_adapter(x):
-    """Pseudo code from [2] """
+    # Store the original input for the residual connection
     residual = x
+
+    # Apply self-attention to the input
     x = self_attention(x)
-    x = FFN(x)  # adapter
+
+    # Apply the first Feed-Forward Network (FFN), which acts as an adapter in this context
+    # Adapters are small networks added after the transformer sub-layers
+    x = FFN(x)  # Adapter layer
+
+    # Add the residual (original input) to the output of the adapter layer
+    # and apply layer normalization
     x = layer_norm(x + residual)
+
+    # Store the output of the first sub-layer (including the adapter) for the next residual connection
     residual = x
+
+    # Apply the second Feed-Forward Network (FFN) for further transformation
     x = FFN(x)
-    x = FFN(x)  # adapter
+
+    # Apply another adapter after the second FFN
+    x = FFN(x)  # Second adapter layer
+
+    # Add the residual (output of the first adapter layer) to the output of the second adapter layer
+    # and apply layer normalization
     x = layer_norm(x + residual)
+
+    # Return the output of the transformer block with adapters
     return x
 ```
+
+In this code snippet, the `transformer_block_adapter` function represents a transformer block modified to include adapters, as introduced by Houlsby et al. Adapters are additional small feed-forward networks inserted after each sub-layer within the transformer block (after self-attention and the original FFN). These adapters provide a means to fine-tune the pre-trained transformer models efficiently by only training the parameters within these adapter layers, rather than the entire model. This approach helps in adapting the model to specific tasks while keeping the computational overhead low.
 
 **(IA)³**: This method, proposed by Liu et al., augments the transformer block with additional column vectors ($l_k$, $l_v$) that modify the key and value matrices in the attention mechanism. This is done without strictly adding fully connected layers, distinguishing it from traditional adapter methods.
 
 ```python
 def self_attention_ia3(x):
-    k = x @ W_k
-    q = x @ W_q
-    v = x @ W_v
+    # Project the input to create key (k), query (q), and value (v) matrices
+    k = x @ W_k  # Key matrix is obtained by multiplying the input with weight W_k
+    q = x @ W_q  # Query matrix is obtained by multiplying the input with weight W_q
+    v = x @ W_v  # Value matrix is obtained by multiplying the input with weight W_v
 
-    k = l_k @ k  # ia3
-    v = l_v @ v  # ia3
+    # IA³ augmentation: Modify the key and value matrices using additional column vectors l_k and l_v
+    # These additional vectors allow for specific adjustments to the attention mechanism
+    k = l_k @ k  # Modify key matrix with l_k vector
+    v = l_v @ v  # Modify value matrix with l_v vector
 
+    # Calculate the attention scores and apply them to the value matrix
+    # Softmax is applied to the dot product of q and the transpose of k for normalization
+    # The resulting attention scores are then multiplied with the value matrix v
     return softmax(q @ k.T) @ v
 
 def transformer_block_ia3(x):
-    """Pseudo code from [2]"""
+    # Store the original input for the residual connection
     residual = x
+
+    # Apply the IA³-augmented self-attention to the input
     x = self_attention_ia3(x)
+
+    # Add the residual (original input) to the output of the self-attention layer
+    # and apply layer normalization
     x = layer_norm(x + residual)
+
+    # Store the output of the first sub-layer for the next residual connection
     residual = x
-    x = x @ W_1  # normal transformer
-    x = l_ff * gelu(x)  # ia3
+
+    # Apply the first part of the Feed-Forward Network (FFN)
+    x = x @ W_1  # Normal transformer feed-forward operation
+
+    # IA³ augmentation for the Feed-Forward Network
+    # Apply an element-wise multiplication with the l_ff vector after applying the GELU activation function
+    # This step introduces adaptability specific to the IA³ approach
+    x = l_ff * gelu(x)  # Modify FFN output with l_ff vector
+
+    # Complete the FFN operation
     x = x @ W_2
+
+    # Add the residual (output of the first sub-layer) to the output of the FFN
+    # and apply layer normalization
     x = layer_norm(x + residual)
+
+    # Return the output of the transformer block with IA³ modifications
     return x
 ```
+
+In this code snippet, the `self_attention_ia3` function and the `transformer_block_ia3` function represent the IA³ method as proposed by Liu et al. The IA³ method augments the standard Transformer architecture by introducing additional column vectors to modify the key and value matrices in the self-attention mechanism, as well as applying modifications to the feed-forward network. This approach allows for targeted adjustments to the model's attention and feed-forward mechanisms, enhancing its adaptability for specific tasks without adding fully connected layers typical of traditional adapter methods.
 
 ### Soft-Prompts
 
@@ -154,57 +224,131 @@ def transformer_block_ia3(x):
 
 ```python
 def prompt_tuning(seq_tokens, prompt_tokens):
-    """ Pseudo code from [2]. """
+    # Create embeddings for the input sequence tokens
+    # seq_embedding is a function that transforms sequence tokens into their corresponding embeddings
     x = seq_embedding(seq_tokens)
+
+    # Create soft prompt embeddings
+    # prompt_embedding is a function that creates embeddings for a set of trainable prompt tokens
+    # These prompt tokens are not part of the original input but are learned parameters that are optimized during training
     soft_prompt = prompt_embedding(prompt_tokens)
+
+    # Concatenate the soft prompt embeddings with the input sequence embeddings
+    # This operation combines the prompt information with the actual input, allowing the model to consider the prompt context
+    # 'dim=seq' specifies the dimension along which the concatenation occurs, typically the sequence length dimension
     model_input = concat([soft_prompt, x], dim=seq)
+
+    # Pass the concatenated input through the model
+    # The model processes the combined prompt and sequence input, utilizing the prompt context for better adaptation to the task
     return model(model_input)
 ```
+
+In this code snippet, `prompt_tuning` function represents the Prompt-Tuning technique as developed by Lester et al. This approach involves integrating a set of learned prompt tokens at the beginning of the input sequence. These prompt tokens, represented as "soft prompts," are not fixed but are trainable parameters that are optimized during the training process. By concatenating these soft prompt embeddings with the input sequence embeddings, the model is provided with additional context or guidance, enhancing its ability to adapt to specific tasks or datasets. This method allows for the fine-tuning of large language models in a parameter-efficient manner, as only the prompt embeddings are trained, leaving the rest of the model's parameters frozen.
 
 **Prefix Tuning**: Similar to prompt tuning but differs in that the representation is fed to all layers of the transformer. It also involves learning additional parameters for the soft prompt in the form of a fully connected network.
 
-```ptyhon
+```python
 def transformer_block_prefix_tuning(x, soft_prompt):
-    """ Pseudo code from [2] """
+    # Apply a Feed-Forward Network (FFN) to the soft prompt
+    # The FFN is used to transform the soft prompt embeddings, allowing for more complex and adaptable representations
+    # This FFN is part of the learnable parameters and is specific to the prefix tuning method
     soft_prompt = FFN(soft_prompt)
+
+    # Concatenate the transformed soft prompt embeddings with the input sequence embeddings
+    # Unlike prompt tuning where the prompt is only added at the beginning, in prefix tuning
+    # the transformed soft prompt is designed to be integrated with every layer of the transformer
+    # 'dim=seq' specifies the dimension along which the concatenation occurs, typically the sequence length dimension
     model_input = concat([soft_prompt, x], dim=seq)
+
+    # Pass the concatenated input (including the soft prompt) through the model
+    # The transformer model processes the input sequence along with the embedded prompts,
+    # allowing each layer of the transformer to utilize the prompt information
     return model(model_input)
 ```
+
+In this code snippet, the `transformer_block_prefix_tuning` function represents the Prefix Tuning technique. Prefix Tuning is similar to Prompt Tuning in that it involves adding soft prompts to the input. However, it differs significantly in its approach to integrating these prompts. In Prefix Tuning, the soft prompts are first transformed by a Feed-Forward Network (FFN), and this transformed representation is then concatenated with the input sequence embeddings. This concatenated input is fed to every layer of the transformer model, as opposed to just the beginning of the model in standard Prompt Tuning. This method allows for a more extensive and integrated use of the prompt information throughout the model, potentially leading to more nuanced and effective adaptations to specific tasks or datasets.
 
 **P-Tuning**: Proposed by Liu et al., P-Tuning encodes the prompt using an LSTM, aiming to address the discrete nature of word embeddings and their independent associations in other prompting methods.
 
 ```python
 def p_tuning(seq_tokens, prompt_tokens):
-    """Pseudo code for p-tuning created by Author."""
+    # Create embeddings for the prompt tokens
+    # prompt_embedding is a function that transforms prompt tokens into their corresponding embeddings
+    # These prompt tokens are learnable parameters that are optimized during training
     h = prompt_embedding(prompt_tokens)
+
+    # Process the prompt embeddings with a bidirectional LSTM
+    # The LSTM (Long Short-Term Memory) network is used to capture sequential information in the prompts
+    # and can model dependencies in both forward and reverse directions (bidirectional)
     h = LSMT(h, bidirectional=True)
+
+    # Apply a Feed-Forward Network (FFN) to the output of the LSTM
+    # This step further transforms the prompt embeddings, allowing for richer representations
     h = FFN(h)
 
+    # Create embeddings for the input sequence tokens
+    # seq_embedding is a function that transforms sequence tokens into their corresponding embeddings
     x = seq_embedding(seq_tokens)
+
+    # Concatenate the transformed prompt embeddings (h) with the input sequence embeddings (x)
+    # This operation combines the prompt information with the actual input sequence
+    # 'dim=seq' specifies the dimension along which the concatenation occurs, typically the sequence length dimension
     model_input = concat([h, x], dim=seq)
 
+    # Pass the concatenated input (including the prompt embeddings) through the model
+    # The transformer model processes the input sequence along with the embedded prompts
     return model(model_input)
 ```
+
+In this code snippet, the `p_tuning` function represents the P-Tuning technique as proposed by Liu et al. P-Tuning aims to address the limitations of other prompting methods by using an LSTM network to encode the prompts. This approach helps to capture the sequential nature and dependencies within the prompt embeddings more effectively. The prompt embeddings are first transformed by the LSTM and then further processed by a Feed-Forward Network (FFN) to enrich their representation. These transformed prompt embeddings are then concatenated with the input sequence embeddings, and the combined input is fed into the model. This method allows for a more nuanced integration of the prompt information into the model, potentially leading to more effective adaptations for specific tasks.
 
 **LLaMA-Adapter**: As per Zhang et al., this technique applies a variant of prefix learning to the Llama model. It introduces adaptation prompts and zero-initialized attention for efficient fine-tuning.
 
 ```python
 def transformer_block_llama_adapter(x, soft_prompt, gating_factor):
-    """LLaMA-Adapter pseudo code created by Author"""
+    # Store the original input for the residual connection
     residual = x
 
+    # Create an adaptation prompt by concatenating the soft prompt with the input
+    # This adaptation prompt is a modification specific to the LLaMA-Adapter approach
     adaption_prompt = concat([soft_prompt, x], dim=seq)
-    adaption_prompt = self_attention(adaption_prompt) * gating_factor  # zero-init attention
 
+    # Apply self-attention to the adaptation prompt
+    # The self-attention mechanism processes the combined input of soft prompts and sequence tokens
+    adaption_prompt = self_attention(adaption_prompt)
+
+    # Apply gating to the adaptation prompt using a zero-initialized attention mechanism
+    # This gating factor controls the influence of the adaptation prompt on the transformer block
+    # The zero-init attention helps in starting the training from a state where the adaptation prompt has minimal impact,
+    # gradually learning its influence during training
+    adaption_prompt = adaption_prompt * gating_factor
+
+    # Apply self-attention to the original input sequence
     x = self_attention(x)
+
+    # Combine the output of the self-attention with the adapted prompt
+    # The element-wise multiplication integrates the adaptation prompt into the main data flow
     x = adaption_prompt * x
-    x = layer_norm(x + residual)
-    residual = x
-    x = FFN(x)
+
+    # Add the residual (original input) to the output of the combined self-attention and adaptation prompt
+    # and apply layer normalization
     x = layer_norm(x + residual)
 
+    # Store the output of the first sub-layer for the next residual connection
+    residual = x
+
+    # Apply the Feed-Forward Network (FFN) to the output of the first sub-layer
+    x = FFN(x)
+
+    # Add the residual (output of the first sub-layer) to the output of the FFN
+    # and apply layer normalization
+    x = layer_norm(x + residual)
+
+    # Return the output of the transformer block with the LLaMA-Adapter modifications
     return x
 ```
+
+In this code snippet, the `transformer_block_llama_adapter` function represents the implementation of the LLaMA-Adapter technique. This method applies a variant of prefix learning to the transformer model, incorporating adaptation prompts and a zero-initialized attention mechanism. The adaptation prompt, created by combining soft prompts with the input sequence, is processed through self-attention and then modulated by a gating factor. This approach allows for efficient fine-tuning by introducing an adaptable mechanism that initially has minimal impact but learns to influence the transformer block's processing over the course of training. The LLaMA-Adapter thus provides a novel way to fine-tune transformer models, enhancing their adaptability to specific tasks while maintaining the underlying model structure.
 
 ### Reparameterization-Based Methods
 
@@ -212,19 +356,38 @@ def transformer_block_llama_adapter(x, soft_prompt, gating_factor):
 
 ```python
 def lora_linear(x, W):
-    scale = 1 / r  # r is rank
+    # Scale factor based on the rank r
+    # In LoRa, a low-rank approximation is used to reduce the number of learnable parameters
+    # r is the rank, which is a hyperparameter determining the size of the low-rank matrices W_a and W_b
+    scale = 1 / r
+
+    # Standard linear transformation using the original weight matrix W
     h = x @ W
-    h += x @ W_a @ W_b  # W_a,W_b determined based on W
+
+    # LoRa modification: Apply low-rank linear transformation
+    # W_a and W_b are smaller matrices representing updates from optimization
+    # The product of W_a and W_b approximates the updates to the original weight matrix W
+    # This approach reduces the number of parameters to learn, focusing on the most impactful parts of W
+    h += x @ W_a @ W_b
+
+    # Scale the result of the transformation
+    # The scaling helps in balancing the influence of the low-rank approximation
     return scale * h
 
 def self_attention_lora(x):
-    """ Pseudo code from Lialin et al. [2]."""
+    # Apply the LoRa-modified linear transformation to the key and value matrices
+    # LoRa reparameterizes the original weight matrices (W_k and W_v) of the key and value vectors
+    k = lora_linear(x, W_k)  # LoRa applied to key matrix
+    q = x @ W_q              # Standard linear transformation for query matrix
+    v = lora_linear(x, W_v)  # LoRa applied to value matrix
 
-    k = lora_linear(x, W_k)
-    q = x @ W_q
-    v = lora_linear(x, W_v)
+    # Calculate the attention scores and apply them to the value matrix
+    # The attention mechanism remains the same as in the standard self-attention
+    # The key and value matrices are modified by LoRa, allowing for efficient learning of the most impactful parameters
     return softmax(q @ k.T) @ v
 ```
+
+In this code snippet, the `lora_linear` function implements the Low-Rank Adaptation (LoRa) technique for linear layers, and the `self_attention_lora` function integrates this technique into the self-attention mechanism of a transformer. LoRa focuses on reparameterizing the weight matrices of the key and value vectors using low-rank matrices. By learning updates in the form of smaller matrices (W_a and W_b), LoRa efficiently captures the most significant changes to the weights while reducing the overall number of parameters that need to be learned. This approach maintains the core functionality of the self-attention mechanism while allowing for more efficient and focused training, particularly beneficial for adapting large pre-trained models to new tasks or datasets.
 
 ### Selective Methods
 
@@ -232,26 +395,42 @@ def self_attention_lora(x):
 
 ```python
 def adalora_linear(x, W, curr_sv):
-    scale = alpha / r  # r is rank
+    # Scale factor based on the rank r
+    # In AdaLoRa, a low-rank approximation with a scaling factor is used
+    # r is the rank and alpha is a scaling hyperparameter
+    scale = alpha / r
+
+    # Standard linear transformation using the original weight matrix W
     h = x @ W
 
-    # p, lamda, and q are related to the W matrix
-    # curr_sv marks which singular vectors we are currently optimizing.
+    # AdaLoRa modification: Apply low-rank linear transformation using SVD components
+    # p, lambda, and q are matrices derived from the singular value decomposition (SVD) of W
+    # curr_sv represents the current singular vectors being optimized
+    # This approach selectively updates the weight matrix W focusing on its most significant singular vectors
     h += x @ p[curr_sv] @ lamda[curr_sv] @ q[curr_sv]
+
+    # Scale the result of the transformation
     return scale * h
 
-def self_attention_lora(x):
+def self_attention_adalora(x):
     """
-    AdaLoRa pseudo code created by author.
-    This only shows the difference in the self_attention block.
-    Does not include code for pruning techniques.
+    AdaLoRa-specific self-attention mechanism.
+    This function shows how AdaLoRa is integrated into the self-attention block.
+    It does not include the pruning techniques used in AdaLoRa.
     """
-    k = adalora_linear(x, W_k)
-    q = x @ W_q
-    v = adalora_linear(x, W_v)
+    # Apply the AdaLoRa-modified linear transformation to the key and value matrices
+    # AdaLoRa reparameterizes the original weight matrices (W_k and W_v) of the key and value vectors
+    k = adalora_linear(x, W_k)  # AdaLoRa applied to key matrix
+    q = x @ W_q                 # Standard linear transformation for query matrix
+    v = adalora_linear(x, W_v)  # AdaLoRa applied to value matrix
 
+    # Calculate the attention scores and apply them to the value matrix
+    # The attention mechanism remains the same as in standard self-attention
+    # The key and value matrices are modified by AdaLoRa, focusing on efficient learning of significant parameters
     return softmax(q @ k.T) @ v
 ```
+
+In this code snippet, the `adalora_linear` function implements the AdaLoRa technique for linear layers, and the `self_attention_adalora` function integrates AdaLoRa into the self-attention mechanism of a transformer. AdaLoRa combines ideas from reparameterization with selective methods, using an approximation of Singular Value Decomposition (SVD) to represent weight matrix updates. This method focuses on optimizing the most significant components of the weight matrices, identified through SVD, and incorporates a scaling factor for effective learning. By selectively updating these key components, AdaLoRa provides an efficient way to fine-tune large pre-trained models, targeting the adjustments that have the most substantial impact on model performance. This approach is particularly beneficial for resource-efficient training and adapting models to new tasks while maintaining their underlying structure.
 
 ### Comparison of Methods
 
