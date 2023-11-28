@@ -1,11 +1,11 @@
-# Q\*-Learning
+# Q-Learning
 
 ```{image} figs/q-learning.png
 :width: 100%
 :align: center
 ```
 
-**Advanced Training Strategies for Large Language Models: A Q\*-Learning Approach**
+**Advanced Training Strategies for Large Language Models: A Q-Learning Approach**
 
 ## Introduction to Large Language Models
 
@@ -214,13 +214,13 @@ PRMs represent a significant advancement in LLM training, offering a pathway to 
 - **Complexity in Design**: Designing effective PRMs can be challenging as it requires a nuanced understanding of the task at hand.
 - **Balancing Feedback**: Ensuring that feedback is neither too sparse nor overwhelmingly detailed is crucial for optimal learning.
 
-## Integrating Q\*-Learning with Large Language Model (LLM) Training
+## Integrating Q-Learning with Large Language Model (LLM) Training
 
-Integrating Q\*-Learning into LLM training represents a significant step towards creating more sophisticated, adaptable, and intelligent language models.
+Integrating Q-Learning into LLM training represents a significant step towards creating more sophisticated, adaptable, and intelligent language models.
 
 ### Conceptual Foundation
 
-- **Q\*-Learning for LLMs**: Adapting Q-learning for LLMs to enhance reasoning and decision-making, similar to AlphaGo's approach in Go.
+- **Q-Learning for LLMs**: Adapting Q-learning for LLMs to enhance reasoning and decision-making, similar to AlphaGo's approach in Go.
 - **Integration**: Merging reinforcement learning principles with advanced language understanding, akin to combining AlphaGo's Policy and Value NNs with LLMs' capabilities.
 
 ### Mechanism and Adaptation
@@ -249,7 +249,7 @@ While there are significant challenges in advancing LLM training, the field also
 
 ### Current Challenges
 
-1. **Computational Resources**: Advanced LLM training, especially with techniques like Q\*-Learning, requires immense computational power, making it resource-intensive.
+1. **Computational Resources**: Advanced LLM training, especially with techniques like Q-Learning, requires immense computational power, making it resource-intensive.
 2. **Data Quality and Bias**: Ensuring the training data is diverse and unbiased remains a challenge, as LLMs can perpetuate existing biases in the data.
 3. **Ethical Considerations**: The potential misuse of advanced LLMs in generating misinformation or harmful content is a significant concern.
 4. **Model Interpretability**: As LLMs become more complex, ensuring their outputs are interpretable and explainable becomes increasingly challenging.
@@ -263,7 +263,7 @@ While there are significant challenges in advancing LLM training, the field also
 
 ## Conclusion
 
-In summary, the development and refinement of Large Language Models (LLMs) through advanced training strategies, such as the incorporation of Q\*-Learning, signify a major leap in AI capabilities. These models, inspired by the mechanisms of AlphaGo and enhanced with sophisticated techniques like Process-Supervised Reward Models and Graph of Thoughts, are poised to revolutionize how AI understands and interacts with human language. However, this journey is not without its challenges, including ethical considerations, computational demands, and the need for bias mitigation. Looking forward, the potential of LLMs is vast, offering transformative possibilities in numerous domains, provided these challenges are thoughtfully addressed.
+In summary, the development and refinement of Large Language Models (LLMs) through advanced training strategies, such as the incorporation of Q-Learning, signify a major leap in AI capabilities. These models, inspired by the mechanisms of AlphaGo and enhanced with sophisticated techniques like Process-Supervised Reward Models and Graph of Thoughts, are poised to revolutionize how AI understands and interacts with human language. However, this journey is not without its challenges, including ethical considerations, computational demands, and the need for bias mitigation. Looking forward, the potential of LLMs is vast, offering transformative possibilities in numerous domains, provided these challenges are thoughtfully addressed.
 
 ## References and Further Reading
 
