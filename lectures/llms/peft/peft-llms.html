@@ -1,0 +1,1345 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>PEFT for LLMs &#8212; ἐντελέχεια.άι</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/js/hoverxref.js"></script>
+    <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/llms/peft/peft-llms';</script>
+    <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/llms/peft/peft-llms.html" />
+    <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Q*-Learning" href="../q-learning/index.html" />
+    <link rel="prev" title="Parameter-Efficient Fine-Tuning" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+
+  <div class="bd-header-announcement container-fluid bd-header-announcement">
+    <div class="bd-header-announcement__content"><p>
+  <strong>Announcement:</strong>
+  You can install the accompanying AI tutor <a href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd" target="_blank">here</a>.
+  <a class="reference external" href="https://chrome.google.com/webstore/detail/lecturebot-for-%E1%BC%90%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CF%87%CE%B5%CE%B9%CE%B1/lfgfgbomindbccgidgalhhndggddpagd" target="_blank"><img alt="chrome-web-store-image" src="https://img.shields.io/chrome-web-store/v/lfgfgbomindbccgidgalhhndggddpagd" /></a>
+</p>
+</div>
+  </div>
+
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ἐντελέχεια.άι</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../index.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_intro/index.html">Introduction to NLP</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_intro/intro/index.html">Introduction</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/apps/index.html">NLP Applications</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/apps/research1.html">Research Part I</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/apps/research2.html">Research Part II</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/lm/index.html">Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/lm/ngram.html">N-gram Language Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/lm/usage.html">Usage of Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/datasets/corpus.html">Text Data Collection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/datasets/lab-dart.html">Lab: Crawling DART Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/topic/index.html">Topic Modeling</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/methods.html">Topic Modeling Methodologies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/lab-methods.html">Lab: Topic Modeling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/coherence.html">Topic Coherence Measures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/lab-coherence.html">Lab: Topic Coherence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/topic/tomotopy.html">Lab: Tomotopy</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/sentiments/index.html">Sentiment Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lexicon.html">Lexicon-Based Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/ml.html">Machine Learning-Based Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lab-lexicon.html">Lab: Lexicon-based Sentiment Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/sentiments/lab-ml.html">Lab: ML-based Sentiment Classification</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/tokenization.html">Understanding the Basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/pos.html">Part-of-Speech Tagging and Parsing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/ngrams.html">N-grams for Tokenization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/korean.html">Tokenization in Korean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/segmentation.html">Word Segmentation and Association</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/lab-tokenization.html">Lab: Tokenization and Pre-processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/tokenization/lab-korean.html">Lab: Korean Text Processing</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/vectorization/index.html">Vector Representation</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/vectorization/semantics.html">Vector Semantics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/vectorization/bow.html">Bags of Words Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/vectorization/tf-idf.html">TF-IDF Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/vectorization/similarity.html">Word Similarity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/vectorization/lab-similarity.html">Lab: Word Similarity</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_intro/embeddings/index.html">Word Embeddings</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/embeddings/nlm.html">Neural Language Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/embeddings/w2v.html">Word2Vec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/embeddings/glove.html">GloVe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_intro/embeddings/fasttext.html">FastText</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_deep/index.html">Deep Learning for NLP</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/llms/index.html">Large Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/zeroshot.html">Zero Shot and Prompt Engineering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/decoding.html">Decoding and Search Strategies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/llms/plms.html">Pretrained Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/transformers/index.html">Transformers</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/bert.html">BERT: Bidirectional Encoder Representations from Transformers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/bertviz.html">BERT: Visualizing Attention</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/t5.html">T5: Text-To-Text Transfer Transformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/transformers/byt5.html">ByT5: Towards a token-free future with pre-trained byte-to-byte models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/datasets/index.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/datasets/mc4.html">mC4 Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/datasets/lab-eda.html">Lab: Exploratory Data Analysis (EDA)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/tokenization/index.html">Tokenization</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/subword.html">Subword Tokenization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/pipeline.html">Tokenization Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/bpe.html">BPE Step-by-Step Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/wordpiece.html">WordPiece Step-by-Step Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/unigram.html">Unigram Step-by-Step Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/sentencepiece.html">SentencePiece Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/tokenization/lab-train-tokenizers.html">Lab: Training Tokenizers</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/training/index.html">Training Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/training/lab-pretrain-mlm.html">Lab: Pretraining LMs - MLM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/training/lab-pretrain-clm.html">Lab: Pretraining LMs - CLM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/training/lab-finetune-mlm.html">Lab: Finetuining a MLM</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_deep/chatbots/index.html">Conversational AI and Chatbots</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/chatbots/rlhf.html">Reinforcement Learning with Human Feedback (RLHF)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_deep/chatbots/detectGPT.html">How to Spot Machine-Written Texts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp_advances/index.html">Advances in AI and NLP</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/thesis.html">Writing a Thesis</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../nlp_advances/gpt/index.html">Generative Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/detectGPT.html">DetectGPT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/gpt4.html">GPT-4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nlp_advances/gpt/camelids.html">Meet the Camelids: A Family of LLMs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp_advances/sam/index.html">Segment Anything</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../aiart/index.html">AI Art (Generative AI)</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/intro/index.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/brave/index.html">A Brave New World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/aiart/index.html">Art and Music in Light of AI</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../aiart/text-to-image/index.html">Text-to-Image Models</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/dalle1.html">DALL·E 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/dalle2.html">DALL·E 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aiart/text-to-image/imagen.html">Imagen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/motion-capture-and-synthesis/index.html">Motion Capture and Motion Synthesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../aiart/robot/index.html">Robot Drawing System</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../mlops/index.html">Machine Learning Systems Design</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/intro.html">Introduction to MLOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/project.html">MLOps Project</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/devops/index.html">DevOps</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/gitops.html">GitOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/devops/devsecops.html">DevSecOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/dotfiles/index.html">Dotfiles</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai">Dotfiles Project</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dotdrop/">Dotdrop Setup</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/github/">GitHub Setup</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/ssh-gpg-age/">SSH, GPG, and Age Setup</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/sops/">SOPS Usage</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/pass/">Pass and Passage Usage</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/doppler/">Doppler Usage</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/dockerfiles/">Dockerfiles Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/security/index.html">Security Management</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-24"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/auth-enc-sign.html">Authentication, Encryption, and Signing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/age-gpg-ssh.html">SSH, GPG, and AGE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/security/pass.html">Unix Password Managers</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/github/index.html">GitHub Workflow</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-25"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/github/fork-pull.html">Github’s Fork &amp; Pull Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/github/template.html">Project Templating Tools</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://hyperfast-python.entelecheia.ai/">Hyperfast Python Template</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://hyperfast-template.entelecheia.ai/">Hyperfast Template</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/containerization/index.html">Containerization</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-26"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/containerization/docker.html">Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/containerization/containerd.html"><code class="docutils literal notranslate"><span class="pre">containerd</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/simple-pipeline/index.html">Simple MLOps Pipeline</a><input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-27"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/simple-pipeline/server.html">Server Setup &amp; Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/simple-pipeline/vpn.html">VPN Connectivity</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/llmops/index.html">LLMOps</a><input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-28"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/llmops/bentoml.html">Introduction to BentoML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/llmops/bentochain.html">Deploy a Voice-Based Chatbot with BentoML, LangChain, and Gradio</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../dsecon/index.html">Data Science for Economics and Finance</a><input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-29"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../dsecon/intro/index.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-30"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/intro/introduction.html">Data Science in Economics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/intro/challenges.html">Technical Challenges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/intro/methods.html">Data Analytics Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../dsecon/cb/index.html">Central Banks</a><input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-31"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/cb/altdata.html">Alternative Data Sources for Central Banks</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../dsecon/fomc/index.html">Textual Analysis of FOMC contents</a><input class="toctree-checkbox" id="toctree-checkbox-32" name="toctree-checkbox-32" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-32"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/fomc/01_numerical_data.html">Preparing Numerical Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/fomc/02_textual_data.html">Preparing Textual Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/fomc/03_EDA_numericals1.html">EDA on Numerical Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/fomc/03_EDA_numericals2.html">EDA on Numerical Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/fomc/04_training_datasets.html">Create Training Datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/fomc/05_features.html">Visualizing Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/fomc/06_AutoML.html">Checking Baseline with AutoML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/fomc/07_predict_sentiments.html">Predicting Sentiments of FOMC Corpus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/fomc/08_EDA_sentiments1.html">EDA on Sentiments: Correlation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/fomc/08_EDA_sentiments2.html">EDA on Sentiment Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/fomc/09_visualize_features.html">Visualize Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/fomc/10_monetary_shocks.html">Monetary Policy Shocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/fomc/11_AutoML_with_tones.html">Predicting the next decisions with tones</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../dsecon/esg-ratings/index.html">ESG Ratings</a><input class="toctree-checkbox" id="toctree-checkbox-33" name="toctree-checkbox-33" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-33"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/esg-ratings/prepare_datasets.html">Preparing training datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/esg-ratings/improve_datasets.html">Improving classification datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/esg-ratings/train_classifiers.html">Training Classifiers for ESG Ratings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/esg-ratings/build_news_corpus.html">Building <code class="docutils literal notranslate"><span class="pre">econ_news_kr</span></code> corpus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/esg-ratings/predict_esg_classes.html">Predicting ESG Categories and Polarities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/esg-ratings/cross_validate_datasets.html">Cross validating datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/esg-ratings/prepare_datasets_for_labeling.html">Preparing active learning data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsecon/esg-ratings/all_in_one_pipeline.html">Putting them together in a pipeline</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../softeng/index.html">Software Engineering</a><input class="toctree-checkbox" id="toctree-checkbox-34" name="toctree-checkbox-34" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-34"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../softeng/intro/index.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-35" name="toctree-checkbox-35" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-35"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/intro/introduction.html">Software Engineering?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/intro/processes.html">Software Processes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/intro/sdlc.html">Software Development Life Cycle (SDLC)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/intro/requirements.html">Requirements Engineering (RE)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../softeng/proposal/index.html">Project Proposal</a><input class="toctree-checkbox" id="toctree-checkbox-36" name="toctree-checkbox-36" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-36"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/proposal/steps.html">Steps in Software Engineering Projects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/proposal/guidelines.html">Software Engineering Proposal Guideline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/proposal/template.html">Project Proposal Template</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../softeng/vcs/index.html">Version Control Systems</a><input class="toctree-checkbox" id="toctree-checkbox-37" name="toctree-checkbox-37" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-37"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/00_introduction.html">0. Introduction to version control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/01_solo_work_with_git.html">1. Solo work with git</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/02_fixing_mistakes.html">2. Fixing mistakes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/03_publishing.html">3. Publishing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/04_collaboration.html">4. Collaboration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/05_fork_and_pull.html">5. Fork and Pull</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/06_git_theory.html">6. Git Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/07_branches.html">7. Branches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/08_advanced_git_concepts.html">8. Advanced git concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/09_github_pages.html">9. Publishing from GitHub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/10_rebasing.html">10. Rebasing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/11_debugging_with_git_bisect.html">11. Debugging With git bisect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/vcs/12_multiple_remotes.html">12. Working with multiple remotes</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../softeng/spm/index.html">Software Process Models</a><input class="toctree-checkbox" id="toctree-checkbox-38" name="toctree-checkbox-38" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-38"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/spm/agile.html">Agile Software Development</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../softeng/devops/index.html">DevOps</a><input class="toctree-checkbox" id="toctree-checkbox-39" name="toctree-checkbox-39" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-39"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../softeng/devops/gitops.html">GitOps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Large Language Models</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-40" name="toctree-checkbox-40" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-40"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../intro/index.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-41" name="toctree-checkbox-41" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-41"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../intro/llms.html">Large Language Models?</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../stack/index.html">LLM Stacks</a><input class="toctree-checkbox" id="toctree-checkbox-42" name="toctree-checkbox-42" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-42"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../stack/infra.html">Generative AI Infrastructure Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stack/architecture.html">LLM Application Architectures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stack/app.html">LLM App Ecosystem</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../agents/index.html">AI Agents</a><input class="toctree-checkbox" id="toctree-checkbox-43" name="toctree-checkbox-43" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-43"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../agents/autogen.html">AutoGen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../agents/autoscraper.html">AutoGen AutoScraper Agent</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../finetune/index.html">LLM Fine-tuning</a><input class="toctree-checkbox" id="toctree-checkbox-44" name="toctree-checkbox-44" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-44"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../finetune/autotrain.html">Fine-Tuning LLMs with Hugging Face AutoTrain</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../rag/index.html">Retrieval Augmented Generation (RAG)</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Parameter-Efficient Fine-Tuning</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-45" name="toctree-checkbox-45" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-45"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">PEFT for LLMs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../q-learning/index.html">Q*-Learning</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../about/lecture-bot.html">LectureBot for ἐντελέχεια.άι</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://course.entelecheia.ai">course.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://research.entelecheia.ai">research.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/lectures/llms/peft/peft-llms.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>PEFT for LLMs</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-fine-tuning-vs-parameter-efficient-fine-tuning-peft">Standard Fine-Tuning vs. Parameter-Efficient Fine-Tuning (PEFT)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-security-and-privacy-concerns">Data Security and Privacy Concerns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-of-data-quality">Importance of Data Quality</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparative-analysis">Comparative Analysis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#who-uses-peft">Who Uses PEFT?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#current-adoption-of-peft">Current Adoption of PEFT</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hugging-face">Hugging Face 🤗</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#googles-vertex-ai">Google’s Vertex AI</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#openai">OpenAI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-transformer-review">Quick Transformer Review</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-concepts-of-transformer-architecture">Core Concepts of Transformer Architecture</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#self-attention-mechanism">Self-Attention Mechanism</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#transformer-block-structure">Transformer Block Structure</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-in-peft">Importance in PEFT</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#peft-techniques-overview">PEFT Techniques Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additive-methods">Additive Methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#soft-prompts">Soft-Prompts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reparameterization-based-methods">Reparameterization-Based Methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selective-methods">Selective Methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-of-methods">Comparison of Methods</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#peft-in-huggingface-libraries">PEFT in HuggingFace Libraries</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supported-peft-methods">Supported PEFT Methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-with-peft">Getting Started with PEFT</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-cases">Use Cases</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#get-comparable-performance-to-full-finetuning-by-adapting-llms-to-downstream-tasks-using-consumer-hardware">Get comparable performance to full finetuning by adapting LLMs to downstream tasks using consumer hardware</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-efficient-tuning-of-diffusion-models">Parameter Efficient Tuning of Diffusion Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-efficient-tuning-of-llms-for-rlhf-components-such-as-ranker-and-policy">Parameter Efficient Tuning of LLMs for RLHF components such as Ranker and Policy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#int8-training-of-large-models-in-colab-using-peft-lora-and-bits-and-bytes">INT8 training of large models in Colab using PEFT LoRA and bits_and_bytes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#save-compute-and-storage-even-for-medium-and-small-models">Save compute and storage even for medium and small models</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peft-accelerate">PEFT + 🤗 Accelerate</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-peft-model-training-using-accelerates-deepspeed-integration">Example of PEFT model training using 🤗 Accelerate’s DeepSpeed integration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-peft-model-inference-using-accelerates-big-model-inferencing-capabilities">Example of PEFT model inference using 🤗 Accelerate’s Big Model Inferencing capabilities</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="peft-for-llms">
+<h1>PEFT for LLMs<a class="headerlink" href="#peft-for-llms" title="Permalink to this heading">#</a></h1>
+<p>Large Language Models (LLMs) have revolutionized the field of natural language processing. Their vast sizes, ranging from millions to billions of parameters, present considerable challenges in computational resources and training costs. For instance, loading a 70 billion parameter model necessitates an immense 280 GB of GPU memory. The extensive resources and high expenses required for training these models underscore the need for more efficient methodologies. Parameter-Efficient Fine-Tuning (PEFT) emerges as a solution, offering techniques to adapt segments of these colossal models to specific tasks, thereby reducing computational burdens.</p>
+<p>In this context, the necessity for more efficient approaches to leverage these models is clear, especially for those with limited datasets and computational resources. This is where Parameter-Efficient Fine-Tuning (PEFT) comes into play. PEFT offers a suite of techniques that enable the adaptation of small sections of these massive models to specific tasks, thereby reducing the overall computational burden.</p>
+<p>This lecture aims to provide a comprehensive understanding of each PEFT technique currently implemented in Hugging Face, delineating the differences among them. This guide fills the gaps identified in these materials and serves as a conceptual foundation for all PEFT methods present in Hugging Face. The goal is to equip readers with a fundamental understanding of PEFT, facilitating their engagement with research literature on additional PEFT techniques.</p>
+<section id="standard-fine-tuning-vs-parameter-efficient-fine-tuning-peft">
+<h2>Standard Fine-Tuning vs. Parameter-Efficient Fine-Tuning (PEFT)<a class="headerlink" href="#standard-fine-tuning-vs-parameter-efficient-fine-tuning-peft" title="Permalink to this heading">#</a></h2>
+<p>Fine-tuning Large Language Models (LLMs) is a complex process with implications for model performance, data security, and resource utilization. The choice between standard fine-tuning and Parameter-Efficient Fine-Tuning (PEFT) depends on various factors, including data availability, computational resources, and specific use-case requirements.</p>
+<section id="data-security-and-privacy-concerns">
+<h3>Data Security and Privacy Concerns<a class="headerlink" href="#data-security-and-privacy-concerns" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Data Retention in LLMs</strong>: Research indicates that LLMs can retain a fraction of their training data. The risk of data retention increases with data duplication, leading to potential privacy and security issues, especially when models are externally accessible.</p></li>
+<li><p><strong>Prompt Injection Attacks</strong>: One significant risk associated with fine-tuned LLMs is prompt injection attacks, where malicious inputs can trigger the model to reveal sensitive training data.</p></li>
+<li><p><strong>In-Context Learning (ICL) as an Alternative</strong>: For scenarios where data security is paramount, ICL, which involves dynamic observation selection, can be a safer alternative. It allows the model to adapt to new tasks without explicit fine-tuning, reducing the risk of data leakage.</p></li>
+</ul>
+</section>
+<section id="importance-of-data-quality">
+<h3>Importance of Data Quality<a class="headerlink" href="#importance-of-data-quality" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Impact on Fine-Tuning Success</strong>: The success of both standard and PEFT largely depends on the quality of data labels. Poorly labeled data can lead to ineffective fine-tuning, regardless of the method used.</p></li>
+<li><p><strong>Data Labeling Commitment</strong>: High-quality data labeling is crucial, particularly for standard fine-tuning, which involves a more extensive modification of the model.</p></li>
+</ul>
+</section>
+<section id="comparative-analysis">
+<h3>Comparative Analysis<a class="headerlink" href="#comparative-analysis" title="Permalink to this heading">#</a></h3>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p><strong>Parameter-efficient Fine-tuning</strong></p></th>
+<th class="head"><p><strong>Standard Fine-tuning</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Goal</strong></p></td>
+<td><p>Tailor a pre-trained model to specific tasks efficiently with limited data and computational resources.</p></td>
+<td><p>Enhance model performance on specific tasks using comprehensive training with ample data and resources.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Training Data</strong></p></td>
+<td><p>Optimal for scenarios with limited datasets, typically requiring fewer examples.</p></td>
+<td><p>Requires large datasets with numerous examples for effective training.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Training Time</strong></p></td>
+<td><p>Generally offers a quicker training process due to fewer parameters being tuned.</p></td>
+<td><p>Involves a longer training duration due to the extensive tuning of all model parameters.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Computational Resources</strong></p></td>
+<td><p>More resource-efficient, utilizing fewer computational resources.</p></td>
+<td><p>Demands significant computational resources for processing large models and datasets.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Model Parameters</strong></p></td>
+<td><p>Involves modifying a small, specific subset of the model’s parameters.</p></td>
+<td><p>Entails re-training the entire model, adjusting all parameters.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Overfitting</strong></p></td>
+<td><p>Reduced risk of overfitting due to limited modifications to the model.</p></td>
+<td><p>Higher potential for overfitting as the model undergoes extensive modifications.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Training Performance</strong></p></td>
+<td><p>Achieves good performance, although it may not match the levels attained by full fine-tuning.</p></td>
+<td><p>Typically yields better performance, optimizing the model’s capabilities to the fullest.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Use Cases</strong></p></td>
+<td><p>Suitable for applications in low-resource settings or when extensive training data isn’t available.</p></td>
+<td><p>Ideal for well-resourced environments with access to large amounts of training data.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Selecting between standard fine-tuning and PEFT involves balancing various factors. Standard fine-tuning is more resource-intensive but can lead to higher model performance, making it suitable for scenarios with sufficient computational resources and data. In contrast, PEFT is ideal for situations where resources are limited or when working with smaller datasets. It offers a practical way to leverage the capabilities of large models without the extensive resource requirements of standard fine-tuning. Additionally, considerations of data privacy and security are crucial in deciding the most appropriate approach for fine-tuning LLMs.</p>
+</section>
+</section>
+<section id="who-uses-peft">
+<h2>Who Uses PEFT?<a class="headerlink" href="#who-uses-peft" title="Permalink to this heading">#</a></h2>
+<p>Parameter-Efficient Fine-Tuning (PEFT) has garnered significant attention and adoption across various sectors of the artificial intelligence and machine learning industry, especially among entities that specialize in language model services. The appeal of PEFT lies in its ability to adapt large-scale pre-trained language models (PLMs) to specific tasks with minimal resource overhead.</p>
+<section id="current-adoption-of-peft">
+<h3>Current Adoption of PEFT<a class="headerlink" href="#current-adoption-of-peft" title="Permalink to this heading">#</a></h3>
+<section id="hugging-face">
+<h4>Hugging Face 🤗<a class="headerlink" href="#hugging-face" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Wide Range of PEFT Techniques</strong>: Hugging Face, a prominent player in the field of AI and NLP, offers an extensive suite of PEFT techniques through its platform. This includes various innovative methods such as LoRA, Prefix Tuning, and P-Tuning, among others.</p></li>
+<li><p><strong>Open-Source Accessibility</strong>: Hugging Face’s commitment to open-source technology has made PEFT techniques more accessible to the wider AI community, allowing researchers and developers to experiment with and implement these methods in their projects.</p></li>
+<li><p><strong>Community Contributions</strong>: The active community around Hugging Face contributes to the continuous development and refinement of PEFT methods, ensuring they stay at the forefront of AI research and application.</p></li>
+</ul>
+</section>
+<section id="googles-vertex-ai">
+<h4>Google’s Vertex AI<a class="headerlink" href="#googles-vertex-ai" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Reference to PEFT Research</strong>: Google’s Vertex AI, known for providing advanced machine learning services, references the survey by Liali et al. on PEFT in its tuning guide.</p></li>
+<li><p><strong>Opaque Implementation Details</strong>: While Google acknowledges the significance of PEFT, the specifics of how Vertex AI implements these techniques are not fully disclosed. This opacity leaves room for speculation about the extent and manner of PEFT’s integration into Google’s AI offerings.</p></li>
+</ul>
+</section>
+<section id="openai">
+<h4>OpenAI<a class="headerlink" href="#openai" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Current Non-Implementation</strong>: As per a now-removed blog post, OpenAI, renowned for its GPT models, has not yet incorporated PEFT methods into its suite of tools and services.</p></li>
+<li><p><strong>Potential Future Adoption</strong>: Given OpenAI’s reputation for pioneering AI research and development, it is anticipated that PEFT will eventually be part of its toolset. The adoption of PEFT by OpenAI could be driven by the increasing demand for efficient fine-tuning methods and the need to make large models like GPT more accessible and adaptable.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="quick-transformer-review">
+<h2>Quick Transformer Review<a class="headerlink" href="#quick-transformer-review" title="Permalink to this heading">#</a></h2>
+<p>The Transformer architecture, introduced by Vaswani et al. in their seminal paper “Attention Is All You Need,” has become a cornerstone in modern natural language processing (NLP) and machine learning. This architecture is fundamental to understanding the nuances of Parameter-Efficient Fine-Tuning (PEFT) techniques.</p>
+<section id="core-concepts-of-transformer-architecture">
+<h3>Core Concepts of Transformer Architecture<a class="headerlink" href="#core-concepts-of-transformer-architecture" title="Permalink to this heading">#</a></h3>
+<section id="self-attention-mechanism">
+<h4>Self-Attention Mechanism<a class="headerlink" href="#self-attention-mechanism" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Principle</strong>: At the heart of the Transformer is the self-attention mechanism, which enables the model to weigh the importance of different words in a sentence for a given task. Unlike previous architectures that processed words in sequence, the Transformer treats input data in parallel, allowing it to capture complex word relationships more effectively.</p></li>
+<li><p><strong>Functionality</strong>: Self-attention works by creating three vectors for each input token (word): the query vector, key vector, and value vector. These vectors are derived through learned linear transformations.</p></li>
+<li><p><strong>Attention Calculation</strong>: The attention scores are computed by taking the dot product of the query vector with key vectors of all tokens and applying a softmax function. These scores determine how much focus to put on other parts of the input sentence as each word is processed.</p></li>
+<li><p><strong>Scaled Dot-Product Attention</strong>: The scores are then multiplied with the value vectors and summed up, resulting in the output for each token. This process is scaled by the square root of the dimension of key vectors to prevent gradients from vanishing or exploding.</p></li>
+</ul>
+</section>
+<section id="transformer-block-structure">
+<h4>Transformer Block Structure<a class="headerlink" href="#transformer-block-structure" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Layers</strong>: A standard transformer block consists of two main layers: the multi-head self-attention layer and the position-wise feed-forward network.</p>
+<ul>
+<li><p><strong>Multi-Head Attention</strong>: This layer extends the self-attention mechanism by having multiple ‘heads’, each performing attention calculations independently. The outputs of these heads are then concatenated and linearly transformed into the desired dimension. This multi-head approach allows the model to attend to information from different representation subspaces at different positions.</p></li>
+<li><p><strong>Feed-Forward Network</strong>: Following the attention layer, the output passes through a position-wise feed-forward network, typically comprising two linear transformations with an activation function in between.</p></li>
+</ul>
+</li>
+<li><p><strong>Normalization and Residual Connections</strong>: Each of these layers is followed by layer normalization and is equipped with residual connections. This means the output of each layer is the sum of its input and its processed result, enhancing training stability and allowing deeper networks.</p></li>
+<li><p><strong>Positional Encoding</strong>: Since the Transformer doesn’t inherently capture the sequential nature of data, positional encodings are added to the input embeddings to give the model information about the position of each token in the sequence.</p></li>
+</ul>
+</section>
+</section>
+<section id="importance-in-peft">
+<h3>Importance in PEFT<a class="headerlink" href="#importance-in-peft" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>PEFT Adaptations</strong>: Understanding the Transformer’s architecture is crucial for comprehending how PEFT techniques modify it. PEFT methods typically intervene at the level of the self-attention mechanism and the feed-forward networks, adjusting or augmenting the model’s parameters efficiently for task-specific fine-tuning.</p></li>
+<li><p><strong>Targeting Specific Components</strong>: Depending on the PEFT technique used, modifications may be made to specific components like the attention heads or layers of the feed-forward network, enabling the fine-tuning process to be both efficient and effective with fewer trainable parameters.</p></li>
+</ul>
+</section>
+</section>
+<section id="peft-techniques-overview">
+<h2>PEFT Techniques Overview<a class="headerlink" href="#peft-techniques-overview" title="Permalink to this heading">#</a></h2>
+<section id="additive-methods">
+<h3>Additive Methods<a class="headerlink" href="#additive-methods" title="Permalink to this heading">#</a></h3>
+<p><strong>Adapters</strong>: Introduced by Houlsby et al., this technique involves adding small fully connected networks after Transformer sub-layers. The pseudo code for an adapted transformer block illustrates these additions.</p>
+<p><strong>(IA)³</strong>: This method, proposed by Liu et al., augments the transformer block with additional column vectors (l_k, l_v) that modify the key and value matrices in the attention mechanism. This is done without strictly adding fully connected layers, distinguishing it from traditional adapter methods.</p>
+</section>
+<section id="soft-prompts">
+<h3>Soft-Prompts<a class="headerlink" href="#soft-prompts" title="Permalink to this heading">#</a></h3>
+<p><strong>Prompt-Tuning</strong>: Developed by Lester et al., this technique involves creating a set of parameters for prompt tokens and integrating them at the beginning of the network. It allows for optimization of a continuous representation of the prompt text.</p>
+<p><strong>Prefix Tuning</strong>: Similar to prompt tuning but differs in that the representation is fed to all layers of the transformer. It also involves learning additional parameters for the soft prompt in the form of a fully connected network.</p>
+<p><strong>P-Tuning</strong>: Proposed by Liu et al., P-Tuning encodes the prompt using an LSTM, aiming to address the discrete nature of word embeddings and their independent associations in other prompting methods.</p>
+<p><strong>LLaMA-Adapter</strong>: As per Zhang et al., this technique applies a variant of prefix learning to the Llama model. It introduces adaptation prompts and zero-initialized attention for efficient fine-tuning.</p>
+</section>
+<section id="reparameterization-based-methods">
+<h3>Reparameterization-Based Methods<a class="headerlink" href="#reparameterization-based-methods" title="Permalink to this heading">#</a></h3>
+<p><strong>LoRa</strong>: A popular technique by Hu et al., LoRa reparameterizes a weight matrix by learning a separate matrix representing updates from optimization. It uses two smaller matrices to represent these updates, reducing the number of parameters to be learned.</p>
+</section>
+<section id="selective-methods">
+<h3>Selective Methods<a class="headerlink" href="#selective-methods" title="Permalink to this heading">#</a></h3>
+<p><strong>AdaLoRa</strong>: This hybrid approach, developed by Zhang et al., combines ideas from reparameterization and selective methods. It uses an approximation of Singular Value Decomposition (SVD) to represent weight matrix updates and incorporates a pruning technique to eliminate less important singular vectors.</p>
+</section>
+<section id="comparison-of-methods">
+<h3>Comparison of Methods<a class="headerlink" href="#comparison-of-methods" title="Permalink to this heading">#</a></h3>
+<p>The table below provides a comparison of these methods, highlighting the number of trainable parameters, method type, and a brief summary.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Trainable Parameters</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Summary</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Adapters</p></td>
+<td><p>Low</p></td>
+<td><p>Additive</p></td>
+<td><p>Adds small networks after sub-layers.</p></td>
+</tr>
+<tr class="row-odd"><td><p>(IA)³</p></td>
+<td><p>Low</p></td>
+<td><p>Additive</p></td>
+<td><p>Augments attention mechanism with additional vectors.</p></td>
+</tr>
+<tr class="row-even"><td><p>Prompt-Tuning</p></td>
+<td><p>Very Low</p></td>
+<td><p>Soft-Prompts</p></td>
+<td><p>Optimizes a continuous representation of the prompt text.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Prefix Tuning</p></td>
+<td><p>Low</p></td>
+<td><p>Soft-Prompts</p></td>
+<td><p>Feeds prompt representation to all transformer layers.</p></td>
+</tr>
+<tr class="row-even"><td><p>P-Tuning</p></td>
+<td><p>Low</p></td>
+<td><p>Soft-Prompts</p></td>
+<td><p>Encodes prompts using an LSTM.</p></td>
+</tr>
+<tr class="row-odd"><td><p>LLaMA-Adapter</p></td>
+<td><p>Low</p></td>
+<td><p>Soft-Prompts</p></td>
+<td><p>Applies efficient prefix learning to Llama model.</p></td>
+</tr>
+<tr class="row-even"><td><p>LoRa</p></td>
+<td><p>Very Low</p></td>
+<td><p>Reparameterization</p></td>
+<td><p>Reparameterizes weight matrix with two smaller matrices.</p></td>
+</tr>
+<tr class="row-odd"><td><p>AdaLoRa</p></td>
+<td><p>Low</p></td>
+<td><p>Selective/Hybrid</p></td>
+<td><p>Uses SVD approximation for weight matrix updates.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="peft-in-huggingface-libraries">
+<h2><a class="reference external" href="https://github.com/huggingface/peft">PEFT in HuggingFace Libraries</a><a class="headerlink" href="#peft-in-huggingface-libraries" title="Permalink to this heading">#</a></h2>
+<p>PEFT methods are seamlessly integrated with 🤗 Accelerate, supporting large-scale models through DeepSpeed and Big Model Inference.</p>
+<section id="supported-peft-methods">
+<h3>Supported PEFT Methods<a class="headerlink" href="#supported-peft-methods" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>LoRA</strong>: Low-Rank Adaptation for efficient model adaptation. <a class="reference external" href="https://arxiv.org/abs/2106.09685">Paper</a></p></li>
+<li><p><strong>Prefix Tuning</strong>: Optimizes continuous prompts for generation tasks. <a class="reference external" href="https://aclanthology.org/2021.acl-long.353/">Paper1</a>, <a class="reference external" href="https://arxiv.org/pdf/2110.07602.pdf">Paper2</a></p></li>
+<li><p><strong>P-Tuning</strong>: Utilizes prompts for understanding model behavior. <a class="reference external" href="https://arxiv.org/abs/2103.10385">Paper</a></p></li>
+<li><p><strong>Prompt Tuning</strong>: Harnesses the power of scale for parameter-efficient prompt tuning. <a class="reference external" href="https://arxiv.org/abs/2104.08691">Paper</a></p></li>
+<li><p><strong>AdaLoRA</strong>: Adaptive Budget Allocation for fine-tuning. <a class="reference external" href="https://arxiv.org/abs/2303.10512">Paper</a></p></li>
+<li><p><strong><span class="math notranslate nohighlight">\((IA)^3\)</span></strong>: Enhances fine-tuning effectiveness and efficiency. <a class="reference external" href="https://arxiv.org/abs/2205.05638">Paper</a></p></li>
+<li><p><strong>MultiTask Prompt Tuning</strong>: Enables transfer learning across multiple tasks. <a class="reference external" href="https://arxiv.org/abs/2303.02861">Paper</a></p></li>
+<li><p><strong>LoHa</strong>: Combines Low-Rank and Hadamard Product for efficient learning. <a class="reference external" href="https://arxiv.org/abs/2108.06098">Paper</a></p></li>
+<li><p><strong>LoKr</strong>: Incorporates Kronecker Adapter for tuning. <a class="reference external" href="https://arxiv.org/abs/2212.10650">Paper</a></p></li>
+</ol>
+</section>
+<section id="getting-started-with-peft">
+<h3>Getting Started with PEFT<a class="headerlink" href="#getting-started-with-peft" title="Permalink to this heading">#</a></h3>
+<p>Here’s a Python snippet demonstrating how to use LoRA with a sequence-to-sequence model:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoModelForSeq2SeqLM</span>
+<span class="kn">from</span> <span class="nn">peft</span> <span class="kn">import</span> <span class="n">get_peft_config</span><span class="p">,</span> <span class="n">get_peft_model</span><span class="p">,</span> <span class="n">LoraConfig</span><span class="p">,</span> <span class="n">TaskType</span>
+<span class="n">model_name_or_path</span> <span class="o">=</span> <span class="s2">&quot;bigscience/mt0-large&quot;</span>
+<span class="n">tokenizer_name_or_path</span> <span class="o">=</span> <span class="s2">&quot;bigscience/mt0-large&quot;</span>
+
+<span class="n">peft_config</span> <span class="o">=</span> <span class="n">LoraConfig</span><span class="p">(</span>
+    <span class="n">task_type</span><span class="o">=</span><span class="n">TaskType</span><span class="o">.</span><span class="n">SEQ_2_SEQ_LM</span><span class="p">,</span> <span class="n">inference_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">lora_alpha</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">lora_dropout</span><span class="o">=</span><span class="mf">0.1</span>
+<span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSeq2SeqLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name_or_path</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">get_peft_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">peft_config</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">print_trainable_parameters</span><span class="p">()</span>
+<span class="c1"># output: trainable params: 2359296 || all params: 1231940608 || trainable%: 0.19151053100118282</span>
+</pre></div>
+</div>
+</section>
+<section id="use-cases">
+<h3>Use Cases<a class="headerlink" href="#use-cases" title="Permalink to this heading">#</a></h3>
+<section id="get-comparable-performance-to-full-finetuning-by-adapting-llms-to-downstream-tasks-using-consumer-hardware">
+<h4>Get comparable performance to full finetuning by adapting LLMs to downstream tasks using consumer hardware<a class="headerlink" href="#get-comparable-performance-to-full-finetuning-by-adapting-llms-to-downstream-tasks-using-consumer-hardware" title="Permalink to this heading">#</a></h4>
+<p>GPU memory required for adapting LLMs on the few-shot dataset <a class="reference external" href="https://huggingface.co/datasets/ought/raft/viewer/twitter_complaints"><code class="docutils literal notranslate"><span class="pre">ought/raft/twitter_complaints</span></code></a>. Here, settings considered
+are full finetuning, PEFT-LoRA using plain PyTorch and PEFT-LoRA using DeepSpeed with CPU Offloading.</p>
+<p>Hardware: Single A100 80GB GPU with CPU RAM above 64GB</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head"><p>Full Finetuning</p></th>
+<th class="head"><p>PEFT-LoRA PyTorch</p></th>
+<th class="head"><p>PEFT-LoRA DeepSpeed with CPU Offloading</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>bigscience/T0_3B (3B params)</p></td>
+<td><p>47.14GB GPU / 2.96GB CPU</p></td>
+<td><p>14.4GB GPU / 2.96GB CPU</p></td>
+<td><p>9.8GB GPU / 17.8GB CPU</p></td>
+</tr>
+<tr class="row-odd"><td><p>bigscience/mt0-xxl (12B params)</p></td>
+<td><p>OOM GPU</p></td>
+<td><p>56GB GPU / 3GB CPU</p></td>
+<td><p>22GB GPU / 52GB CPU</p></td>
+</tr>
+<tr class="row-even"><td><p>bigscience/bloomz-7b1 (7B params)</p></td>
+<td><p>OOM GPU</p></td>
+<td><p>32GB GPU / 3.8GB CPU</p></td>
+<td><p>18.1GB GPU / 35GB CPU</p></td>
+</tr>
+</tbody>
+</table>
+<p>Performance of PEFT-LoRA tuned <a class="reference external" href="https://huggingface.co/bigscience/T0_3B"><code class="docutils literal notranslate"><span class="pre">bigscience/T0_3B</span></code></a> on <a class="reference external" href="https://huggingface.co/datasets/ought/raft/viewer/twitter_complaints"><code class="docutils literal notranslate"><span class="pre">ought/raft/twitter_complaints</span></code></a> leaderboard.
+A point to note is that we didn’t try to squeeze performance by playing around with input instruction templates, LoRA hyperparams and other training related hyperparams. Also, we didn’t use the larger 13B <a class="reference external" href="https://huggingface.co/bigscience/mt0-xxl">mt0-xxl</a> model.
+So, we are already seeing comparable performance to SoTA with parameter efficient tuning. Also, the final additional checkpoint size is just <code class="docutils literal notranslate"><span class="pre">19MB</span></code> in comparison to <code class="docutils literal notranslate"><span class="pre">11GB</span></code> size of the backbone <a class="reference external" href="https://huggingface.co/bigscience/T0_3B"><code class="docutils literal notranslate"><span class="pre">bigscience/T0_3B</span></code></a> model, but one still has to load the original full size model.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Submission Name</p></th>
+<th class="head"><p>Accuracy</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Human baseline (crowdsourced)</p></td>
+<td><p>0.897</p></td>
+</tr>
+<tr class="row-odd"><td><p>Flan-T5</p></td>
+<td><p>0.892</p></td>
+</tr>
+<tr class="row-even"><td><p>lora-t0-3b</p></td>
+<td><p>0.863</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Therefore, we can see that performance comparable to SoTA is achievable by PEFT methods with consumer hardware such as 16GB and 24GB GPUs.</strong></p>
+<p>An insightful blogpost explaining the advantages of using PEFT for fine-tuning FlanT5-XXL: <a class="reference external" href="https://www.philschmid.de/fine-tune-flan-t5-peft">https://www.philschmid.de/fine-tune-flan-t5-peft</a></p>
+</section>
+</section>
+<section id="parameter-efficient-tuning-of-diffusion-models">
+<h3>Parameter Efficient Tuning of Diffusion Models<a class="headerlink" href="#parameter-efficient-tuning-of-diffusion-models" title="Permalink to this heading">#</a></h3>
+<p>GPU memory required by different settings during training is given below. The final checkpoint size is <code class="docutils literal notranslate"><span class="pre">8.8</span> <span class="pre">MB</span></code>.</p>
+<p>Hardware: Single A100 80GB GPU with CPU RAM above 64GB</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head"><p>Full Finetuning</p></th>
+<th class="head"><p>PEFT-LoRA</p></th>
+<th class="head"><p>PEFT-LoRA with Gradient Checkpointing</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CompVis/stable-diffusion-v1-4</p></td>
+<td><p>27.5GB GPU / 3.97GB CPU</p></td>
+<td><p>15.5GB GPU / 3.84GB CPU</p></td>
+<td><p>8.12GB GPU / 3.77GB CPU</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Training</strong>
+An example of using LoRA for parameter efficient dreambooth training is given in <span class="xref myst"><code class="docutils literal notranslate"><span class="pre">examples/lora_dreambooth/train_dreambooth.py</span></code></span></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">MODEL_NAME</span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;CompVis/stable-diffusion-v1-4&quot;</span><span class="w"> </span><span class="c1">#&quot;stabilityai/stable-diffusion-2-1&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">INSTANCE_DIR</span><span class="o">=</span><span class="s2">&quot;path-to-instance-images&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">CLASS_DIR</span><span class="o">=</span><span class="s2">&quot;path-to-class-images&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">OUTPUT_DIR</span><span class="o">=</span><span class="s2">&quot;path-to-save-model&quot;</span>
+
+accelerate<span class="w"> </span>launch<span class="w"> </span>train_dreambooth.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pretrained_model_name_or_path<span class="o">=</span><span class="nv">$MODEL_NAME</span><span class="w">  </span><span class="se">\</span>
+<span class="w">  </span>--instance_data_dir<span class="o">=</span><span class="nv">$INSTANCE_DIR</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--class_data_dir<span class="o">=</span><span class="nv">$CLASS_DIR</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output_dir<span class="o">=</span><span class="nv">$OUTPUT_DIR</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--train_text_encoder<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--with_prior_preservation<span class="w"> </span>--prior_loss_weight<span class="o">=</span><span class="m">1</span>.0<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--instance_prompt<span class="o">=</span><span class="s2">&quot;a photo of sks dog&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--class_prompt<span class="o">=</span><span class="s2">&quot;a photo of dog&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--resolution<span class="o">=</span><span class="m">512</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--train_batch_size<span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--lr_scheduler<span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--lr_warmup_steps<span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--num_class_images<span class="o">=</span><span class="m">200</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--use_lora<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--lora_r<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--lora_alpha<span class="w"> </span><span class="m">27</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--lora_text_encoder_r<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--lora_text_encoder_alpha<span class="w"> </span><span class="m">17</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--learning_rate<span class="o">=</span>1e-4<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--gradient_accumulation_steps<span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--gradient_checkpointing<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--max_train_steps<span class="o">=</span><span class="m">800</span>
+</pre></div>
+</div>
+<p>Try out the 🤗 Gradio Space which should run seamlessly on a T4 instance:
+<a class="reference external" href="https://huggingface.co/spaces/smangrul/peft-lora-sd-dreambooth">smangrul/peft-lora-sd-dreambooth</a>.</p>
+<p><img alt="peft lora dreambooth gradio space" src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/peft/peft_lora_dreambooth_gradio_space.png" /></p>
+<p><strong>NEW</strong> ✨ Multi Adapter support and combining multiple LoRA adapters in a weighted combination
+<img alt="peft lora dreambooth weighted adapter" src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/peft/weighted_adapter_dreambooth_lora.png" /></p>
+<p><strong>NEW</strong> ✨ Dreambooth training for Stable Diffusion using LoHa and LoKr adapters <span class="xref myst"><code class="docutils literal notranslate"><span class="pre">examples/stable_diffusion/train_dreambooth.py</span></code></span></p>
+</section>
+<section id="parameter-efficient-tuning-of-llms-for-rlhf-components-such-as-ranker-and-policy">
+<h3>Parameter Efficient Tuning of LLMs for RLHF components such as Ranker and Policy<a class="headerlink" href="#parameter-efficient-tuning-of-llms-for-rlhf-components-such-as-ranker-and-policy" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Here is an example in <a class="reference external" href="https://github.com/lvwerra/trl">trl</a> library using PEFT+INT8 for tuning policy model: <a class="reference external" href="https://github.com/lvwerra/trl/blob/main/examples/sentiment/scripts/gpt2-sentiment_peft.py">gpt2-sentiment_peft.py</a> and corresponding <a class="reference external" href="https://huggingface.co/blog/trl-peft">Blog</a></p></li>
+<li><p>Example using PEFT for Instruction finetuning, reward model and policy : <a class="reference external" href="https://github.com/lvwerra/trl/tree/main/examples/research_projects/stack_llama/scripts">stack_llama</a> and corresponding <a class="reference external" href="https://huggingface.co/blog/stackllama">Blog</a></p></li>
+</ul>
+</section>
+<section id="int8-training-of-large-models-in-colab-using-peft-lora-and-bits-and-bytes">
+<h3>INT8 training of large models in Colab using PEFT LoRA and bits_and_bytes<a class="headerlink" href="#int8-training-of-large-models-in-colab-using-peft-lora-and-bits-and-bytes" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Here is now a demo on how to fine tune <a class="reference external" href="https://huggingface.co/facebook/opt-6.7b">OPT-6.7b</a> (14GB in fp16) in a Google Colab: <a class="reference external" href="https://colab.research.google.com/drive/1jCkpikz0J2o20FBQmYmAGdiKmJGOMo-o?usp=sharing"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p></li>
+<li><p>Here is now a demo on how to fine tune <a class="reference external" href="https://huggingface.co/openai/whisper-large-v2">whisper-large</a> (1.5B params) (14GB in fp16) in a Google Colab: <a class="reference external" href="https://colab.research.google.com/drive/1DOkD_5OUjFa0r5Ik3SgywJLJtEo2qLxO?usp=sharing"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a> and <a class="reference external" href="https://colab.research.google.com/drive/1vhF8yueFqha3Y3CpTHN6q9EVcII9EYzs?usp=sharing"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p></li>
+</ul>
+<section id="save-compute-and-storage-even-for-medium-and-small-models">
+<h4>Save compute and storage even for medium and small models<a class="headerlink" href="#save-compute-and-storage-even-for-medium-and-small-models" title="Permalink to this heading">#</a></h4>
+<p>Save storage by avoiding full finetuning of models on each of the downstream tasks/datasets,
+With PEFT methods, users only need to store tiny checkpoints in the order of <code class="docutils literal notranslate"><span class="pre">MBs</span></code> all the while retaining
+performance comparable to full finetuning.</p>
+<p>An example of using LoRA for the task of adapting <code class="docutils literal notranslate"><span class="pre">LayoutLMForTokenClassification</span></code> on <code class="docutils literal notranslate"><span class="pre">FUNSD</span></code> dataset is given in <code class="docutils literal notranslate"><span class="pre">~examples/token_classification/PEFT_LoRA_LayoutLMForTokenClassification_on_FUNSD.py</span></code>. We can observe that with only <code class="docutils literal notranslate"><span class="pre">0.62</span> <span class="pre">%</span></code> of parameters being trainable, we achieve performance (F1 0.777) comparable to full finetuning (F1 0.786) (without any hyperparam tuning runs for extracting more performance), and the checkpoint of this is only <code class="docutils literal notranslate"><span class="pre">2.8MB</span></code>. Now, if there are <code class="docutils literal notranslate"><span class="pre">N</span></code> such datasets, just have these PEFT models one for each dataset and save a lot of storage without having to worry about the problem of catastrophic forgetting or overfitting of backbone/base model.</p>
+<p>Another example is fine-tuning <a class="reference external" href="https://huggingface.co/roberta-large"><code class="docutils literal notranslate"><span class="pre">roberta-large</span></code></a> on <a class="reference external" href="https://huggingface.co/datasets/glue/viewer/mrpc"><code class="docutils literal notranslate"><span class="pre">MRPC</span></code> GLUE</a> dataset using different PEFT methods. The notebooks are given in <code class="docutils literal notranslate"><span class="pre">~examples/sequence_classification</span></code>.</p>
+</section>
+</section>
+<section id="peft-accelerate">
+<h3>PEFT + 🤗 Accelerate<a class="headerlink" href="#peft-accelerate" title="Permalink to this heading">#</a></h3>
+<p>PEFT models work with 🤗 Accelerate out of the box. Use 🤗 Accelerate for Distributed training on various hardware such as GPUs, Apple Silicon devices, etc during training.
+Use 🤗 Accelerate for inferencing on consumer hardware with small resources.</p>
+<section id="example-of-peft-model-training-using-accelerates-deepspeed-integration">
+<h4>Example of PEFT model training using 🤗 Accelerate’s DeepSpeed integration<a class="headerlink" href="#example-of-peft-model-training-using-accelerates-deepspeed-integration" title="Permalink to this heading">#</a></h4>
+<p>DeepSpeed version required <code class="docutils literal notranslate"><span class="pre">v0.8.0</span></code>. An example is provided in <code class="docutils literal notranslate"><span class="pre">~examples/conditional_generation/peft_lora_seq2seq_accelerate_ds_zero3_offload.py</span></code>.
+a. First, run <code class="docutils literal notranslate"><span class="pre">accelerate</span> <span class="pre">config</span> <span class="pre">--config_file</span> <span class="pre">ds_zero3_cpu.yaml</span></code> and answer the questionnaire.
+Below are the contents of the config file.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">compute_environment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LOCAL_MACHINE</span>
+<span class="nt">deepspeed_config</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">gradient_accumulation_steps</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">  </span><span class="nt">gradient_clipping</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+<span class="w">  </span><span class="nt">offload_optimizer_device</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cpu</span>
+<span class="w">  </span><span class="nt">offload_param_device</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cpu</span>
+<span class="w">  </span><span class="nt">zero3_init_flag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">zero3_save_16bit_model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">zero_stage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="nt">distributed_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DEEPSPEED</span>
+<span class="nt">downcast_bf16</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;no&quot;</span>
+<span class="nt">dynamo_backend</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;NO&quot;</span>
+<span class="nt">fsdp_config</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+<span class="nt">machine_rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="nt">main_training_function</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span>
+<span class="nt">megatron_lm_config</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+<span class="nt">mixed_precision</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;no&quot;</span>
+<span class="nt">num_machines</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="nt">num_processes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="nt">rdzv_backend</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">static</span>
+<span class="nt">same_network</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">use_cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</pre></div>
+</div>
+<p>b. run the below command to launch the example script</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>accelerate<span class="w"> </span>launch<span class="w"> </span>--config_file<span class="w"> </span>ds_zero3_cpu.yaml<span class="w"> </span>examples/peft_lora_seq2seq_accelerate_ds_zero3_offload.py
+</pre></div>
+</div>
+<p>c. output logs:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>GPU<span class="w"> </span>Memory<span class="w"> </span>before<span class="w"> </span>entering<span class="w"> </span>the<span class="w"> </span>train<span class="w"> </span>:<span class="w"> </span><span class="m">1916</span>
+GPU<span class="w"> </span>Memory<span class="w"> </span>consumed<span class="w"> </span>at<span class="w"> </span>the<span class="w"> </span>end<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>train<span class="w"> </span><span class="o">(</span>end-begin<span class="o">)</span>:<span class="w"> </span><span class="m">66</span>
+GPU<span class="w"> </span>Peak<span class="w"> </span>Memory<span class="w"> </span>consumed<span class="w"> </span>during<span class="w"> </span>the<span class="w"> </span>train<span class="w"> </span><span class="o">(</span>max-begin<span class="o">)</span>:<span class="w"> </span><span class="m">7488</span>
+GPU<span class="w"> </span>Total<span class="w"> </span>Peak<span class="w"> </span>Memory<span class="w"> </span>consumed<span class="w"> </span>during<span class="w"> </span>the<span class="w"> </span>train<span class="w"> </span><span class="o">(</span>max<span class="o">)</span>:<span class="w"> </span><span class="m">9404</span>
+CPU<span class="w"> </span>Memory<span class="w"> </span>before<span class="w"> </span>entering<span class="w"> </span>the<span class="w"> </span>train<span class="w"> </span>:<span class="w"> </span><span class="m">19411</span>
+CPU<span class="w"> </span>Memory<span class="w"> </span>consumed<span class="w"> </span>at<span class="w"> </span>the<span class="w"> </span>end<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>train<span class="w"> </span><span class="o">(</span>end-begin<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+CPU<span class="w"> </span>Peak<span class="w"> </span>Memory<span class="w"> </span>consumed<span class="w"> </span>during<span class="w"> </span>the<span class="w"> </span>train<span class="w"> </span><span class="o">(</span>max-begin<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+CPU<span class="w"> </span>Total<span class="w"> </span>Peak<span class="w"> </span>Memory<span class="w"> </span>consumed<span class="w"> </span>during<span class="w"> </span>the<span class="w"> </span>train<span class="w"> </span><span class="o">(</span>max<span class="o">)</span>:<span class="w"> </span><span class="m">19411</span>
+<span class="nv">epoch</span><span class="o">=</span><span class="m">4</span>:<span class="w"> </span><span class="nv">train_ppl</span><span class="o">=</span>tensor<span class="o">(</span><span class="m">1</span>.0705,<span class="w"> </span><span class="nv">device</span><span class="o">=</span><span class="s1">&#39;cuda:0&#39;</span><span class="o">)</span><span class="w"> </span><span class="nv">train_epoch_loss</span><span class="o">=</span>tensor<span class="o">(</span><span class="m">0</span>.0681,<span class="w"> </span><span class="nv">device</span><span class="o">=</span><span class="s1">&#39;cuda:0&#39;</span><span class="o">)</span>
+<span class="m">100</span>%<span class="p">|</span>████████████████████████████████████████████████████████████████████████████████████████████<span class="p">|</span><span class="w"> </span><span class="m">7</span>/7<span class="w"> </span><span class="o">[</span><span class="m">00</span>:27&lt;<span class="m">00</span>:00,<span class="w">  </span><span class="m">3</span>.92s/it<span class="o">]</span>
+GPU<span class="w"> </span>Memory<span class="w"> </span>before<span class="w"> </span>entering<span class="w"> </span>the<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>:<span class="w"> </span><span class="m">1982</span>
+GPU<span class="w"> </span>Memory<span class="w"> </span>consumed<span class="w"> </span>at<span class="w"> </span>the<span class="w"> </span>end<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span><span class="nb">eval</span><span class="w"> </span><span class="o">(</span>end-begin<span class="o">)</span>:<span class="w"> </span>-66
+GPU<span class="w"> </span>Peak<span class="w"> </span>Memory<span class="w"> </span>consumed<span class="w"> </span>during<span class="w"> </span>the<span class="w"> </span><span class="nb">eval</span><span class="w"> </span><span class="o">(</span>max-begin<span class="o">)</span>:<span class="w"> </span><span class="m">672</span>
+GPU<span class="w"> </span>Total<span class="w"> </span>Peak<span class="w"> </span>Memory<span class="w"> </span>consumed<span class="w"> </span>during<span class="w"> </span>the<span class="w"> </span><span class="nb">eval</span><span class="w"> </span><span class="o">(</span>max<span class="o">)</span>:<span class="w"> </span><span class="m">2654</span>
+CPU<span class="w"> </span>Memory<span class="w"> </span>before<span class="w"> </span>entering<span class="w"> </span>the<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>:<span class="w"> </span><span class="m">19411</span>
+CPU<span class="w"> </span>Memory<span class="w"> </span>consumed<span class="w"> </span>at<span class="w"> </span>the<span class="w"> </span>end<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span><span class="nb">eval</span><span class="w"> </span><span class="o">(</span>end-begin<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+CPU<span class="w"> </span>Peak<span class="w"> </span>Memory<span class="w"> </span>consumed<span class="w"> </span>during<span class="w"> </span>the<span class="w"> </span><span class="nb">eval</span><span class="w"> </span><span class="o">(</span>max-begin<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+CPU<span class="w"> </span>Total<span class="w"> </span>Peak<span class="w"> </span>Memory<span class="w"> </span>consumed<span class="w"> </span>during<span class="w"> </span>the<span class="w"> </span><span class="nb">eval</span><span class="w"> </span><span class="o">(</span>max<span class="o">)</span>:<span class="w"> </span><span class="m">19411</span>
+<span class="nv">accuracy</span><span class="o">=</span><span class="m">100</span>.0
+eval_preds<span class="o">[</span>:10<span class="o">]=[</span><span class="s1">&#39;no complaint&#39;</span>,<span class="w"> </span><span class="s1">&#39;no complaint&#39;</span>,<span class="w"> </span><span class="s1">&#39;complaint&#39;</span>,<span class="w"> </span><span class="s1">&#39;complaint&#39;</span>,<span class="w"> </span><span class="s1">&#39;no complaint&#39;</span>,<span class="w"> </span><span class="s1">&#39;no complaint&#39;</span>,<span class="w"> </span><span class="s1">&#39;no complaint&#39;</span>,<span class="w"> </span><span class="s1">&#39;complaint&#39;</span>,<span class="w"> </span><span class="s1">&#39;complaint&#39;</span>,<span class="w"> </span><span class="s1">&#39;no complaint&#39;</span><span class="o">]</span>
+dataset<span class="o">[</span><span class="s1">&#39;train&#39;</span><span class="o">][</span>label_column<span class="o">][</span>:10<span class="o">]=[</span><span class="s1">&#39;no complaint&#39;</span>,<span class="w"> </span><span class="s1">&#39;no complaint&#39;</span>,<span class="w"> </span><span class="s1">&#39;complaint&#39;</span>,<span class="w"> </span><span class="s1">&#39;complaint&#39;</span>,<span class="w"> </span><span class="s1">&#39;no complaint&#39;</span>,<span class="w"> </span><span class="s1">&#39;no complaint&#39;</span>,<span class="w"> </span><span class="s1">&#39;no complaint&#39;</span>,<span class="w"> </span><span class="s1">&#39;complaint&#39;</span>,<span class="w"> </span><span class="s1">&#39;complaint&#39;</span>,<span class="w"> </span><span class="s1">&#39;no complaint&#39;</span><span class="o">]</span>
+</pre></div>
+</div>
+</section>
+<section id="example-of-peft-model-inference-using-accelerates-big-model-inferencing-capabilities">
+<h4>Example of PEFT model inference using 🤗 Accelerate’s Big Model Inferencing capabilities<a class="headerlink" href="#example-of-peft-model-inference-using-accelerates-big-model-inferencing-capabilities" title="Permalink to this heading">#</a></h4>
+<p>An example is provided in <a class="reference external" href="https://github.com/huggingface/peft/blob/main/examples/causal_language_modeling/peft_lora_clm_accelerate_big_model_inference.ipynb"><code class="docutils literal notranslate"><span class="pre">~examples/causal_language_modeling/peft_lora_clm_accelerate_big_model_inference.ipynb</span></code></a>.</p>
+</section>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+<p>Parameter-Efficient Fine-Tuning (PEFT) stands as a transformative approach in the realm of working with Large Language Models (LLMs), addressing the critical challenges of computational demand and resource constraints. By focusing on adapting smaller segments of these expansive models, PEFT offers a path to harness the power of LLMs in a more accessible and sustainable manner. This approach not only broadens the scope of who can utilize these models but also expands the potential applications in various fields.</p>
+<p>The integration of PEFT techniques, particularly those developed and made accessible by platforms like Hugging Face, marks a significant advancement in the field of natural language processing and artificial intelligence. These techniques allow for the efficient customization of LLMs for specific tasks, providing a balance between performance and resource utilization. The diverse range of PEFT methods, including LoRA, Prefix Tuning, and AdaLoRA, each offers unique advantages, catering to different requirements and scenarios.</p>
+<p>Furthermore, the compatibility of PEFT with tools like 🤗 Accelerate and DeepSpeed illustrates its practicality and adaptability in real-world applications. This compatibility ensures that PEFT can be easily integrated into existing workflows, allowing for seamless scaling and adaptation of models.</p>
+<p>The potential of PEFT extends beyond just language models; its principles are being applied to other areas such as diffusion models, indicating a broad spectrum of impact. Whether it’s fine-tuning for specific tasks, adapting models for resource-limited settings, or pushing the boundaries of what’s possible with consumer-grade hardware, PEFT is at the forefront of this evolution.</p>
+<p>In conclusion, PEFT represents a significant step forward in the democratization of AI and ML technologies. It opens up new avenues for innovation, allowing a wider range of researchers, developers, and organizations to leverage the capabilities of large-scale models in a more efficient and effective manner. As the field continues to evolve, the role of PEFT in shaping the future of machine learning and AI will undoubtedly be pivotal, driving forward the possibilities of what can be achieved with these powerful tools.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/lecture",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lectures/llms/peft"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Parameter-Efficient Fine-Tuning</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../q-learning/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Q*-Learning</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-fine-tuning-vs-parameter-efficient-fine-tuning-peft">Standard Fine-Tuning vs. Parameter-Efficient Fine-Tuning (PEFT)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-security-and-privacy-concerns">Data Security and Privacy Concerns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-of-data-quality">Importance of Data Quality</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparative-analysis">Comparative Analysis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#who-uses-peft">Who Uses PEFT?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#current-adoption-of-peft">Current Adoption of PEFT</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hugging-face">Hugging Face 🤗</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#googles-vertex-ai">Google’s Vertex AI</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#openai">OpenAI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-transformer-review">Quick Transformer Review</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-concepts-of-transformer-architecture">Core Concepts of Transformer Architecture</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#self-attention-mechanism">Self-Attention Mechanism</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#transformer-block-structure">Transformer Block Structure</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-in-peft">Importance in PEFT</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#peft-techniques-overview">PEFT Techniques Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additive-methods">Additive Methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#soft-prompts">Soft-Prompts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reparameterization-based-methods">Reparameterization-Based Methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selective-methods">Selective Methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-of-methods">Comparison of Methods</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#peft-in-huggingface-libraries">PEFT in HuggingFace Libraries</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supported-peft-methods">Supported PEFT Methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-with-peft">Getting Started with PEFT</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-cases">Use Cases</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#get-comparable-performance-to-full-finetuning-by-adapting-llms-to-downstream-tasks-using-consumer-hardware">Get comparable performance to full finetuning by adapting LLMs to downstream tasks using consumer hardware</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-efficient-tuning-of-diffusion-models">Parameter Efficient Tuning of Diffusion Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-efficient-tuning-of-llms-for-rlhf-components-such-as-ranker-and-policy">Parameter Efficient Tuning of LLMs for RLHF components such as Ranker and Policy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#int8-training-of-large-models-in-colab-using-peft-lora-and-bits-and-bytes">INT8 training of large models in Colab using PEFT LoRA and bits_and_bytes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#save-compute-and-storage-even-for-medium-and-small-models">Save compute and storage even for medium and small models</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peft-accelerate">PEFT + 🤗 Accelerate</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-peft-model-training-using-accelerates-deepspeed-integration">Example of PEFT model training using 🤗 Accelerate’s DeepSpeed integration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-peft-model-inference-using-accelerates-big-model-inferencing-capabilities">Example of PEFT model inference using 🤗 Accelerate’s Big Model Inferencing capabilities</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

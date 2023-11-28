@@ -177,3 +177,9 @@ This lecture offers an in-depth exploration of Parameter-Efficient Fine-Tuning (
 - **Expanding Accessibility**: The role of PEFT in broadening access to advanced AI models by minimizing computational demands is profound, offering significant implications for smaller organizations and independent researchers.
 - **Driving Innovation and Progress**: The ongoing evolution of PEFT techniques is expected to catalyze further innovation in machine learning, leading to the development of more efficient and potent models.
 - **Advocating for Ethical Development**: As PEFT continues to progress, it is crucial that these advancements are pursued within frameworks that emphasize ethical considerations and the responsible use of AI.
+
+## Next Contents
+
+```{tableofcontents}
+
+```
