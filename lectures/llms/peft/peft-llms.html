@@ -815,6 +815,23 @@ document.write(`
 <li><p><strong>Normalization and Residual Connections</strong>: Each of these layers is followed by layer normalization and is equipped with residual connections. This means the output of each layer is the sum of its input and its processed result, enhancing training stability and allowing deeper networks.</p></li>
 <li><p><strong>Positional Encoding</strong>: Since the Transformer doesn’t inherently capture the sequential nature of data, positional encodings are added to the input embeddings to give the model information about the position of each token in the sequence.</p></li>
 </ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">self_attention</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">x</span> <span class="o">@</span> <span class="n">W_k</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">x</span> <span class="o">@</span> <span class="n">W_q</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">x</span> <span class="o">@</span> <span class="n">W_v</span>
+    <span class="k">return</span> <span class="n">softmax</span><span class="p">(</span><span class="n">q</span> <span class="o">@</span> <span class="n">k</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">@</span> <span class="n">v</span>
+
+<span class="k">def</span> <span class="nf">transformer_block</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Pseudo code by author based on [2] &quot;&quot;&quot;</span>
+    <span class="n">residual</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">self_attention</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">layer_norm</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">residual</span><span class="p">)</span>
+    <span class="n">residual</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">FFN</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">layer_norm</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">residual</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="importance-in-peft">
@@ -830,22 +847,139 @@ document.write(`
 <section id="additive-methods">
 <h3>Additive Methods<a class="headerlink" href="#additive-methods" title="Permalink to this heading">#</a></h3>
 <p><strong>Adapters</strong>: Introduced by Houlsby et al., this technique involves adding small fully connected networks after Transformer sub-layers. The pseudo code for an adapted transformer block illustrates these additions.</p>
-<p><strong>(IA)³</strong>: This method, proposed by Liu et al., augments the transformer block with additional column vectors (l_k, l_v) that modify the key and value matrices in the attention mechanism. This is done without strictly adding fully connected layers, distinguishing it from traditional adapter methods.</p>
+<div class="highlight-ptyhon notranslate"><div class="highlight"><pre><span></span>def transformer_block_adapter(x):
+    &quot;&quot;&quot;Pseudo code from [2] &quot;&quot;&quot;
+    residual = x
+    x = self_attention(x)
+    x = FFN(x)  # adapter
+    x = layer_norm(x + residual)
+    residual = x
+    x = FFN(x)
+    x = FFN(x)  # adapter
+    x = layer_norm(x + residual)
+    return x
+</pre></div>
+</div>
+<p><strong>(IA)³</strong>: This method, proposed by Liu et al., augments the transformer block with additional column vectors (<span class="math notranslate nohighlight">\(l_k\)</span>, <span class="math notranslate nohighlight">\(l_v\)</span>) that modify the key and value matrices in the attention mechanism. This is done without strictly adding fully connected layers, distinguishing it from traditional adapter methods.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">self_attention_ia3</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">x</span> <span class="o">@</span> <span class="n">W_k</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">x</span> <span class="o">@</span> <span class="n">W_q</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">x</span> <span class="o">@</span> <span class="n">W_v</span>
+
+    <span class="n">k</span> <span class="o">=</span> <span class="n">l_k</span> <span class="o">@</span> <span class="n">k</span>  <span class="c1"># ia3</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">l_v</span> <span class="o">@</span> <span class="n">v</span>  <span class="c1"># ia3</span>
+
+    <span class="k">return</span> <span class="n">softmax</span><span class="p">(</span><span class="n">q</span> <span class="o">@</span> <span class="n">k</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">@</span> <span class="n">v</span>
+
+<span class="k">def</span> <span class="nf">transformer_block_ia3</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Pseudo code from [2]&quot;&quot;&quot;</span>
+    <span class="n">residual</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">self_attention_ia3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">layer_norm</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">residual</span><span class="p">)</span>
+    <span class="n">residual</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">@</span> <span class="n">W_1</span>  <span class="c1"># normal transformer</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">l_ff</span> <span class="o">*</span> <span class="n">gelu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># ia3</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">@</span> <span class="n">W_2</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">layer_norm</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">residual</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</div>
 </section>
 <section id="soft-prompts">
 <h3>Soft-Prompts<a class="headerlink" href="#soft-prompts" title="Permalink to this heading">#</a></h3>
 <p><strong>Prompt-Tuning</strong>: Developed by Lester et al., this technique involves creating a set of parameters for prompt tokens and integrating them at the beginning of the network. It allows for optimization of a continuous representation of the prompt text.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">prompt_tuning</span><span class="p">(</span><span class="n">seq_tokens</span><span class="p">,</span> <span class="n">prompt_tokens</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Pseudo code from [2]. &quot;&quot;&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">seq_embedding</span><span class="p">(</span><span class="n">seq_tokens</span><span class="p">)</span>
+    <span class="n">soft_prompt</span> <span class="o">=</span> <span class="n">prompt_embedding</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">)</span>
+    <span class="n">model_input</span> <span class="o">=</span> <span class="n">concat</span><span class="p">([</span><span class="n">soft_prompt</span><span class="p">,</span> <span class="n">x</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="n">seq</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span><span class="p">(</span><span class="n">model_input</span><span class="p">)</span>
+</pre></div>
+</div>
 <p><strong>Prefix Tuning</strong>: Similar to prompt tuning but differs in that the representation is fed to all layers of the transformer. It also involves learning additional parameters for the soft prompt in the form of a fully connected network.</p>
+<div class="highlight-ptyhon notranslate"><div class="highlight"><pre><span></span>def transformer_block_prefix_tuning(x, soft_prompt):
+    &quot;&quot;&quot; Pseudo code from [2] &quot;&quot;&quot;
+    soft_prompt = FFN(soft_prompt)
+    model_input = concat([soft_prompt, x], dim=seq)
+    return model(model_input)
+</pre></div>
+</div>
 <p><strong>P-Tuning</strong>: Proposed by Liu et al., P-Tuning encodes the prompt using an LSTM, aiming to address the discrete nature of word embeddings and their independent associations in other prompting methods.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">p_tuning</span><span class="p">(</span><span class="n">seq_tokens</span><span class="p">,</span> <span class="n">prompt_tokens</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Pseudo code for p-tuning created by Author.&quot;&quot;&quot;</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">prompt_embedding</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">)</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">LSMT</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">bidirectional</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">FFN</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">seq_embedding</span><span class="p">(</span><span class="n">seq_tokens</span><span class="p">)</span>
+    <span class="n">model_input</span> <span class="o">=</span> <span class="n">concat</span><span class="p">([</span><span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="n">seq</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">model</span><span class="p">(</span><span class="n">model_input</span><span class="p">)</span>
+</pre></div>
+</div>
 <p><strong>LLaMA-Adapter</strong>: As per Zhang et al., this technique applies a variant of prefix learning to the Llama model. It introduces adaptation prompts and zero-initialized attention for efficient fine-tuning.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">transformer_block_llama_adapter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">soft_prompt</span><span class="p">,</span> <span class="n">gating_factor</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;LLaMA-Adapter pseudo code created by Author&quot;&quot;&quot;</span>
+    <span class="n">residual</span> <span class="o">=</span> <span class="n">x</span>
+
+    <span class="n">adaption_prompt</span> <span class="o">=</span> <span class="n">concat</span><span class="p">([</span><span class="n">soft_prompt</span><span class="p">,</span> <span class="n">x</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="n">seq</span><span class="p">)</span>
+    <span class="n">adaption_prompt</span> <span class="o">=</span> <span class="n">self_attention</span><span class="p">(</span><span class="n">adaption_prompt</span><span class="p">)</span> <span class="o">*</span> <span class="n">gating_factor</span>  <span class="c1"># zero-init attention</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">self_attention</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">adaption_prompt</span> <span class="o">*</span> <span class="n">x</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">layer_norm</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">residual</span><span class="p">)</span>
+    <span class="n">residual</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">FFN</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">layer_norm</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">residual</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</div>
 </section>
 <section id="reparameterization-based-methods">
 <h3>Reparameterization-Based Methods<a class="headerlink" href="#reparameterization-based-methods" title="Permalink to this heading">#</a></h3>
 <p><strong>LoRa</strong>: A popular technique by Hu et al., LoRa reparameterizes a weight matrix by learning a separate matrix representing updates from optimization. It uses two smaller matrices to represent these updates, reducing the number of parameters to be learned.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">lora_linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W</span><span class="p">):</span>
+    <span class="n">scale</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">r</span>  <span class="c1"># r is rank</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">x</span> <span class="o">@</span> <span class="n">W</span>
+    <span class="n">h</span> <span class="o">+=</span> <span class="n">x</span> <span class="o">@</span> <span class="n">W_a</span> <span class="o">@</span> <span class="n">W_b</span>  <span class="c1"># W_a,W_b determined based on W</span>
+    <span class="k">return</span> <span class="n">scale</span> <span class="o">*</span> <span class="n">h</span>
+
+<span class="k">def</span> <span class="nf">self_attention_lora</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Pseudo code from Lialin et al. [2].&quot;&quot;&quot;</span>
+
+    <span class="n">k</span> <span class="o">=</span> <span class="n">lora_linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W_k</span><span class="p">)</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">x</span> <span class="o">@</span> <span class="n">W_q</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">lora_linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W_v</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">softmax</span><span class="p">(</span><span class="n">q</span> <span class="o">@</span> <span class="n">k</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">@</span> <span class="n">v</span>
+</pre></div>
+</div>
 </section>
 <section id="selective-methods">
 <h3>Selective Methods<a class="headerlink" href="#selective-methods" title="Permalink to this heading">#</a></h3>
 <p><strong>AdaLoRa</strong>: This hybrid approach, developed by Zhang et al., combines ideas from reparameterization and selective methods. It uses an approximation of Singular Value Decomposition (SVD) to represent weight matrix updates and incorporates a pruning technique to eliminate less important singular vectors.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">adalora_linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">curr_sv</span><span class="p">):</span>
+    <span class="n">scale</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">/</span> <span class="n">r</span>  <span class="c1"># r is rank</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">x</span> <span class="o">@</span> <span class="n">W</span>
+
+    <span class="c1"># p, lamda, and q are related to the W matrix</span>
+    <span class="c1"># curr_sv marks which singular vectors we are currently optimizing.</span>
+    <span class="n">h</span> <span class="o">+=</span> <span class="n">x</span> <span class="o">@</span> <span class="n">p</span><span class="p">[</span><span class="n">curr_sv</span><span class="p">]</span> <span class="o">@</span> <span class="n">lamda</span><span class="p">[</span><span class="n">curr_sv</span><span class="p">]</span> <span class="o">@</span> <span class="n">q</span><span class="p">[</span><span class="n">curr_sv</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">scale</span> <span class="o">*</span> <span class="n">h</span>
+
+<span class="k">def</span> <span class="nf">self_attention_lora</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    AdaLoRa pseudo code created by author.</span>
+<span class="sd">    This only shows the difference in the self_attention block.</span>
+<span class="sd">    Does not include code for pruning techniques.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">adalora_linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W_k</span><span class="p">)</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">x</span> <span class="o">@</span> <span class="n">W_q</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">adalora_linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W_v</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">softmax</span><span class="p">(</span><span class="n">q</span> <span class="o">@</span> <span class="n">k</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">@</span> <span class="n">v</span>
+</pre></div>
+</div>
 </section>
 <section id="comparison-of-methods">
 <h3>Comparison of Methods<a class="headerlink" href="#comparison-of-methods" title="Permalink to this heading">#</a></h3>

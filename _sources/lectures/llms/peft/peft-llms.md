@@ -79,6 +79,24 @@ The Transformer architecture, introduced by Vaswani et al. in their seminal pape
 - **Normalization and Residual Connections**: Each of these layers is followed by layer normalization and is equipped with residual connections. This means the output of each layer is the sum of its input and its processed result, enhancing training stability and allowing deeper networks.
 - **Positional Encoding**: Since the Transformer doesn’t inherently capture the sequential nature of data, positional encodings are added to the input embeddings to give the model information about the position of each token in the sequence.
 
+```python
+def self_attention(x):
+    k = x @ W_k
+    q = x @ W_q
+    v = x @ W_v
+    return softmax(q @ k.T) @ v
+
+def transformer_block(x):
+    """ Pseudo code by author based on [2] """
+    residual = x
+    x = self_attention(x)
+    x = layer_norm(x + residual)
+    residual = x
+    x = FFN(x)
+    x = layer_norm(x + residual)
+    return x
+```
+
 ### Importance in PEFT
 
 - **PEFT Adaptations**: Understanding the Transformer’s architecture is crucial for comprehending how PEFT techniques modify it. PEFT methods typically intervene at the level of the self-attention mechanism and the feed-forward networks, adjusting or augmenting the model’s parameters efficiently for task-specific fine-tuning.
@@ -90,25 +108,150 @@ The Transformer architecture, introduced by Vaswani et al. in their seminal pape
 
 **Adapters**: Introduced by Houlsby et al., this technique involves adding small fully connected networks after Transformer sub-layers. The pseudo code for an adapted transformer block illustrates these additions.
 
-**(IA)³**: This method, proposed by Liu et al., augments the transformer block with additional column vectors (l_k, l_v) that modify the key and value matrices in the attention mechanism. This is done without strictly adding fully connected layers, distinguishing it from traditional adapter methods.
+```ptyhon
+def transformer_block_adapter(x):
+    """Pseudo code from [2] """
+    residual = x
+    x = self_attention(x)
+    x = FFN(x)  # adapter
+    x = layer_norm(x + residual)
+    residual = x
+    x = FFN(x)
+    x = FFN(x)  # adapter
+    x = layer_norm(x + residual)
+    return x
+```
+
+**(IA)³**: This method, proposed by Liu et al., augments the transformer block with additional column vectors ($l_k$, $l_v$) that modify the key and value matrices in the attention mechanism. This is done without strictly adding fully connected layers, distinguishing it from traditional adapter methods.
+
+```python
+def self_attention_ia3(x):
+    k = x @ W_k
+    q = x @ W_q
+    v = x @ W_v
+
+    k = l_k @ k  # ia3
+    v = l_v @ v  # ia3
+
+    return softmax(q @ k.T) @ v
+
+def transformer_block_ia3(x):
+    """Pseudo code from [2]"""
+    residual = x
+    x = self_attention_ia3(x)
+    x = layer_norm(x + residual)
+    residual = x
+    x = x @ W_1  # normal transformer
+    x = l_ff * gelu(x)  # ia3
+    x = x @ W_2
+    x = layer_norm(x + residual)
+    return x
+```
 
 ### Soft-Prompts
 
 **Prompt-Tuning**: Developed by Lester et al., this technique involves creating a set of parameters for prompt tokens and integrating them at the beginning of the network. It allows for optimization of a continuous representation of the prompt text.
 
+```python
+def prompt_tuning(seq_tokens, prompt_tokens):
+    """ Pseudo code from [2]. """
+    x = seq_embedding(seq_tokens)
+    soft_prompt = prompt_embedding(prompt_tokens)
+    model_input = concat([soft_prompt, x], dim=seq)
+    return model(model_input)
+```
+
 **Prefix Tuning**: Similar to prompt tuning but differs in that the representation is fed to all layers of the transformer. It also involves learning additional parameters for the soft prompt in the form of a fully connected network.
+
+```ptyhon
+def transformer_block_prefix_tuning(x, soft_prompt):
+    """ Pseudo code from [2] """
+    soft_prompt = FFN(soft_prompt)
+    model_input = concat([soft_prompt, x], dim=seq)
+    return model(model_input)
+```
 
 **P-Tuning**: Proposed by Liu et al., P-Tuning encodes the prompt using an LSTM, aiming to address the discrete nature of word embeddings and their independent associations in other prompting methods.
 
+```python
+def p_tuning(seq_tokens, prompt_tokens):
+    """Pseudo code for p-tuning created by Author."""
+    h = prompt_embedding(prompt_tokens)
+    h = LSMT(h, bidirectional=True)
+    h = FFN(h)
+
+    x = seq_embedding(seq_tokens)
+    model_input = concat([h, x], dim=seq)
+
+    return model(model_input)
+```
+
 **LLaMA-Adapter**: As per Zhang et al., this technique applies a variant of prefix learning to the Llama model. It introduces adaptation prompts and zero-initialized attention for efficient fine-tuning.
+
+```python
+def transformer_block_llama_adapter(x, soft_prompt, gating_factor):
+    """LLaMA-Adapter pseudo code created by Author"""
+    residual = x
+
+    adaption_prompt = concat([soft_prompt, x], dim=seq)
+    adaption_prompt = self_attention(adaption_prompt) * gating_factor  # zero-init attention
+
+    x = self_attention(x)
+    x = adaption_prompt * x
+    x = layer_norm(x + residual)
+    residual = x
+    x = FFN(x)
+    x = layer_norm(x + residual)
+
+    return x
+```
 
 ### Reparameterization-Based Methods
 
 **LoRa**: A popular technique by Hu et al., LoRa reparameterizes a weight matrix by learning a separate matrix representing updates from optimization. It uses two smaller matrices to represent these updates, reducing the number of parameters to be learned.
 
+```python
+def lora_linear(x, W):
+    scale = 1 / r  # r is rank
+    h = x @ W
+    h += x @ W_a @ W_b  # W_a,W_b determined based on W
+    return scale * h
+
+def self_attention_lora(x):
+    """ Pseudo code from Lialin et al. [2]."""
+
+    k = lora_linear(x, W_k)
+    q = x @ W_q
+    v = lora_linear(x, W_v)
+    return softmax(q @ k.T) @ v
+```
+
 ### Selective Methods
 
 **AdaLoRa**: This hybrid approach, developed by Zhang et al., combines ideas from reparameterization and selective methods. It uses an approximation of Singular Value Decomposition (SVD) to represent weight matrix updates and incorporates a pruning technique to eliminate less important singular vectors.
+
+```python
+def adalora_linear(x, W, curr_sv):
+    scale = alpha / r  # r is rank
+    h = x @ W
+
+    # p, lamda, and q are related to the W matrix
+    # curr_sv marks which singular vectors we are currently optimizing.
+    h += x @ p[curr_sv] @ lamda[curr_sv] @ q[curr_sv]
+    return scale * h
+
+def self_attention_lora(x):
+    """
+    AdaLoRa pseudo code created by author.
+    This only shows the difference in the self_attention block.
+    Does not include code for pruning techniques.
+    """
+    k = adalora_linear(x, W_k)
+    q = x @ W_q
+    v = adalora_linear(x, W_v)
+
+    return softmax(q @ k.T) @ v
+```
 
 ### Comparison of Methods
 
