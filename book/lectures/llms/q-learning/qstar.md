@@ -1,5 +1,10 @@
 # Q-Star (Q\*)
 
+```{image} figs/Q-Star.png
+:width: 100%
+:align: center
+```
+
 Q-Star (Q*) has emerged as a potentially transformative development in artificial intelligence (AI), building upon the foundations of Q-learning. This article aims to delve deeply into Q*, elucidating its naming convention, implications, and potential impact on AI research and applications. It will cover Q-learning, Q-Star's connection to other algorithms, challenges in AI problem-solving, and its alignment with emerging paradigms like neuro-symbolic AI. The objective is to provide a comprehensive understanding of Q\*, its significance, and its potential to advance AI capabilities.
 
 ## Understanding Q-Star (Q\*)
