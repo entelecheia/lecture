@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>BERT: Visualizing Attention &#8212; ἐντελέχεια.άι</title>
   
@@ -19,25 +18,25 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css?v=e236af4b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
@@ -46,33 +45,33 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css?v=574a5d82" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css?v=06ccce15" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../../../_static/tabs.js?v=3ee01567"></script>
     <script src="../../../_static/js/hoverxref.js"></script>
     <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
     <script src="../../../_static/js/micromodal.min.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../../_static/design-tabs.js"></script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -85,12 +84,24 @@ const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_deep/transformers/bertviz';</script>
     <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_deep/transformers/bertviz.html" />
-    <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="T5: Text-To-Text Transfer Transformer" href="t5.html" />
@@ -104,10 +115,9 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -159,11 +169,14 @@ const thebe_selector_output = ".output, .cell_output"
   </div>
 
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -191,7 +204,18 @@ const thebe_selector_output = ".output, .cell_output"
     <p class="title logo__title">ἐντελέχεια.άι</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -718,13 +742,13 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bert-visualizing-attention">
-<h1>BERT: Visualizing Attention<a class="headerlink" href="#bert-visualizing-attention" title="Permalink to this heading">#</a></h1>
+<h1>BERT: Visualizing Attention<a class="headerlink" href="#bert-visualizing-attention" title="Link to this heading">#</a></h1>
 <p><strong>BertViz</strong> is a powerful visualization tool designed to help users understand and interpret the inner workings of the <strong>BERT</strong> model and its variants. By providing insights into the attention mechanisms, multi-head attention, and self-attention layers, BertViz enables researchers, practitioners, and enthusiasts to better comprehend the complex relationships BERT captures within a given input text.</p>
 <section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h2>
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
 <p>To install BertViz, run the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>bertviz
 </pre></div>
@@ -738,7 +762,7 @@ document.write(`
 </div>
 </section>
 <section id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">#</a></h2>
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p>We first import the necessary libraries and modules from <code class="docutils literal notranslate"><span class="pre">bertviz</span></code>, <code class="docutils literal notranslate"><span class="pre">transformers</span></code>, and <code class="docutils literal notranslate"><span class="pre">utils</span></code>. We then specify the BERT model version (<code class="docutils literal notranslate"><span class="pre">bert-base-uncased</span></code>), and load the tokenizer and model using the <code class="docutils literal notranslate"><span class="pre">AutoTokenizer</span></code> and <code class="docutils literal notranslate"><span class="pre">AutoModel</span></code> classes from the <code class="docutils literal notranslate"><span class="pre">transformers</span></code> library.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1187,7 +1211,7 @@ requirejs(['jquery', 'd3'], function ($, d3) {
 <p>By executing any of these visualization functions, you can interactively explore the attention patterns in BERT and gain insights into how the model processes the input text.</p>
 </section>
 <section id="explaining-berts-attention-patterns">
-<h2>Explaining BERT’s attention patterns<a class="headerlink" href="#explaining-berts-attention-patterns" title="Permalink to this heading">#</a></h2>
+<h2>Explaining BERT’s attention patterns<a class="headerlink" href="#explaining-berts-attention-patterns" title="Link to this heading">#</a></h2>
 <p>Let’s explore the attention patterns of various layers of the BERT (the BERT-Base, uncased version).</p>
 <blockquote>
 <div><p>Sentence A: I went to the store.</p>
@@ -1238,9 +1262,9 @@ requirejs(['jquery', 'd3'], function ($, d3) {
 </div>
 </section>
 <section id="what-does-bert-actually-learn">
-<h2>What does BERT actually learn?<a class="headerlink" href="#what-does-bert-actually-learn" title="Permalink to this heading">#</a></h2>
+<h2>What does BERT actually learn?<a class="headerlink" href="#what-does-bert-actually-learn" title="Link to this heading">#</a></h2>
 <section id="delimiter-focused-attention-patterns">
-<h3>Delimiter-focused attention patterns<a class="headerlink" href="#delimiter-focused-attention-patterns" title="Permalink to this heading">#</a></h3>
+<h3>Delimiter-focused attention patterns<a class="headerlink" href="#delimiter-focused-attention-patterns" title="Link to this heading">#</a></h3>
 <p>This pattern serves as a kind of “no-op”; an attention head focuses on the [SEP] tokens when it can’t find anything else to focus on.</p>
 <p>How exactly is BERT able to fixate on the [SEP] tokens? The answer lies in the query and key vectors.</p>
 <p><img alt="" src="../../../_images/neuron_view_delimiter.png" /></p>
@@ -1262,7 +1286,7 @@ requirejs(['jquery', 'd3'], function ($, d3) {
 </div>
 </section>
 <section id="bag-of-words-attention-pattern">
-<h3>Bag of Words attention pattern<a class="headerlink" href="#bag-of-words-attention-pattern" title="Permalink to this heading">#</a></h3>
+<h3>Bag of Words attention pattern<a class="headerlink" href="#bag-of-words-attention-pattern" title="Link to this heading">#</a></h3>
 <p>In this pattern, attention is divided fairly evenly across all words in the same sentence:</p>
 <p>BERT is essentially computing a bag-of-words embedding by taking an (almost) unweighted average of the word embeddings in the same sentence.</p>
 <p>How does BERT finesse the queries and keys to form this attention pattern? Let’s again turn to the neuron view:</p>
@@ -1282,7 +1306,7 @@ requirejs(['jquery', 'd3'], function ($, d3) {
 </div>
 </section>
 <section id="next-word-attention-pattern">
-<h3>Next-word attention pattern<a class="headerlink" href="#next-word-attention-pattern" title="Permalink to this heading">#</a></h3>
+<h3>Next-word attention pattern<a class="headerlink" href="#next-word-attention-pattern" title="Link to this heading">#</a></h3>
 <p>It makes sense that the model would focus on the next word, because adjacent words are often the most relevant for understanding a word’s meaning in context. Traditional n-gram language models are based on this same intuition.</p>
 <p>Let’s check out the neuron view for this pattern:</p>
 <p><img alt="" src="../../../_images/neuron_view_next_word.png" /></p>
@@ -1314,7 +1338,7 @@ requirejs(['jquery', 'd3'], function ($, d3) {
 </div>
 </section>
 <section id="attention-to-previous-word">
-<h3>Attention to previous word<a class="headerlink" href="#attention-to-previous-word" title="Permalink to this heading">#</a></h3>
+<h3>Attention to previous word<a class="headerlink" href="#attention-to-previous-word" title="Link to this heading">#</a></h3>
 <p>Select layer 6, head 11. In this pattern, much of the attention is directed to the previous token in the sequence.</p>
 <ul class="simple">
 <li><p>For example, most of the attention from <code class="docutils literal notranslate"><span class="pre">went</span></code> is directed to the previous token <code class="docutils literal notranslate"><span class="pre">i</span></code>.</p></li>
@@ -1331,7 +1355,7 @@ requirejs(['jquery', 'd3'], function ($, d3) {
 </div>
 </section>
 <section id="attention-to-identical-related-words-pattern">
-<h3>Attention to identical/related words pattern<a class="headerlink" href="#attention-to-identical-related-words-pattern" title="Permalink to this heading">#</a></h3>
+<h3>Attention to identical/related words pattern<a class="headerlink" href="#attention-to-identical-related-words-pattern" title="Link to this heading">#</a></h3>
 <p>Select layer 2, head 6. In this pattern, much of the attention is directed to identical or related words, including the source word itself.</p>
 <ul class="simple">
 <li><p>For example, most of the attention for the first occurrence of <code class="docutils literal notranslate"><span class="pre">store</span></code> is directed to itself and to the second occurrence of <code class="docutils literal notranslate"><span class="pre">store</span></code>.</p></li>
@@ -1346,7 +1370,7 @@ requirejs(['jquery', 'd3'], function ($, d3) {
 </div>
 </section>
 <section id="attention-to-identical-related-words-in-other-sentence">
-<h3>Attention to identical/related words in other sentence<a class="headerlink" href="#attention-to-identical-related-words-in-other-sentence" title="Permalink to this heading">#</a></h3>
+<h3>Attention to identical/related words in other sentence<a class="headerlink" href="#attention-to-identical-related-words-in-other-sentence" title="Link to this heading">#</a></h3>
 <p>Select layer 10, head 10. In this pattern, much of the attention is directed to identical or related words in the other sentence.</p>
 <ul class="simple">
 <li><p>For example, most of the attention of <code class="docutils literal notranslate"><span class="pre">store</span></code> in the second sentence is directed to <code class="docutils literal notranslate"><span class="pre">store</span></code> in the first sentence.</p></li>
@@ -1361,7 +1385,7 @@ requirejs(['jquery', 'd3'], function ($, d3) {
 </div>
 </section>
 <section id="attention-to-other-words-predictive-of-word">
-<h3>Attention to other words predictive of word<a class="headerlink" href="#attention-to-other-words-predictive-of-word" title="Permalink to this heading">#</a></h3>
+<h3>Attention to other words predictive of word<a class="headerlink" href="#attention-to-other-words-predictive-of-word" title="Link to this heading">#</a></h3>
 <p>Select layer 2, head 1. In this pattern, attention seems to be directed to other words that are predictive of the source word, excluding the source word itself.</p>
 <ul class="simple">
 <li><p>For example, most of the attention for <code class="docutils literal notranslate"><span class="pre">straw</span></code> is directed to <code class="docutils literal notranslate"><span class="pre">##berries</span></code>, and most of the attention from <code class="docutils literal notranslate"><span class="pre">##berries</span></code> is focused on <code class="docutils literal notranslate"><span class="pre">straw</span></code>.</p></li>
@@ -1376,7 +1400,7 @@ requirejs(['jquery', 'd3'], function ($, d3) {
 </section>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://towardsdatascience.com/deconstructing-bert-part-2-visualizing-the-inner-workings-of-attention-60a16d86b5c1">Deconstructing BERT</a></p></li>
 </ul>
@@ -1439,6 +1463,7 @@ requirejs(['jquery', 'd3'], function ($, d3) {
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1508,8 +1533,8 @@ By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

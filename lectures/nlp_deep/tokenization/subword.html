@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Subword Tokenization &#8212; ἐντελέχεια.άι</title>
   
@@ -19,25 +18,25 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css?v=e236af4b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
@@ -46,33 +45,33 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css?v=574a5d82" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css?v=06ccce15" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../../../_static/tabs.js?v=3ee01567"></script>
     <script src="../../../_static/js/hoverxref.js"></script>
     <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
     <script src="../../../_static/js/micromodal.min.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../../_static/design-tabs.js"></script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -85,12 +84,24 @@ const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_deep/tokenization/subword';</script>
     <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_deep/tokenization/subword.html" />
-    <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Tokenization Pipeline" href="pipeline.html" />
@@ -104,10 +115,9 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -159,11 +169,14 @@ const thebe_selector_output = ".output, .cell_output"
   </div>
 
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -191,7 +204,18 @@ const thebe_selector_output = ".output, .cell_output"
     <p class="title logo__title">ἐντελέχεια.άι</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -679,22 +703,22 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="subword-tokenization">
-<h1>Subword Tokenization<a class="headerlink" href="#subword-tokenization" title="Permalink to this heading">#</a></h1>
+<h1>Subword Tokenization<a class="headerlink" href="#subword-tokenization" title="Link to this heading">#</a></h1>
 <p>Subword tokenization is a powerful tool in the NLP toolkit. It provides a flexible and efficient way to represent text, allowing models to handle a wide range of words and languages. By understanding and effectively implementing subword tokenization, we can build more robust and versatile NLP models.</p>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>In our previous lecture, we discussed the concept of tokenization, a crucial first step in the Natural Language Processing (NLP) pipeline. We explored different methods of tokenization, including word-level and character-level tokenization. Today, we will delve deeper into a more nuanced method of tokenization known as subword tokenization.</p>
 </section>
 <section id="what-is-subword-tokenization">
-<h2>What is Subword Tokenization?<a class="headerlink" href="#what-is-subword-tokenization" title="Permalink to this heading">#</a></h2>
+<h2>What is Subword Tokenization?<a class="headerlink" href="#what-is-subword-tokenization" title="Link to this heading">#</a></h2>
 <p>Subword tokenization is a method that breaks down words into smaller, meaningful units or subwords. For instance, the word “pineapples” can be tokenized into <code class="docutils literal notranslate"><span class="pre">[&quot;pine&quot;,</span> <span class="pre">&quot;##app&quot;,</span> <span class="pre">&quot;##les&quot;]</span></code>. This method allows the model to handle any word, even if it was not present in the training set, as long as its subwords were present.</p>
 <p>Subword tokenization aims to strike a balance between word and character tokenization. It retains the semantic features of words while avoiding the problem of out-of-vocabulary (OOV) words. This makes it particularly useful for handling rare and complex words, as well as languages that do not use spaces to separate words.</p>
 </section>
 <section id="why-subword-tokenization">
-<h2>Why Subword Tokenization?<a class="headerlink" href="#why-subword-tokenization" title="Permalink to this heading">#</a></h2>
+<h2>Why Subword Tokenization?<a class="headerlink" href="#why-subword-tokenization" title="Link to this heading">#</a></h2>
 <p>Subword tokenization addresses some of the key challenges associated with word and character tokenization:</p>
 <ol class="arabic simple">
 <li><p><strong>Out-of-vocabulary (OOV) Words</strong>: In word-level tokenization, if a word is not present in the training set, the model will not recognize it during testing. This is known as the OOV problem. Subword tokenization mitigates this issue by breaking down words into smaller units that are likely to be present in the training set.</p></li>
@@ -703,7 +727,7 @@ document.write(`
 </ol>
 </section>
 <section id="algorithms-for-subword-tokenization">
-<h2>Algorithms for Subword Tokenization<a class="headerlink" href="#algorithms-for-subword-tokenization" title="Permalink to this heading">#</a></h2>
+<h2>Algorithms for Subword Tokenization<a class="headerlink" href="#algorithms-for-subword-tokenization" title="Link to this heading">#</a></h2>
 <p>There are several algorithms that can be used to decide which subwords to use. These include:</p>
 <ol class="arabic simple">
 <li><p><strong>Byte Pair Encoding (BPE)</strong></p></li>
@@ -717,7 +741,7 @@ document.write(`
 <p>Let’s explore each of these in detail.</p>
 </section>
 <section id="byte-pair-encoding-bpe">
-<h2>Byte Pair Encoding (BPE)<a class="headerlink" href="#byte-pair-encoding-bpe" title="Permalink to this heading">#</a></h2>
+<h2>Byte Pair Encoding (BPE)<a class="headerlink" href="#byte-pair-encoding-bpe" title="Link to this heading">#</a></h2>
 <p>Byte Pair Encoding (BPE) is a subword tokenization method proposed by <span id="id1">Sennrich <em>et al.</em> [<a class="reference internal" href="../../../about/index.html#id17" title="Rico Sennrich, Barry Haddow, and Alexandra Birch. Neural machine translation of rare words with subword units. In Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), 1715–1725. Berlin, Germany, August 2016. Association for Computational Linguistics. URL: https://aclanthology.org/P16-1162, doi:10.18653/v1/P16-1162.">2016</a>]</span>. Originally used for text compression, BPE splits words into sequences of characters and iteratively combines the most frequent character pairs. This results in a fixed-size vocabulary of subwords that can be used to tokenize any text.</p>
 <p>The BPE algorithm works as follows:</p>
 <ol class="arabic simple">
@@ -731,28 +755,28 @@ document.write(`
 <p>An important aspect of BPE is the use of a special stop token <code class="docutils literal notranslate"><span class="pre">&lt;/w&gt;</span></code>. This token is appended at the end of each word. The presence of this token helps the model distinguish between different uses of the same token. For example, the token “st” could be part of the word “st ar” or “wide st”. With the stop token, if there is a token “st</w>”, the model immediately knows that it is the token for the word “wide st</w>” but not “st ar</w>”.</p>
 <p>In summary, BPE is a powerful subword tokenization method that can handle a wide range of words and languages. By understanding and effectively implementing BPE, we can build more robust and versatile NLP models.</p>
 <section id="byte-pair-encoding-bpe-a-detailed-example">
-<h3>Byte Pair Encoding (BPE) - A Detailed Example<a class="headerlink" href="#byte-pair-encoding-bpe-a-detailed-example" title="Permalink to this heading">#</a></h3>
+<h3>Byte Pair Encoding (BPE) - A Detailed Example<a class="headerlink" href="#byte-pair-encoding-bpe-a-detailed-example" title="Link to this heading">#</a></h3>
 <p>Let’s take a closer look at how Byte Pair Encoding (BPE) works with a concrete example. Suppose we have the following frequency count of words in our dataset:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;l o w &lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;l o w e r &lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;n e w e s t &lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;w i d e s t &lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
 </pre></div>
 </div>
 <p>Each word is split into characters, and a special stop token <code class="docutils literal notranslate"><span class="pre">&lt;/w&gt;</span></code> is appended at the end of each word.</p>
 <section id="first-iteration">
-<h4>First Iteration<a class="headerlink" href="#first-iteration" title="Permalink to this heading">#</a></h4>
+<h4>First Iteration<a class="headerlink" href="#first-iteration" title="Link to this heading">#</a></h4>
 <p>In the first iteration, we count the frequency of each consecutive byte pair. The pair <code class="docutils literal notranslate"><span class="pre">e</span></code> and <code class="docutils literal notranslate"><span class="pre">s</span></code> occur 6 + 3 = 9 times, which is the most frequent. So, we merge these into a new token <code class="docutils literal notranslate"><span class="pre">es</span></code>. The frequency count of words becomes:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;l o w &lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;l o w e r &lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;n e w es t &lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;w i d es t &lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="second-iteration">
-<h4>Second Iteration<a class="headerlink" href="#second-iteration" title="Permalink to this heading">#</a></h4>
+<h4>Second Iteration<a class="headerlink" href="#second-iteration" title="Link to this heading">#</a></h4>
 <p>In the second iteration, we again count the frequency of each consecutive byte pair. This time, the pair <code class="docutils literal notranslate"><span class="pre">es</span></code> and <code class="docutils literal notranslate"><span class="pre">t</span></code> occur 6 + 3 = 9 times, which is the most frequent. We merge these into a new token <code class="docutils literal notranslate"><span class="pre">est</span></code>. The frequency count of words becomes:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;l o w &lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;l o w e r &lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;n e w est &lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;w i d est &lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="third-iteration">
-<h4>Third Iteration<a class="headerlink" href="#third-iteration" title="Permalink to this heading">#</a></h4>
+<h4>Third Iteration<a class="headerlink" href="#third-iteration" title="Link to this heading">#</a></h4>
 <p>In the third iteration, we find that the pair <code class="docutils literal notranslate"><span class="pre">est</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;/w&gt;</span></code> is the most frequent. We merge these into a new token <code class="docutils literal notranslate"><span class="pre">est&lt;/w&gt;</span></code>. The frequency count of words becomes:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;l o w &lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;l o w e r &lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;n e w est&lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;w i d est&lt;/w&gt;&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
 </pre></div>
@@ -763,23 +787,23 @@ document.write(`
 </section>
 </section>
 <section id="byte-level-byte-pair-encoding-bbpe">
-<h2>Byte-level Byte Pair Encoding (BBPE)<a class="headerlink" href="#byte-level-byte-pair-encoding-bbpe" title="Permalink to this heading">#</a></h2>
+<h2>Byte-level Byte Pair Encoding (BBPE)<a class="headerlink" href="#byte-level-byte-pair-encoding-bbpe" title="Link to this heading">#</a></h2>
 <p>Byte-level BPE is a variant of BPE that splits words into sequences of bytes instead of characters. This allows for a more granular level of tokenization, which can be beneficial for certain tasks.</p>
 </section>
 <section id="wordpiece">
-<h2>WordPiece<a class="headerlink" href="#wordpiece" title="Permalink to this heading">#</a></h2>
+<h2>WordPiece<a class="headerlink" href="#wordpiece" title="Link to this heading">#</a></h2>
 <p>WordPiece is a subword tokenization algorithm proposed by Google. It works similarly to BPE, but it merges tokens based on likelihood instead of frequency. The likelihood is calculated using the formula <span class="math notranslate nohighlight">\(p(w_{i}, w_{j})/p(w_{i})p(w_{j})\)</span>. This approach allows WordPiece to better handle rare and complex words.</p>
 </section>
 <section id="unigram-language-model">
-<h2>Unigram Language Model<a class="headerlink" href="#unigram-language-model" title="Permalink to this heading">#</a></h2>
+<h2>Unigram Language Model<a class="headerlink" href="#unigram-language-model" title="Link to this heading">#</a></h2>
 <p>The Unigram Language Model for subword segmentation is a method proposed by <span id="id2">Kudo [<a class="reference internal" href="../../../about/index.html#id70" title="Taku Kudo. Subword regularization: improving neural network translation models with multiple subword candidates. arXiv preprint arXiv:1804.10959, 2018.">2018</a>]</span>. This model outputs multiple subword segmentations along with their probabilities, providing a probabilistic approach to subword tokenization.</p>
 <section id="assumptions-and-probability-calculation">
-<h3>Assumptions and Probability Calculation<a class="headerlink" href="#assumptions-and-probability-calculation" title="Permalink to this heading">#</a></h3>
+<h3>Assumptions and Probability Calculation<a class="headerlink" href="#assumptions-and-probability-calculation" title="Link to this heading">#</a></h3>
 <p>The Unigram model operates under the assumption that each subword occurs independently. This means that the occurrence of one subword does not affect the occurrence of another. Given a subword sequence <span class="math notranslate nohighlight">\(x=(x_{1}, x_{2}, \cdots, x_{n})\)</span>, the probability of the sequence is calculated as the product of the probabilities of each subword: <span class="math notranslate nohighlight">\(p(x)=\prod_{i=1}^{n} p(x_{i})\)</span>.</p>
 <p>For a given sentence <span class="math notranslate nohighlight">\(X\)</span>, the most probable segmentation <span class="math notranslate nohighlight">\(x^*\)</span> is the one that maximizes the probability <span class="math notranslate nohighlight">\(P(x)\)</span> over all possible segmentations <span class="math notranslate nohighlight">\(S(X)\)</span>: <span class="math notranslate nohighlight">\(x^*=\underset{x \in S(X)}{\operatorname{argmax}} P(x)\)</span>.</p>
 </section>
 <section id="estimating-subword-occurrence-probabilities">
-<h3>Estimating Subword Occurrence Probabilities<a class="headerlink" href="#estimating-subword-occurrence-probabilities" title="Permalink to this heading">#</a></h3>
+<h3>Estimating Subword Occurrence Probabilities<a class="headerlink" href="#estimating-subword-occurrence-probabilities" title="Link to this heading">#</a></h3>
 <p>The probabilities of subword occurrence <span class="math notranslate nohighlight">\(x_{i}\)</span> are estimated using the Expectation Maximization (EM) algorithm. The EM algorithm is used to maximize the log-likelihood <span class="math notranslate nohighlight">\(L\)</span> of the training data <span class="math notranslate nohighlight">\(D\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -787,7 +811,7 @@ L=\sum_{s = 1}^{|D|} \log(P(X^{(s)})) = \sum_{s = 1}^{|D|} \log(\sum_{x \in S(X^
 \]</div>
 </section>
 <section id="obtaining-the-vocabulary">
-<h3>Obtaining the Vocabulary<a class="headerlink" href="#obtaining-the-vocabulary" title="Permalink to this heading">#</a></h3>
+<h3>Obtaining the Vocabulary<a class="headerlink" href="#obtaining-the-vocabulary" title="Link to this heading">#</a></h3>
 <p>The procedure for obtaining the vocabulary <span class="math notranslate nohighlight">\(V\)</span> with a desired size is as follows:</p>
 <ol class="arabic simple">
 <li><p><strong>Initialize a reasonably big seed vocabulary</strong>: The seed vocabulary should be large enough to capture a wide range of subwords in the corpus.</p></li>
@@ -802,15 +826,15 @@ L=\sum_{s = 1}^{|D|} \log(P(X^{(s)})) = \sum_{s = 1}^{|D|} \log(\sum_{x \in S(X^
 </section>
 </section>
 <section id="subword-sampling">
-<h2>Subword Sampling<a class="headerlink" href="#subword-sampling" title="Permalink to this heading">#</a></h2>
+<h2>Subword Sampling<a class="headerlink" href="#subword-sampling" title="Link to this heading">#</a></h2>
 <p>Subword Sampling is a method that trains models with multiple subword segmentations based on a unigram language model. These segmentations are probabilistically sampled during training. This approach exposes the models to various subword segmentations, giving them a better understanding of words and subwords.</p>
 </section>
 <section id="bpe-dropout">
-<h2>BPE-Dropout<a class="headerlink" href="#bpe-dropout" title="Permalink to this heading">#</a></h2>
+<h2>BPE-Dropout<a class="headerlink" href="#bpe-dropout" title="Link to this heading">#</a></h2>
 <p>BPE-dropout is a subword regularization method based on BPE. It keeps the BPE vocabulary and the merge table as original while changing the segmentation procedure. Some merges are randomly removed with a probability of <span class="math notranslate nohighlight">\(p\)</span> at each merge step, thus giving multiple segmentations for the same word. This method exposes the models to various subword segmentations, allowing them to have a better understanding of words and subwords.</p>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
 <p>Choosing the right subword tokenization algorithm depends on the specific requirements of the task at hand. Each algorithm has its strengths and weaknesses, and understanding these can help in making an informed decision. Whether it’s BPE, WordPiece, Unigram, or any other method, the goal is to transform the text into a format that can be effectively processed by machine learning algorithms.</p>
 </section>
 </section>
@@ -871,6 +895,7 @@ L=\sum_{s = 1}^{|D|} \log(P(X^{(s)})) = \sum_{s = 1}^{|D|} \log(\sum_{x \in S(X^
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -950,8 +975,8 @@ By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Tokenization in Korean &#8212; ἐντελέχεια.άι</title>
   
@@ -19,25 +18,25 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css?v=e236af4b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
@@ -46,33 +45,33 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css?v=574a5d82" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css?v=06ccce15" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../../../_static/tabs.js?v=3ee01567"></script>
     <script src="../../../_static/js/hoverxref.js"></script>
     <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
     <script src="../../../_static/js/micromodal.min.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../../_static/design-tabs.js"></script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -85,12 +84,24 @@ const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_intro/tokenization/korean';</script>
     <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_intro/tokenization/korean.html" />
-    <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Word Segmentation and Association" href="segmentation.html" />
@@ -104,10 +115,9 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -159,11 +169,14 @@ const thebe_selector_output = ".output, .cell_output"
   </div>
 
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -191,7 +204,18 @@ const thebe_selector_output = ".output, .cell_output"
     <p class="title logo__title">ἐντελέχεια.άι</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -671,13 +695,13 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="tokenization-in-korean">
-<h1>Tokenization in Korean<a class="headerlink" href="#tokenization-in-korean" title="Permalink to this heading">#</a></h1>
+<h1>Tokenization in Korean<a class="headerlink" href="#tokenization-in-korean" title="Link to this heading">#</a></h1>
 <p>In Natural Language Processing, one of the first and crucial steps is text preprocessing. For Korean text, preprocessing is quite unique and more complicated due to the language’s nature and structure. Let’s discuss some of these aspects.</p>
 <section id="sentence-tokenization-in-korean">
-<h2>Sentence Tokenization in Korean<a class="headerlink" href="#sentence-tokenization-in-korean" title="Permalink to this heading">#</a></h2>
+<h2>Sentence Tokenization in Korean<a class="headerlink" href="#sentence-tokenization-in-korean" title="Link to this heading">#</a></h2>
 <p>Sentence tokenization refers to dividing text into individual sentences, also known as sentence segmentation or sentence boundary detection. In English, this is straightforward using punctuation marks like full stops (‘.’), exclamation marks (‘!’), or question marks (‘?’) as boundaries. However, in Korean, this is not as easy due to the different sentence structures and use of punctuation.</p>
 <p>For instance, a full stop in Korean can be used in multiple scenarios and not just to denote the end of a sentence. Here are some examples:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">IP</span> <span class="mf">192.168.56.31</span> <span class="n">서버에</span> <span class="n">들어가서</span> <span class="n">로그</span> <span class="n">파일</span> <span class="n">저장해서</span> <span class="n">aaa</span><span class="nd">@gmail</span><span class="o">.</span><span class="n">com로</span> <span class="n">결과</span> <span class="n">좀</span> <span class="n">보내줘</span><span class="o">.</span> <span class="n">그</span> <span class="n">후</span> <span class="n">점심</span> <span class="n">먹으러</span> <span class="n">가자</span><span class="o">.</span>
@@ -686,7 +710,7 @@ document.write(`
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Since</span> <span class="n">I</span><span class="s1">&#39;m actively looking for Ph.D. students, I get the same question a dozen times every year.</span>
 </pre></div>
 </div>
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>원문</p></th>
 <th class="head"><p>나는 그 과자를 먹었다.</p></th>
@@ -714,10 +738,10 @@ document.write(`
 </table>
 </section>
 <section id="korean-part-of-speech-pos-tagging">
-<h2>Korean Part-of-Speech (POS) Tagging<a class="headerlink" href="#korean-part-of-speech-pos-tagging" title="Permalink to this heading">#</a></h2>
+<h2>Korean Part-of-Speech (POS) Tagging<a class="headerlink" href="#korean-part-of-speech-pos-tagging" title="Link to this heading">#</a></h2>
 <p>The process of assigning word classes (or POS tags) to each word in a sentence is called POS tagging. In Korean, this process involves understanding the complex morphological and syntactic structures of the language.</p>
 <p><strong>한국어의 5언 9품사</strong></p>
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>언</p></th>
 <th class="head"><p>품사</p></th>
@@ -752,15 +776,15 @@ document.write(`
 <p>In particular, ‘동사’ (Verbs) and ‘형용사’ (Adjectives) that fall under ‘용언’ are combined with stems and endings to form a word. The word classification is based on three criteria: function, meaning, and form.</p>
 </section>
 <section id="morphological-analysis-in-korean">
-<h2>Morphological Analysis in Korean<a class="headerlink" href="#morphological-analysis-in-korean" title="Permalink to this heading">#</a></h2>
+<h2>Morphological Analysis in Korean<a class="headerlink" href="#morphological-analysis-in-korean" title="Link to this heading">#</a></h2>
 <p>In Korean, a sentence can be analyzed at different levels such as morphological, syntactic, semantic, and discourse levels. Morphological analysis is the process of breaking down words into their smallest meaningful units (morphemes) and assigning them appropriate POS tags.</p>
 <p>For example, consider the sentence: “나는 그 과자를 먹었다.” (I ate that cookie.). A morphological analysis would break down the sentence as follows:</p>
 <p>나(대명사) + 는(조사) + 그(대명사) + 과자(명사) + 먹(동사) + -었(선어말어미) + -다(어말어미) + .(문장부호)</p>
 </section>
 <section id="linguistic-grammatical-classification">
-<h2>Linguistic (Grammatical) Classification<a class="headerlink" href="#linguistic-grammatical-classification" title="Permalink to this heading">#</a></h2>
+<h2>Linguistic (Grammatical) Classification<a class="headerlink" href="#linguistic-grammatical-classification" title="Link to this heading">#</a></h2>
 <section id="isolating-inflectional-and-agglutinative-languages">
-<h3>Isolating, Inflectional, and Agglutinative Languages<a class="headerlink" href="#isolating-inflectional-and-agglutinative-languages" title="Permalink to this heading">#</a></h3>
+<h3>Isolating, Inflectional, and Agglutinative Languages<a class="headerlink" href="#isolating-inflectional-and-agglutinative-languages" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Agglutinative(교착어): Languages that indicate the function of each word by attaching affixes to roots.</p></li>
 <li><p>Inflectional(굴절어): Languages that use changes in the word itself to indicate its grammatical function.</p></li>
@@ -768,7 +792,7 @@ document.write(`
 </ul>
 </section>
 <section id="agglutinative-languages">
-<h3>Agglutinative Languages<a class="headerlink" href="#agglutinative-languages" title="Permalink to this heading">#</a></h3>
+<h3>Agglutinative Languages<a class="headerlink" href="#agglutinative-languages" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Ural-Altaic agglutinative languages determine the final meaning of a word by attaching affixes to it.</p></li>
 <li><p>For instance, in Korean, the root ‘나 (I)’ can be combined with affixes like ‘은/는/이/가’ to form a subject and ‘을/를’ to form an object.</p></li>
@@ -777,7 +801,7 @@ document.write(`
 </ul>
 </section>
 <section id="isolating-languages">
-<h3>Isolating Languages<a class="headerlink" href="#isolating-languages" title="Permalink to this heading">#</a></h3>
+<h3>Isolating Languages<a class="headerlink" href="#isolating-languages" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Languages such as Chinese and Tibetan are isolating languages, which determine the meaning of words based on word order.</p></li>
 <li><p>For example, in Chinese, ‘我 (I)’ and ‘去 (go)’ can form ‘我去 (I go)’ in a certain order, but if the order is changed to ‘去我’, it means ‘make me go’.</p></li>
@@ -786,7 +810,7 @@ document.write(`
 </ul>
 </section>
 <section id="inflectional-languages">
-<h3>Inflectional Languages<a class="headerlink" href="#inflectional-languages" title="Permalink to this heading">#</a></h3>
+<h3>Inflectional Languages<a class="headerlink" href="#inflectional-languages" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Indo-European inflectional languages determine the meaning of a word by changing the word’s form.</p></li>
 <li><p>A representative inflectional language is Latin.</p></li>
@@ -799,9 +823,9 @@ document.write(`
 </section>
 </section>
 <section id="morphological-analysis-part-of-speech-tagging">
-<h2>Morphological Analysis (Part of Speech Tagging)<a class="headerlink" href="#morphological-analysis-part-of-speech-tagging" title="Permalink to this heading">#</a></h2>
+<h2>Morphological Analysis (Part of Speech Tagging)<a class="headerlink" href="#morphological-analysis-part-of-speech-tagging" title="Link to this heading">#</a></h2>
 <section id="what-is-morphological-analysis">
-<h3>What is Morphological Analysis?<a class="headerlink" href="#what-is-morphological-analysis" title="Permalink to this heading">#</a></h3>
+<h3>What is Morphological Analysis?<a class="headerlink" href="#what-is-morphological-analysis" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>It is the process of dividing sentences into morpheme units, distinguishing parts of speech, tagging them, and restoring the phenomenon of morpheme dropout due to various uses of verbs.</p></li>
 <li><p>The morpheme division method varies depending on the analyzer, so you need to choose an analyzer that matches the data.</p></li>
@@ -815,7 +839,7 @@ document.write(`
 </ul>
 </section>
 <section id="conjugation">
-<h3>Conjugation (활용)<a class="headerlink" href="#conjugation" title="Permalink to this heading">#</a></h3>
+<h3>Conjugation (활용)<a class="headerlink" href="#conjugation" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Stem (어간):</strong> This is the invariant part of a verb or adjective in principle when it is conjugated. It precedes the ending in a conjugated form. However, sometimes, even the stem can change (For example, 긋다 (to draw) can become 긋고 (and draw), 그어서 (after drawing), 그어라 (draw!)).</p></li>
 <li><p><strong>Ending (어미):</strong> This is the part attached to the stem of a verb or adjective during conjugation. The ending changes depending on the grammatical function it is performing, such as tense, mood, honorific form, etc.</p></li>
@@ -834,7 +858,7 @@ As the stem changes when the ending is attached, simple removal of the ending is
 <p>Considering these points, it is evident that Korean tokenization, especially when it involves conjugation, is a task of substantial complexity. It requires robust morphological analysis or statistical methods to efficiently and correctly tokenize the language.</p>
 </section>
 <section id="difficulty-of-korean-tokenization">
-<h3>Difficulty of Korean Tokenization<a class="headerlink" href="#difficulty-of-korean-tokenization" title="Permalink to this heading">#</a></h3>
+<h3>Difficulty of Korean Tokenization<a class="headerlink" href="#difficulty-of-korean-tokenization" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Agglutinative Language: Korean is an agglutinative language, where words are formed by combining morphemes, which are the smallest meaningful units of language. Each morpheme in an agglutinative language like Korean has a clear meaning and grammatical function, and they can be freely added or removed to change the meaning of the word. This is different from languages like English where the meaning of a word is generally fixed and doesn’t change much with the addition or removal of morphemes. This morphological complexity of Korean poses a significant challenge in tokenization.</p></li>
 <li><p>Word Boundaries: Another challenge in Korean tokenization is the lack of clear word boundaries. Unlike English where words are usually separated by spaces, Korean uses spaces to separate phrases or sentences rather than individual words. This makes it harder to define what constitutes a “word” in Korean, and consequently makes tokenization more difficult.</p></li>
@@ -903,6 +927,7 @@ As the stem changes when the ending is attached, simple removal of the ending is
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -974,8 +999,8 @@ By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

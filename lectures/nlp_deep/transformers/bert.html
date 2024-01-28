@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>BERT: Bidirectional Encoder Representations from Transformers &#8212; ἐντελέχεια.άι</title>
   
@@ -19,25 +18,25 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css?v=e236af4b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
@@ -46,33 +45,33 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css?v=574a5d82" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css?v=06ccce15" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../../../_static/tabs.js?v=3ee01567"></script>
     <script src="../../../_static/js/hoverxref.js"></script>
     <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
     <script src="../../../_static/js/micromodal.min.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../../_static/design-tabs.js"></script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -85,14 +84,26 @@ const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_deep/transformers/bert';</script>
     <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_deep/transformers/bert.html" />
-    <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="BERT: Visualizing Attention" href="bertviz.html" />
@@ -106,10 +117,9 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -161,11 +171,14 @@ const thebe_selector_output = ".output, .cell_output"
   </div>
 
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -193,7 +206,18 @@ const thebe_selector_output = ".output, .cell_output"
     <p class="title logo__title">ἐντελέχεια.άι</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -722,10 +746,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bert-bidirectional-encoder-representations-from-transformers">
-<h1>BERT: Bidirectional Encoder Representations from Transformers<a class="headerlink" href="#bert-bidirectional-encoder-representations-from-transformers" title="Permalink to this heading">#</a></h1>
+<h1>BERT: Bidirectional Encoder Representations from Transformers<a class="headerlink" href="#bert-bidirectional-encoder-representations-from-transformers" title="Link to this heading">#</a></h1>
 <a class="bg-primary mb-1 reference internal image-reference" href="../../../_images/entelecheia_bert.png"><img alt="bert" class="bg-primary mb-1 align-center" src="../../../_images/entelecheia_bert.png" style="width: 70%;" /></a>
 <p><strong>2018</strong> was a significant year for the field of <strong>Natural Language Processing (NLP)</strong>, as it witnessed a groundbreaking development with the introduction of <strong>BERT</strong>. The BERT paper <span id="id1">[<a class="reference internal" href="../../../about/index.html#id15" title="Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. Bert: pre-training of deep bidirectional transformers for language understanding. arXiv preprint arXiv:1810.04805, 2018. URL: https://arxiv.org/abs/1810.04805.">Devlin <em>et al.</em>, 2018</a>]</span> presented a novel language representation model that outperformed all previous models across a broad spectrum of NLP tasks.</p>
 <p><strong>BERT</strong> stands for <strong>Bidirectional Encoder Representations from Transformers</strong>. It is a deep bidirectional transformer model that is pre-trained on a vast corpus of unlabeled text. The model is designed to predict masked words within a sentence and to anticipate the subsequent sentence in a sequence of sentences. The pre-trained model can then be fine-tuned for various downstream NLP tasks, yielding state-of-the-art results.</p>
@@ -737,36 +761,36 @@ document.write(`
 <p>During the <strong>pre-training</strong> phase, BERT is exposed to a massive corpus of unlabeled text. The model learns its weights by predicting masked words in a sentence and forecasting the next sentence in a sequence of sentences.</p>
 <p>As a <strong>deep bidirectional transformer model</strong>, BERT has a complex structure with multiple layers, attention heads, and millions of parameters. Specifically, it has 12 (or 24) layers, 12 (or 16) attention heads, and 110 million parameters. The model does not share weights across layers, which means the total number of distinct attention weights amounts to 144 (or 384) - calculated as 12 (or 24) x 12 (or 16).</p>
 <section id="the-architecture-of-bert">
-<h2>The Architecture of BERT<a class="headerlink" href="#the-architecture-of-bert" title="Permalink to this heading">#</a></h2>
+<h2>The Architecture of BERT<a class="headerlink" href="#the-architecture-of-bert" title="Link to this heading">#</a></h2>
 <p>The <strong>core component</strong> of BERT is the <strong>attention mechanism</strong>. Attention allows a model to assign weights to different parts of the input based on their importance for a specific task.</p>
 <p>For example, in the sentence <code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">dog</span> <span class="pre">from</span> <span class="pre">down</span> <span class="pre">the</span> <span class="pre">street</span> <span class="pre">ran</span> <span class="pre">up</span> <span class="pre">to</span> <span class="pre">me</span> <span class="pre">and</span> <span class="pre">___</span></code>, to complete the sentence, a model may give more attention to the word <code class="docutils literal notranslate"><span class="pre">dog</span></code> than to the word <code class="docutils literal notranslate"><span class="pre">street</span></code>. This is because knowing that the subject of the sentence is a dog is more important than knowing where the dog is from.</p>
 <section id="attention-mechanism">
-<h3>Attention Mechanism<a class="headerlink" href="#attention-mechanism" title="Permalink to this heading">#</a></h3>
+<h3>Attention Mechanism<a class="headerlink" href="#attention-mechanism" title="Link to this heading">#</a></h3>
 <p>The attention mechanism is relatively simple. It comprises a function that takes in two inputs: a <strong>query</strong> and a <strong>key</strong>. The query represents the part of the input that we want to focus on, while the key is the part of the input that we want to compare the query to. The output of the attention mechanism is a weighted sum of the <strong>values</strong> of the key. The weights are computed by a function of the query and the key.</p>
 <p>Suppose you have a sequence of words <span class="math notranslate nohighlight">\(X\)</span>, where each element <span class="math notranslate nohighlight">\(x_i\)</span> is a value of dimension <span class="math notranslate nohighlight">\(d\)</span> (referred to as the value).</p>
 <p>In the following example, <span class="math notranslate nohighlight">\(X\)</span> is a sequence of 3 words, each represented by a 4-dimensional vector.</p>
 <figure class="align-default" id="fig-sentence-vector">
 <a class="reference internal image-reference" href="../../../_images/sentence_vector.png"><img alt="../../../_images/sentence_vector.png" src="../../../_images/sentence_vector.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 121 </span><span class="caption-text">Sentence vector</span><a class="headerlink" href="#fig-sentence-vector" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 121 </span><span class="caption-text">Sentence vector</span><a class="headerlink" href="#fig-sentence-vector" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Attention is essentially a function that takes <span class="math notranslate nohighlight">\(X\)</span> as input and returns another sequence <span class="math notranslate nohighlight">\(Y\)</span> of the same length as <span class="math notranslate nohighlight">\(X\)</span>, composed of vectors with the same dimension as the vectors in <span class="math notranslate nohighlight">\(X\)</span>.</p>
 <figure class="align-default" id="fig-sentence-input-output">
 <a class="reference internal image-reference" href="../../../_images/attention_input_output.png"><img alt="../../../_images/attention_input_output.png" src="../../../_images/attention_input_output.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 122 </span><span class="caption-text">Sentence input and output</span><a class="headerlink" href="#fig-sentence-input-output" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 122 </span><span class="caption-text">Sentence input and output</span><a class="headerlink" href="#fig-sentence-input-output" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Each vector in <span class="math notranslate nohighlight">\(Y\)</span> is computed by taking a weighted average of the vectors in <span class="math notranslate nohighlight">\(X\)</span>. In other words, attention is just a weighted average of the values of the vectors in <span class="math notranslate nohighlight">\(X\)</span>. The weights indicate how much the model <strong>attends</strong> to each vector in <span class="math notranslate nohighlight">\(X\)</span> when computing the output vector.</p>
 </section>
 <section id="attending-to-language">
-<h3>Attending to Language<a class="headerlink" href="#attending-to-language" title="Permalink to this heading">#</a></h3>
+<h3>Attending to Language<a class="headerlink" href="#attending-to-language" title="Link to this heading">#</a></h3>
 <p>How does attention work in the context of language? To understand this, let’s consider a sentence, <code class="docutils literal notranslate"><span class="pre">the</span> <span class="pre">dog</span> <span class="pre">ran</span></code>. We can represent this sentence as a sequence of <strong>vectors</strong>, where each vector is a <strong>word embedding</strong>.</p>
 <figure class="align-default" id="fig-word-embedding">
 <a class="reference internal image-reference" href="../../../_images/word_embedding.png"><img alt="../../../_images/word_embedding.png" src="../../../_images/word_embedding.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 123 </span><span class="caption-text">Word embedding</span><a class="headerlink" href="#fig-word-embedding" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 123 </span><span class="caption-text">Word embedding</span><a class="headerlink" href="#fig-word-embedding" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>A word embedding is a vector representation of a word, consisting of real numbers. Each element of the vector represents a dimension of the word that captures some aspect of its meaning. These aspects can be semantic, syntactic, or even phonetic. For example, the first element of the vector may represent the semantic meaning of the word, the second element may represent the syntactic meaning, and the third element may represent the phonetic meaning of the word.</p>
@@ -781,7 +805,7 @@ document.write(`
 <p>The <strong>attention mechanism</strong> enables the model to focus on the words that are most important for the meaning of the sentence.</p>
 </section>
 <section id="attention-in-bert-easy-version">
-<h3>Attention in BERT (Easy Version)<a class="headerlink" href="#attention-in-bert-easy-version" title="Permalink to this heading">#</a></h3>
+<h3>Attention in BERT (Easy Version)<a class="headerlink" href="#attention-in-bert-easy-version" title="Link to this heading">#</a></h3>
 <p>The attention mechanism is a technique used by neural networks to focus on relevant parts of the input data when processing it. In the context of natural language processing, it helps the model pay more attention to important words in a sentence.</p>
 <p>Let’s illustrate the attention mechanism with a simple example:</p>
 <div align="center" class="mermaid align-center">
@@ -800,13 +824,13 @@ A[Input: the cat ran] --&gt; B[Attention Weights: 0.1, 0.8, 0.1] --&gt; C[Output
 </section>
 </section>
 <section id="deconstructing-attention">
-<h2>Deconstructing Attention<a class="headerlink" href="#deconstructing-attention" title="Permalink to this heading">#</a></h2>
+<h2>Deconstructing Attention<a class="headerlink" href="#deconstructing-attention" title="Link to this heading">#</a></h2>
 <p>Let’s dive deeper into the attention mechanism and understand how it computes the weights for each word in the input.</p>
 <p>As we know, attention is a <strong>weighted average</strong> of the values of the vectors in X. The critical aspect here is determining how these weights are computed. To do so, attention relies on <strong>queries</strong> and <strong>keys</strong>.</p>
 <figure class="align-default" id="fig-attention-query-key">
 <a class="reference internal image-reference" href="../../../_images/attention_query_key.png"><img alt="../../../_images/attention_query_key.png" src="../../../_images/attention_query_key.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 124 </span><span class="caption-text">Attention query and key</span><a class="headerlink" href="#fig-attention-query-key" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 124 </span><span class="caption-text">Attention query and key</span><a class="headerlink" href="#fig-attention-query-key" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p><strong>Queries</strong> and <strong>keys</strong> are similar to word embeddings, like the value vectors we saw earlier. However, they are specifically designed for determining the similarity between words in the input.</p>
@@ -814,27 +838,27 @@ A[Input: the cat ran] --&gt; B[Attention Weights: 0.1, 0.8, 0.1] --&gt; C[Output
 <figure class="align-default" id="fig-attention-query-key-dot-product">
 <a class="reference internal image-reference" href="../../../_images/attention_query_key_dot_product.png"><img alt="../../../_images/attention_query_key_dot_product.png" src="../../../_images/attention_query_key_dot_product.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 125 </span><span class="caption-text">Attention query and key dot product</span><a class="headerlink" href="#fig-attention-query-key-dot-product" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 125 </span><span class="caption-text">Attention query and key dot product</span><a class="headerlink" href="#fig-attention-query-key-dot-product" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>To transform the dot product into a <strong>probability</strong>, we apply a <strong>softmax function</strong> to the dot product. The softmax function normalizes the dot product so that it sums to 1, giving us a probability distribution.</p>
 <figure class="align-default" id="fig-attention-query-key-softmax">
 <a class="reference internal image-reference" href="../../../_images/attention_query_key_softmax.png"><img alt="../../../_images/attention_query_key_softmax.png" src="../../../_images/attention_query_key_softmax.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 126 </span><span class="caption-text">Attention query and key softmax</span><a class="headerlink" href="#fig-attention-query-key-softmax" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 126 </span><span class="caption-text">Attention query and key softmax</span><a class="headerlink" href="#fig-attention-query-key-softmax" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The softmax values on the right represent the final weights of the attention mechanism. These weights indicate the importance of each word in the input when computing the output vector.</p>
 <p>In summary, the attention mechanism calculates the importance of each word in the input by comparing their query and key vectors through the dot product. It then normalizes these dot products using the softmax function to obtain the final attention weights.</p>
 <section id="the-origin-of-query-and-key-vectors">
-<h3>The Origin of Query and Key Vectors<a class="headerlink" href="#the-origin-of-query-and-key-vectors" title="Permalink to this heading">#</a></h3>
+<h3>The Origin of Query and Key Vectors<a class="headerlink" href="#the-origin-of-query-and-key-vectors" title="Link to this heading">#</a></h3>
 <p>We have seen that attention weights are computed using query and key vectors, but how are these vectors generated?</p>
 <p>The <strong>query and key vectors</strong> are derived from the value vectors. They are calculated by passing the value vectors through <strong>two different linear layers</strong>.</p>
 <p>We can visualize the process of computing attention weights from query and key vectors using the <strong>neuron view</strong>.</p>
 <figure class="align-default" id="fig-neuron-view">
 <a class="reference internal image-reference" href="../../../_images/neuron_view.png"><img alt="../../../_images/neuron_view.png" src="../../../_images/neuron_view.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 127 </span><span class="caption-text">Neuron view</span><a class="headerlink" href="#fig-neuron-view" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 127 </span><span class="caption-text">Neuron view</span><a class="headerlink" href="#fig-neuron-view" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The neuron view demonstrates the computation of attention from the selected word on the left to the entire sequence of words on the right. Positive values are displayed in blue and negative values in orange, with the color intensity representing the magnitude.</p>
@@ -847,7 +871,7 @@ A[Input: the cat ran] --&gt; B[Attention Weights: 0.1, 0.8, 0.1] --&gt; C[Output
 <p>In summary, the attention mechanism computes attention weights using query and key vectors, which are derived from value vectors by passing them through two distinct linear layers. The neuron view provides a visualization of this process, illustrating the calculation of attention scores and their normalization using softmax.</p>
 </section>
 <section id="multi-head-attention">
-<h3>Multi-head Attention<a class="headerlink" href="#multi-head-attention" title="Permalink to this heading">#</a></h3>
+<h3>Multi-head Attention<a class="headerlink" href="#multi-head-attention" title="Link to this heading">#</a></h3>
 <p>BERT incorporates multiple attention mechanisms, called <strong>heads</strong>, which operate simultaneously. Each head represents a distinct attention mechanism. The output of each head is concatenated and then fed into a feed-forward neural network.</p>
 <p><strong>Multi-head attention</strong> empowers the model to learn a wider variety of relationships between words in a sentence compared to a single attention mechanism.</p>
 <p>In addition, BERT stacks multiple layers of multi-head attention. Each layer of multi-head attention receives the output of the previous layer as input. The output of the last layer of multi-head attention is then fed into a feed-forward neural network.</p>
@@ -877,10 +901,10 @@ A[Input: the cat ran] --&gt; B[Attention Weights: 0.1, 0.8, 0.1] --&gt; C[Output
         </div>
         </section>
 <section id="pre-training-and-fine-tuning">
-<h3>Pre-training and Fine-tuning<a class="headerlink" href="#pre-training-and-fine-tuning" title="Permalink to this heading">#</a></h3>
+<h3>Pre-training and Fine-tuning<a class="headerlink" href="#pre-training-and-fine-tuning" title="Link to this heading">#</a></h3>
 <p>A key aspect of BERT that we haven’t discussed yet is its <strong>two-step training process</strong>: pre-training and fine-tuning. This process is essential for BERT to achieve state-of-the-art performance across a wide range of NLP tasks.</p>
 <section id="pre-training">
-<h4>Pre-training<a class="headerlink" href="#pre-training" title="Permalink to this heading">#</a></h4>
+<h4>Pre-training<a class="headerlink" href="#pre-training" title="Link to this heading">#</a></h4>
 <p>During the <strong>pre-training</strong> phase, BERT is trained on a large corpus of unlabeled text data using two unsupervised learning objectives: <strong>Masked Language Modeling (MLM)</strong> and <strong>Next Sentence Prediction (NSP)</strong>.</p>
 <ol class="arabic simple">
 <li><p><strong>Masked Language Modeling</strong>: In this task, some words in a sentence are randomly masked, and the model is trained to predict the masked words based on the surrounding context. This forces the model to learn contextual representations of words.</p></li>
@@ -889,7 +913,7 @@ A[Input: the cat ran] --&gt; B[Attention Weights: 0.1, 0.8, 0.1] --&gt; C[Output
 <p>By training on these unsupervised tasks, BERT learns a powerful language representation that can be fine-tuned for various downstream tasks.</p>
 </section>
 <section id="fine-tuning">
-<h4>Fine-tuning<a class="headerlink" href="#fine-tuning" title="Permalink to this heading">#</a></h4>
+<h4>Fine-tuning<a class="headerlink" href="#fine-tuning" title="Link to this heading">#</a></h4>
 <p>After the pre-training phase, BERT is <strong>fine-tuned</strong> on specific NLP tasks using labeled data. Fine-tuning involves training the model for a few additional epochs on the task-specific dataset with a task-specific architecture. During fine-tuning, the model’s pre-trained weights are updated to better capture the patterns in the task-specific dataset.</p>
 <p>This two-step training process allows BERT to leverage the vast amount of knowledge learned from the large pre-training corpus and adapt it to specific tasks with relatively small amounts of labeled data. As a result, BERT achieves state-of-the-art performance across a wide variety of NLP tasks, such as sentiment analysis, named entity recognition, and question answering.</p>
 </section>
@@ -953,6 +977,7 @@ A[Input: the cat ran] --&gt; B[Attention Weights: 0.1, 0.8, 0.1] --&gt; C[Output
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1024,8 +1049,8 @@ By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

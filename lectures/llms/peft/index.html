@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Parameter-Efficient Fine-Tuning (PEFT) &#8212; ἐντελέχεια.άι</title>
   
@@ -19,25 +18,25 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css?v=e236af4b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
@@ -46,33 +45,33 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css?v=574a5d82" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css?v=06ccce15" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../../../_static/tabs.js?v=3ee01567"></script>
     <script src="../../../_static/js/hoverxref.js"></script>
     <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
     <script src="../../../_static/js/micromodal.min.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../../_static/design-tabs.js"></script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -85,12 +84,24 @@ const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/llms/peft/index';</script>
     <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/llms/peft/index.html" />
-    <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="PEFT for LLMs" href="peft-llms.html" />
@@ -104,10 +115,9 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -159,11 +169,14 @@ const thebe_selector_output = ".output, .cell_output"
   </div>
 
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -191,7 +204,18 @@ const thebe_selector_output = ".output, .cell_output"
     <p class="title logo__title">ἐντελέχεια.άι</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -704,23 +728,23 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="parameter-efficient-fine-tuning-peft">
-<h1>Parameter-Efficient Fine-Tuning (PEFT)<a class="headerlink" href="#parameter-efficient-fine-tuning-peft" title="Permalink to this heading">#</a></h1>
+<h1>Parameter-Efficient Fine-Tuning (PEFT)<a class="headerlink" href="#parameter-efficient-fine-tuning-peft" title="Link to this heading">#</a></h1>
 <a class="reference internal image-reference" href="../../../_images/peft.png"><img alt="../../../_images/peft.png" class="align-center" src="../../../_images/peft.png" style="width: 100%;" /></a>
 <p>This lecture offers an in-depth exploration of Parameter-Efficient Fine-Tuning (PEFT) within the machine learning landscape. We will delve into its foundational concepts, diverse methodologies, practical implementations, and the evolving challenges and prospective developments in the field. The aim is to provide students with a comprehensive understanding of PEFT, equipping them with the knowledge to effectively apply these principles in both research and professional contexts.</p>
 <section id="i-introduction-to-peft">
-<h2>I. Introduction to PEFT<a class="headerlink" href="#i-introduction-to-peft" title="Permalink to this heading">#</a></h2>
+<h2>I. Introduction to PEFT<a class="headerlink" href="#i-introduction-to-peft" title="Link to this heading">#</a></h2>
 <section id="definition-and-overview">
-<h3>Definition and Overview<a class="headerlink" href="#definition-and-overview" title="Permalink to this heading">#</a></h3>
+<h3>Definition and Overview<a class="headerlink" href="#definition-and-overview" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>PEFT Explained</strong>: In machine learning, PEFT represents a suite of techniques designed for the efficient fine-tuning of large-scale models. This approach stands in contrast to traditional fine-tuning methods, which typically involve the modification of a significant number or even all parameters in a pre-trained model to adapt it to new tasks or data sets.</p></li>
 <li><p><strong>Focus on Efficiency</strong>: The cornerstone of PEFT is its emphasis on minimizing computational and resource demands. This is achieved by selectively adjusting a limited subset of the model’s parameters, thereby preserving the core structure and learned representations of the original model.</p></li>
 </ul>
 </section>
 <section id="importance-in-machine-learning-and-ai">
-<h3>Importance in Machine Learning and AI<a class="headerlink" href="#importance-in-machine-learning-and-ai" title="Permalink to this heading">#</a></h3>
+<h3>Importance in Machine Learning and AI<a class="headerlink" href="#importance-in-machine-learning-and-ai" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Scaling Models</strong>: As machine learning models become increasingly large and complex, the computational expense of traditional fine-tuning methods becomes impractical. PEFT addresses this challenge by enabling more efficient model adaptations for specific tasks or data sets.</p></li>
 <li><p><strong>Resource Utilization</strong>: PEFT renders advanced machine learning techniques more accessible, particularly for entities with constrained computational resources, by reducing the necessity for extensive resource allocation.</p></li>
@@ -728,7 +752,7 @@ document.write(`
 </ul>
 </section>
 <section id="contrasting-with-traditional-fine-tuning-approaches">
-<h3>Contrasting with Traditional Fine-Tuning Approaches<a class="headerlink" href="#contrasting-with-traditional-fine-tuning-approaches" title="Permalink to this heading">#</a></h3>
+<h3>Contrasting with Traditional Fine-Tuning Approaches<a class="headerlink" href="#contrasting-with-traditional-fine-tuning-approaches" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Selective vs. Comprehensive Tuning</strong>: Traditional fine-tuning approaches often entail comprehensive parameter adjustments, leading to prolonged training durations and substantial computational costs. In contrast, PEFT adopts a more selective parameter tuning strategy, yielding more efficient training processes.</p></li>
 <li><p><strong>Mitigating Overfitting Risks</strong>: Traditional fine-tuning can sometimes result in overfitting, particularly with smaller data sets. PEFT helps balance model adaptability against the risks of overfitting.</p></li>
@@ -736,7 +760,7 @@ document.write(`
 </ul>
 </section>
 <section id="core-concepts">
-<h3>Core Concepts<a class="headerlink" href="#core-concepts" title="Permalink to this heading">#</a></h3>
+<h3>Core Concepts<a class="headerlink" href="#core-concepts" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Leveraging Transfer Learning</strong>: At the heart of PEFT is the principle of transfer learning, which involves repurposing a model developed for one task as a starting point for another task. PEFT refines this concept by focusing on the efficient transfer of knowledge.</p></li>
 <li><p><strong>Model Adaptability Insights</strong>: A fundamental aspect of PEFT is understanding how models adapt to new data or tasks, which involves identifying the critical parameters for adaptation and efficiently tuning them to achieve optimal results.</p></li>
@@ -745,9 +769,9 @@ document.write(`
 </section>
 </section>
 <section id="ii-foundational-concepts">
-<h2>II. Foundational Concepts<a class="headerlink" href="#ii-foundational-concepts" title="Permalink to this heading">#</a></h2>
+<h2>II. Foundational Concepts<a class="headerlink" href="#ii-foundational-concepts" title="Link to this heading">#</a></h2>
 <section id="transfer-learning-basics-and-relevance">
-<h3>Transfer Learning: Basics and Relevance<a class="headerlink" href="#transfer-learning-basics-and-relevance" title="Permalink to this heading">#</a></h3>
+<h3>Transfer Learning: Basics and Relevance<a class="headerlink" href="#transfer-learning-basics-and-relevance" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Defining Transfer Learning</strong>: Transfer learning is the process of applying knowledge acquired from solving one problem to a different, yet related, problem. In the context of machine learning, this often entails employing a pre-trained model for a new task.</p></li>
 <li><p><strong>PEFT’s Role in Transfer Learning</strong>: PEFT harnesses transfer learning by fine-tuning a small subset of parameters within a pre-trained model, thereby enabling adaptability to new tasks with a reduced computational load.</p></li>
@@ -755,7 +779,7 @@ document.write(`
 </ul>
 </section>
 <section id="understanding-model-parameters-and-architectures">
-<h3>Understanding Model Parameters and Architectures<a class="headerlink" href="#understanding-model-parameters-and-architectures" title="Permalink to this heading">#</a></h3>
+<h3>Understanding Model Parameters and Architectures<a class="headerlink" href="#understanding-model-parameters-and-architectures" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Model Parameters Explored</strong>: These are the elements of the model that are learned from the training data. In deep learning models, these parameters typically encompass weights and biases in neural networks.</p></li>
 <li><p><strong>Exploring Model Architectures</strong>: The architecture of a model refers to its structural design, including the organization and interconnection of layers. Different architectures are better suited to specific task types.</p></li>
@@ -763,7 +787,7 @@ document.write(`
 </ul>
 </section>
 <section id="the-significance-of-efficient-fine-tuning">
-<h3>The Significance of Efficient Fine-Tuning<a class="headerlink" href="#the-significance-of-efficient-fine-tuning" title="Permalink to this heading">#</a></h3>
+<h3>The Significance of Efficient Fine-Tuning<a class="headerlink" href="#the-significance-of-efficient-fine-tuning" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Managing Resources Effectively</strong>: Efficient fine-tuning is imperative for the effective management of computational resources, especially when dealing with sizable models such as transformers in NLP or convolutional networks in computer vision.</p></li>
 <li><p><strong>Reducing Time and Costs</strong>: Methods that prioritize efficiency in fine-tuning significantly curtail the time and expenses associated with training and adapting models, thereby making machine learning applications more viable and scalable.</p></li>
@@ -771,7 +795,7 @@ document.write(`
 </ul>
 </section>
 <section id="the-key-concept-of-model-generalization">
-<h3>The Key Concept of Model Generalization<a class="headerlink" href="#the-key-concept-of-model-generalization" title="Permalink to this heading">#</a></h3>
+<h3>The Key Concept of Model Generalization<a class="headerlink" href="#the-key-concept-of-model-generalization" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Defining Model Generalization</strong>: Model generalization refers to the capability of a model to perform effectively on new, unseen data. It gauges the extent to which the training data’s learnings are applicable to external data sets.</p></li>
 <li><p><strong>Balancing Act</strong>: A pivotal challenge within PEFT is maintaining a balance between adapting the model for specific tasks and preserving its ability to generalize across various tasks.</p></li>
@@ -780,16 +804,16 @@ document.write(`
 </section>
 </section>
 <section id="iii-techniques-and-methods-in-peft">
-<h2>III. Techniques and Methods in PEFT<a class="headerlink" href="#iii-techniques-and-methods-in-peft" title="Permalink to this heading">#</a></h2>
+<h2>III. Techniques and Methods in PEFT<a class="headerlink" href="#iii-techniques-and-methods-in-peft" title="Link to this heading">#</a></h2>
 <section id="overview-of-peft-techniques">
-<h3>Overview of PEFT Techniques<a class="headerlink" href="#overview-of-peft-techniques" title="Permalink to this heading">#</a></h3>
+<h3>Overview of PEFT Techniques<a class="headerlink" href="#overview-of-peft-techniques" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Diverse Methodological Landscape</strong>: The array of techniques within PEFT is diverse, each providing a distinct method for modifying a small portion of a model’s parameters for effective adaptation.</p></li>
 <li><p><strong>Unified Objective</strong>: Despite the variation in techniques, all PEFT methods strive to maintain the intrinsic strengths of the pre-trained model while efficiently adapting it to new tasks or data sets.</p></li>
 </ul>
 </section>
 <section id="adaptive-and-layer-wise-fine-tuning">
-<h3>Adaptive and Layer-wise Fine-Tuning<a class="headerlink" href="#adaptive-and-layer-wise-fine-tuning" title="Permalink to this heading">#</a></h3>
+<h3>Adaptive and Layer-wise Fine-Tuning<a class="headerlink" href="#adaptive-and-layer-wise-fine-tuning" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Adaptive Fine-Tuning Defined</strong>: This approach entails selectively tuning certain parameters more intensively than others, based on their relevance to the specific task at hand.</p></li>
 <li><p><strong>Layer-wise Fine-Tuning Explained</strong>: This method focuses on fine-tuning specific layers within a neural network, often targeting the latter layers as they are generally more specialized for particular tasks.</p></li>
@@ -797,7 +821,7 @@ document.write(`
 </ul>
 </section>
 <section id="low-rank-adaptation-and-sparse-fine-tuning">
-<h3>Low-Rank Adaptation and Sparse Fine-Tuning<a class="headerlink" href="#low-rank-adaptation-and-sparse-fine-tuning" title="Permalink to this heading">#</a></h3>
+<h3>Low-Rank Adaptation and Sparse Fine-Tuning<a class="headerlink" href="#low-rank-adaptation-and-sparse-fine-tuning" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Low-Rank Adaptation Overview</strong>: This technique incorporates low-rank matrices to modify existing weights within a neural network, striking a balance between adaptability and parameter efficiency.</p></li>
 <li><p><strong>Understanding Sparse Fine-Tuning</strong>: Sparse fine-tuning involves adjusting only a small, selected subset of weights, thereby keeping the majority of the model intact.</p></li>
@@ -805,7 +829,7 @@ document.write(`
 </ul>
 </section>
 <section id="prompt-based-and-adapter-based-methods">
-<h3>Prompt-based and Adapter-based Methods<a class="headerlink" href="#prompt-based-and-adapter-based-methods" title="Permalink to this heading">#</a></h3>
+<h3>Prompt-based and Adapter-based Methods<a class="headerlink" href="#prompt-based-and-adapter-based-methods" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Exploring Prompt-based Methods</strong>: Commonly used in NLP, these methods entail appending prompts to input data, thereby guiding the model to adapt its responses without changing the underlying model weights.</p></li>
 <li><p><strong>Adapter-based Methods Defined</strong>: These methods introduce small, trainable modules (adapters) within the layers of a model. The adapters are fine-tuned, while the original model weights remain unchanged.</p></li>
@@ -813,7 +837,7 @@ document.write(`
 </ul>
 </section>
 <section id="spotlight-on-key-techniques-bitfit-lora-and-more">
-<h3>Spotlight on Key Techniques: BitFit, LoRA, and More<a class="headerlink" href="#spotlight-on-key-techniques-bitfit-lora-and-more" title="Permalink to this heading">#</a></h3>
+<h3>Spotlight on Key Techniques: BitFit, LoRA, and More<a class="headerlink" href="#spotlight-on-key-techniques-bitfit-lora-and-more" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>BitFit Unpacked</strong>: This technique focuses on fine-tuning only the bias terms within a model. It is remarkably simple yet has proven effective for certain tasks.</p></li>
 <li><p><strong>Layer-wise Relevance Propagation (LoRA) Explained</strong>: LoRA involves adjusting the weights in existing layers by adding learnable low-rank matrices, facilitating efficient adaptation with minimal parameter alterations.</p></li>
@@ -822,9 +846,9 @@ document.write(`
 </section>
 </section>
 <section id="iv-practical-applications-of-peft">
-<h2>IV. Practical Applications of PEFT<a class="headerlink" href="#iv-practical-applications-of-peft" title="Permalink to this heading">#</a></h2>
+<h2>IV. Practical Applications of PEFT<a class="headerlink" href="#iv-practical-applications-of-peft" title="Link to this heading">#</a></h2>
 <section id="case-studies-across-domains">
-<h3>Case Studies Across Domains<a class="headerlink" href="#case-studies-across-domains" title="Permalink to this heading">#</a></h3>
+<h3>Case Studies Across Domains<a class="headerlink" href="#case-studies-across-domains" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>PEFT in Natural Language Processing (NLP)</strong>: PEFT has brought about a transformative impact in NLP by enabling the efficient fine-tuning of large language models for specific tasks such as sentiment analysis, language translation, and text summarization.</p></li>
 <li><p><strong>Computer Vision and PEFT</strong>: Within the realm of computer vision, PEFT facilitates the swift adaptation of pre-trained models to new tasks like image classification, object detection, and facial recognition, all while minimizing computational demands.</p></li>
@@ -832,7 +856,7 @@ document.write(`
 </ul>
 </section>
 <section id="industry-specific-applications">
-<h3>Industry-Specific Applications<a class="headerlink" href="#industry-specific-applications" title="Permalink to this heading">#</a></h3>
+<h3>Industry-Specific Applications<a class="headerlink" href="#industry-specific-applications" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Healthcare</strong>: In the healthcare sector, PEFT enables the development of customized diagnostic tools and predictive models for patient care, improving accuracy and efficiency while keeping computational costs manageable.</p></li>
 <li><p><strong>Finance</strong>: The finance industry benefits from PEFT through the creation of personalized trading algorithms and risk assessment models, allowing for rapid adaptation to fluctuating market conditions.</p></li>
@@ -840,7 +864,7 @@ document.write(`
 </ul>
 </section>
 <section id="integration-into-existing-ml-pipelines">
-<h3>Integration into Existing ML Pipelines<a class="headerlink" href="#integration-into-existing-ml-pipelines" title="Permalink to this heading">#</a></h3>
+<h3>Integration into Existing ML Pipelines<a class="headerlink" href="#integration-into-existing-ml-pipelines" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Seamless Incorporation</strong>: PEFT techniques can be effortlessly integrated into existing ML pipelines, facilitating the rapid deployment of models across varied environments.</p></li>
 <li><p><strong>Cost-Effectiveness in Integration</strong>: This integration is especially advantageous for organizations seeking to utilize advanced AI models without incurring substantial computational and financial costs.</p></li>
@@ -848,7 +872,7 @@ document.write(`
 </ul>
 </section>
 <section id="highlighting-applications-in-nlp-and-transformer-models">
-<h3>Highlighting Applications in NLP and Transformer Models<a class="headerlink" href="#highlighting-applications-in-nlp-and-transformer-models" title="Permalink to this heading">#</a></h3>
+<h3>Highlighting Applications in NLP and Transformer Models<a class="headerlink" href="#highlighting-applications-in-nlp-and-transformer-models" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Transformers and PEFT Synergy</strong>: The emergence of transformer models in NLP marked a significant advancement in the field. PEFT plays a vital role in fine-tuning these models for specific tasks, while retaining their ability to generalize.</p></li>
 <li><p><strong>Customization Efficiency</strong>: PEFT enables organizations to customize these potent models efficiently for a broad spectrum of language-related tasks, thereby making advanced NLP techniques more accessible and widely applicable.</p></li>
@@ -856,16 +880,16 @@ document.write(`
 </section>
 </section>
 <section id="v-challenges-and-limitations">
-<h2>V. Challenges and Limitations<a class="headerlink" href="#v-challenges-and-limitations" title="Permalink to this heading">#</a></h2>
+<h2>V. Challenges and Limitations<a class="headerlink" href="#v-challenges-and-limitations" title="Link to this heading">#</a></h2>
 <section id="assessing-pefts-limitations">
-<h3>Assessing PEFT’s Limitations<a class="headerlink" href="#assessing-pefts-limitations" title="Permalink to this heading">#</a></h3>
+<h3>Assessing PEFT’s Limitations<a class="headerlink" href="#assessing-pefts-limitations" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Applicability Constraints</strong>: Although PEFT offers powerful capabilities, its applicability is not universal. Certain tasks or model architectures might not benefit substantially from PEFT, necessitating more traditional or comprehensive fine-tuning approaches.</p></li>
 <li><p><strong>Accuracy vs. Efficiency Trade-offs</strong>: The efficiency gains in PEFT occasionally come with compromises in model accuracy or robustness, particularly when dealing with complex or diverse data sets.</p></li>
 </ul>
 </section>
 <section id="overfitting-and-underfitting-challenges">
-<h3>Overfitting and Underfitting Challenges<a class="headerlink" href="#overfitting-and-underfitting-challenges" title="Permalink to this heading">#</a></h3>
+<h3>Overfitting and Underfitting Challenges<a class="headerlink" href="#overfitting-and-underfitting-challenges" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Overfitting Risks</strong>: Overfitting occurs when a model becomes overly tailored to the training data, losing its ability to generalize effectively. PEFT, by focusing on a limited set of parameters, can sometimes intensify this risk.</p></li>
 <li><p><strong>Addressing Underfitting</strong>: On the other hand, underfitting happens when the model is insufficiently complex to capture the data’s underlying patterns. This can arise in PEFT if the fine-tuning is overly conservative.</p></li>
@@ -873,14 +897,14 @@ document.write(`
 </ul>
 </section>
 <section id="scaling-and-computational-efficiency">
-<h3>Scaling and Computational Efficiency<a class="headerlink" href="#scaling-and-computational-efficiency" title="Permalink to this heading">#</a></h3>
+<h3>Scaling and Computational Efficiency<a class="headerlink" href="#scaling-and-computational-efficiency" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Scalability Challenges</strong>: As models escalate in size and intricacy, the scalability of PEFT methods comes under scrutiny. Ensuring the effectiveness of these techniques for state-of-the-art models remains a focal area of research.</p></li>
 <li><p><strong>Computational Demands</strong>: Although PEFT is designed for computational efficiency, there are instances where the reduction in parameter tuning does not significantly diminish the overall computational burden, particularly in extremely large models.</p></li>
 </ul>
 </section>
 <section id="balancing-efficiency-with-performance">
-<h3>Balancing Efficiency with Performance<a class="headerlink" href="#balancing-efficiency-with-performance" title="Permalink to this heading">#</a></h3>
+<h3>Balancing Efficiency with Performance<a class="headerlink" href="#balancing-efficiency-with-performance" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Navigating Performance Trade-offs</strong>: The core dilemma in PEFT is optimizing the balance between resource efficiency and model efficacy. Identifying the optimal juncture where resource savings and model performance converge is critical.</p></li>
 <li><p><strong>Contextualized Strategies</strong>: The effectiveness of PEFT methods can vary based on the task, model, and data set, necessitating a context-specific approach in applying these techniques.</p></li>
@@ -888,9 +912,9 @@ document.write(`
 </section>
 </section>
 <section id="vi-current-trends-and-future-directions">
-<h2>VI. Current Trends and Future Directions<a class="headerlink" href="#vi-current-trends-and-future-directions" title="Permalink to this heading">#</a></h2>
+<h2>VI. Current Trends and Future Directions<a class="headerlink" href="#vi-current-trends-and-future-directions" title="Link to this heading">#</a></h2>
 <section id="advancing-research-in-peft">
-<h3>Advancing Research in PEFT<a class="headerlink" href="#advancing-research-in-peft" title="Permalink to this heading">#</a></h3>
+<h3>Advancing Research in PEFT<a class="headerlink" href="#advancing-research-in-peft" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Technique Evolution</strong>: Continuous research is enhancing and innovating new PEFT techniques, aiming to improve their efficiency and broader applicability.</p></li>
 <li><p><strong>Merging with Other ML Modalities</strong>: There is a noticeable trend of integrating PEFT with other machine learning methodologies, such as reinforcement learning and unsupervised learning, to broaden its application scope.</p></li>
@@ -898,7 +922,7 @@ document.write(`
 </ul>
 </section>
 <section id="pefts-impact-on-large-scale-models">
-<h3>PEFT’s Impact on Large-Scale Models<a class="headerlink" href="#pefts-impact-on-large-scale-models" title="Permalink to this heading">#</a></h3>
+<h3>PEFT’s Impact on Large-Scale Models<a class="headerlink" href="#pefts-impact-on-large-scale-models" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Democratizing Advanced AI</strong>: PEFT’s capacity to efficiently fine-tune large models could democratize access to advanced AI technologies, making them available to organizations with limited computational resources.</p></li>
 <li><p><strong>Augmenting Pre-Trained Models</strong>: PEFT techniques are increasingly vital in adapting pre-trained models for specialized tasks, enhancing their versatility and practical utility.</p></li>
@@ -906,7 +930,7 @@ document.write(`
 </ul>
 </section>
 <section id="projecting-the-future-of-peft-in-ai-and-ml">
-<h3>Projecting the Future of PEFT in AI and ML<a class="headerlink" href="#projecting-the-future-of-peft-in-ai-and-ml" title="Permalink to this heading">#</a></h3>
+<h3>Projecting the Future of PEFT in AI and ML<a class="headerlink" href="#projecting-the-future-of-peft-in-ai-and-ml" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Expectations of Wider Adoption</strong>: As the efficacy and efficiency of PEFT continue to advance, its adoption is expected to increase across various domains of AI and ML.</p></li>
 <li><p><strong>Convergence with Emerging Technologies</strong>: PEFT is anticipated to intersect with emerging technologies such as quantum computing and neuromorphic hardware, potentially revolutionizing its capabilities and applications.</p></li>
@@ -914,7 +938,7 @@ document.write(`
 </ul>
 </section>
 <section id="peft-in-conjunction-with-emerging-ai-technologies">
-<h3>PEFT in Conjunction with Emerging AI Technologies<a class="headerlink" href="#peft-in-conjunction-with-emerging-ai-technologies" title="Permalink to this heading">#</a></h3>
+<h3>PEFT in Conjunction with Emerging AI Technologies<a class="headerlink" href="#peft-in-conjunction-with-emerging-ai-technologies" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Optimizing AI for IoT</strong>: PEFT is poised to play a crucial role in enhancing AI models for Internet of Things (IoT) applications, where computational efficiency is of paramount importance.</p></li>
 <li><p><strong>Enabling Advanced Edge Computing</strong>: The application of PEFT in edge computing scenarios can facilitate powerful on-device AI processing with reduced demands on resources.</p></li>
@@ -923,9 +947,9 @@ document.write(`
 </section>
 </section>
 <section id="vii-conclusion">
-<h2>VII. Conclusion<a class="headerlink" href="#vii-conclusion" title="Permalink to this heading">#</a></h2>
+<h2>VII. Conclusion<a class="headerlink" href="#vii-conclusion" title="Link to this heading">#</a></h2>
 <section id="synthesizing-the-discussion">
-<h3>Synthesizing the Discussion<a class="headerlink" href="#synthesizing-the-discussion" title="Permalink to this heading">#</a></h3>
+<h3>Synthesizing the Discussion<a class="headerlink" href="#synthesizing-the-discussion" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Revisiting PEFT’s Core</strong>: This lecture delved deep into the essence of PEFT, underscoring its pivotal role in fine-tuning large machine learning models efficiently while maintaining their performance.</p></li>
 <li><p><strong>Techniques and Their Applications</strong>: We explored a variety of PEFT techniques, ranging from adaptive and layer-wise fine-tuning to innovative methods like prompt-based and adapter-based approaches. The practical applications of these techniques across diverse domains such as NLP, computer vision, and industry-specific scenarios were also highlighted.</p></li>
@@ -933,7 +957,7 @@ document.write(`
 </ul>
 </section>
 <section id="implications-for-ai-and-machine-learning">
-<h3>Implications for AI and Machine Learning<a class="headerlink" href="#implications-for-ai-and-machine-learning" title="Permalink to this heading">#</a></h3>
+<h3>Implications for AI and Machine Learning<a class="headerlink" href="#implications-for-ai-and-machine-learning" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Expanding Accessibility</strong>: The role of PEFT in broadening access to advanced AI models by minimizing computational demands is profound, offering significant implications for smaller organizations and independent researchers.</p></li>
 <li><p><strong>Driving Innovation and Progress</strong>: The ongoing evolution of PEFT techniques is expected to catalyze further innovation in machine learning, leading to the development of more efficient and potent models.</p></li>
@@ -942,7 +966,7 @@ document.write(`
 </section>
 </section>
 <section id="next-contents">
-<h2>Next Contents<a class="headerlink" href="#next-contents" title="Permalink to this heading">#</a></h2>
+<h2>Next Contents<a class="headerlink" href="#next-contents" title="Link to this heading">#</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="peft-llms.html">PEFT for LLMs</a></li>
@@ -1008,6 +1032,7 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1112,8 +1137,8 @@ By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

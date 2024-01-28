@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Retrieval Augmented Generation (RAG) &#8212; ἐντελέχεια.άι</title>
   
@@ -19,25 +18,25 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css?v=e236af4b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
@@ -46,33 +45,33 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css?v=574a5d82" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css?v=06ccce15" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../../../_static/tabs.js?v=3ee01567"></script>
     <script src="../../../_static/js/hoverxref.js"></script>
     <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
     <script src="../../../_static/js/micromodal.min.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../../_static/design-tabs.js"></script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -85,12 +84,24 @@ const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/llms/rag/index';</script>
     <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/llms/rag/index.html" />
-    <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Parameter-Efficient Fine-Tuning (PEFT)" href="../peft/index.html" />
@@ -104,10 +115,9 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -159,11 +169,14 @@ const thebe_selector_output = ".output, .cell_output"
   </div>
 
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -191,7 +204,18 @@ const thebe_selector_output = ".output, .cell_output"
     <p class="title logo__title">ἐντελέχεια.άι</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -699,10 +723,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="retrieval-augmented-generation-rag">
-<h1>Retrieval Augmented Generation (RAG)<a class="headerlink" href="#retrieval-augmented-generation-rag" title="Permalink to this heading">#</a></h1>
+<h1>Retrieval Augmented Generation (RAG)<a class="headerlink" href="#retrieval-augmented-generation-rag" title="Link to this heading">#</a></h1>
 <a class="reference internal image-reference" href="../../../_images/rag-architecture.png"><img alt="../../../_images/rag-architecture.png" class="align-center" src="../../../_images/rag-architecture.png" style="width: 100%;" /></a>
 <ul class="simple">
 <li><p>LLMs are sophisticated but not without flaws.</p></li>
@@ -710,10 +734,10 @@ document.write(`
 <li><p>RAG-based LLM applications aim to enhance LLM performance by integrating them with external knowledge sources.</p></li>
 </ul>
 <section id="i-introduction-to-large-language-models-llms">
-<h2>I. Introduction to Large Language Models (LLMs)<a class="headerlink" href="#i-introduction-to-large-language-models-llms" title="Permalink to this heading">#</a></h2>
+<h2>I. Introduction to Large Language Models (LLMs)<a class="headerlink" href="#i-introduction-to-large-language-models-llms" title="Link to this heading">#</a></h2>
 <p>Large Language Models, or LLMs, are the pinnacle of natural language processing technologies, driving the frontier of machine understanding and generation of human language. These models are trained on vast datasets, enabling them to predict, generate, and contextualize text with impressive accuracy. However, despite their capabilities, base LLMs exhibit several limitations.</p>
 <section id="limitations-of-base-llms">
-<h3>Limitations of base LLMs<a class="headerlink" href="#limitations-of-base-llms" title="Permalink to this heading">#</a></h3>
+<h3>Limitations of base LLMs<a class="headerlink" href="#limitations-of-base-llms" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Lack of external knowledge</strong>: Base LLMs are often confined to the information present in their training data, limiting their ability to provide updated or domain-specific information.</p></li>
 <li><p><strong>Contextual understanding</strong>: While LLMs can grasp context over a few paragraphs, their understanding dwindles with longer texts, leading to coherence issues.</p></li>
@@ -722,12 +746,12 @@ document.write(`
 </ul>
 </section>
 <section id="introduction-to-rag-based-llm-applications">
-<h3>Introduction to RAG-based LLM applications<a class="headerlink" href="#introduction-to-rag-based-llm-applications" title="Permalink to this heading">#</a></h3>
+<h3>Introduction to RAG-based LLM applications<a class="headerlink" href="#introduction-to-rag-based-llm-applications" title="Link to this heading">#</a></h3>
 <p>To surmount these hurdles, Retrieval-Augmented Generation (RAG) models integrate the generative capabilities of LLMs with a retrieval component, typically a database or knowledge base, that provides up-to-date, relevant information. This approach enriches the LLM’s responses with external data, not only broadening the model’s knowledge but also tailoring its responses to be more specific and accurate. RAG-based applications leverage the strength of LLMs in understanding and generating language while mitigating their informational and contextual limitations.</p>
 </section>
 </section>
 <section id="ii-strategies-for-enhanced-performance">
-<h2>II. Strategies for Enhanced Performance<a class="headerlink" href="#ii-strategies-for-enhanced-performance" title="Permalink to this heading">#</a></h2>
+<h2>II. Strategies for Enhanced Performance<a class="headerlink" href="#ii-strategies-for-enhanced-performance" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Effective Retrieval</strong> is achieved by addressing semantic, vector, granularity, and sparsity issues.</p></li>
 <li><p><strong>Augmentation Quality</strong> hinges on context matching, deduplication, ranking, style consistency, and balanced reliance on external data.</p></li>
@@ -735,7 +759,7 @@ document.write(`
 </ul>
 <p>The above strategies are foundational to overcoming the challenges inherent in RAG-based LLM applications, leading to more reliable and user-centric AI systems.</p>
 <section id="retrieval-problems">
-<h3>Retrieval Problems<a class="headerlink" href="#retrieval-problems" title="Permalink to this heading">#</a></h3>
+<h3>Retrieval Problems<a class="headerlink" href="#retrieval-problems" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Semantic Ambiguity</strong>: Utilize context-aware retrieval mechanisms to discern the correct meaning of ambiguous terms.</p></li>
 <li><p><strong>Vector Similarity Issues</strong>: Implement advanced similarity measures that go beyond cosine similarity to capture deeper semantic relationships.</p></li>
@@ -745,7 +769,7 @@ document.write(`
 </ol>
 </section>
 <section id="augmentation-problems">
-<h3>Augmentation Problems<a class="headerlink" href="#augmentation-problems" title="Permalink to this heading">#</a></h3>
+<h3>Augmentation Problems<a class="headerlink" href="#augmentation-problems" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Mismatched Context</strong>: Develop algorithms to ensure that the retrieved content aligns with the query context.</p></li>
 <li><p><strong>Redundancy</strong>: Incorporate deduplication strategies to prevent the retrieval of redundant information.</p></li>
@@ -755,7 +779,7 @@ document.write(`
 </ol>
 </section>
 <section id="generation-problems">
-<h3>Generation Problems<a class="headerlink" href="#generation-problems" title="Permalink to this heading">#</a></h3>
+<h3>Generation Problems<a class="headerlink" href="#generation-problems" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Logical Inconsistencies</strong>: Introduce logical validation steps to ensure consistency within the generated content.</p></li>
 <li><p><strong>Verbosity</strong>: Integrate summarization techniques to keep the generated responses concise.</p></li>
@@ -768,7 +792,7 @@ document.write(`
 </section>
 </section>
 <section id="iii-data-preparation">
-<h2>III. Data Preparation<a class="headerlink" href="#iii-data-preparation" title="Permalink to this heading">#</a></h2>
+<h2>III. Data Preparation<a class="headerlink" href="#iii-data-preparation" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Data Standardization</strong>: Align all input data to a uniform format and structure for consistent processing.</p></li>
 <li><p><strong>Entity Clarity</strong>: Rigorously resolve and clarify entities to maintain coherence and accuracy in retrieval.</p></li>
@@ -777,7 +801,7 @@ document.write(`
 </ul>
 <p>The meticulous preparation of data sets the stage for the successful implementation of a RAG-based LLM, ensuring that the system operates on clean, clear, and factual information.</p>
 <section id="cleaning-and-standardizing-the-data">
-<h3>Cleaning and standardizing the data<a class="headerlink" href="#cleaning-and-standardizing-the-data" title="Permalink to this heading">#</a></h3>
+<h3>Cleaning and standardizing the data<a class="headerlink" href="#cleaning-and-standardizing-the-data" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Normalization</strong>: Convert data into a consistent format, ensuring uniformity in case, date formats, and numerical representations.</p></li>
 <li><p><strong>Noise Reduction</strong>: Remove irrelevant information, such as HTML tags or extraneous punctuation, to reduce noise.</p></li>
@@ -786,7 +810,7 @@ document.write(`
 </ul>
 </section>
 <section id="disambiguating-entities-and-terms">
-<h3>Disambiguating entities and terms<a class="headerlink" href="#disambiguating-entities-and-terms" title="Permalink to this heading">#</a></h3>
+<h3>Disambiguating entities and terms<a class="headerlink" href="#disambiguating-entities-and-terms" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Entity Resolution</strong>: Apply techniques to identify and merge multiple records that refer to the same entity.</p></li>
 <li><p><strong>Synonym Mapping</strong>: Create a synonym dictionary to group different expressions of the same concept.</p></li>
@@ -795,14 +819,14 @@ document.write(`
 </ul>
 </section>
 <section id="eliminating-duplicate-or-redundant-information">
-<h3>Eliminating duplicate or redundant information<a class="headerlink" href="#eliminating-duplicate-or-redundant-information" title="Permalink to this heading">#</a></h3>
+<h3>Eliminating duplicate or redundant information<a class="headerlink" href="#eliminating-duplicate-or-redundant-information" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Deduplication</strong>: Detect and remove duplicate entries to prevent retrieval of repetitive information.</p></li>
 <li><p><strong>Redundancy Analysis</strong>: Use algorithms to identify and discard information that does not add value to the context.</p></li>
 </ul>
 </section>
 <section id="ensuring-factuality-of-the-data">
-<h3>Ensuring factuality of the data<a class="headerlink" href="#ensuring-factuality-of-the-data" title="Permalink to this heading">#</a></h3>
+<h3>Ensuring factuality of the data<a class="headerlink" href="#ensuring-factuality-of-the-data" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Fact-Checking Protocols</strong>: Establish rigorous verification processes to validate the truthfulness of the data.</p></li>
 <li><p><strong>Source Credibility</strong>: Prioritize data from credible sources to enhance the reliability of information.</p></li>
@@ -811,7 +835,7 @@ document.write(`
 </section>
 </section>
 <section id="iv-building-the-rag-pipeline">
-<h2>IV. Building the RAG Pipeline<a class="headerlink" href="#iv-building-the-rag-pipeline" title="Permalink to this heading">#</a></h2>
+<h2>IV. Building the RAG Pipeline<a class="headerlink" href="#iv-building-the-rag-pipeline" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Vector Database Creation</strong>: Establishing a rich vector database is critical for effective retrieval.</p></li>
 <li><p><strong>Efficient Data Handling</strong>: Optimizing data loading and syncing is key for up-to-date and responsive systems.</p></li>
@@ -821,7 +845,7 @@ document.write(`
 </ul>
 <p>Building the RAG pipeline is a complex task that requires careful consideration of both the retrieval and generation aspects to ensure the system is both accurate and efficient. This foundation is crucial for developing LLM applications that can leverage external information for better performance.</p>
 <section id="creating-the-vector-database">
-<h3>Creating the vector database<a class="headerlink" href="#creating-the-vector-database" title="Permalink to this heading">#</a></h3>
+<h3>Creating the vector database<a class="headerlink" href="#creating-the-vector-database" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Vectorization</strong>: Convert text data into vector representations using models like BERT or GPT-3, capturing semantic meanings in vector space.</p></li>
 <li><p><strong>Indexing</strong>: Implement indexing strategies to efficiently store and retrieve vectors from the database.</p></li>
@@ -829,7 +853,7 @@ document.write(`
 </ul>
 </section>
 <section id="loading-the-dataset">
-<h3>Loading the Dataset<a class="headerlink" href="#loading-the-dataset" title="Permalink to this heading">#</a></h3>
+<h3>Loading the Dataset<a class="headerlink" href="#loading-the-dataset" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Data Ingestion</strong>: Automate the ingestion of new data into the system, ensuring it is vectorized and indexed consistently with existing data.</p></li>
 <li><p><strong>Batch Processing</strong>: Utilize batch processing for handling large datasets, enabling parallel processing and minimizing load times.</p></li>
@@ -837,7 +861,7 @@ document.write(`
 </ul>
 </section>
 <section id="retrieval-process">
-<h3>Retrieval process<a class="headerlink" href="#retrieval-process" title="Permalink to this heading">#</a></h3>
+<h3>Retrieval process<a class="headerlink" href="#retrieval-process" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Query Analysis</strong>: Decompose the user’s query into its semantic components for better matching with the knowledge base.</p></li>
 <li><p><strong>Search Algorithm</strong>: Use advanced search algorithms like k-nearest neighbors (k-NN) to find the most relevant vectors in the database.</p></li>
@@ -845,7 +869,7 @@ document.write(`
 </ul>
 </section>
 <section id="embedding-the-query-and-retrieved-context">
-<h3>Embedding the query and retrieved context<a class="headerlink" href="#embedding-the-query-and-retrieved-context" title="Permalink to this heading">#</a></h3>
+<h3>Embedding the query and retrieved context<a class="headerlink" href="#embedding-the-query-and-retrieved-context" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Query Vectorization</strong>: Embed the query into the same vector space as the database to allow for direct comparison.</p></li>
 <li><p><strong>Context Integration</strong>: Combine the embedded query vector with the vectors of the retrieved documents to provide a rich context for the generation process.</p></li>
@@ -853,7 +877,7 @@ document.write(`
 </ul>
 </section>
 <section id="generating-a-response-using-the-llm">
-<h3>Generating a response using the LLM<a class="headerlink" href="#generating-a-response-using-the-llm" title="Permalink to this heading">#</a></h3>
+<h3>Generating a response using the LLM<a class="headerlink" href="#generating-a-response-using-the-llm" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Response Formulation</strong>: Employ the LLM to generate a coherent and contextually relevant response based on the augmented information.</p></li>
 <li><p><strong>Feedback Loop</strong>: Integrate a feedback mechanism where the quality of the generated response can inform future retrieval and generation processes.</p></li>
@@ -862,7 +886,7 @@ document.write(`
 </section>
 </section>
 <section id="v-scaling-and-serving-the-application">
-<h2>V. Scaling and Serving the Application<a class="headerlink" href="#v-scaling-and-serving-the-application" title="Permalink to this heading">#</a></h2>
+<h2>V. Scaling and Serving the Application<a class="headerlink" href="#v-scaling-and-serving-the-application" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Resource Optimization</strong>: Balancing computational resources for both retrieval and generation components is key to cost-effective scaling.</p></li>
 <li><p><strong>Performance Maintenance</strong>: As demand grows, maintaining low latency and high throughput is imperative.</p></li>
@@ -871,7 +895,7 @@ document.write(`
 </ul>
 <p>Scaling and serving a RAG-based LLM application requires a thoughtful approach to infrastructure, architecture, and system design, ensuring the application can grow and respond to increasing demand while maintaining high performance and reliability.</p>
 <section id="challenges-of-scaling-llm-applications">
-<h3>Challenges of scaling LLM applications<a class="headerlink" href="#challenges-of-scaling-llm-applications" title="Permalink to this heading">#</a></h3>
+<h3>Challenges of scaling LLM applications<a class="headerlink" href="#challenges-of-scaling-llm-applications" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Resource Intensiveness</strong>: LLMs require significant computational resources, which can be exacerbated when combined with retrieval systems.</p></li>
 <li><p><strong>Latency</strong>: Ensuring low latency in retrieval and generation is challenging as the system scales.</p></li>
@@ -880,7 +904,7 @@ document.write(`
 </ul>
 </section>
 <section id="designing-the-application-for-scalability">
-<h3>Designing the application for scalability<a class="headerlink" href="#designing-the-application-for-scalability" title="Permalink to this heading">#</a></h3>
+<h3>Designing the application for scalability<a class="headerlink" href="#designing-the-application-for-scalability" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Microservices Architecture</strong>: Adopt a microservices approach to allow independent scaling of different components of the RAG system.</p></li>
 <li><p><strong>Containerization</strong>: Use containers (e.g., Docker) for deploying applications to ensure consistency across different environments and ease scaling.</p></li>
@@ -889,7 +913,7 @@ document.write(`
 </ul>
 </section>
 <section id="serving-the-application-in-a-highly-scalable-and-available-manner">
-<h3>Serving the application in a highly scalable and available manner<a class="headerlink" href="#serving-the-application-in-a-highly-scalable-and-available-manner" title="Permalink to this heading">#</a></h3>
+<h3>Serving the application in a highly scalable and available manner<a class="headerlink" href="#serving-the-application-in-a-highly-scalable-and-available-manner" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Load Balancing</strong>: Distribute traffic across multiple servers to ensure no single point of failure and to manage load effectively.</p></li>
 <li><p><strong>Redundancy</strong>: Design the system with redundancy in mind to handle potential outages and maintain availability.</p></li>
@@ -899,7 +923,7 @@ document.write(`
 </section>
 </section>
 <section id="vi-evaluation-and-performance-optimization">
-<h2>VI. Evaluation and Performance Optimization<a class="headerlink" href="#vi-evaluation-and-performance-optimization" title="Permalink to this heading">#</a></h2>
+<h2>VI. Evaluation and Performance Optimization<a class="headerlink" href="#vi-evaluation-and-performance-optimization" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Component-Level Analysis</strong>: Focus on optimizing each component individually for maximum efficiency.</p></li>
 <li><p><strong>System-Wide Evaluation</strong>: Assess the system as a whole, ensuring it meets the desired performance metrics in real-world scenarios.</p></li>
@@ -908,7 +932,7 @@ document.write(`
 </ul>
 <p>Evaluation and performance optimization in RAG-based systems are iterative and ongoing processes. They require a blend of technical assessments, user feedback, and continuous adjustments to meet the evolving demands and expectations of end-users.</p>
 <section id="evaluating-individual-parts-of-the-application">
-<h3>Evaluating individual parts of the application<a class="headerlink" href="#evaluating-individual-parts-of-the-application" title="Permalink to this heading">#</a></h3>
+<h3>Evaluating individual parts of the application<a class="headerlink" href="#evaluating-individual-parts-of-the-application" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Retrieval Component Evaluation</strong>: Assess the accuracy and relevance of the information retrieved by the system using metrics like precision, recall, and F1 score.</p></li>
 <li><p><strong>Generation Component Evaluation</strong>: Evaluate the language model’s ability to generate coherent, contextually appropriate, and grammatically correct responses. Common metrics include BLEU, ROUGE, and perplexity.</p></li>
@@ -916,7 +940,7 @@ document.write(`
 </ol>
 </section>
 <section id="assessing-the-overall-performance">
-<h3>Assessing the overall performance<a class="headerlink" href="#assessing-the-overall-performance" title="Permalink to this heading">#</a></h3>
+<h3>Assessing the overall performance<a class="headerlink" href="#assessing-the-overall-performance" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>End-to-End System Testing</strong>: Conduct comprehensive tests that simulate real-world usage scenarios to evaluate the system’s overall performance.</p></li>
 <li><p><strong>User Experience Metrics</strong>: Gather user feedback on aspects like response accuracy, speed, and relevance to gauge the application’s effectiveness from an end-user perspective.</p></li>
@@ -924,7 +948,7 @@ document.write(`
 </ol>
 </section>
 <section id="experimenting-with-different-configurations">
-<h3>Experimenting with different configurations<a class="headerlink" href="#experimenting-with-different-configurations" title="Permalink to this heading">#</a></h3>
+<h3>Experimenting with different configurations<a class="headerlink" href="#experimenting-with-different-configurations" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>A/B Testing</strong>: Implement A/B testing to compare different configurations or algorithmic approaches and determine which performs best in practical scenarios.</p></li>
 <li><p><strong>Hyperparameter Tuning</strong>: Experiment with different settings for model hyperparameters to find the optimal balance between performance and resource usage.</p></li>
@@ -932,7 +956,7 @@ document.write(`
 </ol>
 </section>
 <section id="optimizing-for-the-best-quality-responses">
-<h3>Optimizing for the best quality responses<a class="headerlink" href="#optimizing-for-the-best-quality-responses" title="Permalink to this heading">#</a></h3>
+<h3>Optimizing for the best quality responses<a class="headerlink" href="#optimizing-for-the-best-quality-responses" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Continuous Learning</strong>: Integrate mechanisms for the system to learn from new data and user interactions, continually improving its performance.</p></li>
 <li><p><strong>Feedback Loops</strong>: Establish feedback loops that allow the system to adjust and refine its outputs based on user feedback and corrections.</p></li>
@@ -941,14 +965,14 @@ document.write(`
 </section>
 </section>
 <section id="vii-conclusion">
-<h2>VII.Conclusion<a class="headerlink" href="#vii-conclusion" title="Permalink to this heading">#</a></h2>
+<h2>VII.Conclusion<a class="headerlink" href="#vii-conclusion" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>The development of RAG-based LLMs is a complex, multifaceted process requiring careful consideration of various technical and ethical aspects.</p></li>
 <li><p>Each phase, from data preparation to system evaluation, plays a vital role in ensuring the efficacy and integrity of the RAG system.</p></li>
 <li><p>Continuous improvement and adaptation are essential to keep these systems effective, relevant, and responsible in a fast-evolving digital landscape.</p></li>
 </ul>
 <section id="summary-of-the-lecture">
-<h3>Summary of the Lecture<a class="headerlink" href="#summary-of-the-lecture" title="Permalink to this heading">#</a></h3>
+<h3>Summary of the Lecture<a class="headerlink" href="#summary-of-the-lecture" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>We began with an introduction to <strong>Large Language Models (LLMs)</strong>, emphasizing their potential and limitations.</p></li>
 <li><p>The concept of <strong>Retrieval-Augmented Generation (RAG)</strong> was introduced as a means to enhance LLMs by integrating external knowledge sources.</p></li>
@@ -960,7 +984,7 @@ document.write(`
 </ul>
 </section>
 <section id="importance-of-ongoing-optimization-and-improvement-in-rag-systems">
-<h3>Importance of Ongoing Optimization and Improvement in RAG Systems<a class="headerlink" href="#importance-of-ongoing-optimization-and-improvement-in-rag-systems" title="Permalink to this heading">#</a></h3>
+<h3>Importance of Ongoing Optimization and Improvement in RAG Systems<a class="headerlink" href="#importance-of-ongoing-optimization-and-improvement-in-rag-systems" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>The field of AI and LLMs is rapidly evolving, necessitating constant refinement and updates to RAG systems.</p></li>
 <li><p>Continuous data curation and system evaluation are critical for maintaining the relevance and accuracy of these systems.</p></li>
@@ -1027,6 +1051,7 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1126,8 +1151,8 @@ By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

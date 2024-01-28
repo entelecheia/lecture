@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>PEFT for LLMs &#8212; ἐντελέχεια.άι</title>
   
@@ -19,25 +18,25 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css?v=e236af4b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
@@ -46,33 +45,33 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css?v=574a5d82" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css?v=06ccce15" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../../../_static/tabs.js?v=3ee01567"></script>
     <script src="../../../_static/js/hoverxref.js"></script>
     <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
     <script src="../../../_static/js/micromodal.min.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../../_static/design-tabs.js"></script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -85,12 +84,24 @@ const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/llms/peft/peft-llms';</script>
     <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/llms/peft/peft-llms.html" />
-    <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="PEFT in HuggingFace Libraries" href="peft-hf.html" />
@@ -104,10 +115,9 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -159,11 +169,14 @@ const thebe_selector_output = ".output, .cell_output"
   </div>
 
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -191,7 +204,18 @@ const thebe_selector_output = ".output, .cell_output"
     <p class="title logo__title">ἐντελέχεια.άι</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -688,18 +712,18 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="peft-for-llms">
-<h1>PEFT for LLMs<a class="headerlink" href="#peft-for-llms" title="Permalink to this heading">#</a></h1>
+<h1>PEFT for LLMs<a class="headerlink" href="#peft-for-llms" title="Link to this heading">#</a></h1>
 <p>Large Language Models (LLMs) have revolutionized the field of natural language processing. Their vast sizes, ranging from millions to billions of parameters, present considerable challenges in computational resources and training costs. For instance, loading a 70 billion parameter model necessitates an immense 280 GB of GPU memory. The extensive resources and high expenses required for training these models underscore the need for more efficient methodologies. Parameter-Efficient Fine-Tuning (PEFT) emerges as a solution, offering techniques to adapt segments of these colossal models to specific tasks, thereby reducing computational burdens.</p>
 <p>In this context, the necessity for more efficient approaches to leverage these models is clear, especially for those with limited datasets and computational resources. This is where Parameter-Efficient Fine-Tuning (PEFT) comes into play. PEFT offers a suite of techniques that enable the adaptation of small sections of these massive models to specific tasks, thereby reducing the overall computational burden.</p>
 <p>This lecture aims to provide a comprehensive understanding of each PEFT technique currently implemented in Hugging Face, delineating the differences among them. This guide fills the gaps identified in these materials and serves as a conceptual foundation for all PEFT methods present in Hugging Face. The goal is to equip readers with a fundamental understanding of PEFT, facilitating their engagement with research literature on additional PEFT techniques.</p>
 <section id="standard-fine-tuning-vs-peft">
-<h2>Standard Fine-Tuning vs. PEFT<a class="headerlink" href="#standard-fine-tuning-vs-peft" title="Permalink to this heading">#</a></h2>
+<h2>Standard Fine-Tuning vs. PEFT<a class="headerlink" href="#standard-fine-tuning-vs-peft" title="Link to this heading">#</a></h2>
 <p>Fine-tuning Large Language Models (LLMs) is a complex process with implications for model performance, data security, and resource utilization. The choice between standard fine-tuning and Parameter-Efficient Fine-Tuning (PEFT) depends on various factors, including data availability, computational resources, and specific use-case requirements.</p>
 <section id="data-security-and-privacy-concerns">
-<h3>Data Security and Privacy Concerns<a class="headerlink" href="#data-security-and-privacy-concerns" title="Permalink to this heading">#</a></h3>
+<h3>Data Security and Privacy Concerns<a class="headerlink" href="#data-security-and-privacy-concerns" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Data Retention in LLMs</strong>: Research indicates that LLMs can retain a fraction of their training data. The risk of data retention increases with data duplication, leading to potential privacy and security issues, especially when models are externally accessible.</p></li>
 <li><p><strong>Prompt Injection Attacks</strong>: One significant risk associated with fine-tuned LLMs is prompt injection attacks, where malicious inputs can trigger the model to reveal sensitive training data.</p></li>
@@ -707,15 +731,15 @@ document.write(`
 </ul>
 </section>
 <section id="importance-of-data-quality">
-<h3>Importance of Data Quality<a class="headerlink" href="#importance-of-data-quality" title="Permalink to this heading">#</a></h3>
+<h3>Importance of Data Quality<a class="headerlink" href="#importance-of-data-quality" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Impact on Fine-Tuning Success</strong>: The success of both standard and PEFT largely depends on the quality of data labels. Poorly labeled data can lead to ineffective fine-tuning, regardless of the method used.</p></li>
 <li><p><strong>Data Labeling Commitment</strong>: High-quality data labeling is crucial, particularly for standard fine-tuning, which involves a more extensive modification of the model.</p></li>
 </ul>
 </section>
 <section id="comparative-analysis">
-<h3>Comparative Analysis<a class="headerlink" href="#comparative-analysis" title="Permalink to this heading">#</a></h3>
-<table class="colwidths-auto table">
+<h3>Comparative Analysis<a class="headerlink" href="#comparative-analysis" title="Link to this heading">#</a></h3>
+<table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
 <th class="head"><p><strong>Parameter-efficient Fine-tuning</strong></p></th>
@@ -761,12 +785,12 @@ document.write(`
 </section>
 </section>
 <section id="who-uses-peft">
-<h2>Who Uses PEFT?<a class="headerlink" href="#who-uses-peft" title="Permalink to this heading">#</a></h2>
+<h2>Who Uses PEFT?<a class="headerlink" href="#who-uses-peft" title="Link to this heading">#</a></h2>
 <p>Parameter-Efficient Fine-Tuning (PEFT) has garnered significant attention and adoption across various sectors of the artificial intelligence and machine learning industry, especially among entities that specialize in language model services. The appeal of PEFT lies in its ability to adapt large-scale pre-trained language models (PLMs) to specific tasks with minimal resource overhead.</p>
 <section id="current-adoption-of-peft">
-<h3>Current Adoption of PEFT<a class="headerlink" href="#current-adoption-of-peft" title="Permalink to this heading">#</a></h3>
+<h3>Current Adoption of PEFT<a class="headerlink" href="#current-adoption-of-peft" title="Link to this heading">#</a></h3>
 <section id="hugging-face">
-<h4>Hugging Face 🤗<a class="headerlink" href="#hugging-face" title="Permalink to this heading">#</a></h4>
+<h4>Hugging Face 🤗<a class="headerlink" href="#hugging-face" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p><strong>Wide Range of PEFT Techniques</strong>: Hugging Face, a prominent player in the field of AI and NLP, offers an extensive suite of PEFT techniques through its platform. This includes various innovative methods such as LoRA, Prefix Tuning, and P-Tuning, among others.</p></li>
 <li><p><strong>Open-Source Accessibility</strong>: Hugging Face’s commitment to open-source technology has made PEFT techniques more accessible to the wider AI community, allowing researchers and developers to experiment with and implement these methods in their projects.</p></li>
@@ -774,14 +798,14 @@ document.write(`
 </ul>
 </section>
 <section id="googles-vertex-ai">
-<h4>Google’s Vertex AI<a class="headerlink" href="#googles-vertex-ai" title="Permalink to this heading">#</a></h4>
+<h4>Google’s Vertex AI<a class="headerlink" href="#googles-vertex-ai" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p><strong>Reference to PEFT Research</strong>: Google’s Vertex AI, known for providing advanced machine learning services, references the survey by Liali et al. on PEFT in its tuning guide.</p></li>
 <li><p><strong>Opaque Implementation Details</strong>: While Google acknowledges the significance of PEFT, the specifics of how Vertex AI implements these techniques are not fully disclosed. This opacity leaves room for speculation about the extent and manner of PEFT’s integration into Google’s AI offerings.</p></li>
 </ul>
 </section>
 <section id="openai">
-<h4>OpenAI<a class="headerlink" href="#openai" title="Permalink to this heading">#</a></h4>
+<h4>OpenAI<a class="headerlink" href="#openai" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p><strong>Current Non-Implementation</strong>: As per a now-removed blog post, OpenAI, renowned for its GPT models, has not yet incorporated PEFT methods into its suite of tools and services.</p></li>
 <li><p><strong>Potential Future Adoption</strong>: Given OpenAI’s reputation for pioneering AI research and development, it is anticipated that PEFT will eventually be part of its toolset. The adoption of PEFT by OpenAI could be driven by the increasing demand for efficient fine-tuning methods and the need to make large models like GPT more accessible and adaptable.</p></li>
@@ -790,12 +814,12 @@ document.write(`
 </section>
 </section>
 <section id="quick-transformer-review">
-<h2>Quick Transformer Review<a class="headerlink" href="#quick-transformer-review" title="Permalink to this heading">#</a></h2>
+<h2>Quick Transformer Review<a class="headerlink" href="#quick-transformer-review" title="Link to this heading">#</a></h2>
 <p>The Transformer architecture, introduced by Vaswani et al. in their seminal paper “Attention Is All You Need,” has become a cornerstone in modern natural language processing (NLP) and machine learning. This architecture is fundamental to understanding the nuances of Parameter-Efficient Fine-Tuning (PEFT) techniques.</p>
 <section id="core-concepts-of-transformer-architecture">
-<h3>Core Concepts of Transformer Architecture<a class="headerlink" href="#core-concepts-of-transformer-architecture" title="Permalink to this heading">#</a></h3>
+<h3>Core Concepts of Transformer Architecture<a class="headerlink" href="#core-concepts-of-transformer-architecture" title="Link to this heading">#</a></h3>
 <section id="self-attention-mechanism">
-<h4>Self-Attention Mechanism<a class="headerlink" href="#self-attention-mechanism" title="Permalink to this heading">#</a></h4>
+<h4>Self-Attention Mechanism<a class="headerlink" href="#self-attention-mechanism" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p><strong>Principle</strong>: At the heart of the Transformer is the self-attention mechanism, which enables the model to weigh the importance of different words in a sentence for a given task. Unlike previous architectures that processed words in sequence, the Transformer treats input data in parallel, allowing it to capture complex word relationships more effectively.</p></li>
 <li><p><strong>Functionality</strong>: Self-attention works by creating three vectors for each input token (word): the query vector, key vector, and value vector. These vectors are derived through learned linear transformations.</p></li>
@@ -804,7 +828,7 @@ document.write(`
 </ul>
 </section>
 <section id="transformer-block-structure">
-<h4>Transformer Block Structure<a class="headerlink" href="#transformer-block-structure" title="Permalink to this heading">#</a></h4>
+<h4>Transformer Block Structure<a class="headerlink" href="#transformer-block-structure" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p><strong>Layers</strong>: A standard transformer block consists of two main layers: the multi-head self-attention layer and the position-wise feed-forward network.</p>
 <ul>
@@ -855,7 +879,7 @@ document.write(`
 </section>
 </section>
 <section id="importance-in-peft">
-<h3>Importance in PEFT<a class="headerlink" href="#importance-in-peft" title="Permalink to this heading">#</a></h3>
+<h3>Importance in PEFT<a class="headerlink" href="#importance-in-peft" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>PEFT Adaptations</strong>: Understanding the Transformer’s architecture is crucial for comprehending how PEFT techniques modify it. PEFT methods typically intervene at the level of the self-attention mechanism and the feed-forward networks, adjusting or augmenting the model’s parameters efficiently for task-specific fine-tuning.</p></li>
 <li><p><strong>Targeting Specific Components</strong>: Depending on the PEFT technique used, modifications may be made to specific components like the attention heads or layers of the feed-forward network, enabling the fine-tuning process to be both efficient and effective with fewer trainable parameters.</p></li>
@@ -863,9 +887,9 @@ document.write(`
 </section>
 </section>
 <section id="peft-techniques-overview">
-<h2>PEFT Techniques Overview<a class="headerlink" href="#peft-techniques-overview" title="Permalink to this heading">#</a></h2>
+<h2>PEFT Techniques Overview<a class="headerlink" href="#peft-techniques-overview" title="Link to this heading">#</a></h2>
 <section id="additive-methods">
-<h3>Additive Methods<a class="headerlink" href="#additive-methods" title="Permalink to this heading">#</a></h3>
+<h3>Additive Methods<a class="headerlink" href="#additive-methods" title="Link to this heading">#</a></h3>
 <p><strong>Adapters</strong>: Introduced by Houlsby et al., this technique involves adding small fully connected networks after Transformer sub-layers. The pseudo code for an adapted transformer block illustrates these additions.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">transformer_block_adapter</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="c1"># Store the original input for the residual connection</span>
@@ -953,7 +977,7 @@ document.write(`
 <p>In this code snippet, the <code class="docutils literal notranslate"><span class="pre">self_attention_ia3</span></code> function and the <code class="docutils literal notranslate"><span class="pre">transformer_block_ia3</span></code> function represent the IA³ method as proposed by Liu et al. The IA³ method augments the standard Transformer architecture by introducing additional column vectors to modify the key and value matrices in the self-attention mechanism, as well as applying modifications to the feed-forward network. This approach allows for targeted adjustments to the model’s attention and feed-forward mechanisms, enhancing its adaptability for specific tasks without adding fully connected layers typical of traditional adapter methods.</p>
 </section>
 <section id="soft-prompts">
-<h3>Soft-Prompts<a class="headerlink" href="#soft-prompts" title="Permalink to this heading">#</a></h3>
+<h3>Soft-Prompts<a class="headerlink" href="#soft-prompts" title="Link to this heading">#</a></h3>
 <p><strong>Prompt-Tuning</strong>: Developed by Lester et al., this technique involves creating a set of parameters for prompt tokens and integrating them at the beginning of the network. It allows for optimization of a continuous representation of the prompt text.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">prompt_tuning</span><span class="p">(</span><span class="n">seq_tokens</span><span class="p">,</span> <span class="n">prompt_tokens</span><span class="p">):</span>
     <span class="c1"># Create embeddings for the input sequence tokens</span>
@@ -1074,7 +1098,7 @@ document.write(`
 <p>In this code snippet, the <code class="docutils literal notranslate"><span class="pre">transformer_block_llama_adapter</span></code> function represents the implementation of the LLaMA-Adapter technique. This method applies a variant of prefix learning to the transformer model, incorporating adaptation prompts and a zero-initialized attention mechanism. The adaptation prompt, created by combining soft prompts with the input sequence, is processed through self-attention and then modulated by a gating factor. This approach allows for efficient fine-tuning by introducing an adaptable mechanism that initially has minimal impact but learns to influence the transformer block’s processing over the course of training. The LLaMA-Adapter thus provides a novel way to fine-tune transformer models, enhancing their adaptability to specific tasks while maintaining the underlying model structure.</p>
 </section>
 <section id="reparameterization-based-methods">
-<h3>Reparameterization-Based Methods<a class="headerlink" href="#reparameterization-based-methods" title="Permalink to this heading">#</a></h3>
+<h3>Reparameterization-Based Methods<a class="headerlink" href="#reparameterization-based-methods" title="Link to this heading">#</a></h3>
 <p><strong>LoRa</strong>: A popular technique by Hu et al., LoRa reparameterizes a weight matrix by learning a separate matrix representing updates from optimization. It uses two smaller matrices to represent these updates, reducing the number of parameters to be learned.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">lora_linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W</span><span class="p">):</span>
     <span class="c1"># Scale factor based on the rank r</span>
@@ -1111,7 +1135,7 @@ document.write(`
 <p>In this code snippet, the <code class="docutils literal notranslate"><span class="pre">lora_linear</span></code> function implements the Low-Rank Adaptation (LoRa) technique for linear layers, and the <code class="docutils literal notranslate"><span class="pre">self_attention_lora</span></code> function integrates this technique into the self-attention mechanism of a transformer. LoRa focuses on reparameterizing the weight matrices of the key and value vectors using low-rank matrices. By learning updates in the form of smaller matrices (W_a and W_b), LoRa efficiently captures the most significant changes to the weights while reducing the overall number of parameters that need to be learned. This approach maintains the core functionality of the self-attention mechanism while allowing for more efficient and focused training, particularly beneficial for adapting large pre-trained models to new tasks or datasets.</p>
 </section>
 <section id="selective-methods">
-<h3>Selective Methods<a class="headerlink" href="#selective-methods" title="Permalink to this heading">#</a></h3>
+<h3>Selective Methods<a class="headerlink" href="#selective-methods" title="Link to this heading">#</a></h3>
 <p><strong>AdaLoRa</strong>: This hybrid approach, developed by Zhang et al., combines ideas from reparameterization and selective methods. It uses an approximation of Singular Value Decomposition (SVD) to represent weight matrix updates and incorporates a pruning technique to eliminate less important singular vectors.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">adalora_linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">curr_sv</span><span class="p">):</span>
     <span class="c1"># Scale factor based on the rank r</span>
@@ -1152,9 +1176,9 @@ document.write(`
 <p>In this code snippet, the <code class="docutils literal notranslate"><span class="pre">adalora_linear</span></code> function implements the AdaLoRa technique for linear layers, and the <code class="docutils literal notranslate"><span class="pre">self_attention_adalora</span></code> function integrates AdaLoRa into the self-attention mechanism of a transformer. AdaLoRa combines ideas from reparameterization with selective methods, using an approximation of Singular Value Decomposition (SVD) to represent weight matrix updates. This method focuses on optimizing the most significant components of the weight matrices, identified through SVD, and incorporates a scaling factor for effective learning. By selectively updating these key components, AdaLoRa provides an efficient way to fine-tune large pre-trained models, targeting the adjustments that have the most substantial impact on model performance. This approach is particularly beneficial for resource-efficient training and adapting models to new tasks while maintaining their underlying structure.</p>
 </section>
 <section id="comparison-of-methods">
-<h3>Comparison of Methods<a class="headerlink" href="#comparison-of-methods" title="Permalink to this heading">#</a></h3>
+<h3>Comparison of Methods<a class="headerlink" href="#comparison-of-methods" title="Link to this heading">#</a></h3>
 <p>The table below provides a comparison of these methods, highlighting the number of trainable parameters, method type, and a brief summary.</p>
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Method</p></th>
 <th class="head"><p>Trainable Parameters</p></th>
@@ -1208,7 +1232,7 @@ document.write(`
 </section>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
 <p>Parameter-Efficient Fine-Tuning (PEFT) stands as a transformative approach in the realm of working with Large Language Models (LLMs), addressing the critical challenges of computational demand and resource constraints. By focusing on adapting smaller segments of these expansive models, PEFT offers a path to harness the power of LLMs in a more accessible and sustainable manner. This approach not only broadens the scope of who can utilize these models but also expands the potential applications in various fields.</p>
 <p>The integration of PEFT techniques, particularly those developed and made accessible by platforms like Hugging Face, marks a significant advancement in the field of natural language processing and artificial intelligence. These techniques allow for the efficient customization of LLMs for specific tasks, providing a balance between performance and resource utilization. The diverse range of PEFT methods, including LoRA, Prefix Tuning, and AdaLoRA, each offers unique advantages, catering to different requirements and scenarios.</p>
 <p>The potential of PEFT extends beyond just language models; its principles are being applied to other areas such as diffusion models, indicating a broad spectrum of impact. Whether it’s fine-tuning for specific tasks, adapting models for resource-limited settings, or pushing the boundaries of what’s possible with consumer-grade hardware, PEFT is at the forefront of this evolution.</p>
@@ -1272,6 +1296,7 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1360,8 +1385,8 @@ By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

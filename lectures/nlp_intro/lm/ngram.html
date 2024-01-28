@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>N-gram Language Models &#8212; ἐντελέχεια.άι</title>
   
@@ -19,25 +18,25 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css?v=e236af4b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
@@ -46,33 +45,33 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css?v=574a5d82" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css?v=06ccce15" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../../../_static/tabs.js?v=3ee01567"></script>
     <script src="../../../_static/js/hoverxref.js"></script>
     <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
     <script src="../../../_static/js/micromodal.min.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../../_static/design-tabs.js"></script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -85,12 +84,24 @@ const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_intro/lm/ngram';</script>
     <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_intro/lm/ngram.html" />
-    <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Usage of Language Models" href="usage.html" />
@@ -104,10 +115,9 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -159,11 +169,14 @@ const thebe_selector_output = ".output, .cell_output"
   </div>
 
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -191,7 +204,18 @@ const thebe_selector_output = ".output, .cell_output"
     <p class="title logo__title">ἐντελέχεια.άι</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -723,10 +747,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="n-gram-language-models">
-<h1>N-gram Language Models<a class="headerlink" href="#n-gram-language-models" title="Permalink to this heading">#</a></h1>
+<h1>N-gram Language Models<a class="headerlink" href="#n-gram-language-models" title="Link to this heading">#</a></h1>
 <p>N-gram language models are a simple yet powerful approach to language modeling. They predict the next word in a sequence based on the previous n-1 words, where n is the order of the model. The main types of n-grams are:</p>
 <ul class="simple">
 <li><p><strong>Unigram</strong>: Considers only a single word, ignoring context (n=1).</p></li>
@@ -747,10 +771,10 @@ document.write(`
 </ul>
 <p>Despite their limitations, n-gram models serve as a foundational tool for understanding language modeling concepts and are still used in various NLP applications.</p>
 <section id="n-grams-and-probability-estimation">
-<h2>N-Grams and Probability Estimation<a class="headerlink" href="#n-grams-and-probability-estimation" title="Permalink to this heading">#</a></h2>
+<h2>N-Grams and Probability Estimation<a class="headerlink" href="#n-grams-and-probability-estimation" title="Link to this heading">#</a></h2>
 <p>N-grams can be used to estimate the probability of a word given a history (P(w|h)). For instance, if the history h is “I like to eat”, we might want to estimate the probability of the next word being “pizza” (P(pizza|I like to eat)).</p>
 <section id="estimating-probabilities-from-counts">
-<h3>Estimating Probabilities from Counts<a class="headerlink" href="#estimating-probabilities-from-counts" title="Permalink to this heading">#</a></h3>
+<h3>Estimating Probabilities from Counts<a class="headerlink" href="#estimating-probabilities-from-counts" title="Link to this heading">#</a></h3>
 <p>We can estimate this probability by counting the occurrences of the history followed by the target word in a large corpus and dividing by the total count of the history:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -763,7 +787,7 @@ P(\text{먹습니다}|\text{저는 김치를}) = \frac{C(\text{저는 김치를 
 <p>However, even with a large corpus, it’s often not sufficient to provide good estimates due to the creative nature of language and the possibility of unseen word sequences.</p>
 </section>
 <section id="bigram-model">
-<h3>Bigram Model<a class="headerlink" href="#bigram-model" title="Permalink to this heading">#</a></h3>
+<h3>Bigram Model<a class="headerlink" href="#bigram-model" title="Link to this heading">#</a></h3>
 <p>To tackle this issue, we can use the bigram model, which approximates the probability of a word given its entire history by considering only the preceding word:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -776,7 +800,7 @@ P(\text{먹습니다}|\text{저는 김치를}) \approx P(\text{먹습니다}|\te
 <p>This simplification allows us to estimate probabilities more reliably, but it may not capture longer context dependencies. Nevertheless, n-grams serve as a foundational tool for understanding language modeling concepts and can be useful in various NLP applications.</p>
 </section>
 <section id="estimating-joint-probabilities-of-word-sequences">
-<h3>Estimating Joint Probabilities of Word Sequences<a class="headerlink" href="#estimating-joint-probabilities-of-word-sequences" title="Permalink to this heading">#</a></h3>
+<h3>Estimating Joint Probabilities of Word Sequences<a class="headerlink" href="#estimating-joint-probabilities-of-word-sequences" title="Link to this heading">#</a></h3>
 <p>To estimate the joint probability of an entire sequence of words, such as “The cat sat on the mat”, we can decompose this probability using the chain rule of probability:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -785,7 +809,7 @@ P(w_{1:n}) = P(w_1)P(w_2|w_1)P(w_3|w_{1:2})...P(w_n|w_{1:n−1}) = \prod_{k=1}^n
 <p>This decomposition shows the link between computing the joint probability of a sequence and computing the conditional probability of a word given previous words. However, it doesn’t really seem to help us! Computing the exact probability of a word given a long sequence of preceding words (e.g., <span class="math notranslate nohighlight">\(P(w_n|w_{1:n−1})\)</span>) is challenging because language is creative, and any particular context might have never occurred before.</p>
 </section>
 <section id="example">
-<h3>Example<a class="headerlink" href="#example" title="Permalink to this heading">#</a></h3>
+<h3>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
 <p>For the sequence “The cat sat on the mat”, we can decompose the joint probability as follows:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -794,7 +818,7 @@ P(\text{The, cat, sat, on, the, mat}) = P(\text{The})P(\text{cat}|\text{The})P(\
 <p>Estimating each conditional probability using counts from a large corpus is not feasible since many long sequences might never have occurred before.</p>
 </section>
 <section id="n-gram-models-and-markov-assumption">
-<h3>N-gram Models and Markov Assumption<a class="headerlink" href="#n-gram-models-and-markov-assumption" title="Permalink to this heading">#</a></h3>
+<h3>N-gram Models and Markov Assumption<a class="headerlink" href="#n-gram-models-and-markov-assumption" title="Link to this heading">#</a></h3>
 <p>N-gram models are used to predict the probability of a word given a fixed number of preceding words. The assumption that the probability of a word depends only on a limited number of previous words is called the Markov assumption.</p>
 <p>For a bigram model (N=2), the approximation is:</p>
 <div class="math notranslate nohighlight">
@@ -819,7 +843,7 @@ P(\text{The, cat, sat, on, the, mat}) ≈ P(\text{The})P(\text{cat}|\text{The})P
 \]</div>
 </section>
 <section id="stock-prices-and-markov-assumption">
-<h3>Stock Prices and Markov Assumption<a class="headerlink" href="#stock-prices-and-markov-assumption" title="Permalink to this heading">#</a></h3>
+<h3>Stock Prices and Markov Assumption<a class="headerlink" href="#stock-prices-and-markov-assumption" title="Link to this heading">#</a></h3>
 <p>The Markov assumption can be applied to model stock prices as well. In finance, the Markov assumption is often used to represent the idea that future stock prices depend only on the current price and a limited number of past prices, rather than the entire price history.</p>
 <p>The relationship between stock prices and the Markov assumption can be understood as follows:</p>
 <ol class="arabic simple">
@@ -831,12 +855,12 @@ P(\text{The, cat, sat, on, the, mat}) ≈ P(\text{The})P(\text{cat}|\text{The})P
 </section>
 </section>
 <section id="estimating-bigram-or-n-gram-probabilities-using-maximum-likelihood-estimation-mle">
-<h2>Estimating Bigram or N-gram Probabilities using Maximum Likelihood Estimation (MLE)<a class="headerlink" href="#estimating-bigram-or-n-gram-probabilities-using-maximum-likelihood-estimation-mle" title="Permalink to this heading">#</a></h2>
+<h2>Estimating Bigram or N-gram Probabilities using Maximum Likelihood Estimation (MLE)<a class="headerlink" href="#estimating-bigram-or-n-gram-probabilities-using-maximum-likelihood-estimation-mle" title="Link to this heading">#</a></h2>
 <p>To estimate the probabilities for bigrams or n-grams, we use maximum likelihood estimation (MLE) by counting the occurrences in a corpus and normalizing the counts.</p>
 <p>MLE, or Maximum Likelihood Estimation, is a statistical method used for estimating the parameters of a probability distribution or a model. It works by finding the parameter values that maximize the likelihood of the observed data under the given model. In other words, MLE selects the parameters that make the observed data most probable.</p>
 <p>For example, if we have a dataset of coin tosses (heads and tails), and we want to estimate the probability of getting heads, we can use MLE to find the parameter value that makes the observed sequence of coin tosses most likely. This is usually done by calculating the ratio of the number of heads to the total number of tosses.</p>
 <section id="bigram-probability-calculation">
-<h3>Bigram Probability Calculation<a class="headerlink" href="#bigram-probability-calculation" title="Permalink to this heading">#</a></h3>
+<h3>Bigram Probability Calculation<a class="headerlink" href="#bigram-probability-calculation" title="Link to this heading">#</a></h3>
 <p>Compute the bigram probability of a word <span class="math notranslate nohighlight">\(w_n\)</span> given the previous word <span class="math notranslate nohighlight">\(w_{n-1}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[ P(w*n|w*{n−1}) = C(w*{n−1}w_n) / C(w*{n−1}) \]</div>
@@ -849,7 +873,7 @@ P(\text{The, cat, sat, on, the, mat}) ≈ P(\text{The})P(\text{cat}|\text{The})P
 <li><p><code class="docutils literal notranslate"><span class="pre">&lt;s&gt;</span> <span class="pre">I</span> <span class="pre">do</span> <span class="pre">not</span> <span class="pre">like</span> <span class="pre">green</span> <span class="pre">eggs</span> <span class="pre">and</span> <span class="pre">ham</span> <span class="pre">&lt;/s&gt;</span></code></p></li>
 </ol>
 <p>Here are the bigram probabilities for some pairs in this corpus:</p>
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Bigram</p></th>
 <th class="head"><p>Probability</p></th>
@@ -882,7 +906,7 @@ P(\text{The, cat, sat, on, the, mat}) ≈ P(\text{The})P(\text{cat}|\text{The})P
 <p>Bigram probabilities capture various linguistic phenomena, such as syntax, task-specific patterns, and cultural preferences.</p>
 </section>
 <section id="practical-issues-in-n-gram-models">
-<h3>Practical Issues in N-gram Models<a class="headerlink" href="#practical-issues-in-n-gram-models" title="Permalink to this heading">#</a></h3>
+<h3>Practical Issues in N-gram Models<a class="headerlink" href="#practical-issues-in-n-gram-models" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Higher-order n-grams</strong>: In practice, trigram (conditioning on the previous two words), 4-gram, or even 5-gram models are more common when there is sufficient training data. For larger n-grams, extra contexts are needed to the left and right of the sentence end (e.g., P(I|<code class="docutils literal notranslate"><span class="pre">&lt;s&gt;&lt;s&gt;</span></code>) for trigrams).</p></li>
 <li><p><strong>Log probabilities</strong>: Since multiplying probabilities can lead to numerical underflow, it’s better to represent and compute language model probabilities in log format. Adding log probabilities is equivalent to multiplying probabilities in linear space. Convert back to probabilities when needed by taking the exponential of the log probability:</p></li>
@@ -891,7 +915,7 @@ P(\text{The, cat, sat, on, the, mat}) ≈ P(\text{The})P(\text{cat}|\text{The})P
 \[ p_1 × p_2 × p_3 × p_4 = \exp(\log{p_1} + \log{p_2} + \log{p_3} + \log{p_4}) \]</div>
 </section>
 <section id="examples-of-mle">
-<h3>Examples of MLE<a class="headerlink" href="#examples-of-mle" title="Permalink to this heading">#</a></h3>
+<h3>Examples of MLE<a class="headerlink" href="#examples-of-mle" title="Link to this heading">#</a></h3>
 <p>Here’s a practical example of MLE using Python. We’ll estimate the parameter p of a Bernoulli distribution (coin toss) based on some observed data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -913,7 +937,7 @@ P(\text{The, cat, sat, on, the, mat}) ≈ P(\text{The})P(\text{cat}|\text{The})P
 </div>
 </div>
 </div>
-<p>In this example, we have a sequence of 20 coin tosses, where 1 represents heads, and 0 represents tails. To estimate the probability of getting heads § using MLE, we simply calculate the mean of the observed data, which is the ratio of the number of heads to the total number of tosses.</p>
+<p>In this example, we have a sequence of 20 coin tosses, where 1 represents heads, and 0 represents tails. To estimate the probability of getting heads (p) using MLE, we simply calculate the mean of the observed data, which is the ratio of the number of heads to the total number of tosses.</p>
 <p>Here’s another example, this time estimating the mean (mu) and standard deviation (sigma) of a Gaussian distribution given some observed data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -941,7 +965,7 @@ MLE for sigma (standard deviation): 0.6441273166075167
 </section>
 </section>
 <section id="how-to-generate-n-grams-using-nltk">
-<h2>How to generate n-grams using NLTK<a class="headerlink" href="#how-to-generate-n-grams-using-nltk" title="Permalink to this heading">#</a></h2>
+<h2>How to generate n-grams using NLTK<a class="headerlink" href="#how-to-generate-n-grams-using-nltk" title="Link to this heading">#</a></h2>
 <p>Here’s an example of how to generate n-grams using the Natural Language Toolkit (NLTK) library in Python.</p>
 <p>First, make sure to install NLTK:</p>
 <div class="cell docutils container">
@@ -1022,7 +1046,7 @@ Trigrams:
 </div>
 </section>
 <section id="evaluating-language-models">
-<h2>Evaluating Language Models<a class="headerlink" href="#evaluating-language-models" title="Permalink to this heading">#</a></h2>
+<h2>Evaluating Language Models<a class="headerlink" href="#evaluating-language-models" title="Link to this heading">#</a></h2>
 <p>Evaluating language models can be done in two main ways: extrinsic evaluation and intrinsic evaluation.</p>
 <p><em>Extrinsic evaluation</em> is the process of embedding a language model in an application and measuring its performance improvement in that application. For instance, in speech recognition, we can compare two language models by running a speech recognizer with each model and determining which one produces more accurate transcriptions.</p>
 <p>However, running large NLP systems end-to-end can be resource-intensive. As an alternative, we can use <em>intrinsic evaluation</em> metrics to quickly evaluate potential improvements in a language model. Intrinsic evaluation measures the quality of a model independent of any application.</p>
@@ -1031,7 +1055,7 @@ Trigrams:
 <p>To divide data into training, development, and test sets, a common practice is to allocate 80% for training, 10% for development, and 10% for testing. Test data can either be taken from a continuous sequence within the corpus or be selected as smaller “stripes” from random parts of the corpus combined into a test set.</p>
 </section>
 <section id="perplexity">
-<h2>Perplexity<a class="headerlink" href="#perplexity" title="Permalink to this heading">#</a></h2>
+<h2>Perplexity<a class="headerlink" href="#perplexity" title="Link to this heading">#</a></h2>
 <p>Perplexity is a measure used to evaluate the performance of a language model. It quantifies how well a model predicts the probability distribution of a test set. A lower perplexity value indicates that the model is more accurate in predicting the test set.</p>
 <p>Perplexity can be understood as the weighted average branching factor of a language model. In other words, it represents the average number of possible next words the model considers at each step while generating a sentence. Lower perplexity means the model has fewer choices to consider, resulting in better prediction accuracy.</p>
 <p>The perplexity (PP) of a language model on a test set can be calculated using the following equation:</p>
@@ -1131,7 +1155,7 @@ PP(W) = exp(-1/N * (log(P(w_1|w_0)) + log(P(w_2|w_1)) + ... + log(P(w_N|w_{N-1})
 </div>
 </section>
 <section id="perplexitys-relation-to-entropy">
-<h2>Perplexity’s Relation to Entropy<a class="headerlink" href="#perplexitys-relation-to-entropy" title="Permalink to this heading">#</a></h2>
+<h2>Perplexity’s Relation to Entropy<a class="headerlink" href="#perplexitys-relation-to-entropy" title="Link to this heading">#</a></h2>
 <p>Perplexity is closely related to entropy, a concept from information theory. Entropy is a measure of the average amount of information (in bits) needed to represent the outcome of a random process, such as the choice of a word in a sentence. Lower entropy indicates that the outcomes are more predictable, while higher entropy implies more uncertainty.</p>
 <p>For a language model, the entropy is defined as the average negative log probability of the words in the test set, normalized by the number of words. Mathematically, the entropy <span class="math notranslate nohighlight">\(H(W)\)</span> can be represented as:</p>
 <div class="math notranslate nohighlight">
@@ -1203,6 +1227,7 @@ PP(W) = 2^H(W)
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1277,8 +1302,8 @@ By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

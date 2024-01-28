@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Zero Shot and Prompt Engineering &#8212; ἐντελέχεια.άι</title>
   
@@ -19,25 +18,25 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css?v=e236af4b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
@@ -46,33 +45,33 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css?v=574a5d82" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css?v=06ccce15" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../../../_static/tabs.js?v=3ee01567"></script>
     <script src="../../../_static/js/hoverxref.js"></script>
     <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
     <script src="../../../_static/js/micromodal.min.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../../_static/design-tabs.js"></script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -85,12 +84,24 @@ const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_deep/llms/zeroshot';</script>
     <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_deep/llms/zeroshot.html" />
-    <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Decoding and Search Strategies" href="decoding.html" />
@@ -104,10 +115,9 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -159,11 +169,14 @@ const thebe_selector_output = ".output, .cell_output"
   </div>
 
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -191,7 +204,18 @@ const thebe_selector_output = ".output, .cell_output"
     <p class="title logo__title">ἐντελέχεια.άι</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -713,13 +737,13 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="zero-shot-and-prompt-engineering">
-<h1>Zero Shot and Prompt Engineering<a class="headerlink" href="#zero-shot-and-prompt-engineering" title="Permalink to this heading">#</a></h1>
+<h1>Zero Shot and Prompt Engineering<a class="headerlink" href="#zero-shot-and-prompt-engineering" title="Link to this heading">#</a></h1>
 <a class="bg-primary mb-1 reference internal image-reference" href="../../../_images/entelecheia_Zero_Shot.png"><img alt="Zero Shot, Prompt, and Search Strategies" class="bg-primary mb-1 align-center" src="../../../_images/entelecheia_Zero_Shot.png" style="width: 50%;" /></a>
 <section id="zero-shot-and-few-shot-learners">
-<h2>Zero Shot and Few Shot Learners<a class="headerlink" href="#zero-shot-and-few-shot-learners" title="Permalink to this heading">#</a></h2>
+<h2>Zero Shot and Few Shot Learners<a class="headerlink" href="#zero-shot-and-few-shot-learners" title="Link to this heading">#</a></h2>
 <a class="bg-primary mb-1 reference internal image-reference" href="../../../_images/entelecheia_a_robot.png"><img alt="Zero Shot and Few Shot Learners" class="bg-primary mb-1 align-center" src="../../../_images/entelecheia_a_robot.png" style="width: 90%;" /></a>
 <p>Zero-shot and few-shot learners are machine learning techniques that allow models to generalize and adapt to new tasks with little or no training data. These approaches are particularly useful in situations where obtaining labeled data is difficult or expensive. They are inspired by the human ability to learn new concepts and skills quickly, even from a few examples.</p>
 <p>Zero-shot learning (ZSL) refers to the ability of a model to perform a task without having seen any examples from that specific task during training. It relies on the model’s capacity to generalize from related tasks or to leverage auxiliary information such as relationships between classes, attributes, or semantic information. For example, a zero-shot image classification model might recognize a never-seen-before object by leveraging its understanding of similar objects or associated attributes.</p>
@@ -727,7 +751,7 @@ document.write(`
 <p>Both zero-shot and few-shot learners are essential components in the pursuit of artificial general intelligence (AGI), as they enable models to learn efficiently and generalize effectively across various tasks and domains with minimal data.</p>
 </section>
 <section id="prompt-engineering">
-<h2>Prompt Engineering<a class="headerlink" href="#prompt-engineering" title="Permalink to this heading">#</a></h2>
+<h2>Prompt Engineering<a class="headerlink" href="#prompt-engineering" title="Link to this heading">#</a></h2>
 <p>Prompt engineering is the process of designing and refining inputs (prompts) for language models like GPT-3 or GPT-4 to obtain better, more accurate, and contextually relevant outputs. Since large-scale language models are trained to generate text based on the input they receive, crafting effective prompts can significantly influence the quality of the generated responses.</p>
 <p>The main goal of prompt engineering is to maximize the usefulness and relevance of a language model’s output by considering factors such as clarity, specificity, context, and constraints. It often involves an iterative process of experimentation and fine-tuning to arrive at the optimal prompt. Some strategies used in prompt engineering include:</p>
 <ul class="simple">
@@ -741,10 +765,10 @@ document.write(`
 <p>Prompt engineering is an essential skill in working with language models as it helps to bridge the gap between the model’s training data and the desired output for specific use cases. By carefully crafting and refining prompts, users can improve the reliability and usefulness of generated responses, making the models more effective across a wide range of applications.</p>
 </section>
 <section id="prompting-on-llms">
-<h2>Prompting on LLMs<a class="headerlink" href="#prompting-on-llms" title="Permalink to this heading">#</a></h2>
+<h2>Prompting on LLMs<a class="headerlink" href="#prompting-on-llms" title="Link to this heading">#</a></h2>
 <p>Large Language Models (LLMs) like GPT-3 or GPT-4 can be used for various tasks, including zero-shot, one-shot, and few-shot learning. Here are some examples using text prompts for each case:</p>
 <section id="zero-shot-learning">
-<h3>Zero-shot learning:<a class="headerlink" href="#zero-shot-learning" title="Permalink to this heading">#</a></h3>
+<h3>Zero-shot learning:<a class="headerlink" href="#zero-shot-learning" title="Link to this heading">#</a></h3>
 <p>Task: Sentiment analysis (positive or negative) for a movie review</p>
 <p>Prompt:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Determine</span> <span class="n">the</span> <span class="n">sentiment</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">movie</span> <span class="n">review</span><span class="p">:</span> <span class="s2">&quot;I absolutely loved the movie! The storyline was captivating, and the acting was superb. I can&#39;t wait to watch it again!&quot;</span>
@@ -753,7 +777,7 @@ document.write(`
 <p>Since the LLM has been pre-trained on a diverse range of texts, it should be able to classify the sentiment of the review without any additional examples.</p>
 </section>
 <section id="one-shot-learning">
-<h3>One-shot learning:<a class="headerlink" href="#one-shot-learning" title="Permalink to this heading">#</a></h3>
+<h3>One-shot learning:<a class="headerlink" href="#one-shot-learning" title="Link to this heading">#</a></h3>
 <p>Task: Animal classification based on a brief description</p>
 <p>Prompt:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Based</span> <span class="n">on</span> <span class="n">the</span> <span class="n">given</span> <span class="n">description</span><span class="p">,</span> <span class="n">classify</span> <span class="n">the</span> <span class="n">animal</span><span class="p">:</span>
@@ -765,7 +789,7 @@ document.write(`
 <p>By providing an example in the prompt, the LLM can use this context to generate an appropriate classification for the given description.</p>
 </section>
 <section id="few-shot-learning">
-<h3>Few-shot learning:<a class="headerlink" href="#few-shot-learning" title="Permalink to this heading">#</a></h3>
+<h3>Few-shot learning:<a class="headerlink" href="#few-shot-learning" title="Link to this heading">#</a></h3>
 <p>Task: Convert a sentence from active to passive voice</p>
 <p>Prompt:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Transform</span> <span class="n">the</span> <span class="n">following</span> <span class="n">sentences</span> <span class="kn">from</span> <span class="nn">active</span> <span class="n">to</span> <span class="n">passive</span> <span class="n">voice</span><span class="p">:</span>
@@ -905,7 +929,7 @@ Example 5: &quot;The cat was a cat.&quot; -&gt; &quot;The cat was a cat
 </section>
 </section>
 <section id="zero-shot-reasoners-and-chain-of-thought-prompting">
-<h2>Zero-Shot Reasoners and Chain-of-Thought Prompting<a class="headerlink" href="#zero-shot-reasoners-and-chain-of-thought-prompting" title="Permalink to this heading">#</a></h2>
+<h2>Zero-Shot Reasoners and Chain-of-Thought Prompting<a class="headerlink" href="#zero-shot-reasoners-and-chain-of-thought-prompting" title="Link to this heading">#</a></h2>
 <p>The <a class="reference external" href="https://arxiv.org/abs/2205.11916">University of Tokyo and Google Brain team</a> discovered that large language models (LLMs) possess inherent zero-shot abilities in high-level cognitive tasks. These abilities can be extracted using a method called Chain-of-Thought (CoT) prompting.</p>
 <p>Further research by the <a class="reference external" href="https://arxiv.org/abs/2201.11903">Google Brain team</a> delved into CoT prompting and found that generating a series of intermediate reasoning steps, or a “chain-of-thought,” significantly improves LLMs’ complex reasoning capabilities. Experiments conducted on three LLMs showed that CoT prompting enhances performance in arithmetic, common sense, and symbolic reasoning tasks.</p>
 <p>Here’s an example to illustrate CoT prompting:</p>
@@ -1061,6 +1085,7 @@ If your task is similar to the task the model of the checkpoint was trained on, 
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
@@ -1124,8 +1149,8 @@ By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

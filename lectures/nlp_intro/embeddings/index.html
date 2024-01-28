@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Word Embeddings &#8212; ἐντελέχεια.άι</title>
   
@@ -19,25 +18,25 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css?v=e236af4b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
@@ -46,33 +45,33 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css?v=574a5d82" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css?v=06ccce15" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../../../_static/tabs.js?v=3ee01567"></script>
     <script src="../../../_static/js/hoverxref.js"></script>
     <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
     <script src="../../../_static/js/micromodal.min.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../../_static/design-tabs.js"></script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -85,12 +84,24 @@ const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_intro/embeddings/index';</script>
     <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_intro/embeddings/index.html" />
-    <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Neural Language Models" href="nlm.html" />
@@ -104,10 +115,9 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -159,11 +169,14 @@ const thebe_selector_output = ".output, .cell_output"
   </div>
 
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -191,7 +204,18 @@ const thebe_selector_output = ".output, .cell_output"
     <p class="title logo__title">ἐντελέχεια.άι</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -662,13 +686,13 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="word-embeddings">
-<h1>Word Embeddings<a class="headerlink" href="#word-embeddings" title="Permalink to this heading">#</a></h1>
+<h1>Word Embeddings<a class="headerlink" href="#word-embeddings" title="Link to this heading">#</a></h1>
 <a class="bg-primary mb-1 reference internal image-reference" href="../../../_images/embeddings.png"><img alt="Word Embeddings" class="bg-primary mb-1 align-center" src="../../../_images/embeddings.png" style="width: 80%;" /></a>
 <section id="what-are-word-embeddings">
-<h2>What are word embeddings?<a class="headerlink" href="#what-are-word-embeddings" title="Permalink to this heading">#</a></h2>
+<h2>What are word embeddings?<a class="headerlink" href="#what-are-word-embeddings" title="Link to this heading">#</a></h2>
 <p><strong>Word embeddings</strong> are a captivating facet of <strong>natural language processing</strong> that enable us to represent words as vectors. These vectors, learned from the textual data, encapsulate much of the <strong>semantic</strong> and <strong>syntactic properties</strong> of words, enabling us to quantify and analyze linguistic relationships with mathematical precision.</p>
 <p>Picture two sentences: “The cat is lying on the floor and the dog was eating,” and “The dog was lying on the floor and the cat was eating.” Despite the switched roles of ‘cat’ and ‘dog’ in these sentences, we instinctively comprehend their similarity - they are both common pets and lovable internet sensations. <strong>Word embeddings</strong> capture this similarity by assigning similar vector representations to the words ‘cat’ and ‘dog’.</p>
 <p>But how does this work exactly? Essentially, a <strong>word embedding</strong> is a function that is parameterized by a vector of real numbers, denoted as 𝜃. When this function is applied to a word w, it yields the vector 𝜃 - the <strong>embedding</strong> of the word w. In simpler words, every word is transformed into a corresponding vector of real numbers that encapsulates its ‘meaning’ in the multi-dimensional vector space.</p>
@@ -677,11 +701,11 @@ document.write(`
 <p>In a nutshell, word embeddings are an incredible tool that allows us to project the vast landscape of human language onto the precise terrain of mathematics, facilitating the analysis, understanding, and manipulation of words in ways previously unimagined.</p>
 </section>
 <section id="categorical-embeddings">
-<h2>Categorical Embeddings<a class="headerlink" href="#categorical-embeddings" title="Permalink to this heading">#</a></h2>
+<h2>Categorical Embeddings<a class="headerlink" href="#categorical-embeddings" title="Link to this heading">#</a></h2>
 <figure class="align-default" id="fig-categorical-embeddings">
 <a class="reference internal image-reference" href="../../../_images/110.png"><img alt="../../../_images/110.png" src="../../../_images/110.png" style="width: 70%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 87 </span><span class="caption-text">Categorical Embeddings</span><a class="headerlink" href="#fig-categorical-embeddings" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 87 </span><span class="caption-text">Categorical Embeddings</span><a class="headerlink" href="#fig-categorical-embeddings" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p><strong>Categorical embeddings</strong> offer a powerful way to represent categorical variables, which are common in various fields like market research, medical studies, and social science, as vectors. This method is especially beneficial when dealing with high-dimensional categorical variables - variables that have a large number of categories.</p>
@@ -695,7 +719,7 @@ document.write(`
 <p>In essence, <strong>categorical embeddings</strong> are an elegant solution to a complex problem, simplifying high-dimensional categorical data into a compact form, allowing machine learning models to learn more effectively and efficiently.</p>
 </section>
 <section id="an-embedding-layer-is-matrix-multiplication">
-<h2>An embedding layer is matrix multiplication:<a class="headerlink" href="#an-embedding-layer-is-matrix-multiplication" title="Permalink to this heading">#</a></h2>
+<h2>An embedding layer is matrix multiplication:<a class="headerlink" href="#an-embedding-layer-is-matrix-multiplication" title="Link to this heading">#</a></h2>
 <p>An <strong>embedding layer</strong> in neural networks is essentially a matrix multiplication operation. To understand this, consider the following formula:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -713,14 +737,14 @@ document.write(`
 <p>In this way, an <strong>embedding layer</strong> elegantly transforms categorical data into a format that neural networks can work with effectively while preserving the intricate relationships between categories.</p>
 </section>
 <section id="embedding-layers-vs-dense-layers">
-<h2>Embedding Layers vs. Dense Layers<a class="headerlink" href="#embedding-layers-vs-dense-layers" title="Permalink to this heading">#</a></h2>
+<h2>Embedding Layers vs. Dense Layers<a class="headerlink" href="#embedding-layers-vs-dense-layers" title="Link to this heading">#</a></h2>
 <p>When it comes to neural networks, there’s a fascinating relationship between <strong>embedding layers</strong> and <strong>dense layers</strong>. In fact, an embedding layer can be seen as statistically equivalent to a fully-connected dense layer, provided we have one-hot vectors as input and a linear activation function.</p>
 <p>Here’s why: an <strong>embedding layer</strong> takes a one-hot encoded vector, multiplies it by the embedding matrix (which is just a learned look-up table), and produces an output. This is essentially what a dense layer with a linear activation does too. In a dense layer, the input is multiplied by the weights (equivalent to the embedding matrix in an embedding layer), and an optional bias is added. If we don’t use a bias and the activation is linear, then the dense layer does exactly the same as the embedding layer.</p>
 <p>However, while functionally similar, an important distinction between the two lies in their efficiency. Specifically, <strong>embedding layers are much faster than dense layers when dealing with a large number of categories</strong> (generally more than around 50). The reason for this speed difference is the computational expense involved in matrix multiplication. In an embedding layer, the matrix multiplication with a one-hot encoded vector effectively boils down to selecting the corresponding row in the embedding matrix, which is a much simpler operation.</p>
 <p>In contrast, a dense layer with a one-hot vector as input would still perform a full matrix multiplication, which is more computationally expensive. So, while both layers can theoretically perform the same operation, when it comes to handling a high number of categories, the embedding layer stands out as the more efficient choice.</p>
 </section>
 <section id="id1">
-<h2>Word Embeddings<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<h2>Word Embeddings<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p><strong>Word embeddings</strong> are an innovative application of neural network layers. They provide an efficient, dense representation for words by mapping them onto vectors.</p>
 <p>Here’s how they work: Consider any document, which we can view as a list of word indexes, <span class="math notranslate nohighlight">\({w_1 ,w_2 ,...,w_{n_i} }\)</span>. Each <span class="math notranslate nohighlight">\(w_i\)</span> can be represented as a one-hot vector. The dimensionality of this vector, <span class="math notranslate nohighlight">\(n_w\)</span>, equals the size of the vocabulary - each word in the vocabulary has a unique index that is marked as ‘1’ in the one-hot vector, while all other indexes are ‘0’.</p>
 <p>To ensure consistent input structure for the neural network, it is usually necessary to normalize all documents to the same length, <span class="math notranslate nohighlight">\(L\)</span>. This can be done by padding shorter documents with a null token. However, it’s worth noting that this requirement can be relaxed when using recurrent neural networks.</p>
@@ -737,13 +761,13 @@ document.write(`
 <figure class="align-default" id="fig-word-embeddings">
 <a class="reference internal image-reference" href="../../../_images/42.png"><img alt="../../../_images/42.png" src="../../../_images/42.png" style="width: 70%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 88 </span><span class="caption-text">Word Embeddings</span><a class="headerlink" href="#fig-word-embeddings" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 88 </span><span class="caption-text">Word Embeddings</span><a class="headerlink" href="#fig-word-embeddings" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>In a nutshell, word embeddings offer an efficient, computationally friendly way of representing words for machine learning tasks, condensing the high-dimensional space of one-hot vectors into a denser, lower-dimensional representation that still captures essential semantic features.</p>
 </section>
 <section id="why-do-we-need-neural-networks-for-word-embeddings">
-<h2>Why do we need neural networks for word embeddings?<a class="headerlink" href="#why-do-we-need-neural-networks-for-word-embeddings" title="Permalink to this heading">#</a></h2>
+<h2>Why do we need neural networks for word embeddings?<a class="headerlink" href="#why-do-we-need-neural-networks-for-word-embeddings" title="Link to this heading">#</a></h2>
 <p>In the realm of machine learning and natural language processing, we often face a dilemma when dealing with text data: should we use traditional clustering algorithms, or do we need the more advanced neural network models for tasks such as <strong>word embeddings</strong>?</p>
 <p>There’s a good number of conventional, or as we often call them, shallow algorithms, that work remarkably well for clustering tasks. These include:</p>
 <ul class="simple">
@@ -762,7 +786,7 @@ document.write(`
 <p>In conclusion, while traditional clustering algorithms hold their merits in specific scenarios, the flexibility, learning ability, and higher representation power of neural networks make them the go-to choice for tasks such as word embeddings in natural language processing.</p>
 </section>
 <section id="next">
-<h2>Next<a class="headerlink" href="#next" title="Permalink to this heading">#</a></h2>
+<h2>Next<a class="headerlink" href="#next" title="Link to this heading">#</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="nlm.html">Neural Language Models</a></li>
@@ -831,6 +855,7 @@ document.write(`
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
@@ -892,8 +917,8 @@ By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

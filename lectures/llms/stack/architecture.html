@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>LLM Application Architectures &#8212; ἐντελέχεια.άι</title>
   
@@ -19,25 +18,25 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css?v=e236af4b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
@@ -46,33 +45,33 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css?v=574a5d82" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css?v=06ccce15" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../../../_static/tabs.js?v=3ee01567"></script>
     <script src="../../../_static/js/hoverxref.js"></script>
     <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
     <script src="../../../_static/js/micromodal.min.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../../_static/design-tabs.js"></script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -85,12 +84,24 @@ const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/llms/stack/architecture';</script>
     <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/llms/stack/architecture.html" />
-    <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="LLM App Ecosystem" href="app.html" />
@@ -104,10 +115,9 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -159,11 +169,14 @@ const thebe_selector_output = ".output, .cell_output"
   </div>
 
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -191,7 +204,18 @@ const thebe_selector_output = ".output, .cell_output"
     <p class="title logo__title">ἐντελέχεια.άι</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -669,14 +693,14 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="llm-application-architectures">
-<h1>LLM Application Architectures<a class="headerlink" href="#llm-application-architectures" title="Permalink to this heading">#</a></h1>
+<h1>LLM Application Architectures<a class="headerlink" href="#llm-application-architectures" title="Link to this heading">#</a></h1>
 <p>This lecture addresses the challenges and methods related to customization and fine-tuning of Large Language Models (LLMs), placing particular emphasis on their generative and predictive capacities. The discussion extends to the concept of ‘hallucination,’ which represents a significant hurdle in LLM applications. Solutions to this problem, particularly through contextual and relevant prompt engineering, are elaborated upon. The lecture also explores how the advent of vector stores, autonomous agents, and prompt pipelines has contributed to creating more contextualized and precise models.</p>
 <a class="reference internal image-reference" href="../../../_images/llm-architectures.png"><img alt="../../../_images/llm-architectures.png" class="align-center" src="../../../_images/llm-architectures.png" style="width: 90%;" /></a>
 <section id="challenges-and-methods-in-customizing-llms">
-<h2>Challenges and Methods in Customizing LLMs<a class="headerlink" href="#challenges-and-methods-in-customizing-llms" title="Permalink to this heading">#</a></h2>
+<h2>Challenges and Methods in Customizing LLMs<a class="headerlink" href="#challenges-and-methods-in-customizing-llms" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><strong>Unstructured Nature of LLMs</strong>:</p>
 <ul class="simple">
@@ -705,7 +729,7 @@ document.write(`
 </ol>
 </section>
 <section id="solutions-and-emerging-techniques">
-<h2>Solutions and Emerging Techniques<a class="headerlink" href="#solutions-and-emerging-techniques" title="Permalink to this heading">#</a></h2>
+<h2>Solutions and Emerging Techniques<a class="headerlink" href="#solutions-and-emerging-techniques" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><strong>Contextual Prompts at Inference-Time</strong>:</p>
 <ul class="simple">
@@ -733,45 +757,45 @@ document.write(`
 </ol>
 </section>
 <section id="terminology">
-<h2>Terminology<a class="headerlink" href="#terminology" title="Permalink to this heading">#</a></h2>
+<h2>Terminology<a class="headerlink" href="#terminology" title="Link to this heading">#</a></h2>
 <section id="prompt-engineering">
-<h3>Prompt Engineering<a class="headerlink" href="#prompt-engineering" title="Permalink to this heading">#</a></h3>
+<h3>Prompt Engineering<a class="headerlink" href="#prompt-engineering" title="Link to this heading">#</a></h3>
 <p>Prompt Engineering refers to the art and science of crafting effective prompts to guide the behavior of Large Language Models (LLMs) in generating desired outputs. This is a meta capability essential for unlocking the full potential of LLMs, which cannot be directly commanded or interacted with like chatbots. The technique involves envisioning the intended output and meticulously formulating a query or command to elicit that result.</p>
 </section>
 <section id="model-hallucination">
-<h3>Model Hallucination<a class="headerlink" href="#model-hallucination" title="Permalink to this heading">#</a></h3>
+<h3>Model Hallucination<a class="headerlink" href="#model-hallucination" title="Link to this heading">#</a></h3>
 <p>Model hallucination refers to the phenomenon where Large Language Models (LLMs) generate outputs that are plausible but factually incorrect. This often occurs when the model is confronted with ambiguous or uncertain scenarios. While the generated content may appear convincing, it diverges from factual accuracy.</p>
 </section>
 <section id="chain-of-thought-prompting">
-<h3>Chain-of-thought prompting<a class="headerlink" href="#chain-of-thought-prompting" title="Permalink to this heading">#</a></h3>
+<h3>Chain-of-thought prompting<a class="headerlink" href="#chain-of-thought-prompting" title="Link to this heading">#</a></h3>
 <p>Chain-of-thought prompting represents an advanced technique for interacting with Large Language Models (LLMs) to solve complex tasks, from arithmetic to common sense reasoning. This method deploys a sequence of carefully constructed prompts that guide the model through a logical process or “chain of thought,” thereby allowing it to generate more accurate and insightful outputs. The primary advantage of this approach is that it decomposes the input and output into manageable units, providing a window for detailed interpretation and modification.</p>
 <a class="reference internal image-reference" href="../../../_images/cot.png"><img alt="../../../_images/cot.png" class="align-center" src="../../../_images/cot.png" style="width: 80%;" /></a>
 </section>
 <section id="retrieval-augmented-generation-rag">
-<h3>Retrieval Augmented Generation (RAG)<a class="headerlink" href="#retrieval-augmented-generation-rag" title="Permalink to this heading">#</a></h3>
+<h3>Retrieval Augmented Generation (RAG)<a class="headerlink" href="#retrieval-augmented-generation-rag" title="Link to this heading">#</a></h3>
 <p>Retrieval Augmented Generation (RAG) is a framework that integrates Large Language Models (LLMs) with external data sources for more contextually accurate responses. Three core components—User Input Context, LLM Knowledge, and External Contextual Reference Data—are involved. RAG serves as an intersection of these elements, aimed at overcoming the limitations of LLMs such as hallucination and the lack of real-time contextual data.</p>
 <a class="reference internal image-reference" href="../../../_images/rag.png"><img alt="../../../_images/rag.png" class="align-center" src="../../../_images/rag.png" style="width: 80%;" /></a>
 </section>
 <section id="prompt-chaining">
-<h3>Prompt Chaining<a class="headerlink" href="#prompt-chaining" title="Permalink to this heading">#</a></h3>
+<h3>Prompt Chaining<a class="headerlink" href="#prompt-chaining" title="Link to this heading">#</a></h3>
 <p>Prompt chaining involves the systematic arrangement and execution of a sequence of prompts to engage Large Language Models (LLMs) in multi-step or complex tasks. The process is facilitated via specialized visual programming User Interfaces (UIs) that allow for intricate customization and control. In a typical scenario, prompt chaining necessitates elements like data transformation, rule-based decision-making, and exception handling to deal with the inherently unstructured and unpredictable nature of LLM outputs.</p>
 </section>
 <section id="autonomous-llm-agents">
-<h3>Autonomous LLM Agents<a class="headerlink" href="#autonomous-llm-agents" title="Permalink to this heading">#</a></h3>
+<h3>Autonomous LLM Agents<a class="headerlink" href="#autonomous-llm-agents" title="Link to this heading">#</a></h3>
 <p>Autonomous LLM Agents employ Large Language Models (LLMs) to autonomously perform tasks by utilizing a set of tools and applying actions in a pre-defined or dynamic sequence. These agents use a “chain-of-thought” reasoning approach to decompose complex questions into smaller, manageable tasks. They possess the autonomy to decide the sequence of tools used, apply actions accordingly, and evaluate the sufficiency of the output. The concept extends to include Human-In-The-Loop tools and agent networks.</p>
 </section>
 <section id="llm-debugging-and-monitoring">
-<h3>LLM Debugging and Monitoring<a class="headerlink" href="#llm-debugging-and-monitoring" title="Permalink to this heading">#</a></h3>
+<h3>LLM Debugging and Monitoring<a class="headerlink" href="#llm-debugging-and-monitoring" title="Link to this heading">#</a></h3>
 <p>LLM (Large Language Model) Debugging and Monitoring refer to the systematic procedures aimed at evaluating, analyzing, and improving the performance and behavior of LLMs. The emerging trend is to compare various LLMs against a common set of prompts, thereby enabling a nuanced understanding of model behavior. Tools like LangSmith and ChainForge facilitate these operations with functionalities such as prompt permutations, evaluation nodes, and visualization nodes.</p>
 <a class="reference internal image-reference" href="../../../_images/langsmith.png"><img alt="../../../_images/langsmith.png" class="align-center" src="../../../_images/langsmith.png" style="width: 80%;" /></a>
 </section>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
 <p>The customization and fine-tuning of LLMs have evolved beyond simple model training to more complex, context-aware methods. Contextual prompt engineering, facilitated by advanced tools like vector databases and autonomous agents, has proven effective in mitigating inherent challenges such as hallucination. These advancements signify a transition towards more adaptive and precise implementations of LLMs in enterprise environments.</p>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://cobusgreyling.medium.com/emerging-large-language-model-llm-application-architecture-cba0e7862037">Emerging Large Language Model (LLM) Application Architecture</a></p></li>
 </ul>
@@ -834,6 +858,7 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -903,8 +928,8 @@ By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

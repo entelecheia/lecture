@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>WordPiece Step-by-Step Implementation &#8212; ἐντελέχεια.άι</title>
   
@@ -19,25 +18,25 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css?v=e236af4b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
@@ -46,33 +45,33 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css?v=574a5d82" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css?v=06ccce15" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../../../_static/tabs.js?v=3ee01567"></script>
     <script src="../../../_static/js/hoverxref.js"></script>
     <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
     <script src="../../../_static/js/micromodal.min.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../../_static/design-tabs.js"></script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -85,12 +84,24 @@ const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_deep/tokenization/wordpiece';</script>
     <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_deep/tokenization/wordpiece.html" />
-    <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Unigram Step-by-Step Implementation" href="unigram.html" />
@@ -104,10 +115,9 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -159,11 +169,14 @@ const thebe_selector_output = ".output, .cell_output"
   </div>
 
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -191,7 +204,18 @@ const thebe_selector_output = ".output, .cell_output"
     <p class="title logo__title">ἐντελέχεια.άι</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -715,13 +739,13 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="wordpiece-step-by-step-implementation">
-<h1>WordPiece Step-by-Step Implementation<a class="headerlink" href="#wordpiece-step-by-step-implementation" title="Permalink to this heading">#</a></h1>
+<h1>WordPiece Step-by-Step Implementation<a class="headerlink" href="#wordpiece-step-by-step-implementation" title="Link to this heading">#</a></h1>
 <p>In this lecture, we will walk you through the process of implementing WordPiece tokenization, a subword tokenization algorithm used in many state-of-the-art models like BERT, DistilBERT, and RoBERTa. We will use a dataset of financial news headlines for this purpose.</p>
 <section id="dataset-preparation">
-<h2>Dataset Preparation<a class="headerlink" href="#dataset-preparation" title="Permalink to this heading">#</a></h2>
+<h2>Dataset Preparation<a class="headerlink" href="#dataset-preparation" title="Link to this heading">#</a></h2>
 <p>First, we need to load our dataset. We will use the <code class="docutils literal notranslate"><span class="pre">ashraq/financial-news</span></code> dataset from the Hugging Face Hub. We will use the <code class="docutils literal notranslate"><span class="pre">headline</span></code> column as our text data. We will randomly sample 1000 records from this dataset for our tokenization process. Here is how we can do this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -744,7 +768,7 @@ Loading cached shuffled indices for dataset at /home/yjlee/.cache/huggingface/da
 </div>
 </section>
 <section id="pre-tokenization">
-<h2>Pre-tokenization<a class="headerlink" href="#pre-tokenization" title="Permalink to this heading">#</a></h2>
+<h2>Pre-tokenization<a class="headerlink" href="#pre-tokenization" title="Link to this heading">#</a></h2>
 <p>Before we start with the WordPiece tokenization, we need to pre-tokenize our text. Pre-tokenization involves splitting the text into words. This is a necessary step because WordPiece operates on the word level. Here is a simple function to pre-tokenize the text:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -762,7 +786,7 @@ Loading cached shuffled indices for dataset at /home/yjlee/.cache/huggingface/da
 </div>
 </section>
 <section id="vocabulary-initialization">
-<h2>Vocabulary Initialization<a class="headerlink" href="#vocabulary-initialization" title="Permalink to this heading">#</a></h2>
+<h2>Vocabulary Initialization<a class="headerlink" href="#vocabulary-initialization" title="Link to this heading">#</a></h2>
 <p>The next step is to initialize our vocabulary. In the case of WordPiece, we start with a vocabulary of individual characters. Here is how we can do this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -813,7 +837,7 @@ Loading cached shuffled indices for dataset at /home/yjlee/.cache/huggingface/da
 </div>
 </section>
 <section id="adding-special-tokens">
-<h2>Adding Special Tokens<a class="headerlink" href="#adding-special-tokens" title="Permalink to this heading">#</a></h2>
+<h2>Adding Special Tokens<a class="headerlink" href="#adding-special-tokens" title="Link to this heading">#</a></h2>
 <p>BERT and other models that use WordPiece tokenization use special tokens like “[PAD]”, “[UNK]”, “[CLS]”, “[SEP]”, “[MASK]”. We need to add these tokens to our vocabulary:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -830,7 +854,7 @@ Loading cached shuffled indices for dataset at /home/yjlee/.cache/huggingface/da
 </div>
 </section>
 <section id="splitting-words-into-characters">
-<h2>Splitting Words into Characters<a class="headerlink" href="#splitting-words-into-characters" title="Permalink to this heading">#</a></h2>
+<h2>Splitting Words into Characters<a class="headerlink" href="#splitting-words-into-characters" title="Link to this heading">#</a></h2>
 <p>Next, we split each word into characters. We also add a special prefix “##” to all characters except the first one in each word. This prefix is used to indicate that a character is not the start of a new word:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -844,7 +868,7 @@ Loading cached shuffled indices for dataset at /home/yjlee/.cache/huggingface/da
 </div>
 </section>
 <section id="computing-pair-scores">
-<h2>Computing Pair Scores<a class="headerlink" href="#computing-pair-scores" title="Permalink to this heading">#</a></h2>
+<h2>Computing Pair Scores<a class="headerlink" href="#computing-pair-scores" title="Link to this heading">#</a></h2>
 <p>Now, we compute the scores for all possible pairs of characters. The score of a pair is defined as the frequency of the pair divided by the product of the frequencies of the individual characters. The idea is to find the pair that occurs together more often than separately:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -891,7 +915,7 @@ Loading cached shuffled indices for dataset at /home/yjlee/.cache/huggingface/da
 <p>The <code class="docutils literal notranslate"><span class="pre">compute_pair_scores</span></code> function calculates the scores for all possible pairs of characters in the vocabulary. The score of a pair is defined as the frequency of the pair divided by the product of the frequencies of the individual characters. This score is a measure of how often the pair occurs together compared to how often they occur separately.</p>
 </section>
 <section id="finding-the-best-pair">
-<h2>Finding the Best Pair<a class="headerlink" href="#finding-the-best-pair" title="Permalink to this heading">#</a></h2>
+<h2>Finding the Best Pair<a class="headerlink" href="#finding-the-best-pair" title="Link to this heading">#</a></h2>
 <p>Next, we find the pair with the highest score. This pair is the best candidate for merging:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -914,7 +938,7 @@ Loading cached shuffled indices for dataset at /home/yjlee/.cache/huggingface/da
 </div>
 </section>
 <section id="merging-the-best-pair">
-<h2>Merging the Best Pair<a class="headerlink" href="#merging-the-best-pair" title="Permalink to this heading">#</a></h2>
+<h2>Merging the Best Pair<a class="headerlink" href="#merging-the-best-pair" title="Link to this heading">#</a></h2>
 <p>Once we have identified the best pair, we merge it and update our splits:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -939,7 +963,7 @@ Loading cached shuffled indices for dataset at /home/yjlee/.cache/huggingface/da
 <p>The <code class="docutils literal notranslate"><span class="pre">merge_pair</span></code> function merges the best pair in all the words in our vocabulary. If the second character of the pair starts with “##”, we remove the “##” before merging. After merging, we replace the pair in the word with the merged character.</p>
 </section>
 <section id="repeating-the-process">
-<h2>Repeating the Process<a class="headerlink" href="#repeating-the-process" title="Permalink to this heading">#</a></h2>
+<h2>Repeating the Process<a class="headerlink" href="#repeating-the-process" title="Link to this heading">#</a></h2>
 <p>We repeat the process of computing pair scores, finding the best pair, and merging the best pair until we reach our desired vocabulary size:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -973,7 +997,7 @@ Last 50 tokens: [&#39;##tangibl&#39;, &#39;##ntangibl&#39;, &#39;##intangibl&#39
 </div>
 </section>
 <section id="encoding-words">
-<h2>Encoding Words<a class="headerlink" href="#encoding-words" title="Permalink to this heading">#</a></h2>
+<h2>Encoding Words<a class="headerlink" href="#encoding-words" title="Link to this heading">#</a></h2>
 <p>Now that we have our WordPiece vocabulary, we can use it to encode words:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1009,7 +1033,7 @@ Last 50 tokens: [&#39;##tangibl&#39;, &#39;##ntangibl&#39;, &#39;##intangibl&#39
 <p>The <code class="docutils literal notranslate"><span class="pre">encode_word</span></code> function takes a word and encodes it using the WordPiece vocabulary. It starts from the end of the word and finds the longest substring that is in the vocabulary. If no such substring is found, it returns the unknown token “[UNK]”. Otherwise, it adds the substring to the list of tokens and repeats the process with the remaining part of the word.</p>
 </section>
 <section id="tokenizing-text">
-<h2>Tokenizing Text<a class="headerlink" href="#tokenizing-text" title="Permalink to this heading">#</a></h2>
+<h2>Tokenizing Text<a class="headerlink" href="#tokenizing-text" title="Link to this heading">#</a></h2>
 <p>Finally, we can use our WordPiece tokenizer to tokenize text:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1569,6 +1593,7 @@ Last 50 tokens: [&#39;thompso&#39;, &#39;accompan&#39;, &#39;accompany&#39;, &#3
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
@@ -1634,8 +1659,8 @@ By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

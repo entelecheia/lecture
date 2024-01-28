@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Fine-Tuning LLMs with Hugging Face AutoTrain &#8212; ἐντελέχεια.άι</title>
   
@@ -19,25 +18,25 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css?v=e236af4b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
@@ -46,33 +45,33 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css?v=574a5d82" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css?v=06ccce15" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../../../_static/tabs.js?v=3ee01567"></script>
     <script src="../../../_static/js/hoverxref.js"></script>
     <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
     <script src="../../../_static/js/micromodal.min.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../../_static/design-tabs.js"></script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -85,12 +84,24 @@ const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/llms/finetune/autotrain';</script>
     <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/llms/finetune/autotrain.html" />
-    <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Retrieval Augmented Generation (RAG)" href="../rag/index.html" />
@@ -104,10 +115,9 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -159,11 +169,14 @@ const thebe_selector_output = ".output, .cell_output"
   </div>
 
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -191,7 +204,18 @@ const thebe_selector_output = ".output, .cell_output"
     <p class="title logo__title">ἐντελέχεια.άι</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -666,14 +690,14 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="fine-tuning-llms-with-hugging-face-autotrain">
-<h1>Fine-Tuning LLMs with Hugging Face AutoTrain<a class="headerlink" href="#fine-tuning-llms-with-hugging-face-autotrain" title="Permalink to this heading">#</a></h1>
+<h1>Fine-Tuning LLMs with Hugging Face AutoTrain<a class="headerlink" href="#fine-tuning-llms-with-hugging-face-autotrain" title="Link to this heading">#</a></h1>
 <p>Fine-tuning <strong>Large Language Models (LLMs)</strong> like GPT-3 or BERT is a process that tailors these general-purpose models to specialized tasks or domains. Through fine-tuning, we can leverage a model’s learned capabilities and adapt them to perform new tasks or understand new types of data. This customization is particularly valuable in sectors where the context is crucial, such as legal, medical, or customer support.</p>
 <p>Hugging Face’s <strong>AutoTrain</strong> platform emerges as a solution for those who may not be deeply familiar with machine learning workflows. It offers an intuitive, no-code interface and a Python API, making it accessible for users to fine-tune models without extensive coding or machine learning expertise.</p>
 <section id="key-benefits-of-fine-tuning-llms">
-<h2>Key Benefits of Fine-Tuning LLMs:<a class="headerlink" href="#key-benefits-of-fine-tuning-llms" title="Permalink to this heading">#</a></h2>
+<h2>Key Benefits of Fine-Tuning LLMs:<a class="headerlink" href="#key-benefits-of-fine-tuning-llms" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Customization:</strong> Tailor models to understand the nuances of specific domains or tasks.</p></li>
 <li><p><strong>Accuracy:</strong> Improve the model’s predictions or generation quality for your particular use case.</p></li>
@@ -682,7 +706,7 @@ document.write(`
 </ul>
 </section>
 <section id="getting-started-with-autotrain">
-<h2>Getting Started with AutoTrain<a class="headerlink" href="#getting-started-with-autotrain" title="Permalink to this heading">#</a></h2>
+<h2>Getting Started with AutoTrain<a class="headerlink" href="#getting-started-with-autotrain" title="Link to this heading">#</a></h2>
 <p>Before initiating the fine-tuning process, it’s important to have:</p>
 <ul class="simple">
 <li><p>A <strong>high-quality dataset</strong> that is representative of the task at hand.</p></li>
@@ -692,10 +716,10 @@ document.write(`
 <p>With these elements in place, you can proceed with the fine-tuning process using AutoTrain.</p>
 </section>
 <section id="step-by-step-lab-fine-tuning-falcon-7b-on-openassistant">
-<h2>Step-by-Step Lab: Fine-Tuning Falcon-7B on OpenAssistant<a class="headerlink" href="#step-by-step-lab-fine-tuning-falcon-7b-on-openassistant" title="Permalink to this heading">#</a></h2>
+<h2>Step-by-Step Lab: Fine-Tuning Falcon-7B on OpenAssistant<a class="headerlink" href="#step-by-step-lab-fine-tuning-falcon-7b-on-openassistant" title="Link to this heading">#</a></h2>
 <p>In this lab, we will fine-tune the <a class="reference external" href="https://huggingface.co/tiiuae/falcon-7b"><strong>Falcon-7B</strong></a> model using the <a class="reference external" href="https://huggingface.co/datasets/timdettmers/openassistant-guanaco"><strong>OpenAssistant</strong></a> dataset. The Falcon-7B model, a 7-billion-parameter LLM, is a powerful foundation model trained on a diverse corpus of text from the web (OpenWebText2).</p>
 <section id="step-1-install-necessary-libraries-and-set-up-autotrain">
-<h3>Step 1: Install Necessary Libraries and Set Up AutoTrain<a class="headerlink" href="#step-1-install-necessary-libraries-and-set-up-autotrain" title="Permalink to this heading">#</a></h3>
+<h3>Step 1: Install Necessary Libraries and Set Up AutoTrain<a class="headerlink" href="#step-1-install-necessary-libraries-and-set-up-autotrain" title="Link to this heading">#</a></h3>
 <p>To begin fine-tuning with AutoTrain’s Python API, you must set up your Python environment. This involves installing the AutoTrain and Transformers libraries, along with other necessary dependencies, which might include PyTorch specific to your hardware capabilities (e.g., CUDA version for GPU support).</p>
 <p>The command provided installs the required packages as specified in a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file. This file should list all the necessary libraries, ensuring that your environment is correctly configured for the tasks ahead.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt<span class="w"> </span>--extra-index-url<span class="w"> </span>https://download.pytorch.org/whl/cu118
@@ -707,7 +731,7 @@ document.write(`
 </div>
 </section>
 <section id="step-2-prepare-dataset-and-define-task">
-<h3>Step 2: Prepare Dataset and Define Task<a class="headerlink" href="#step-2-prepare-dataset-and-define-task" title="Permalink to this heading">#</a></h3>
+<h3>Step 2: Prepare Dataset and Define Task<a class="headerlink" href="#step-2-prepare-dataset-and-define-task" title="Link to this heading">#</a></h3>
 <p>Setting up the environment involves creating a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file (e.g., <code class="docutils literal notranslate"><span class="pre">falcon.env</span></code>) that contains all the necessary variables for the fine-tuning process. This configuration includes the model details, dataset information, learning parameters, and other training options.</p>
 <p>Key aspects to define in this step:</p>
 <ul class="simple">
@@ -744,28 +768,28 @@ REPO_ID=&quot;username/repo_name&quot;
 <p>By properly setting these parameters, you are creating a blueprint that AutoTrain will follow to fine-tune your model.</p>
 </section>
 <section id="step-3-prepare-your-dataset">
-<h3>Step 3: Prepare Your Dataset<a class="headerlink" href="#step-3-prepare-your-dataset" title="Permalink to this heading">#</a></h3>
+<h3>Step 3: Prepare Your Dataset<a class="headerlink" href="#step-3-prepare-your-dataset" title="Link to this heading">#</a></h3>
 <p>The quality of the dataset is paramount in fine-tuning. It must be representative of the actual data the model will encounter when deployed. Cleaning the dataset to remove noise and ensuring it’s in the right format is crucial for effective fine-tuning. The command <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">autotrain.sh</span> <span class="pre">data</span></code> typically would run a script that prepares and uploads your data to AutoTrain’s environment.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash<span class="w"> </span>autotrain.sh<span class="w"> </span>data
 </pre></div>
 </div>
 </section>
 <section id="step-4-training-with-autotrain">
-<h3>Step 4: Training with AutoTrain<a class="headerlink" href="#step-4-training-with-autotrain" title="Permalink to this heading">#</a></h3>
+<h3>Step 4: Training with AutoTrain<a class="headerlink" href="#step-4-training-with-autotrain" title="Link to this heading">#</a></h3>
 <p>Training the model is where the actual fine-tuning happens. You initiate the process with a script (<code class="docutils literal notranslate"><span class="pre">autotrain.sh</span></code>), which uses the environment variables set earlier to start training the model on your dataset. Throughout this step, AutoTrain provides insights into the model’s learning progress and resource consumption.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash<span class="w"> </span>autotrain.sh<span class="w"> </span>train
 </pre></div>
 </div>
 </section>
 <section id="step-5-evaluation-and-deployment">
-<h3>Step 5: Evaluation and Deployment<a class="headerlink" href="#step-5-evaluation-and-deployment" title="Permalink to this heading">#</a></h3>
+<h3>Step 5: Evaluation and Deployment<a class="headerlink" href="#step-5-evaluation-and-deployment" title="Link to this heading">#</a></h3>
 <p>After the model has been fine-tuned, it’s essential to evaluate its performance to ensure that it meets the expected standards. AutoTrain offers evaluation metrics that help you understand how well your model is performing. If the model’s performance is satisfactory, you can deploy it using Hugging Face’s hosting services, which offer a scalable and secure way to integrate the model into applications.</p>
 <p>Alternatively, you can export the model for deployment in a custom environment. This flexibility ensures that the fine-tuned model can be used in a way that best suits your operational requirements.</p>
 <p>This comprehensive explanation should provide a clear understanding of each step in fine-tuning an LLM using Hugging Face’s AutoTrain. With this guide, even those with limited machine learning expertise can effectively fine-tune LLMs for enhanced performance on specialized tasks.</p>
 </section>
 </section>
 <section id="conclusion-and-considerations">
-<h2>Conclusion and Considerations<a class="headerlink" href="#conclusion-and-considerations" title="Permalink to this heading">#</a></h2>
+<h2>Conclusion and Considerations<a class="headerlink" href="#conclusion-and-considerations" title="Link to this heading">#</a></h2>
 <p>Fine-tuning an LLM with AutoTrain can significantly enhance your business operations by providing a more specialized tool tailored to your specific needs. It’s a process that balances customization with practical considerations such as computational costs and ethical standards. By following this guide, you can navigate the fine-tuning process and harness the full capabilities of LLMs for your applications.</p>
 <p>The code and more detailed instructions for this process can be found in the class GitHub repository: <a class="reference external" href="https://github.com/chu-aie/deepnlp-2023">chu-aie/deepnlp-2023</a>.</p>
 </section>
@@ -827,6 +851,7 @@ REPO_ID=&quot;username/repo_name&quot;
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -893,8 +918,8 @@ By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

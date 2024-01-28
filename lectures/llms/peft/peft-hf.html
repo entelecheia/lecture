@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>PEFT in HuggingFace Libraries &#8212; ἐντελέχεια.άι</title>
   
@@ -19,25 +18,25 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css?v=e236af4b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
@@ -46,33 +45,33 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css?v=574a5d82" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css?v=06ccce15" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../../../_static/tabs.js?v=3ee01567"></script>
     <script src="../../../_static/js/hoverxref.js"></script>
     <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
     <script src="../../../_static/js/micromodal.min.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../../_static/design-tabs.js"></script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -85,12 +84,24 @@ const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/llms/peft/peft-hf';</script>
     <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/llms/peft/peft-hf.html" />
-    <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Q-Learning" href="../q-learning/index.html" />
@@ -104,10 +115,9 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -159,11 +169,14 @@ const thebe_selector_output = ".output, .cell_output"
   </div>
 
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -191,7 +204,18 @@ const thebe_selector_output = ".output, .cell_output"
     <p class="title logo__title">ἐντελέχεια.άι</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -673,13 +697,13 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="peft-in-huggingface-libraries">
-<h1><a class="reference external" href="https://github.com/huggingface/peft">PEFT in HuggingFace Libraries</a><a class="headerlink" href="#peft-in-huggingface-libraries" title="Permalink to this heading">#</a></h1>
+<h1><a class="reference external" href="https://github.com/huggingface/peft">PEFT in HuggingFace Libraries</a><a class="headerlink" href="#peft-in-huggingface-libraries" title="Link to this heading">#</a></h1>
 <p>PEFT methods are seamlessly integrated with 🤗 Accelerate, supporting large-scale models through DeepSpeed and Big Model Inference.</p>
 <section id="supported-peft-methods">
-<h2>Supported PEFT Methods<a class="headerlink" href="#supported-peft-methods" title="Permalink to this heading">#</a></h2>
+<h2>Supported PEFT Methods<a class="headerlink" href="#supported-peft-methods" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><strong>LoRA</strong>: Low-Rank Adaptation for efficient model adaptation. <a class="reference external" href="https://arxiv.org/abs/2106.09685">Paper</a></p></li>
 <li><p><strong>Prefix Tuning</strong>: Optimizes continuous prompts for generation tasks. <a class="reference external" href="https://aclanthology.org/2021.acl-long.353/">Paper1</a>, <a class="reference external" href="https://arxiv.org/pdf/2110.07602.pdf">Paper2</a></p></li>
@@ -693,7 +717,7 @@ document.write(`
 </ol>
 </section>
 <section id="getting-started-with-peft">
-<h2>Getting Started with PEFT<a class="headerlink" href="#getting-started-with-peft" title="Permalink to this heading">#</a></h2>
+<h2>Getting Started with PEFT<a class="headerlink" href="#getting-started-with-peft" title="Link to this heading">#</a></h2>
 <p>Here’s a Python snippet demonstrating how to use LoRA with a sequence-to-sequence model:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoModelForSeq2SeqLM</span>
 <span class="kn">from</span> <span class="nn">peft</span> <span class="kn">import</span> <span class="n">get_peft_config</span><span class="p">,</span> <span class="n">get_peft_model</span><span class="p">,</span> <span class="n">LoraConfig</span><span class="p">,</span> <span class="n">TaskType</span>
@@ -712,13 +736,13 @@ document.write(`
 </div>
 </section>
 <section id="use-cases">
-<h2>Use Cases<a class="headerlink" href="#use-cases" title="Permalink to this heading">#</a></h2>
+<h2>Use Cases<a class="headerlink" href="#use-cases" title="Link to this heading">#</a></h2>
 <section id="get-comparable-performance-to-full-finetuning-by-adapting-llms-to-downstream-tasks-using-consumer-hardware">
-<h3>Get comparable performance to full finetuning by adapting LLMs to downstream tasks using consumer hardware<a class="headerlink" href="#get-comparable-performance-to-full-finetuning-by-adapting-llms-to-downstream-tasks-using-consumer-hardware" title="Permalink to this heading">#</a></h3>
+<h3>Get comparable performance to full finetuning by adapting LLMs to downstream tasks using consumer hardware<a class="headerlink" href="#get-comparable-performance-to-full-finetuning-by-adapting-llms-to-downstream-tasks-using-consumer-hardware" title="Link to this heading">#</a></h3>
 <p>GPU memory required for adapting LLMs on the few-shot dataset <a class="reference external" href="https://huggingface.co/datasets/ought/raft/viewer/twitter_complaints"><code class="docutils literal notranslate"><span class="pre">ought/raft/twitter_complaints</span></code></a>. Here, settings considered
 are full finetuning, PEFT-LoRA using plain PyTorch and PEFT-LoRA using DeepSpeed with CPU Offloading.</p>
 <p>Hardware: Single A100 80GB GPU with CPU RAM above 64GB</p>
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Model</p></th>
 <th class="head"><p>Full Finetuning</p></th>
@@ -747,7 +771,7 @@ are full finetuning, PEFT-LoRA using plain PyTorch and PEFT-LoRA using DeepSpeed
 <p>Performance of PEFT-LoRA tuned <a class="reference external" href="https://huggingface.co/bigscience/T0_3B"><code class="docutils literal notranslate"><span class="pre">bigscience/T0_3B</span></code></a> on <a class="reference external" href="https://huggingface.co/datasets/ought/raft/viewer/twitter_complaints"><code class="docutils literal notranslate"><span class="pre">ought/raft/twitter_complaints</span></code></a> leaderboard.
 A point to note is that we didn’t try to squeeze performance by playing around with input instruction templates, LoRA hyperparams and other training related hyperparams. Also, we didn’t use the larger 13B <a class="reference external" href="https://huggingface.co/bigscience/mt0-xxl">mt0-xxl</a> model.
 So, we are already seeing comparable performance to SoTA with parameter efficient tuning. Also, the final additional checkpoint size is just <code class="docutils literal notranslate"><span class="pre">19MB</span></code> in comparison to <code class="docutils literal notranslate"><span class="pre">11GB</span></code> size of the backbone <a class="reference external" href="https://huggingface.co/bigscience/T0_3B"><code class="docutils literal notranslate"><span class="pre">bigscience/T0_3B</span></code></a> model, but one still has to load the original full size model.</p>
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Submission Name</p></th>
 <th class="head"><p>Accuracy</p></th>
@@ -770,10 +794,10 @@ So, we are already seeing comparable performance to SoTA with parameter efficien
 </section>
 </section>
 <section id="parameter-efficient-tuning-of-diffusion-models">
-<h2>Parameter Efficient Tuning of Diffusion Models<a class="headerlink" href="#parameter-efficient-tuning-of-diffusion-models" title="Permalink to this heading">#</a></h2>
+<h2>Parameter Efficient Tuning of Diffusion Models<a class="headerlink" href="#parameter-efficient-tuning-of-diffusion-models" title="Link to this heading">#</a></h2>
 <p>GPU memory required by different settings during training is given below. The final checkpoint size is <code class="docutils literal notranslate"><span class="pre">8.8</span> <span class="pre">MB</span></code>.</p>
 <p>Hardware: Single A100 80GB GPU with CPU RAM above 64GB</p>
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Model</p></th>
 <th class="head"><p>Full Finetuning</p></th>
@@ -790,7 +814,7 @@ So, we are already seeing comparable performance to SoTA with parameter efficien
 </tbody>
 </table>
 <p><strong>Training</strong>
-An example of using LoRA for parameter efficient dreambooth training is given in <span class="xref myst"><code class="docutils literal notranslate"><span class="pre">examples/lora_dreambooth/train_dreambooth.py</span></code></span></p>
+An example of using LoRA for parameter efficient dreambooth training is given in <a class="reference internal" href="#examples/lora_dreambooth/train_dreambooth.py"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">examples/lora_dreambooth/train_dreambooth.py</span></code></span></a></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">MODEL_NAME</span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;CompVis/stable-diffusion-v1-4&quot;</span><span class="w"> </span><span class="c1">#&quot;stabilityai/stable-diffusion-2-1&quot;</span>
 <span class="nb">export</span><span class="w"> </span><span class="nv">INSTANCE_DIR</span><span class="o">=</span><span class="s2">&quot;path-to-instance-images&quot;</span>
 <span class="nb">export</span><span class="w"> </span><span class="nv">CLASS_DIR</span><span class="o">=</span><span class="s2">&quot;path-to-class-images&quot;</span>
@@ -826,23 +850,23 @@ accelerate<span class="w"> </span>launch<span class="w"> </span>train_dreambooth
 <p><img alt="peft lora dreambooth gradio space" src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/peft/peft_lora_dreambooth_gradio_space.png" /></p>
 <p><strong>NEW</strong> ✨ Multi Adapter support and combining multiple LoRA adapters in a weighted combination
 <img alt="peft lora dreambooth weighted adapter" src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/peft/weighted_adapter_dreambooth_lora.png" /></p>
-<p><strong>NEW</strong> ✨ Dreambooth training for Stable Diffusion using LoHa and LoKr adapters <span class="xref myst"><code class="docutils literal notranslate"><span class="pre">examples/stable_diffusion/train_dreambooth.py</span></code></span></p>
+<p><strong>NEW</strong> ✨ Dreambooth training for Stable Diffusion using LoHa and LoKr adapters <a class="reference internal" href="#examples/stable_diffusion/train_dreambooth.py"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">examples/stable_diffusion/train_dreambooth.py</span></code></span></a></p>
 </section>
 <section id="parameter-efficient-tuning-of-llms-for-rlhf-components-such-as-ranker-and-policy">
-<h2>Parameter Efficient Tuning of LLMs for RLHF components such as Ranker and Policy<a class="headerlink" href="#parameter-efficient-tuning-of-llms-for-rlhf-components-such-as-ranker-and-policy" title="Permalink to this heading">#</a></h2>
+<h2>Parameter Efficient Tuning of LLMs for RLHF components such as Ranker and Policy<a class="headerlink" href="#parameter-efficient-tuning-of-llms-for-rlhf-components-such-as-ranker-and-policy" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Here is an example in <a class="reference external" href="https://github.com/lvwerra/trl">trl</a> library using PEFT+INT8 for tuning policy model: <a class="reference external" href="https://github.com/lvwerra/trl/blob/main/examples/sentiment/scripts/gpt2-sentiment_peft.py">gpt2-sentiment_peft.py</a> and corresponding <a class="reference external" href="https://huggingface.co/blog/trl-peft">Blog</a></p></li>
 <li><p>Example using PEFT for Instruction finetuning, reward model and policy : <a class="reference external" href="https://github.com/lvwerra/trl/tree/main/examples/research_projects/stack_llama/scripts">stack_llama</a> and corresponding <a class="reference external" href="https://huggingface.co/blog/stackllama">Blog</a></p></li>
 </ul>
 </section>
 <section id="int8-training-of-large-models-in-colab-using-peft-lora-and-bits-and-bytes">
-<h2>INT8 training of large models in Colab using PEFT LoRA and bits_and_bytes<a class="headerlink" href="#int8-training-of-large-models-in-colab-using-peft-lora-and-bits-and-bytes" title="Permalink to this heading">#</a></h2>
+<h2>INT8 training of large models in Colab using PEFT LoRA and bits_and_bytes<a class="headerlink" href="#int8-training-of-large-models-in-colab-using-peft-lora-and-bits-and-bytes" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Here is now a demo on how to fine tune <a class="reference external" href="https://huggingface.co/facebook/opt-6.7b">OPT-6.7b</a> (14GB in fp16) in a Google Colab: <a class="reference external" href="https://colab.research.google.com/drive/1jCkpikz0J2o20FBQmYmAGdiKmJGOMo-o?usp=sharing"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p></li>
 <li><p>Here is now a demo on how to fine tune <a class="reference external" href="https://huggingface.co/openai/whisper-large-v2">whisper-large</a> (1.5B params) (14GB in fp16) in a Google Colab: <a class="reference external" href="https://colab.research.google.com/drive/1DOkD_5OUjFa0r5Ik3SgywJLJtEo2qLxO?usp=sharing"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a> and <a class="reference external" href="https://colab.research.google.com/drive/1vhF8yueFqha3Y3CpTHN6q9EVcII9EYzs?usp=sharing"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p></li>
 </ul>
 <section id="save-compute-and-storage-even-for-medium-and-small-models">
-<h3>Save compute and storage even for medium and small models<a class="headerlink" href="#save-compute-and-storage-even-for-medium-and-small-models" title="Permalink to this heading">#</a></h3>
+<h3>Save compute and storage even for medium and small models<a class="headerlink" href="#save-compute-and-storage-even-for-medium-and-small-models" title="Link to this heading">#</a></h3>
 <p>Save storage by avoiding full finetuning of models on each of the downstream tasks/datasets,
 With PEFT methods, users only need to store tiny checkpoints in the order of <code class="docutils literal notranslate"><span class="pre">MBs</span></code> all the while retaining
 performance comparable to full finetuning.</p>
@@ -851,11 +875,11 @@ performance comparable to full finetuning.</p>
 </section>
 </section>
 <section id="peft-accelerate">
-<h2>PEFT + 🤗 Accelerate<a class="headerlink" href="#peft-accelerate" title="Permalink to this heading">#</a></h2>
+<h2>PEFT + 🤗 Accelerate<a class="headerlink" href="#peft-accelerate" title="Link to this heading">#</a></h2>
 <p>PEFT models work with 🤗 Accelerate out of the box. Use 🤗 Accelerate for Distributed training on various hardware such as GPUs, Apple Silicon devices, etc during training.
 Use 🤗 Accelerate for inferencing on consumer hardware with small resources.</p>
 <section id="example-of-peft-model-training-using-accelerates-deepspeed-integration">
-<h3>Example of PEFT model training using 🤗 Accelerate’s DeepSpeed integration<a class="headerlink" href="#example-of-peft-model-training-using-accelerates-deepspeed-integration" title="Permalink to this heading">#</a></h3>
+<h3>Example of PEFT model training using 🤗 Accelerate’s DeepSpeed integration<a class="headerlink" href="#example-of-peft-model-training-using-accelerates-deepspeed-integration" title="Link to this heading">#</a></h3>
 <p>DeepSpeed version required <code class="docutils literal notranslate"><span class="pre">v0.8.0</span></code>. An example is provided in <code class="docutils literal notranslate"><span class="pre">~examples/conditional_generation/peft_lora_seq2seq_accelerate_ds_zero3_offload.py</span></code>.
 a. First, run <code class="docutils literal notranslate"><span class="pre">accelerate</span> <span class="pre">config</span> <span class="pre">--config_file</span> <span class="pre">ds_zero3_cpu.yaml</span></code> and answer the questionnaire.
 Below are the contents of the config file.</p>
@@ -913,12 +937,12 @@ dataset<span class="o">[</span><span class="s1">&#39;train&#39;</span><span clas
 </div>
 </section>
 <section id="example-of-peft-model-inference-using-accelerates-big-model-inferencing-capabilities">
-<h3>Example of PEFT model inference using 🤗 Accelerate’s Big Model Inferencing capabilities<a class="headerlink" href="#example-of-peft-model-inference-using-accelerates-big-model-inferencing-capabilities" title="Permalink to this heading">#</a></h3>
+<h3>Example of PEFT model inference using 🤗 Accelerate’s Big Model Inferencing capabilities<a class="headerlink" href="#example-of-peft-model-inference-using-accelerates-big-model-inferencing-capabilities" title="Link to this heading">#</a></h3>
 <p>An example is provided in <a class="reference external" href="https://github.com/huggingface/peft/blob/main/examples/causal_language_modeling/peft_lora_clm_accelerate_big_model_inference.ipynb"><code class="docutils literal notranslate"><span class="pre">~examples/causal_language_modeling/peft_lora_clm_accelerate_big_model_inference.ipynb</span></code></a>.</p>
 </section>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
 <p>The compatibility of PEFT with tools like 🤗 Accelerate and DeepSpeed illustrates its practicality and adaptability in real-world applications. This compatibility ensures that PEFT can be easily integrated into existing workflows, allowing for seamless scaling and adaptation of models.</p>
 </section>
 </section>
@@ -979,6 +1003,7 @@ dataset<span class="o">[</span><span class="s1">&#39;train&#39;</span><span clas
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1052,8 +1077,8 @@ By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

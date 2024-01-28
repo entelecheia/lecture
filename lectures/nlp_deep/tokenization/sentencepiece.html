@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>SentencePiece Tokenizer &#8212; ἐντελέχεια.άι</title>
   
@@ -19,25 +18,25 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css?v=e236af4b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
@@ -46,33 +45,33 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/dataframe.css?v=574a5d82" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/slide.css?v=06ccce15" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../../../_static/tabs.js?v=3ee01567"></script>
     <script src="../../../_static/js/hoverxref.js"></script>
     <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
     <script src="../../../_static/js/micromodal.min.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../../_static/design-tabs.js"></script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -85,12 +84,24 @@ const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_deep/tokenization/sentencepiece';</script>
     <link rel="canonical" href="https://lecture.entelecheia.ai/lectures/nlp_deep/tokenization/sentencepiece.html" />
-    <link rel="shortcut icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Lab: Training Tokenizers" href="lab-train-tokenizers.html" />
@@ -104,10 +115,9 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -159,11 +169,14 @@ const thebe_selector_output = ".output, .cell_output"
   </div>
 
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -191,7 +204,18 @@ const thebe_selector_output = ".output, .cell_output"
     <p class="title logo__title">ἐντελέχεια.άι</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -666,13 +690,13 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="sentencepiece-tokenizer">
-<h1>SentencePiece Tokenizer<a class="headerlink" href="#sentencepiece-tokenizer" title="Permalink to this heading">#</a></h1>
+<h1>SentencePiece Tokenizer<a class="headerlink" href="#sentencepiece-tokenizer" title="Link to this heading">#</a></h1>
 <a class="bg-primary mb-1 reference internal image-reference" href="../../../_images/entelecheia_alphabets.png"><img alt="alphabets" class="bg-primary mb-1 align-center" src="../../../_images/entelecheia_alphabets.png" style="width: 80%;" /></a>
 <section id="what-is-sentencepiece">
-<h2>What is SentencePiece?<a class="headerlink" href="#what-is-sentencepiece" title="Permalink to this heading">#</a></h2>
+<h2>What is SentencePiece?<a class="headerlink" href="#what-is-sentencepiece" title="Link to this heading">#</a></h2>
 <p>SentencePiece is a unique approach towards tokenization, which is a crucial preprocessing step in Natural Language Processing (NLP). Unlike traditional tokenizers that primarily focus on space-based or syntax-based token splitting, SentencePiece takes an unsupervised approach, which means it doesn’t rely on pre-specified rules. It’s mainly used in the realm of Neural Network-based text generation, where it’s necessary to predefine the vocabulary size before training the model.</p>
 <p>The core concept behind SentencePiece is the implementation of “subword units.” This concept is a cornerstone in the tokenization strategies like Byte-Pair-Encoding (BPE) <span id="id1">[<a class="reference internal" href="../../../about/index.html#id17" title="Rico Sennrich, Barry Haddow, and Alexandra Birch. Neural machine translation of rare words with subword units. In Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), 1715–1725. Berlin, Germany, August 2016. Association for Computational Linguistics. URL: https://aclanthology.org/P16-1162, doi:10.18653/v1/P16-1162.">Sennrich <em>et al.</em>, 2016</a>]</span> and the Unigram Language Model <span id="id2">[<a class="reference internal" href="../../../about/index.html#id70" title="Taku Kudo. Subword regularization: improving neural network translation models with multiple subword candidates. arXiv preprint arXiv:1804.10959, 2018.">Kudo, 2018</a>]</span>.</p>
 <ul class="simple">
@@ -684,7 +708,7 @@ document.write(`
 <p>Finally, SentencePiece is a general-purpose tokenizer, meaning it doesn’t have any specific language dependencies and can be used for any language, making it extremely versatile and valuable for multilingual NLP tasks.</p>
 </section>
 <section id="technical-highlights">
-<h2>Technical highlights<a class="headerlink" href="#technical-highlights" title="Permalink to this heading">#</a></h2>
+<h2>Technical highlights<a class="headerlink" href="#technical-highlights" title="Link to this heading">#</a></h2>
 <p><strong>Purely Data-Driven</strong>: SentencePiece operates by training tokenization and detokenization models directly from the input sentences. This makes it an end-to-end system, which eliminates the need for pre-tokenization. Pre-tokenization typically involves the use of tools like the Moses tokenizer, MeCab, or KyTea. This data-driven approach simplifies the tokenization process and reduces the potential for errors associated with manual, rule-based tokenization.</p>
 <p><strong>Language Independent</strong>: SentencePiece does not incorporate any language-specific logic. It treats input sentences purely as sequences of Unicode characters. This feature makes SentencePiece a versatile tool for tokenization, as it can handle text data in any language.</p>
 <p><strong>Multiple Subword Algorithms</strong>: SentencePiece supports both Byte Pair Encoding (BPE) and unigram language model algorithms for subword tokenization. BPE is a popular method that merges the most frequent pair of characters iteratively. The unigram language model, on the other hand, is a probabilistic model that chooses the most probable segmentation of the input sentence.</p>
@@ -694,12 +718,12 @@ document.write(`
 <p><strong>Direct Vocabulary ID Generation</strong>: In addition to tokenizing text, SentencePiece can also map vocabulary to specific IDs, generating sequences of these IDs directly from raw sentences. This built-in functionality can streamline the processing pipeline by eliminating the need for separate vocabulary-to-ID mapping steps.</p>
 <p><strong>NFKC-based Normalization</strong>: SentencePiece performs text normalization based on NFKC (Normalization Form KC: Compatibility Composition). NFKC is a Unicode normalization method that transforms different representations of equivalent text into a single, standardized form. This normalization is crucial for ensuring consistency and reducing complexity in text data.</p>
 <p><strong>Comparisons with other implementations</strong></p>
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
-<tr class="row-odd"><th class="text-left head"><p>Feature</p></th>
-<th class="text-center head"><p>SentencePiece</p></th>
-<th class="text-center head"><p>subword-nmt</p></th>
-<th class="text-center head"><p>WordPiece</p></th>
+<tr class="row-odd"><th class="head text-left"><p>Feature</p></th>
+<th class="head text-center"><p>SentencePiece</p></th>
+<th class="head text-center"><p>subword-nmt</p></th>
+<th class="head text-center"><p>WordPiece</p></th>
 </tr>
 </thead>
 <tbody>
@@ -748,17 +772,17 @@ document.write(`
 <p>Note that BPE algorithm used in WordPiece is slightly different from the original BPE.</p>
 </section>
 <section id="high-level-differences-between-sentencepiece-and-other-tokenizers">
-<h2>High level differences between SentencePiece and other tokenizers<a class="headerlink" href="#high-level-differences-between-sentencepiece-and-other-tokenizers" title="Permalink to this heading">#</a></h2>
+<h2>High level differences between SentencePiece and other tokenizers<a class="headerlink" href="#high-level-differences-between-sentencepiece-and-other-tokenizers" title="Link to this heading">#</a></h2>
 <section id="predetermined-number-of-unique-tokens">
-<h3>Predetermined Number of Unique Tokens<a class="headerlink" href="#predetermined-number-of-unique-tokens" title="Permalink to this heading">#</a></h3>
+<h3>Predetermined Number of Unique Tokens<a class="headerlink" href="#predetermined-number-of-unique-tokens" title="Link to this heading">#</a></h3>
 <p>Unlike most unsupervised word segmentation algorithms, which assume an infinite vocabulary, SentencePiece operates with a predetermined, fixed vocabulary size. This characteristic aligns well with Neural Machine Translation (NMT) models that typically work with a fixed vocabulary. For instance, SentencePiece’s final vocabulary size might be 8k, 16k, or 32k, which is decided before training. It’s worth noting that SentencePiece’s approach differs from tools like subword-nmt, which use the number of merge operations, a parameter specific to BPE and not applicable to other segmentation algorithms like unigram, word, and character.</p>
 </section>
 <section id="training-from-raw-sentences">
-<h3>Training from Raw Sentences<a class="headerlink" href="#training-from-raw-sentences" title="Permalink to this heading">#</a></h3>
+<h3>Training from Raw Sentences<a class="headerlink" href="#training-from-raw-sentences" title="Link to this heading">#</a></h3>
 <p>Unlike many previous subword implementations that require pre-tokenized input sentences for efficient training, SentencePiece can train directly from raw sentences. This capability simplifies the preprocessing stage, eliminating the need for running language-specific tokenizers beforehand. This feature is especially valuable for languages like Chinese and Japanese, where there are no explicit spaces between words.</p>
 </section>
 <section id="whitespace-as-a-basic-symbol">
-<h3>Whitespace as a Basic Symbol<a class="headerlink" href="#whitespace-as-a-basic-symbol" title="Permalink to this heading">#</a></h3>
+<h3>Whitespace as a Basic Symbol<a class="headerlink" href="#whitespace-as-a-basic-symbol" title="Link to this heading">#</a></h3>
 <p>SentencePiece treats the input text as a sequence of Unicode characters, including whitespace as a normal symbol. This treatment is crucial for achieving a reversible conversion between the original input and tokenized sequence. To make this possible, SentencePiece first substitutes whitespace with a meta symbol “▁” (U+2581). After segmenting the text into smaller pieces, the whitespace can be restored, allowing for unambiguous detokenization. This feature makes SentencePiece language-agnostic in terms of detokenization.</p>
 <ul>
 <li><p>For example, a standard English tokenizer would segment the text “Hello world.” into the following three tokens.</p>
@@ -793,12 +817,12 @@ document.write(`
 </ul>
 </section>
 <section id="subword-regularization-and-bpe-dropout">
-<h3>Subword regularization and BPE-dropout<a class="headerlink" href="#subword-regularization-and-bpe-dropout" title="Permalink to this heading">#</a></h3>
+<h3>Subword regularization and BPE-dropout<a class="headerlink" href="#subword-regularization-and-bpe-dropout" title="Link to this heading">#</a></h3>
 <p>SentencePiece implements regularization methods like subword regularization and BPE-dropout. Subword regularization is an on-the-fly subword sampling technique that virtually augments training data, improving the accuracy and robustness of NMT models. BPE-dropout is a variant of this, specifically designed for BPE. To use subword regularization, the SentencePiece library needs to be integrated into the NMT system, allowing the sampling of one segmentation for each parameter update. This process differs from standard offline data preparations. For example, a term like ‘New York’ might be segmented differently on each encoding call when sampling is enabled.</p>
 </section>
 </section>
 <section id="subword-regularization-in-nmt">
-<h2>Subword Regularization in NMT<a class="headerlink" href="#subword-regularization-in-nmt" title="Permalink to this heading">#</a></h2>
+<h2>Subword Regularization in NMT<a class="headerlink" href="#subword-regularization-in-nmt" title="Link to this heading">#</a></h2>
 <p><strong>Subword Regularization</strong> refers to a technique used in neural machine translation (NMT) that can virtually augment training data and improve the accuracy and robustness of NMT models. It involves working with subword sequences and takes into account the multiple ways a word could be segmented into subwords.</p>
 <p>Let’s break down the concepts and the formulas given:</p>
 <ol class="arabic simple">
@@ -829,7 +853,7 @@ P(Y|X;\theta) = \prod_{i=1}^n P(y_i | \mathbf{x}, y_{&lt;i}; \theta)
 <p>Subword regularization essentially leverages the variability in subword segmentations to diversify the training data for NMT models, leading to more robust models that generalize better to unseen data.</p>
 </section>
 <section id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">#</a></h2>
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Installation</strong></p>
 <p>SentencePiece is a Python library, which can be installed via pip:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>sentencepiece
@@ -1017,6 +1041,7 @@ trainer_interface.cc(697) LOG(INFO) Saving vocabs: m.vocab
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
@@ -1082,8 +1107,8 @@ By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>
