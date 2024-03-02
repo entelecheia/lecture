@@ -35,7 +35,7 @@ Additionally, there's increasing concern about AI systems that can imitate or ev
 
 Aristotle's concept of entelecheia can provide valuable guidance for AI, underlining the importance of realizing its full potential and achieving intended goals. As AI advances, we must address its ethical and societal consequences and strive for entelecheia, ensuring AI serves the greater good of humanity.
 
-**LectureBot for ἐντελέχεια.άι**
+<!-- **LectureBot for ἐντελέχεια.άι**
 
 [![chrome-web-store-image]][chrome-web-store-url]
 [![version-image]][release-url]
@@ -56,7 +56,7 @@ Aristotle's concept of entelecheia can provide valuable guidance for AI, underli
 
 ```{youtube} 0aAeqGBcN3Q
 :width: 100%
-```
+``` -->
 
 **Table of Contents**
 
