@@ -1,5 +1,11 @@
 <!--next-version-placeholder-->
 
+## v0.30.1 (2024-08-18)
+
+### Fix
+
+* **documentation:** Update URLs to jeju.ai ([`0676ee5`](https://github.com/entelecheia/lecture/commit/0676ee5c0f27aa45c20bd3bd8f7af85b09f7dda5))
+
 ## v0.30.0 (2023-11-28)
 
 ### Feature
