@@ -11,7 +11,7 @@
 [course-img]: https://img.shields.io/badge/course-entelecheia.ai-blue
 [course-url]: https://course.entelecheia.ai
 [research-img]: https://img.shields.io/badge/research-entelecheia.ai-blue
-[research-url]: https://research.entelecheia.ai
+[research-url]: https://research.jeju.ai
 [linkedin-img]: https://img.shields.io/badge/LinkedIn-blue?logo=linkedin
 [linkedin-url]: https://www.linkedin.com/in/entelecheia/
 [last-commit-img]: https://img.shields.io/github/last-commit/entelecheia/lecture?label=last%20update
