@@ -13,28 +13,28 @@ AutoGen, developed by Microsoft in collaboration with Penn State University and 
   It's advisable to create a virtual environment to keep AutoGen's dependencies isolated. Two options are available: `venv` and `conda`. Here are the commands for each:
   - Using `venv`:
     ```bash
-    python3 -m venv pyautogen
-    source pyautogen/bin/activate
+    python3 -m venv ag2
+    source ag2/bin/activate
     deactivate  # to deactivate the environment
     ```
   - Using `conda`:
     ```bash
-    conda create -n pyautogen python=3.10  # python 3.10 is recommended
-    conda activate pyautogen
+    conda create -n ag2 python=3.10  # python 3.10 is recommended
+    conda activate ag2
     conda deactivate  # to deactivate the environment
     ```
 - **Python and AutoGen Installation**:
   Ensure you have Python version >= 3.8. Install AutoGen using pip:
   ```bash
-  pip install pyautogen
+  pip install ag2
   ```
 - **Optional Dependencies**:
   Install additional packages based on your requirements:
   ```bash
   pip install docker  # for seamless code execution
-  pip install "pyautogen[blendsearch]"  # for hyperparameter optimization
-  pip install "pyautogen[retrievechat]"  # for retrieval-augmented generation tasks
-  pip install "pyautogen[mathchat]"  # for math problem solving
+  pip install "ag2[blendsearch]"  # for hyperparameter optimization
+  pip install "ag2[retrievechat]"  # for retrieval-augmented generation tasks
+  pip install "ag2[mathchat]"  # for math problem solving
   ```
 
 ## Framework Overview
