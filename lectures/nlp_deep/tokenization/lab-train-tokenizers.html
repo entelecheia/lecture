@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
@@ -95,7 +95,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script crossorigin="anonymous" data-jupyter-widgets-cdn="https://cdn.jsdelivr.net/npm/" src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.6/dist/embed-amd.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_deep/tokenization/lab-train-tokenizers';</script>
-    <link rel="canonical" href="https://lecture.jeju.ai/lectures/nlp_deep/tokenization/lab-train-tokenizers.html" />
+    <link rel="canonical" href="https://lectures.jeju.ai/lectures/nlp_deep/tokenization/lab-train-tokenizers.html" />
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -504,9 +504,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../../about/lecture-bot.html">LectureBot for ἐντελέχεια.άι</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://course.entelecheia.ai">course.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://youngjoon-lee.com">youngjoon-lee.com</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://courses.jeju.ai">courses.jeju.ai</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://research.jeju.ai">research.jeju.ai</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Bibliography</a></li>
 </ul>
@@ -753,16 +752,16 @@ document.write(`
 <p>We’ll be using the <code class="docutils literal notranslate"><span class="pre">wiki</span></code> dataset in Korean, which we can load using the <code class="docutils literal notranslate"><span class="pre">datasets</span></code> library.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
 
 <span class="n">wiki</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;lcw99/wikipedia-korean-20221001&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show code cell output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/yj.lee/.cache/pypoetry/virtualenvs/lecture-_dERj_9R-py3.8/lib/python3.8/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
@@ -815,9 +814,9 @@ Extracting data files: 100%|██████████| 1/1 [00:00&lt;00:00,
 <h3>Byte Pair Encoding (BPE)<a class="headerlink" href="#byte-pair-encoding-bpe" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tokenizers</span> <span class="kn">import</span> <span class="n">Tokenizer</span>
-<span class="kn">from</span> <span class="nn">tokenizers.models</span> <span class="kn">import</span> <span class="n">BPE</span>
-<span class="kn">from</span> <span class="nn">tokenizers.pre_tokenizers</span> <span class="kn">import</span> <span class="n">Whitespace</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tokenizers</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tokenizer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tokenizers.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">BPE</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tokenizers.pre_tokenizers</span><span class="w"> </span><span class="kn">import</span> <span class="n">Whitespace</span>
 
 
 <span class="c1"># change this to your own path</span>
@@ -841,7 +840,7 @@ Extracting data files: 100%|██████████| 1/1 [00:00&lt;00:00,
 <h3>WordPiece<a class="headerlink" href="#wordpiece" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tokenizers.models</span> <span class="kn">import</span> <span class="n">WordPiece</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tokenizers.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">WordPiece</span>
 
 <span class="c1"># change this to your own path</span>
 <span class="n">wordpiece_tokenizer_path</span> <span class="o">=</span> <span class="s2">&quot;../tmp/wordpiece_tokenizer.json&quot;</span>
@@ -858,7 +857,7 @@ Extracting data files: 100%|██████████| 1/1 [00:00&lt;00:00,
 <h3>Unigram<a class="headerlink" href="#unigram" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tokenizers.models</span> <span class="kn">import</span> <span class="n">Unigram</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tokenizers.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Unigram</span>
 
 <span class="c1"># change this to your own path</span>
 <span class="n">unigram_tokenizer_path</span> <span class="o">=</span> <span class="s2">&quot;../tmp/unigram_tokenizer.json&quot;</span>
@@ -881,7 +880,7 @@ Extracting data files: 100%|██████████| 1/1 [00:00&lt;00:00,
 <p>For SentencePiece, we’ll use the SentencePiece library directly.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sentencepiece</span> <span class="k">as</span> <span class="nn">spm</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sentencepiece</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">spm</span>
 
 <span class="n">sentencepiece_tokenizer_path</span> <span class="o">=</span> <span class="s2">&quot;../tmp/sentencepiece_tokenizer.model&quot;</span>
 <span class="n">num_threads</span> <span class="o">=</span> <span class="mi">1</span>
@@ -893,10 +892,10 @@ Extracting data files: 100%|██████████| 1/1 [00:00&lt;00:00,
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show code cell output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sentencepiece_trainer.cc(177) LOG(INFO) Running command: --input=./tmp/wiki.txt --model_prefix=sentencepiece --vocab_size=32000 --num_threads=40
@@ -1025,8 +1024,8 @@ trainer_interface.cc(698) LOG(INFO) Saving vocabs: sentencepiece.vocab
 <p>Now, let’s load each tokenizer and see how they tokenize a sample sentence.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tokenizers</span> <span class="kn">import</span> <span class="n">Tokenizer</span>
-<span class="kn">import</span> <span class="nn">sentencepiece</span> <span class="k">as</span> <span class="nn">spm</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tokenizers</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tokenizer</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sentencepiece</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">spm</span>
 
 <span class="n">sample_sentence</span> <span class="o">=</span> <span class="s2">&quot;안녕하세요. 이 문장은 토크나이저를 테스트하기 위한 샘플 문장입니다.&quot;</span>
 
@@ -1075,10 +1074,10 @@ SentencePiece: [&#39;▁&#39;, &#39;안녕하세요&#39;, &#39;.&#39;, &#39;▁�
 <p>To train a BPE tokenizer with the same specifications as GPT:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tokenizers</span> <span class="kn">import</span> <span class="n">Tokenizer</span>
-<span class="kn">from</span> <span class="nn">tokenizers.models</span> <span class="kn">import</span> <span class="n">BPE</span>
-<span class="kn">from</span> <span class="nn">tokenizers.pre_tokenizers</span> <span class="kn">import</span> <span class="n">Whitespace</span>
-<span class="kn">from</span> <span class="nn">tokenizers.trainers</span> <span class="kn">import</span> <span class="n">BpeTrainer</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tokenizers</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tokenizer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tokenizers.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">BPE</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tokenizers.pre_tokenizers</span><span class="w"> </span><span class="kn">import</span> <span class="n">Whitespace</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tokenizers.trainers</span><span class="w"> </span><span class="kn">import</span> <span class="n">BpeTrainer</span>
 
 <span class="n">wiki_filepath</span> <span class="o">=</span> <span class="s2">&quot;../tmp/wiki.txt&quot;</span>
 
@@ -1108,10 +1107,10 @@ SentencePiece: [&#39;▁&#39;, &#39;안녕하세요&#39;, &#39;.&#39;, &#39;▁�
 <p>To train a WordPiece tokenizer with the same specifications as BERT:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tokenizers</span> <span class="kn">import</span> <span class="n">Tokenizer</span>
-<span class="kn">from</span> <span class="nn">tokenizers.models</span> <span class="kn">import</span> <span class="n">WordPiece</span>
-<span class="kn">from</span> <span class="nn">tokenizers.trainers</span> <span class="kn">import</span> <span class="n">WordPieceTrainer</span>
-<span class="kn">from</span> <span class="nn">tokenizers.normalizers</span> <span class="kn">import</span> <span class="n">BertNormalizer</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tokenizers</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tokenizer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tokenizers.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">WordPiece</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tokenizers.trainers</span><span class="w"> </span><span class="kn">import</span> <span class="n">WordPieceTrainer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tokenizers.normalizers</span><span class="w"> </span><span class="kn">import</span> <span class="n">BertNormalizer</span>
 
 <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">WordPiece</span><span class="p">(</span><span class="n">unk_token</span><span class="o">=</span><span class="s2">&quot;[UNK]&quot;</span><span class="p">))</span>
 <span class="n">tokenizer</span><span class="o">.</span><span class="n">normalizer</span> <span class="o">=</span> <span class="n">BertNormalizer</span><span class="p">(</span><span class="n">lowercase</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -1128,7 +1127,7 @@ SentencePiece: [&#39;▁&#39;, &#39;안녕하세요&#39;, &#39;.&#39;, &#39;▁�
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">tokenizers.trainers</span> <span class="kn">import</span> <span class="n">WordPieceTrainer</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span><span class="w"> </span><span class="nn">tokenizers.trainers</span><span class="w"> </span><span class="kn">import</span> <span class="n">WordPieceTrainer</span>
 <span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">WordPiece</span><span class="p">(</span><span class="n">unk_token</span><span class="o">=</span><span class="s2">&quot;[UNK]&quot;</span><span class="p">))</span>
 <span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">normalizer</span> <span class="o">=</span> <span class="n">BertNormalizer</span><span class="p">(</span><span class="n">lowercase</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">trainer</span> <span class="o">=</span> <span class="n">WordPieceTrainer</span><span class="p">(</span>
@@ -1148,9 +1147,9 @@ SentencePiece: [&#39;▁&#39;, &#39;안녕하세요&#39;, &#39;.&#39;, &#39;▁�
 <p>To train a Unigram tokenizer with the same specifications as T5:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tokenizers</span> <span class="kn">import</span> <span class="n">Tokenizer</span>
-<span class="kn">from</span> <span class="nn">tokenizers.models</span> <span class="kn">import</span> <span class="n">Unigram</span>
-<span class="kn">from</span> <span class="nn">tokenizers.trainers</span> <span class="kn">import</span> <span class="n">UnigramTrainer</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tokenizers</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tokenizer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tokenizers.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Unigram</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tokenizers.trainers</span><span class="w"> </span><span class="kn">import</span> <span class="n">UnigramTrainer</span>
 
 <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">Unigram</span><span class="p">())</span>
 
@@ -1263,7 +1262,7 @@ SentencePiece: [&#39;▁&#39;, &#39;안녕하세요&#39;, &#39;.&#39;, &#39;▁�
   <div class="footer-item">
     
 <p class="component-author">
-By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
+By <a href="https://youngjoon-lee.com" target="_blank">Young Joon Lee</a>
 </p>
 
   </div>

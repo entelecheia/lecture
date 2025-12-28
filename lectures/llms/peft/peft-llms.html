@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
@@ -92,7 +92,7 @@
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/llms/peft/peft-llms';</script>
-    <link rel="canonical" href="https://lecture.jeju.ai/lectures/llms/peft/peft-llms.html" />
+    <link rel="canonical" href="https://lectures.jeju.ai/lectures/llms/peft/peft-llms.html" />
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -501,9 +501,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../../about/lecture-bot.html">LectureBot for ἐντελέχεια.άι</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://course.entelecheia.ai">course.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://youngjoon-lee.com">youngjoon-lee.com</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://courses.jeju.ai">courses.jeju.ai</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://research.jeju.ai">research.jeju.ai</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Bibliography</a></li>
 </ul>
@@ -824,7 +823,7 @@ document.write(`
 <li><p><strong>Normalization and Residual Connections</strong>: Each of these layers is followed by layer normalization and is equipped with residual connections. This means the output of each layer is the sum of its input and its processed result, enhancing training stability and allowing deeper networks.</p></li>
 <li><p><strong>Positional Encoding</strong>: Since the Transformer doesn’t inherently capture the sequential nature of data, positional encodings are added to the input embeddings to give the model information about the position of each token in the sequence.</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">self_attention</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">self_attention</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="c1"># Project the input to create key (k), query (q), and value (v) matrices</span>
     <span class="n">k</span> <span class="o">=</span> <span class="n">x</span> <span class="o">@</span> <span class="n">W_k</span>  <span class="c1"># Key matrix is obtained by multiplying the input with weight W_k</span>
     <span class="n">q</span> <span class="o">=</span> <span class="n">x</span> <span class="o">@</span> <span class="n">W_q</span>  <span class="c1"># Query matrix is obtained by multiplying the input with weight W_q</span>
@@ -835,7 +834,7 @@ document.write(`
     <span class="c1"># The resulting attention scores are then multiplied with the value matrix v</span>
     <span class="k">return</span> <span class="n">softmax</span><span class="p">(</span><span class="n">q</span> <span class="o">@</span> <span class="n">k</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">@</span> <span class="n">v</span>
 
-<span class="k">def</span> <span class="nf">transformer_block</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">transformer_block</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="c1"># Store the original input for the residual connection</span>
     <span class="n">residual</span> <span class="o">=</span> <span class="n">x</span>
 
@@ -876,7 +875,7 @@ document.write(`
 <section id="additive-methods">
 <h3>Additive Methods<a class="headerlink" href="#additive-methods" title="Link to this heading">#</a></h3>
 <p><strong>Adapters</strong>: Introduced by Houlsby et al., this technique involves adding small fully connected networks after Transformer sub-layers. The pseudo code for an adapted transformer block illustrates these additions.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">transformer_block_adapter</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">transformer_block_adapter</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="c1"># Store the original input for the residual connection</span>
     <span class="n">residual</span> <span class="o">=</span> <span class="n">x</span>
 
@@ -910,7 +909,7 @@ document.write(`
 </div>
 <p>In this code snippet, the <code class="docutils literal notranslate"><span class="pre">transformer_block_adapter</span></code> function represents a transformer block modified to include adapters, as introduced by Houlsby et al. Adapters are additional small feed-forward networks inserted after each sub-layer within the transformer block (after self-attention and the original FFN). These adapters provide a means to fine-tune the pre-trained transformer models efficiently by only training the parameters within these adapter layers, rather than the entire model. This approach helps in adapting the model to specific tasks while keeping the computational overhead low.</p>
 <p><strong>(IA)³</strong>: This method, proposed by Liu et al., augments the transformer block with additional column vectors (<span class="math notranslate nohighlight">\(l_k\)</span>, <span class="math notranslate nohighlight">\(l_v\)</span>) that modify the key and value matrices in the attention mechanism. This is done without strictly adding fully connected layers, distinguishing it from traditional adapter methods.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">self_attention_ia3</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">self_attention_ia3</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="c1"># Project the input to create key (k), query (q), and value (v) matrices</span>
     <span class="n">k</span> <span class="o">=</span> <span class="n">x</span> <span class="o">@</span> <span class="n">W_k</span>  <span class="c1"># Key matrix is obtained by multiplying the input with weight W_k</span>
     <span class="n">q</span> <span class="o">=</span> <span class="n">x</span> <span class="o">@</span> <span class="n">W_q</span>  <span class="c1"># Query matrix is obtained by multiplying the input with weight W_q</span>
@@ -926,7 +925,7 @@ document.write(`
     <span class="c1"># The resulting attention scores are then multiplied with the value matrix v</span>
     <span class="k">return</span> <span class="n">softmax</span><span class="p">(</span><span class="n">q</span> <span class="o">@</span> <span class="n">k</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">@</span> <span class="n">v</span>
 
-<span class="k">def</span> <span class="nf">transformer_block_ia3</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">transformer_block_ia3</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="c1"># Store the original input for the residual connection</span>
     <span class="n">residual</span> <span class="o">=</span> <span class="n">x</span>
 
@@ -964,7 +963,7 @@ document.write(`
 <section id="soft-prompts">
 <h3>Soft-Prompts<a class="headerlink" href="#soft-prompts" title="Link to this heading">#</a></h3>
 <p><strong>Prompt-Tuning</strong>: Developed by Lester et al., this technique involves creating a set of parameters for prompt tokens and integrating them at the beginning of the network. It allows for optimization of a continuous representation of the prompt text.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">prompt_tuning</span><span class="p">(</span><span class="n">seq_tokens</span><span class="p">,</span> <span class="n">prompt_tokens</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prompt_tuning</span><span class="p">(</span><span class="n">seq_tokens</span><span class="p">,</span> <span class="n">prompt_tokens</span><span class="p">):</span>
     <span class="c1"># Create embeddings for the input sequence tokens</span>
     <span class="c1"># seq_embedding is a function that transforms sequence tokens into their corresponding embeddings</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">seq_embedding</span><span class="p">(</span><span class="n">seq_tokens</span><span class="p">)</span>
@@ -986,7 +985,7 @@ document.write(`
 </div>
 <p>In this code snippet, <code class="docutils literal notranslate"><span class="pre">prompt_tuning</span></code> function represents the Prompt-Tuning technique as developed by Lester et al. This approach involves integrating a set of learned prompt tokens at the beginning of the input sequence. These prompt tokens, represented as “soft prompts,” are not fixed but are trainable parameters that are optimized during the training process. By concatenating these soft prompt embeddings with the input sequence embeddings, the model is provided with additional context or guidance, enhancing its ability to adapt to specific tasks or datasets. This method allows for the fine-tuning of large language models in a parameter-efficient manner, as only the prompt embeddings are trained, leaving the rest of the model’s parameters frozen.</p>
 <p><strong>Prefix Tuning</strong>: Similar to prompt tuning but differs in that the representation is fed to all layers of the transformer. It also involves learning additional parameters for the soft prompt in the form of a fully connected network.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">transformer_block_prefix_tuning</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">soft_prompt</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">transformer_block_prefix_tuning</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">soft_prompt</span><span class="p">):</span>
     <span class="c1"># Apply a Feed-Forward Network (FFN) to the soft prompt</span>
     <span class="c1"># The FFN is used to transform the soft prompt embeddings, allowing for more complex and adaptable representations</span>
     <span class="c1"># This FFN is part of the learnable parameters and is specific to the prefix tuning method</span>
@@ -1006,7 +1005,7 @@ document.write(`
 </div>
 <p>In this code snippet, the <code class="docutils literal notranslate"><span class="pre">transformer_block_prefix_tuning</span></code> function represents the Prefix Tuning technique. Prefix Tuning is similar to Prompt Tuning in that it involves adding soft prompts to the input. However, it differs significantly in its approach to integrating these prompts. In Prefix Tuning, the soft prompts are first transformed by a Feed-Forward Network (FFN), and this transformed representation is then concatenated with the input sequence embeddings. This concatenated input is fed to every layer of the transformer model, as opposed to just the beginning of the model in standard Prompt Tuning. This method allows for a more extensive and integrated use of the prompt information throughout the model, potentially leading to more nuanced and effective adaptations to specific tasks or datasets.</p>
 <p><strong>P-Tuning</strong>: Proposed by Liu et al., P-Tuning encodes the prompt using an LSTM, aiming to address the discrete nature of word embeddings and their independent associations in other prompting methods.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">p_tuning</span><span class="p">(</span><span class="n">seq_tokens</span><span class="p">,</span> <span class="n">prompt_tokens</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">p_tuning</span><span class="p">(</span><span class="n">seq_tokens</span><span class="p">,</span> <span class="n">prompt_tokens</span><span class="p">):</span>
     <span class="c1"># Create embeddings for the prompt tokens</span>
     <span class="c1"># prompt_embedding is a function that transforms prompt tokens into their corresponding embeddings</span>
     <span class="c1"># These prompt tokens are learnable parameters that are optimized during training</span>
@@ -1037,7 +1036,7 @@ document.write(`
 </div>
 <p>In this code snippet, the <code class="docutils literal notranslate"><span class="pre">p_tuning</span></code> function represents the P-Tuning technique as proposed by Liu et al. P-Tuning aims to address the limitations of other prompting methods by using an LSTM network to encode the prompts. This approach helps to capture the sequential nature and dependencies within the prompt embeddings more effectively. The prompt embeddings are first transformed by the LSTM and then further processed by a Feed-Forward Network (FFN) to enrich their representation. These transformed prompt embeddings are then concatenated with the input sequence embeddings, and the combined input is fed into the model. This method allows for a more nuanced integration of the prompt information into the model, potentially leading to more effective adaptations for specific tasks.</p>
 <p><strong>LLaMA-Adapter</strong>: As per Zhang et al., this technique applies a variant of prefix learning to the Llama model. It introduces adaptation prompts and zero-initialized attention for efficient fine-tuning.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">transformer_block_llama_adapter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">soft_prompt</span><span class="p">,</span> <span class="n">gating_factor</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">transformer_block_llama_adapter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">soft_prompt</span><span class="p">,</span> <span class="n">gating_factor</span><span class="p">):</span>
     <span class="c1"># Store the original input for the residual connection</span>
     <span class="n">residual</span> <span class="o">=</span> <span class="n">x</span>
 
@@ -1085,7 +1084,7 @@ document.write(`
 <section id="reparameterization-based-methods">
 <h3>Reparameterization-Based Methods<a class="headerlink" href="#reparameterization-based-methods" title="Link to this heading">#</a></h3>
 <p><strong>LoRa</strong>: A popular technique by Hu et al., LoRa reparameterizes a weight matrix by learning a separate matrix representing updates from optimization. It uses two smaller matrices to represent these updates, reducing the number of parameters to be learned.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">lora_linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">lora_linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W</span><span class="p">):</span>
     <span class="c1"># Scale factor based on the rank r</span>
     <span class="c1"># In LoRa, a low-rank approximation is used to reduce the number of learnable parameters</span>
     <span class="c1"># r is the rank, which is a hyperparameter determining the size of the low-rank matrices W_a and W_b</span>
@@ -1104,7 +1103,7 @@ document.write(`
     <span class="c1"># The scaling helps in balancing the influence of the low-rank approximation</span>
     <span class="k">return</span> <span class="n">scale</span> <span class="o">*</span> <span class="n">h</span>
 
-<span class="k">def</span> <span class="nf">self_attention_lora</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">self_attention_lora</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="c1"># Apply the LoRa-modified linear transformation to the key and value matrices</span>
     <span class="c1"># LoRa reparameterizes the original weight matrices (W_k and W_v) of the key and value vectors</span>
     <span class="n">k</span> <span class="o">=</span> <span class="n">lora_linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W_k</span><span class="p">)</span>  <span class="c1"># LoRa applied to key matrix</span>
@@ -1122,7 +1121,7 @@ document.write(`
 <section id="selective-methods">
 <h3>Selective Methods<a class="headerlink" href="#selective-methods" title="Link to this heading">#</a></h3>
 <p><strong>AdaLoRa</strong>: This hybrid approach, developed by Zhang et al., combines ideas from reparameterization and selective methods. It uses an approximation of Singular Value Decomposition (SVD) to represent weight matrix updates and incorporates a pruning technique to eliminate less important singular vectors.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">adalora_linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">curr_sv</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">adalora_linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">curr_sv</span><span class="p">):</span>
     <span class="c1"># Scale factor based on the rank r</span>
     <span class="c1"># In AdaLoRa, a low-rank approximation with a scaling factor is used</span>
     <span class="c1"># r is the rank and alpha is a scaling hyperparameter</span>
@@ -1140,7 +1139,7 @@ document.write(`
     <span class="c1"># Scale the result of the transformation</span>
     <span class="k">return</span> <span class="n">scale</span> <span class="o">*</span> <span class="n">h</span>
 
-<span class="k">def</span> <span class="nf">self_attention_adalora</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">self_attention_adalora</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    AdaLoRa-specific self-attention mechanism.</span>
 <span class="sd">    This function shows how AdaLoRa is integrated into the self-attention block.</span>
@@ -1337,7 +1336,7 @@ document.write(`
   <div class="footer-item">
     
 <p class="component-author">
-By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
+By <a href="https://youngjoon-lee.com" target="_blank">Young Joon Lee</a>
 </p>
 
   </div>

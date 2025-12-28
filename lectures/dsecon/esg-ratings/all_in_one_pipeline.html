@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
@@ -92,7 +92,7 @@
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/dsecon/esg-ratings/all_in_one_pipeline';</script>
-    <link rel="canonical" href="https://lecture.jeju.ai/lectures/dsecon/esg-ratings/all_in_one_pipeline.html" />
+    <link rel="canonical" href="https://lectures.jeju.ai/lectures/dsecon/esg-ratings/all_in_one_pipeline.html" />
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -501,9 +501,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../../about/lecture-bot.html">LectureBot for ἐντελέχεια.άι</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://course.entelecheia.ai">course.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://youngjoon-lee.com">youngjoon-lee.com</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://courses.jeju.ai">courses.jeju.ai</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://research.jeju.ai">research.jeju.ai</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Bibliography</a></li>
 </ul>
@@ -731,7 +730,7 @@ document.write(`
 <h1>Putting them together in a pipeline<a class="headerlink" href="#putting-them-together-in-a-pipeline" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ekorpkit</span> <span class="kn">import</span> <span class="n">eKonf</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ekorpkit</span><span class="w"> </span><span class="kn">import</span> <span class="n">eKonf</span>
 
 <span class="k">if</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">is_colab</span><span class="p">():</span>
     <span class="n">eKonf</span><span class="o">.</span><span class="n">mount_google_drive</span><span class="p">()</span>
@@ -758,7 +757,7 @@ time: 518 ms (started: 2023-01-05 05:20:52 +00:00)
 <h2>Preparing additional polarity data<a class="headerlink" href="#preparing-additional-polarity-data" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ekorpkit.datasets.dataset</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ekorpkit.datasets.dataset</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
 
 <span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;dataset=dataset&quot;</span><span class="p">)</span>
 <span class="n">cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;esg_polarity_kr&#39;</span>
@@ -819,7 +818,7 @@ Name: labels, dtype: int64
 <h2>Training further on the additional polarity data<a class="headerlink" href="#training-further-on-the-additional-polarity-data" title="Link to this heading">#</a></h2>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ekorpkit.models.transformer.simple</span> <span class="kn">import</span> <span class="n">SimpleClassification</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ekorpkit.models.transformer.simple</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleClassification</span>
 
 <span class="n">trained_model</span> <span class="o">=</span> <span class="s2">&quot;esg/models/esg_polarity-classification&quot;</span>
 
@@ -841,10 +840,10 @@ Name: labels, dtype: int64
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show code cell output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-01-05 05:21:24.990185: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
@@ -867,10 +866,10 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show code cell output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.datasets.config:Splitting the dataframe into train and test with ratio 0.2
@@ -1098,7 +1097,7 @@ time: 544 ms (started: 2023-01-05 05:23:30 +00:00)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ekorpkit.models.transformer.simple</span> <span class="kn">import</span> <span class="n">SimpleClassification</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ekorpkit.models.transformer.simple</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleClassification</span>
 
 <span class="n">trained_model</span> <span class="o">=</span> <span class="s2">&quot;esg/models/esg_polarity-classification&quot;</span>
 <span class="n">valid_pol_file</span> <span class="o">=</span> <span class="s2">&quot;esg_polarity_labels_validated.parquet&quot;</span>
@@ -1248,7 +1247,7 @@ weighted avg       0.94      0.93      0.94      2330
 <h2>Preparing invalid topic data<a class="headerlink" href="#preparing-invalid-topic-data" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ekorpkit.datasets.dataset</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ekorpkit.datasets.dataset</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
 
 <span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;dataset=dataset&quot;</span><span class="p">)</span>
 <span class="n">cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;esg_invalid_kr&quot;</span>
@@ -1344,7 +1343,7 @@ time: 101 ms (started: 2023-01-05 05:31:53 +00:00)
 <h2>Training an invalid topic classifier<a class="headerlink" href="#training-an-invalid-topic-classifier" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ekorpkit.models.transformer.simple</span> <span class="kn">import</span> <span class="n">SimpleClassification</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ekorpkit.models.transformer.simple</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleClassification</span>
 
 
 <span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s1">&#39;task=simple.classification&#39;</span><span class="p">)</span>
@@ -1563,7 +1562,7 @@ time: 488 ms (started: 2023-01-05 05:35:54 +00:00)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ekorpkit.models.transformer.simple</span> <span class="kn">import</span> <span class="n">SimpleClassification</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ekorpkit.models.transformer.simple</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleClassification</span>
 
 <span class="n">inval_cved_filename</span> <span class="o">=</span> <span class="s2">&quot;esg_invalid_data_cved.parquet&quot;</span>
 
@@ -1788,7 +1787,7 @@ time: 485 ms (started: 2023-01-05 06:40:09 +00:00)
 <h2>Training further on the additional topic data<a class="headerlink" href="#training-further-on-the-additional-topic-data" title="Link to this heading">#</a></h2>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ekorpkit.models.transformer.simple</span> <span class="kn">import</span> <span class="n">SimpleClassification</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ekorpkit.models.transformer.simple</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleClassification</span>
 
 <span class="n">valid_topic_file</span> <span class="o">=</span> <span class="s2">&quot;esg_topic_labels_validated.parquet&quot;</span>
 <span class="n">valid_data_dir</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">project_dir</span> <span class="o">/</span> <span class="s2">&quot;esg/data/esg_topic_validated&quot;</span>
@@ -1810,10 +1809,10 @@ time: 485 ms (started: 2023-01-05 06:40:09 +00:00)
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show code cell output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time: 2.8 s (started: 2023-01-05 06:40:09 +00:00)
@@ -1828,10 +1827,10 @@ time: 485 ms (started: 2023-01-05 06:40:09 +00:00)
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show code cell output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:ekorpkit.datasets.config:Splitting the dataframe into train and test with ratio 0.3
@@ -2064,7 +2063,7 @@ time: 492 ms (started: 2023-01-05 07:53:43 +00:00)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ekorpkit.models.transformer.simple</span> <span class="kn">import</span> <span class="n">SimpleClassification</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ekorpkit.models.transformer.simple</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleClassification</span>
 
 <span class="n">topic_cved_filename</span> <span class="o">=</span> <span class="s2">&quot;esg_topic_data_cved_mreged.parquet&quot;</span>
 <span class="n">valid_data_dir</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">project_dir</span> <span class="o">/</span> <span class="s2">&quot;esg/data/esg_topic_validated&quot;</span>
@@ -2521,7 +2520,7 @@ time: 1min 7s (started: 2022-12-29 10:52:00 +00:00)
 <h2>Filter out invalid data<a class="headerlink" href="#filter-out-invalid-data" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ekorpkit.models.transformer.simple</span> <span class="kn">import</span> <span class="n">SimpleClassification</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ekorpkit.models.transformer.simple</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleClassification</span>
 
 <span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;task=simple.classification&quot;</span><span class="p">)</span>
 <span class="n">cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;esg_topic_invalid_cved&quot;</span>
@@ -2667,7 +2666,7 @@ time: 1min 3s (started: 2022-12-29 12:24:02 +00:00)
 <h2>Predict polarities<a class="headerlink" href="#predict-polarities" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ekorpkit.models.transformer.simple</span> <span class="kn">import</span> <span class="n">SimpleClassification</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ekorpkit.models.transformer.simple</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleClassification</span>
 
 <span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;task=simple.classification&quot;</span><span class="p">)</span>
 <span class="n">cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;esg_polarity_validated&quot;</span>
@@ -2715,7 +2714,7 @@ INFO:ekorpkit.io.file:Saving dataframe to /workspace/projects/ekorpkit-book/exma
 <h2>Predicting categories<a class="headerlink" href="#predicting-categories" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ekorpkit.models.transformer.simple</span> <span class="kn">import</span> <span class="n">SimpleClassification</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ekorpkit.models.transformer.simple</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleClassification</span>
 
 <span class="n">cfg</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="s2">&quot;task=simple.classification&quot;</span><span class="p">)</span>
 <span class="n">cfg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;esg_topics_cved&quot;</span>
@@ -3175,7 +3174,7 @@ INFO:ekorpkit.io.file:Saving dataframe to /workspace/projects/ekorpkit-book/exma
   <div class="footer-item">
     
 <p class="component-author">
-By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
+By <a href="https://youngjoon-lee.com" target="_blank">Young Joon Lee</a>
 </p>
 
   </div>

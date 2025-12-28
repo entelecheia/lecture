@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
@@ -92,7 +92,7 @@
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_deep/llms/zeroshot';</script>
-    <link rel="canonical" href="https://lecture.jeju.ai/lectures/nlp_deep/llms/zeroshot.html" />
+    <link rel="canonical" href="https://lectures.jeju.ai/lectures/nlp_deep/llms/zeroshot.html" />
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -501,9 +501,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../../about/lecture-bot.html">LectureBot for ἐντελέχεια.άι</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://course.entelecheia.ai">course.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://youngjoon-lee.com">youngjoon-lee.com</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://courses.jeju.ai">courses.jeju.ai</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://research.jeju.ai">research.jeju.ai</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Bibliography</a></li>
 </ul>
@@ -776,7 +775,7 @@ document.write(`
 <h3>Few-shot learning:<a class="headerlink" href="#few-shot-learning" title="Link to this heading">#</a></h3>
 <p>Task: Convert a sentence from active to passive voice</p>
 <p>Prompt:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Transform</span> <span class="n">the</span> <span class="n">following</span> <span class="n">sentences</span> <span class="kn">from</span> <span class="nn">active</span> <span class="n">to</span> <span class="n">passive</span> <span class="n">voice</span><span class="p">:</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Transform</span> <span class="n">the</span> <span class="n">following</span> <span class="n">sentences</span> <span class="kn">from</span><span class="w"> </span><span class="nn">active</span> <span class="n">to</span> <span class="n">passive</span> <span class="n">voice</span><span class="p">:</span>
 <span class="n">Example</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;John painted the house.&quot;</span> <span class="o">-&gt;</span> <span class="s2">&quot;The house was painted by John.&quot;</span>
 <span class="n">Example</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;She baked a cake.&quot;</span> <span class="o">-&gt;</span> <span class="s2">&quot;A cake was baked by her.&quot;</span>
 
@@ -788,7 +787,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Zero-shot Learning with Hugging Face&#39;s Transformers</span>
-<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">pipeline</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
 
 <span class="n">review</span> <span class="o">=</span> <span class="s2">&quot;I absolutely loved the movie! The storyline was captivating, and the acting was superb. I can&#39;t wait to watch it again!&quot;</span>
 
@@ -823,7 +822,7 @@ Downloading (…)/main/tokenizer.json: 100%|██████████| 1.36
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># One-shot Learning</span>
-<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">GPT2LMHeadModel</span><span class="p">,</span> <span class="n">GPT2Tokenizer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">GPT2LMHeadModel</span><span class="p">,</span> <span class="n">GPT2Tokenizer</span>
 
 <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">Answer the following geography-related question:</span>
@@ -868,7 +867,7 @@ Question
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Few-shot Learning</span>
-<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">GPT2LMHeadModel</span><span class="p">,</span> <span class="n">GPT2Tokenizer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">GPT2LMHeadModel</span><span class="p">,</span> <span class="n">GPT2Tokenizer</span>
 
 <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">Transform the following sentences from active to passive voice:</span>
@@ -932,11 +931,11 @@ Example 5: &quot;The cat was a cat.&quot; -&gt; &quot;The cat was a cat
 <p>The following code imports necessary libraries, TensorFlow and Hugging Face Transformers, to work with the GPT-2 model. It initializes a GPT-2 tokenizer and loads the pre-trained GPT-2 model from Hugging Face’s model hub. The EOS token is set as the PAD token to avoid warnings during tokenization and padding.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
-<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">TFGPT2LMHeadModel</span><span class="p">,</span> <span class="n">GPT2Tokenizer</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tf</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">TFGPT2LMHeadModel</span><span class="p">,</span> <span class="n">GPT2Tokenizer</span>
 
 
-<span class="k">def</span> <span class="nf">generate_chain_of_thought</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_chain_of_thought</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
     <span class="n">input_ids</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;tf&quot;</span><span class="p">)</span>
     <span class="n">generated_text</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span>
         <span class="n">input_ids</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="n">max_length</span><span class="p">,</span> <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">1</span>
@@ -975,13 +974,13 @@ If your task is similar to the task the model of the checkpoint was trained on, 
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># You have to install the OpenAI Python library by running the following command:</span>
 <span class="c1"># pip install openai</span>
-<span class="kn">import</span> <span class="nn">openai</span>
-<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">openai</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
 
 <span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;API_KEY&quot;</span>
 
 
-<span class="k">def</span> <span class="nf">generate_chain_of_thought</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">model_engine</span><span class="o">=</span><span class="s2">&quot;text-davinci-003&quot;</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_chain_of_thought</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">model_engine</span><span class="o">=</span><span class="s2">&quot;text-davinci-003&quot;</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
         <span class="n">engine</span><span class="o">=</span><span class="n">model_engine</span><span class="p">,</span>
         <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span>
@@ -1099,7 +1098,7 @@ If your task is similar to the task the model of the checkpoint was trained on, 
   <div class="footer-item">
     
 <p class="component-author">
-By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
+By <a href="https://youngjoon-lee.com" target="_blank">Young Joon Lee</a>
 </p>
 
   </div>

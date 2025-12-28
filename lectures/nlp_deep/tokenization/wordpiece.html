@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
@@ -92,7 +92,7 @@
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_deep/tokenization/wordpiece';</script>
-    <link rel="canonical" href="https://lecture.jeju.ai/lectures/nlp_deep/tokenization/wordpiece.html" />
+    <link rel="canonical" href="https://lectures.jeju.ai/lectures/nlp_deep/tokenization/wordpiece.html" />
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -501,9 +501,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../../about/lecture-bot.html">LectureBot for ἐντελέχεια.άι</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://course.entelecheia.ai">course.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://youngjoon-lee.com">youngjoon-lee.com</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://courses.jeju.ai">courses.jeju.ai</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://research.jeju.ai">research.jeju.ai</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Bibliography</a></li>
 </ul>
@@ -733,7 +732,7 @@ document.write(`
 <p>First, we need to load our dataset. We will use the <code class="docutils literal notranslate"><span class="pre">ashraq/financial-news</span></code> dataset from the Hugging Face Hub. We will use the <code class="docutils literal notranslate"><span class="pre">headline</span></code> column as our text data. We will randomly sample 1000 records from this dataset for our tokenization process. Here is how we can do this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
 
 <span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;ashraq/financial-news&quot;</span><span class="p">)</span>
 <span class="n">texts</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">1234</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">))[</span><span class="s2">&quot;headline&quot;</span><span class="p">]</span>
@@ -756,10 +755,10 @@ Loading cached shuffled indices for dataset at /home/yjlee/.cache/huggingface/da
 <p>Before we start with the WordPiece tokenization, we need to pre-tokenize our text. Pre-tokenization involves splitting the text into words. This is a necessary step because WordPiece operates on the word level. Here is a simple function to pre-tokenize the text:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
 
 
-<span class="k">def</span> <span class="nf">pre_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">lowercase</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">pre_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">lowercase</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">lowercase</span><span class="p">:</span>
         <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
     <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\s+&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
@@ -774,10 +773,10 @@ Loading cached shuffled indices for dataset at /home/yjlee/.cache/huggingface/da
 <p>The next step is to initialize our vocabulary. In the case of WordPiece, we start with a vocabulary of individual characters. Here is how we can do this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
 
 
-<span class="k">def</span> <span class="nf">initialize_vocab</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">lowercase</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">initialize_vocab</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">lowercase</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="n">vocab</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">texts</span><span class="p">:</span>
         <span class="n">words</span> <span class="o">=</span> <span class="n">pre_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">lowercase</span><span class="p">)</span>
@@ -856,7 +855,7 @@ Loading cached shuffled indices for dataset at /home/yjlee/.cache/huggingface/da
 <p>Now, we compute the scores for all possible pairs of characters. The score of a pair is defined as the frequency of the pair divided by the product of the frequencies of the individual characters. The idea is to find the pair that occurs together more often than separately:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_pair_scores</span><span class="p">(</span><span class="n">splits</span><span class="p">,</span> <span class="n">word_freqs</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_pair_scores</span><span class="p">(</span><span class="n">splits</span><span class="p">,</span> <span class="n">word_freqs</span><span class="p">):</span>
     <span class="n">letter_freqs</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
     <span class="n">pair_freqs</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">word_freqs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -926,7 +925,7 @@ Loading cached shuffled indices for dataset at /home/yjlee/.cache/huggingface/da
 <p>Once we have identified the best pair, we merge it and update our splits:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">merge_pair</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">splits</span><span class="p">,</span> <span class="n">word_freqs</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">merge_pair</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">splits</span><span class="p">,</span> <span class="n">word_freqs</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_freqs</span><span class="p">:</span>
         <span class="n">split</span> <span class="o">=</span> <span class="n">splits</span><span class="p">[</span><span class="n">word</span><span class="p">]</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">split</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -985,7 +984,7 @@ Last 50 tokens: [&#39;##tangibl&#39;, &#39;##ntangibl&#39;, &#39;##intangibl&#39
 <p>Now that we have our WordPiece vocabulary, we can use it to encode words:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">encode_word</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">encode_word</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
     <span class="n">tokens</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">i</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
@@ -1021,7 +1020,7 @@ Last 50 tokens: [&#39;##tangibl&#39;, &#39;##ntangibl&#39;, &#39;##intangibl&#39
 <p>Finally, we can use our WordPiece tokenizer to tokenize text:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
     <span class="n">words</span> <span class="o">=</span> <span class="n">pre_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
     <span class="n">encoded_words</span> <span class="o">=</span> <span class="p">[</span><span class="n">encode_word</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">]</span>
     <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">encoded_words</span><span class="p">,</span> <span class="p">[])</span>
@@ -1085,7 +1084,7 @@ Last 50 tokens: [&#39;##tangibl&#39;, &#39;##ntangibl&#39;, &#39;##intangibl&#39
 <p>A function to compute the score of each pair:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_pair_scores</span><span class="p">(</span><span class="n">splits</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_pair_scores</span><span class="p">(</span><span class="n">splits</span><span class="p">):</span>
     <span class="n">letter_freqs</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
     <span class="n">pair_freqs</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">word_freqs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -1160,7 +1159,7 @@ Last 50 tokens: [&#39;##tangibl&#39;, &#39;##ntangibl&#39;, &#39;##intangibl&#39
 <p>To continue, we need to apply that merge in our splits dictionary. A function for this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">merge_pair</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">splits</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">merge_pair</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">splits</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_freqs</span><span class="p">:</span>
         <span class="n">split</span> <span class="o">=</span> <span class="n">splits</span><span class="p">[</span><span class="n">word</span><span class="p">]</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">split</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -1231,7 +1230,7 @@ Last 50 tokens: [&#39;thompso&#39;, &#39;accompan&#39;, &#39;accompany&#39;, &#3
 <p>Encoding is done by finding the biggest subword in the vocabulary that is in the word, and splitting on it. Iterating on the word until it is empty:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">encode_word</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">encode_word</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
     <span class="n">tokens</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">i</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
@@ -1267,7 +1266,7 @@ Last 50 tokens: [&#39;thompso&#39;, &#39;accompan&#39;, &#39;accompany&#39;, &#3
 <p>To tokenize a sentence, we can apply this function to each word:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
     <span class="n">words</span> <span class="o">=</span> <span class="n">pre_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
     <span class="n">encoded_words</span> <span class="o">=</span> <span class="p">[</span><span class="n">encode_word</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">]</span>
     <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">encoded_words</span><span class="p">,</span> <span class="p">[])</span>
@@ -1348,7 +1347,7 @@ Last 50 tokens: [&#39;thompso&#39;, &#39;accompan&#39;, &#39;accompany&#39;, &#3
 <p>Next, we compute the sum of all frequencies, to convert the frequencies into probabilities.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">log</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">log</span>
 
 <span class="n">total_sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">freq</span> <span class="k">for</span> <span class="n">token</span><span class="p">,</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">token_freqs</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
 <span class="n">model</span> <span class="o">=</span> <span class="p">{</span><span class="n">token</span><span class="p">:</span> <span class="o">-</span><span class="n">log</span><span class="p">(</span><span class="n">freq</span> <span class="o">/</span> <span class="n">total_sum</span><span class="p">)</span> <span class="k">for</span> <span class="n">token</span><span class="p">,</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">token_freqs</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
@@ -1359,7 +1358,7 @@ Last 50 tokens: [&#39;thompso&#39;, &#39;accompan&#39;, &#39;accompany&#39;, &#3
 <p>The main function is the one that tokenizes words using the Viterbi algorithm.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">encode_word</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">encode_word</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
     <span class="n">best_segmentations</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;start&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}]</span> <span class="o">+</span> <span class="p">[</span>
         <span class="p">{</span><span class="s2">&quot;start&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">))</span>
     <span class="p">]</span>
@@ -1414,7 +1413,7 @@ Last 50 tokens: [&#39;thompso&#39;, &#39;accompan&#39;, &#39;accompany&#39;, &#3
 <p>Compute the loss:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_loss</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_loss</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
     <span class="n">loss</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">word_freqs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="n">_</span><span class="p">,</span> <span class="n">word_loss</span> <span class="o">=</span> <span class="n">encode_word</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
@@ -1435,10 +1434,10 @@ Last 50 tokens: [&#39;thompso&#39;, &#39;accompan&#39;, &#39;accompany&#39;, &#3
 <p>Computing the scores for each token:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">copy</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
 
 
-<span class="k">def</span> <span class="nf">compute_scores</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_scores</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
     <span class="n">scores</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">model_loss</span> <span class="o">=</span> <span class="n">compute_loss</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">token</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -1496,7 +1495,7 @@ Last 50 tokens: [&#39;thompso&#39;, &#39;accompan&#39;, &#39;accompany&#39;, &#3
 <p>To tokenize a sentence, we can apply this function to each word:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
     <span class="n">words</span> <span class="o">=</span> <span class="n">pre_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
     <span class="n">encoded_words</span> <span class="o">=</span> <span class="p">[</span><span class="n">encode_word</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">model</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">]</span>
     <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">encoded_words</span><span class="p">,</span> <span class="p">[])</span>
@@ -1609,7 +1608,7 @@ Last 50 tokens: [&#39;thompso&#39;, &#39;accompan&#39;, &#39;accompany&#39;, &#3
   <div class="footer-item">
     
 <p class="component-author">
-By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
+By <a href="https://youngjoon-lee.com" target="_blank">Young Joon Lee</a>
 </p>
 
   </div>

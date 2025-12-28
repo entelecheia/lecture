@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
@@ -92,7 +92,7 @@
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/nlp_intro/topic/tomotopy';</script>
-    <link rel="canonical" href="https://lecture.jeju.ai/lectures/nlp_intro/topic/tomotopy.html" />
+    <link rel="canonical" href="https://lectures.jeju.ai/lectures/nlp_intro/topic/tomotopy.html" />
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -501,9 +501,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../../about/lecture-bot.html">LectureBot for ἐντελέχεια.άι</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://entelecheia.me">entelecheia.me</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://course.entelecheia.ai">course.entelecheia.ai</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://youngjoon-lee.com">youngjoon-lee.com</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://courses.jeju.ai">courses.jeju.ai</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://research.jeju.ai">research.jeju.ai</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Bibliography</a></li>
 </ul>
@@ -763,12 +762,12 @@ pip<span class="w"> </span>install<span class="w"> </span>tomotopy
 </pre></div>
 </div>
 <p>After installing, you can start tomotopy by just importing.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tomotopy</span> <span class="k">as</span> <span class="nn">tp</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tomotopy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tp</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">tp</span><span class="o">.</span><span class="n">isa</span><span class="p">)</span> <span class="c1"># prints &#39;avx2&#39;, &#39;avx&#39;, &#39;sse2&#39; or &#39;none&#39;</span>
 </pre></div>
 </div>
 <p>Here is a sample code for simple LDA training of texts from ‘sample.txt’ file.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tomotopy</span> <span class="k">as</span> <span class="nn">tp</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tomotopy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tp</span>
 <span class="n">mdl</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">LDAModel</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;sample.txt&#39;</span><span class="p">):</span>
     <span class="n">mdl</span><span class="o">.</span><span class="n">add_doc</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
@@ -789,7 +788,7 @@ pip<span class="w"> </span>install<span class="w"> </span>tomotopy
 <h2>Model Save and Load<a class="headerlink" href="#model-save-and-load" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">tomotopy</span></code> provides <code class="docutils literal notranslate"><span class="pre">save</span></code> and <code class="docutils literal notranslate"><span class="pre">load</span></code> method for each topic model class,
 so you can save the model into the file whenever you want, and re-load it from the file.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tomotopy</span> <span class="k">as</span> <span class="nn">tp</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tomotopy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tp</span>
 
 <span class="n">mdl</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">HDPModel</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;sample.txt&#39;</span><span class="p">):</span>
@@ -877,8 +876,8 @@ Since <code class="docutils literal notranslate"><span class="pre">tomotopy.util
 data types required by a topic model may be inconsistent when a corpus is added into that topic model.
 In this case, miscellaneous data can be transformed to be fitted target topic model using argument <code class="docutils literal notranslate"><span class="pre">transform</span></code>.</p>
 <p>See more details in the following code:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tomotopy</span> <span class="kn">import</span> <span class="n">DMRModel</span>
-<span class="kn">from</span> <span class="nn">tomotopy.utils</span> <span class="kn">import</span> <span class="n">Corpus</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tomotopy</span><span class="w"> </span><span class="kn">import</span> <span class="n">DMRModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tomotopy.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">Corpus</span>
 
 <span class="n">corpus</span> <span class="o">=</span> <span class="n">Corpus</span><span class="p">()</span>
 <span class="n">corpus</span><span class="o">.</span><span class="n">add_doc</span><span class="p">(</span><span class="s2">&quot;a b c d e&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">(),</span> <span class="n">a_data</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -894,7 +893,7 @@ In this case, miscellaneous data can be transformed to be fitted target topic mo
 <span class="k">assert</span> <span class="n">model</span><span class="o">.</span><span class="n">docs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">metadata</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span>
 <span class="k">assert</span> <span class="n">model</span><span class="o">.</span><span class="n">docs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">metadata</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span>
 
-<span class="k">def</span> <span class="nf">transform_a_data_to_metadata</span><span class="p">(</span><span class="n">misc</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">transform_a_data_to_metadata</span><span class="p">(</span><span class="n">misc</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;metadata&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">misc</span><span class="p">[</span><span class="s1">&#39;a_data&#39;</span><span class="p">])}</span>
 <span class="c1"># this function transforms `a_data` to `metadata`</span>
 
@@ -915,7 +914,7 @@ For example, we can set the weight of the word ‘church’ to 1.0 in topic 0, a
 This means that the probability that the word ‘church’ is assigned to topic 0 is 10 times higher than the probability of being assigned to another topic.
 Therefore, most of ‘church’ is assigned to topic 0, so topic 0 contains many words related to ‘church’.
 This allows to manipulate some topics to be placed at a specific topic number.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tomotopy</span> <span class="k">as</span> <span class="nn">tp</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tomotopy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tp</span>
 <span class="n">mdl</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">LDAModel</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 
 <span class="c1"># add documents into `mdl`</span>
@@ -941,7 +940,7 @@ This allows to manipulate some topics to be placed at a specific topic number.</
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ekorpkit</span> <span class="kn">import</span> <span class="n">eKonf</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ekorpkit</span><span class="w"> </span><span class="kn">import</span> <span class="n">eKonf</span>
 
 <span class="n">eKonf</span><span class="o">.</span><span class="n">setLogger</span><span class="p">(</span><span class="s2">&quot;WARNING&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;version:&quot;</span><span class="p">,</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
@@ -1000,7 +999,7 @@ environment variables:
 </ul>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tomotopy</span> <span class="k">as</span> <span class="nn">tp</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tomotopy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tp</span>
 
 <span class="n">save_path</span> <span class="o">=</span> <span class="n">eKonf</span><span class="o">.</span><span class="n">join_path</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">&quot;lda_basic.mdl&quot;</span><span class="p">)</span>
 <span class="n">mdl</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">LDAModel</span><span class="p">(</span><span class="n">tw</span><span class="o">=</span><span class="n">tp</span><span class="o">.</span><span class="n">TermWeight</span><span class="o">.</span><span class="n">ONE</span><span class="p">,</span> <span class="n">min_cf</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">rm_top</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
@@ -1026,10 +1025,10 @@ environment variables:
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show code cell output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Num docs: 100 , Vocab size: 972 , Num words: 33695
@@ -1055,10 +1054,10 @@ Iteration: 90	Log-likelihood: -6.823284888087085
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show code cell output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Basic Info&gt;
@@ -1128,10 +1127,10 @@ Iteration: 90	Log-likelihood: -6.823284888087085
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show code cell output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Topic #0
@@ -1365,12 +1364,12 @@ Topic #19
 <p>This example shows how to perform a Latent Dirichlet Allocation using tomotopy and visualize the result.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tomotopy</span> <span class="k">as</span> <span class="nn">tp</span>
-<span class="kn">import</span> <span class="nn">nltk</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pyLDAvis</span>
-<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tomotopy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nltk</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pyLDAvis</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nltk.corpus</span><span class="w"> </span><span class="kn">import</span> <span class="n">stopwords</span>
 </pre></div>
 </div>
 </div>
@@ -1426,10 +1425,10 @@ Removed Top words:  year compani stock market earn said zack price percent share
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show code cell output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration: 0000, LL per word: -12.02
@@ -1555,7 +1554,7 @@ Iteration: 1000, LL per word: -7.122
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
 
 <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;a href=</span><span class="si">{</span><span class="n">save_path</span><span class="si">}</span><span class="s2"> target=&#39;_blank&#39;&gt;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&lt;/a&gt;&quot;</span><span class="p">))</span>
 </pre></div>
@@ -1581,10 +1580,10 @@ Iteration: 1000, LL per word: -7.122
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show code cell output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==== Coherence : u_mass ====
@@ -1609,7 +1608,7 @@ Per Topic: [0.5011142507195473, 0.5537001609802246, 0.6300975859165192, 0.652806
 </div>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
 
 <span class="c1"># calculate coherence using custom combination</span>
 <span class="k">for</span> <span class="n">seg</span><span class="p">,</span> <span class="n">cm</span><span class="p">,</span> <span class="n">im</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span>
@@ -1626,10 +1625,10 @@ Per Topic: [0.5011142507195473, 0.5537001609802246, 0.6300975859165192, 0.652806
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show code cell output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==== Coherence : &lt;Segmentation.ONE_ONE: 1&gt;, &lt;ConfirmMeasure.DIFFERENCE: 1&gt;, &lt;IndirectMeasure.NONE: 0&gt; =S===
@@ -2226,10 +2225,10 @@ Per Topic: [17.00997748374939, 13.411004638671875, 13.621732091903686, 15.789669
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show code cell output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Num docs: 100 , Vocab size: 726 , Num words: 23802
@@ -2255,10 +2254,10 @@ Iteration: 90	Log-likelihood: -6.604038265559883
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show code cell output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Basic Info&gt;
@@ -2331,10 +2330,10 @@ Iteration: 90	Log-likelihood: -6.604038265559883
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show code cell output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>== Topic #0 ==
@@ -2679,7 +2678,7 @@ inc	0.020155129954218864
   <div class="footer-item">
     
 <p class="component-author">
-By <a href="https://entelecheia.me" target="_blank">Young Joon Lee</a>
+By <a href="https://youngjoon-lee.com" target="_blank">Young Joon Lee</a>
 </p>
 
   </div>

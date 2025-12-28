@@ -6,10 +6,10 @@
 [![chrome-web-store-image]][chrome-web-store-url]
 [![last-commit-img]][last-commit-url]
 
-[home-img]: https://img.shields.io/badge/home-entelecheia.me-blue
-[home-url]: https://entelecheia.me
+[home-img]: https://img.shields.io/badge/home-youngjoon-lee.com-blue
+[home-url]: https://youngjoon-lee.com
 [course-img]: https://img.shields.io/badge/course-entelecheia.ai-blue
-[course-url]: https://course.entelecheia.ai
+[course-url]: https://courses.jeju.ai
 [research-img]: https://img.shields.io/badge/research-entelecheia.ai-blue
 [research-url]: https://research.jeju.ai
 [linkedin-img]: https://img.shields.io/badge/LinkedIn-blue?logo=linkedin
