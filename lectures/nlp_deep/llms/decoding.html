@@ -770,12 +770,14 @@ If your task is similar to the task the model of the checkpoint was trained on, 
 </div>
 <section id="greedy-search">
 <h2>Greedy Search<a class="headerlink" href="#greedy-search" title="Link to this heading">#</a></h2>
-<a class="bg-primary mb-1 reference internal image-reference" href="../../../_images/entelecheia_greedy_search.png"><img alt="Greedy Search" class="bg-primary mb-1 align-center" src="../../../_images/entelecheia_greedy_search.png" style="width: 50%;" /></a>
+<a class="bg-primary mb-1 reference internal image-reference" href="../../../_images/entelecheia_greedy_search.png"><img alt="Greedy Search" class="bg-primary mb-1 align-center" src="../../../_images/entelecheia_greedy_search.png" style="width: 50%;" />
+</a>
 <p>Greedy search is a decoding strategy used in language generation tasks. It works by selecting the word with the highest probability as the next word in the generated sequence, given the previous words.</p>
 <p>In each step of the generation process, the model computes the probabilities of all possible words, given the context of the previously generated words. Greedy search then chooses the word with the highest probability and appends it to the output sequence. This process is repeated until a predefined stopping condition is met, such as reaching the maximum output length or generating an end-of-sentence (EOS) token.</p>
 <p>While greedy search is computationally efficient and straightforward to implement, it has some drawbacks. The main limitation is that it can generate suboptimal output sequences since it doesn’t explore other possible word combinations. It always chooses the locally optimal word without considering the global context, which might lead to less coherent or less diverse generated text. Other search strategies, like beam search or nucleus sampling, can help overcome these limitations by exploring a larger space of possible output sequences.</p>
 <figure class="align-default" id="fig-greedy-search">
-<a class="reference internal image-reference" href="../../../_images/deepnlp_2_greedy_search.png"><img alt="../../../_images/deepnlp_2_greedy_search.png" src="../../../_images/deepnlp_2_greedy_search.png" style="width: 70%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/deepnlp_2_greedy_search.png"><img alt="../../../_images/deepnlp_2_greedy_search.png" src="../../../_images/deepnlp_2_greedy_search.png" style="width: 70%;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 90 </span><span class="caption-text">Greedy Search Example</span><a class="headerlink" href="#fig-greedy-search" title="Link to this image">#</a></p>
 </figcaption>
@@ -821,14 +823,16 @@ I&#39;m not sure how to apply it to real-world applications. I&#39;m not sure ho
 </ul>
 <section id="beam-search">
 <h3>Beam search<a class="headerlink" href="#beam-search" title="Link to this heading">#</a></h3>
-<a class="bg-primary mb-1 reference internal image-reference" href="../../../_images/entelecheia_beam_search.png"><img alt="Beam Search" class="bg-primary mb-1 align-center" src="../../../_images/entelecheia_beam_search.png" style="width: 50%;" /></a>
+<a class="bg-primary mb-1 reference internal image-reference" href="../../../_images/entelecheia_beam_search.png"><img alt="Beam Search" class="bg-primary mb-1 align-center" src="../../../_images/entelecheia_beam_search.png" style="width: 50%;" />
+</a>
 <p>Beam search is a decoding strategy used in language generation tasks to generate more diverse and coherent text compared to greedy search. It is a type of breadth-first search algorithm that maintains a fixed number of candidate sequences, called “beams,” at each step of the generation process.</p>
 <p>The main idea behind beam search is to explore multiple word options at each step, rather than choosing only the word with the highest probability, as in greedy search. The algorithm starts by selecting the top k words with the highest probabilities, where k is the beam size. It then extends each of these words with the top k words, given the context. This results in k * k new candidate sequences. The algorithm keeps only the top k sequences with the highest overall probabilities and discards the rest.</p>
 <p>The process is repeated at each timestep until a predefined stopping condition is met, such as reaching the maximum output length or generating an end-of-sentence (EOS) token. The candidate sequence with the highest overall probability is selected as the final output.</p>
 <p>Beam search offers a balance between computational complexity and the quality of generated text. A larger beam size increases the chances of finding better output sequences but also increases the computational cost. On the other hand, a smaller beam size is more computationally efficient but may generate less diverse and less coherent text.</p>
 <p>In summary, beam search is a decoding strategy that explores multiple word combinations during text generation, which can lead to more diverse and coherent output compared to greedy search. However, it comes at the cost of increased computational complexity, depending on the beam size.</p>
 <figure class="align-default" id="fig-beam-search">
-<a class="reference internal image-reference" href="../../../_images/deepnlp_2_beam_search.png"><img alt="../../../_images/deepnlp_2_beam_search.png" src="../../../_images/deepnlp_2_beam_search.png" style="width: 70%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/deepnlp_2_beam_search.png"><img alt="../../../_images/deepnlp_2_beam_search.png" src="../../../_images/deepnlp_2_beam_search.png" style="width: 70%;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 91 </span><span class="caption-text">Beam Search Example</span><a class="headerlink" href="#fig-beam-search" title="Link to this image">#</a></p>
 </figcaption>
@@ -956,7 +960,8 @@ In this post, I&#39;ll show you how you can use Deep Learning to build a neural 
 </ul>
 <p>In summary, while beam search can be effective for certain text generation tasks, its limitations in handling varying output lengths, repetitiveness, and the need for more surprising and engaging text make it less suitable for open-ended generation tasks like dialog and story generation.</p>
 <figure class="align-default" id="fig-beam-search-vs-human">
-<a class="reference internal image-reference" href="../../../_images/deepnlp_2_beam_vs_human.png"><img alt="../../../_images/deepnlp_2_beam_vs_human.png" src="../../../_images/deepnlp_2_beam_vs_human.png" style="width: 70%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/deepnlp_2_beam_vs_human.png"><img alt="../../../_images/deepnlp_2_beam_vs_human.png" src="../../../_images/deepnlp_2_beam_vs_human.png" style="width: 70%;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 92 </span><span class="caption-text">Beam Search vs Human</span><a class="headerlink" href="#fig-beam-search-vs-human" title="Link to this image">#</a></p>
 </figcaption>
@@ -970,7 +975,8 @@ In this post, I&#39;ll show you how you can use Deep Learning to build a neural 
 \[ w*t \sim P(w|w*{1:t-1}) \]</div>
 <p>The following graphic visualizes language generation when sampling.</p>
 <figure class="align-default" id="fig-sampling-search">
-<a class="reference internal image-reference" href="../../../_images/deepnlp_2_sampling_search.png"><img alt="../../../_images/deepnlp_2_sampling_search.png" src="../../../_images/deepnlp_2_sampling_search.png" style="width: 70%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/deepnlp_2_sampling_search.png"><img alt="../../../_images/deepnlp_2_sampling_search.png" src="../../../_images/deepnlp_2_sampling_search.png" style="width: 70%;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 93 </span><span class="caption-text">Sampling Search</span><a class="headerlink" href="#fig-sampling-search" title="Link to this image">#</a></p>
 </figcaption>
@@ -1008,7 +1014,8 @@ I enjoy studying deep learning for natural language processing, especially to se
 <p>While the generated text seems fine at first glance, a closer look reveals that it lacks coherence and contains words that do not sound natural. This incoherent gibberish is a common problem with sampling word sequences.</p>
 <p>To address this issue, we can adjust the <code class="docutils literal notranslate"><span class="pre">temperature</span></code> of the <a class="reference external" href="https://en.wikipedia.org/wiki/Softmax_function#Smooth_arg_max">softmax</a> function. This modification sharpens the distribution <span class="math notranslate nohighlight">\(P(w|w\_{1:t-1})\)</span>, increasing the likelihood of high probability words and decreasing the likelihood of low probability words. The following code snippet demonstrates how to apply a temperature of 0.7:</p>
 <figure class="align-default" id="fig-sampling-search-with-temp">
-<a class="reference internal image-reference" href="../../../_images/deepnlp_2_sampling_search_with_temp.png"><img alt="../../../_images/deepnlp_2_sampling_search_with_temp.png" src="../../../_images/deepnlp_2_sampling_search_with_temp.png" style="width: 70%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/deepnlp_2_sampling_search_with_temp.png"><img alt="../../../_images/deepnlp_2_sampling_search_with_temp.png" src="../../../_images/deepnlp_2_sampling_search_with_temp.png" style="width: 70%;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 94 </span><span class="caption-text">Sampling Search with Temperature</span><a class="headerlink" href="#fig-sampling-search-with-temp" title="Link to this image">#</a></p>
 </figcaption>
@@ -1057,7 +1064,8 @@ The current human-language
 <section id="top-k-sampling">
 <h2>Top-K Sampling<a class="headerlink" href="#top-k-sampling" title="Link to this heading">#</a></h2>
 <figure class="align-default" id="fig-top-k-sampling">
-<a class="reference internal image-reference" href="../../../_images/deepnlp_2_top_k_sampling.png"><img alt="../../../_images/deepnlp_2_top_k_sampling.png" src="../../../_images/deepnlp_2_top_k_sampling.png" style="width: 70%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/deepnlp_2_top_k_sampling.png"><img alt="../../../_images/deepnlp_2_top_k_sampling.png" src="../../../_images/deepnlp_2_top_k_sampling.png" style="width: 70%;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 95 </span><span class="caption-text">Top-K Sampling</span><a class="headerlink" href="#fig-top-k-sampling" title="Link to this image">#</a></p>
 </figcaption>
@@ -1101,7 +1109,8 @@ I enjoy studying deep learning for natural language processing, as well as in te
 <section id="top-p-nucleus-sampling">
 <h2>Top-p (nucleus) sampling<a class="headerlink" href="#top-p-nucleus-sampling" title="Link to this heading">#</a></h2>
 <figure class="align-default" id="fig-top-p-sampling">
-<a class="reference internal image-reference" href="../../../_images/deepnlp_2_top_p_sampling.png"><img alt="../../../_images/deepnlp_2_top_p_sampling.png" src="../../../_images/deepnlp_2_top_p_sampling.png" style="width: 70%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/deepnlp_2_top_p_sampling.png"><img alt="../../../_images/deepnlp_2_top_p_sampling.png" src="../../../_images/deepnlp_2_top_p_sampling.png" style="width: 70%;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 96 </span><span class="caption-text">Top-p Sampling</span><a class="headerlink" href="#fig-top-p-sampling" title="Link to this image">#</a></p>
 </figcaption>
@@ -1224,7 +1233,8 @@ Another way to learn Deep Learning is by coding. For example, I often code to so
 <h2>Prompt Engineering<a class="headerlink" href="#prompt-engineering" title="Link to this heading">#</a></h2>
 <p><strong>The Career of Future</strong></p>
 <figure class="align-default" id="fig-prompt-engineering">
-<a class="reference internal image-reference" href="../../../_images/deepnlp_2_prompt.png"><img alt="../../../_images/deepnlp_2_prompt.png" src="../../../_images/deepnlp_2_prompt.png" style="width: 50%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/deepnlp_2_prompt.png"><img alt="../../../_images/deepnlp_2_prompt.png" src="../../../_images/deepnlp_2_prompt.png" style="width: 50%;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 97 </span><span class="caption-text">Prompt Engineering (<a class="reference external" href="https://twitter.com/karpathy/status/1273788774422441984/photo/1">source</a>)</span><a class="headerlink" href="#fig-prompt-engineering" title="Link to this image">#</a></p>
 </figcaption>

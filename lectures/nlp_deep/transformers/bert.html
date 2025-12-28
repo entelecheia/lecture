@@ -1096,7 +1096,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bert-bidirectional-encoder-representations-from-transformers">
 <h1>BERT: Bidirectional Encoder Representations from Transformers<a class="headerlink" href="#bert-bidirectional-encoder-representations-from-transformers" title="Link to this heading">#</a></h1>
-<a class="bg-primary mb-1 reference internal image-reference" href="../../../_images/entelecheia_bert.png"><img alt="bert" class="bg-primary mb-1 align-center" src="../../../_images/entelecheia_bert.png" style="width: 70%;" /></a>
+<a class="bg-primary mb-1 reference internal image-reference" href="../../../_images/entelecheia_bert.png"><img alt="bert" class="bg-primary mb-1 align-center" src="../../../_images/entelecheia_bert.png" style="width: 70%;" />
+</a>
 <p><strong>2018</strong> was a significant year for the field of <strong>Natural Language Processing (NLP)</strong>, as it witnessed a groundbreaking development with the introduction of <strong>BERT</strong>. The BERT paper <span id="id1">[<a class="reference internal" href="../../../about/index.html#id15" title="Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. Bert: pre-training of deep bidirectional transformers for language understanding. arXiv preprint arXiv:1810.04805, 2018. URL: https://arxiv.org/abs/1810.04805.">Devlin <em>et al.</em>, 2018</a>]</span> presented a novel language representation model that outperformed all previous models across a broad spectrum of NLP tasks.</p>
 <p><strong>BERT</strong> stands for <strong>Bidirectional Encoder Representations from Transformers</strong>. It is a deep bidirectional transformer model that is pre-trained on a vast corpus of unlabeled text. The model is designed to predict masked words within a sentence and to anticipate the subsequent sentence in a sequence of sentences. The pre-trained model can then be fine-tuned for various downstream NLP tasks, yielding state-of-the-art results.</p>
 <p>BERT builds upon two essential ideas:</p>
@@ -1116,14 +1117,16 @@ document.write(`
 <p>Suppose you have a sequence of words <span class="math notranslate nohighlight">\(X\)</span>, where each element <span class="math notranslate nohighlight">\(x_i\)</span> is a value of dimension <span class="math notranslate nohighlight">\(d\)</span> (referred to as the value).</p>
 <p>In the following example, <span class="math notranslate nohighlight">\(X\)</span> is a sequence of 3 words, each represented by a 4-dimensional vector.</p>
 <figure class="align-default" id="fig-sentence-vector">
-<a class="reference internal image-reference" href="../../../_images/sentence_vector.png"><img alt="../../../_images/sentence_vector.png" src="../../../_images/sentence_vector.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/sentence_vector.png"><img alt="../../../_images/sentence_vector.png" src="../../../_images/sentence_vector.png" style="width: 80%;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 121 </span><span class="caption-text">Sentence vector</span><a class="headerlink" href="#fig-sentence-vector" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Attention is essentially a function that takes <span class="math notranslate nohighlight">\(X\)</span> as input and returns another sequence <span class="math notranslate nohighlight">\(Y\)</span> of the same length as <span class="math notranslate nohighlight">\(X\)</span>, composed of vectors with the same dimension as the vectors in <span class="math notranslate nohighlight">\(X\)</span>.</p>
 <figure class="align-default" id="fig-sentence-input-output">
-<a class="reference internal image-reference" href="../../../_images/attention_input_output.png"><img alt="../../../_images/attention_input_output.png" src="../../../_images/attention_input_output.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/attention_input_output.png"><img alt="../../../_images/attention_input_output.png" src="../../../_images/attention_input_output.png" style="width: 80%;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 122 </span><span class="caption-text">Sentence input and output</span><a class="headerlink" href="#fig-sentence-input-output" title="Link to this image">#</a></p>
 </figcaption>
@@ -1134,7 +1137,8 @@ document.write(`
 <h3>Attending to Language<a class="headerlink" href="#attending-to-language" title="Link to this heading">#</a></h3>
 <p>How does attention work in the context of language? To understand this, let’s consider a sentence, <code class="docutils literal notranslate"><span class="pre">the</span> <span class="pre">dog</span> <span class="pre">ran</span></code>. We can represent this sentence as a sequence of <strong>vectors</strong>, where each vector is a <strong>word embedding</strong>.</p>
 <figure class="align-default" id="fig-word-embedding">
-<a class="reference internal image-reference" href="../../../_images/word_embedding.png"><img alt="../../../_images/word_embedding.png" src="../../../_images/word_embedding.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/word_embedding.png"><img alt="../../../_images/word_embedding.png" src="../../../_images/word_embedding.png" style="width: 80%;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 123 </span><span class="caption-text">Word embedding</span><a class="headerlink" href="#fig-word-embedding" title="Link to this image">#</a></p>
 </figcaption>
@@ -1172,7 +1176,8 @@ A[Input: the cat ran] --&gt; B[Attention Weights: 0.1, 0.8, 0.1] --&gt; C[Output
 <p>Let’s dive deeper into the attention mechanism and understand how it computes the weights for each word in the input.</p>
 <p>As we know, attention is a <strong>weighted average</strong> of the values of the vectors in X. The critical aspect here is determining how these weights are computed. To do so, attention relies on <strong>queries</strong> and <strong>keys</strong>.</p>
 <figure class="align-default" id="fig-attention-query-key">
-<a class="reference internal image-reference" href="../../../_images/attention_query_key.png"><img alt="../../../_images/attention_query_key.png" src="../../../_images/attention_query_key.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/attention_query_key.png"><img alt="../../../_images/attention_query_key.png" src="../../../_images/attention_query_key.png" style="width: 80%;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 124 </span><span class="caption-text">Attention query and key</span><a class="headerlink" href="#fig-attention-query-key" title="Link to this image">#</a></p>
 </figcaption>
@@ -1180,14 +1185,16 @@ A[Input: the cat ran] --&gt; B[Attention Weights: 0.1, 0.8, 0.1] --&gt; C[Output
 <p><strong>Queries</strong> and <strong>keys</strong> are similar to word embeddings, like the value vectors we saw earlier. However, they are specifically designed for determining the similarity between words in the input.</p>
 <p>The <strong>similarity</strong> between two words is calculated by taking the <strong>dot product</strong> of the query and key vectors of those words.</p>
 <figure class="align-default" id="fig-attention-query-key-dot-product">
-<a class="reference internal image-reference" href="../../../_images/attention_query_key_dot_product.png"><img alt="../../../_images/attention_query_key_dot_product.png" src="../../../_images/attention_query_key_dot_product.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/attention_query_key_dot_product.png"><img alt="../../../_images/attention_query_key_dot_product.png" src="../../../_images/attention_query_key_dot_product.png" style="width: 80%;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 125 </span><span class="caption-text">Attention query and key dot product</span><a class="headerlink" href="#fig-attention-query-key-dot-product" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>To transform the dot product into a <strong>probability</strong>, we apply a <strong>softmax function</strong> to the dot product. The softmax function normalizes the dot product so that it sums to 1, giving us a probability distribution.</p>
 <figure class="align-default" id="fig-attention-query-key-softmax">
-<a class="reference internal image-reference" href="../../../_images/attention_query_key_softmax.png"><img alt="../../../_images/attention_query_key_softmax.png" src="../../../_images/attention_query_key_softmax.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/attention_query_key_softmax.png"><img alt="../../../_images/attention_query_key_softmax.png" src="../../../_images/attention_query_key_softmax.png" style="width: 80%;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 126 </span><span class="caption-text">Attention query and key softmax</span><a class="headerlink" href="#fig-attention-query-key-softmax" title="Link to this image">#</a></p>
 </figcaption>
@@ -1200,7 +1207,8 @@ A[Input: the cat ran] --&gt; B[Attention Weights: 0.1, 0.8, 0.1] --&gt; C[Output
 <p>The <strong>query and key vectors</strong> are derived from the value vectors. They are calculated by passing the value vectors through <strong>two different linear layers</strong>.</p>
 <p>We can visualize the process of computing attention weights from query and key vectors using the <strong>neuron view</strong>.</p>
 <figure class="align-default" id="fig-neuron-view">
-<a class="reference internal image-reference" href="../../../_images/neuron_view.png"><img alt="../../../_images/neuron_view.png" src="../../../_images/neuron_view.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/neuron_view.png"><img alt="../../../_images/neuron_view.png" src="../../../_images/neuron_view.png" style="width: 80%;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 127 </span><span class="caption-text">Neuron view</span><a class="headerlink" href="#fig-neuron-view" title="Link to this image">#</a></p>
 </figcaption>
