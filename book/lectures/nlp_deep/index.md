@@ -33,7 +33,7 @@ By the end of this course, students will be able to:
 
 You can find the lecture notes of the course by clicking on the following link:
 
-https://lecture.jeju.ai/lectures/nlp_deep
+https://lectures.jeju.ai/lectures/nlp_deep
 
 ## 🎲 Whole Game of NLP
 

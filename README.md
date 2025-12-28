@@ -17,14 +17,14 @@
 
 [repo-url]: https://github.com/entelecheia/lecture
 [pypi-url]: https://pypi.org/project/lecture
-[docs-url]: https://lecture.jeju.ai
+[docs-url]: https://lectures.jeju.ai
 [changelog]: https://github.com/entelecheia/lecture/blob/main/CHANGELOG.md
 [contributing guidelines]: https://github.com/entelecheia/lecture/blob/main/CONTRIBUTING.md
 <!-- Links: -->
 
 Artificial Intelligence | Lecture Notes
 
-- Documentation: [https://lecture.jeju.ai][docs-url]
+- Documentation: [https://lectures.jeju.ai][docs-url]
 - GitHub: [https://github.com/entelecheia/lecture][repo-url]
 
 
